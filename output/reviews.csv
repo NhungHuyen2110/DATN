@@ -1,0 +1,5001 @@
+﻿CustomerID,ProductID,Rating,Comment
+KH01493,275,3,Rất đẹp
+KH00701,152,4,Chất lượng tốt
+KH00473,165,2,Đóng gói đẹp
+KH00618,122,3,Chất lượng tốt
+KH00873,286,2,Chất lượng tốt
+KH01109,110,4,Rất đẹp
+KH00657,83,1,Đóng gói đẹp
+KH01272,330,3,Đóng gói đẹp
+KH00887,67,4,Hài lòng
+KH00426,377,2,Rất đẹp
+KH00256,39,2,Đóng gói đẹp
+KH00645,354,2,Rất đẹp
+KH00325,373,1,Chất lượng tốt
+KH00841,125,1,Đóng gói đẹp
+KH00257,124,4,Hài lòng
+KH01802,7,4,Đóng gói đẹp
+KH00532,381,4,Chất lượng tốt
+KH01482,361,4,Chất lượng tốt
+KH00449,46,1,Chất lượng tốt
+KH01036,248,3,Chất lượng tốt
+KH01222,184,2,Đóng gói đẹp
+KH01309,157,1,Hài lòng
+KH00084,422,4,Hài lòng
+KH00818,205,2,Hài lòng
+KH00731,376,5,Hài lòng
+KH01099,375,5,Hài lòng
+KH01247,114,2,Hài lòng
+KH00475,158,3,Chất lượng tốt
+KH00424,55,1,Hài lòng
+KH01566,14,5,Đóng gói đẹp
+KH01804,406,4,Đóng gói đẹp
+KH00813,360,5,Rất đẹp
+KH01837,361,4,Hài lòng
+KH01655,49,3,Rất đẹp
+KH01947,63,3,Đóng gói đẹp
+KH01001,130,4,Chất lượng tốt
+KH01748,118,2,Hài lòng
+KH01309,225,4,Rất đẹp
+KH00250,66,3,Hài lòng
+KH01236,183,4,Rất đẹp
+KH00372,384,4,Hài lòng
+KH01842,305,3,Chất lượng tốt
+KH00794,3,4,Đóng gói đẹp
+KH00357,318,1,Rất đẹp
+KH01515,181,1,Đóng gói đẹp
+KH00573,149,4,Hài lòng
+KH00938,225,5,Hài lòng
+KH01657,384,5,Chất lượng tốt
+KH00645,432,1,Đóng gói đẹp
+KH01232,108,1,Chất lượng tốt
+KH00599,81,4,Hài lòng
+KH01434,326,3,Chất lượng tốt
+KH00083,59,1,Hài lòng
+KH00042,36,5,Chất lượng tốt
+KH00269,177,5,Đóng gói đẹp
+KH00606,275,5,Rất đẹp
+KH00609,18,2,Chất lượng tốt
+KH00558,121,1,Đóng gói đẹp
+KH01146,418,3,Chất lượng tốt
+KH00242,150,3,Rất đẹp
+KH01163,52,2,Chất lượng tốt
+KH01207,83,5,Chất lượng tốt
+KH01889,334,5,Rất đẹp
+KH00793,60,5,Hài lòng
+KH01768,32,4,Rất đẹp
+KH01704,434,3,Chất lượng tốt
+KH00716,419,4,Rất đẹp
+KH00872,258,4,Rất đẹp
+KH01557,168,2,Chất lượng tốt
+KH01222,496,4,Đóng gói đẹp
+KH01777,282,2,Hài lòng
+KH01395,355,1,Đóng gói đẹp
+KH00553,194,5,Rất đẹp
+KH00697,201,4,Hài lòng
+KH00783,118,2,Chất lượng tốt
+KH00319,284,1,Chất lượng tốt
+KH00600,378,5,Hài lòng
+KH01699,110,4,Chất lượng tốt
+KH00119,287,4,Hài lòng
+KH00157,16,5,Đóng gói đẹp
+KH00294,349,3,Đóng gói đẹp
+KH01001,384,1,Hài lòng
+KH01109,462,5,Chất lượng tốt
+KH01199,405,5,Đóng gói đẹp
+KH01876,1,2,Chất lượng tốt
+KH00230,400,5,Hài lòng
+KH00617,212,1,Chất lượng tốt
+KH01864,210,3,Rất đẹp
+KH00215,250,2,Hài lòng
+KH01866,174,1,Rất đẹp
+KH01352,141,1,Rất đẹp
+KH01499,83,3,Chất lượng tốt
+KH01468,99,3,Đóng gói đẹp
+KH01218,126,1,Chất lượng tốt
+KH01646,281,3,Chất lượng tốt
+KH00083,407,4,Chất lượng tốt
+KH01860,259,1,Rất đẹp
+KH01366,404,2,Hài lòng
+KH01655,118,4,Rất đẹp
+KH00062,194,1,Rất đẹp
+KH01160,14,2,Đóng gói đẹp
+KH01022,404,1,Hài lòng
+KH01227,111,5,Hài lòng
+KH00043,115,5,Hài lòng
+KH01547,315,5,Hài lòng
+KH00303,167,3,Hài lòng
+KH01638,88,5,Chất lượng tốt
+KH00182,19,1,Hài lòng
+KH01302,173,1,Chất lượng tốt
+KH00868,250,5,Chất lượng tốt
+KH00406,243,3,Hài lòng
+KH01770,75,3,Chất lượng tốt
+KH01123,317,1,Chất lượng tốt
+KH01161,470,2,Chất lượng tốt
+KH00173,208,2,Chất lượng tốt
+KH00704,188,2,Đóng gói đẹp
+KH01691,54,5,Đóng gói đẹp
+KH01833,378,2,Rất đẹp
+KH00462,41,4,Chất lượng tốt
+KH01605,348,1,Chất lượng tốt
+KH00688,468,2,Hài lòng
+KH01235,458,1,Rất đẹp
+KH01069,170,3,Rất đẹp
+KH01218,449,2,Đóng gói đẹp
+KH01576,229,3,Đóng gói đẹp
+KH01995,301,5,Đóng gói đẹp
+KH00464,296,3,Rất đẹp
+KH01275,441,1,Đóng gói đẹp
+KH00392,469,5,Hài lòng
+KH00711,99,2,Chất lượng tốt
+KH00362,214,2,Chất lượng tốt
+KH00760,323,2,Rất đẹp
+KH01863,128,3,Hài lòng
+KH01026,499,5,Hài lòng
+KH01949,272,2,Hài lòng
+KH00855,362,4,Chất lượng tốt
+KH01607,134,3,Chất lượng tốt
+KH01892,42,5,Chất lượng tốt
+KH01326,330,1,Chất lượng tốt
+KH00520,100,4,Rất đẹp
+KH01070,208,4,Hài lòng
+KH01593,206,3,Hài lòng
+KH01816,160,4,Rất đẹp
+KH00782,480,5,Đóng gói đẹp
+KH00064,358,1,Hài lòng
+KH01899,378,2,Chất lượng tốt
+KH01839,326,3,Rất đẹp
+KH01618,307,5,Hài lòng
+KH01879,417,2,Rất đẹp
+KH01224,42,3,Rất đẹp
+KH01355,486,5,Rất đẹp
+KH01160,415,4,Chất lượng tốt
+KH00115,390,2,Đóng gói đẹp
+KH00531,125,2,Hài lòng
+KH01030,15,2,Đóng gói đẹp
+KH00296,459,1,Rất đẹp
+KH01833,88,4,Rất đẹp
+KH00387,493,5,Rất đẹp
+KH01125,410,5,Rất đẹp
+KH00302,390,5,Rất đẹp
+KH01599,281,1,Chất lượng tốt
+KH00092,374,5,Đóng gói đẹp
+KH01790,345,3,Hài lòng
+KH01187,166,2,Chất lượng tốt
+KH01718,231,4,Rất đẹp
+KH01086,153,3,Đóng gói đẹp
+KH01171,258,2,Hài lòng
+KH00997,187,4,Rất đẹp
+KH01164,188,1,Hài lòng
+KH00258,377,4,Đóng gói đẹp
+KH00779,478,4,Hài lòng
+KH00474,175,4,Chất lượng tốt
+KH00989,398,1,Hài lòng
+KH01837,304,4,Đóng gói đẹp
+KH00448,410,3,Hài lòng
+KH00729,289,3,Hài lòng
+KH01791,477,5,Chất lượng tốt
+KH00175,472,4,Rất đẹp
+KH01398,477,4,Đóng gói đẹp
+KH01027,404,4,Hài lòng
+KH01448,245,3,Hài lòng
+KH00589,450,2,Rất đẹp
+KH00404,213,3,Đóng gói đẹp
+KH00143,123,1,Rất đẹp
+KH01509,28,2,Hài lòng
+KH01857,432,5,Hài lòng
+KH01257,217,3,Đóng gói đẹp
+KH00882,254,5,Đóng gói đẹp
+KH01854,302,3,Rất đẹp
+KH01292,51,5,Hài lòng
+KH01708,153,3,Hài lòng
+KH00534,396,4,Đóng gói đẹp
+KH01004,496,3,Đóng gói đẹp
+KH01517,39,3,Đóng gói đẹp
+KH00996,311,1,Đóng gói đẹp
+KH00863,374,3,Đóng gói đẹp
+KH00040,218,1,Chất lượng tốt
+KH01416,192,2,Chất lượng tốt
+KH00863,127,5,Chất lượng tốt
+KH00726,369,4,Đóng gói đẹp
+KH01547,108,1,Đóng gói đẹp
+KH01413,262,2,Rất đẹp
+KH00442,476,3,Hài lòng
+KH00531,208,4,Đóng gói đẹp
+KH00410,317,3,Chất lượng tốt
+KH00894,311,2,Rất đẹp
+KH00510,28,2,Rất đẹp
+KH01536,48,2,Chất lượng tốt
+KH00185,481,4,Chất lượng tốt
+KH00213,165,2,Rất đẹp
+KH01084,430,3,Chất lượng tốt
+KH01403,454,2,Đóng gói đẹp
+KH01288,337,4,Hài lòng
+KH01552,300,5,Đóng gói đẹp
+KH00555,305,5,Chất lượng tốt
+KH01139,219,1,Đóng gói đẹp
+KH00762,280,5,Chất lượng tốt
+KH00429,249,1,Đóng gói đẹp
+KH00073,102,3,Hài lòng
+KH01435,315,1,Rất đẹp
+KH01737,148,2,Rất đẹp
+KH01824,385,4,Hài lòng
+KH00793,447,1,Hài lòng
+KH01695,45,5,Chất lượng tốt
+KH00448,490,3,Rất đẹp
+KH00221,473,1,Rất đẹp
+KH00057,75,4,Hài lòng
+KH01981,219,5,Chất lượng tốt
+KH00860,56,3,Chất lượng tốt
+KH01242,217,5,Hài lòng
+KH01374,170,4,Chất lượng tốt
+KH00702,115,3,Đóng gói đẹp
+KH01397,83,2,Rất đẹp
+KH00918,344,3,Hài lòng
+KH00007,45,4,Đóng gói đẹp
+KH00131,465,1,Rất đẹp
+KH01044,414,3,Chất lượng tốt
+KH00981,48,3,Đóng gói đẹp
+KH01547,323,4,Đóng gói đẹp
+KH01918,50,5,Đóng gói đẹp
+KH00970,54,4,Chất lượng tốt
+KH00367,265,2,Chất lượng tốt
+KH01362,275,3,Đóng gói đẹp
+KH00447,155,2,Hài lòng
+KH01866,283,2,Rất đẹp
+KH00623,153,2,Hài lòng
+KH01742,65,3,Chất lượng tốt
+KH01713,135,2,Hài lòng
+KH00446,313,5,Chất lượng tốt
+KH00231,342,4,Chất lượng tốt
+KH00401,205,3,Chất lượng tốt
+KH00757,163,5,Hài lòng
+KH00855,226,4,Hài lòng
+KH01779,398,4,Hài lòng
+KH00203,65,1,Đóng gói đẹp
+KH01739,349,5,Hài lòng
+KH00500,289,5,Đóng gói đẹp
+KH01597,210,4,Hài lòng
+KH01151,3,2,Hài lòng
+KH01435,450,2,Chất lượng tốt
+KH01810,61,4,Rất đẹp
+KH00387,55,5,Rất đẹp
+KH01884,385,4,Rất đẹp
+KH01293,235,4,Đóng gói đẹp
+KH00495,464,5,Chất lượng tốt
+KH01696,125,4,Chất lượng tốt
+KH00140,453,1,Đóng gói đẹp
+KH01555,135,5,Chất lượng tốt
+KH00125,71,1,Rất đẹp
+KH00905,266,5,Đóng gói đẹp
+KH00212,43,2,Rất đẹp
+KH00291,452,4,Rất đẹp
+KH00323,205,4,Đóng gói đẹp
+KH00560,64,3,Chất lượng tốt
+KH01392,468,5,Hài lòng
+KH01746,425,5,Rất đẹp
+KH01233,227,2,Rất đẹp
+KH00737,437,2,Hài lòng
+KH01788,29,5,Đóng gói đẹp
+KH00735,279,5,Đóng gói đẹp
+KH00740,131,5,Rất đẹp
+KH00334,257,2,Đóng gói đẹp
+KH01071,57,2,Rất đẹp
+KH01925,114,5,Rất đẹp
+KH00210,67,1,Hài lòng
+KH01132,162,4,Rất đẹp
+KH01687,450,1,Chất lượng tốt
+KH01940,189,4,Hài lòng
+KH00447,113,3,Đóng gói đẹp
+KH01570,423,3,Rất đẹp
+KH00819,488,5,Hài lòng
+KH01961,8,3,Đóng gói đẹp
+KH01897,6,1,Đóng gói đẹp
+KH01821,2,2,Hài lòng
+KH00558,392,2,Hài lòng
+KH00011,308,4,Đóng gói đẹp
+KH01498,229,2,Đóng gói đẹp
+KH00920,146,1,Đóng gói đẹp
+KH00174,227,4,Rất đẹp
+KH00286,232,5,Hài lòng
+KH00067,235,2,Đóng gói đẹp
+KH01103,358,2,Đóng gói đẹp
+KH00245,455,2,Đóng gói đẹp
+KH00617,142,4,Đóng gói đẹp
+KH01354,461,1,Rất đẹp
+KH01004,205,2,Hài lòng
+KH00792,244,4,Rất đẹp
+KH01033,4,4,Hài lòng
+KH00401,273,2,Chất lượng tốt
+KH00004,298,4,Hài lòng
+KH01719,145,4,Rất đẹp
+KH00392,292,2,Chất lượng tốt
+KH00624,489,3,Đóng gói đẹp
+KH00279,297,3,Chất lượng tốt
+KH01576,392,3,Hài lòng
+KH01714,226,3,Hài lòng
+KH00870,409,1,Chất lượng tốt
+KH01243,398,4,Hài lòng
+KH01382,268,2,Hài lòng
+KH01408,304,5,Đóng gói đẹp
+KH01331,141,3,Đóng gói đẹp
+KH01349,449,3,Hài lòng
+KH01291,30,1,Chất lượng tốt
+KH00833,424,4,Rất đẹp
+KH01687,325,4,Chất lượng tốt
+KH00265,346,4,Đóng gói đẹp
+KH00674,150,2,Chất lượng tốt
+KH01291,458,4,Rất đẹp
+KH01438,147,2,Hài lòng
+KH00505,450,2,Hài lòng
+KH01963,169,4,Chất lượng tốt
+KH01576,105,3,Đóng gói đẹp
+KH01185,273,4,Đóng gói đẹp
+KH01057,419,3,Rất đẹp
+KH00786,228,5,Hài lòng
+KH01139,471,2,Đóng gói đẹp
+KH00883,319,1,Rất đẹp
+KH00142,205,2,Đóng gói đẹp
+KH01128,259,3,Chất lượng tốt
+KH00895,340,5,Chất lượng tốt
+KH00271,460,5,Rất đẹp
+KH00441,168,2,Rất đẹp
+KH00184,235,2,Đóng gói đẹp
+KH01052,484,4,Rất đẹp
+KH00285,482,2,Chất lượng tốt
+KH00475,439,4,Rất đẹp
+KH00515,399,4,Chất lượng tốt
+KH01743,29,3,Đóng gói đẹp
+KH00372,252,2,Hài lòng
+KH01963,411,4,Hài lòng
+KH00959,203,4,Đóng gói đẹp
+KH00996,328,4,Chất lượng tốt
+KH01061,110,3,Rất đẹp
+KH01404,165,1,Đóng gói đẹp
+KH00068,233,2,Đóng gói đẹp
+KH01570,143,3,Chất lượng tốt
+KH01355,46,4,Rất đẹp
+KH01082,81,4,Đóng gói đẹp
+KH01081,266,4,Đóng gói đẹp
+KH00941,481,3,Đóng gói đẹp
+KH01758,25,1,Đóng gói đẹp
+KH00829,168,1,Đóng gói đẹp
+KH00243,19,3,Chất lượng tốt
+KH01542,382,3,Rất đẹp
+KH00521,271,5,Chất lượng tốt
+KH01820,110,1,Rất đẹp
+KH01825,481,3,Hài lòng
+KH01023,395,5,Chất lượng tốt
+KH00101,271,2,Rất đẹp
+KH01731,243,2,Hài lòng
+KH00759,399,3,Chất lượng tốt
+KH01805,326,3,Chất lượng tốt
+KH00776,108,4,Chất lượng tốt
+KH01302,20,1,Rất đẹp
+KH01864,391,2,Hài lòng
+KH00142,103,2,Rất đẹp
+KH00630,358,5,Hài lòng
+KH01129,227,3,Hài lòng
+KH00221,289,2,Hài lòng
+KH01538,396,1,Chất lượng tốt
+KH00256,29,1,Rất đẹp
+KH00410,426,1,Hài lòng
+KH01618,372,1,Rất đẹp
+KH01338,478,3,Rất đẹp
+KH00611,153,2,Rất đẹp
+KH00741,260,2,Đóng gói đẹp
+KH01790,457,5,Chất lượng tốt
+KH01614,40,2,Rất đẹp
+KH01258,160,5,Chất lượng tốt
+KH00950,266,1,Rất đẹp
+KH01713,295,5,Chất lượng tốt
+KH01887,468,1,Chất lượng tốt
+KH00037,444,4,Hài lòng
+KH00764,246,4,Rất đẹp
+KH01241,299,3,Đóng gói đẹp
+KH00712,406,1,Đóng gói đẹp
+KH01991,12,3,Chất lượng tốt
+KH01161,117,2,Hài lòng
+KH01508,233,4,Đóng gói đẹp
+KH01934,329,4,Hài lòng
+KH01144,426,5,Rất đẹp
+KH00942,404,5,Đóng gói đẹp
+KH00268,261,2,Rất đẹp
+KH00128,170,3,Chất lượng tốt
+KH00281,48,2,Rất đẹp
+KH00415,471,1,Đóng gói đẹp
+KH00102,14,2,Chất lượng tốt
+KH00910,395,4,Hài lòng
+KH00747,63,1,Hài lòng
+KH00315,430,1,Chất lượng tốt
+KH00697,389,1,Rất đẹp
+KH00910,430,3,Rất đẹp
+KH00818,342,2,Rất đẹp
+KH01810,17,4,Hài lòng
+KH00651,418,3,Hài lòng
+KH01726,95,1,Hài lòng
+KH01395,259,4,Đóng gói đẹp
+KH00669,42,2,Đóng gói đẹp
+KH01235,88,1,Đóng gói đẹp
+KH00460,238,5,Đóng gói đẹp
+KH01070,241,5,Hài lòng
+KH00713,266,5,Đóng gói đẹp
+KH00650,67,2,Chất lượng tốt
+KH00108,379,2,Rất đẹp
+KH01053,224,4,Rất đẹp
+KH01658,247,2,Hài lòng
+KH01985,229,1,Rất đẹp
+KH01146,396,2,Đóng gói đẹp
+KH01833,430,3,Đóng gói đẹp
+KH00704,9,3,Hài lòng
+KH01839,166,2,Hài lòng
+KH00114,373,1,Chất lượng tốt
+KH00180,207,5,Rất đẹp
+KH00442,216,3,Rất đẹp
+KH01104,357,5,Hài lòng
+KH01473,104,1,Đóng gói đẹp
+KH01724,99,3,Rất đẹp
+KH00041,93,5,Chất lượng tốt
+KH00813,500,5,Hài lòng
+KH01720,82,3,Đóng gói đẹp
+KH01155,161,3,Đóng gói đẹp
+KH00673,400,3,Chất lượng tốt
+KH01857,336,4,Đóng gói đẹp
+KH01365,278,1,Chất lượng tốt
+KH01137,212,1,Hài lòng
+KH00577,369,1,Rất đẹp
+KH01831,374,3,Hài lòng
+KH00610,125,3,Đóng gói đẹp
+KH00644,354,2,Chất lượng tốt
+KH00172,315,3,Chất lượng tốt
+KH00624,347,5,Đóng gói đẹp
+KH01288,144,5,Hài lòng
+KH01647,228,5,Đóng gói đẹp
+KH01847,257,5,Đóng gói đẹp
+KH00932,138,5,Rất đẹp
+KH01093,103,5,Hài lòng
+KH00520,17,2,Rất đẹp
+KH00213,389,3,Chất lượng tốt
+KH01508,171,1,Chất lượng tốt
+KH00824,209,3,Hài lòng
+KH01822,80,4,Chất lượng tốt
+KH01667,382,2,Chất lượng tốt
+KH01907,280,3,Đóng gói đẹp
+KH00673,383,5,Hài lòng
+KH00554,312,4,Rất đẹp
+KH00375,89,2,Rất đẹp
+KH01195,44,1,Hài lòng
+KH00692,130,5,Rất đẹp
+KH00809,20,1,Rất đẹp
+KH00570,133,4,Rất đẹp
+KH01827,319,3,Hài lòng
+KH00202,305,4,Hài lòng
+KH01438,216,5,Đóng gói đẹp
+KH01261,230,3,Rất đẹp
+KH00046,212,4,Chất lượng tốt
+KH01418,326,2,Rất đẹp
+KH00837,25,5,Đóng gói đẹp
+KH00862,225,5,Đóng gói đẹp
+KH01149,30,3,Rất đẹp
+KH01367,112,1,Hài lòng
+KH01739,135,1,Chất lượng tốt
+KH00140,175,2,Đóng gói đẹp
+KH01900,313,3,Chất lượng tốt
+KH01025,435,1,Đóng gói đẹp
+KH01674,161,2,Rất đẹp
+KH01214,401,2,Chất lượng tốt
+KH01847,184,3,Hài lòng
+KH00289,228,2,Chất lượng tốt
+KH01378,60,1,Chất lượng tốt
+KH01408,295,3,Rất đẹp
+KH00353,499,1,Hài lòng
+KH01378,460,5,Chất lượng tốt
+KH01295,14,4,Chất lượng tốt
+KH00873,375,2,Chất lượng tốt
+KH01322,444,3,Chất lượng tốt
+KH01699,286,1,Hài lòng
+KH00847,432,5,Hài lòng
+KH00004,21,1,Đóng gói đẹp
+KH01551,175,2,Chất lượng tốt
+KH00006,332,1,Rất đẹp
+KH00728,368,3,Rất đẹp
+KH01644,45,4,Hài lòng
+KH01241,35,4,Rất đẹp
+KH01810,417,1,Chất lượng tốt
+KH00024,447,1,Rất đẹp
+KH01382,101,4,Hài lòng
+KH00420,121,4,Chất lượng tốt
+KH01481,136,5,Hài lòng
+KH01052,203,4,Đóng gói đẹp
+KH01448,140,4,Đóng gói đẹp
+KH01292,362,2,Rất đẹp
+KH00448,456,1,Chất lượng tốt
+KH00559,65,5,Đóng gói đẹp
+KH00958,434,4,Hài lòng
+KH01112,112,2,Đóng gói đẹp
+KH00182,238,2,Chất lượng tốt
+KH01925,282,3,Đóng gói đẹp
+KH01739,278,5,Chất lượng tốt
+KH01607,344,4,Đóng gói đẹp
+KH00723,220,4,Đóng gói đẹp
+KH01418,219,2,Rất đẹp
+KH00783,457,1,Hài lòng
+KH00427,173,2,Rất đẹp
+KH01590,435,4,Đóng gói đẹp
+KH01026,486,5,Hài lòng
+KH01831,413,4,Chất lượng tốt
+KH01049,41,5,Chất lượng tốt
+KH00817,446,5,Rất đẹp
+KH01041,145,1,Rất đẹp
+KH01612,261,1,Chất lượng tốt
+KH00089,498,5,Chất lượng tốt
+KH00235,191,5,Hài lòng
+KH00511,463,1,Hài lòng
+KH01068,294,4,Hài lòng
+KH00532,228,3,Đóng gói đẹp
+KH01283,284,3,Rất đẹp
+KH01599,301,5,Chất lượng tốt
+KH01079,439,3,Rất đẹp
+KH01043,78,5,Đóng gói đẹp
+KH01375,379,1,Chất lượng tốt
+KH01239,56,1,Hài lòng
+KH00545,347,1,Chất lượng tốt
+KH00973,367,2,Rất đẹp
+KH00755,72,3,Hài lòng
+KH00079,274,3,Rất đẹp
+KH00259,293,3,Đóng gói đẹp
+KH01477,388,4,Chất lượng tốt
+KH00080,186,3,Hài lòng
+KH01128,491,3,Hài lòng
+KH01661,213,4,Hài lòng
+KH01329,437,2,Hài lòng
+KH00388,159,5,Rất đẹp
+KH01874,52,4,Chất lượng tốt
+KH01489,334,2,Đóng gói đẹp
+KH00244,188,3,Đóng gói đẹp
+KH00690,450,5,Rất đẹp
+KH01843,168,3,Chất lượng tốt
+KH00476,63,1,Hài lòng
+KH00246,244,1,Chất lượng tốt
+KH00848,392,1,Đóng gói đẹp
+KH00748,489,1,Rất đẹp
+KH01364,402,2,Chất lượng tốt
+KH01508,431,2,Chất lượng tốt
+KH00852,139,5,Đóng gói đẹp
+KH00289,278,3,Chất lượng tốt
+KH01557,394,1,Hài lòng
+KH00894,444,4,Chất lượng tốt
+KH01915,166,1,Hài lòng
+KH01215,456,2,Chất lượng tốt
+KH00516,375,3,Đóng gói đẹp
+KH01222,96,2,Hài lòng
+KH01336,255,1,Đóng gói đẹp
+KH01668,488,5,Rất đẹp
+KH00055,241,3,Chất lượng tốt
+KH01991,2,3,Đóng gói đẹp
+KH01383,235,1,Đóng gói đẹp
+KH00194,12,2,Đóng gói đẹp
+KH01462,288,5,Đóng gói đẹp
+KH00118,500,1,Hài lòng
+KH00531,351,3,Rất đẹp
+KH01502,401,3,Chất lượng tốt
+KH01687,217,4,Chất lượng tốt
+KH01249,62,1,Hài lòng
+KH00658,237,1,Chất lượng tốt
+KH00759,147,3,Hài lòng
+KH00311,76,3,Rất đẹp
+KH00210,473,1,Hài lòng
+KH01292,72,2,Hài lòng
+KH01404,449,1,Rất đẹp
+KH00237,432,3,Rất đẹp
+KH00937,49,3,Đóng gói đẹp
+KH00588,472,4,Hài lòng
+KH00971,60,4,Hài lòng
+KH00925,26,2,Hài lòng
+KH01439,125,1,Đóng gói đẹp
+KH01888,338,4,Đóng gói đẹp
+KH01201,458,4,Hài lòng
+KH01747,262,5,Đóng gói đẹp
+KH01112,409,5,Rất đẹp
+KH00843,233,2,Chất lượng tốt
+KH01162,302,4,Đóng gói đẹp
+KH01635,374,1,Chất lượng tốt
+KH00554,374,2,Chất lượng tốt
+KH00033,102,2,Hài lòng
+KH01277,160,3,Rất đẹp
+KH01312,27,3,Chất lượng tốt
+KH01387,282,3,Hài lòng
+KH00110,381,4,Chất lượng tốt
+KH01949,193,1,Đóng gói đẹp
+KH01963,341,1,Đóng gói đẹp
+KH00878,285,4,Đóng gói đẹp
+KH00099,96,4,Đóng gói đẹp
+KH01100,314,2,Chất lượng tốt
+KH00298,198,5,Rất đẹp
+KH01667,169,5,Rất đẹp
+KH00251,75,5,Rất đẹp
+KH00042,435,4,Hài lòng
+KH01528,421,1,Đóng gói đẹp
+KH01227,41,5,Rất đẹp
+KH00174,145,1,Đóng gói đẹp
+KH00424,188,5,Rất đẹp
+KH01678,496,2,Hài lòng
+KH01484,221,2,Chất lượng tốt
+KH01259,56,4,Đóng gói đẹp
+KH01886,285,4,Đóng gói đẹp
+KH00489,59,1,Đóng gói đẹp
+KH01512,52,1,Rất đẹp
+KH00612,177,1,Hài lòng
+KH00415,375,4,Chất lượng tốt
+KH01198,36,4,Chất lượng tốt
+KH01585,297,2,Đóng gói đẹp
+KH00913,52,5,Hài lòng
+KH00910,412,4,Đóng gói đẹp
+KH00717,152,1,Hài lòng
+KH01608,350,5,Rất đẹp
+KH00069,156,4,Hài lòng
+KH00866,305,4,Hài lòng
+KH01019,332,3,Rất đẹp
+KH01864,121,3,Chất lượng tốt
+KH01321,256,5,Chất lượng tốt
+KH00225,400,2,Chất lượng tốt
+KH00526,219,2,Đóng gói đẹp
+KH01904,107,1,Rất đẹp
+KH01493,204,1,Hài lòng
+KH01715,52,5,Chất lượng tốt
+KH00074,251,2,Hài lòng
+KH00579,492,5,Hài lòng
+KH01006,245,3,Hài lòng
+KH00275,107,3,Hài lòng
+KH01210,33,5,Chất lượng tốt
+KH00676,257,4,Hài lòng
+KH00373,177,5,Chất lượng tốt
+KH01642,263,3,Hài lòng
+KH00628,70,1,Rất đẹp
+KH00441,473,5,Rất đẹp
+KH01627,120,4,Chất lượng tốt
+KH00659,113,4,Chất lượng tốt
+KH01718,130,3,Đóng gói đẹp
+KH00031,407,3,Đóng gói đẹp
+KH01349,24,3,Hài lòng
+KH00513,355,1,Hài lòng
+KH01573,420,1,Rất đẹp
+KH01045,344,2,Rất đẹp
+KH00650,171,1,Rất đẹp
+KH01884,163,2,Rất đẹp
+KH00982,43,5,Chất lượng tốt
+KH00182,309,5,Hài lòng
+KH00204,330,1,Hài lòng
+KH00745,396,4,Rất đẹp
+KH01203,168,1,Rất đẹp
+KH00002,8,3,Hài lòng
+KH01914,411,1,Đóng gói đẹp
+KH00081,297,2,Chất lượng tốt
+KH01799,36,2,Chất lượng tốt
+KH01548,172,1,Hài lòng
+KH01062,195,4,Chất lượng tốt
+KH01555,354,2,Chất lượng tốt
+KH01445,347,1,Hài lòng
+KH00944,50,5,Rất đẹp
+KH00964,197,4,Rất đẹp
+KH00937,284,2,Rất đẹp
+KH01246,319,5,Rất đẹp
+KH00437,52,3,Đóng gói đẹp
+KH01260,222,1,Chất lượng tốt
+KH01096,459,3,Chất lượng tốt
+KH00147,168,2,Hài lòng
+KH01714,171,2,Đóng gói đẹp
+KH00453,248,2,Rất đẹp
+KH00988,249,5,Rất đẹp
+KH00197,473,2,Đóng gói đẹp
+KH00785,267,4,Rất đẹp
+KH00800,81,4,Chất lượng tốt
+KH00788,302,4,Đóng gói đẹp
+KH01653,44,1,Đóng gói đẹp
+KH01042,286,3,Hài lòng
+KH00041,276,4,Hài lòng
+KH00039,14,4,Rất đẹp
+KH00613,360,2,Rất đẹp
+KH01998,46,2,Hài lòng
+KH00187,151,4,Rất đẹp
+KH00742,192,5,Rất đẹp
+KH00431,401,3,Rất đẹp
+KH01356,244,4,Hài lòng
+KH00627,93,3,Đóng gói đẹp
+KH00754,172,2,Hài lòng
+KH01649,166,4,Hài lòng
+KH01000,373,5,Chất lượng tốt
+KH01339,149,2,Hài lòng
+KH01013,260,2,Chất lượng tốt
+KH01642,425,4,Rất đẹp
+KH01557,119,2,Đóng gói đẹp
+KH00799,393,4,Rất đẹp
+KH01661,24,5,Chất lượng tốt
+KH01054,36,3,Rất đẹp
+KH01338,302,5,Rất đẹp
+KH01502,52,1,Đóng gói đẹp
+KH01781,395,5,Hài lòng
+KH01978,64,1,Đóng gói đẹp
+KH01201,265,1,Rất đẹp
+KH00458,211,5,Rất đẹp
+KH00429,276,2,Chất lượng tốt
+KH01588,21,1,Chất lượng tốt
+KH01341,319,1,Hài lòng
+KH01813,306,2,Rất đẹp
+KH00343,358,1,Chất lượng tốt
+KH01182,177,2,Rất đẹp
+KH00947,488,5,Đóng gói đẹp
+KH01558,238,1,Đóng gói đẹp
+KH01750,204,5,Rất đẹp
+KH01783,26,3,Rất đẹp
+KH01528,340,1,Hài lòng
+KH01029,150,5,Rất đẹp
+KH00003,147,1,Đóng gói đẹp
+KH01555,192,3,Đóng gói đẹp
+KH00818,425,5,Đóng gói đẹp
+KH01424,175,1,Chất lượng tốt
+KH00203,35,3,Rất đẹp
+KH00394,34,1,Rất đẹp
+KH01667,238,5,Hài lòng
+KH01376,83,5,Chất lượng tốt
+KH00479,430,5,Rất đẹp
+KH00356,278,3,Rất đẹp
+KH00399,36,1,Rất đẹp
+KH00247,420,4,Đóng gói đẹp
+KH01200,263,2,Hài lòng
+KH01703,156,3,Đóng gói đẹp
+KH01781,66,4,Đóng gói đẹp
+KH00494,58,4,Chất lượng tốt
+KH01141,139,1,Rất đẹp
+KH01835,218,5,Chất lượng tốt
+KH00245,93,5,Hài lòng
+KH00005,375,3,Rất đẹp
+KH01099,26,3,Đóng gói đẹp
+KH00457,465,4,Chất lượng tốt
+KH00710,62,3,Hài lòng
+KH00337,181,5,Hài lòng
+KH01677,341,5,Hài lòng
+KH01956,355,3,Đóng gói đẹp
+KH00170,317,3,Chất lượng tốt
+KH00395,231,5,Đóng gói đẹp
+KH00701,199,5,Đóng gói đẹp
+KH01971,456,2,Đóng gói đẹp
+KH01995,181,5,Hài lòng
+KH00517,407,1,Hài lòng
+KH01487,230,1,Hài lòng
+KH01916,473,1,Đóng gói đẹp
+KH00649,359,1,Chất lượng tốt
+KH01526,321,2,Rất đẹp
+KH01343,149,3,Đóng gói đẹp
+KH01562,240,1,Hài lòng
+KH00615,139,1,Rất đẹp
+KH01175,185,3,Hài lòng
+KH01394,245,3,Chất lượng tốt
+KH00829,110,4,Rất đẹp
+KH00471,351,2,Hài lòng
+KH01843,375,2,Hài lòng
+KH01116,44,1,Đóng gói đẹp
+KH00613,313,1,Chất lượng tốt
+KH01034,494,2,Đóng gói đẹp
+KH01507,336,1,Hài lòng
+KH01767,120,1,Chất lượng tốt
+KH01296,458,3,Rất đẹp
+KH00446,386,1,Hài lòng
+KH01949,324,5,Đóng gói đẹp
+KH01051,144,5,Rất đẹp
+KH01444,132,5,Chất lượng tốt
+KH01382,360,2,Chất lượng tốt
+KH01811,56,2,Chất lượng tốt
+KH01026,23,2,Đóng gói đẹp
+KH00748,493,4,Hài lòng
+KH01242,359,5,Chất lượng tốt
+KH01313,484,1,Đóng gói đẹp
+KH01718,156,1,Chất lượng tốt
+KH01367,450,2,Hài lòng
+KH00664,64,2,Chất lượng tốt
+KH00515,117,1,Rất đẹp
+KH00050,246,4,Đóng gói đẹp
+KH01355,458,1,Hài lòng
+KH01159,460,5,Chất lượng tốt
+KH00344,197,2,Chất lượng tốt
+KH00695,407,1,Hài lòng
+KH00802,179,5,Hài lòng
+KH01241,8,4,Hài lòng
+KH01348,469,4,Chất lượng tốt
+KH00926,163,1,Chất lượng tốt
+KH00036,100,2,Rất đẹp
+KH01507,313,3,Chất lượng tốt
+KH01603,94,4,Chất lượng tốt
+KH01228,387,4,Hài lòng
+KH01020,28,3,Chất lượng tốt
+KH00294,414,2,Hài lòng
+KH00333,196,1,Đóng gói đẹp
+KH01183,418,1,Đóng gói đẹp
+KH01338,1,5,Đóng gói đẹp
+KH00681,200,2,Hài lòng
+KH01485,92,5,Hài lòng
+KH01587,455,1,Chất lượng tốt
+KH00209,111,2,Chất lượng tốt
+KH01217,174,3,Đóng gói đẹp
+KH00980,43,4,Chất lượng tốt
+KH00184,493,1,Rất đẹp
+KH01731,193,2,Rất đẹp
+KH01552,385,4,Đóng gói đẹp
+KH00765,120,1,Chất lượng tốt
+KH01575,234,1,Hài lòng
+KH00133,240,5,Rất đẹp
+KH00818,479,2,Chất lượng tốt
+KH00907,414,5,Hài lòng
+KH00927,418,3,Hài lòng
+KH00079,168,5,Chất lượng tốt
+KH00580,143,4,Rất đẹp
+KH01447,230,5,Rất đẹp
+KH01075,196,4,Chất lượng tốt
+KH01857,93,4,Rất đẹp
+KH01683,330,3,Hài lòng
+KH00289,173,2,Hài lòng
+KH01526,456,2,Chất lượng tốt
+KH00219,248,3,Chất lượng tốt
+KH01872,156,2,Chất lượng tốt
+KH01340,321,5,Đóng gói đẹp
+KH00201,82,3,Rất đẹp
+KH00746,69,4,Rất đẹp
+KH00827,102,4,Hài lòng
+KH00872,225,3,Chất lượng tốt
+KH00784,251,1,Hài lòng
+KH01339,422,3,Chất lượng tốt
+KH00398,81,5,Chất lượng tốt
+KH00998,431,5,Rất đẹp
+KH01021,215,2,Rất đẹp
+KH01799,129,2,Đóng gói đẹp
+KH00392,210,3,Chất lượng tốt
+KH00495,50,2,Hài lòng
+KH00980,11,2,Hài lòng
+KH01925,158,3,Rất đẹp
+KH01851,88,1,Đóng gói đẹp
+KH01845,218,1,Chất lượng tốt
+KH00389,388,1,Hài lòng
+KH00151,303,4,Đóng gói đẹp
+KH01276,188,2,Rất đẹp
+KH01852,122,2,Hài lòng
+KH00012,281,2,Chất lượng tốt
+KH01551,200,2,Rất đẹp
+KH00180,402,4,Rất đẹp
+KH00827,53,2,Chất lượng tốt
+KH01380,317,3,Chất lượng tốt
+KH01119,498,3,Hài lòng
+KH01224,75,2,Chất lượng tốt
+KH00315,150,4,Đóng gói đẹp
+KH01388,142,1,Hài lòng
+KH00145,434,2,Chất lượng tốt
+KH01210,470,5,Rất đẹp
+KH01759,301,2,Đóng gói đẹp
+KH00255,312,2,Đóng gói đẹp
+KH00124,472,1,Đóng gói đẹp
+KH00585,30,5,Rất đẹp
+KH01784,98,3,Chất lượng tốt
+KH00343,54,3,Rất đẹp
+KH00720,274,2,Chất lượng tốt
+KH00746,336,3,Rất đẹp
+KH01144,371,4,Hài lòng
+KH00743,227,3,Rất đẹp
+KH00037,326,4,Rất đẹp
+KH01037,406,3,Chất lượng tốt
+KH01001,186,3,Hài lòng
+KH00986,475,3,Chất lượng tốt
+KH01636,458,1,Đóng gói đẹp
+KH00380,4,2,Đóng gói đẹp
+KH00676,272,5,Hài lòng
+KH00323,169,5,Rất đẹp
+KH00252,210,1,Đóng gói đẹp
+KH00200,406,2,Rất đẹp
+KH00615,293,2,Đóng gói đẹp
+KH01829,70,2,Rất đẹp
+KH00061,12,5,Chất lượng tốt
+KH00506,237,2,Rất đẹp
+KH00104,267,5,Rất đẹp
+KH00032,191,1,Đóng gói đẹp
+KH00885,13,5,Rất đẹp
+KH01793,331,2,Đóng gói đẹp
+KH00445,40,5,Rất đẹp
+KH00215,160,2,Rất đẹp
+KH01381,252,3,Hài lòng
+KH01913,224,2,Rất đẹp
+KH01363,47,1,Chất lượng tốt
+KH01650,52,3,Chất lượng tốt
+KH01943,176,3,Đóng gói đẹp
+KH00040,135,3,Rất đẹp
+KH00247,279,5,Chất lượng tốt
+KH01021,135,2,Hài lòng
+KH00757,115,1,Hài lòng
+KH01208,409,4,Hài lòng
+KH00789,400,4,Hài lòng
+KH01875,110,4,Hài lòng
+KH00061,369,4,Đóng gói đẹp
+KH00522,185,2,Chất lượng tốt
+KH00494,89,5,Đóng gói đẹp
+KH00216,189,4,Đóng gói đẹp
+KH01003,315,1,Rất đẹp
+KH00655,149,1,Hài lòng
+KH00328,144,1,Chất lượng tốt
+KH00748,59,5,Hài lòng
+KH00374,172,1,Chất lượng tốt
+KH01470,436,4,Đóng gói đẹp
+KH01696,387,3,Hài lòng
+KH01645,341,5,Đóng gói đẹp
+KH01407,288,1,Rất đẹp
+KH01523,241,3,Chất lượng tốt
+KH00267,478,2,Rất đẹp
+KH01081,51,5,Chất lượng tốt
+KH01750,485,1,Rất đẹp
+KH01520,390,4,Rất đẹp
+KH01853,198,1,Hài lòng
+KH00184,111,2,Chất lượng tốt
+KH01037,222,5,Rất đẹp
+KH01080,445,5,Rất đẹp
+KH01117,197,3,Chất lượng tốt
+KH01093,150,2,Rất đẹp
+KH01027,441,4,Hài lòng
+KH01935,378,5,Đóng gói đẹp
+KH01563,244,4,Đóng gói đẹp
+KH01249,21,2,Hài lòng
+KH01620,384,5,Hài lòng
+KH01368,288,3,Hài lòng
+KH00060,485,1,Hài lòng
+KH01844,250,3,Hài lòng
+KH00716,5,3,Đóng gói đẹp
+KH01578,188,4,Rất đẹp
+KH01453,480,1,Chất lượng tốt
+KH00581,278,4,Đóng gói đẹp
+KH00721,141,1,Rất đẹp
+KH00412,6,2,Hài lòng
+KH01065,66,3,Đóng gói đẹp
+KH00912,403,2,Hài lòng
+KH01978,334,3,Rất đẹp
+KH01370,286,2,Rất đẹp
+KH00901,87,1,Chất lượng tốt
+KH00117,237,4,Hài lòng
+KH01081,186,5,Rất đẹp
+KH01661,484,2,Rất đẹp
+KH00936,250,2,Hài lòng
+KH00146,206,1,Hài lòng
+KH01640,470,1,Hài lòng
+KH00818,452,1,Đóng gói đẹp
+KH00107,233,1,Chất lượng tốt
+KH00388,294,3,Hài lòng
+KH01852,110,1,Chất lượng tốt
+KH00421,233,1,Rất đẹp
+KH01703,318,4,Rất đẹp
+KH01398,271,4,Đóng gói đẹp
+KH01675,152,5,Hài lòng
+KH01559,200,4,Chất lượng tốt
+KH00006,167,1,Hài lòng
+KH00058,74,3,Đóng gói đẹp
+KH01170,497,1,Hài lòng
+KH00073,204,5,Chất lượng tốt
+KH01458,262,1,Rất đẹp
+KH01335,232,4,Hài lòng
+KH01229,339,4,Hài lòng
+KH01796,449,4,Hài lòng
+KH00570,17,5,Đóng gói đẹp
+KH01201,168,1,Đóng gói đẹp
+KH01311,484,5,Chất lượng tốt
+KH01459,409,4,Rất đẹp
+KH01660,77,4,Rất đẹp
+KH00729,214,2,Chất lượng tốt
+KH00352,177,2,Chất lượng tốt
+KH01838,314,5,Rất đẹp
+KH00616,184,2,Đóng gói đẹp
+KH01833,452,3,Chất lượng tốt
+KH01563,113,3,Chất lượng tốt
+KH01345,319,4,Rất đẹp
+KH01424,141,1,Đóng gói đẹp
+KH01370,325,2,Hài lòng
+KH01225,419,2,Đóng gói đẹp
+KH00027,476,3,Đóng gói đẹp
+KH00877,478,5,Hài lòng
+KH00126,160,5,Đóng gói đẹp
+KH01378,328,4,Hài lòng
+KH00946,344,5,Rất đẹp
+KH00915,266,1,Hài lòng
+KH00132,80,2,Hài lòng
+KH01413,452,5,Hài lòng
+KH01758,370,5,Hài lòng
+KH01407,89,2,Chất lượng tốt
+KH00779,345,1,Hài lòng
+KH01972,472,5,Đóng gói đẹp
+KH01447,46,5,Rất đẹp
+KH01552,358,5,Hài lòng
+KH01389,336,5,Chất lượng tốt
+KH00199,32,1,Đóng gói đẹp
+KH01248,85,2,Rất đẹp
+KH01891,451,5,Chất lượng tốt
+KH01913,414,1,Rất đẹp
+KH01129,195,3,Rất đẹp
+KH00753,334,5,Rất đẹp
+KH00221,343,2,Chất lượng tốt
+KH01045,238,3,Chất lượng tốt
+KH00279,221,3,Rất đẹp
+KH01299,118,3,Đóng gói đẹp
+KH00454,134,3,Chất lượng tốt
+KH01469,199,1,Hài lòng
+KH00555,119,5,Rất đẹp
+KH00932,224,5,Đóng gói đẹp
+KH00538,268,2,Đóng gói đẹp
+KH00080,199,4,Đóng gói đẹp
+KH01452,144,5,Chất lượng tốt
+KH00101,104,4,Chất lượng tốt
+KH00089,470,3,Đóng gói đẹp
+KH01824,271,1,Rất đẹp
+KH01785,59,4,Hài lòng
+KH00396,124,1,Chất lượng tốt
+KH01779,289,1,Đóng gói đẹp
+KH00422,319,1,Rất đẹp
+KH00196,255,2,Rất đẹp
+KH00332,317,2,Đóng gói đẹp
+KH00575,117,2,Chất lượng tốt
+KH01745,277,1,Rất đẹp
+KH00155,210,1,Rất đẹp
+KH00581,81,3,Đóng gói đẹp
+KH01572,366,3,Rất đẹp
+KH00492,269,1,Đóng gói đẹp
+KH00825,366,1,Chất lượng tốt
+KH01190,79,1,Chất lượng tốt
+KH01782,331,2,Đóng gói đẹp
+KH00121,93,4,Hài lòng
+KH00737,181,5,Đóng gói đẹp
+KH00347,170,5,Rất đẹp
+KH00262,55,5,Hài lòng
+KH00577,65,1,Chất lượng tốt
+KH00147,77,3,Đóng gói đẹp
+KH00866,164,5,Chất lượng tốt
+KH01067,447,1,Rất đẹp
+KH01841,225,2,Hài lòng
+KH01228,366,5,Đóng gói đẹp
+KH00947,153,1,Hài lòng
+KH01663,246,1,Chất lượng tốt
+KH00195,215,2,Chất lượng tốt
+KH01531,62,3,Đóng gói đẹp
+KH00812,331,5,Rất đẹp
+KH01481,88,5,Chất lượng tốt
+KH01866,265,4,Chất lượng tốt
+KH00589,486,3,Đóng gói đẹp
+KH01854,470,2,Đóng gói đẹp
+KH00650,425,5,Đóng gói đẹp
+KH01690,140,4,Rất đẹp
+KH01347,473,3,Hài lòng
+KH00657,3,1,Chất lượng tốt
+KH00387,366,5,Chất lượng tốt
+KH00996,486,4,Hài lòng
+KH00705,267,4,Chất lượng tốt
+KH01340,362,1,Rất đẹp
+KH00748,270,2,Đóng gói đẹp
+KH01847,377,2,Chất lượng tốt
+KH00403,235,5,Hài lòng
+KH01126,453,3,Rất đẹp
+KH01751,328,1,Đóng gói đẹp
+KH00523,402,3,Đóng gói đẹp
+KH00024,317,1,Đóng gói đẹp
+KH01005,407,4,Rất đẹp
+KH00369,322,1,Rất đẹp
+KH00597,275,5,Rất đẹp
+KH00413,176,2,Hài lòng
+KH00652,239,5,Chất lượng tốt
+KH00976,369,1,Chất lượng tốt
+KH01110,478,5,Chất lượng tốt
+KH01969,118,5,Rất đẹp
+KH01687,497,4,Hài lòng
+KH01217,292,2,Rất đẹp
+KH01093,420,2,Đóng gói đẹp
+KH00558,66,2,Chất lượng tốt
+KH00403,57,1,Rất đẹp
+KH01510,197,2,Rất đẹp
+KH01015,73,5,Hài lòng
+KH01674,2,5,Rất đẹp
+KH01141,216,3,Chất lượng tốt
+KH00767,151,5,Chất lượng tốt
+KH00293,231,4,Rất đẹp
+KH01641,162,2,Chất lượng tốt
+KH00709,390,5,Đóng gói đẹp
+KH01301,362,1,Chất lượng tốt
+KH01107,365,3,Hài lòng
+KH00753,23,5,Rất đẹp
+KH01375,113,5,Hài lòng
+KH01290,454,1,Rất đẹp
+KH00769,307,5,Đóng gói đẹp
+KH01161,50,5,Đóng gói đẹp
+KH01532,497,2,Đóng gói đẹp
+KH00942,319,2,Rất đẹp
+KH00498,120,2,Chất lượng tốt
+KH00678,129,5,Chất lượng tốt
+KH01998,349,3,Rất đẹp
+KH01008,232,5,Chất lượng tốt
+KH00453,253,2,Chất lượng tốt
+KH01217,156,2,Chất lượng tốt
+KH00391,207,5,Chất lượng tốt
+KH01958,367,3,Chất lượng tốt
+KH01490,229,1,Rất đẹp
+KH01991,227,4,Đóng gói đẹp
+KH01434,342,5,Rất đẹp
+KH00166,319,5,Đóng gói đẹp
+KH00049,330,4,Đóng gói đẹp
+KH01512,143,4,Chất lượng tốt
+KH00424,42,3,Rất đẹp
+KH00486,113,3,Chất lượng tốt
+KH00140,290,2,Đóng gói đẹp
+KH00735,117,1,Hài lòng
+KH00903,167,3,Đóng gói đẹp
+KH00467,158,2,Chất lượng tốt
+KH00942,397,5,Đóng gói đẹp
+KH00987,234,3,Hài lòng
+KH00967,81,1,Hài lòng
+KH01858,90,2,Hài lòng
+KH00950,10,2,Rất đẹp
+KH00805,19,1,Rất đẹp
+KH01762,415,5,Hài lòng
+KH00684,68,2,Hài lòng
+KH00815,74,4,Chất lượng tốt
+KH00795,102,2,Rất đẹp
+KH00097,478,4,Chất lượng tốt
+KH00915,480,5,Hài lòng
+KH01960,50,4,Đóng gói đẹp
+KH00096,180,4,Rất đẹp
+KH01086,244,1,Chất lượng tốt
+KH01375,151,2,Hài lòng
+KH01396,350,1,Đóng gói đẹp
+KH00344,230,4,Rất đẹp
+KH00413,136,3,Chất lượng tốt
+KH01021,211,3,Đóng gói đẹp
+KH00474,243,4,Chất lượng tốt
+KH00694,167,4,Hài lòng
+KH01782,306,2,Đóng gói đẹp
+KH01146,267,3,Đóng gói đẹp
+KH00286,452,3,Đóng gói đẹp
+KH00750,15,1,Chất lượng tốt
+KH00947,56,3,Đóng gói đẹp
+KH01401,267,5,Đóng gói đẹp
+KH01626,186,5,Đóng gói đẹp
+KH00570,174,2,Hài lòng
+KH01207,293,4,Hài lòng
+KH01503,214,1,Đóng gói đẹp
+KH00682,258,2,Đóng gói đẹp
+KH00668,485,3,Chất lượng tốt
+KH01519,20,2,Rất đẹp
+KH01042,311,1,Hài lòng
+KH00357,163,5,Chất lượng tốt
+KH00382,23,3,Hài lòng
+KH01797,51,5,Chất lượng tốt
+KH01944,342,5,Đóng gói đẹp
+KH01792,43,3,Hài lòng
+KH00536,375,1,Đóng gói đẹp
+KH01777,430,5,Rất đẹp
+KH01371,368,3,Hài lòng
+KH01970,170,1,Rất đẹp
+KH00480,82,5,Hài lòng
+KH00262,344,4,Đóng gói đẹp
+KH00278,79,2,Chất lượng tốt
+KH01245,210,2,Chất lượng tốt
+KH01124,356,2,Chất lượng tốt
+KH01940,471,5,Hài lòng
+KH01311,59,1,Đóng gói đẹp
+KH00851,382,5,Rất đẹp
+KH00071,305,5,Đóng gói đẹp
+KH01317,433,1,Đóng gói đẹp
+KH01785,64,2,Rất đẹp
+KH01599,308,2,Đóng gói đẹp
+KH01904,282,4,Đóng gói đẹp
+KH00761,68,4,Chất lượng tốt
+KH01321,369,3,Đóng gói đẹp
+KH01589,225,5,Hài lòng
+KH00908,307,2,Đóng gói đẹp
+KH00264,326,1,Rất đẹp
+KH01662,361,4,Đóng gói đẹp
+KH00166,78,3,Đóng gói đẹp
+KH00986,433,5,Chất lượng tốt
+KH00109,114,3,Rất đẹp
+KH01955,354,5,Rất đẹp
+KH00846,105,3,Rất đẹp
+KH00453,248,3,Rất đẹp
+KH01400,282,5,Hài lòng
+KH00122,162,4,Rất đẹp
+KH01391,101,4,Hài lòng
+KH01481,2,4,Rất đẹp
+KH01893,393,5,Chất lượng tốt
+KH01606,149,4,Chất lượng tốt
+KH01309,293,5,Chất lượng tốt
+KH00857,44,5,Hài lòng
+KH01306,476,3,Rất đẹp
+KH00238,336,1,Rất đẹp
+KH01259,250,5,Rất đẹp
+KH00545,25,4,Đóng gói đẹp
+KH01661,28,3,Chất lượng tốt
+KH00139,140,2,Đóng gói đẹp
+KH00627,465,3,Chất lượng tốt
+KH01353,123,5,Chất lượng tốt
+KH01253,408,4,Đóng gói đẹp
+KH01488,2,2,Chất lượng tốt
+KH00163,251,3,Rất đẹp
+KH01011,462,1,Hài lòng
+KH00259,257,5,Chất lượng tốt
+KH00383,421,1,Hài lòng
+KH01085,288,3,Rất đẹp
+KH00525,71,1,Hài lòng
+KH00515,47,1,Hài lòng
+KH01873,145,2,Chất lượng tốt
+KH01902,301,2,Rất đẹp
+KH01430,15,4,Rất đẹp
+KH01707,428,5,Đóng gói đẹp
+KH01739,329,5,Đóng gói đẹp
+KH01249,474,3,Rất đẹp
+KH00083,202,3,Hài lòng
+KH00782,315,3,Đóng gói đẹp
+KH01919,185,3,Rất đẹp
+KH00768,381,4,Đóng gói đẹp
+KH00260,22,3,Hài lòng
+KH01526,389,4,Rất đẹp
+KH01739,60,1,Chất lượng tốt
+KH00409,316,1,Chất lượng tốt
+KH00417,466,5,Rất đẹp
+KH00743,65,4,Đóng gói đẹp
+KH01790,297,3,Hài lòng
+KH00582,367,2,Rất đẹp
+KH00273,230,3,Chất lượng tốt
+KH01581,190,5,Chất lượng tốt
+KH00557,22,4,Đóng gói đẹp
+KH01468,460,3,Rất đẹp
+KH01818,125,3,Hài lòng
+KH01935,45,2,Hài lòng
+KH00911,463,1,Hài lòng
+KH00145,252,4,Rất đẹp
+KH00607,10,4,Hài lòng
+KH00102,53,5,Hài lòng
+KH01128,236,2,Đóng gói đẹp
+KH01886,248,5,Rất đẹp
+KH01677,50,3,Hài lòng
+KH01970,352,3,Chất lượng tốt
+KH00842,35,2,Đóng gói đẹp
+KH01514,221,4,Rất đẹp
+KH01430,415,2,Chất lượng tốt
+KH01330,433,1,Đóng gói đẹp
+KH00647,92,2,Đóng gói đẹp
+KH01637,499,3,Rất đẹp
+KH00135,84,4,Hài lòng
+KH00163,268,1,Rất đẹp
+KH00180,52,5,Đóng gói đẹp
+KH00294,64,5,Hài lòng
+KH00540,120,3,Rất đẹp
+KH00781,489,4,Chất lượng tốt
+KH01022,466,3,Đóng gói đẹp
+KH00218,290,2,Đóng gói đẹp
+KH00785,168,4,Đóng gói đẹp
+KH01703,86,5,Đóng gói đẹp
+KH00800,281,3,Rất đẹp
+KH00500,333,4,Đóng gói đẹp
+KH00711,204,5,Rất đẹp
+KH00142,24,1,Rất đẹp
+KH00742,333,2,Chất lượng tốt
+KH00846,253,5,Rất đẹp
+KH01699,34,2,Hài lòng
+KH01873,203,1,Đóng gói đẹp
+KH00309,115,5,Rất đẹp
+KH00985,341,5,Rất đẹp
+KH01763,274,1,Rất đẹp
+KH01369,321,4,Chất lượng tốt
+KH01706,226,5,Hài lòng
+KH00869,8,4,Hài lòng
+KH01875,49,3,Rất đẹp
+KH00521,395,1,Hài lòng
+KH01890,118,1,Đóng gói đẹp
+KH00355,309,4,Rất đẹp
+KH00866,176,4,Hài lòng
+KH00636,126,5,Đóng gói đẹp
+KH00588,328,1,Chất lượng tốt
+KH01806,203,2,Chất lượng tốt
+KH01963,427,4,Chất lượng tốt
+KH01962,58,3,Hài lòng
+KH00529,228,3,Chất lượng tốt
+KH00729,442,3,Đóng gói đẹp
+KH00712,315,2,Đóng gói đẹp
+KH01450,335,2,Chất lượng tốt
+KH01470,116,2,Rất đẹp
+KH01746,341,5,Chất lượng tốt
+KH01310,270,4,Rất đẹp
+KH01275,499,3,Chất lượng tốt
+KH00708,2,1,Rất đẹp
+KH01746,149,4,Đóng gói đẹp
+KH00365,100,2,Đóng gói đẹp
+KH00442,146,5,Chất lượng tốt
+KH00377,25,3,Chất lượng tốt
+KH00778,200,3,Hài lòng
+KH00723,155,4,Rất đẹp
+KH01039,117,5,Chất lượng tốt
+KH00717,351,4,Chất lượng tốt
+KH00594,334,1,Đóng gói đẹp
+KH01907,466,3,Chất lượng tốt
+KH01711,19,4,Hài lòng
+KH01831,114,4,Chất lượng tốt
+KH01565,418,3,Đóng gói đẹp
+KH00477,258,3,Rất đẹp
+KH01585,249,1,Hài lòng
+KH00713,458,3,Đóng gói đẹp
+KH00480,154,3,Rất đẹp
+KH01253,198,4,Hài lòng
+KH00013,204,5,Hài lòng
+KH01288,62,5,Đóng gói đẹp
+KH01014,125,1,Chất lượng tốt
+KH00724,370,4,Chất lượng tốt
+KH01247,472,4,Rất đẹp
+KH01261,277,4,Rất đẹp
+KH01874,249,2,Chất lượng tốt
+KH01474,177,5,Rất đẹp
+KH00207,284,2,Chất lượng tốt
+KH01979,267,5,Rất đẹp
+KH00209,152,5,Đóng gói đẹp
+KH00642,240,1,Hài lòng
+KH00452,202,3,Chất lượng tốt
+KH00316,276,2,Hài lòng
+KH01641,199,1,Đóng gói đẹp
+KH01626,244,3,Hài lòng
+KH01072,405,3,Đóng gói đẹp
+KH01686,343,4,Hài lòng
+KH01513,129,5,Đóng gói đẹp
+KH01674,361,3,Đóng gói đẹp
+KH00285,334,3,Hài lòng
+KH00157,12,3,Rất đẹp
+KH01657,6,4,Hài lòng
+KH00328,474,3,Chất lượng tốt
+KH01922,437,4,Hài lòng
+KH01019,41,2,Hài lòng
+KH01488,97,2,Chất lượng tốt
+KH00269,23,3,Chất lượng tốt
+KH00735,218,4,Hài lòng
+KH00333,99,1,Hài lòng
+KH00879,175,5,Đóng gói đẹp
+KH01417,54,5,Rất đẹp
+KH00289,425,1,Hài lòng
+KH01979,345,2,Hài lòng
+KH01829,36,2,Rất đẹp
+KH01487,249,5,Chất lượng tốt
+KH00997,227,5,Rất đẹp
+KH01236,59,2,Hài lòng
+KH00622,365,4,Rất đẹp
+KH01423,319,4,Chất lượng tốt
+KH00809,59,5,Chất lượng tốt
+KH00302,326,2,Chất lượng tốt
+KH00503,231,4,Hài lòng
+KH00118,98,2,Hài lòng
+KH00293,62,1,Đóng gói đẹp
+KH00780,320,5,Chất lượng tốt
+KH00628,191,3,Hài lòng
+KH00022,341,2,Chất lượng tốt
+KH01501,167,3,Hài lòng
+KH00631,434,3,Đóng gói đẹp
+KH01671,398,3,Hài lòng
+KH01382,476,5,Đóng gói đẹp
+KH00134,1,1,Hài lòng
+KH00463,66,3,Chất lượng tốt
+KH00602,408,5,Hài lòng
+KH01211,71,5,Đóng gói đẹp
+KH01294,377,3,Hài lòng
+KH00996,413,3,Rất đẹp
+KH00652,219,5,Hài lòng
+KH01369,236,3,Rất đẹp
+KH00051,294,5,Đóng gói đẹp
+KH01692,53,2,Rất đẹp
+KH01701,335,3,Chất lượng tốt
+KH01612,378,2,Đóng gói đẹp
+KH00383,457,5,Chất lượng tốt
+KH00175,477,3,Hài lòng
+KH01299,376,1,Đóng gói đẹp
+KH00286,461,5,Hài lòng
+KH01811,28,4,Chất lượng tốt
+KH00867,34,4,Chất lượng tốt
+KH00771,52,3,Chất lượng tốt
+KH01038,41,2,Chất lượng tốt
+KH00626,424,5,Đóng gói đẹp
+KH00282,229,5,Hài lòng
+KH01859,184,2,Chất lượng tốt
+KH00463,107,2,Chất lượng tốt
+KH01661,470,4,Hài lòng
+KH00395,268,3,Hài lòng
+KH01593,435,2,Đóng gói đẹp
+KH00907,312,5,Rất đẹp
+KH00519,87,3,Rất đẹp
+KH01478,165,4,Rất đẹp
+KH00704,454,5,Chất lượng tốt
+KH01640,16,1,Hài lòng
+KH00935,282,1,Chất lượng tốt
+KH00518,3,1,Rất đẹp
+KH00473,452,4,Rất đẹp
+KH01164,361,5,Rất đẹp
+KH01711,15,3,Hài lòng
+KH01269,246,1,Đóng gói đẹp
+KH01827,101,2,Chất lượng tốt
+KH00180,80,4,Đóng gói đẹp
+KH00856,292,1,Đóng gói đẹp
+KH00176,195,2,Đóng gói đẹp
+KH01477,397,2,Đóng gói đẹp
+KH01236,186,4,Hài lòng
+KH01536,443,2,Chất lượng tốt
+KH00348,500,4,Đóng gói đẹp
+KH00625,193,4,Đóng gói đẹp
+KH01228,112,3,Đóng gói đẹp
+KH00480,128,4,Đóng gói đẹp
+KH01475,339,1,Chất lượng tốt
+KH00811,323,1,Chất lượng tốt
+KH01531,134,1,Hài lòng
+KH00064,129,4,Hài lòng
+KH00136,98,3,Hài lòng
+KH01983,204,3,Hài lòng
+KH00544,142,5,Hài lòng
+KH00277,271,4,Rất đẹp
+KH00405,6,3,Hài lòng
+KH00889,232,3,Chất lượng tốt
+KH00329,120,3,Rất đẹp
+KH01656,303,1,Hài lòng
+KH00612,313,1,Hài lòng
+KH01392,385,5,Rất đẹp
+KH01490,111,3,Rất đẹp
+KH01389,389,5,Chất lượng tốt
+KH00153,8,3,Hài lòng
+KH01643,465,2,Đóng gói đẹp
+KH01725,302,1,Chất lượng tốt
+KH00097,285,2,Chất lượng tốt
+KH00342,151,1,Rất đẹp
+KH00346,139,3,Rất đẹp
+KH00025,290,3,Hài lòng
+KH01456,139,4,Đóng gói đẹp
+KH00893,293,5,Hài lòng
+KH01450,492,5,Rất đẹp
+KH00276,190,4,Hài lòng
+KH00465,391,1,Rất đẹp
+KH01051,63,4,Hài lòng
+KH00528,94,2,Đóng gói đẹp
+KH00749,369,3,Hài lòng
+KH01389,427,1,Đóng gói đẹp
+KH01668,366,4,Hài lòng
+KH00006,73,3,Hài lòng
+KH00987,163,4,Hài lòng
+KH01920,164,3,Đóng gói đẹp
+KH01044,75,1,Hài lòng
+KH01440,220,2,Hài lòng
+KH00564,276,3,Rất đẹp
+KH00029,150,5,Đóng gói đẹp
+KH01726,132,2,Hài lòng
+KH01481,79,3,Đóng gói đẹp
+KH00661,56,3,Hài lòng
+KH00576,312,1,Rất đẹp
+KH00792,338,3,Chất lượng tốt
+KH01178,163,4,Rất đẹp
+KH01200,55,5,Hài lòng
+KH01663,224,4,Chất lượng tốt
+KH00781,158,2,Chất lượng tốt
+KH00120,80,3,Đóng gói đẹp
+KH00572,157,3,Rất đẹp
+KH00062,358,3,Đóng gói đẹp
+KH00030,80,1,Rất đẹp
+KH01613,111,3,Chất lượng tốt
+KH01317,211,5,Chất lượng tốt
+KH01597,101,1,Rất đẹp
+KH00445,56,1,Đóng gói đẹp
+KH01427,167,5,Hài lòng
+KH00119,343,4,Rất đẹp
+KH00331,305,3,Chất lượng tốt
+KH01782,371,5,Chất lượng tốt
+KH01882,246,3,Đóng gói đẹp
+KH01787,206,3,Đóng gói đẹp
+KH00824,410,3,Đóng gói đẹp
+KH00961,229,4,Chất lượng tốt
+KH01256,75,1,Hài lòng
+KH01959,253,5,Hài lòng
+KH00398,421,1,Đóng gói đẹp
+KH00525,207,1,Hài lòng
+KH00324,477,4,Đóng gói đẹp
+KH00003,295,1,Chất lượng tốt
+KH00421,298,1,Rất đẹp
+KH00715,430,1,Đóng gói đẹp
+KH01472,410,4,Hài lòng
+KH00738,188,5,Đóng gói đẹp
+KH01724,226,2,Rất đẹp
+KH01784,27,4,Chất lượng tốt
+KH00370,200,2,Đóng gói đẹp
+KH01655,108,5,Rất đẹp
+KH00843,3,3,Hài lòng
+KH00032,31,5,Rất đẹp
+KH00656,448,1,Hài lòng
+KH01387,283,1,Hài lòng
+KH01191,68,2,Hài lòng
+KH01081,346,3,Hài lòng
+KH01282,162,1,Rất đẹp
+KH01281,100,4,Rất đẹp
+KH00974,246,4,Hài lòng
+KH00379,140,5,Rất đẹp
+KH00529,470,5,Rất đẹp
+KH01145,213,5,Rất đẹp
+KH00839,139,3,Chất lượng tốt
+KH00574,273,3,Đóng gói đẹp
+KH01728,22,3,Hài lòng
+KH01652,91,2,Đóng gói đẹp
+KH01311,333,1,Rất đẹp
+KH00039,90,3,Hài lòng
+KH00516,244,3,Chất lượng tốt
+KH00803,37,5,Chất lượng tốt
+KH01190,2,2,Rất đẹp
+KH00699,480,2,Rất đẹp
+KH00256,355,4,Hài lòng
+KH01327,180,2,Chất lượng tốt
+KH01516,375,1,Rất đẹp
+KH01407,218,4,Hài lòng
+KH01672,77,1,Đóng gói đẹp
+KH00607,153,3,Chất lượng tốt
+KH00255,480,4,Chất lượng tốt
+KH00418,456,4,Đóng gói đẹp
+KH00319,437,5,Hài lòng
+KH00201,496,5,Chất lượng tốt
+KH01873,54,2,Rất đẹp
+KH00085,255,4,Đóng gói đẹp
+KH01057,131,2,Hài lòng
+KH01154,448,5,Chất lượng tốt
+KH01233,405,2,Rất đẹp
+KH01955,345,5,Rất đẹp
+KH00243,192,3,Rất đẹp
+KH01939,394,3,Chất lượng tốt
+KH01008,263,3,Hài lòng
+KH01600,471,5,Hài lòng
+KH00645,493,2,Đóng gói đẹp
+KH01360,208,3,Đóng gói đẹp
+KH01487,366,5,Hài lòng
+KH01371,88,3,Rất đẹp
+KH01174,401,3,Đóng gói đẹp
+KH00677,26,5,Đóng gói đẹp
+KH01991,387,1,Rất đẹp
+KH01185,312,2,Chất lượng tốt
+KH00329,287,4,Rất đẹp
+KH01930,463,4,Rất đẹp
+KH01565,279,4,Hài lòng
+KH00740,411,1,Chất lượng tốt
+KH00146,23,1,Hài lòng
+KH00217,419,1,Đóng gói đẹp
+KH01461,465,2,Đóng gói đẹp
+KH01915,225,1,Rất đẹp
+KH00028,436,3,Đóng gói đẹp
+KH00364,500,4,Đóng gói đẹp
+KH00957,490,5,Đóng gói đẹp
+KH00869,204,2,Rất đẹp
+KH00217,325,5,Đóng gói đẹp
+KH00524,478,3,Rất đẹp
+KH01734,379,1,Rất đẹp
+KH00228,380,2,Đóng gói đẹp
+KH00539,248,2,Hài lòng
+KH01144,184,3,Hài lòng
+KH00663,195,3,Đóng gói đẹp
+KH00608,60,5,Đóng gói đẹp
+KH00071,467,1,Đóng gói đẹp
+KH00737,491,4,Hài lòng
+KH00061,41,4,Rất đẹp
+KH01826,280,5,Đóng gói đẹp
+KH01468,23,3,Đóng gói đẹp
+KH00459,35,2,Rất đẹp
+KH00924,171,4,Hài lòng
+KH00198,358,4,Hài lòng
+KH00987,96,5,Chất lượng tốt
+KH00760,68,4,Chất lượng tốt
+KH01230,493,3,Rất đẹp
+KH01062,174,1,Hài lòng
+KH01403,429,5,Rất đẹp
+KH01444,38,4,Đóng gói đẹp
+KH01625,78,1,Rất đẹp
+KH01567,394,4,Rất đẹp
+KH01335,280,5,Đóng gói đẹp
+KH01777,428,2,Hài lòng
+KH01129,15,5,Đóng gói đẹp
+KH01275,307,1,Đóng gói đẹp
+KH01102,318,3,Chất lượng tốt
+KH00964,149,1,Hài lòng
+KH00441,269,5,Hài lòng
+KH00070,295,5,Đóng gói đẹp
+KH01515,263,1,Hài lòng
+KH00960,233,4,Chất lượng tốt
+KH01128,465,4,Hài lòng
+KH00421,132,3,Đóng gói đẹp
+KH01720,289,2,Rất đẹp
+KH01716,137,5,Hài lòng
+KH00184,106,5,Rất đẹp
+KH00826,154,5,Hài lòng
+KH00568,436,3,Chất lượng tốt
+KH01277,283,5,Hài lòng
+KH01258,414,2,Rất đẹp
+KH01413,79,1,Đóng gói đẹp
+KH01844,364,4,Hài lòng
+KH00032,391,1,Đóng gói đẹp
+KH00241,318,3,Chất lượng tốt
+KH01642,111,4,Hài lòng
+KH00760,121,2,Rất đẹp
+KH00267,114,2,Chất lượng tốt
+KH01498,45,2,Rất đẹp
+KH00614,246,5,Đóng gói đẹp
+KH00602,243,1,Đóng gói đẹp
+KH01117,178,2,Rất đẹp
+KH00941,81,1,Đóng gói đẹp
+KH00199,74,4,Chất lượng tốt
+KH01782,214,4,Đóng gói đẹp
+KH01146,427,3,Rất đẹp
+KH01223,61,5,Rất đẹp
+KH01049,292,1,Đóng gói đẹp
+KH00085,356,2,Rất đẹp
+KH00792,415,1,Đóng gói đẹp
+KH01678,83,4,Hài lòng
+KH00521,494,3,Chất lượng tốt
+KH00653,300,1,Đóng gói đẹp
+KH01665,187,1,Hài lòng
+KH01430,63,2,Rất đẹp
+KH01731,475,2,Đóng gói đẹp
+KH01936,320,3,Chất lượng tốt
+KH01003,58,2,Đóng gói đẹp
+KH01861,344,2,Đóng gói đẹp
+KH00224,425,4,Chất lượng tốt
+KH01365,185,5,Chất lượng tốt
+KH01706,333,2,Đóng gói đẹp
+KH00697,418,3,Hài lòng
+KH01478,68,3,Đóng gói đẹp
+KH00588,350,3,Đóng gói đẹp
+KH01591,340,5,Đóng gói đẹp
+KH01674,101,2,Đóng gói đẹp
+KH00466,135,3,Rất đẹp
+KH01658,209,1,Chất lượng tốt
+KH00201,109,4,Đóng gói đẹp
+KH00597,474,2,Chất lượng tốt
+KH00324,370,4,Hài lòng
+KH00162,152,2,Chất lượng tốt
+KH00096,292,5,Chất lượng tốt
+KH00428,390,1,Đóng gói đẹp
+KH00080,439,3,Hài lòng
+KH01852,436,2,Đóng gói đẹp
+KH00172,410,4,Rất đẹp
+KH00618,58,1,Hài lòng
+KH01758,97,4,Đóng gói đẹp
+KH01565,253,2,Rất đẹp
+KH01042,376,2,Rất đẹp
+KH00619,388,1,Đóng gói đẹp
+KH00958,307,2,Rất đẹp
+KH01584,313,3,Chất lượng tốt
+KH01393,69,3,Rất đẹp
+KH00144,412,4,Hài lòng
+KH00532,8,3,Hài lòng
+KH01273,110,4,Chất lượng tốt
+KH01473,434,5,Chất lượng tốt
+KH00689,53,3,Chất lượng tốt
+KH01436,277,2,Hài lòng
+KH01879,470,2,Chất lượng tốt
+KH00131,320,4,Đóng gói đẹp
+KH00840,414,4,Rất đẹp
+KH01077,127,1,Chất lượng tốt
+KH01930,400,2,Hài lòng
+KH00380,208,1,Chất lượng tốt
+KH01340,62,4,Chất lượng tốt
+KH00065,142,3,Hài lòng
+KH01566,351,4,Hài lòng
+KH00502,497,1,Chất lượng tốt
+KH00992,345,2,Chất lượng tốt
+KH01733,54,1,Chất lượng tốt
+KH01541,322,4,Rất đẹp
+KH01453,369,5,Rất đẹp
+KH01063,43,4,Rất đẹp
+KH01553,401,4,Rất đẹp
+KH00663,462,1,Chất lượng tốt
+KH01201,233,3,Đóng gói đẹp
+KH00738,261,4,Hài lòng
+KH00952,74,4,Đóng gói đẹp
+KH00531,37,3,Rất đẹp
+KH00522,155,2,Hài lòng
+KH00425,46,3,Đóng gói đẹp
+KH01345,169,2,Chất lượng tốt
+KH01383,441,3,Đóng gói đẹp
+KH01304,393,1,Đóng gói đẹp
+KH00502,242,5,Chất lượng tốt
+KH00119,346,2,Đóng gói đẹp
+KH01847,358,4,Rất đẹp
+KH01719,308,5,Đóng gói đẹp
+KH01280,247,4,Rất đẹp
+KH00633,330,5,Hài lòng
+KH00657,390,1,Hài lòng
+KH00956,286,1,Hài lòng
+KH01740,467,5,Đóng gói đẹp
+KH00877,71,3,Rất đẹp
+KH00715,340,4,Rất đẹp
+KH01757,47,3,Hài lòng
+KH01218,247,4,Hài lòng
+KH01147,277,4,Chất lượng tốt
+KH01762,82,4,Đóng gói đẹp
+KH00094,349,1,Chất lượng tốt
+KH01551,298,2,Rất đẹp
+KH00382,404,3,Hài lòng
+KH01400,27,3,Đóng gói đẹp
+KH01183,9,2,Đóng gói đẹp
+KH00377,425,5,Đóng gói đẹp
+KH00279,367,1,Chất lượng tốt
+KH00316,176,3,Chất lượng tốt
+KH01359,273,5,Rất đẹp
+KH01165,165,4,Rất đẹp
+KH00826,414,5,Rất đẹp
+KH01302,475,3,Rất đẹp
+KH00962,115,5,Đóng gói đẹp
+KH01533,58,3,Đóng gói đẹp
+KH00942,42,4,Hài lòng
+KH00189,413,2,Chất lượng tốt
+KH00230,245,1,Rất đẹp
+KH00919,345,3,Hài lòng
+KH01432,126,5,Chất lượng tốt
+KH00901,99,4,Hài lòng
+KH00016,256,3,Chất lượng tốt
+KH01297,337,3,Hài lòng
+KH01706,381,1,Rất đẹp
+KH01561,468,2,Đóng gói đẹp
+KH00206,461,2,Chất lượng tốt
+KH00862,376,3,Hài lòng
+KH01496,135,2,Đóng gói đẹp
+KH00943,139,3,Hài lòng
+KH00723,118,4,Chất lượng tốt
+KH00445,447,1,Hài lòng
+KH01076,148,5,Hài lòng
+KH00205,60,5,Đóng gói đẹp
+KH01764,282,1,Hài lòng
+KH01679,229,3,Hài lòng
+KH00551,66,1,Đóng gói đẹp
+KH00813,370,3,Rất đẹp
+KH00738,369,1,Đóng gói đẹp
+KH01510,43,1,Đóng gói đẹp
+KH00996,106,3,Đóng gói đẹp
+KH01832,244,5,Hài lòng
+KH01819,9,2,Đóng gói đẹp
+KH01658,55,5,Hài lòng
+KH01448,278,1,Hài lòng
+KH00965,272,2,Chất lượng tốt
+KH01938,121,4,Chất lượng tốt
+KH00518,74,1,Đóng gói đẹp
+KH01292,12,3,Đóng gói đẹp
+KH00997,123,3,Đóng gói đẹp
+KH00203,304,3,Chất lượng tốt
+KH01742,24,1,Chất lượng tốt
+KH00238,198,4,Đóng gói đẹp
+KH00459,36,2,Chất lượng tốt
+KH00759,21,1,Đóng gói đẹp
+KH00214,456,2,Rất đẹp
+KH00639,396,3,Hài lòng
+KH00907,402,3,Rất đẹp
+KH01625,24,5,Đóng gói đẹp
+KH01942,398,5,Rất đẹp
+KH01138,419,4,Rất đẹp
+KH00441,410,4,Hài lòng
+KH00524,189,4,Hài lòng
+KH01679,252,4,Hài lòng
+KH00031,204,2,Chất lượng tốt
+KH01535,186,5,Chất lượng tốt
+KH00734,1,4,Rất đẹp
+KH01460,436,5,Chất lượng tốt
+KH01599,9,3,Hài lòng
+KH01922,438,3,Hài lòng
+KH00010,269,1,Rất đẹp
+KH01656,451,3,Hài lòng
+KH01058,95,3,Chất lượng tốt
+KH01183,322,3,Đóng gói đẹp
+KH00095,417,4,Đóng gói đẹp
+KH01363,263,2,Hài lòng
+KH01170,157,4,Đóng gói đẹp
+KH01401,362,1,Rất đẹp
+KH00165,148,3,Rất đẹp
+KH00969,319,5,Đóng gói đẹp
+KH00160,95,3,Đóng gói đẹp
+KH00208,436,1,Chất lượng tốt
+KH01268,203,3,Đóng gói đẹp
+KH01781,345,1,Chất lượng tốt
+KH01314,61,5,Rất đẹp
+KH00041,199,4,Đóng gói đẹp
+KH00124,444,2,Chất lượng tốt
+KH01119,146,1,Đóng gói đẹp
+KH01005,263,5,Chất lượng tốt
+KH00012,82,4,Rất đẹp
+KH01220,192,3,Chất lượng tốt
+KH01843,490,2,Hài lòng
+KH01776,44,4,Hài lòng
+KH01995,315,4,Đóng gói đẹp
+KH01767,375,2,Hài lòng
+KH00311,367,5,Đóng gói đẹp
+KH01732,388,2,Chất lượng tốt
+KH01725,431,1,Hài lòng
+KH00010,107,2,Chất lượng tốt
+KH00905,329,3,Chất lượng tốt
+KH00748,51,1,Chất lượng tốt
+KH01530,77,3,Chất lượng tốt
+KH00245,7,5,Rất đẹp
+KH00645,441,3,Đóng gói đẹp
+KH00368,63,5,Đóng gói đẹp
+KH00212,63,2,Rất đẹp
+KH01911,63,5,Đóng gói đẹp
+KH00608,172,3,Đóng gói đẹp
+KH01225,22,4,Hài lòng
+KH00636,384,5,Hài lòng
+KH00908,488,1,Chất lượng tốt
+KH01408,229,5,Rất đẹp
+KH00506,266,3,Chất lượng tốt
+KH00101,3,1,Hài lòng
+KH00260,457,5,Đóng gói đẹp
+KH01769,34,3,Chất lượng tốt
+KH00953,292,1,Hài lòng
+KH00212,340,4,Chất lượng tốt
+KH01680,217,1,Rất đẹp
+KH00353,111,2,Đóng gói đẹp
+KH01768,464,1,Chất lượng tốt
+KH00373,224,1,Đóng gói đẹp
+KH01738,21,3,Đóng gói đẹp
+KH01107,401,5,Chất lượng tốt
+KH00427,226,3,Rất đẹp
+KH01079,142,2,Hài lòng
+KH01842,241,5,Đóng gói đẹp
+KH01265,164,4,Hài lòng
+KH00284,151,2,Hài lòng
+KH00653,94,4,Chất lượng tốt
+KH01498,127,1,Rất đẹp
+KH00207,409,5,Chất lượng tốt
+KH00483,325,5,Chất lượng tốt
+KH01721,204,5,Hài lòng
+KH00982,250,5,Đóng gói đẹp
+KH00490,395,3,Đóng gói đẹp
+KH00191,115,2,Rất đẹp
+KH00898,74,5,Rất đẹp
+KH00511,187,5,Hài lòng
+KH00426,81,2,Hài lòng
+KH00262,116,2,Chất lượng tốt
+KH00976,431,5,Đóng gói đẹp
+KH01526,324,4,Rất đẹp
+KH00944,222,4,Hài lòng
+KH00278,248,5,Hài lòng
+KH00310,149,3,Rất đẹp
+KH00071,199,3,Chất lượng tốt
+KH00241,449,5,Hài lòng
+KH00905,334,2,Rất đẹp
+KH00790,369,1,Rất đẹp
+KH00219,200,4,Hài lòng
+KH01450,166,5,Hài lòng
+KH00172,302,1,Chất lượng tốt
+KH00610,271,2,Rất đẹp
+KH00557,1,3,Chất lượng tốt
+KH01569,106,3,Đóng gói đẹp
+KH01879,38,1,Đóng gói đẹp
+KH00092,442,1,Chất lượng tốt
+KH01528,353,3,Rất đẹp
+KH01192,156,2,Chất lượng tốt
+KH01603,153,1,Đóng gói đẹp
+KH01101,296,2,Hài lòng
+KH01840,132,5,Hài lòng
+KH01385,380,2,Chất lượng tốt
+KH01709,492,4,Chất lượng tốt
+KH01542,114,5,Đóng gói đẹp
+KH01281,183,3,Rất đẹp
+KH01164,211,3,Chất lượng tốt
+KH00496,160,3,Đóng gói đẹp
+KH01881,221,5,Chất lượng tốt
+KH01659,295,2,Hài lòng
+KH00674,363,5,Rất đẹp
+KH01829,104,2,Rất đẹp
+KH00351,251,5,Chất lượng tốt
+KH01228,413,5,Đóng gói đẹp
+KH01912,32,3,Chất lượng tốt
+KH00071,84,5,Rất đẹp
+KH01913,480,3,Chất lượng tốt
+KH00707,394,2,Đóng gói đẹp
+KH01843,290,1,Đóng gói đẹp
+KH01654,254,3,Hài lòng
+KH00824,365,3,Đóng gói đẹp
+KH01341,36,2,Chất lượng tốt
+KH01218,425,4,Đóng gói đẹp
+KH00190,194,2,Rất đẹp
+KH01552,111,2,Đóng gói đẹp
+KH00601,435,3,Chất lượng tốt
+KH01252,148,3,Đóng gói đẹp
+KH01782,178,1,Đóng gói đẹp
+KH01398,349,4,Đóng gói đẹp
+KH01378,5,4,Rất đẹp
+KH00771,428,4,Hài lòng
+KH00851,112,1,Đóng gói đẹp
+KH00446,217,2,Chất lượng tốt
+KH01531,444,2,Đóng gói đẹp
+KH00430,112,5,Rất đẹp
+KH01259,50,5,Chất lượng tốt
+KH00764,287,1,Đóng gói đẹp
+KH01316,335,4,Chất lượng tốt
+KH01944,100,4,Rất đẹp
+KH01983,429,3,Chất lượng tốt
+KH01913,374,1,Đóng gói đẹp
+KH01744,371,4,Chất lượng tốt
+KH01013,466,3,Rất đẹp
+KH00437,491,5,Hài lòng
+KH00667,488,4,Rất đẹp
+KH01357,106,1,Chất lượng tốt
+KH00465,131,1,Rất đẹp
+KH01838,151,5,Chất lượng tốt
+KH00194,463,3,Rất đẹp
+KH00529,211,4,Rất đẹp
+KH01334,39,3,Rất đẹp
+KH00463,109,4,Rất đẹp
+KH00458,220,5,Đóng gói đẹp
+KH00111,11,5,Đóng gói đẹp
+KH00914,366,2,Rất đẹp
+KH01506,428,3,Chất lượng tốt
+KH00629,332,3,Chất lượng tốt
+KH01962,349,2,Rất đẹp
+KH00777,188,3,Rất đẹp
+KH01161,409,2,Rất đẹp
+KH01223,406,2,Đóng gói đẹp
+KH01157,396,4,Hài lòng
+KH00811,335,5,Đóng gói đẹp
+KH00460,292,4,Đóng gói đẹp
+KH01448,167,5,Hài lòng
+KH01818,379,5,Chất lượng tốt
+KH00160,303,3,Rất đẹp
+KH00084,203,5,Rất đẹp
+KH01873,383,5,Hài lòng
+KH01124,114,4,Đóng gói đẹp
+KH00724,145,3,Hài lòng
+KH00599,19,4,Chất lượng tốt
+KH01377,457,3,Hài lòng
+KH01231,105,3,Rất đẹp
+KH01470,256,4,Chất lượng tốt
+KH01170,52,1,Hài lòng
+KH01399,18,4,Hài lòng
+KH00569,248,3,Chất lượng tốt
+KH00156,62,2,Đóng gói đẹp
+KH00858,217,2,Rất đẹp
+KH01390,175,1,Chất lượng tốt
+KH01018,78,3,Hài lòng
+KH00198,286,2,Đóng gói đẹp
+KH00362,65,5,Hài lòng
+KH00686,125,2,Chất lượng tốt
+KH00537,207,2,Rất đẹp
+KH01947,427,5,Đóng gói đẹp
+KH00656,290,5,Chất lượng tốt
+KH01626,142,3,Đóng gói đẹp
+KH01640,265,3,Đóng gói đẹp
+KH00930,472,1,Rất đẹp
+KH00368,91,4,Rất đẹp
+KH01694,210,2,Đóng gói đẹp
+KH00963,37,2,Rất đẹp
+KH00337,160,3,Hài lòng
+KH01226,35,1,Đóng gói đẹp
+KH00781,367,2,Hài lòng
+KH01940,331,5,Rất đẹp
+KH01081,46,4,Chất lượng tốt
+KH01150,426,4,Đóng gói đẹp
+KH00042,312,4,Chất lượng tốt
+KH01071,339,5,Rất đẹp
+KH01964,278,1,Đóng gói đẹp
+KH00822,170,2,Hài lòng
+KH00031,284,5,Đóng gói đẹp
+KH00949,284,2,Hài lòng
+KH01096,198,1,Hài lòng
+KH00164,118,4,Đóng gói đẹp
+KH00801,174,4,Rất đẹp
+KH01969,320,5,Đóng gói đẹp
+KH00055,433,5,Hài lòng
+KH01478,495,3,Hài lòng
+KH00377,471,3,Đóng gói đẹp
+KH00954,500,5,Chất lượng tốt
+KH00382,127,5,Đóng gói đẹp
+KH01963,222,2,Chất lượng tốt
+KH00464,370,5,Rất đẹp
+KH01814,178,4,Đóng gói đẹp
+KH01873,26,4,Hài lòng
+KH00300,53,1,Chất lượng tốt
+KH01276,479,2,Chất lượng tốt
+KH01217,412,3,Đóng gói đẹp
+KH01015,367,5,Chất lượng tốt
+KH00844,54,1,Rất đẹp
+KH00936,23,1,Rất đẹp
+KH00851,243,4,Chất lượng tốt
+KH00514,202,5,Hài lòng
+KH01352,291,1,Đóng gói đẹp
+KH00315,486,4,Rất đẹp
+KH01332,348,3,Rất đẹp
+KH01469,449,3,Chất lượng tốt
+KH01587,243,1,Đóng gói đẹp
+KH01264,319,5,Chất lượng tốt
+KH01461,437,2,Chất lượng tốt
+KH00009,381,1,Đóng gói đẹp
+KH00467,269,1,Hài lòng
+KH00104,87,1,Rất đẹp
+KH01240,6,1,Đóng gói đẹp
+KH00550,362,3,Chất lượng tốt
+KH01078,54,4,Rất đẹp
+KH00127,209,3,Rất đẹp
+KH00539,467,5,Rất đẹp
+KH00775,219,3,Rất đẹp
+KH00660,475,5,Chất lượng tốt
+KH01631,120,4,Đóng gói đẹp
+KH01358,182,2,Chất lượng tốt
+KH00189,274,1,Hài lòng
+KH00286,71,4,Hài lòng
+KH00187,245,1,Đóng gói đẹp
+KH01136,244,2,Rất đẹp
+KH01980,245,3,Hài lòng
+KH01677,165,2,Rất đẹp
+KH01500,167,5,Hài lòng
+KH00092,159,4,Đóng gói đẹp
+KH01320,325,5,Hài lòng
+KH00304,328,4,Đóng gói đẹp
+KH01896,147,3,Rất đẹp
+KH00067,395,5,Rất đẹp
+KH01491,142,4,Chất lượng tốt
+KH00505,396,5,Chất lượng tốt
+KH00582,36,4,Chất lượng tốt
+KH00254,168,4,Đóng gói đẹp
+KH01763,433,3,Rất đẹp
+KH01274,204,1,Rất đẹp
+KH01462,127,3,Hài lòng
+KH01377,88,3,Đóng gói đẹp
+KH01937,387,4,Hài lòng
+KH01286,89,5,Rất đẹp
+KH01323,428,4,Rất đẹp
+KH01518,355,2,Chất lượng tốt
+KH01012,4,2,Chất lượng tốt
+KH01598,254,3,Rất đẹp
+KH01242,71,1,Đóng gói đẹp
+KH01879,215,5,Chất lượng tốt
+KH01430,134,4,Đóng gói đẹp
+KH00724,53,5,Rất đẹp
+KH01850,449,1,Hài lòng
+KH01468,211,1,Đóng gói đẹp
+KH01634,80,2,Rất đẹp
+KH01630,340,2,Chất lượng tốt
+KH00764,271,5,Chất lượng tốt
+KH01909,369,2,Chất lượng tốt
+KH01080,439,5,Hài lòng
+KH00742,165,3,Rất đẹp
+KH01477,250,3,Hài lòng
+KH01585,278,1,Rất đẹp
+KH00686,56,3,Chất lượng tốt
+KH01345,371,4,Đóng gói đẹp
+KH00608,312,1,Rất đẹp
+KH00150,214,5,Đóng gói đẹp
+KH00415,194,2,Đóng gói đẹp
+KH00387,490,2,Đóng gói đẹp
+KH00390,222,1,Chất lượng tốt
+KH00272,371,2,Chất lượng tốt
+KH01264,12,5,Hài lòng
+KH01779,340,2,Đóng gói đẹp
+KH00491,419,3,Hài lòng
+KH01876,305,5,Đóng gói đẹp
+KH01846,171,4,Chất lượng tốt
+KH01174,76,2,Rất đẹp
+KH01712,318,3,Chất lượng tốt
+KH01730,304,1,Đóng gói đẹp
+KH01430,256,3,Rất đẹp
+KH00072,144,5,Rất đẹp
+KH00844,471,4,Hài lòng
+KH01196,140,1,Đóng gói đẹp
+KH01299,105,3,Đóng gói đẹp
+KH01357,396,4,Rất đẹp
+KH00766,467,3,Rất đẹp
+KH00754,408,5,Rất đẹp
+KH01532,193,1,Hài lòng
+KH00284,132,4,Chất lượng tốt
+KH00924,189,4,Chất lượng tốt
+KH01886,165,5,Rất đẹp
+KH01718,393,2,Hài lòng
+KH01781,10,1,Hài lòng
+KH00082,465,5,Đóng gói đẹp
+KH00796,164,5,Đóng gói đẹp
+KH01496,296,5,Đóng gói đẹp
+KH00365,100,5,Hài lòng
+KH01068,379,4,Đóng gói đẹp
+KH01432,63,2,Chất lượng tốt
+KH01220,298,1,Hài lòng
+KH01201,84,3,Chất lượng tốt
+KH00394,53,5,Chất lượng tốt
+KH00968,321,1,Chất lượng tốt
+KH01780,389,5,Đóng gói đẹp
+KH01336,468,3,Chất lượng tốt
+KH01817,9,2,Chất lượng tốt
+KH00923,432,2,Hài lòng
+KH01940,390,5,Rất đẹp
+KH01658,40,4,Rất đẹp
+KH01103,124,3,Đóng gói đẹp
+KH00423,46,2,Hài lòng
+KH00163,247,1,Rất đẹp
+KH01726,32,5,Hài lòng
+KH01988,38,1,Rất đẹp
+KH01812,268,5,Chất lượng tốt
+KH01045,251,3,Chất lượng tốt
+KH00208,405,1,Hài lòng
+KH01720,131,2,Chất lượng tốt
+KH00190,86,3,Chất lượng tốt
+KH01147,185,1,Hài lòng
+KH00178,112,3,Đóng gói đẹp
+KH00747,347,1,Đóng gói đẹp
+KH01151,352,5,Chất lượng tốt
+KH00533,491,4,Hài lòng
+KH00474,370,4,Hài lòng
+KH00807,54,4,Rất đẹp
+KH00079,100,1,Đóng gói đẹp
+KH01221,263,3,Đóng gói đẹp
+KH00141,26,5,Rất đẹp
+KH00615,371,4,Đóng gói đẹp
+KH01294,141,4,Rất đẹp
+KH01105,31,4,Hài lòng
+KH00242,404,5,Đóng gói đẹp
+KH01254,78,3,Rất đẹp
+KH01930,192,2,Đóng gói đẹp
+KH00840,448,5,Chất lượng tốt
+KH00505,76,1,Đóng gói đẹp
+KH01123,26,2,Rất đẹp
+KH00400,293,1,Chất lượng tốt
+KH00957,254,4,Hài lòng
+KH00773,191,2,Hài lòng
+KH01075,116,5,Hài lòng
+KH01303,366,4,Rất đẹp
+KH01100,391,3,Đóng gói đẹp
+KH00721,23,3,Hài lòng
+KH01325,87,1,Hài lòng
+KH00268,54,2,Chất lượng tốt
+KH01982,496,3,Đóng gói đẹp
+KH01325,150,2,Đóng gói đẹp
+KH00766,271,5,Hài lòng
+KH00072,5,1,Đóng gói đẹp
+KH01114,4,2,Chất lượng tốt
+KH00407,193,4,Rất đẹp
+KH00150,59,1,Hài lòng
+KH00486,140,4,Hài lòng
+KH01304,435,1,Rất đẹp
+KH00530,230,2,Chất lượng tốt
+KH01053,53,5,Đóng gói đẹp
+KH00137,114,2,Rất đẹp
+KH00305,73,5,Đóng gói đẹp
+KH00518,358,2,Hài lòng
+KH00395,459,5,Rất đẹp
+KH01827,451,2,Chất lượng tốt
+KH00383,459,1,Đóng gói đẹp
+KH00996,415,1,Rất đẹp
+KH01979,299,3,Hài lòng
+KH00357,145,4,Chất lượng tốt
+KH01404,200,3,Rất đẹp
+KH01209,407,5,Đóng gói đẹp
+KH01997,92,5,Đóng gói đẹp
+KH01038,417,3,Chất lượng tốt
+KH01801,221,1,Đóng gói đẹp
+KH00477,6,3,Đóng gói đẹp
+KH00122,314,3,Rất đẹp
+KH01209,425,5,Rất đẹp
+KH01509,143,3,Đóng gói đẹp
+KH01404,261,3,Hài lòng
+KH00594,151,3,Chất lượng tốt
+KH01257,193,3,Đóng gói đẹp
+KH01986,1,1,Rất đẹp
+KH00390,59,4,Chất lượng tốt
+KH01587,39,1,Rất đẹp
+KH00024,355,4,Hài lòng
+KH00032,42,1,Rất đẹp
+KH01901,495,4,Đóng gói đẹp
+KH00178,493,4,Chất lượng tốt
+KH01848,34,5,Rất đẹp
+KH00467,122,4,Hài lòng
+KH01087,369,2,Hài lòng
+KH01543,169,3,Chất lượng tốt
+KH00704,75,3,Chất lượng tốt
+KH01864,483,1,Đóng gói đẹp
+KH01805,364,2,Đóng gói đẹp
+KH01614,319,2,Chất lượng tốt
+KH00434,6,3,Rất đẹp
+KH01864,40,3,Chất lượng tốt
+KH00274,403,3,Hài lòng
+KH00192,13,4,Rất đẹp
+KH00029,423,3,Hài lòng
+KH00578,219,5,Hài lòng
+KH01904,185,1,Đóng gói đẹp
+KH01591,123,4,Hài lòng
+KH01556,34,4,Hài lòng
+KH01185,435,4,Chất lượng tốt
+KH01576,149,3,Rất đẹp
+KH01980,235,4,Hài lòng
+KH01678,137,1,Hài lòng
+KH00782,477,5,Đóng gói đẹp
+KH00783,64,5,Hài lòng
+KH01742,207,5,Chất lượng tốt
+KH00975,357,5,Hài lòng
+KH01953,313,5,Hài lòng
+KH00522,282,3,Chất lượng tốt
+KH00665,85,5,Rất đẹp
+KH01535,165,5,Hài lòng
+KH01359,422,1,Rất đẹp
+KH01237,223,4,Hài lòng
+KH01273,170,5,Hài lòng
+KH00225,382,1,Đóng gói đẹp
+KH00282,270,4,Chất lượng tốt
+KH01034,349,2,Hài lòng
+KH00291,210,2,Đóng gói đẹp
+KH01011,111,5,Chất lượng tốt
+KH01767,48,4,Hài lòng
+KH00124,26,3,Rất đẹp
+KH00398,470,2,Hài lòng
+KH00689,153,2,Rất đẹp
+KH01525,211,1,Đóng gói đẹp
+KH00794,92,5,Đóng gói đẹp
+KH00213,17,5,Đóng gói đẹp
+KH00154,444,2,Đóng gói đẹp
+KH00315,324,3,Hài lòng
+KH00595,272,4,Chất lượng tốt
+KH00634,451,4,Hài lòng
+KH00892,100,1,Chất lượng tốt
+KH01044,96,3,Rất đẹp
+KH01627,110,3,Đóng gói đẹp
+KH01570,356,4,Chất lượng tốt
+KH00097,335,4,Rất đẹp
+KH00893,205,1,Chất lượng tốt
+KH01601,350,4,Chất lượng tốt
+KH00535,388,4,Hài lòng
+KH01224,113,1,Rất đẹp
+KH01175,88,1,Hài lòng
+KH00667,345,4,Đóng gói đẹp
+KH00396,315,1,Đóng gói đẹp
+KH00477,15,5,Chất lượng tốt
+KH01116,202,3,Đóng gói đẹp
+KH00613,39,1,Chất lượng tốt
+KH01971,125,4,Đóng gói đẹp
+KH01094,490,5,Rất đẹp
+KH01754,81,2,Chất lượng tốt
+KH01028,319,2,Chất lượng tốt
+KH01011,484,5,Rất đẹp
+KH01084,84,2,Hài lòng
+KH01167,35,1,Rất đẹp
+KH01760,349,2,Rất đẹp
+KH00876,343,3,Rất đẹp
+KH01210,321,4,Đóng gói đẹp
+KH01709,446,3,Đóng gói đẹp
+KH01987,174,2,Rất đẹp
+KH01793,476,2,Hài lòng
+KH00182,56,5,Rất đẹp
+KH01303,437,5,Chất lượng tốt
+KH01864,262,2,Rất đẹp
+KH00977,320,2,Hài lòng
+KH00978,214,5,Chất lượng tốt
+KH00468,48,2,Hài lòng
+KH00076,128,4,Đóng gói đẹp
+KH01001,378,5,Rất đẹp
+KH00853,378,3,Rất đẹp
+KH01726,353,5,Rất đẹp
+KH01385,251,1,Đóng gói đẹp
+KH01678,27,5,Hài lòng
+KH01858,87,1,Đóng gói đẹp
+KH00909,249,1,Chất lượng tốt
+KH01944,147,5,Rất đẹp
+KH01446,253,3,Chất lượng tốt
+KH00835,174,2,Chất lượng tốt
+KH01994,199,5,Đóng gói đẹp
+KH01040,403,3,Hài lòng
+KH01280,472,3,Chất lượng tốt
+KH00483,313,2,Đóng gói đẹp
+KH01501,307,3,Hài lòng
+KH01945,50,1,Chất lượng tốt
+KH00595,211,2,Hài lòng
+KH00811,480,1,Rất đẹp
+KH00224,75,5,Rất đẹp
+KH01641,132,2,Đóng gói đẹp
+KH01620,462,3,Chất lượng tốt
+KH00777,327,5,Đóng gói đẹp
+KH00179,184,4,Hài lòng
+KH00204,324,3,Rất đẹp
+KH01904,10,4,Chất lượng tốt
+KH00266,391,2,Hài lòng
+KH00160,5,1,Chất lượng tốt
+KH01264,364,1,Rất đẹp
+KH01906,177,2,Rất đẹp
+KH00580,31,5,Rất đẹp
+KH01705,460,3,Đóng gói đẹp
+KH01284,221,5,Rất đẹp
+KH00418,204,4,Hài lòng
+KH01253,57,4,Chất lượng tốt
+KH01283,484,1,Chất lượng tốt
+KH00930,119,1,Hài lòng
+KH00249,398,2,Hài lòng
+KH01357,106,5,Hài lòng
+KH01196,499,3,Hài lòng
+KH01439,231,5,Rất đẹp
+KH00716,482,5,Chất lượng tốt
+KH01195,129,5,Rất đẹp
+KH00315,442,5,Chất lượng tốt
+KH00412,228,4,Đóng gói đẹp
+KH00685,139,2,Hài lòng
+KH01048,104,4,Hài lòng
+KH00026,17,2,Hài lòng
+KH00972,18,2,Chất lượng tốt
+KH00329,34,5,Đóng gói đẹp
+KH00003,248,1,Rất đẹp
+KH00765,294,5,Đóng gói đẹp
+KH00680,259,4,Chất lượng tốt
+KH01140,68,3,Hài lòng
+KH01564,486,3,Chất lượng tốt
+KH00311,435,5,Rất đẹp
+KH01176,1,3,Đóng gói đẹp
+KH01717,311,4,Hài lòng
+KH01180,91,5,Chất lượng tốt
+KH00972,41,1,Rất đẹp
+KH00384,278,5,Chất lượng tốt
+KH00584,262,5,Chất lượng tốt
+KH01157,473,2,Rất đẹp
+KH00630,228,3,Đóng gói đẹp
+KH00846,149,2,Đóng gói đẹp
+KH01114,46,3,Chất lượng tốt
+KH01039,12,5,Rất đẹp
+KH02000,106,5,Chất lượng tốt
+KH01903,439,4,Hài lòng
+KH00375,195,2,Hài lòng
+KH00226,308,4,Đóng gói đẹp
+KH01757,391,5,Rất đẹp
+KH01216,176,3,Rất đẹp
+KH01973,256,3,Rất đẹp
+KH00295,159,1,Rất đẹp
+KH01794,42,1,Chất lượng tốt
+KH01114,462,2,Đóng gói đẹp
+KH00106,106,1,Đóng gói đẹp
+KH01344,85,1,Rất đẹp
+KH00230,51,4,Chất lượng tốt
+KH00711,242,1,Hài lòng
+KH01855,209,5,Rất đẹp
+KH00676,149,1,Chất lượng tốt
+KH00761,379,5,Chất lượng tốt
+KH01678,337,3,Đóng gói đẹp
+KH01392,169,5,Hài lòng
+KH00836,397,3,Đóng gói đẹp
+KH01413,80,1,Đóng gói đẹp
+KH00006,257,1,Rất đẹp
+KH01562,80,5,Rất đẹp
+KH00464,93,5,Hài lòng
+KH01685,290,5,Đóng gói đẹp
+KH00573,122,5,Rất đẹp
+KH00117,267,2,Đóng gói đẹp
+KH01964,424,4,Đóng gói đẹp
+KH01005,408,3,Đóng gói đẹp
+KH01756,425,1,Hài lòng
+KH01487,168,4,Rất đẹp
+KH00511,174,5,Chất lượng tốt
+KH01602,449,3,Đóng gói đẹp
+KH01423,156,3,Chất lượng tốt
+KH01034,208,4,Rất đẹp
+KH00607,474,5,Rất đẹp
+KH01688,46,2,Rất đẹp
+KH01592,109,5,Đóng gói đẹp
+KH00594,127,4,Chất lượng tốt
+KH00119,360,1,Rất đẹp
+KH00292,458,3,Đóng gói đẹp
+KH00492,214,4,Rất đẹp
+KH01480,226,1,Đóng gói đẹp
+KH00192,57,4,Hài lòng
+KH01751,139,1,Chất lượng tốt
+KH01304,275,3,Chất lượng tốt
+KH01413,103,2,Chất lượng tốt
+KH00942,291,5,Đóng gói đẹp
+KH01249,446,4,Hài lòng
+KH00027,478,2,Rất đẹp
+KH00135,266,1,Chất lượng tốt
+KH00618,280,3,Rất đẹp
+KH00273,164,5,Đóng gói đẹp
+KH01951,173,3,Rất đẹp
+KH01962,479,5,Hài lòng
+KH01380,460,1,Hài lòng
+KH00921,339,1,Chất lượng tốt
+KH01767,120,2,Chất lượng tốt
+KH01443,319,3,Đóng gói đẹp
+KH00068,193,5,Rất đẹp
+KH01993,277,5,Hài lòng
+KH01543,477,2,Chất lượng tốt
+KH00334,127,3,Rất đẹp
+KH00543,57,3,Rất đẹp
+KH00031,478,5,Đóng gói đẹp
+KH01889,296,5,Hài lòng
+KH00495,413,1,Rất đẹp
+KH01037,302,4,Rất đẹp
+KH01724,369,5,Đóng gói đẹp
+KH01357,385,1,Chất lượng tốt
+KH01835,23,1,Rất đẹp
+KH01079,73,4,Rất đẹp
+KH01822,315,2,Rất đẹp
+KH01618,161,2,Đóng gói đẹp
+KH00694,454,1,Rất đẹp
+KH01018,312,1,Đóng gói đẹp
+KH00038,82,2,Đóng gói đẹp
+KH01820,119,5,Chất lượng tốt
+KH01335,390,4,Chất lượng tốt
+KH01626,462,1,Chất lượng tốt
+KH01773,251,5,Hài lòng
+KH01065,138,1,Chất lượng tốt
+KH00739,488,1,Hài lòng
+KH01737,403,4,Rất đẹp
+KH01288,199,1,Rất đẹp
+KH01112,125,4,Rất đẹp
+KH00835,279,2,Hài lòng
+KH00982,56,2,Đóng gói đẹp
+KH00836,114,5,Đóng gói đẹp
+KH00186,324,2,Rất đẹp
+KH01448,490,2,Chất lượng tốt
+KH01911,182,2,Rất đẹp
+KH01618,365,5,Chất lượng tốt
+KH01143,147,5,Đóng gói đẹp
+KH00717,278,1,Rất đẹp
+KH00276,222,4,Đóng gói đẹp
+KH01548,405,4,Chất lượng tốt
+KH01673,16,2,Hài lòng
+KH01616,486,4,Chất lượng tốt
+KH00681,4,4,Rất đẹp
+KH01860,172,2,Đóng gói đẹp
+KH01739,143,3,Hài lòng
+KH01954,26,1,Đóng gói đẹp
+KH01333,290,3,Rất đẹp
+KH01151,403,1,Đóng gói đẹp
+KH00460,357,5,Rất đẹp
+KH00329,123,4,Hài lòng
+KH01506,304,2,Hài lòng
+KH01337,354,2,Đóng gói đẹp
+KH00177,485,3,Hài lòng
+KH01903,492,2,Chất lượng tốt
+KH00245,160,3,Rất đẹp
+KH00976,236,3,Chất lượng tốt
+KH00976,452,3,Đóng gói đẹp
+KH00260,254,1,Đóng gói đẹp
+KH01577,156,3,Chất lượng tốt
+KH01239,354,1,Hài lòng
+KH00396,75,5,Hài lòng
+KH01790,386,1,Rất đẹp
+KH00200,390,1,Đóng gói đẹp
+KH00595,363,2,Hài lòng
+KH01603,414,1,Chất lượng tốt
+KH01175,254,3,Chất lượng tốt
+KH00167,151,3,Chất lượng tốt
+KH00013,66,3,Chất lượng tốt
+KH00069,39,2,Rất đẹp
+KH01922,454,2,Đóng gói đẹp
+KH01772,169,2,Đóng gói đẹp
+KH01473,465,4,Rất đẹp
+KH01591,427,1,Chất lượng tốt
+KH01583,165,5,Hài lòng
+KH01793,62,1,Đóng gói đẹp
+KH01120,261,3,Chất lượng tốt
+KH01818,372,4,Hài lòng
+KH00479,413,5,Chất lượng tốt
+KH01704,230,4,Hài lòng
+KH00994,180,5,Chất lượng tốt
+KH01201,291,5,Đóng gói đẹp
+KH00198,434,4,Chất lượng tốt
+KH01661,158,4,Chất lượng tốt
+KH01866,396,4,Rất đẹp
+KH00281,343,5,Đóng gói đẹp
+KH01119,163,3,Rất đẹp
+KH00584,56,2,Hài lòng
+KH00899,297,4,Đóng gói đẹp
+KH00149,223,2,Chất lượng tốt
+KH00348,172,2,Chất lượng tốt
+KH01261,181,4,Hài lòng
+KH01980,433,3,Rất đẹp
+KH00615,60,4,Hài lòng
+KH01454,393,2,Rất đẹp
+KH00853,382,2,Rất đẹp
+KH01064,77,4,Hài lòng
+KH00322,76,2,Rất đẹp
+KH00495,137,4,Hài lòng
+KH01550,447,1,Chất lượng tốt
+KH00226,404,5,Rất đẹp
+KH00641,265,4,Rất đẹp
+KH00589,219,4,Rất đẹp
+KH00308,426,1,Chất lượng tốt
+KH01247,251,1,Hài lòng
+KH01701,192,2,Hài lòng
+KH00528,223,4,Chất lượng tốt
+KH00153,98,4,Đóng gói đẹp
+KH00838,40,5,Hài lòng
+KH01833,250,4,Đóng gói đẹp
+KH00591,232,4,Rất đẹp
+KH00850,22,3,Hài lòng
+KH01158,149,5,Rất đẹp
+KH00520,40,4,Hài lòng
+KH01077,446,3,Hài lòng
+KH01365,42,4,Hài lòng
+KH00905,161,3,Chất lượng tốt
+KH00184,331,2,Rất đẹp
+KH01567,1,5,Đóng gói đẹp
+KH00378,413,5,Rất đẹp
+KH00337,322,2,Đóng gói đẹp
+KH01706,285,4,Chất lượng tốt
+KH01427,370,3,Rất đẹp
+KH01872,474,4,Hài lòng
+KH00357,213,4,Đóng gói đẹp
+KH01079,41,2,Đóng gói đẹp
+KH00101,155,4,Chất lượng tốt
+KH01245,146,4,Hài lòng
+KH00216,345,1,Chất lượng tốt
+KH01236,447,3,Rất đẹp
+KH01054,327,3,Rất đẹp
+KH00105,352,2,Hài lòng
+KH01399,370,4,Chất lượng tốt
+KH00821,459,4,Chất lượng tốt
+KH01313,252,4,Rất đẹp
+KH01484,347,4,Đóng gói đẹp
+KH01294,356,3,Chất lượng tốt
+KH01848,55,3,Hài lòng
+KH00524,188,5,Đóng gói đẹp
+KH01388,325,4,Rất đẹp
+KH01223,415,4,Chất lượng tốt
+KH00496,120,2,Rất đẹp
+KH00923,83,2,Chất lượng tốt
+KH01717,26,2,Rất đẹp
+KH00797,148,1,Hài lòng
+KH00530,252,4,Hài lòng
+KH01213,198,5,Rất đẹp
+KH00326,291,2,Đóng gói đẹp
+KH01436,293,1,Hài lòng
+KH01798,388,4,Hài lòng
+KH00162,365,3,Đóng gói đẹp
+KH00961,273,3,Đóng gói đẹp
+KH01987,329,1,Chất lượng tốt
+KH01606,348,3,Rất đẹp
+KH01761,222,4,Đóng gói đẹp
+KH00686,74,2,Chất lượng tốt
+KH01143,369,3,Chất lượng tốt
+KH01275,466,3,Đóng gói đẹp
+KH01406,462,3,Hài lòng
+KH01189,215,2,Chất lượng tốt
+KH01398,354,5,Rất đẹp
+KH01847,127,2,Hài lòng
+KH01901,123,4,Rất đẹp
+KH01723,319,3,Đóng gói đẹp
+KH00296,206,3,Chất lượng tốt
+KH00222,286,2,Rất đẹp
+KH01984,69,1,Hài lòng
+KH01812,326,4,Đóng gói đẹp
+KH00039,392,5,Đóng gói đẹp
+KH01307,371,5,Chất lượng tốt
+KH01246,389,1,Rất đẹp
+KH01893,346,5,Hài lòng
+KH00607,231,3,Hài lòng
+KH01912,231,4,Đóng gói đẹp
+KH00039,93,1,Hài lòng
+KH01574,287,4,Đóng gói đẹp
+KH00029,386,2,Đóng gói đẹp
+KH00898,270,5,Hài lòng
+KH01062,199,5,Hài lòng
+KH00498,301,3,Chất lượng tốt
+KH00900,450,1,Hài lòng
+KH00222,95,2,Đóng gói đẹp
+KH00389,467,1,Đóng gói đẹp
+KH00935,134,4,Đóng gói đẹp
+KH01534,135,5,Đóng gói đẹp
+KH01875,307,4,Đóng gói đẹp
+KH00137,38,3,Rất đẹp
+KH00329,431,2,Rất đẹp
+KH00168,8,1,Chất lượng tốt
+KH00896,245,4,Rất đẹp
+KH00422,359,1,Hài lòng
+KH00548,248,4,Rất đẹp
+KH00035,26,4,Chất lượng tốt
+KH01398,277,4,Đóng gói đẹp
+KH00746,62,1,Chất lượng tốt
+KH00153,11,2,Chất lượng tốt
+KH00352,263,2,Đóng gói đẹp
+KH00306,24,2,Đóng gói đẹp
+KH01849,279,2,Rất đẹp
+KH00711,438,2,Rất đẹp
+KH00522,412,1,Hài lòng
+KH01163,462,3,Hài lòng
+KH00616,299,1,Rất đẹp
+KH00156,270,3,Đóng gói đẹp
+KH01604,172,2,Hài lòng
+KH00204,301,1,Rất đẹp
+KH01910,90,5,Chất lượng tốt
+KH01121,473,2,Rất đẹp
+KH00023,324,5,Hài lòng
+KH01195,186,4,Chất lượng tốt
+KH01595,457,5,Đóng gói đẹp
+KH00462,386,3,Rất đẹp
+KH01729,377,4,Chất lượng tốt
+KH00295,252,1,Hài lòng
+KH01572,470,4,Hài lòng
+KH01333,178,5,Rất đẹp
+KH00035,315,5,Rất đẹp
+KH01924,252,3,Hài lòng
+KH01188,114,3,Rất đẹp
+KH01878,234,1,Đóng gói đẹp
+KH01732,41,2,Rất đẹp
+KH01416,489,1,Hài lòng
+KH01596,477,3,Hài lòng
+KH01302,359,1,Chất lượng tốt
+KH01729,437,4,Hài lòng
+KH01550,280,3,Đóng gói đẹp
+KH00541,16,2,Đóng gói đẹp
+KH00512,317,3,Hài lòng
+KH01619,408,3,Chất lượng tốt
+KH00130,327,5,Chất lượng tốt
+KH01831,334,3,Đóng gói đẹp
+KH01822,384,2,Rất đẹp
+KH00503,106,5,Chất lượng tốt
+KH00931,75,1,Chất lượng tốt
+KH00425,33,2,Đóng gói đẹp
+KH01300,164,2,Chất lượng tốt
+KH01504,94,3,Hài lòng
+KH01807,61,5,Đóng gói đẹp
+KH01406,329,3,Rất đẹp
+KH00799,316,1,Chất lượng tốt
+KH01726,268,4,Hài lòng
+KH00256,313,3,Rất đẹp
+KH00621,397,5,Chất lượng tốt
+KH01282,45,4,Chất lượng tốt
+KH00323,44,5,Hài lòng
+KH00082,115,3,Hài lòng
+KH00239,71,1,Rất đẹp
+KH01175,414,3,Chất lượng tốt
+KH01713,69,4,Đóng gói đẹp
+KH01652,208,3,Đóng gói đẹp
+KH00058,382,3,Chất lượng tốt
+KH01077,399,4,Chất lượng tốt
+KH00807,332,2,Hài lòng
+KH01514,319,2,Rất đẹp
+KH01285,20,5,Đóng gói đẹp
+KH01490,296,5,Rất đẹp
+KH00895,333,4,Chất lượng tốt
+KH01919,415,2,Đóng gói đẹp
+KH00772,80,4,Rất đẹp
+KH00170,181,3,Rất đẹp
+KH01951,489,3,Chất lượng tốt
+KH00079,139,4,Đóng gói đẹp
+KH01564,16,2,Chất lượng tốt
+KH01401,210,3,Rất đẹp
+KH01717,202,5,Rất đẹp
+KH00461,206,1,Đóng gói đẹp
+KH01233,193,3,Rất đẹp
+KH00853,207,3,Hài lòng
+KH00115,495,4,Rất đẹp
+KH01290,384,1,Chất lượng tốt
+KH00473,9,1,Hài lòng
+KH01561,343,3,Chất lượng tốt
+KH01790,447,4,Hài lòng
+KH01306,449,2,Đóng gói đẹp
+KH01950,474,3,Đóng gói đẹp
+KH00925,96,2,Đóng gói đẹp
+KH01401,137,3,Hài lòng
+KH01894,408,5,Hài lòng
+KH00830,143,1,Đóng gói đẹp
+KH01011,156,4,Hài lòng
+KH00384,486,5,Rất đẹp
+KH00582,417,1,Chất lượng tốt
+KH00032,425,3,Đóng gói đẹp
+KH01801,35,4,Chất lượng tốt
+KH01983,41,4,Chất lượng tốt
+KH00813,370,5,Hài lòng
+KH01392,366,3,Chất lượng tốt
+KH00318,324,2,Đóng gói đẹp
+KH01789,463,1,Hài lòng
+KH00483,328,5,Rất đẹp
+KH01934,428,2,Rất đẹp
+KH00700,459,4,Rất đẹp
+KH00178,178,3,Rất đẹp
+KH01573,355,5,Đóng gói đẹp
+KH00440,158,5,Đóng gói đẹp
+KH01438,326,1,Hài lòng
+KH01458,476,1,Chất lượng tốt
+KH00913,469,5,Chất lượng tốt
+KH00515,272,3,Rất đẹp
+KH00809,348,1,Chất lượng tốt
+KH01044,394,2,Rất đẹp
+KH01708,383,4,Đóng gói đẹp
+KH00515,226,4,Chất lượng tốt
+KH01235,349,4,Chất lượng tốt
+KH00334,133,5,Chất lượng tốt
+KH01557,226,4,Rất đẹp
+KH00281,167,3,Hài lòng
+KH01904,466,5,Rất đẹp
+KH01851,113,3,Hài lòng
+KH00281,131,5,Hài lòng
+KH01079,296,4,Hài lòng
+KH00910,313,4,Đóng gói đẹp
+KH00477,313,2,Chất lượng tốt
+KH01959,339,2,Rất đẹp
+KH01529,405,3,Hài lòng
+KH01318,9,2,Hài lòng
+KH00927,458,2,Đóng gói đẹp
+KH00800,387,3,Hài lòng
+KH00740,231,3,Đóng gói đẹp
+KH01230,240,2,Rất đẹp
+KH00604,140,2,Đóng gói đẹp
+KH01028,466,1,Đóng gói đẹp
+KH00786,121,5,Rất đẹp
+KH01325,462,2,Đóng gói đẹp
+KH01340,255,2,Hài lòng
+KH01111,70,5,Rất đẹp
+KH00703,192,1,Đóng gói đẹp
+KH01761,302,3,Chất lượng tốt
+KH00498,14,5,Hài lòng
+KH01414,400,1,Hài lòng
+KH00007,227,4,Đóng gói đẹp
+KH00143,110,3,Chất lượng tốt
+KH01706,77,1,Hài lòng
+KH01760,45,3,Hài lòng
+KH01125,346,3,Hài lòng
+KH01247,216,5,Chất lượng tốt
+KH01756,491,2,Rất đẹp
+KH01929,444,4,Hài lòng
+KH01258,342,5,Rất đẹp
+KH00437,319,4,Chất lượng tốt
+KH01628,38,2,Rất đẹp
+KH01232,93,2,Đóng gói đẹp
+KH00118,49,1,Đóng gói đẹp
+KH01897,424,5,Hài lòng
+KH00357,499,1,Rất đẹp
+KH00299,204,2,Hài lòng
+KH00863,79,5,Chất lượng tốt
+KH00808,341,3,Chất lượng tốt
+KH01674,46,4,Đóng gói đẹp
+KH01470,203,5,Rất đẹp
+KH01600,333,4,Chất lượng tốt
+KH01728,64,1,Chất lượng tốt
+KH00985,291,3,Đóng gói đẹp
+KH01550,178,4,Chất lượng tốt
+KH01694,218,5,Chất lượng tốt
+KH01021,236,2,Rất đẹp
+KH01424,325,1,Hài lòng
+KH00559,341,3,Rất đẹp
+KH01671,49,5,Đóng gói đẹp
+KH00255,218,2,Rất đẹp
+KH01071,421,4,Hài lòng
+KH00352,221,5,Chất lượng tốt
+KH01842,350,5,Hài lòng
+KH00983,271,4,Chất lượng tốt
+KH01275,308,3,Rất đẹp
+KH00211,347,5,Rất đẹp
+KH00819,34,4,Đóng gói đẹp
+KH00017,152,2,Chất lượng tốt
+KH00777,79,1,Đóng gói đẹp
+KH00134,157,2,Chất lượng tốt
+KH00412,284,4,Hài lòng
+KH01641,217,4,Chất lượng tốt
+KH01525,196,4,Rất đẹp
+KH00190,482,5,Chất lượng tốt
+KH01430,372,4,Chất lượng tốt
+KH01285,387,5,Chất lượng tốt
+KH00342,421,2,Đóng gói đẹp
+KH00039,369,5,Đóng gói đẹp
+KH01589,171,4,Chất lượng tốt
+KH00913,193,3,Hài lòng
+KH01880,395,2,Rất đẹp
+KH01065,193,5,Đóng gói đẹp
+KH01566,33,5,Hài lòng
+KH00267,408,1,Hài lòng
+KH01157,84,4,Hài lòng
+KH00205,58,4,Hài lòng
+KH01747,114,4,Rất đẹp
+KH00645,237,3,Chất lượng tốt
+KH00765,393,1,Hài lòng
+KH01391,449,5,Hài lòng
+KH01130,221,1,Hài lòng
+KH00420,115,2,Hài lòng
+KH01637,333,1,Chất lượng tốt
+KH00189,232,3,Rất đẹp
+KH00711,440,3,Chất lượng tốt
+KH00580,106,3,Rất đẹp
+KH01224,208,5,Rất đẹp
+KH00478,494,3,Rất đẹp
+KH00513,238,4,Hài lòng
+KH01790,85,5,Hài lòng
+KH01252,496,4,Rất đẹp
+KH01395,233,4,Đóng gói đẹp
+KH00805,43,3,Rất đẹp
+KH00037,312,5,Chất lượng tốt
+KH01277,350,2,Đóng gói đẹp
+KH00764,414,2,Hài lòng
+KH01799,347,2,Hài lòng
+KH00832,254,4,Chất lượng tốt
+KH00112,460,4,Rất đẹp
+KH00550,3,5,Đóng gói đẹp
+KH01066,432,4,Đóng gói đẹp
+KH01883,142,3,Chất lượng tốt
+KH00675,497,5,Rất đẹp
+KH01056,371,5,Hài lòng
+KH00658,113,2,Rất đẹp
+KH01153,334,3,Rất đẹp
+KH01934,474,1,Chất lượng tốt
+KH01245,364,3,Hài lòng
+KH00498,158,4,Hài lòng
+KH01242,407,5,Chất lượng tốt
+KH01859,325,3,Rất đẹp
+KH00034,287,5,Đóng gói đẹp
+KH01005,376,5,Rất đẹp
+KH00458,475,3,Đóng gói đẹp
+KH01599,120,5,Rất đẹp
+KH00428,445,1,Hài lòng
+KH01138,182,3,Chất lượng tốt
+KH00034,113,5,Rất đẹp
+KH01213,138,1,Rất đẹp
+KH00073,64,4,Chất lượng tốt
+KH01714,106,3,Rất đẹp
+KH01565,149,4,Đóng gói đẹp
+KH01167,444,5,Chất lượng tốt
+KH01706,11,1,Hài lòng
+KH01295,341,5,Chất lượng tốt
+KH00645,278,3,Hài lòng
+KH00273,314,5,Đóng gói đẹp
+KH00899,96,4,Hài lòng
+KH00620,462,3,Đóng gói đẹp
+KH01184,141,1,Rất đẹp
+KH01953,103,4,Rất đẹp
+KH01205,498,3,Rất đẹp
+KH01788,429,4,Đóng gói đẹp
+KH00521,296,5,Rất đẹp
+KH00838,48,3,Chất lượng tốt
+KH00123,365,1,Chất lượng tốt
+KH01829,44,5,Rất đẹp
+KH00503,462,4,Hài lòng
+KH01821,455,3,Chất lượng tốt
+KH01465,328,1,Hài lòng
+KH00734,335,4,Đóng gói đẹp
+KH01719,227,5,Đóng gói đẹp
+KH00716,209,2,Đóng gói đẹp
+KH01390,93,4,Rất đẹp
+KH00834,72,5,Đóng gói đẹp
+KH01265,112,1,Đóng gói đẹp
+KH00993,315,5,Đóng gói đẹp
+KH00057,242,5,Rất đẹp
+KH01171,256,5,Đóng gói đẹp
+KH00072,32,3,Chất lượng tốt
+KH01943,400,5,Chất lượng tốt
+KH00068,372,4,Rất đẹp
+KH00735,494,1,Đóng gói đẹp
+KH01000,413,1,Rất đẹp
+KH00571,2,2,Rất đẹp
+KH01405,34,4,Hài lòng
+KH00362,130,3,Chất lượng tốt
+KH00702,142,1,Rất đẹp
+KH00382,92,5,Hài lòng
+KH00947,31,1,Chất lượng tốt
+KH00659,58,5,Rất đẹp
+KH01709,247,2,Chất lượng tốt
+KH01431,348,5,Đóng gói đẹp
+KH00568,189,4,Hài lòng
+KH00122,115,3,Đóng gói đẹp
+KH00100,356,5,Đóng gói đẹp
+KH01190,208,3,Hài lòng
+KH01889,99,5,Rất đẹp
+KH00131,173,3,Chất lượng tốt
+KH00847,232,1,Đóng gói đẹp
+KH01235,221,1,Rất đẹp
+KH00470,217,4,Chất lượng tốt
+KH00408,136,4,Chất lượng tốt
+KH01454,179,2,Chất lượng tốt
+KH01814,427,3,Hài lòng
+KH00125,447,1,Đóng gói đẹp
+KH01357,463,4,Đóng gói đẹp
+KH01776,123,5,Chất lượng tốt
+KH00177,21,5,Đóng gói đẹp
+KH01536,84,5,Chất lượng tốt
+KH01318,284,4,Hài lòng
+KH01597,103,4,Chất lượng tốt
+KH01577,431,4,Đóng gói đẹp
+KH00431,218,5,Chất lượng tốt
+KH01064,63,1,Đóng gói đẹp
+KH00224,346,4,Chất lượng tốt
+KH00033,382,1,Đóng gói đẹp
+KH00211,383,4,Rất đẹp
+KH01165,370,4,Đóng gói đẹp
+KH01619,408,1,Hài lòng
+KH01819,75,2,Rất đẹp
+KH01507,30,1,Đóng gói đẹp
+KH00015,358,2,Đóng gói đẹp
+KH00184,79,3,Chất lượng tốt
+KH01076,364,1,Chất lượng tốt
+KH00346,257,5,Rất đẹp
+KH01722,96,2,Hài lòng
+KH00526,159,4,Chất lượng tốt
+KH01074,462,1,Hài lòng
+KH01582,231,1,Rất đẹp
+KH01544,473,5,Đóng gói đẹp
+KH01113,142,1,Đóng gói đẹp
+KH01052,226,2,Đóng gói đẹp
+KH00507,384,4,Rất đẹp
+KH01567,352,3,Đóng gói đẹp
+KH01655,399,2,Rất đẹp
+KH01949,124,5,Chất lượng tốt
+KH01456,52,5,Chất lượng tốt
+KH00667,289,2,Rất đẹp
+KH00183,284,5,Rất đẹp
+KH01982,57,5,Hài lòng
+KH00903,295,1,Đóng gói đẹp
+KH00818,468,3,Chất lượng tốt
+KH00710,154,5,Đóng gói đẹp
+KH01164,261,1,Rất đẹp
+KH01805,281,4,Đóng gói đẹp
+KH00621,239,5,Hài lòng
+KH00447,250,1,Hài lòng
+KH00452,443,4,Chất lượng tốt
+KH00191,10,2,Chất lượng tốt
+KH00116,273,1,Đóng gói đẹp
+KH01983,311,2,Rất đẹp
+KH00104,167,4,Chất lượng tốt
+KH01924,350,2,Chất lượng tốt
+KH01827,411,3,Rất đẹp
+KH01707,405,3,Đóng gói đẹp
+KH00727,325,4,Hài lòng
+KH01315,156,3,Rất đẹp
+KH00378,429,4,Chất lượng tốt
+KH01292,386,1,Chất lượng tốt
+KH01375,360,3,Rất đẹp
+KH01682,342,1,Chất lượng tốt
+KH01981,158,4,Hài lòng
+KH01742,235,1,Chất lượng tốt
+KH01730,250,5,Hài lòng
+KH00308,324,4,Chất lượng tốt
+KH01968,490,3,Rất đẹp
+KH00439,312,4,Đóng gói đẹp
+KH00325,98,3,Đóng gói đẹp
+KH00198,49,5,Hài lòng
+KH01795,23,4,Đóng gói đẹp
+KH00895,235,4,Hài lòng
+KH00204,121,4,Đóng gói đẹp
+KH00127,430,3,Đóng gói đẹp
+KH01295,71,5,Hài lòng
+KH00028,192,2,Chất lượng tốt
+KH00479,65,1,Rất đẹp
+KH01110,462,5,Rất đẹp
+KH01483,443,1,Hài lòng
+KH00286,323,4,Hài lòng
+KH00254,338,1,Rất đẹp
+KH00303,39,1,Đóng gói đẹp
+KH00890,9,2,Hài lòng
+KH00911,244,5,Rất đẹp
+KH01017,31,1,Đóng gói đẹp
+KH01651,395,4,Hài lòng
+KH01606,28,1,Hài lòng
+KH00787,375,4,Chất lượng tốt
+KH00163,21,4,Chất lượng tốt
+KH01888,70,1,Đóng gói đẹp
+KH01630,8,2,Chất lượng tốt
+KH01147,38,1,Hài lòng
+KH01924,467,5,Chất lượng tốt
+KH01761,461,3,Rất đẹp
+KH00277,94,5,Rất đẹp
+KH01002,80,1,Chất lượng tốt
+KH00451,235,4,Rất đẹp
+KH00874,381,3,Đóng gói đẹp
+KH01748,183,3,Hài lòng
+KH00908,129,1,Chất lượng tốt
+KH01153,430,5,Đóng gói đẹp
+KH01098,483,3,Hài lòng
+KH01915,190,2,Chất lượng tốt
+KH01265,108,3,Rất đẹp
+KH00459,101,3,Chất lượng tốt
+KH01653,212,5,Đóng gói đẹp
+KH01696,398,1,Đóng gói đẹp
+KH00954,297,1,Hài lòng
+KH01788,108,3,Đóng gói đẹp
+KH00077,84,2,Hài lòng
+KH01616,316,4,Hài lòng
+KH01349,431,3,Chất lượng tốt
+KH00536,378,3,Hài lòng
+KH00994,111,5,Hài lòng
+KH00635,3,1,Rất đẹp
+KH00182,413,3,Hài lòng
+KH01148,11,3,Rất đẹp
+KH01728,132,3,Hài lòng
+KH01037,113,1,Đóng gói đẹp
+KH01680,490,1,Rất đẹp
+KH00508,382,2,Hài lòng
+KH01790,16,3,Rất đẹp
+KH01337,373,5,Hài lòng
+KH00550,456,5,Chất lượng tốt
+KH00052,219,2,Hài lòng
+KH00354,148,4,Đóng gói đẹp
+KH01922,347,4,Rất đẹp
+KH00292,468,4,Hài lòng
+KH01815,260,5,Chất lượng tốt
+KH01654,291,3,Hài lòng
+KH00527,193,5,Chất lượng tốt
+KH01171,404,5,Chất lượng tốt
+KH01250,153,4,Hài lòng
+KH00836,278,3,Chất lượng tốt
+KH00750,309,1,Hài lòng
+KH00214,365,3,Đóng gói đẹp
+KH01291,417,5,Rất đẹp
+KH01353,282,1,Chất lượng tốt
+KH00240,138,4,Chất lượng tốt
+KH01473,483,1,Đóng gói đẹp
+KH00168,242,2,Đóng gói đẹp
+KH00402,453,4,Đóng gói đẹp
+KH01562,204,4,Hài lòng
+KH01811,432,3,Chất lượng tốt
+KH01055,303,2,Đóng gói đẹp
+KH01172,309,4,Chất lượng tốt
+KH01907,16,1,Hài lòng
+KH00331,38,3,Hài lòng
+KH01187,166,4,Đóng gói đẹp
+KH00990,496,1,Rất đẹp
+KH01730,322,2,Chất lượng tốt
+KH01560,215,4,Chất lượng tốt
+KH01492,79,3,Rất đẹp
+KH01827,260,2,Rất đẹp
+KH01938,284,2,Hài lòng
+KH01839,61,5,Chất lượng tốt
+KH00444,250,2,Đóng gói đẹp
+KH00972,373,2,Rất đẹp
+KH00314,462,1,Đóng gói đẹp
+KH01492,238,2,Đóng gói đẹp
+KH00482,159,2,Đóng gói đẹp
+KH01871,71,4,Hài lòng
+KH01643,489,5,Chất lượng tốt
+KH01894,387,3,Hài lòng
+KH01410,476,4,Rất đẹp
+KH00888,246,4,Hài lòng
+KH01559,417,3,Đóng gói đẹp
+KH00486,127,1,Chất lượng tốt
+KH00479,14,4,Chất lượng tốt
+KH01915,248,3,Chất lượng tốt
+KH01013,44,5,Đóng gói đẹp
+KH00956,428,5,Hài lòng
+KH01104,429,3,Hài lòng
+KH01454,284,1,Hài lòng
+KH00498,259,1,Chất lượng tốt
+KH01753,236,2,Hài lòng
+KH00041,97,3,Chất lượng tốt
+KH01234,165,4,Hài lòng
+KH01718,137,2,Chất lượng tốt
+KH01518,191,3,Hài lòng
+KH01420,24,1,Chất lượng tốt
+KH01363,436,3,Rất đẹp
+KH01611,429,5,Đóng gói đẹp
+KH01352,68,2,Rất đẹp
+KH00497,169,4,Đóng gói đẹp
+KH01379,133,4,Rất đẹp
+KH00589,194,1,Rất đẹp
+KH00159,282,4,Đóng gói đẹp
+KH00532,491,1,Hài lòng
+KH01355,13,5,Rất đẹp
+KH00330,453,4,Chất lượng tốt
+KH01132,201,3,Chất lượng tốt
+KH00212,485,2,Hài lòng
+KH01291,342,4,Chất lượng tốt
+KH00068,110,5,Hài lòng
+KH01012,128,1,Rất đẹp
+KH01840,299,5,Chất lượng tốt
+KH01335,30,5,Hài lòng
+KH01982,319,3,Chất lượng tốt
+KH00281,193,3,Chất lượng tốt
+KH01122,326,1,Chất lượng tốt
+KH00822,162,4,Chất lượng tốt
+KH01767,113,1,Chất lượng tốt
+KH00982,255,3,Rất đẹp
+KH00627,161,3,Hài lòng
+KH00178,42,4,Chất lượng tốt
+KH01991,318,3,Hài lòng
+KH01632,207,3,Đóng gói đẹp
+KH00227,432,3,Chất lượng tốt
+KH00422,62,2,Chất lượng tốt
+KH00719,499,1,Chất lượng tốt
+KH01350,195,1,Hài lòng
+KH00759,382,1,Rất đẹp
+KH01354,39,2,Đóng gói đẹp
+KH01958,221,3,Hài lòng
+KH01256,4,4,Hài lòng
+KH01930,183,2,Hài lòng
+KH01990,383,2,Hài lòng
+KH00196,402,2,Đóng gói đẹp
+KH01863,241,4,Đóng gói đẹp
+KH01934,26,3,Đóng gói đẹp
+KH00301,125,2,Chất lượng tốt
+KH00889,155,2,Đóng gói đẹp
+KH00408,176,4,Hài lòng
+KH01455,135,5,Chất lượng tốt
+KH00921,337,3,Đóng gói đẹp
+KH00594,53,1,Chất lượng tốt
+KH01516,140,3,Hài lòng
+KH00843,470,4,Hài lòng
+KH01118,267,5,Rất đẹp
+KH01093,190,1,Hài lòng
+KH00040,47,4,Chất lượng tốt
+KH00305,217,4,Hài lòng
+KH01157,487,1,Đóng gói đẹp
+KH01526,81,5,Rất đẹp
+KH00757,357,1,Chất lượng tốt
+KH00192,389,5,Rất đẹp
+KH00241,27,2,Chất lượng tốt
+KH00403,484,5,Đóng gói đẹp
+KH01391,397,1,Rất đẹp
+KH00255,325,3,Đóng gói đẹp
+KH01633,241,3,Hài lòng
+KH00442,323,3,Rất đẹp
+KH01019,323,4,Rất đẹp
+KH01386,179,1,Đóng gói đẹp
+KH01164,328,2,Đóng gói đẹp
+KH00378,26,5,Đóng gói đẹp
+KH00148,439,1,Chất lượng tốt
+KH00270,370,1,Chất lượng tốt
+KH01571,440,1,Chất lượng tốt
+KH01943,74,2,Rất đẹp
+KH01391,483,3,Chất lượng tốt
+KH00136,22,1,Hài lòng
+KH01437,429,2,Chất lượng tốt
+KH01980,86,4,Rất đẹp
+KH01637,91,5,Chất lượng tốt
+KH00245,273,5,Rất đẹp
+KH00534,353,3,Chất lượng tốt
+KH00992,103,3,Chất lượng tốt
+KH00357,276,3,Hài lòng
+KH00943,198,3,Hài lòng
+KH01391,451,4,Chất lượng tốt
+KH00565,342,3,Rất đẹp
+KH00210,360,1,Đóng gói đẹp
+KH00301,63,1,Đóng gói đẹp
+KH01628,450,2,Rất đẹp
+KH01819,299,5,Rất đẹp
+KH00790,407,5,Hài lòng
+KH00031,239,5,Đóng gói đẹp
+KH01061,232,3,Hài lòng
+KH00847,302,3,Rất đẹp
+KH00372,343,3,Đóng gói đẹp
+KH01217,346,1,Hài lòng
+KH00723,220,2,Hài lòng
+KH00835,94,1,Rất đẹp
+KH01416,315,3,Chất lượng tốt
+KH00618,442,1,Đóng gói đẹp
+KH00307,164,2,Đóng gói đẹp
+KH00171,16,2,Rất đẹp
+KH00345,387,4,Đóng gói đẹp
+KH00419,365,1,Đóng gói đẹp
+KH01317,74,2,Hài lòng
+KH00476,388,4,Hài lòng
+KH01830,459,5,Đóng gói đẹp
+KH01809,57,3,Chất lượng tốt
+KH01534,28,5,Hài lòng
+KH00288,478,3,Rất đẹp
+KH01436,178,2,Đóng gói đẹp
+KH01708,296,2,Đóng gói đẹp
+KH00312,91,1,Rất đẹp
+KH00607,27,3,Rất đẹp
+KH01307,67,2,Hài lòng
+KH00345,211,3,Rất đẹp
+KH01702,182,1,Hài lòng
+KH00241,108,1,Đóng gói đẹp
+KH01343,391,1,Hài lòng
+KH00466,302,3,Hài lòng
+KH00723,377,5,Rất đẹp
+KH00226,162,3,Rất đẹp
+KH01139,298,3,Rất đẹp
+KH00073,26,3,Chất lượng tốt
+KH01611,15,5,Rất đẹp
+KH00297,45,1,Rất đẹp
+KH01564,188,5,Đóng gói đẹp
+KH01722,238,5,Đóng gói đẹp
+KH01783,79,2,Hài lòng
+KH00938,424,5,Đóng gói đẹp
+KH01789,438,5,Đóng gói đẹp
+KH00634,223,2,Hài lòng
+KH00272,194,4,Hài lòng
+KH00470,491,4,Rất đẹp
+KH00683,24,4,Rất đẹp
+KH00701,71,3,Rất đẹp
+KH00121,452,3,Rất đẹp
+KH00218,75,3,Hài lòng
+KH00113,132,2,Đóng gói đẹp
+KH01259,415,5,Chất lượng tốt
+KH00182,413,3,Chất lượng tốt
+KH00374,497,1,Đóng gói đẹp
+KH01624,400,2,Rất đẹp
+KH00194,204,1,Đóng gói đẹp
+KH01238,413,3,Đóng gói đẹp
+KH00328,472,5,Rất đẹp
+KH00700,226,3,Đóng gói đẹp
+KH00858,374,2,Hài lòng
+KH01475,267,3,Rất đẹp
+KH01643,5,5,Hài lòng
+KH01051,486,2,Chất lượng tốt
+KH00339,51,3,Chất lượng tốt
+KH01837,342,2,Đóng gói đẹp
+KH01502,247,4,Hài lòng
+KH01647,387,4,Rất đẹp
+KH01983,208,5,Hài lòng
+KH01765,272,1,Đóng gói đẹp
+KH00517,459,1,Chất lượng tốt
+KH00092,184,4,Đóng gói đẹp
+KH01773,490,5,Hài lòng
+KH01724,109,2,Hài lòng
+KH00255,205,4,Chất lượng tốt
+KH00186,88,4,Rất đẹp
+KH00997,201,2,Đóng gói đẹp
+KH01221,262,2,Đóng gói đẹp
+KH01680,40,3,Rất đẹp
+KH00776,287,5,Chất lượng tốt
+KH00201,152,1,Đóng gói đẹp
+KH00506,426,2,Rất đẹp
+KH00398,387,5,Rất đẹp
+KH00047,394,3,Hài lòng
+KH00389,206,3,Hài lòng
+KH01515,8,2,Rất đẹp
+KH01333,379,3,Hài lòng
+KH00242,347,3,Hài lòng
+KH01913,78,2,Đóng gói đẹp
+KH01553,358,4,Rất đẹp
+KH00613,253,5,Đóng gói đẹp
+KH00805,196,1,Hài lòng
+KH00895,489,5,Rất đẹp
+KH00222,19,1,Chất lượng tốt
+KH01744,295,4,Rất đẹp
+KH01533,413,5,Rất đẹp
+KH00406,57,3,Đóng gói đẹp
+KH01953,353,2,Chất lượng tốt
+KH01759,153,4,Chất lượng tốt
+KH00417,314,4,Đóng gói đẹp
+KH00966,481,4,Đóng gói đẹp
+KH01077,217,1,Rất đẹp
+KH00811,117,3,Chất lượng tốt
+KH01220,132,2,Đóng gói đẹp
+KH01899,365,4,Đóng gói đẹp
+KH01871,500,5,Hài lòng
+KH01497,288,4,Hài lòng
+KH01394,294,4,Rất đẹp
+KH01550,230,4,Hài lòng
+KH01709,417,3,Chất lượng tốt
+KH00035,298,2,Chất lượng tốt
+KH01137,293,5,Hài lòng
+KH00363,398,5,Chất lượng tốt
+KH00800,3,2,Chất lượng tốt
+KH01885,215,2,Chất lượng tốt
+KH01873,136,4,Đóng gói đẹp
+KH01758,103,5,Chất lượng tốt
+KH01091,216,2,Rất đẹp
+KH00661,8,4,Rất đẹp
+KH01759,93,5,Hài lòng
+KH01129,346,2,Rất đẹp
+KH00264,286,4,Rất đẹp
+KH00524,195,4,Chất lượng tốt
+KH01273,499,2,Đóng gói đẹp
+KH01825,402,1,Chất lượng tốt
+KH00443,386,5,Rất đẹp
+KH01821,88,1,Chất lượng tốt
+KH00426,25,3,Hài lòng
+KH01391,437,4,Rất đẹp
+KH01100,230,3,Rất đẹp
+KH00143,243,1,Đóng gói đẹp
+KH01644,236,5,Rất đẹp
+KH01646,8,1,Rất đẹp
+KH00956,27,4,Chất lượng tốt
+KH01259,119,2,Rất đẹp
+KH01054,263,3,Đóng gói đẹp
+KH00551,272,1,Chất lượng tốt
+KH01554,424,4,Rất đẹp
+KH00309,294,2,Rất đẹp
+KH01921,196,3,Rất đẹp
+KH01739,226,3,Hài lòng
+KH01830,107,5,Đóng gói đẹp
+KH00393,134,2,Đóng gói đẹp
+KH01920,481,1,Đóng gói đẹp
+KH00627,78,2,Rất đẹp
+KH01627,281,2,Đóng gói đẹp
+KH01434,132,5,Rất đẹp
+KH00004,223,5,Hài lòng
+KH01751,23,4,Rất đẹp
+KH01476,117,5,Chất lượng tốt
+KH00525,52,2,Đóng gói đẹp
+KH00942,452,2,Hài lòng
+KH01731,195,5,Đóng gói đẹp
+KH01387,251,1,Hài lòng
+KH01377,101,1,Rất đẹp
+KH01071,497,5,Đóng gói đẹp
+KH00830,23,5,Chất lượng tốt
+KH00206,366,4,Rất đẹp
+KH01419,302,2,Hài lòng
+KH01361,351,3,Đóng gói đẹp
+KH00323,481,5,Rất đẹp
+KH00313,21,1,Chất lượng tốt
+KH00956,208,4,Chất lượng tốt
+KH01415,63,4,Đóng gói đẹp
+KH00854,58,1,Rất đẹp
+KH00445,404,3,Đóng gói đẹp
+KH00113,126,5,Rất đẹp
+KH00447,259,4,Rất đẹp
+KH01976,260,4,Chất lượng tốt
+KH00921,221,2,Đóng gói đẹp
+KH01694,345,1,Rất đẹp
+KH01786,473,1,Rất đẹp
+KH00408,15,1,Đóng gói đẹp
+KH00285,180,3,Rất đẹp
+KH01107,457,1,Hài lòng
+KH01566,379,1,Hài lòng
+KH01492,130,4,Hài lòng
+KH01503,414,5,Đóng gói đẹp
+KH00759,275,4,Đóng gói đẹp
+KH01656,227,3,Hài lòng
+KH01506,50,2,Hài lòng
+KH01806,400,1,Hài lòng
+KH00819,87,3,Đóng gói đẹp
+KH00876,460,3,Chất lượng tốt
+KH00584,371,5,Chất lượng tốt
+KH00308,438,4,Đóng gói đẹp
+KH01174,279,5,Hài lòng
+KH00610,422,2,Đóng gói đẹp
+KH00111,489,5,Chất lượng tốt
+KH00063,46,2,Chất lượng tốt
+KH00337,250,2,Hài lòng
+KH00205,10,1,Hài lòng
+KH01248,183,2,Hài lòng
+KH01030,453,2,Đóng gói đẹp
+KH00112,301,1,Rất đẹp
+KH00169,154,4,Đóng gói đẹp
+KH00528,144,3,Rất đẹp
+KH00448,140,5,Đóng gói đẹp
+KH01444,36,2,Chất lượng tốt
+KH00995,412,4,Hài lòng
+KH01868,318,3,Rất đẹp
+KH01691,427,1,Hài lòng
+KH01189,46,3,Rất đẹp
+KH00665,264,2,Đóng gói đẹp
+KH00028,6,4,Hài lòng
+KH00279,177,4,Chất lượng tốt
+KH01522,310,2,Đóng gói đẹp
+KH01403,67,1,Hài lòng
+KH01189,382,1,Chất lượng tốt
+KH01994,425,2,Hài lòng
+KH00084,314,2,Hài lòng
+KH00111,312,1,Chất lượng tốt
+KH00001,270,4,Đóng gói đẹp
+KH00824,473,5,Hài lòng
+KH01992,62,1,Rất đẹp
+KH00250,301,1,Hài lòng
+KH01611,165,5,Chất lượng tốt
+KH01744,288,4,Hài lòng
+KH01664,101,3,Chất lượng tốt
+KH01539,43,4,Chất lượng tốt
+KH00026,482,3,Chất lượng tốt
+KH00530,247,4,Đóng gói đẹp
+KH01104,210,5,Hài lòng
+KH01980,48,3,Chất lượng tốt
+KH00214,295,3,Chất lượng tốt
+KH01359,205,3,Chất lượng tốt
+KH00438,238,1,Đóng gói đẹp
+KH00565,334,3,Rất đẹp
+KH00453,338,5,Đóng gói đẹp
+KH01508,387,4,Đóng gói đẹp
+KH00559,22,1,Hài lòng
+KH00246,470,2,Chất lượng tốt
+KH00324,203,2,Chất lượng tốt
+KH00142,45,3,Chất lượng tốt
+KH00709,127,3,Đóng gói đẹp
+KH00097,204,4,Chất lượng tốt
+KH00136,71,2,Hài lòng
+KH01422,183,3,Đóng gói đẹp
+KH01948,32,4,Hài lòng
+KH00654,280,1,Chất lượng tốt
+KH01864,199,2,Rất đẹp
+KH00593,434,1,Hài lòng
+KH01802,59,5,Đóng gói đẹp
+KH01496,209,1,Hài lòng
+KH01740,146,1,Đóng gói đẹp
+KH00618,345,2,Rất đẹp
+KH01880,208,4,Hài lòng
+KH00644,320,1,Đóng gói đẹp
+KH00206,191,5,Chất lượng tốt
+KH00088,258,4,Hài lòng
+KH00745,143,5,Đóng gói đẹp
+KH00961,206,1,Rất đẹp
+KH01784,142,1,Hài lòng
+KH01514,451,4,Đóng gói đẹp
+KH01738,398,2,Rất đẹp
+KH00155,364,5,Rất đẹp
+KH01982,275,5,Hài lòng
+KH00048,206,3,Đóng gói đẹp
+KH01030,352,5,Chất lượng tốt
+KH01978,185,1,Hài lòng
+KH01502,309,1,Rất đẹp
+KH00006,21,1,Đóng gói đẹp
+KH00259,155,2,Đóng gói đẹp
+KH00380,35,3,Rất đẹp
+KH00126,497,5,Hài lòng
+KH01590,131,2,Chất lượng tốt
+KH00508,239,4,Rất đẹp
+KH01388,245,5,Hài lòng
+KH01701,45,2,Rất đẹp
+KH01600,205,4,Đóng gói đẹp
+KH00241,111,3,Đóng gói đẹp
+KH01256,467,5,Chất lượng tốt
+KH00483,265,1,Đóng gói đẹp
+KH00362,372,3,Hài lòng
+KH01328,204,5,Hài lòng
+KH01018,110,3,Hài lòng
+KH01282,248,4,Chất lượng tốt
+KH00445,294,3,Hài lòng
+KH01608,442,1,Đóng gói đẹp
+KH01354,230,1,Đóng gói đẹp
+KH01454,25,5,Chất lượng tốt
+KH00594,196,5,Hài lòng
+KH01073,391,1,Chất lượng tốt
+KH01948,250,5,Hài lòng
+KH01806,447,4,Hài lòng
+KH00948,156,3,Rất đẹp
+KH00390,165,4,Chất lượng tốt
+KH00093,320,5,Rất đẹp
+KH01331,233,2,Hài lòng
+KH00566,471,5,Đóng gói đẹp
+KH00723,112,4,Rất đẹp
+KH01504,72,5,Đóng gói đẹp
+KH00843,262,3,Rất đẹp
+KH01029,395,3,Đóng gói đẹp
+KH00369,279,4,Đóng gói đẹp
+KH00546,126,1,Hài lòng
+KH01667,116,5,Chất lượng tốt
+KH01737,360,2,Rất đẹp
+KH01253,194,3,Hài lòng
+KH01926,417,5,Rất đẹp
+KH00539,186,5,Rất đẹp
+KH01766,138,1,Đóng gói đẹp
+KH01506,21,1,Rất đẹp
+KH00632,434,3,Đóng gói đẹp
+KH00427,84,1,Đóng gói đẹp
+KH00681,463,5,Rất đẹp
+KH00331,456,2,Đóng gói đẹp
+KH00266,450,4,Rất đẹp
+KH00257,380,3,Hài lòng
+KH00310,178,4,Đóng gói đẹp
+KH01280,211,5,Đóng gói đẹp
+KH01697,465,5,Rất đẹp
+KH00415,81,4,Chất lượng tốt
+KH00579,208,1,Chất lượng tốt
+KH00929,275,2,Chất lượng tốt
+KH01652,323,5,Chất lượng tốt
+KH00168,211,3,Hài lòng
+KH01830,496,5,Rất đẹp
+KH00419,151,5,Rất đẹp
+KH01001,384,1,Rất đẹp
+KH00217,455,3,Hài lòng
+KH00835,161,1,Đóng gói đẹp
+KH00529,229,2,Đóng gói đẹp
+KH00590,194,5,Hài lòng
+KH00987,282,3,Hài lòng
+KH01945,485,5,Rất đẹp
+KH01617,3,3,Chất lượng tốt
+KH01825,170,5,Đóng gói đẹp
+KH00065,43,5,Rất đẹp
+KH00047,157,2,Hài lòng
+KH01584,108,5,Hài lòng
+KH00734,264,3,Chất lượng tốt
+KH01522,342,3,Hài lòng
+KH01302,382,2,Đóng gói đẹp
+KH00783,294,1,Rất đẹp
+KH00468,431,3,Rất đẹp
+KH01564,424,5,Đóng gói đẹp
+KH01744,337,2,Chất lượng tốt
+KH01856,23,2,Đóng gói đẹp
+KH01698,234,2,Chất lượng tốt
+KH01531,239,3,Hài lòng
+KH00117,394,1,Chất lượng tốt
+KH01109,46,2,Đóng gói đẹp
+KH01709,284,3,Chất lượng tốt
+KH00379,349,5,Hài lòng
+KH00653,404,2,Hài lòng
+KH01665,451,3,Rất đẹp
+KH01805,210,1,Đóng gói đẹp
+KH01707,52,3,Đóng gói đẹp
+KH01572,82,4,Chất lượng tốt
+KH01635,159,3,Hài lòng
+KH00236,123,5,Hài lòng
+KH00500,371,4,Đóng gói đẹp
+KH00057,310,4,Hài lòng
+KH00512,3,1,Rất đẹp
+KH01237,67,2,Chất lượng tốt
+KH01519,488,5,Hài lòng
+KH01252,294,4,Đóng gói đẹp
+KH01364,497,2,Rất đẹp
+KH00552,72,5,Rất đẹp
+KH01264,175,3,Rất đẹp
+KH00342,122,4,Đóng gói đẹp
+KH01614,304,2,Rất đẹp
+KH00818,25,4,Đóng gói đẹp
+KH00727,143,1,Đóng gói đẹp
+KH01730,25,3,Đóng gói đẹp
+KH00213,238,5,Rất đẹp
+KH00959,8,2,Đóng gói đẹp
+KH00929,320,5,Hài lòng
+KH00704,235,4,Hài lòng
+KH00566,67,2,Rất đẹp
+KH01144,1,5,Chất lượng tốt
+KH01487,331,2,Hài lòng
+KH00033,323,4,Chất lượng tốt
+KH01573,30,4,Hài lòng
+KH01683,307,3,Đóng gói đẹp
+KH01863,266,2,Chất lượng tốt
+KH00332,485,2,Rất đẹp
+KH00761,362,4,Chất lượng tốt
+KH00640,485,2,Đóng gói đẹp
+KH01561,498,1,Rất đẹp
+KH00160,49,3,Chất lượng tốt
+KH01160,179,4,Đóng gói đẹp
+KH00950,499,2,Rất đẹp
+KH01592,39,4,Chất lượng tốt
+KH01479,117,2,Rất đẹp
+KH01249,152,2,Hài lòng
+KH01004,343,4,Đóng gói đẹp
+KH00880,262,5,Chất lượng tốt
+KH00238,14,4,Hài lòng
+KH01356,8,2,Chất lượng tốt
+KH00828,34,1,Đóng gói đẹp
+KH01138,392,5,Rất đẹp
+KH01382,287,3,Đóng gói đẹp
+KH01835,232,4,Đóng gói đẹp
+KH01629,464,3,Hài lòng
+KH01230,37,4,Rất đẹp
+KH00768,26,4,Hài lòng
+KH00401,391,2,Hài lòng
+KH00895,198,2,Đóng gói đẹp
+KH00018,451,3,Rất đẹp
+KH00523,252,1,Đóng gói đẹp
+KH00811,239,1,Đóng gói đẹp
+KH00765,425,4,Đóng gói đẹp
+KH00838,211,1,Đóng gói đẹp
+KH00965,448,5,Đóng gói đẹp
+KH00946,158,1,Rất đẹp
+KH01652,121,3,Rất đẹp
+KH00371,405,1,Hài lòng
+KH01774,288,5,Rất đẹp
+KH01118,154,1,Đóng gói đẹp
+KH00696,250,1,Đóng gói đẹp
+KH00652,419,3,Chất lượng tốt
+KH01912,345,1,Rất đẹp
+KH01816,302,5,Đóng gói đẹp
+KH00680,433,3,Rất đẹp
+KH01481,129,3,Rất đẹp
+KH01787,473,4,Rất đẹp
+KH00928,24,4,Rất đẹp
+KH01031,75,5,Đóng gói đẹp
+KH00601,25,1,Chất lượng tốt
+KH00569,102,4,Chất lượng tốt
+KH00130,33,3,Chất lượng tốt
+KH00124,434,4,Rất đẹp
+KH00713,471,4,Rất đẹp
+KH01130,18,2,Đóng gói đẹp
+KH00599,104,2,Rất đẹp
+KH01657,222,1,Chất lượng tốt
+KH00024,146,4,Đóng gói đẹp
+KH00500,63,1,Đóng gói đẹp
+KH01801,33,2,Hài lòng
+KH01638,496,4,Đóng gói đẹp
+KH00311,416,5,Đóng gói đẹp
+KH01572,404,5,Rất đẹp
+KH01497,124,2,Đóng gói đẹp
+KH01026,3,5,Rất đẹp
+KH00157,165,3,Hài lòng
+KH01819,189,5,Đóng gói đẹp
+KH01645,406,5,Hài lòng
+KH00766,178,3,Chất lượng tốt
+KH00747,320,1,Rất đẹp
+KH00997,272,4,Chất lượng tốt
+KH01933,235,3,Hài lòng
+KH00111,14,3,Rất đẹp
+KH01633,283,3,Chất lượng tốt
+KH00859,229,4,Chất lượng tốt
+KH00661,97,2,Rất đẹp
+KH00571,156,2,Rất đẹp
+KH01259,89,2,Chất lượng tốt
+KH00842,222,5,Đóng gói đẹp
+KH00986,485,3,Chất lượng tốt
+KH00986,111,1,Hài lòng
+KH00641,191,2,Hài lòng
+KH01436,84,1,Đóng gói đẹp
+KH01087,46,2,Hài lòng
+KH00018,156,5,Rất đẹp
+KH01895,279,1,Chất lượng tốt
+KH01297,332,3,Đóng gói đẹp
+KH00404,75,4,Đóng gói đẹp
+KH00785,259,1,Rất đẹp
+KH01911,77,2,Chất lượng tốt
+KH00259,495,5,Hài lòng
+KH00491,28,4,Rất đẹp
+KH00797,249,2,Đóng gói đẹp
+KH00155,271,4,Đóng gói đẹp
+KH01852,266,2,Rất đẹp
+KH01528,232,1,Đóng gói đẹp
+KH01428,311,4,Đóng gói đẹp
+KH00137,291,5,Chất lượng tốt
+KH01095,60,3,Hài lòng
+KH01901,157,5,Hài lòng
+KH01073,209,5,Chất lượng tốt
+KH00303,113,5,Hài lòng
+KH01929,449,4,Đóng gói đẹp
+KH01394,283,3,Rất đẹp
+KH01076,242,4,Đóng gói đẹp
+KH00203,26,2,Rất đẹp
+KH00119,337,5,Rất đẹp
+KH01038,206,1,Hài lòng
+KH01914,260,2,Rất đẹp
+KH00623,246,1,Rất đẹp
+KH00453,20,5,Đóng gói đẹp
+KH00479,336,1,Chất lượng tốt
+KH01970,453,5,Hài lòng
+KH01951,247,1,Rất đẹp
+KH01355,387,4,Hài lòng
+KH00464,151,5,Rất đẹp
+KH00311,328,4,Đóng gói đẹp
+KH00340,146,3,Hài lòng
+KH01317,28,5,Hài lòng
+KH01729,188,2,Hài lòng
+KH00979,345,1,Hài lòng
+KH01908,417,2,Rất đẹp
+KH00503,33,2,Rất đẹp
+KH01674,412,5,Rất đẹp
+KH01061,412,1,Đóng gói đẹp
+KH00348,75,5,Chất lượng tốt
+KH00342,329,3,Đóng gói đẹp
+KH00284,403,5,Rất đẹp
+KH00676,190,5,Hài lòng
+KH00370,168,1,Đóng gói đẹp
+KH01083,475,5,Đóng gói đẹp
+KH00115,224,2,Rất đẹp
+KH00964,398,5,Rất đẹp
+KH00799,31,3,Hài lòng
+KH00199,216,3,Rất đẹp
+KH01384,352,4,Chất lượng tốt
+KH01298,104,2,Đóng gói đẹp
+KH00405,498,3,Đóng gói đẹp
+KH00241,97,5,Chất lượng tốt
+KH00083,472,4,Hài lòng
+KH00035,335,3,Chất lượng tốt
+KH01735,229,2,Chất lượng tốt
+KH01643,348,2,Hài lòng
+KH01056,434,3,Chất lượng tốt
+KH01337,82,2,Rất đẹp
+KH01165,331,3,Đóng gói đẹp
+KH00145,209,2,Rất đẹp
+KH00812,60,3,Hài lòng
+KH01371,73,3,Hài lòng
+KH01141,242,5,Chất lượng tốt
+KH01301,370,1,Đóng gói đẹp
+KH01503,312,1,Đóng gói đẹp
+KH01402,76,3,Chất lượng tốt
+KH01366,57,4,Đóng gói đẹp
+KH00762,404,3,Hài lòng
+KH01784,453,3,Đóng gói đẹp
+KH00768,178,3,Đóng gói đẹp
+KH01770,190,5,Đóng gói đẹp
+KH01929,83,5,Hài lòng
+KH01260,233,5,Đóng gói đẹp
+KH00117,493,2,Đóng gói đẹp
+KH00120,432,2,Hài lòng
+KH00013,20,4,Rất đẹp
+KH00126,496,2,Chất lượng tốt
+KH00318,351,1,Đóng gói đẹp
+KH00206,49,2,Đóng gói đẹp
+KH01839,154,3,Rất đẹp
+KH00188,58,4,Rất đẹp
+KH00856,211,5,Hài lòng
+KH01381,440,4,Đóng gói đẹp
+KH00018,211,2,Chất lượng tốt
+KH01861,70,4,Chất lượng tốt
+KH00582,401,4,Rất đẹp
+KH01110,150,5,Đóng gói đẹp
+KH00097,92,5,Đóng gói đẹp
+KH01515,55,5,Rất đẹp
+KH00780,99,5,Hài lòng
+KH01939,267,3,Đóng gói đẹp
+KH01403,361,5,Rất đẹp
+KH00517,495,3,Hài lòng
+KH00408,236,5,Chất lượng tốt
+KH01217,43,5,Hài lòng
+KH00668,386,3,Đóng gói đẹp
+KH01322,183,5,Rất đẹp
+KH01970,83,3,Chất lượng tốt
+KH00780,125,4,Hài lòng
+KH00593,155,5,Hài lòng
+KH00025,469,5,Đóng gói đẹp
+KH01379,181,4,Rất đẹp
+KH01881,375,4,Đóng gói đẹp
+KH00211,396,3,Hài lòng
+KH01393,426,1,Chất lượng tốt
+KH01203,419,4,Hài lòng
+KH01253,494,1,Rất đẹp
+KH00901,224,4,Chất lượng tốt
+KH00968,185,5,Rất đẹp
+KH00685,398,4,Rất đẹp
+KH00304,415,3,Hài lòng
+KH01747,397,5,Chất lượng tốt
+KH00591,153,4,Đóng gói đẹp
+KH01914,270,3,Hài lòng
+KH01455,107,4,Chất lượng tốt
+KH01659,181,2,Đóng gói đẹp
+KH01098,44,4,Đóng gói đẹp
+KH00859,465,2,Hài lòng
+KH00273,487,4,Hài lòng
+KH00960,487,3,Hài lòng
+KH01998,319,4,Chất lượng tốt
+KH00987,161,4,Chất lượng tốt
+KH00068,225,4,Hài lòng
+KH01840,119,5,Rất đẹp
+KH01216,411,5,Hài lòng
+KH00298,36,2,Chất lượng tốt
+KH00654,359,5,Đóng gói đẹp
+KH01860,82,5,Đóng gói đẹp
+KH01054,136,3,Hài lòng
+KH01096,178,4,Hài lòng
+KH00655,293,1,Chất lượng tốt
+KH00400,243,1,Đóng gói đẹp
+KH00127,206,2,Chất lượng tốt
+KH01269,180,1,Hài lòng
+KH00247,471,2,Đóng gói đẹp
+KH01942,241,3,Rất đẹp
+KH00589,26,4,Chất lượng tốt
+KH01225,434,4,Hài lòng
+KH00196,409,2,Đóng gói đẹp
+KH01436,243,1,Hài lòng
+KH01670,476,5,Chất lượng tốt
+KH00976,218,4,Chất lượng tốt
+KH01896,45,1,Rất đẹp
+KH01367,86,5,Rất đẹp
+KH01109,291,5,Rất đẹp
+KH01565,407,1,Chất lượng tốt
+KH01687,90,1,Rất đẹp
+KH00884,178,5,Đóng gói đẹp
+KH01593,460,4,Chất lượng tốt
+KH01140,346,1,Hài lòng
+KH01205,272,2,Đóng gói đẹp
+KH01949,473,4,Rất đẹp
+KH00342,57,3,Đóng gói đẹp
+KH01721,242,2,Chất lượng tốt
+KH01433,35,1,Rất đẹp
+KH01940,176,1,Chất lượng tốt
+KH01136,427,5,Chất lượng tốt
+KH01774,442,1,Đóng gói đẹp
+KH00624,139,1,Rất đẹp
+KH01558,88,5,Đóng gói đẹp
+KH01032,88,4,Chất lượng tốt
+KH00086,67,2,Hài lòng
+KH00072,453,4,Rất đẹp
+KH01727,498,1,Đóng gói đẹp
+KH01229,31,5,Rất đẹp
+KH00870,293,2,Hài lòng
+KH00891,222,5,Rất đẹp
+KH00039,472,3,Đóng gói đẹp
+KH01272,268,4,Rất đẹp
+KH01052,200,1,Chất lượng tốt
+KH00907,408,1,Hài lòng
+KH00743,43,5,Đóng gói đẹp
+KH00169,369,5,Chất lượng tốt
+KH01740,489,1,Đóng gói đẹp
+KH00367,144,3,Rất đẹp
+KH00274,82,2,Đóng gói đẹp
+KH01562,43,4,Rất đẹp
+KH00660,322,1,Rất đẹp
+KH01579,170,5,Hài lòng
+KH01542,310,2,Chất lượng tốt
+KH01041,247,2,Hài lòng
+KH00047,352,2,Đóng gói đẹp
+KH00462,489,5,Hài lòng
+KH01153,238,5,Chất lượng tốt
+KH00483,157,1,Rất đẹp
+KH01951,86,5,Chất lượng tốt
+KH01393,403,1,Hài lòng
+KH01367,7,4,Hài lòng
+KH01384,478,4,Rất đẹp
+KH00783,252,4,Rất đẹp
+KH01816,87,3,Đóng gói đẹp
+KH00585,312,2,Chất lượng tốt
+KH01569,71,5,Đóng gói đẹp
+KH01947,262,1,Hài lòng
+KH00105,174,3,Đóng gói đẹp
+KH00170,279,3,Chất lượng tốt
+KH01461,250,3,Hài lòng
+KH01709,196,5,Rất đẹp
+KH00879,153,5,Đóng gói đẹp
+KH00570,283,5,Đóng gói đẹp
+KH01153,424,5,Chất lượng tốt
+KH01448,221,2,Chất lượng tốt
+KH00226,202,4,Rất đẹp
+KH01589,256,5,Rất đẹp
+KH01205,9,5,Rất đẹp
+KH00715,256,2,Chất lượng tốt
+KH00321,73,4,Chất lượng tốt
+KH01576,438,2,Hài lòng
+KH01010,372,2,Chất lượng tốt
+KH00365,348,3,Hài lòng
+KH01021,167,4,Hài lòng
+KH00549,267,4,Rất đẹp
+KH01538,167,5,Hài lòng
+KH01934,34,1,Rất đẹp
+KH00011,458,1,Hài lòng
+KH00676,414,4,Chất lượng tốt
+KH01955,304,2,Chất lượng tốt
+KH01387,168,5,Chất lượng tốt
+KH01239,423,5,Đóng gói đẹp
+KH01164,468,2,Rất đẹp
+KH00314,438,4,Đóng gói đẹp
+KH01238,362,4,Hài lòng
+KH01610,188,2,Chất lượng tốt
+KH01890,241,1,Rất đẹp
+KH01382,476,5,Chất lượng tốt
+KH01813,93,2,Chất lượng tốt
+KH01124,473,4,Hài lòng
+KH00728,383,4,Đóng gói đẹp
+KH01055,266,4,Chất lượng tốt
+KH01632,407,5,Rất đẹp
+KH00651,92,2,Chất lượng tốt
+KH00410,447,1,Đóng gói đẹp
+KH00715,304,4,Hài lòng
+KH01189,1,2,Chất lượng tốt
+KH00614,204,3,Chất lượng tốt
+KH00881,498,3,Đóng gói đẹp
+KH01009,125,1,Chất lượng tốt
+KH00626,367,2,Chất lượng tốt
+KH01795,262,1,Đóng gói đẹp
+KH01874,382,5,Đóng gói đẹp
+KH01176,129,2,Đóng gói đẹp
+KH01597,475,5,Rất đẹp
+KH01305,138,2,Chất lượng tốt
+KH01021,314,3,Hài lòng
+KH01872,160,5,Hài lòng
+KH00644,137,1,Hài lòng
+KH01981,38,5,Chất lượng tốt
+KH00976,33,2,Rất đẹp
+KH00810,356,2,Chất lượng tốt
+KH00305,149,1,Hài lòng
+KH01014,79,3,Hài lòng
+KH00797,232,5,Chất lượng tốt
+KH01748,298,1,Chất lượng tốt
+KH01096,196,2,Hài lòng
+KH00976,292,1,Hài lòng
+KH00427,124,3,Hài lòng
+KH01285,23,2,Chất lượng tốt
+KH00816,210,3,Đóng gói đẹp
+KH00740,226,5,Hài lòng
+KH01500,137,3,Chất lượng tốt
+KH01720,54,4,Rất đẹp
+KH00177,125,4,Chất lượng tốt
+KH01184,271,5,Đóng gói đẹp
+KH00262,268,5,Đóng gói đẹp
+KH01868,368,4,Đóng gói đẹp
+KH01939,336,3,Hài lòng
+KH00090,216,3,Rất đẹp
+KH01778,61,4,Rất đẹp
+KH00151,228,4,Hài lòng
+KH00795,482,5,Rất đẹp
+KH01768,452,5,Hài lòng
+KH01798,391,5,Đóng gói đẹp
+KH01515,427,5,Chất lượng tốt
+KH01559,314,5,Hài lòng
+KH00464,152,5,Chất lượng tốt
+KH00180,229,3,Đóng gói đẹp
+KH00376,459,4,Rất đẹp
+KH00680,341,1,Đóng gói đẹp
+KH00688,27,4,Chất lượng tốt
+KH00873,199,5,Chất lượng tốt
+KH00037,467,4,Hài lòng
+KH01339,56,4,Rất đẹp
+KH01113,49,5,Rất đẹp
+KH00738,92,5,Chất lượng tốt
+KH00966,361,4,Chất lượng tốt
+KH01329,124,4,Hài lòng
+KH01352,462,2,Hài lòng
+KH00087,448,3,Hài lòng
+KH00988,188,1,Rất đẹp
+KH00270,187,2,Rất đẹp
+KH01440,290,1,Chất lượng tốt
+KH00073,192,1,Rất đẹp
+KH01268,210,2,Chất lượng tốt
+KH00764,406,2,Chất lượng tốt
+KH00134,336,5,Đóng gói đẹp
+KH00883,149,4,Chất lượng tốt
+KH00646,304,3,Chất lượng tốt
+KH01374,12,4,Chất lượng tốt
+KH01883,275,4,Rất đẹp
+KH00403,36,3,Đóng gói đẹp
+KH00023,95,1,Chất lượng tốt
+KH01081,186,1,Rất đẹp
+KH00249,193,1,Chất lượng tốt
+KH00836,292,5,Chất lượng tốt
+KH01383,141,1,Đóng gói đẹp
+KH00453,404,1,Đóng gói đẹp
+KH00624,45,4,Hài lòng
+KH00795,437,3,Chất lượng tốt
+KH00778,108,2,Rất đẹp
+KH01889,76,1,Hài lòng
+KH00853,459,5,Hài lòng
+KH01349,182,3,Chất lượng tốt
+KH00325,334,2,Đóng gói đẹp
+KH00690,455,2,Chất lượng tốt
+KH00406,119,4,Hài lòng
+KH00960,437,5,Đóng gói đẹp
+KH01556,69,3,Chất lượng tốt
+KH00262,395,5,Đóng gói đẹp
+KH01717,412,5,Đóng gói đẹp
+KH01865,97,1,Rất đẹp
+KH00245,107,1,Hài lòng
+KH00974,462,1,Hài lòng
+KH00254,291,2,Hài lòng
+KH00775,125,2,Hài lòng
+KH00637,123,1,Đóng gói đẹp
+KH01428,24,3,Hài lòng
+KH00121,7,5,Chất lượng tốt
+KH00066,492,2,Hài lòng
+KH01277,74,2,Rất đẹp
+KH01226,55,2,Rất đẹp
+KH00130,461,1,Chất lượng tốt
+KH01049,494,3,Chất lượng tốt
+KH00880,251,3,Đóng gói đẹp
+KH00975,299,2,Chất lượng tốt
+KH00891,486,5,Đóng gói đẹp
+KH00406,476,3,Chất lượng tốt
+KH00212,240,2,Đóng gói đẹp
+KH01760,258,5,Đóng gói đẹp
+KH01619,339,4,Hài lòng
+KH01372,6,3,Rất đẹp
+KH01682,345,1,Đóng gói đẹp
+KH00547,144,5,Đóng gói đẹp
+KH01266,193,5,Đóng gói đẹp
+KH01168,132,2,Đóng gói đẹp
+KH01621,296,5,Chất lượng tốt
+KH00920,25,2,Rất đẹp
+KH01913,65,3,Đóng gói đẹp
+KH01362,63,2,Rất đẹp
+KH01509,186,1,Hài lòng
+KH00570,120,1,Hài lòng
+KH01761,6,5,Rất đẹp
+KH00457,103,3,Rất đẹp
+KH00452,355,4,Chất lượng tốt
+KH00208,20,4,Rất đẹp
+KH01658,168,4,Rất đẹp
+KH00633,203,5,Chất lượng tốt
+KH01912,398,4,Đóng gói đẹp
+KH00571,244,4,Đóng gói đẹp
+KH00169,193,4,Chất lượng tốt
+KH01505,107,4,Đóng gói đẹp
+KH01288,145,1,Đóng gói đẹp
+KH01581,499,2,Hài lòng
+KH01044,373,3,Đóng gói đẹp
+KH00585,182,3,Đóng gói đẹp
+KH00021,279,1,Hài lòng
+KH01992,333,3,Rất đẹp
+KH01092,112,1,Đóng gói đẹp
+KH01951,169,1,Đóng gói đẹp
+KH00665,119,3,Đóng gói đẹp
+KH00036,1,2,Đóng gói đẹp
+KH00807,341,5,Rất đẹp
+KH01656,400,2,Rất đẹp
+KH01586,22,3,Đóng gói đẹp
+KH01981,208,4,Hài lòng
+KH00620,232,3,Hài lòng
+KH00869,167,2,Chất lượng tốt
+KH01563,365,1,Chất lượng tốt
+KH00758,320,5,Hài lòng
+KH00160,100,3,Đóng gói đẹp
+KH00162,253,2,Chất lượng tốt
+KH01366,23,3,Đóng gói đẹp
+KH00484,247,1,Chất lượng tốt
+KH01317,248,3,Chất lượng tốt
+KH00173,137,3,Chất lượng tốt
+KH01687,417,1,Hài lòng
+KH01245,28,5,Rất đẹp
+KH00481,68,3,Chất lượng tốt
+KH01857,343,4,Rất đẹp
+KH01669,91,5,Đóng gói đẹp
+KH00721,334,5,Đóng gói đẹp
+KH00067,37,1,Rất đẹp
+KH01609,389,1,Chất lượng tốt
+KH00637,171,5,Hài lòng
+KH00694,88,1,Hài lòng
+KH01456,84,2,Đóng gói đẹp
+KH01402,79,1,Hài lòng
+KH00665,158,4,Chất lượng tốt
+KH00393,209,1,Rất đẹp
+KH01752,339,1,Rất đẹp
+KH01583,382,5,Chất lượng tốt
+KH01406,442,4,Rất đẹp
+KH01605,479,5,Chất lượng tốt
+KH00572,64,2,Chất lượng tốt
+KH01839,38,2,Rất đẹp
+KH01058,219,2,Chất lượng tốt
+KH01715,432,3,Đóng gói đẹp
+KH00783,274,2,Rất đẹp
+KH01762,247,1,Rất đẹp
+KH01213,166,1,Chất lượng tốt
+KH01572,420,2,Rất đẹp
+KH00583,62,1,Hài lòng
+KH01469,48,1,Hài lòng
+KH01646,239,2,Rất đẹp
+KH00715,270,3,Hài lòng
+KH00342,461,3,Rất đẹp
+KH01689,120,2,Đóng gói đẹp
+KH00301,120,3,Rất đẹp
+KH01211,463,2,Đóng gói đẹp
+KH00351,137,4,Hài lòng
+KH01005,228,1,Đóng gói đẹp
+KH01727,420,3,Hài lòng
+KH01252,6,4,Rất đẹp
+KH01985,407,3,Đóng gói đẹp
+KH01063,45,4,Hài lòng
+KH00763,210,4,Hài lòng
+KH00866,34,2,Chất lượng tốt
+KH00946,453,3,Chất lượng tốt
+KH01097,289,1,Đóng gói đẹp
+KH00955,120,3,Rất đẹp
+KH01510,31,2,Rất đẹp
+KH01208,401,3,Hài lòng
+KH01249,271,3,Rất đẹp
+KH01428,1,4,Hài lòng
+KH01959,6,5,Đóng gói đẹp
+KH00671,472,4,Đóng gói đẹp
+KH01448,486,2,Rất đẹp
+KH01061,369,1,Rất đẹp
+KH00279,208,2,Rất đẹp
+KH00906,15,5,Hài lòng
+KH01910,292,2,Đóng gói đẹp
+KH00716,50,5,Hài lòng
+KH01851,251,3,Đóng gói đẹp
+KH00571,17,1,Đóng gói đẹp
+KH00574,231,5,Đóng gói đẹp
+KH00810,243,3,Đóng gói đẹp
+KH00167,474,4,Rất đẹp
+KH01297,323,4,Đóng gói đẹp
+KH01933,81,2,Chất lượng tốt
+KH01741,363,4,Chất lượng tốt
+KH01940,198,4,Đóng gói đẹp
+KH00765,282,5,Hài lòng
+KH00406,93,2,Chất lượng tốt
+KH01575,430,3,Rất đẹp
+KH00106,87,3,Hài lòng
+KH01850,229,3,Chất lượng tốt
+KH01691,16,4,Chất lượng tốt
+KH00048,53,2,Chất lượng tốt
+KH01400,110,2,Rất đẹp
+KH01729,373,3,Rất đẹp
+KH01549,68,2,Chất lượng tốt
+KH00029,144,3,Rất đẹp
+KH01189,368,2,Hài lòng
+KH00431,392,3,Chất lượng tốt
+KH00361,25,2,Rất đẹp
+KH00287,214,4,Rất đẹp
+KH00184,348,2,Đóng gói đẹp
+KH01034,409,1,Đóng gói đẹp
+KH01313,125,2,Rất đẹp
+KH00159,409,3,Hài lòng
+KH01958,186,2,Rất đẹp
+KH00900,57,1,Hài lòng
+KH01571,444,4,Đóng gói đẹp
+KH01136,11,2,Hài lòng
+KH01326,390,2,Hài lòng
+KH00039,69,3,Hài lòng
+KH01670,209,4,Hài lòng
+KH01643,463,1,Rất đẹp
+KH00479,356,2,Chất lượng tốt
+KH01205,334,2,Đóng gói đẹp
+KH00273,216,1,Chất lượng tốt
+KH01636,281,1,Rất đẹp
+KH01043,380,5,Đóng gói đẹp
+KH00270,318,5,Chất lượng tốt
+KH01693,173,3,Chất lượng tốt
+KH00171,215,4,Hài lòng
+KH00444,213,4,Đóng gói đẹp
+KH01291,183,3,Đóng gói đẹp
+KH00473,130,1,Chất lượng tốt
+KH01895,11,3,Đóng gói đẹp
+KH00581,61,2,Đóng gói đẹp
+KH00353,425,4,Chất lượng tốt
+KH01979,68,2,Hài lòng
+KH00513,192,2,Đóng gói đẹp
+KH00860,456,3,Đóng gói đẹp
+KH01945,391,2,Chất lượng tốt
+KH00642,499,1,Hài lòng
+KH00028,252,5,Đóng gói đẹp
+KH01270,71,3,Chất lượng tốt
+KH01112,367,3,Rất đẹp
+KH00916,102,3,Chất lượng tốt
+KH00087,360,3,Hài lòng
+KH01628,438,1,Hài lòng
+KH01508,207,4,Chất lượng tốt
+KH00992,230,3,Hài lòng
+KH01643,16,4,Đóng gói đẹp
+KH01057,397,4,Chất lượng tốt
+KH00519,358,2,Chất lượng tốt
+KH00468,401,5,Rất đẹp
+KH00167,135,2,Hài lòng
+KH01375,356,5,Chất lượng tốt
+KH01360,298,5,Chất lượng tốt
+KH01663,485,3,Đóng gói đẹp
+KH01153,337,1,Rất đẹp
+KH01505,353,5,Rất đẹp
+KH00092,487,5,Rất đẹp
+KH00132,246,2,Chất lượng tốt
+KH00023,423,4,Chất lượng tốt
+KH00400,490,5,Chất lượng tốt
+KH01765,64,5,Hài lòng
+KH01047,51,1,Đóng gói đẹp
+KH00456,265,1,Hài lòng
+KH01526,408,2,Chất lượng tốt
+KH00221,283,4,Đóng gói đẹp
+KH01739,467,5,Đóng gói đẹp
+KH00145,471,5,Chất lượng tốt
+KH00129,74,2,Đóng gói đẹp
+KH00879,116,3,Hài lòng
+KH01095,322,5,Chất lượng tốt
+KH01263,444,1,Rất đẹp
+KH00687,143,3,Chất lượng tốt
+KH00657,391,1,Chất lượng tốt
+KH01830,211,3,Đóng gói đẹp
+KH01784,27,1,Hài lòng
+KH00804,171,3,Rất đẹp
+KH01219,132,2,Rất đẹp
+KH00053,182,4,Hài lòng
+KH01344,279,5,Rất đẹp
+KH00529,111,1,Chất lượng tốt
+KH00338,330,4,Đóng gói đẹp
+KH01198,345,1,Chất lượng tốt
+KH00758,2,3,Hài lòng
+KH00587,176,5,Hài lòng
+KH01898,207,4,Đóng gói đẹp
+KH00367,151,1,Chất lượng tốt
+KH01311,495,4,Hài lòng
+KH00809,99,2,Chất lượng tốt
+KH01136,338,4,Rất đẹp
+KH00897,320,5,Đóng gói đẹp
+KH00313,195,4,Rất đẹp
+KH00220,340,2,Rất đẹp
+KH01459,88,5,Hài lòng
+KH00605,197,4,Chất lượng tốt
+KH01200,188,1,Chất lượng tốt
+KH01084,400,3,Chất lượng tốt
+KH01640,198,5,Đóng gói đẹp
+KH00938,347,3,Chất lượng tốt
+KH01792,7,3,Chất lượng tốt
+KH01709,398,4,Chất lượng tốt
+KH00398,434,1,Hài lòng
+KH00993,182,4,Chất lượng tốt
+KH00794,272,4,Hài lòng
+KH01941,249,5,Đóng gói đẹp
+KH01210,42,3,Đóng gói đẹp
+KH00483,426,4,Hài lòng
+KH01468,414,2,Chất lượng tốt
+KH01268,44,1,Rất đẹp
+KH00087,60,3,Đóng gói đẹp
+KH00121,435,2,Đóng gói đẹp
+KH00341,379,3,Rất đẹp
+KH01453,33,5,Rất đẹp
+KH00171,447,1,Đóng gói đẹp
+KH00900,385,5,Hài lòng
+KH00243,132,3,Đóng gói đẹp
+KH01797,337,4,Đóng gói đẹp
+KH01586,314,4,Đóng gói đẹp
+KH00566,24,1,Hài lòng
+KH01685,22,5,Hài lòng
+KH01044,132,4,Rất đẹp
+KH01305,352,2,Hài lòng
+KH00693,453,1,Chất lượng tốt
+KH00964,471,5,Hài lòng
+KH01782,263,5,Chất lượng tốt
+KH00692,65,5,Hài lòng
+KH00434,77,1,Rất đẹp
+KH01066,422,4,Hài lòng
+KH00342,361,1,Đóng gói đẹp
+KH01145,477,4,Đóng gói đẹp
+KH01466,455,5,Hài lòng
+KH00829,117,4,Đóng gói đẹp
+KH00470,114,5,Rất đẹp
+KH01746,253,4,Đóng gói đẹp
+KH01477,168,1,Đóng gói đẹp
+KH00382,134,2,Đóng gói đẹp
+KH01584,24,2,Rất đẹp
+KH01107,487,3,Rất đẹp
+KH00085,6,2,Chất lượng tốt
+KH00988,38,2,Hài lòng
+KH01944,179,1,Đóng gói đẹp
+KH00706,29,4,Chất lượng tốt
+KH01701,197,3,Đóng gói đẹp
+KH00088,16,4,Rất đẹp
+KH01009,473,5,Rất đẹp
+KH00339,107,4,Rất đẹp
+KH00923,155,3,Rất đẹp
+KH01383,141,4,Rất đẹp
+KH00260,312,4,Rất đẹp
+KH00026,434,3,Rất đẹp
+KH01152,463,3,Hài lòng
+KH01365,417,4,Chất lượng tốt
+KH01413,120,1,Rất đẹp
+KH01536,240,4,Chất lượng tốt
+KH00734,78,5,Rất đẹp
+KH01864,132,1,Hài lòng
+KH00696,289,1,Chất lượng tốt
+KH01214,260,4,Đóng gói đẹp
+KH00396,76,3,Đóng gói đẹp
+KH01912,427,3,Đóng gói đẹp
+KH01099,9,1,Chất lượng tốt
+KH00766,66,4,Đóng gói đẹp
+KH01366,409,4,Chất lượng tốt
+KH01071,256,5,Chất lượng tốt
+KH01147,100,1,Hài lòng
+KH01850,316,3,Rất đẹp
+KH00960,201,1,Hài lòng
+KH00334,105,4,Hài lòng
+KH01523,256,5,Đóng gói đẹp
+KH00688,114,4,Đóng gói đẹp
+KH01544,27,5,Rất đẹp
+KH00701,364,3,Chất lượng tốt
+KH01669,214,2,Rất đẹp
+KH00668,109,3,Hài lòng
+KH01361,365,2,Hài lòng
+KH01486,251,4,Hài lòng
+KH01257,45,4,Đóng gói đẹp
+KH00642,314,3,Rất đẹp
+KH00111,359,2,Hài lòng
+KH01954,185,1,Hài lòng
+KH00299,14,3,Đóng gói đẹp
+KH00447,425,5,Rất đẹp
+KH00746,8,1,Đóng gói đẹp
+KH01300,62,4,Hài lòng
+KH00491,433,3,Đóng gói đẹp
+KH00694,338,3,Chất lượng tốt
+KH00897,377,5,Rất đẹp
+KH01705,402,5,Chất lượng tốt
+KH00062,78,2,Chất lượng tốt
+KH01943,189,5,Rất đẹp
+KH00814,368,1,Đóng gói đẹp
+KH01226,369,2,Đóng gói đẹp
+KH00094,225,2,Hài lòng
+KH00590,6,1,Hài lòng
+KH01369,219,5,Rất đẹp
+KH00638,164,2,Chất lượng tốt
+KH00171,219,3,Rất đẹp
+KH00402,23,2,Hài lòng
+KH00475,99,1,Đóng gói đẹp
+KH01389,235,1,Đóng gói đẹp
+KH01466,134,5,Rất đẹp
+KH01472,269,5,Hài lòng
+KH00987,433,3,Hài lòng
+KH01856,248,3,Hài lòng
+KH00437,420,3,Rất đẹp
+KH01902,343,4,Hài lòng
+KH01715,60,3,Rất đẹp
+KH00302,7,4,Hài lòng
+KH00802,437,3,Rất đẹp
+KH00018,19,5,Rất đẹp
+KH01993,65,3,Rất đẹp
+KH00816,285,3,Hài lòng
+KH00182,412,3,Hài lòng
+KH01385,112,1,Chất lượng tốt
+KH01073,210,1,Rất đẹp
+KH01478,222,2,Chất lượng tốt
+KH01725,77,4,Hài lòng
+KH01062,97,3,Rất đẹp
+KH00600,367,5,Chất lượng tốt
+KH01135,150,5,Đóng gói đẹp
+KH01574,148,2,Đóng gói đẹp
+KH01184,467,1,Đóng gói đẹp
+KH01471,470,3,Chất lượng tốt
+KH01749,89,5,Hài lòng
+KH00184,175,3,Đóng gói đẹp
+KH01922,405,3,Đóng gói đẹp
+KH00254,480,3,Hài lòng
+KH01017,102,2,Đóng gói đẹp
+KH00149,124,3,Đóng gói đẹp
+KH00064,487,3,Chất lượng tốt
+KH01715,380,2,Đóng gói đẹp
+KH01998,102,3,Hài lòng
+KH00718,65,1,Đóng gói đẹp
+KH01980,177,2,Hài lòng
+KH00164,407,2,Hài lòng
+KH00925,202,3,Đóng gói đẹp
+KH00121,130,5,Đóng gói đẹp
+KH01321,167,3,Đóng gói đẹp
+KH01162,7,1,Hài lòng
+KH00722,348,3,Hài lòng
+KH01879,272,1,Chất lượng tốt
+KH01340,231,5,Rất đẹp
+KH01239,371,3,Rất đẹp
+KH01240,492,3,Rất đẹp
+KH01795,29,3,Rất đẹp
+KH00516,54,1,Rất đẹp
+KH00427,70,2,Rất đẹp
+KH00416,491,4,Chất lượng tốt
+KH00043,381,3,Đóng gói đẹp
+KH01575,92,1,Hài lòng
+KH01644,271,3,Rất đẹp
+KH01878,477,3,Đóng gói đẹp
+KH01187,95,4,Chất lượng tốt
+KH01006,356,2,Hài lòng
+KH01462,53,4,Chất lượng tốt
+KH00827,103,3,Rất đẹp
+KH00628,422,1,Đóng gói đẹp
+KH01740,439,1,Đóng gói đẹp
+KH00856,23,2,Rất đẹp
+KH00868,480,2,Hài lòng
+KH00526,213,5,Rất đẹp
+KH00912,49,2,Hài lòng
+KH01125,368,3,Đóng gói đẹp
+KH01492,435,5,Rất đẹp
+KH01819,329,1,Hài lòng
+KH00598,271,4,Chất lượng tốt
+KH00343,48,2,Rất đẹp
+KH01871,323,5,Chất lượng tốt
+KH01246,103,2,Hài lòng
+KH00577,117,1,Hài lòng
+KH01185,238,5,Hài lòng
+KH01782,97,1,Chất lượng tốt
+KH01264,414,4,Đóng gói đẹp
+KH00697,346,2,Rất đẹp
+KH01663,187,2,Chất lượng tốt
+KH00598,298,3,Đóng gói đẹp
+KH01409,427,5,Chất lượng tốt
+KH01395,204,4,Đóng gói đẹp
+KH00717,361,4,Đóng gói đẹp
+KH00714,65,1,Hài lòng
+KH00502,40,4,Chất lượng tốt
+KH01496,47,3,Đóng gói đẹp
+KH01692,5,1,Rất đẹp
+KH00151,65,4,Đóng gói đẹp
+KH00482,133,1,Hài lòng
+KH00836,89,3,Chất lượng tốt
+KH01147,344,5,Rất đẹp
+KH01439,376,3,Đóng gói đẹp
+KH00278,68,4,Chất lượng tốt
+KH00479,234,4,Rất đẹp
+KH01938,46,4,Đóng gói đẹp
+KH01769,8,4,Đóng gói đẹp
+KH01627,482,5,Rất đẹp
+KH01776,145,2,Hài lòng
+KH01943,258,1,Hài lòng
+KH01382,154,5,Chất lượng tốt
+KH01798,44,5,Rất đẹp
+KH01544,396,2,Đóng gói đẹp
+KH00002,51,3,Rất đẹp
+KH00426,151,2,Rất đẹp
+KH01289,43,3,Đóng gói đẹp
+KH00010,36,3,Chất lượng tốt
+KH00892,195,2,Đóng gói đẹp
+KH01004,247,4,Chất lượng tốt
+KH01296,387,4,Hài lòng
+KH00431,74,5,Hài lòng
+KH00405,122,2,Rất đẹp
+KH01924,408,5,Rất đẹp
+KH01918,130,3,Đóng gói đẹp
+KH00168,368,3,Rất đẹp
+KH01571,378,1,Rất đẹp
+KH01593,117,4,Hài lòng
+KH01497,378,5,Rất đẹp
+KH01395,51,1,Rất đẹp
+KH01759,318,2,Chất lượng tốt
+KH01987,243,2,Chất lượng tốt
+KH01237,80,3,Hài lòng
+KH00280,339,5,Chất lượng tốt
+KH00559,323,1,Hài lòng
+KH00819,445,2,Rất đẹp
+KH01689,320,2,Hài lòng
+KH01590,111,2,Hài lòng
+KH00850,46,2,Chất lượng tốt
+KH01245,138,3,Rất đẹp
+KH00623,354,5,Chất lượng tốt
+KH01508,445,3,Rất đẹp
+KH00815,450,2,Rất đẹp
+KH01255,68,3,Hài lòng
+KH00774,487,5,Đóng gói đẹp
+KH01958,468,3,Chất lượng tốt
+KH00811,358,2,Đóng gói đẹp
+KH01761,499,3,Chất lượng tốt
+KH01247,56,4,Hài lòng
+KH00609,174,1,Rất đẹp
+KH01813,465,5,Chất lượng tốt
+KH00377,461,5,Rất đẹp
+KH01110,359,1,Chất lượng tốt
+KH00819,205,3,Đóng gói đẹp
+KH00732,163,1,Hài lòng
+KH00616,486,1,Chất lượng tốt
+KH00453,482,2,Hài lòng
+KH01987,473,4,Đóng gói đẹp
+KH01507,381,4,Hài lòng
+KH00742,381,2,Rất đẹp
+KH00113,200,5,Đóng gói đẹp
+KH01753,23,2,Chất lượng tốt
+KH01371,434,2,Đóng gói đẹp
+KH01991,242,3,Hài lòng
+KH00561,294,3,Đóng gói đẹp
+KH00150,157,2,Hài lòng
+KH01011,230,1,Rất đẹp
+KH01594,38,2,Đóng gói đẹp
+KH01218,214,5,Chất lượng tốt
+KH01230,493,3,Rất đẹp
+KH01357,295,4,Đóng gói đẹp
+KH00255,114,1,Đóng gói đẹp
+KH00745,239,4,Đóng gói đẹp
+KH01377,455,2,Hài lòng
+KH01263,169,1,Đóng gói đẹp
+KH00264,437,4,Chất lượng tốt
+KH01621,465,3,Rất đẹp
+KH00276,295,2,Chất lượng tốt
+KH01857,41,4,Đóng gói đẹp
+KH00458,15,4,Hài lòng
+KH00974,362,4,Đóng gói đẹp
+KH00408,135,2,Đóng gói đẹp
+KH01583,427,2,Hài lòng
+KH01567,125,1,Hài lòng
+KH01162,199,2,Rất đẹp
+KH01620,226,1,Đóng gói đẹp
+KH01060,411,1,Chất lượng tốt
+KH00438,496,5,Chất lượng tốt
+KH01042,316,3,Đóng gói đẹp
+KH00752,486,2,Rất đẹp
+KH00361,42,2,Hài lòng
+KH00284,144,2,Đóng gói đẹp
+KH01669,139,1,Hài lòng
+KH00985,70,1,Đóng gói đẹp
+KH01663,178,4,Rất đẹp
+KH00262,116,4,Chất lượng tốt
+KH01439,330,4,Hài lòng
+KH00161,65,3,Rất đẹp
+KH01344,140,1,Chất lượng tốt
+KH01261,461,2,Chất lượng tốt
+KH01808,388,1,Hài lòng
+KH00975,435,3,Chất lượng tốt
+KH00510,421,3,Rất đẹp
+KH00029,360,2,Hài lòng
+KH01018,463,4,Chất lượng tốt
+KH01420,133,3,Rất đẹp
+KH01071,429,4,Hài lòng
+KH00857,205,1,Hài lòng
+KH01997,247,1,Rất đẹp
+KH01660,468,4,Hài lòng
+KH00771,481,3,Hài lòng
+KH00646,103,2,Đóng gói đẹp
+KH01855,131,1,Rất đẹp
+KH01756,384,3,Chất lượng tốt
+KH00425,288,1,Rất đẹp
+KH00651,27,5,Chất lượng tốt
+KH00364,367,2,Đóng gói đẹp
+KH01373,453,4,Chất lượng tốt
+KH00406,424,4,Đóng gói đẹp
+KH01528,216,2,Đóng gói đẹp
+KH01796,494,4,Hài lòng
+KH00684,496,5,Rất đẹp
+KH01641,469,4,Rất đẹp
+KH00879,66,4,Hài lòng
+KH01835,339,3,Đóng gói đẹp
+KH00538,143,5,Đóng gói đẹp
+KH00461,500,3,Rất đẹp
+KH00103,393,5,Rất đẹp
+KH01641,314,3,Chất lượng tốt
+KH01323,26,4,Hài lòng
+KH01424,244,4,Chất lượng tốt
+KH00417,372,2,Rất đẹp
+KH00176,333,1,Chất lượng tốt
+KH01575,330,4,Hài lòng
+KH01803,152,1,Rất đẹp
+KH01467,137,3,Rất đẹp
+KH00497,240,1,Chất lượng tốt
+KH01296,341,2,Chất lượng tốt
+KH00559,47,1,Đóng gói đẹp
+KH00495,245,5,Rất đẹp
+KH01184,38,3,Chất lượng tốt
+KH01896,387,5,Hài lòng
+KH00423,163,2,Rất đẹp
+KH01732,269,3,Hài lòng
+KH01645,105,1,Rất đẹp
+KH01573,65,5,Hài lòng
+KH01939,439,2,Chất lượng tốt
+KH00982,357,3,Chất lượng tốt
+KH00257,258,1,Đóng gói đẹp
+KH00601,91,2,Chất lượng tốt
+KH00085,273,4,Đóng gói đẹp
+KH00422,345,3,Chất lượng tốt
+KH00613,83,4,Hài lòng
+KH01516,343,5,Hài lòng
+KH00146,308,5,Rất đẹp
+KH01885,448,1,Hài lòng
+KH00294,291,3,Chất lượng tốt
+KH01432,315,3,Chất lượng tốt
+KH00886,410,2,Đóng gói đẹp
+KH00113,265,4,Chất lượng tốt
+KH01037,483,4,Rất đẹp
+KH01218,34,4,Hài lòng
+KH01387,142,4,Đóng gói đẹp
+KH01368,386,2,Đóng gói đẹp
+KH00275,394,1,Hài lòng
+KH00213,146,4,Chất lượng tốt
+KH00476,306,2,Chất lượng tốt
+KH01195,290,4,Hài lòng
+KH00396,200,1,Hài lòng
+KH00358,103,3,Đóng gói đẹp
+KH00040,275,2,Hài lòng
+KH01764,373,1,Chất lượng tốt
+KH01697,491,3,Rất đẹp
+KH01143,43,1,Đóng gói đẹp
+KH01332,255,2,Đóng gói đẹp
+KH01297,220,4,Chất lượng tốt
+KH01411,443,5,Đóng gói đẹp
+KH01489,124,4,Đóng gói đẹp
+KH00042,342,1,Đóng gói đẹp
+KH00496,244,1,Rất đẹp
+KH01697,472,1,Chất lượng tốt
+KH00497,22,1,Rất đẹp
+KH01860,340,1,Đóng gói đẹp
+KH01006,195,5,Đóng gói đẹp
+KH00476,296,3,Hài lòng
+KH01342,442,5,Hài lòng
+KH01720,249,2,Chất lượng tốt
+KH00020,375,3,Rất đẹp
+KH01954,218,5,Hài lòng
+KH00148,229,4,Đóng gói đẹp
+KH00287,67,4,Hài lòng
+KH01053,51,3,Chất lượng tốt
+KH00076,7,2,Hài lòng
+KH00810,270,2,Hài lòng
+KH00123,147,4,Rất đẹp
+KH01706,393,2,Đóng gói đẹp
+KH00075,183,4,Đóng gói đẹp
+KH01458,207,3,Chất lượng tốt
+KH00156,154,1,Đóng gói đẹp
+KH01535,154,4,Rất đẹp
+KH00822,127,4,Đóng gói đẹp
+KH00982,358,2,Rất đẹp
+KH00832,297,5,Chất lượng tốt
+KH00153,288,2,Chất lượng tốt
+KH00851,101,4,Chất lượng tốt
+KH01954,310,2,Rất đẹp
+KH00782,292,5,Hài lòng
+KH00846,369,5,Hài lòng
+KH01704,134,3,Chất lượng tốt
+KH01924,96,4,Đóng gói đẹp
+KH01870,140,3,Đóng gói đẹp
+KH01888,231,2,Chất lượng tốt
+KH00393,394,4,Rất đẹp
+KH01309,477,5,Đóng gói đẹp
+KH01631,206,5,Chất lượng tốt
+KH00991,468,2,Rất đẹp
+KH01470,454,3,Đóng gói đẹp
+KH00840,270,4,Đóng gói đẹp
+KH00677,363,1,Hài lòng
+KH01673,267,1,Chất lượng tốt
+KH00255,427,4,Chất lượng tốt
+KH01733,244,2,Đóng gói đẹp
+KH01332,344,1,Chất lượng tốt
+KH01507,224,3,Chất lượng tốt
+KH00847,337,1,Rất đẹp
+KH01634,147,3,Đóng gói đẹp
+KH00009,175,3,Hài lòng
+KH01068,205,5,Chất lượng tốt
+KH01134,306,5,Đóng gói đẹp
+KH00291,105,2,Hài lòng
+KH01304,336,2,Chất lượng tốt
+KH00445,316,4,Rất đẹp
+KH01532,492,1,Hài lòng
+KH00271,389,3,Hài lòng
+KH00490,325,3,Đóng gói đẹp
+KH00334,260,3,Rất đẹp
+KH00584,294,5,Đóng gói đẹp
+KH01322,440,2,Đóng gói đẹp
+KH00586,222,3,Rất đẹp
+KH01421,76,3,Rất đẹp
+KH01667,208,5,Đóng gói đẹp
+KH00953,374,1,Rất đẹp
+KH01151,367,4,Đóng gói đẹp
+KH01665,451,5,Chất lượng tốt
+KH01957,336,4,Chất lượng tốt
+KH01571,327,4,Hài lòng
+KH00316,187,1,Rất đẹp
+KH00474,275,1,Hài lòng
+KH01122,99,4,Đóng gói đẹp
+KH01583,396,5,Đóng gói đẹp
+KH00557,377,5,Chất lượng tốt
+KH00394,25,2,Chất lượng tốt
+KH00013,274,1,Hài lòng
+KH00546,144,4,Chất lượng tốt
+KH01547,253,3,Chất lượng tốt
+KH01122,271,5,Hài lòng
+KH01469,227,5,Đóng gói đẹp
+KH01235,14,2,Hài lòng
+KH01896,178,3,Rất đẹp
+KH01470,301,1,Chất lượng tốt
+KH01752,167,4,Đóng gói đẹp
+KH00167,228,3,Đóng gói đẹp
+KH01106,238,1,Rất đẹp
+KH01518,323,4,Chất lượng tốt
+KH00453,341,5,Chất lượng tốt
+KH01771,115,1,Hài lòng
+KH00357,108,3,Chất lượng tốt
+KH00547,459,2,Chất lượng tốt
+KH01741,333,1,Rất đẹp
+KH01525,369,2,Hài lòng
+KH01916,445,3,Chất lượng tốt
+KH00163,218,2,Đóng gói đẹp
+KH00542,141,3,Chất lượng tốt
+KH00033,478,5,Hài lòng
+KH00475,439,1,Hài lòng
+KH01851,159,3,Chất lượng tốt
+KH00917,51,5,Hài lòng
+KH01670,107,1,Hài lòng
+KH00987,376,1,Chất lượng tốt
+KH01512,480,2,Đóng gói đẹp
+KH01986,194,5,Hài lòng
+KH01421,108,1,Rất đẹp
+KH01144,174,4,Chất lượng tốt
+KH01129,167,2,Đóng gói đẹp
+KH01477,69,2,Hài lòng
+KH01341,247,1,Đóng gói đẹp
+KH00741,55,5,Rất đẹp
+KH01370,206,4,Rất đẹp
+KH00551,459,1,Chất lượng tốt
+KH01133,450,1,Rất đẹp
+KH01573,245,2,Chất lượng tốt
+KH00862,427,1,Đóng gói đẹp
+KH01856,493,2,Hài lòng
+KH00891,338,5,Rất đẹp
+KH00306,20,1,Đóng gói đẹp
+KH01143,73,2,Chất lượng tốt
+KH00980,420,4,Chất lượng tốt
+KH01100,417,5,Hài lòng
+KH01383,14,4,Chất lượng tốt
+KH01686,77,1,Rất đẹp
+KH01542,25,1,Đóng gói đẹp
+KH00410,49,1,Chất lượng tốt
+KH01579,212,4,Rất đẹp
+KH00751,71,2,Rất đẹp
+KH00334,118,4,Chất lượng tốt
+KH01677,135,4,Đóng gói đẹp
+KH01096,341,1,Rất đẹp
+KH00567,116,4,Hài lòng
+KH01908,83,4,Đóng gói đẹp
+KH01252,380,1,Hài lòng
+KH01017,310,4,Hài lòng
+KH01471,178,5,Đóng gói đẹp
+KH01113,375,3,Đóng gói đẹp
+KH01689,440,3,Chất lượng tốt
+KH01071,442,4,Hài lòng
+KH00733,210,1,Hài lòng
+KH01638,188,4,Hài lòng
+KH00659,208,1,Hài lòng
+KH01348,170,2,Chất lượng tốt
+KH00115,92,3,Hài lòng
+KH00492,341,1,Rất đẹp
+KH00448,229,2,Hài lòng
+KH01840,111,4,Rất đẹp
+KH00255,39,2,Đóng gói đẹp
+KH01359,160,4,Chất lượng tốt
+KH01811,44,4,Chất lượng tốt
+KH00141,402,3,Hài lòng
+KH01025,361,1,Đóng gói đẹp
+KH01947,209,4,Rất đẹp
+KH00032,56,2,Đóng gói đẹp
+KH01968,235,1,Hài lòng
+KH00824,350,4,Rất đẹp
+KH00381,8,3,Rất đẹp
+KH00415,435,5,Chất lượng tốt
+KH01505,230,3,Rất đẹp
+KH01396,387,1,Chất lượng tốt
+KH01985,232,5,Chất lượng tốt
+KH00600,288,2,Đóng gói đẹp
+KH00125,489,1,Đóng gói đẹp
+KH00045,329,1,Đóng gói đẹp
+KH01978,308,4,Đóng gói đẹp
+KH01358,86,2,Đóng gói đẹp
+KH00894,417,2,Rất đẹp
+KH00311,209,5,Chất lượng tốt
+KH01424,156,5,Chất lượng tốt
+KH01131,30,4,Rất đẹp
+KH01008,480,4,Rất đẹp
+KH01134,468,2,Chất lượng tốt
+KH00581,197,4,Rất đẹp
+KH01392,172,2,Chất lượng tốt
+KH00045,396,1,Hài lòng
+KH01968,466,2,Chất lượng tốt
+KH00824,188,4,Đóng gói đẹp
+KH01887,48,3,Chất lượng tốt
+KH01351,330,3,Hài lòng
+KH01931,439,5,Chất lượng tốt
+KH00732,363,2,Đóng gói đẹp
+KH00302,235,5,Rất đẹp
+KH01798,6,3,Đóng gói đẹp
+KH00346,324,1,Chất lượng tốt
+KH00427,11,3,Đóng gói đẹp
+KH01542,65,2,Đóng gói đẹp
+KH01233,218,3,Hài lòng
+KH00215,129,2,Chất lượng tốt
+KH01103,215,1,Hài lòng
+KH01412,35,1,Chất lượng tốt
+KH01393,10,3,Đóng gói đẹp
+KH01727,250,2,Đóng gói đẹp
+KH01436,155,4,Đóng gói đẹp
+KH01029,164,5,Rất đẹp
+KH00499,477,3,Hài lòng
+KH01953,423,2,Hài lòng
+KH01438,489,5,Rất đẹp
+KH00401,458,1,Rất đẹp
+KH00191,75,1,Chất lượng tốt
+KH01008,497,4,Đóng gói đẹp
+KH01269,397,3,Đóng gói đẹp
+KH00469,437,2,Hài lòng
+KH01014,472,4,Rất đẹp
+KH00563,481,2,Đóng gói đẹp
+KH01866,104,3,Đóng gói đẹp
+KH00857,276,5,Hài lòng
+KH00651,272,1,Hài lòng
+KH01489,2,1,Hài lòng
+KH00036,210,2,Chất lượng tốt
+KH00818,53,3,Hài lòng
+KH01705,139,1,Rất đẹp
+KH00257,398,2,Đóng gói đẹp
+KH00490,346,3,Đóng gói đẹp
+KH00592,447,5,Chất lượng tốt
+KH01428,310,3,Rất đẹp
+KH01511,366,5,Rất đẹp
+KH01807,122,4,Đóng gói đẹp
+KH01053,279,5,Rất đẹp
+KH00359,180,2,Rất đẹp
+KH00880,194,5,Chất lượng tốt
+KH00118,29,5,Đóng gói đẹp
+KH01567,293,3,Rất đẹp
+KH00288,348,2,Đóng gói đẹp
+KH00715,108,3,Rất đẹp
+KH00132,297,3,Hài lòng
+KH00723,52,4,Hài lòng
+KH00886,138,1,Rất đẹp
+KH00100,199,2,Hài lòng
+KH01933,341,4,Chất lượng tốt
+KH01800,453,4,Rất đẹp
+KH00295,72,2,Đóng gói đẹp
+KH01560,397,2,Rất đẹp
+KH01474,10,5,Hài lòng
+KH00307,89,3,Hài lòng
+KH00922,307,1,Đóng gói đẹp
+KH01044,8,4,Chất lượng tốt
+KH00774,140,3,Hài lòng
+KH00514,142,4,Rất đẹp
+KH01121,329,3,Đóng gói đẹp
+KH00857,296,1,Rất đẹp
+KH00295,315,3,Chất lượng tốt
+KH01745,362,4,Chất lượng tốt
+KH01375,110,4,Hài lòng
+KH00101,157,1,Hài lòng
+KH01608,78,4,Đóng gói đẹp
+KH00368,368,3,Chất lượng tốt
+KH00711,13,5,Hài lòng
+KH01620,149,5,Đóng gói đẹp
+KH01802,372,2,Rất đẹp
+KH00399,56,1,Hài lòng
+KH00378,417,5,Đóng gói đẹp
+KH01106,149,3,Đóng gói đẹp
+KH01427,348,2,Chất lượng tốt
+KH01471,76,3,Hài lòng
+KH01050,484,4,Đóng gói đẹp
+KH01769,261,1,Rất đẹp
+KH00585,346,5,Đóng gói đẹp
+KH01986,258,5,Đóng gói đẹp
+KH00010,303,4,Rất đẹp
+KH01996,291,2,Rất đẹp
+KH01519,242,5,Rất đẹp
+KH01284,265,3,Đóng gói đẹp
+KH01892,162,1,Chất lượng tốt
+KH01718,59,3,Đóng gói đẹp
+KH01458,238,5,Hài lòng
+KH01958,103,4,Rất đẹp
+KH01223,472,5,Rất đẹp
+KH01658,276,3,Chất lượng tốt
+KH00651,351,4,Đóng gói đẹp
+KH00468,332,3,Hài lòng
+KH01927,332,1,Hài lòng
+KH01206,496,5,Đóng gói đẹp
+KH01360,27,5,Chất lượng tốt
+KH01925,179,4,Đóng gói đẹp
+KH00484,24,5,Chất lượng tốt
+KH01785,395,2,Chất lượng tốt
+KH00180,439,4,Đóng gói đẹp
+KH00927,193,4,Đóng gói đẹp
+KH00078,32,3,Rất đẹp
+KH01925,155,1,Đóng gói đẹp
+KH01169,268,1,Đóng gói đẹp
+KH01077,246,2,Rất đẹp
+KH01141,196,4,Hài lòng
+KH01607,223,3,Chất lượng tốt
+KH01454,44,3,Đóng gói đẹp
+KH00975,358,5,Rất đẹp
+KH01530,341,5,Chất lượng tốt
+KH01261,230,3,Chất lượng tốt
+KH01661,418,3,Rất đẹp
+KH00540,484,5,Chất lượng tốt
+KH00178,47,2,Chất lượng tốt
+KH01849,298,3,Đóng gói đẹp
+KH01614,49,2,Hài lòng
+KH01761,357,4,Rất đẹp
+KH01549,70,5,Chất lượng tốt
+KH00249,85,4,Rất đẹp
+KH01503,327,3,Chất lượng tốt
+KH00134,318,3,Chất lượng tốt
+KH01418,86,5,Rất đẹp
+KH00384,200,3,Đóng gói đẹp
+KH00922,251,1,Chất lượng tốt
+KH00094,377,4,Hài lòng
+KH00705,27,1,Đóng gói đẹp
+KH00415,3,3,Chất lượng tốt
+KH01236,175,3,Rất đẹp
+KH00099,234,4,Hài lòng
+KH00232,137,4,Rất đẹp
+KH01713,252,3,Rất đẹp
+KH01556,430,1,Chất lượng tốt
+KH01259,186,2,Hài lòng
+KH01305,14,2,Hài lòng
+KH01389,227,5,Rất đẹp
+KH00358,181,5,Chất lượng tốt
+KH01147,34,5,Hài lòng
+KH01443,203,1,Đóng gói đẹp
+KH01509,213,1,Rất đẹp
+KH01894,418,1,Chất lượng tốt
+KH00209,70,1,Hài lòng
+KH01987,158,5,Rất đẹp
+KH00495,34,3,Rất đẹp
+KH01996,224,1,Đóng gói đẹp
+KH01672,88,3,Chất lượng tốt
+KH01068,99,1,Hài lòng
+KH00182,66,4,Rất đẹp
+KH00446,36,5,Hài lòng
+KH00403,202,4,Hài lòng
+KH01252,481,1,Rất đẹp
+KH01946,395,1,Chất lượng tốt
+KH01238,29,1,Hài lòng
+KH01808,315,3,Hài lòng
+KH00652,432,5,Chất lượng tốt
+KH01945,252,2,Hài lòng
+KH00428,258,2,Đóng gói đẹp
+KH01813,303,3,Hài lòng
+KH01095,400,4,Đóng gói đẹp
+KH00827,186,1,Hài lòng
+KH01914,431,2,Rất đẹp
+KH01790,448,2,Rất đẹp
+KH00032,66,4,Chất lượng tốt
+KH00603,285,4,Chất lượng tốt
+KH00125,291,3,Chất lượng tốt
+KH01556,190,5,Đóng gói đẹp
+KH01327,152,5,Đóng gói đẹp
+KH00752,316,4,Rất đẹp
+KH01619,17,2,Chất lượng tốt
+KH01307,7,2,Hài lòng
+KH00711,115,5,Rất đẹp
+KH00796,485,3,Hài lòng
+KH00980,206,1,Rất đẹp
+KH00911,408,5,Đóng gói đẹp
+KH01252,25,1,Chất lượng tốt
+KH00231,108,3,Chất lượng tốt
+KH00567,101,3,Chất lượng tốt
+KH00712,71,2,Chất lượng tốt
+KH01340,69,2,Rất đẹp
+KH01200,232,4,Hài lòng
+KH01014,195,1,Rất đẹp
+KH00607,400,3,Hài lòng
+KH01330,357,5,Chất lượng tốt
+KH00047,218,1,Đóng gói đẹp
+KH00799,135,5,Rất đẹp
+KH01661,11,1,Rất đẹp
+KH01120,114,3,Đóng gói đẹp
+KH01734,102,2,Hài lòng
+KH00646,429,5,Hài lòng
+KH01378,181,2,Đóng gói đẹp
+KH01303,110,4,Rất đẹp
+KH00441,333,1,Hài lòng
+KH00954,391,1,Chất lượng tốt
+KH01265,384,5,Rất đẹp
+KH00711,227,4,Hài lòng
+KH01152,232,3,Chất lượng tốt
+KH00118,98,3,Rất đẹp
+KH01737,111,1,Chất lượng tốt
+KH00304,498,5,Chất lượng tốt
+KH01585,171,1,Rất đẹp
+KH00610,249,4,Chất lượng tốt
+KH00756,74,5,Rất đẹp
+KH00687,369,4,Rất đẹp
+KH01396,472,3,Đóng gói đẹp
+KH00976,44,4,Hài lòng
+KH01060,118,2,Chất lượng tốt
+KH00445,372,4,Hài lòng
+KH00140,246,1,Đóng gói đẹp
+KH01611,482,3,Hài lòng
+KH00194,146,5,Rất đẹp
+KH01917,167,5,Chất lượng tốt
+KH00946,90,3,Rất đẹp
+KH01922,115,4,Hài lòng
+KH01412,281,2,Hài lòng
+KH00395,387,1,Chất lượng tốt
+KH01054,236,3,Chất lượng tốt
+KH00809,216,2,Hài lòng
+KH01900,90,4,Hài lòng
+KH01266,306,1,Chất lượng tốt
+KH01042,421,4,Chất lượng tốt
+KH00844,236,5,Rất đẹp
+KH01893,180,3,Chất lượng tốt
+KH00848,199,2,Hài lòng
+KH01543,2,5,Chất lượng tốt
+KH01196,195,5,Chất lượng tốt
+KH00848,460,5,Đóng gói đẹp
+KH01063,328,4,Rất đẹp
+KH00088,12,1,Đóng gói đẹp
+KH00628,147,2,Hài lòng
+KH00540,286,1,Hài lòng
+KH00983,295,4,Đóng gói đẹp
+KH00146,422,1,Chất lượng tốt
+KH01841,278,5,Rất đẹp
+KH00847,283,3,Hài lòng
+KH01872,345,2,Hài lòng
+KH00513,4,5,Đóng gói đẹp
+KH00508,350,4,Chất lượng tốt
+KH01983,498,1,Chất lượng tốt
+KH00541,323,5,Rất đẹp
+KH00386,389,2,Rất đẹp
+KH00371,251,3,Chất lượng tốt
+KH00387,51,5,Chất lượng tốt
+KH01305,93,2,Đóng gói đẹp
+KH00179,389,1,Đóng gói đẹp
+KH01529,173,3,Hài lòng
+KH00723,307,2,Chất lượng tốt
+KH00065,12,2,Hài lòng
+KH00379,305,1,Đóng gói đẹp
+KH01816,497,4,Đóng gói đẹp
+KH00941,293,5,Hài lòng
+KH01208,159,3,Rất đẹp
+KH00604,50,4,Rất đẹp
+KH01148,145,3,Rất đẹp
+KH00907,2,4,Chất lượng tốt
+KH01368,209,5,Rất đẹp
+KH01136,173,3,Hài lòng
+KH00135,294,5,Rất đẹp
+KH00749,410,4,Rất đẹp
+KH00085,282,3,Chất lượng tốt
+KH00881,443,3,Hài lòng
+KH00907,67,5,Đóng gói đẹp
+KH00950,323,2,Hài lòng
+KH00573,467,3,Hài lòng
+KH00348,224,5,Hài lòng
+KH00442,19,3,Đóng gói đẹp
+KH01738,168,3,Rất đẹp
+KH00887,125,1,Đóng gói đẹp
+KH00243,87,5,Rất đẹp
+KH01071,459,3,Đóng gói đẹp
+KH01564,432,5,Hài lòng
+KH00639,173,4,Rất đẹp
+KH01077,491,2,Đóng gói đẹp
+KH00132,367,3,Chất lượng tốt
+KH01989,114,2,Rất đẹp
+KH01392,449,2,Đóng gói đẹp
+KH00100,359,2,Hài lòng
+KH00874,206,5,Rất đẹp
+KH00051,371,2,Hài lòng
+KH00435,424,5,Đóng gói đẹp
+KH00362,160,3,Đóng gói đẹp
+KH00538,244,4,Hài lòng
+KH00278,172,4,Hài lòng
+KH00677,290,1,Chất lượng tốt
+KH00651,497,5,Rất đẹp
+KH01380,208,5,Rất đẹp
+KH00250,96,2,Hài lòng
+KH01604,39,4,Chất lượng tốt
+KH00623,295,2,Đóng gói đẹp
+KH01853,415,3,Đóng gói đẹp
+KH00775,92,2,Đóng gói đẹp
+KH01979,413,3,Rất đẹp
+KH01676,253,3,Hài lòng
+KH00932,498,5,Hài lòng
+KH01365,199,1,Đóng gói đẹp
+KH01035,74,4,Chất lượng tốt
+KH00847,274,4,Đóng gói đẹp
+KH01623,165,2,Chất lượng tốt
+KH00593,23,5,Rất đẹp
+KH00100,272,2,Chất lượng tốt
+KH01973,68,2,Chất lượng tốt
+KH01449,154,4,Đóng gói đẹp
+KH01720,42,3,Hài lòng
+KH01206,175,2,Đóng gói đẹp
+KH00386,432,1,Chất lượng tốt
+KH00323,60,4,Đóng gói đẹp
+KH00508,74,4,Hài lòng
+KH00423,23,5,Đóng gói đẹp
+KH01522,286,3,Hài lòng
+KH01090,185,5,Đóng gói đẹp
+KH00957,203,4,Chất lượng tốt
+KH00494,164,3,Hài lòng
+KH00142,416,3,Rất đẹp
+KH00516,49,4,Rất đẹp
+KH00484,148,2,Chất lượng tốt
+KH01719,284,4,Chất lượng tốt
+KH01172,458,4,Đóng gói đẹp
+KH01990,332,4,Hài lòng
+KH00121,318,1,Hài lòng
+KH00020,433,2,Hài lòng
+KH00113,200,1,Đóng gói đẹp
+KH01262,351,5,Chất lượng tốt
+KH00004,347,4,Chất lượng tốt
+KH01804,256,3,Hài lòng

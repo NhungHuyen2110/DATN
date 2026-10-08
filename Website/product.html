@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Chi tiết sản phẩm | Jewelry Shop
+    </title>
+
+
+    <!-- =====================================================
+         FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                "Montserrat",
+                Arial,
+                sans-serif;
+
+            background:
+                #f8f6f2;
+
+            color:
+                #222;
+
+            min-height:
+                100vh;
+
+        }
+
+
+        /* ==================================================
+           HEADER
+        ================================================== */
+
+        .header {
+
+            width: 100%;
+
+            height: 72px;
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            border-bottom:
+                1px solid #e8e2d9;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                0 6%;
+
+            position:
+                sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                24px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1px;
+
+            color:
+                #222;
+
+        }
+
+
+        .logo span {
+
+            color:
+                #b08d57;
+
+        }
+
+
+        .customer-area {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            font-size:
+                14px;
+
+            color:
+                #555;
+
+        }
+
+
+        .customer-area select {
+
+            border:
+                1px solid #d9d0c3;
+
+            border-radius:
+                6px;
+
+            padding:
+                7px 12px;
+
+            background:
+                white;
+
+            font-family:
+                inherit;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* ==================================================
+           MAIN
+        ================================================== */
+
+        .container {
+
+            width:
+                90%;
+
+            max-width:
+                1250px;
+
+            margin:
+                45px auto 80px;
+
+        }
+
+
+        /* ==================================================
+           BREADCRUMB
+        ================================================== */
+
+        .breadcrumb {
+
+            font-size:
+                13px;
+
+            color:
+                #888;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .breadcrumb span {
+
+            color:
+                #b08d57;
+
+        }
+
+
+        /* ==================================================
+           PRODUCT DETAIL
+        ================================================== */
+
+        .product-detail {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                55px;
+
+            background:
+                white;
+
+            border-radius:
+                20px;
+
+            padding:
+                35px;
+
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        /* ==================================================
+           PRODUCT IMAGE
+        ================================================== */
+
+        .main-image-box {
+
+            width:
+                100%;
+
+            height:
+                560px;
+
+            background:
+                #f7f4ee;
+
+            border-radius:
+                16px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
+
+            position:
+                relative;
+
+        }
+
+
+        .main-image-box::before {
+
+            content:
+                "✦";
+
+            position:
+                absolute;
+
+            top:
+                18px;
+
+            left:
+                20px;
+
+            color:
+                #b08d57;
+
+            font-size:
+                18px;
+
+            z-index:
+                2;
+
+        }
+
+
+        #mainProductImage {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                contain;
+
+            display:
+                block;
+
+            padding:
+                25px;
+
+            transition:
+                transform 0.5s ease;
+
+        }
+
+
+        #mainProductImage:hover {
+
+            transform:
+                scale(1.04);
+
+        }
+
+
+        /* ==================================================
+           PRODUCT INFO
+        ================================================== */
+
+        .product-info {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+        }
+
+
+        .product-label {
+
+            font-size:
+                11px;
+
+            letter-spacing:
+                3px;
+
+            color:
+                #b08d57;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                12px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        #productName {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                42px;
+
+            line-height:
+                1.2;
+
+            margin-bottom:
+                12px;
+
+            color:
+                #1e1e1e;
+
+        }
+
+
+        #productCategory {
+
+            color:
+                #888;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        #productPrice {
+
+            font-size:
+                28px;
+
+            font-weight:
+                700;
+
+            color:
+                #222;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .divider {
+
+            width:
+                100%;
+
+            height:
+                1px;
+
+            background:
+                #ebe6de;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        /* ==================================================
+           PRODUCT SPECIFICATIONS
+        ================================================== */
+
+        .product-specifications {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                140px 1fr;
+
+            row-gap:
+                17px;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                30px;
+
+        }
+
+
+        .spec-label {
+
+            color:
+                #777;
+
+            font-weight:
+                500;
+
+        }
+
+
+        .spec-value {
+
+            color:
+                #222;
+
+            font-weight:
+                600;
+
+        }
+
+
+        /* ==================================================
+           BUTTON
+        ================================================== */
+
+        .add-cart-btn {
+
+            width:
+                100%;
+
+            height:
+                52px;
+
+            border:
+                none;
+
+            border-radius:
+                8px;
+
+            background:
+                #222;
+
+            color:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            cursor:
+                pointer;
+
+            transition:
+                all 0.3s ease;
+
+        }
+
+
+        .add-cart-btn:hover {
+
+            background:
+                #b08d57;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(176, 141, 87, 0.25);
+
+        }
+
+
+        /* ==================================================
+           CUSTOMER SELECT
+        ================================================== */
+
+        .customer-select-area {
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin:
+                25px 0 45px;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .customer-select-area select {
+
+            padding:
+                9px 14px;
+
+            border:
+                1px solid #d9d0c3;
+
+            border-radius:
+                7px;
+
+            background:
+                white;
+
+            font-family:
+                inherit;
+
+        }
+
+
+        /* ==================================================
+           RECOMMENDATION
+        ================================================== */
+
+        .recommendation-section {
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .recommendation-header {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .recommendation-header h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                34px;
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        .recommendation-header h2 span {
+
+            color:
+                #b08d57;
+
+        }
+
+
+        .recommendation-header p {
+
+            color:
+                #999;
+
+            font-size:
+                13px;
+
+        }
+
+
+        /* ==================================================
+           PRODUCT CARDS
+        ================================================== */
+
+        #recommendationList {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap:
+                20px;
+
+        }
+
+
+        .product-card {
+
+            background:
+                white;
+
+            border-radius:
+                14px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid #eee8df;
+
+            transition:
+                all 0.3s ease;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .product-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        .product-image-wrapper {
+
+            width:
+                100%;
+
+            height:
+                240px;
+
+            background:
+                #f7f5f1;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .product-image {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                contain;
+
+            display:
+                block;
+
+            transition:
+                transform 0.4s ease;
+
+        }
+
+
+        .product-card:hover
+        .product-image {
+
+            transform:
+                scale(1.07);
+
+        }
+
+
+        .card-content {
+
+            padding:
+                16px;
+
+        }
+
+
+        .card-content h3 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                17px;
+
+            line-height:
+                1.3;
+
+            margin-bottom:
+                7px;
+
+            color:
+                #222;
+
+        }
+
+
+        .card-category {
+
+            font-size:
+                11px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+
+            color:
+                #999;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .card-price {
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            color:
+                #222;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .ai-score {
+
+            display:
+                inline-block;
+
+            font-size:
+                11px;
+
+            color:
+                #b08d57;
+
+            background:
+                #faf6ed;
+
+            padding:
+                6px 8px;
+
+            border-radius:
+                5px;
+
+        }
+
+
+        /* ==================================================
+           LOADING
+        ================================================== */
+
+        .loading {
+
+            grid-column:
+                1 / -1;
+
+            text-align:
+                center;
+
+            padding:
+                50px;
+
+            color:
+                #999;
+
+            font-size:
+                14px;
+
+        }
+
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        .footer {
+
+            margin-top:
+                80px;
+
+            padding:
+                35px;
+
+            text-align:
+                center;
+
+            border-top:
+                1px solid #e8e2d9;
+
+            color:
+                #999;
+
+            font-size:
+                12px;
+
+        }
+
+
+        /* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+        @media
+        (max-width: 1100px) {
+
+            #recommendationList {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 800px) {
+
+            .product-detail {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    30px;
+
+            }
+
+
+            .main-image-box {
+
+                height:
+                    450px;
+
+            }
+
+
+            #productName {
+
+                font-size:
+                    34px;
+
+            }
+
+
+            #recommendationList {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 500px) {
+
+            .header {
+
+                padding:
+                    0 20px;
+
+            }
+
+
+            .customer-area {
+
+                font-size:
+                    11px;
+
+            }
+
+
+            .container {
+
+                width:
+                    94%;
+
+            }
+
+
+            .product-detail {
+
+                padding:
+                    18px;
+
+                border-radius:
+                    12px;
+
+            }
+
+
+            .main-image-box {
+
+                height:
+                    350px;
+
+            }
+
+
+            #recommendationList {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .product-specifications {
+
+                grid-template-columns:
+                    110px 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            ✦ JEWELRY <span>SHOP</span>
+
+        </div>
+
+
+        <div class="customer-area">
+
+            <label for="customerSelect">
+                Khách hàng:
+            </label>
+
+
+            <select
+                id="customerSelect"
+            >
+
+                <option value="KH00001">
+                    KH00001
+                </option>
+
+                <option value="KH00002">
+                    KH00002
+                </option>
+
+                <option value="KH00003">
+                    KH00003
+                </option>
+
+                <option value="KH00004">
+                    KH00004
+                </option>
+
+                <option value="KH00005">
+                    KH00005
+                </option>
+
+            </select>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             BREADCRUMB
+        ================================================== -->
+
+        <div class="breadcrumb">
+
+            Trang chủ
+            &nbsp; / &nbsp;
+            <span>Chi tiết sản phẩm</span>
+
+        </div>
+
+
+        <!-- =================================================
+             PRODUCT DETAIL
+        ================================================== -->
+
+        <section class="product-detail">
+
+
+            <!-- =============================================
+                 IMAGE
+            ============================================== -->
+
+            <div class="main-image-box">
+
+                <img
+                    id="mainProductImage"
+                    src="images/no-image.jpg"
+                    alt="Ảnh sản phẩm"
+                >
+
+            </div>
+
+
+            <!-- =============================================
+                 INFORMATION
+            ============================================== -->
+
+            <div class="product-info">
+
+
+                <div class="product-label">
+
+                    Sản phẩm
+
+                </div>
+
+
+                <h1 id="productName">
+
+                    Đang tải...
+
+                </h1>
+
+
+                <p id="productCategory">
+
+                    Đang tải...
+
+                </p>
+
+
+                <div id="productPrice">
+
+                    Đang tải...
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <!-- =========================================
+                     SPECIFICATIONS
+                ========================================== -->
+
+                <div class="product-specifications">
+
+
+                    <div class="spec-label">
+
+                        Thương hiệu:
+
+                    </div>
+
+                    <div
+                        class="spec-value"
+                        id="productBrand"
+                    >
+
+                        Đang tải...
+
+                    </div>
+
+
+                    <div class="spec-label">
+
+                        Chất liệu:
+
+                    </div>
+
+                    <div
+                        class="spec-value"
+                        id="productMaterial"
+                    >
+
+                        Đang tải...
+
+                    </div>
+
+
+                    <div class="spec-label">
+
+                        Đá quý:
+
+                    </div>
+
+                    <div
+                        class="spec-value"
+                        id="productGemstone"
+                    >
+
+                        Đang tải...
+
+                    </div>
+
+
+                    <div class="spec-label">
+
+                        Bộ sưu tập:
+
+                    </div>
+
+                    <div
+                        class="spec-value"
+                        id="productCollection"
+                    >
+
+                        Đang tải...
+
+                    </div>
+
+
+                    <div class="spec-label">
+
+                        Tồn kho:
+
+                    </div>
+
+                    <div
+                        class="spec-value"
+                        id="productStock"
+                    >
+
+                        Đang tải...
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =========================================
+                     ADD CART
+                ========================================== -->
+
+                <button
+                    class="add-cart-btn"
+                    onclick="addToCart()"
+                >
+
+                    🛒 &nbsp;
+                    Thêm vào giỏ hàng
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CUSTOMER
+        ================================================== -->
+
+        <div class="customer-select-area">
+
+            <span>
+                Khách hàng:
+            </span>
+
+
+            <select
+                id="customerSelect"
+            >
+
+                <option value="KH00001">
+                    KH00001
+                </option>
+
+                <option value="KH00002">
+                    KH00002
+                </option>
+
+                <option value="KH00003">
+                    KH00003
+                </option>
+
+                <option value="KH00004">
+                    KH00004
+                </option>
+
+                <option value="KH00005">
+                    KH00005
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =================================================
+             RECOMMENDATION
+        ================================================== -->
+
+        <section
+            class="recommendation-section"
+        >
+
+
+            <div
+                class="recommendation-header"
+            >
+
+                <h2>
+
+                    ✨
+                    <span>Có thể bạn sẽ thích</span>
+
+                </h2>
+
+
+                <p>
+
+                    Gợi ý được tạo bởi
+                    Hybrid Recommendation + Qdrant
+
+                </p>
+
+            </div>
+
+
+            <div
+                id="recommendationList"
+            >
+
+                <div class="loading">
+
+                    🤖 AI đang phân tích...
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        © 2026 Jewelry Shop
+        ·
+        AI Recommendation System
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        // ==================================================
+        // API
+        // ==================================================
+
+        const API_URL =
+            "http://127.0.0.1:8000";
+
+
+        // ==================================================
+        // PRODUCT ID
+        // ==================================================
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const productId =
+            params.get("id");
+
+
+        let currentProductId =
+            Number(productId);
+
+
+        if (!currentProductId) {
+
+            currentProductId = 1;
+
+        }
+
+
+        // ==================================================
+        // FORMAT PRICE
+        // ==================================================
+
+        function formatPrice(price) {
+
+            return Number(price)
+                .toLocaleString("vi-VN")
+                + " VNĐ";
+
+        }
+
+
+        // ==================================================
+        // LOAD PRODUCT
+        // ==================================================
+
+        async function loadProduct() {
+
+            console.log(
+                "================================="
+            );
+
+            console.log(
+                "LOAD PRODUCT:",
+                currentProductId
+            );
+
+
+            try {
+
+                const url =
+                    `${API_URL}/products/${currentProductId}`;
+
+
+                console.log(
+                    "API:",
+                    url
+                );
+
+
+                const response =
+                    await fetch(url);
+
+
+                console.log(
+                    "HTTP:",
+                    response.status
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `HTTP ${response.status}`
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "RESULT:",
+                    result
+                );
+
+
+                if (!result.success) {
+
+                    throw new Error(
+                        result.message ||
+                        "Không tìm thấy sản phẩm"
+                    );
+
+                }
+
+
+                const product =
+                    result.data;
+
+
+                console.log(
+                    "PRODUCT:",
+                    product
+                );
+
+
+                // ==================================================
+                // IMAGE
+                // ==================================================
+
+                const image =
+                    document.getElementById(
+                        "mainProductImage"
+                    );
+
+
+                if (image) {
+
+                    const imageUrl =
+                        `images/${product.ProductID}.jpg`;
+
+
+                    image.src =
+                        imageUrl;
+
+
+                    image.alt =
+                        product.ProductName;
+
+
+                    image.onerror =
+                        function () {
+
+                            console.error(
+                                "Không tải được ảnh:",
+                                imageUrl
+                            );
+
+
+                            this.src =
+                                "images/no-image.jpg";
+
+                        };
+
+                }
+
+
+                // ==================================================
+                // NAME
+                // ==================================================
+
+                document.getElementById(
+                    "productName"
+                ).textContent =
+                    product.ProductName;
+
+
+                // ==================================================
+                // CATEGORY
+                // ==================================================
+
+                document.getElementById(
+                    "productCategory"
+                ).textContent =
+                    product.CategoryName;
+
+
+                // ==================================================
+                // PRICE
+                // ==================================================
+
+                document.getElementById(
+                    "productPrice"
+                ).textContent =
+                    formatPrice(
+                        product.SalePrice
+                    );
+
+
+                // ==================================================
+                // BRAND
+                // ==================================================
+
+                document.getElementById(
+                    "productBrand"
+                ).textContent =
+                    product.BrandName;
+
+
+                // ==================================================
+                // MATERIAL
+                // ==================================================
+
+                document.getElementById(
+                    "productMaterial"
+                ).textContent =
+                    product.MaterialName;
+
+
+                // ==================================================
+                // GEMSTONE
+                // ==================================================
+
+                document.getElementById(
+                    "productGemstone"
+                ).textContent =
+                    product.GemstoneName;
+
+
+                // ==================================================
+                // COLLECTION
+                // ==================================================
+
+                document.getElementById(
+                    "productCollection"
+                ).textContent =
+                    product.CollectionName;
+
+
+                // ==================================================
+                // STOCK
+                // ==================================================
+
+                document.getElementById(
+                    "productStock"
+                ).textContent =
+                    product.Stock;
+
+
+                console.log(
+                    "✅ PRODUCT LOAD SUCCESS"
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "❌ PRODUCT ERROR:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "productName"
+                ).textContent =
+                    "Không thể tải sản phẩm";
+
+
+                document.getElementById(
+                    "productCategory"
+                ).textContent =
+                    "Lỗi kết nối API";
+
+
+                document.getElementById(
+                    "productPrice"
+                ).textContent =
+                    "";
+
+
+                document.getElementById(
+                    "productBrand"
+                ).textContent =
+                    "-";
+
+
+                document.getElementById(
+                    "productMaterial"
+                ).textContent =
+                    "-";
+
+
+                document.getElementById(
+                    "productGemstone"
+                ).textContent =
+                    "-";
+
+
+                document.getElementById(
+                    "productCollection"
+                ).textContent =
+                    "-";
+
+
+                document.getElementById(
+                    "productStock"
+                ).textContent =
+                    "-";
+
+            }
+
+        }
+
+
+        // ==================================================
+        // LOAD RECOMMENDATION
+        // ==================================================
+
+        async function loadRecommendations() {
+
+            const customerSelect =
+                document.getElementById(
+                    "customerSelect"
+                );
+
+
+            const customerId =
+                customerSelect.value;
+
+
+            const container =
+                document.getElementById(
+                    "recommendationList"
+                );
+
+
+            container.innerHTML = `
+
+                <div class="loading">
+
+                    🤖 AI đang phân tích...
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const url =
+                    `${API_URL}/recommendations` +
+                    `?customer_id=${customerId}` +
+                    `&product_id=${currentProductId}` +
+                    `&number=5`;
+
+
+                console.log(
+                    "Recommendation API:",
+                    url
+                );
+
+
+                const response =
+                    await fetch(url);
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `HTTP ${response.status}`
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "Recommendation:",
+                    result
+                );
+
+
+                if (!result.success) {
+
+                    container.innerHTML = `
+
+                        <div class="loading">
+
+                            Không có sản phẩm gợi ý.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                displayRecommendations(
+                    result.data
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Recommendation Error:",
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="loading">
+
+                        ❌ Không thể kết nối
+                        Recommendation API.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // ==================================================
+        // DISPLAY RECOMMENDATION
+        // ==================================================
+
+        function displayRecommendations(
+            products
+        ) {
+
+            const container =
+                document.getElementById(
+                    "recommendationList"
+                );
+
+
+            container.innerHTML = "";
+
+
+            products.forEach(
+                product => {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "product-card";
+
+
+                    card.innerHTML = `
+
+                        <div
+                            class="product-image-wrapper"
+                        >
+
+                            <img
+                                src="images/${product.ProductID}.jpg"
+                                alt="${product.ProductName}"
+                                class="product-image"
+                                onerror="this.src='images/no-image.jpg'"
+                            >
+
+                        </div>
+
+
+                        <div class="card-content">
+
+                            <h3>
+
+                                ${product.ProductName}
+
+                            </h3>
+
+
+                            <p class="card-category">
+
+                                ${product.CategoryName}
+
+                            </p>
+
+
+                            <p class="card-price">
+
+                                ${formatPrice(
+                                    product.SalePrice
+                                )}
+
+                            </p>
+
+
+                            <p class="ai-score">
+
+                                🤖 AI Score:
+
+                                ${(
+                                    product.HybridScore * 100
+                                ).toFixed(1)}%
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+
+                    card.addEventListener(
+                        "click",
+                        function () {
+
+                            window.location.href =
+                                `product.html?id=${product.ProductID}`;
+
+                        }
+                    );
+
+
+                    container.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+        // ==================================================
+        // CUSTOMER CHANGE
+        // ==================================================
+
+        document
+            .getElementById(
+                "customerSelect"
+            )
+            .addEventListener(
+                "change",
+                function () {
+
+                    loadRecommendations();
+
+                }
+            );
+
+
+        // ==================================================
+        // ADD TO CART
+        // ==================================================
+
+        function addToCart() {
+
+            const name =
+                document.getElementById(
+                    "productName"
+                ).textContent;
+
+
+            if (
+                name === "Đang tải..." ||
+                name === "Không thể tải sản phẩm"
+            ) {
+
+                alert(
+                    "Sản phẩm chưa tải xong."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                `Đã thêm "${name}" vào giỏ hàng!`
+            );
+
+        }
+
+
+        // ==================================================
+        // START
+        // ==================================================
+
+        loadProduct();
+
+        loadRecommendations();
+
+    </script>
+
+</body>
+
+</html>

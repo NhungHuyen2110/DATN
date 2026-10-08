@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jewelry Shop - AI Recommendation</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            ✨ JEWELRY SHOP
+        </div>
+
+        <div class="customer">
+
+            Khách hàng:
+
+            <select id="customerSelect">
+
+                <option value="KH00001">
+                    KH00001
+                </option>
+
+                <option value="KH00002">
+                    KH00002
+                </option>
+
+                <option value="KH00003">
+                    KH00003
+                </option>
+
+            </select>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- PRODUCT DETAIL -->
+
+        <section class="product-detail">
+
+            <div class="product-image">
+
+                <div class="jewelry-icon">
+                    💎
+                </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <p class="label">
+                    SẢN PHẨM
+                </p>
+
+                <h1 id="productName">
+                    Đang tải...
+                </h1>
+
+
+                <p
+                    id="productCategory"
+                    class="category"
+                >
+                </p>
+
+
+                <p
+                    id="productPrice"
+                    class="price"
+                >
+                </p>
+
+
+                <div class="information">
+
+                    <p>
+                        <strong>Thương hiệu:</strong>
+
+                        <span id="productBrand">
+                        </span>
+                    </p>
+
+
+                    <p>
+                        <strong>Chất liệu:</strong>
+
+                        <span id="productMaterial">
+                        </span>
+                    </p>
+
+
+                    <p>
+                        <strong>Đá quý:</strong>
+
+                        <span id="productGemstone">
+                        </span>
+                    </p>
+
+
+                    <p>
+                        <strong>Bộ sưu tập:</strong>
+
+                        <span id="productCollection">
+                        </span>
+                    </p>
+
+
+                    <p>
+                        <strong>Tồn kho:</strong>
+
+                        <span id="productStock">
+                        </span>
+                    </p>
+
+                </div>
+
+
+                <button class="buy-button">
+
+                    🛒 Thêm vào giỏ hàng
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RECOMMENDATION -->
+
+        <section class="recommendation">
+
+            <div class="section-title">
+
+                <h2>
+                    ✨ Có thể bạn sẽ thích
+                </h2>
+
+                <p>
+                    Gợi ý được tạo bởi hệ thống AI
+                </p>
+
+            </div>
+
+
+            <div
+                id="recommendationList"
+                class="product-grid"
+            >
+
+                <div class="loading">
+
+                    Đang phân tích sở thích...
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

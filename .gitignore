@@ -5,4 +5,14 @@ __pycache__/
 .env
 .env.*
 !.env.example
-jewelry_dataset_download/dataset.zip
+.cache/
+.pytest_cache/
+*.zip
+*.7z
+*.rar
+*.pt
+*.pth
+*.safetensors
+qdrant_storage/
+chroma_db/
+jewelry_dataset_download/extracted/

@@ -1,0 +1,2001 @@
+﻿CustomerID,FullName,Gender,Age,City,Job,Income,FavoriteCategory,Budget,ShoppingFrequency,MemberLevel
+KH00001,Ông Tùng Dương,Nữ,37,TP.HCM,Sinh viên,28664749,Nhẫn,20035326,Hàng tháng,Silver
+KH00002,Nhật Hoàng,Nam,28,TP.HCM,Quản lý,28500347,Bông tai,49824920,Hàng tháng,Gold
+KH00003,Ông Thành Dương,Nam,25,Bình Dương,Quản lý,32277944,Bông tai,22768138,Hàng tháng,Gold
+KH00004,Bác Anh Dương,Nam,42,Đồng Nai,Kỹ sư,18803596,Lắc chân,45496254,Hàng tháng,Silver
+KH00005,Quý ông Châu Trần,Nữ,33,TP.HCM,Quản lý,44374660,Bông tai,20399373,2-3 lần/năm,Gold
+KH00006,Duyên Trần,Nam,27,Bình Dương,Giáo viên,26623117,Nhẫn,34147323,1 lần/năm,Bronze
+KH00007,Quý cô Linh Đặng,Nữ,27,Bình Dương,Sinh viên,25701307,Nhẫn,36089710,Hiếm khi,Bronze
+KH00008,Bảo Bảo Dương,Nam,40,Đà Nẵng,Nhân viên văn phòng,33367138,Bông tai,48322149,Hàng tháng,Gold
+KH00009,Quý cô Yến Hoàng,Nữ,57,TP.HCM,Kinh doanh,44041881,Kim cương,38163656,1 lần/năm,Diamond
+KH00010,Phúc Đức Dương,Nữ,25,Đà Nẵng,Sinh viên,23832733,Nhẫn,25562545,Hiếm khi,Diamond
+KH00011,Quang Trần,Nữ,55,Đồng Nai,Nhân viên văn phòng,38449315,Lắc chân,41378105,2-3 lần/năm,Silver
+KH00012,Tùng Văn Vũ,Nam,57,Cần Thơ,Kinh doanh,21367274,Bông tai,14318022,Hiếm khi,Gold
+KH00013,Quý cô Kim Bùi,Nữ,19,Đà Nẵng,Kinh doanh,22065238,Nhẫn,12587303,Hiếm khi,Diamond
+KH00014,Cô Xuân Phạm,Nữ,29,Đà Nẵng,Kỹ sư,35266563,Kim cương,46319929,2-3 lần/năm,Bronze
+KH00015,Phúc Hữu Vũ,Nam,35,Hà Nội,Kỹ sư,34401098,Nhẫn,13725717,Hiếm khi,Diamond
+KH00016,Quý cô Nhật Đặng,Nữ,38,Cần Thơ,Giáo viên,49679235,Kim cương,40196852,Hiếm khi,Silver
+KH00017,Chị Bảo Đặng,Nữ,55,Bình Dương,Sinh viên,19600771,Bông tai,38270181,1 lần/năm,Gold
+KH00018,Khoa Phú Dương,Nữ,42,TP.HCM,Kinh doanh,48853150,Dây chuyền,25601057,1 lần/năm,Gold
+KH00019,Bà Hải Vũ,Nam,45,Bình Dương,Nhân viên văn phòng,23196935,Bông tai,2129565,1 lần/năm,Silver
+KH00020,Quý ông Dũng Phạm,Nữ,38,Đồng Nai,Sinh viên,35457842,Bông tai,12021341,2-3 lần/năm,Diamond
+KH00021,Cô Phương Nguyễn,Nam,27,Hà Nội,Giáo viên,5019474,Nhẫn,19765582,Hiếm khi,Bronze
+KH00022,Quý cô Duyên Phạm,Nam,58,Đà Nẵng,Nhân viên văn phòng,23888191,Lắc chân,38344476,1 lần/năm,Bronze
+KH00023,Anh Khoa Mai,Nữ,33,Cần Thơ,Nhân viên văn phòng,8268508,Bông tai,31682867,Hiếm khi,Diamond
+KH00024,Trung Đức Phạm,Nam,39,Bình Dương,Kinh doanh,16061023,Kim cương,22550606,1 lần/năm,Silver
+KH00025,Tùng Trí Hoàng,Nam,41,Đồng Nai,Sinh viên,33778457,Dây chuyền,46970328,2-3 lần/năm,Bronze
+KH00026,Bà Yến Trần,Nữ,39,Đà Nẵng,Sinh viên,23361277,Vòng tay,42931113,Hàng tháng,Diamond
+KH00027,Xuân Trần,Nữ,46,Hà Nội,Nhân viên văn phòng,18103055,Lắc chân,32994009,Hàng tháng,Silver
+KH00028,Khoa Thế Đặng,Nam,31,Cần Thơ,Nhân viên văn phòng,26451053,Nhẫn,34029326,2-3 lần/năm,Diamond
+KH00029,Quý ông Tú Trần,Nam,43,TP.HCM,Giáo viên,7213825,Bông tai,3238906,2-3 lần/năm,Bronze
+KH00030,Hải Trí Nguyễn,Nữ,30,TP.HCM,Nhân viên văn phòng,36840910,Nhẫn,6574389,2-3 lần/năm,Diamond
+KH00031,Khoa Hoàng Dương,Nữ,19,Cần Thơ,Kinh doanh,9494357,Nhẫn,27911912,1 lần/năm,Gold
+KH00032,Châu Dương,Nam,36,TP.HCM,Sinh viên,31432472,Nhẫn,29892953,Hàng tháng,Gold
+KH00033,Minh Vũ,Nam,37,Hà Nội,Nhân viên văn phòng,7765807,Vòng tay,32431389,1 lần/năm,Gold
+KH00034,Ánh Đặng,Nữ,18,Đồng Nai,Quản lý,38666388,Dây chuyền,18237839,1 lần/năm,Diamond
+KH00035,Khoa Đức Nguyễn,Nam,41,Đồng Nai,Kinh doanh,49334166,Bông tai,44348130,1 lần/năm,Diamond
+KH00036,Cô Nhật Hoàng,Nam,49,Cần Thơ,Kỹ sư,35782194,Kim cương,48095771,Hàng tháng,Silver
+KH00037,Ông Châu Trần,Nam,20,Cần Thơ,Giáo viên,16830886,Kim cương,9030585,Hiếm khi,Silver
+KH00038,Nhật Hữu Trần,Nam,24,Đà Nẵng,Kinh doanh,32523199,Kim cương,6059315,2-3 lần/năm,Bronze
+KH00039,Hải Đức Phạm,Nữ,19,Đồng Nai,Kinh doanh,19490766,Nhẫn,22756212,Hiếm khi,Silver
+KH00040,Hạnh Hải Mai,Nữ,60,Bình Dương,Giáo viên,19745165,Bông tai,38552740,Hiếm khi,Gold
+KH00041,Quý cô Kim Hoàng,Nam,49,Cần Thơ,Giáo viên,19024037,Nhẫn,9597771,Hàng tháng,Silver
+KH00042,Tùng Hoàng Nguyễn,Nam,42,Cần Thơ,Nhân viên văn phòng,10616510,Nhẫn,14229279,1 lần/năm,Silver
+KH00043,Thảo Trần,Nữ,38,Hà Nội,Sinh viên,41542241,Bông tai,49156944,1 lần/năm,Bronze
+KH00044,Quý ông Châu Dương,Nữ,59,Bình Dương,Nhân viên văn phòng,38552926,Lắc chân,11431535,Hàng tháng,Silver
+KH00045,Dũng Nguyễn,Nam,52,Bình Dương,Sinh viên,27843857,Kim cương,23112666,Hiếm khi,Diamond
+KH00046,Hà Trần,Nam,40,Đồng Nai,Kinh doanh,33920160,Bông tai,35569099,1 lần/năm,Bronze
+KH00047,Nhiên Văn Bùi,Nữ,22,Đồng Nai,Quản lý,46475948,Dây chuyền,25583883,1 lần/năm,Diamond
+KH00048,Phương Dương,Nam,51,Đồng Nai,Kỹ sư,47353565,Dây chuyền,10468694,Hàng tháng,Gold
+KH00049,Quý cô Yến Phạm,Nữ,21,Cần Thơ,Sinh viên,25590135,Nhẫn,31732806,Hiếm khi,Diamond
+KH00050,An Phạm,Nữ,58,Bình Dương,Quản lý,26303248,Bông tai,22172401,Hiếm khi,Silver
+KH00051,Bà Hà Bùi,Nam,46,Đồng Nai,Sinh viên,5799297,Bông tai,48420404,Hàng tháng,Gold
+KH00052,Huy Mai Trần,Nữ,25,TP.HCM,Sinh viên,7636867,Bông tai,30773708,Hàng tháng,Gold
+KH00053,Hạnh Hữu Lê,Nam,37,Hà Nội,Kỹ sư,17055523,Bông tai,10395066,Hiếm khi,Gold
+KH00054,Thảo Lê,Nam,60,Đồng Nai,Giáo viên,16104361,Nhẫn,45356457,2-3 lần/năm,Gold
+KH00055,Cô Bảo Trần,Nam,48,TP.HCM,Kỹ sư,6140927,Nhẫn,43894889,2-3 lần/năm,Bronze
+KH00056,An Trần,Nam,21,Đà Nẵng,Kinh doanh,14716370,Vòng tay,46286656,2-3 lần/năm,Silver
+KH00057,Bác Hoàng Mai,Nữ,32,Đồng Nai,Kỹ sư,32419412,Vòng tay,7931976,1 lần/năm,Bronze
+KH00058,Quý cô Ngọc Vũ,Nữ,48,Đà Nẵng,Giáo viên,18102379,Lắc chân,4366143,1 lần/năm,Diamond
+KH00059,Dũng Quang Trần,Nữ,23,Cần Thơ,Sinh viên,45216337,Bông tai,28933528,1 lần/năm,Silver
+KH00060,Mai Mai,Nam,34,Đà Nẵng,Nhân viên văn phòng,18529876,Bông tai,44683297,Hiếm khi,Diamond
+KH00061,Chi Đặng,Nam,26,Đà Nẵng,Kinh doanh,13937789,Bông tai,37883519,2-3 lần/năm,Gold
+KH00062,Hải Bùi,Nam,29,TP.HCM,Kỹ sư,28372615,Bông tai,39317849,Hàng tháng,Silver
+KH00063,Chị Hà Dương,Nam,31,TP.HCM,Giáo viên,14583330,Nhẫn,27419001,2-3 lần/năm,Diamond
+KH00064,Tú Dương,Nam,48,Cần Thơ,Giáo viên,12171688,Bông tai,15699391,2-3 lần/năm,Diamond
+KH00065,Nhật Trần,Nữ,29,Đà Nẵng,Kinh doanh,49973705,Nhẫn,22732002,Hiếm khi,Bronze
+KH00066,Trung Vũ,Nữ,36,Cần Thơ,Giáo viên,8923968,Lắc chân,20558795,2-3 lần/năm,Bronze
+KH00067,An Vũ,Nữ,41,Đồng Nai,Giáo viên,24038552,Kim cương,46465667,2-3 lần/năm,Diamond
+KH00068,Cô Lâm Nguyễn,Nam,23,Đà Nẵng,Quản lý,41429701,Dây chuyền,21627586,Hàng tháng,Bronze
+KH00069,Thành Mai,Nữ,30,Hà Nội,Kinh doanh,16512071,Dây chuyền,38163348,Hiếm khi,Silver
+KH00070,An Quang Bùi,Nam,51,TP.HCM,Nhân viên văn phòng,29380666,Nhẫn,9139506,2-3 lần/năm,Silver
+KH00071,Cô Nhật Lê,Nam,29,Đà Nẵng,Nhân viên văn phòng,43065945,Bông tai,21771675,1 lần/năm,Diamond
+KH00072,Bà Khoa Bùi,Nữ,26,Đà Nẵng,Nhân viên văn phòng,21885042,Kim cương,30446879,1 lần/năm,Bronze
+KH00073,Ông Thành Trần,Nam,58,Đồng Nai,Kinh doanh,34733155,Lắc chân,16594303,1 lần/năm,Diamond
+KH00074,Quý ông Nhiên Phạm,Nam,25,TP.HCM,Quản lý,9715811,Bông tai,43353502,2-3 lần/năm,Gold
+KH00075,Bác Tùng Đặng,Nữ,25,Đồng Nai,Nhân viên văn phòng,40283574,Kim cương,20822335,Hiếm khi,Diamond
+KH00076,Ông Dũng Đặng,Nam,26,Đà Nẵng,Sinh viên,29491487,Lắc chân,5403131,Hiếm khi,Gold
+KH00077,Dũng Phạm,Nữ,34,Đà Nẵng,Kỹ sư,20484042,Dây chuyền,9695296,Hiếm khi,Gold
+KH00078,Anh Hoàng Đặng,Nam,51,Đà Nẵng,Quản lý,27663537,Vòng tay,30695249,2-3 lần/năm,Silver
+KH00079,Quý ông Nam Trần,Nữ,23,Đồng Nai,Giáo viên,25224590,Nhẫn,19702336,Hàng tháng,Diamond
+KH00080,Ông Tùng Trần,Nữ,50,Bình Dương,Quản lý,40068302,Vòng tay,16857781,Hiếm khi,Bronze
+KH00081,Phương Bùi,Nam,23,Hà Nội,Kỹ sư,16425866,Lắc chân,39606809,Hiếm khi,Gold
+KH00082,Ông Châu Lê,Nam,49,TP.HCM,Sinh viên,28505573,Bông tai,46725954,1 lần/năm,Gold
+KH00083,Huy Bùi,Nam,27,Hà Nội,Nhân viên văn phòng,22642958,Lắc chân,37335306,2-3 lần/năm,Silver
+KH00084,Cô Nhật Lê,Nam,27,TP.HCM,Kỹ sư,22792875,Lắc chân,39412897,1 lần/năm,Diamond
+KH00085,Ông Châu Trần,Nam,31,Bình Dương,Kinh doanh,14185169,Nhẫn,21965986,1 lần/năm,Silver
+KH00086,Hải Lê,Nam,43,Cần Thơ,Quản lý,19152326,Bông tai,16105395,Hiếm khi,Bronze
+KH00087,Lâm Trần,Nữ,29,Đồng Nai,Quản lý,48441485,Lắc chân,23324060,Hàng tháng,Silver
+KH00088,Bảo Quang Hoàng,Nam,30,Cần Thơ,Kinh doanh,23838723,Dây chuyền,13377625,Hiếm khi,Silver
+KH00089,Tú Trần,Nam,32,Hà Nội,Nhân viên văn phòng,7255130,Lắc chân,8926775,1 lần/năm,Diamond
+KH00090,Bà Vân Vũ,Nữ,24,Đà Nẵng,Quản lý,43597615,Lắc chân,19635876,2-3 lần/năm,Bronze
+KH00091,Hà Phạm,Nam,44,Hà Nội,Kỹ sư,28978171,Nhẫn,26423991,Hàng tháng,Silver
+KH00092,Phương Lê,Nam,29,Cần Thơ,Sinh viên,16505760,Nhẫn,1857472,1 lần/năm,Diamond
+KH00093,Cô Nhật Trần,Nữ,29,Hà Nội,Nhân viên văn phòng,36342908,Lắc chân,14548717,Hiếm khi,Diamond
+KH00094,Bà Hương Trần,Nam,50,Đà Nẵng,Nhân viên văn phòng,10895389,Bông tai,6351329,1 lần/năm,Silver
+KH00095,Thành Xuân Đặng,Nam,21,Bình Dương,Kinh doanh,39386820,Vòng tay,16071796,Hiếm khi,Bronze
+KH00096,Quý cô Khoa Nguyễn,Nam,38,Đồng Nai,Giáo viên,19264871,Nhẫn,40254583,2-3 lần/năm,Silver
+KH00097,Anh Trí Bùi,Nữ,27,Hà Nội,Giáo viên,7912858,Kim cương,9189372,2-3 lần/năm,Silver
+KH00098,Quý cô Hạnh Nguyễn,Nam,44,Đồng Nai,Kỹ sư,22374059,Vòng tay,43761412,Hàng tháng,Gold
+KH00099,Quang Dương,Nữ,51,Cần Thơ,Sinh viên,21959000,Dây chuyền,39702063,Hàng tháng,Gold
+KH00100,Quang Dương,Nữ,37,Cần Thơ,Kỹ sư,30624739,Lắc chân,25077457,1 lần/năm,Diamond
+KH00101,Kim Mai,Nam,20,Đồng Nai,Giáo viên,13808711,Dây chuyền,13858461,1 lần/năm,Bronze
+KH00102,Duyên Hoàng,Nữ,20,Bình Dương,Nhân viên văn phòng,41417521,Kim cương,16023436,1 lần/năm,Bronze
+KH00103,Huy Đức Dương,Nam,27,Hà Nội,Quản lý,39054418,Lắc chân,33193238,2-3 lần/năm,Silver
+KH00104,Nhật Xuân Bùi,Nữ,20,Đà Nẵng,Giáo viên,39506573,Dây chuyền,12887566,Hiếm khi,Gold
+KH00105,Chị Nhật Trần,Nữ,36,Đồng Nai,Kỹ sư,49660062,Kim cương,42935901,Hiếm khi,Gold
+KH00106,Hồng Trần,Nữ,57,Đà Nẵng,Sinh viên,14704931,Vòng tay,33592245,Hàng tháng,Gold
+KH00107,Hạnh Nguyễn,Nam,35,Cần Thơ,Sinh viên,11776280,Lắc chân,31641513,1 lần/năm,Gold
+KH00108,Khoa Thị Lê,Nam,23,Cần Thơ,Giáo viên,32740709,Dây chuyền,1944292,Hiếm khi,Diamond
+KH00109,Phương Phú Phạm,Nữ,55,Hà Nội,Kinh doanh,8967865,Vòng tay,28002404,1 lần/năm,Diamond
+KH00110,Khoa Bùi,Nam,22,TP.HCM,Nhân viên văn phòng,34523855,Bông tai,7119113,Hiếm khi,Bronze
+KH00111,Bà Hà Dương,Nam,24,TP.HCM,Giáo viên,29684014,Kim cương,35256768,Hiếm khi,Silver
+KH00112,Dũng Hải Nguyễn,Nữ,30,Bình Dương,Nhân viên văn phòng,11605017,Bông tai,35197720,Hàng tháng,Bronze
+KH00113,Hưng Mai Phạm,Nữ,47,TP.HCM,Nhân viên văn phòng,15053479,Lắc chân,14127491,Hàng tháng,Silver
+KH00114,Anh Trọng Vũ,Nam,49,Đà Nẵng,Sinh viên,37567225,Nhẫn,39252712,Hàng tháng,Gold
+KH00115,Bà Hồng Đặng,Nữ,47,Đồng Nai,Sinh viên,21716102,Bông tai,26720705,2-3 lần/năm,Silver
+KH00116,Trung Lê,Nam,44,Bình Dương,Kỹ sư,40162750,Nhẫn,8487564,2-3 lần/năm,Gold
+KH00117,Châu Mai Bảo Hoàng,Nữ,53,Bình Dương,Giáo viên,7708524,Bông tai,47617184,2-3 lần/năm,Diamond
+KH00118,Anh Tùng Đặng,Nam,40,Bình Dương,Sinh viên,25559024,Nhẫn,15907176,Hàng tháng,Diamond
+KH00119,Cô Thành Vũ,Nam,40,TP.HCM,Kỹ sư,27340489,Lắc chân,6437434,Hiếm khi,Diamond
+KH00120,Duyên Dương,Nữ,52,Cần Thơ,Giáo viên,9486411,Vòng tay,39978154,Hiếm khi,Gold
+KH00121,Chị Khoa Đặng,Nữ,36,Đồng Nai,Giáo viên,21054834,Nhẫn,34517865,Hàng tháng,Diamond
+KH00122,Quý ông Hoàng Nguyễn,Nam,18,TP.HCM,Giáo viên,45984363,Vòng tay,27287780,Hiếm khi,Silver
+KH00123,Bảo Trần,Nữ,48,Bình Dương,Kỹ sư,42925553,Vòng tay,7554486,2-3 lần/năm,Diamond
+KH00124,Kim Hải Phạm,Nam,19,Bình Dương,Quản lý,35514763,Nhẫn,2262166,2-3 lần/năm,Bronze
+KH00125,Bà Hà Lê,Nữ,55,Hà Nội,Quản lý,21724797,Vòng tay,30689663,Hiếm khi,Bronze
+KH00126,Thảo Bùi,Nam,34,Đồng Nai,Sinh viên,6770980,Lắc chân,27867819,2-3 lần/năm,Diamond
+KH00127,Nam Đặng,Nữ,25,TP.HCM,Quản lý,43859089,Kim cương,16342935,1 lần/năm,Gold
+KH00128,Bà Vi Dương,Nam,44,Bình Dương,Giáo viên,23833413,Nhẫn,18097057,2-3 lần/năm,Diamond
+KH00129,Phúc Văn Nguyễn,Nam,21,Bình Dương,Kỹ sư,35772052,Vòng tay,40439475,Hiếm khi,Bronze
+KH00130,Lâm Phạm,Nữ,26,Hà Nội,Sinh viên,12718562,Dây chuyền,49641820,Hiếm khi,Bronze
+KH00131,Vũ Đức Dương,Nam,35,Đồng Nai,Nhân viên văn phòng,47622541,Kim cương,7287119,2-3 lần/năm,Bronze
+KH00132,Hải Trí Lê,Nữ,50,TP.HCM,Quản lý,47222743,Vòng tay,11760464,Hiếm khi,Gold
+KH00133,Bà Hồng Bùi,Nam,18,Đồng Nai,Kinh doanh,43234781,Dây chuyền,33120952,1 lần/năm,Gold
+KH00134,Ông Bảo Phạm,Nữ,41,Cần Thơ,Kỹ sư,46331082,Vòng tay,21502194,Hiếm khi,Diamond
+KH00135,Bảo Lê,Nam,39,Cần Thơ,Giáo viên,48456566,Lắc chân,24547062,Hàng tháng,Diamond
+KH00136,Phúc Bảo Mai,Nữ,45,Cần Thơ,Kỹ sư,28481991,Lắc chân,44894553,Hàng tháng,Silver
+KH00137,Khoa Nguyễn,Nam,49,Bình Dương,Quản lý,8899414,Bông tai,1763609,Hiếm khi,Gold
+KH00138,Dũng Phạm,Nam,41,Cần Thơ,Sinh viên,43106369,Dây chuyền,40127014,1 lần/năm,Silver
+KH00139,Huy Vũ,Nữ,39,Cần Thơ,Nhân viên văn phòng,49531773,Kim cương,33486423,2-3 lần/năm,Silver
+KH00140,Quý cô Hải Vũ,Nam,21,Đà Nẵng,Sinh viên,45592429,Lắc chân,18878937,Hàng tháng,Diamond
+KH00141,Chị Linh Nguyễn,Nữ,32,Bình Dương,Sinh viên,44466464,Vòng tay,4480963,1 lần/năm,Gold
+KH00142,Cô Yến Trần,Nữ,32,TP.HCM,Quản lý,22437068,Bông tai,46785803,1 lần/năm,Bronze
+KH00143,Xuân Mai,Nữ,51,Đà Nẵng,Quản lý,28705037,Kim cương,12737999,2-3 lần/năm,Gold
+KH00144,Nam Hải Vũ,Nữ,18,Bình Dương,Nhân viên văn phòng,6886291,Bông tai,8306588,2-3 lần/năm,Diamond
+KH00145,Cô Dương Vũ,Nữ,24,Hà Nội,Quản lý,30139728,Kim cương,14260510,2-3 lần/năm,Diamond
+KH00146,Yến Mai,Nữ,42,Hà Nội,Nhân viên văn phòng,42602998,Vòng tay,7557716,2-3 lần/năm,Gold
+KH00147,Thành Trí Bùi,Nam,28,Cần Thơ,Quản lý,5115301,Lắc chân,44617703,Hàng tháng,Bronze
+KH00148,Quý cô Chi Bùi,Nữ,30,Đà Nẵng,Nhân viên văn phòng,44772070,Dây chuyền,31182532,Hiếm khi,Bronze
+KH00149,Hà Đặng,Nam,50,Cần Thơ,Quản lý,19667141,Kim cương,14335400,Hàng tháng,Silver
+KH00150,Quý ông Hoàng Đặng,Nam,38,Hà Nội,Kỹ sư,5000680,Dây chuyền,18003863,1 lần/năm,Diamond
+KH00151,Nam Xuân Mai,Nữ,58,Cần Thơ,Nhân viên văn phòng,21832614,Kim cương,37081497,Hiếm khi,Gold
+KH00152,Anh Bảo Đặng,Nữ,39,Đà Nẵng,Kỹ sư,47591195,Lắc chân,14100068,Hiếm khi,Silver
+KH00153,Huy Hoàng Lê,Nữ,23,Bình Dương,Quản lý,33398800,Nhẫn,26241531,1 lần/năm,Bronze
+KH00154,Hải Nguyễn,Nữ,32,Đà Nẵng,Nhân viên văn phòng,12114707,Lắc chân,44063918,1 lần/năm,Gold
+KH00155,Thành Phú Trần,Nữ,50,Đồng Nai,Quản lý,32391646,Lắc chân,39509051,Hàng tháng,Silver
+KH00156,Nam Bùi,Nam,23,Đà Nẵng,Nhân viên văn phòng,24255195,Kim cương,13276904,1 lần/năm,Silver
+KH00157,Bà Kim Dương,Nữ,36,Bình Dương,Kinh doanh,47407873,Vòng tay,15045419,Hàng tháng,Bronze
+KH00158,Nhật Hoàng,Nữ,42,Bình Dương,Nhân viên văn phòng,35700722,Dây chuyền,45149295,Hàng tháng,Bronze
+KH00159,Bác Thành Trần,Nam,55,Bình Dương,Giáo viên,27683665,Bông tai,49875939,1 lần/năm,Gold
+KH00160,Chị Bảo Vũ,Nam,43,Hà Nội,Nhân viên văn phòng,23169001,Dây chuyền,34376236,2-3 lần/năm,Gold
+KH00161,Bà Duyên Nguyễn,Nữ,20,Bình Dương,Giáo viên,13856945,Vòng tay,17043244,1 lần/năm,Gold
+KH00162,Bà Lan Trần,Nam,39,Đà Nẵng,Giáo viên,46390632,Lắc chân,4260574,2-3 lần/năm,Bronze
+KH00163,Anh Vũ Vũ,Nam,20,TP.HCM,Kinh doanh,39137657,Bông tai,44931158,Hàng tháng,Diamond
+KH00164,Chị Thành Mai,Nam,36,TP.HCM,Kinh doanh,17112695,Kim cương,15265198,1 lần/năm,Gold
+KH00165,Lâm Quang Lê,Nữ,35,TP.HCM,Kỹ sư,14841979,Bông tai,2442345,Hàng tháng,Silver
+KH00166,Tùng Vũ,Nam,23,Hà Nội,Kỹ sư,43910126,Bông tai,28516645,Hiếm khi,Silver
+KH00167,Châu Bùi,Nam,47,Đà Nẵng,Sinh viên,23022582,Vòng tay,18702750,1 lần/năm,Silver
+KH00168,An Trần,Nam,49,Đà Nẵng,Giáo viên,48565164,Vòng tay,6597877,Hàng tháng,Gold
+KH00169,Chị Kim Đặng,Nữ,37,Đồng Nai,Giáo viên,34211130,Bông tai,38703132,1 lần/năm,Gold
+KH00170,Quý cô Yến Hoàng,Nữ,51,Cần Thơ,Sinh viên,33309900,Dây chuyền,39415024,1 lần/năm,Diamond
+KH00171,Tùng Phạm,Nữ,58,Bình Dương,Kỹ sư,44220973,Vòng tay,19617724,1 lần/năm,Bronze
+KH00172,Quý ông Minh Lê,Nam,53,Bình Dương,Nhân viên văn phòng,29490612,Nhẫn,49164210,Hàng tháng,Gold
+KH00173,Bác Dũng Dương,Nữ,27,Cần Thơ,Kinh doanh,8947973,Kim cương,31390081,Hiếm khi,Silver
+KH00174,Nhật Mai,Nam,46,Cần Thơ,Nhân viên văn phòng,12556347,Kim cương,49137249,1 lần/năm,Gold
+KH00175,Kim Trí Dương,Nữ,50,Đà Nẵng,Sinh viên,32866962,Lắc chân,9766154,1 lần/năm,Diamond
+KH00176,Nhật Mai Nguyễn,Nam,45,Đồng Nai,Kinh doanh,29172990,Lắc chân,47061157,2-3 lần/năm,Silver
+KH00177,Chị Bảo Đặng,Nam,46,Bình Dương,Nhân viên văn phòng,32434794,Kim cương,43704021,2-3 lần/năm,Bronze
+KH00178,Cô An Nguyễn,Nữ,22,TP.HCM,Kỹ sư,32064835,Kim cương,26880462,1 lần/năm,Bronze
+KH00179,Quý cô Ánh Hoàng,Nữ,31,Bình Dương,Quản lý,14895845,Kim cương,46416494,Hàng tháng,Diamond
+KH00180,Quý cô Thành Nguyễn,Nữ,27,Cần Thơ,Kỹ sư,32644624,Vòng tay,8994222,1 lần/năm,Gold
+KH00181,Quý cô Linh Đặng,Nữ,59,Hà Nội,Nhân viên văn phòng,40194987,Lắc chân,1330924,1 lần/năm,Gold
+KH00182,Lâm Xuân Trần,Nam,46,Đà Nẵng,Kinh doanh,8867817,Lắc chân,10769247,Hàng tháng,Bronze
+KH00183,Phúc Đức Phạm,Nữ,60,Đồng Nai,Quản lý,22045489,Bông tai,5098656,2-3 lần/năm,Gold
+KH00184,Quý cô Hải Bùi,Nữ,20,Đà Nẵng,Quản lý,30667230,Vòng tay,37939704,Hiếm khi,Diamond
+KH00185,Phúc Trí Dương,Nam,22,Hà Nội,Kỹ sư,49173608,Nhẫn,7459904,Hiếm khi,Gold
+KH00186,Anh Phạm,Nam,36,Hà Nội,Quản lý,36765122,Bông tai,31706866,Hàng tháng,Gold
+KH00187,Bác Trọng Hoàng,Nữ,54,Đà Nẵng,Quản lý,40842067,Dây chuyền,22770763,Hàng tháng,Silver
+KH00188,Tú Tấn Lê,Nam,22,TP.HCM,Quản lý,48650622,Lắc chân,25479523,Hàng tháng,Gold
+KH00189,Ánh Nguyễn,Nam,47,Hà Nội,Kỹ sư,26434759,Bông tai,26063659,Hiếm khi,Diamond
+KH00190,Anh Nhiên Đặng,Nam,18,Đồng Nai,Quản lý,36402187,Dây chuyền,28784521,2-3 lần/năm,Diamond
+KH00191,Thảo Phạm,Nữ,44,TP.HCM,Kinh doanh,33289183,Vòng tay,40233431,Hiếm khi,Gold
+KH00192,Lâm Đức Mai,Nam,32,Cần Thơ,Giáo viên,45650637,Dây chuyền,2572115,1 lần/năm,Diamond
+KH00193,Quý cô Lâm Bùi,Nam,48,TP.HCM,Sinh viên,34584640,Dây chuyền,49090342,Hiếm khi,Silver
+KH00194,Khoa Hải Phạm,Nữ,46,Đà Nẵng,Sinh viên,15208628,Nhẫn,28933121,Hiếm khi,Gold
+KH00195,Hà Hải Phạm,Nam,37,Cần Thơ,Kỹ sư,30576018,Nhẫn,14938802,1 lần/năm,Diamond
+KH00196,Chị Hà Đặng,Nữ,30,Đà Nẵng,Quản lý,27699018,Kim cương,27545364,Hàng tháng,Diamond
+KH00197,Hồng Trần,Nam,40,TP.HCM,Sinh viên,33785627,Kim cương,38528448,Hàng tháng,Silver
+KH00198,Bà Hương Lê,Nam,33,TP.HCM,Nhân viên văn phòng,19539995,Dây chuyền,18118593,2-3 lần/năm,Gold
+KH00199,Khoa Hải Lê,Nam,53,Bình Dương,Giáo viên,40193223,Lắc chân,33849127,Hiếm khi,Silver
+KH00200,Phương Hoàng,Nữ,20,Hà Nội,Nhân viên văn phòng,42885179,Kim cương,42691840,Hiếm khi,Bronze
+KH00201,Chị Phương Đặng,Nam,50,Cần Thơ,Kinh doanh,8981269,Bông tai,30538205,1 lần/năm,Gold
+KH00202,Bà Nhật Bùi,Nữ,18,Bình Dương,Kinh doanh,42817728,Bông tai,13207407,Hiếm khi,Gold
+KH00203,Hạnh Hoàng,Nam,46,Hà Nội,Quản lý,37420729,Dây chuyền,47097152,2-3 lần/năm,Gold
+KH00204,Thảo Đặng,Nam,20,Đà Nẵng,Nhân viên văn phòng,22067148,Vòng tay,6626584,1 lần/năm,Silver
+KH00205,Dương Trần,Nam,49,Đồng Nai,Quản lý,39017507,Bông tai,22236611,2-3 lần/năm,Gold
+KH00206,Linh Vũ,Nữ,58,Cần Thơ,Giáo viên,19039244,Vòng tay,11484990,2-3 lần/năm,Gold
+KH00207,Quý cô Kim Bùi,Nữ,53,Bình Dương,Sinh viên,41769947,Vòng tay,35126539,2-3 lần/năm,Gold
+KH00208,Hạnh Quang Dương,Nam,51,Đà Nẵng,Kỹ sư,27157955,Nhẫn,9858687,Hiếm khi,Gold
+KH00209,Lâm Hải Nguyễn,Nữ,44,TP.HCM,Quản lý,23129819,Bông tai,47915591,1 lần/năm,Gold
+KH00210,Anh Trọng Nguyễn,Nam,41,Cần Thơ,Sinh viên,8894881,Kim cương,20726373,Hàng tháng,Silver
+KH00211,Mai Hoàng,Nam,21,Đồng Nai,Kỹ sư,42771784,Nhẫn,8799576,1 lần/năm,Diamond
+KH00212,Quý cô Chi Vũ,Nam,48,Cần Thơ,Kinh doanh,9373856,Lắc chân,10949495,Hàng tháng,Gold
+KH00213,Quang Thị Dương,Nữ,37,Bình Dương,Quản lý,36563081,Nhẫn,26616991,2-3 lần/năm,Gold
+KH00214,Quý cô An Phạm,Nam,56,TP.HCM,Kỹ sư,22647485,Lắc chân,24667693,1 lần/năm,Gold
+KH00215,Ông Phúc Dương,Nữ,35,TP.HCM,Quản lý,41355164,Dây chuyền,23598560,2-3 lần/năm,Gold
+KH00216,Tùng Lê,Nữ,57,Cần Thơ,Kỹ sư,12997664,Nhẫn,14432051,1 lần/năm,Gold
+KH00217,Thành Mai Dương,Nam,35,Cần Thơ,Kinh doanh,10816039,Kim cương,47402371,2-3 lần/năm,Silver
+KH00218,Cô Yến Phạm,Nam,57,Đà Nẵng,Nhân viên văn phòng,40084241,Nhẫn,21315527,2-3 lần/năm,Bronze
+KH00219,Nhật Phú Đặng,Nam,30,TP.HCM,Giáo viên,17727226,Lắc chân,23230306,1 lần/năm,Silver
+KH00220,Chị Lan Phạm,Nữ,25,Đà Nẵng,Quản lý,11539088,Lắc chân,38075859,Hiếm khi,Gold
+KH00221,Mai Phạm,Nữ,39,Bình Dương,Kinh doanh,5925194,Nhẫn,48521175,Hiếm khi,Silver
+KH00222,Chị Ngọc Trần,Nữ,55,TP.HCM,Giáo viên,35075065,Kim cương,24819232,1 lần/năm,Diamond
+KH00223,Anh Mai Bảo Dương,Nam,40,Hà Nội,Sinh viên,27576804,Nhẫn,11431844,Hàng tháng,Gold
+KH00224,Châu Lê,Nữ,56,Đà Nẵng,Kinh doanh,6517913,Bông tai,38444828,1 lần/năm,Gold
+KH00225,Quý ông Hoàng Nguyễn,Nữ,26,Bình Dương,Kỹ sư,39886092,Bông tai,30573814,Hiếm khi,Diamond
+KH00226,Hưng Trần,Nữ,21,Đà Nẵng,Giáo viên,44506763,Kim cương,41947236,Hàng tháng,Gold
+KH00227,Hải Đức Hoàng,Nam,18,Cần Thơ,Giáo viên,6520259,Kim cương,35135538,Hiếm khi,Diamond
+KH00228,Hưng Vũ,Nữ,55,Bình Dương,Quản lý,28396674,Lắc chân,9143158,Hiếm khi,Gold
+KH00229,Bà Thành Trần,Nữ,46,Cần Thơ,Sinh viên,42065391,Dây chuyền,12047388,1 lần/năm,Gold
+KH00230,Nhật Bảo Đặng,Nam,25,Đà Nẵng,Kinh doanh,16218930,Dây chuyền,32863576,2-3 lần/năm,Silver
+KH00231,Cô Hải Phạm,Nữ,42,Đồng Nai,Quản lý,27208265,Nhẫn,48000701,1 lần/năm,Gold
+KH00232,Duyên Bùi,Nữ,26,Bình Dương,Sinh viên,8574916,Kim cương,26157601,1 lần/năm,Diamond
+KH00233,Khoa Bảo Dương,Nam,30,Đà Nẵng,Kỹ sư,45075919,Kim cương,2886092,2-3 lần/năm,Diamond
+KH00234,Anh Phúc Trần,Nam,46,Bình Dương,Giáo viên,26751646,Vòng tay,22760395,Hàng tháng,Gold
+KH00235,Khoa Thế Vũ,Nam,26,Đồng Nai,Kỹ sư,24540156,Lắc chân,47004142,Hiếm khi,Silver
+KH00236,Ông Phúc Trần,Nữ,32,Đồng Nai,Quản lý,27622965,Lắc chân,1490971,2-3 lần/năm,Gold
+KH00237,Chị Xuân Phạm,Nam,18,Đà Nẵng,Sinh viên,17453007,Kim cương,49949707,1 lần/năm,Silver
+KH00238,Anh Nhiên Vũ,Nữ,58,Đồng Nai,Giáo viên,16288454,Lắc chân,14738958,1 lần/năm,Silver
+KH00239,Bà Dương Nguyễn,Nam,37,Cần Thơ,Nhân viên văn phòng,21692342,Bông tai,9649194,Hiếm khi,Gold
+KH00240,Kim Đức Nguyễn,Nữ,38,TP.HCM,Sinh viên,41692487,Vòng tay,21290352,1 lần/năm,Bronze
+KH00241,Quý cô Thảo Bùi,Nữ,32,Bình Dương,Quản lý,46869243,Kim cương,23389618,2-3 lần/năm,Diamond
+KH00242,Chị Thành Trần,Nữ,34,TP.HCM,Kỹ sư,8757919,Lắc chân,43271747,Hiếm khi,Diamond
+KH00243,Trung Phạm,Nam,34,Hà Nội,Kinh doanh,14925241,Dây chuyền,31076241,2-3 lần/năm,Gold
+KH00244,Chị Ánh Bùi,Nữ,36,TP.HCM,Kỹ sư,43701734,Bông tai,22016976,2-3 lần/năm,Silver
+KH00245,Quý ông Khoa Đặng,Nam,18,Hà Nội,Giáo viên,24646102,Kim cương,3737501,2-3 lần/năm,Silver
+KH00246,Minh Xuân Nguyễn,Nam,40,Hà Nội,Kỹ sư,39945726,Dây chuyền,17530071,2-3 lần/năm,Bronze
+KH00247,Hoàng Bùi,Nam,49,Bình Dương,Kỹ sư,22584926,Dây chuyền,36306096,Hàng tháng,Diamond
+KH00248,Xuân Phạm,Nam,46,TP.HCM,Sinh viên,35532925,Kim cương,7125646,1 lần/năm,Diamond
+KH00249,Châu Bảo Đặng,Nữ,22,TP.HCM,Kỹ sư,39295762,Lắc chân,44654785,2-3 lần/năm,Gold
+KH00250,Thành Xuân Mai,Nam,48,Hà Nội,Kinh doanh,8758027,Vòng tay,24549532,1 lần/năm,Bronze
+KH00251,Châu Quang Mai,Nữ,36,Cần Thơ,Nhân viên văn phòng,43335418,Kim cương,7665125,Hiếm khi,Diamond
+KH00252,An Hoàng,Nam,36,Bình Dương,Quản lý,9157754,Lắc chân,1692209,Hàng tháng,Bronze
+KH00253,Mai Dương,Nam,26,TP.HCM,Giáo viên,30572736,Vòng tay,28910101,1 lần/năm,Diamond
+KH00254,Dũng Hoàng Phạm,Nữ,43,Đà Nẵng,Kỹ sư,13010825,Dây chuyền,41345691,1 lần/năm,Diamond
+KH00255,Cô Hạnh Đặng,Nam,46,TP.HCM,Kinh doanh,6022251,Vòng tay,5865041,1 lần/năm,Diamond
+KH00256,Cô Vân Hoàng,Nam,30,Đồng Nai,Kỹ sư,27771888,Kim cương,32694606,Hàng tháng,Bronze
+KH00257,Phúc Xuân Bùi,Nữ,41,Bình Dương,Quản lý,19960142,Nhẫn,14672293,Hiếm khi,Gold
+KH00258,Hoàng Nguyễn,Nữ,44,Đà Nẵng,Kinh doanh,44946484,Kim cương,23432320,Hiếm khi,Silver
+KH00259,Quý ông Nam Hoàng,Nữ,45,Hà Nội,Quản lý,15029670,Nhẫn,25575087,Hiếm khi,Bronze
+KH00260,Chị Hồng Dương,Nam,27,Đà Nẵng,Kỹ sư,30663000,Vòng tay,6701199,2-3 lần/năm,Silver
+KH00261,Lan Mai,Nam,55,Đồng Nai,Nhân viên văn phòng,16813178,Vòng tay,11877493,Hiếm khi,Bronze
+KH00262,Hưng Bùi,Nữ,46,Cần Thơ,Kỹ sư,17984530,Vòng tay,17668083,1 lần/năm,Gold
+KH00263,Ánh Hoàng,Nữ,51,Hà Nội,Nhân viên văn phòng,7369930,Kim cương,39074961,Hiếm khi,Bronze
+KH00264,Bà Thảo Nguyễn,Nam,44,Đà Nẵng,Quản lý,20505998,Dây chuyền,40625241,Hàng tháng,Silver
+KH00265,Quý cô Thảo Đặng,Nữ,31,Cần Thơ,Kinh doanh,27528565,Vòng tay,36951674,1 lần/năm,Bronze
+KH00266,Thành Đặng,Nữ,59,Hà Nội,Quản lý,18449912,Lắc chân,45070285,2-3 lần/năm,Gold
+KH00267,Minh Hoàng Trần,Nam,43,Bình Dương,Sinh viên,24572063,Lắc chân,46407024,Hàng tháng,Silver
+KH00268,Huy Nguyễn,Nữ,31,Bình Dương,Quản lý,30189765,Kim cương,6346798,1 lần/năm,Gold
+KH00269,Cô Bảo Mai,Nữ,54,Cần Thơ,Giáo viên,44704567,Dây chuyền,40079482,Hàng tháng,Gold
+KH00270,Tú Xuân Đặng,Nữ,39,Bình Dương,Giáo viên,25420208,Lắc chân,20037334,1 lần/năm,Bronze
+KH00271,Bà Dương Nguyễn,Nam,31,Cần Thơ,Sinh viên,42939355,Lắc chân,5690165,1 lần/năm,Bronze
+KH00272,Phương Trần,Nữ,54,Đà Nẵng,Kinh doanh,42666216,Kim cương,21097586,1 lần/năm,Diamond
+KH00273,Huy Thế Phạm,Nam,24,Cần Thơ,Nhân viên văn phòng,17012212,Bông tai,31957360,1 lần/năm,Diamond
+KH00274,Quý ông Tùng Dương,Nữ,21,Đồng Nai,Sinh viên,44187208,Dây chuyền,20477991,1 lần/năm,Gold
+KH00275,Quý cô Lan Đặng,Nữ,40,Đà Nẵng,Nhân viên văn phòng,20387254,Vòng tay,21270750,Hiếm khi,Bronze
+KH00276,Quý cô Lan Trần,Nam,20,Đồng Nai,Kỹ sư,27720201,Vòng tay,22265238,1 lần/năm,Silver
+KH00277,Hải Mai,Nữ,31,Bình Dương,Nhân viên văn phòng,41789423,Kim cương,15126211,Hiếm khi,Silver
+KH00278,Chị Dương Phạm,Nam,36,Đà Nẵng,Kinh doanh,46953008,Nhẫn,14639559,Hàng tháng,Silver
+KH00279,Bảo Dương,Nam,54,Đà Nẵng,Quản lý,34729788,Nhẫn,40931342,Hàng tháng,Silver
+KH00280,Anh Hưng Lê,Nam,42,TP.HCM,Giáo viên,12753859,Bông tai,33769298,1 lần/năm,Silver
+KH00281,Bà Hạnh Hoàng,Nữ,44,Đà Nẵng,Sinh viên,10468377,Kim cương,3226529,Hiếm khi,Diamond
+KH00282,Dương Dương,Nam,22,Hà Nội,Kinh doanh,34401492,Vòng tay,11882921,Hiếm khi,Bronze
+KH00283,Chị Nhật Lê,Nam,19,Đồng Nai,Nhân viên văn phòng,47397546,Vòng tay,23221614,1 lần/năm,Bronze
+KH00284,Ngọc Đặng,Nam,53,Cần Thơ,Kinh doanh,38676429,Nhẫn,13950493,1 lần/năm,Gold
+KH00285,Kim Phạm,Nam,18,Đồng Nai,Sinh viên,31031531,Nhẫn,7904083,Hiếm khi,Silver
+KH00286,Quý ông Nam Mai,Nữ,42,Cần Thơ,Sinh viên,29503886,Kim cương,47634467,2-3 lần/năm,Silver
+KH00287,Quang Mai Dương,Nữ,29,Đà Nẵng,Kinh doanh,31544545,Nhẫn,7074495,Hiếm khi,Bronze
+KH00288,Bà Hà Hoàng,Nữ,21,Đà Nẵng,Nhân viên văn phòng,8469655,Nhẫn,45655479,1 lần/năm,Gold
+KH00289,Phúc Trí Trần,Nữ,51,Đồng Nai,Sinh viên,33554169,Nhẫn,33786609,Hàng tháng,Bronze
+KH00290,Hương Lê,Nam,20,Bình Dương,Kỹ sư,22040125,Nhẫn,23248458,Hiếm khi,Diamond
+KH00291,Nhật Thị Phạm,Nữ,25,Bình Dương,Giáo viên,40911482,Vòng tay,2156689,2-3 lần/năm,Gold
+KH00292,Khoa Văn Dương,Nam,31,Đà Nẵng,Kinh doanh,11220673,Bông tai,1101867,Hiếm khi,Silver
+KH00293,Chi Phạm,Nữ,31,TP.HCM,Giáo viên,28913812,Vòng tay,47588018,Hiếm khi,Diamond
+KH00294,Anh Hoàng,Nam,48,Cần Thơ,Kinh doanh,28040657,Kim cương,40417409,Hàng tháng,Silver
+KH00295,Chị Lâm Vũ,Nam,60,TP.HCM,Nhân viên văn phòng,42321873,Vòng tay,21047894,Hàng tháng,Diamond
+KH00296,Nhật Mai Bảo Bùi,Nữ,38,Hà Nội,Kỹ sư,31728914,Lắc chân,40522330,1 lần/năm,Silver
+KH00297,Nhiên Hoàng,Nữ,39,Hà Nội,Kỹ sư,17481495,Kim cương,45986049,Hiếm khi,Silver
+KH00298,Phương Thế Phạm,Nữ,44,Bình Dương,Nhân viên văn phòng,19459280,Vòng tay,22237092,2-3 lần/năm,Bronze
+KH00299,Quý ông Nhiên Bùi,Nam,21,Đà Nẵng,Quản lý,31259386,Nhẫn,19761101,2-3 lần/năm,Diamond
+KH00300,Bác Trọng Phạm,Nữ,59,Đồng Nai,Giáo viên,13792841,Dây chuyền,3434534,2-3 lần/năm,Bronze
+KH00301,Ông Nhiên Mai,Nam,23,Đồng Nai,Sinh viên,26653518,Dây chuyền,3512256,2-3 lần/năm,Bronze
+KH00302,Mai Phạm,Nữ,59,TP.HCM,Quản lý,24078388,Vòng tay,21425111,Hiếm khi,Silver
+KH00303,Phúc Nguyễn,Nữ,49,Cần Thơ,Kỹ sư,36745050,Dây chuyền,21548996,Hiếm khi,Bronze
+KH00304,Hạnh Phú Mai,Nữ,27,Đà Nẵng,Kinh doanh,10853559,Nhẫn,11386877,1 lần/năm,Silver
+KH00305,Bảo Nguyễn,Nam,33,Đồng Nai,Sinh viên,44913717,Lắc chân,10660067,1 lần/năm,Diamond
+KH00306,Hưng Lê,Nữ,56,Cần Thơ,Kinh doanh,12990305,Vòng tay,27602295,1 lần/năm,Gold
+KH00307,Bà Nhật Lê,Nam,49,Đồng Nai,Giáo viên,13493196,Nhẫn,1888923,2-3 lần/năm,Diamond
+KH00308,Bà An Dương,Nữ,55,Hà Nội,Sinh viên,13800679,Dây chuyền,22674261,Hàng tháng,Bronze
+KH00309,Quang Trí Phạm,Nam,43,Bình Dương,Kinh doanh,43278709,Lắc chân,24878559,Hiếm khi,Diamond
+KH00310,Quang Mai Bảo Vũ,Nữ,41,Hà Nội,Kinh doanh,24769446,Vòng tay,35930645,Hàng tháng,Gold
+KH00311,Hà Trần,Nữ,33,Bình Dương,Quản lý,18910758,Lắc chân,1749970,Hàng tháng,Silver
+KH00312,Bà Linh Mai,Nam,43,Cần Thơ,Sinh viên,15033186,Vòng tay,41547354,Hàng tháng,Bronze
+KH00313,Quý ông Bảo Vũ,Nam,25,Đồng Nai,Nhân viên văn phòng,34228743,Dây chuyền,14428013,2-3 lần/năm,Gold
+KH00314,Bà Lan Đặng,Nam,54,Hà Nội,Kỹ sư,26462452,Kim cương,5940361,Hiếm khi,Silver
+KH00315,Cô Nhật Hoàng,Nam,32,Hà Nội,Giáo viên,49410803,Bông tai,11040450,1 lần/năm,Bronze
+KH00316,Hạnh Lê,Nữ,37,Đà Nẵng,Giáo viên,8578491,Vòng tay,13946166,Hiếm khi,Diamond
+KH00317,Hưng Vũ,Nữ,60,Đồng Nai,Quản lý,37285052,Nhẫn,25920991,2-3 lần/năm,Diamond
+KH00318,Chị Hà Hoàng,Nam,35,Hà Nội,Kỹ sư,33771196,Vòng tay,31496209,2-3 lần/năm,Bronze
+KH00319,Huy Thị Vũ,Nam,37,Bình Dương,Sinh viên,30601352,Vòng tay,27453502,2-3 lần/năm,Bronze
+KH00320,Bảo Mai Bảo Hoàng,Nữ,18,Đồng Nai,Kỹ sư,37392715,Vòng tay,13756792,1 lần/năm,Silver
+KH00321,Cô Bảo Phạm,Nữ,23,Đồng Nai,Kỹ sư,47342386,Vòng tay,37669522,2-3 lần/năm,Diamond
+KH00322,Hà Tấn Mai,Nam,47,Cần Thơ,Sinh viên,34513462,Dây chuyền,12192339,1 lần/năm,Bronze
+KH00323,Tú Phú Trần,Nữ,58,Đồng Nai,Kỹ sư,49763798,Bông tai,8392589,Hiếm khi,Diamond
+KH00324,Lâm Bùi,Nữ,50,TP.HCM,Kỹ sư,17458378,Lắc chân,30350548,2-3 lần/năm,Silver
+KH00325,Bảo Trần,Nữ,56,Đồng Nai,Quản lý,18940932,Bông tai,3809948,2-3 lần/năm,Silver
+KH00326,Khoa Hoàng Mai,Nam,54,TP.HCM,Kỹ sư,10088645,Kim cương,4003318,1 lần/năm,Diamond
+KH00327,Xuân Vũ,Nam,50,Cần Thơ,Giáo viên,14441884,Lắc chân,25364847,Hiếm khi,Diamond
+KH00328,An Bùi,Nữ,38,Bình Dương,Kỹ sư,9127513,Kim cương,16037562,2-3 lần/năm,Bronze
+KH00329,Cô Ánh Hoàng,Nam,18,Đà Nẵng,Kỹ sư,36335674,Nhẫn,3289729,2-3 lần/năm,Bronze
+KH00330,Quang Quang Lê,Nam,60,Đồng Nai,Quản lý,42469499,Nhẫn,26618044,1 lần/năm,Diamond
+KH00331,Hải Đặng,Nam,37,Đà Nẵng,Giáo viên,18700822,Dây chuyền,4355515,1 lần/năm,Diamond
+KH00332,Hạnh Đức Hoàng,Nam,23,TP.HCM,Giáo viên,19770183,Lắc chân,45972156,Hiếm khi,Gold
+KH00333,Lâm Phạm,Nam,29,Đồng Nai,Sinh viên,12332859,Bông tai,4557120,1 lần/năm,Gold
+KH00334,Vân Đặng,Nữ,50,Cần Thơ,Kỹ sư,42596215,Lắc chân,29353194,2-3 lần/năm,Gold
+KH00335,Phúc Tấn Mai,Nữ,59,Hà Nội,Kỹ sư,48539510,Lắc chân,36816594,1 lần/năm,Gold
+KH00336,Bà Hương Dương,Nữ,37,Đà Nẵng,Kinh doanh,7003212,Nhẫn,24416425,1 lần/năm,Gold
+KH00337,Chị Vân Dương,Nam,49,Đồng Nai,Sinh viên,39331169,Dây chuyền,17908606,2-3 lần/năm,Silver
+KH00338,Quý cô Lâm Trần,Nữ,37,Đà Nẵng,Quản lý,25059183,Nhẫn,26970004,2-3 lần/năm,Diamond
+KH00339,Bà Hương Đặng,Nữ,44,Đồng Nai,Nhân viên văn phòng,35256279,Vòng tay,31128435,Hiếm khi,Bronze
+KH00340,Phúc Mai Bảo Vũ,Nam,31,Đà Nẵng,Kỹ sư,40740669,Lắc chân,30495861,Hàng tháng,Bronze
+KH00341,Thành Lê,Nữ,45,Cần Thơ,Nhân viên văn phòng,34994965,Lắc chân,36438731,2-3 lần/năm,Bronze
+KH00342,Thành Lê,Nữ,35,Đồng Nai,Kỹ sư,44156490,Dây chuyền,39820323,2-3 lần/năm,Gold
+KH00343,Tùng Thị Hoàng,Nữ,60,TP.HCM,Sinh viên,17828707,Vòng tay,14375547,1 lần/năm,Silver
+KH00344,Hải Hoàng,Nam,48,Hà Nội,Quản lý,21481371,Dây chuyền,36803545,Hàng tháng,Diamond
+KH00345,Hải Thế Phạm,Nữ,24,TP.HCM,Quản lý,45707394,Bông tai,40922961,Hàng tháng,Silver
+KH00346,Bảo Trí Mai,Nam,23,Bình Dương,Nhân viên văn phòng,33198661,Vòng tay,33966998,Hiếm khi,Gold
+KH00347,Quý cô Linh Vũ,Nam,19,Bình Dương,Giáo viên,22200652,Bông tai,31694957,Hàng tháng,Gold
+KH00348,Khoa Bùi,Nữ,30,Bình Dương,Kinh doanh,13576109,Dây chuyền,17301521,2-3 lần/năm,Gold
+KH00349,Kim Bùi,Nam,49,TP.HCM,Giáo viên,31117464,Lắc chân,32359256,Hàng tháng,Silver
+KH00350,Cô Bảo Lê,Nữ,28,Cần Thơ,Giáo viên,31907662,Nhẫn,6539429,Hiếm khi,Silver
+KH00351,Phúc Mai Vũ,Nữ,48,Cần Thơ,Sinh viên,33541061,Dây chuyền,6375475,2-3 lần/năm,Bronze
+KH00352,Lan Nguyễn,Nữ,35,Đà Nẵng,Kỹ sư,41453904,Kim cương,16805277,1 lần/năm,Gold
+KH00353,Quý cô Ánh Nguyễn,Nữ,34,Cần Thơ,Sinh viên,38480197,Vòng tay,45451867,1 lần/năm,Bronze
+KH00354,Lâm Hữu Dương,Nữ,47,TP.HCM,Kỹ sư,29799547,Bông tai,1928309,Hàng tháng,Bronze
+KH00355,Khoa Đặng,Nam,36,Đà Nẵng,Sinh viên,26014394,Dây chuyền,25060096,1 lần/năm,Gold
+KH00356,Phương Trí Nguyễn,Nữ,39,Hà Nội,Kinh doanh,35091002,Nhẫn,9842792,1 lần/năm,Diamond
+KH00357,Chị Hạnh Phạm,Nam,45,TP.HCM,Quản lý,33396821,Vòng tay,33767454,Hàng tháng,Silver
+KH00358,Bà Nhật Hoàng,Nữ,38,Hà Nội,Sinh viên,45897662,Dây chuyền,46808571,1 lần/năm,Bronze
+KH00359,Bà Hạnh Phạm,Nam,47,TP.HCM,Kỹ sư,28429750,Vòng tay,31416731,1 lần/năm,Gold
+KH00360,Khoa Hải Hoàng,Nam,60,Đà Nẵng,Kinh doanh,28951134,Nhẫn,17560366,2-3 lần/năm,Silver
+KH00361,Lâm Thế Mai,Nữ,56,Đồng Nai,Quản lý,19493449,Kim cương,46900667,Hiếm khi,Silver
+KH00362,Bác Tú Hoàng,Nam,45,Đà Nẵng,Nhân viên văn phòng,37162750,Nhẫn,23353629,Hiếm khi,Gold
+KH00363,Nhiên Phú Đặng,Nữ,37,Đồng Nai,Nhân viên văn phòng,18284714,Kim cương,1709083,Hàng tháng,Bronze
+KH00364,Chị Mai Mai,Nam,58,Đồng Nai,Kinh doanh,10724955,Kim cương,29857638,1 lần/năm,Silver
+KH00365,Quý ông Hưng Dương,Nữ,35,Bình Dương,Kinh doanh,31466490,Bông tai,14497398,1 lần/năm,Gold
+KH00366,Yến Lê,Nam,52,TP.HCM,Quản lý,39974892,Dây chuyền,33859163,2-3 lần/năm,Gold
+KH00367,Thành Hữu Nguyễn,Nữ,34,Bình Dương,Quản lý,37143075,Nhẫn,44011474,1 lần/năm,Bronze
+KH00368,Bà Hạnh Đặng,Nữ,41,Đà Nẵng,Nhân viên văn phòng,43604263,Dây chuyền,44969913,1 lần/năm,Silver
+KH00369,Anh Vũ Lê,Nữ,28,Đồng Nai,Kinh doanh,42401082,Nhẫn,28911405,Hiếm khi,Silver
+KH00370,Cô Vi Lê,Nam,50,Hà Nội,Giáo viên,37227159,Nhẫn,33740431,Hiếm khi,Gold
+KH00371,Quang Phú Dương,Nam,30,Hà Nội,Kỹ sư,49390734,Nhẫn,31296435,2-3 lần/năm,Silver
+KH00372,Hải Hải Nguyễn,Nam,23,Đà Nẵng,Kỹ sư,31568725,Dây chuyền,4142872,1 lần/năm,Bronze
+KH00373,Trọng Đức Nguyễn,Nam,39,TP.HCM,Giáo viên,5746885,Lắc chân,28389236,2-3 lần/năm,Diamond
+KH00374,Minh Đặng,Nữ,47,Đà Nẵng,Sinh viên,34723153,Bông tai,6904995,2-3 lần/năm,Gold
+KH00375,Trọng Lê,Nữ,59,TP.HCM,Quản lý,35792449,Kim cương,14042747,1 lần/năm,Gold
+KH00376,Hương Mai,Nam,51,Hà Nội,Quản lý,20999796,Vòng tay,24947232,Hàng tháng,Gold
+KH00377,Anh Quang Phạm,Nam,29,Bình Dương,Nhân viên văn phòng,29273200,Kim cương,49088773,1 lần/năm,Diamond
+KH00378,Hạnh Hải Dương,Nam,33,Cần Thơ,Nhân viên văn phòng,43680007,Vòng tay,16180797,2-3 lần/năm,Silver
+KH00379,Tùng Tấn Đặng,Nam,25,Hà Nội,Kỹ sư,31289019,Kim cương,13839222,Hiếm khi,Silver
+KH00380,Hà Thị Bùi,Nữ,55,Hà Nội,Quản lý,26901231,Nhẫn,43676930,1 lần/năm,Bronze
+KH00381,Nhật Lê,Nam,19,Cần Thơ,Giáo viên,14861727,Nhẫn,13408596,1 lần/năm,Gold
+KH00382,Ngọc Dương,Nữ,50,TP.HCM,Giáo viên,43404781,Vòng tay,21966084,1 lần/năm,Gold
+KH00383,Nhật Đức Phạm,Nam,55,Đà Nẵng,Quản lý,17403664,Bông tai,38223372,1 lần/năm,Silver
+KH00384,Phương Bùi,Nam,20,Đà Nẵng,Nhân viên văn phòng,22600833,Vòng tay,39650641,Hiếm khi,Gold
+KH00385,Minh Trần,Nữ,33,Cần Thơ,Kinh doanh,8719118,Vòng tay,49236586,1 lần/năm,Silver
+KH00386,Bác Bảo Mai,Nam,40,Hà Nội,Kỹ sư,7955827,Nhẫn,22886959,2-3 lần/năm,Gold
+KH00387,Duyên Nguyễn,Nam,39,Hà Nội,Quản lý,16980377,Nhẫn,5739875,2-3 lần/năm,Silver
+KH00388,Phúc Dương,Nam,25,Cần Thơ,Kinh doanh,35849632,Dây chuyền,3212734,Hàng tháng,Bronze
+KH00389,Quý cô Kim Phạm,Nam,40,Bình Dương,Nhân viên văn phòng,46686433,Vòng tay,31974653,1 lần/năm,Gold
+KH00390,Chị Chi Nguyễn,Nữ,25,Cần Thơ,Kỹ sư,5712113,Vòng tay,32834238,1 lần/năm,Silver
+KH00391,Dương Dương,Nam,48,Đà Nẵng,Nhân viên văn phòng,20250522,Dây chuyền,5644886,Hiếm khi,Silver
+KH00392,Hoàng Trần,Nữ,21,Bình Dương,Kỹ sư,42175582,Dây chuyền,15336078,Hàng tháng,Bronze
+KH00393,Lan Vũ,Nam,53,Bình Dương,Giáo viên,33031434,Vòng tay,13359345,2-3 lần/năm,Gold
+KH00394,Quý cô Hạnh Đặng,Nữ,21,Cần Thơ,Kinh doanh,17190969,Vòng tay,18310151,Hàng tháng,Gold
+KH00395,Quý ông Anh Phạm,Nam,19,Hà Nội,Sinh viên,49979393,Vòng tay,39997343,1 lần/năm,Diamond
+KH00396,Dương Vũ,Nam,41,Đà Nẵng,Nhân viên văn phòng,49576748,Dây chuyền,18201152,Hàng tháng,Diamond
+KH00397,Tú Văn Phạm,Nam,36,Đồng Nai,Kinh doanh,12700029,Dây chuyền,26680743,Hàng tháng,Silver
+KH00398,Nhật Trí Dương,Nữ,39,Bình Dương,Nhân viên văn phòng,29660384,Vòng tay,9792723,2-3 lần/năm,Silver
+KH00399,Ông Dũng Vũ,Nữ,49,Cần Thơ,Nhân viên văn phòng,27488532,Nhẫn,45251502,1 lần/năm,Bronze
+KH00400,Bác Huy Phạm,Nam,21,Đà Nẵng,Nhân viên văn phòng,48568071,Lắc chân,11308255,Hàng tháng,Gold
+KH00401,Thành Đặng,Nữ,31,Đồng Nai,Nhân viên văn phòng,6565629,Kim cương,48291889,Hiếm khi,Silver
+KH00402,Quý ông Nhiên Hoàng,Nam,39,Bình Dương,Giáo viên,15110131,Kim cương,6700619,Hiếm khi,Gold
+KH00403,Nhật Phú Dương,Nam,51,Đồng Nai,Giáo viên,41464880,Nhẫn,31783130,Hiếm khi,Bronze
+KH00404,Nhật Xuân Dương,Nữ,48,Cần Thơ,Sinh viên,12159253,Lắc chân,16641636,1 lần/năm,Diamond
+KH00405,Anh Mai Phạm,Nữ,57,Hà Nội,Kỹ sư,17777761,Vòng tay,24990863,2-3 lần/năm,Silver
+KH00406,Hà Hải Mai,Nam,42,Đà Nẵng,Kinh doanh,32607916,Nhẫn,16489332,Hàng tháng,Gold
+KH00407,Cô Bảo Phạm,Nam,59,Hà Nội,Nhân viên văn phòng,48236009,Kim cương,22928051,1 lần/năm,Bronze
+KH00408,Minh Trần,Nữ,57,Đà Nẵng,Kinh doanh,25485498,Nhẫn,44509519,Hàng tháng,Gold
+KH00409,Yến Hoàng,Nữ,30,Bình Dương,Sinh viên,7963821,Kim cương,29834344,Hàng tháng,Gold
+KH00410,Anh Hoàng Phạm,Nam,35,Hà Nội,Giáo viên,38747106,Nhẫn,36070429,1 lần/năm,Gold
+KH00411,Yến Đặng,Nữ,28,Cần Thơ,Nhân viên văn phòng,22114847,Kim cương,38300056,2-3 lần/năm,Bronze
+KH00412,Huy Phạm,Nữ,50,Hà Nội,Kỹ sư,16974542,Lắc chân,13024128,Hàng tháng,Silver
+KH00413,Hưng Văn Hoàng,Nam,40,Đồng Nai,Kỹ sư,14993060,Lắc chân,18147979,Hàng tháng,Silver
+KH00414,Cô Lâm Bùi,Nam,25,Đồng Nai,Nhân viên văn phòng,16555139,Bông tai,37884751,Hiếm khi,Gold
+KH00415,Chị Nhật Vũ,Nam,52,Đồng Nai,Kinh doanh,9262259,Vòng tay,45230460,2-3 lần/năm,Silver
+KH00416,Nam Thị Đặng,Nữ,44,TP.HCM,Kinh doanh,37242650,Nhẫn,8288974,Hiếm khi,Diamond
+KH00417,Hà Phú Đặng,Nam,35,Đà Nẵng,Sinh viên,26160209,Kim cương,4267819,Hàng tháng,Silver
+KH00418,Yến Nguyễn,Nam,26,Bình Dương,Quản lý,41627425,Dây chuyền,31584262,Hiếm khi,Silver
+KH00419,Thành Mai,Nữ,30,Hà Nội,Kinh doanh,35064154,Nhẫn,4417480,Hiếm khi,Silver
+KH00420,Bà Lan Đặng,Nữ,37,Đà Nẵng,Giáo viên,22043893,Dây chuyền,10314155,Hiếm khi,Bronze
+KH00421,Nhiên Hải Lê,Nữ,20,Cần Thơ,Quản lý,48985163,Dây chuyền,23071698,2-3 lần/năm,Gold
+KH00422,Quý cô Vi Đặng,Nữ,19,Đồng Nai,Kinh doanh,27352307,Nhẫn,9837131,1 lần/năm,Bronze
+KH00423,Lan Bùi,Nam,29,Hà Nội,Quản lý,28739382,Vòng tay,29728853,2-3 lần/năm,Diamond
+KH00424,Chị An Lê,Nữ,37,TP.HCM,Kỹ sư,38850869,Dây chuyền,26566436,2-3 lần/năm,Diamond
+KH00425,Chị Duyên Vũ,Nam,46,Đà Nẵng,Kinh doanh,15831195,Dây chuyền,12003853,1 lần/năm,Diamond
+KH00426,Cô Hà Phạm,Nam,44,Đồng Nai,Sinh viên,27180230,Nhẫn,39836341,Hàng tháng,Bronze
+KH00427,Kim Trí Trần,Nam,18,Đà Nẵng,Quản lý,43868548,Nhẫn,2050768,Hàng tháng,Bronze
+KH00428,Ông Vũ Phạm,Nam,34,Bình Dương,Sinh viên,39496703,Bông tai,23403273,2-3 lần/năm,Gold
+KH00429,Tùng Lê,Nữ,23,Bình Dương,Quản lý,8375992,Bông tai,49440966,Hàng tháng,Diamond
+KH00430,Anh Vũ,Nam,55,Hà Nội,Giáo viên,43304989,Nhẫn,10157617,Hiếm khi,Bronze
+KH00431,Tú Phạm,Nam,26,Đồng Nai,Giáo viên,13949719,Bông tai,47540869,1 lần/năm,Bronze
+KH00432,Tùng Quang Mai,Nữ,57,TP.HCM,Kỹ sư,25761458,Nhẫn,29625951,Hàng tháng,Gold
+KH00433,Hương Hoàng,Nữ,28,Hà Nội,Sinh viên,43906667,Kim cương,39902506,Hiếm khi,Bronze
+KH00434,Vũ Bảo Bùi,Nam,43,Đồng Nai,Sinh viên,25333093,Bông tai,15447044,Hiếm khi,Bronze
+KH00435,Quý ông Châu Phạm,Nam,28,Bình Dương,Quản lý,48388408,Vòng tay,28273230,1 lần/năm,Silver
+KH00436,Duyên Nguyễn,Nữ,42,TP.HCM,Quản lý,26988326,Nhẫn,32985239,1 lần/năm,Gold
+KH00437,Kim Mai,Nữ,22,Đồng Nai,Kinh doanh,32866103,Vòng tay,1874836,2-3 lần/năm,Silver
+KH00438,Trung Hữu Trần,Nam,26,Cần Thơ,Kỹ sư,20768647,Nhẫn,17249743,1 lần/năm,Gold
+KH00439,Nam Tấn Lê,Nam,54,Hà Nội,Giáo viên,31109451,Bông tai,39514690,2-3 lần/năm,Silver
+KH00440,Chị Hạnh Phạm,Nam,54,Đà Nẵng,Kinh doanh,22397523,Dây chuyền,43481036,Hiếm khi,Silver
+KH00441,Vi Hoàng,Nữ,37,Đà Nẵng,Sinh viên,38841619,Vòng tay,6941854,Hiếm khi,Diamond
+KH00442,Cô Hạnh Đặng,Nữ,58,Đồng Nai,Quản lý,40081561,Nhẫn,37274717,2-3 lần/năm,Silver
+KH00443,Khoa Phú Dương,Nam,38,Đà Nẵng,Quản lý,34349884,Bông tai,25528775,Hiếm khi,Diamond
+KH00444,Thành Phạm,Nam,35,Đà Nẵng,Sinh viên,40282457,Bông tai,22217107,Hàng tháng,Diamond
+KH00445,Quang Quang Đặng,Nam,19,Cần Thơ,Giáo viên,33634657,Nhẫn,22068009,Hàng tháng,Silver
+KH00446,Khoa Phạm,Nam,40,TP.HCM,Nhân viên văn phòng,40005652,Nhẫn,34935216,Hiếm khi,Diamond
+KH00447,Bà Nhật Dương,Nam,33,Đồng Nai,Kinh doanh,19328794,Dây chuyền,27777696,Hiếm khi,Gold
+KH00448,Cô Duyên Mai,Nam,25,Bình Dương,Giáo viên,25322516,Kim cương,27183005,1 lần/năm,Diamond
+KH00449,Hoàng Hoàng,Nam,25,Đồng Nai,Kỹ sư,31792443,Lắc chân,19430834,2-3 lần/năm,Bronze
+KH00450,Chi Nguyễn,Nữ,39,Cần Thơ,Kinh doanh,43016255,Lắc chân,36300273,1 lần/năm,Gold
+KH00451,Tú Đức Dương,Nữ,57,TP.HCM,Quản lý,35902077,Dây chuyền,46269342,Hiếm khi,Silver
+KH00452,Lâm Tấn Bùi,Nữ,53,Đà Nẵng,Kỹ sư,6956615,Dây chuyền,9374959,2-3 lần/năm,Bronze
+KH00453,Phương Văn Bùi,Nữ,44,Bình Dương,Quản lý,45451191,Bông tai,35038086,Hàng tháng,Diamond
+KH00454,Hạnh Thế Mai,Nam,60,Bình Dương,Sinh viên,29904882,Vòng tay,33965297,Hiếm khi,Silver
+KH00455,Bà Khoa Nguyễn,Nữ,22,Bình Dương,Giáo viên,11810010,Bông tai,10352898,2-3 lần/năm,Silver
+KH00456,Quý cô Phương Vũ,Nữ,30,Bình Dương,Sinh viên,49586020,Bông tai,46573222,2-3 lần/năm,Silver
+KH00457,Bác Thành Hoàng,Nam,51,Cần Thơ,Quản lý,37702703,Lắc chân,12972879,Hàng tháng,Diamond
+KH00458,Vi Vũ,Nữ,19,Hà Nội,Kinh doanh,44813029,Kim cương,17419992,1 lần/năm,Diamond
+KH00459,Kim Đặng,Nam,33,TP.HCM,Kỹ sư,43168453,Lắc chân,23526002,1 lần/năm,Bronze
+KH00460,Nhật Mai,Nam,38,TP.HCM,Kỹ sư,34380276,Kim cương,42436482,Hàng tháng,Silver
+KH00461,Hà Nguyễn,Nữ,52,Hà Nội,Kinh doanh,35148715,Kim cương,10199549,Hiếm khi,Diamond
+KH00462,Linh Trần,Nam,32,Đà Nẵng,Kinh doanh,35630924,Nhẫn,7466792,Hàng tháng,Bronze
+KH00463,Hạnh Xuân Vũ,Nữ,51,Đà Nẵng,Quản lý,17373063,Kim cương,40599259,1 lần/năm,Silver
+KH00464,Hoàng Mai Bảo Lê,Nữ,26,Cần Thơ,Giáo viên,8613370,Dây chuyền,25951169,2-3 lần/năm,Gold
+KH00465,Dũng Bảo Nguyễn,Nữ,43,Đà Nẵng,Sinh viên,15379372,Vòng tay,37013466,Hiếm khi,Gold
+KH00466,Khoa Đặng,Nữ,34,Đồng Nai,Kinh doanh,35422325,Dây chuyền,21112864,1 lần/năm,Diamond
+KH00467,Kim Phú Dương,Nam,19,Hà Nội,Kinh doanh,25562502,Dây chuyền,33010713,Hiếm khi,Bronze
+KH00468,Quý cô Vân Mai,Nữ,45,TP.HCM,Giáo viên,33496074,Nhẫn,45047572,1 lần/năm,Gold
+KH00469,Hà Quang Phạm,Nữ,23,TP.HCM,Kỹ sư,30750778,Kim cương,13762761,1 lần/năm,Silver
+KH00470,Phương Mai,Nữ,42,Đà Nẵng,Nhân viên văn phòng,17232795,Bông tai,3412457,Hàng tháng,Diamond
+KH00471,Nam Mai Vũ,Nam,54,TP.HCM,Kỹ sư,27683883,Kim cương,44623120,Hiếm khi,Silver
+KH00472,Anh Lê,Nam,26,Cần Thơ,Giáo viên,23911140,Bông tai,19417633,2-3 lần/năm,Gold
+KH00473,Hoàng Phạm,Nữ,32,Đà Nẵng,Sinh viên,32186758,Nhẫn,48204704,Hiếm khi,Bronze
+KH00474,Quý cô Xuân Vũ,Nữ,35,TP.HCM,Kinh doanh,29710413,Kim cương,9533009,Hàng tháng,Diamond
+KH00475,Kim Đặng,Nam,47,Đà Nẵng,Quản lý,26678137,Kim cương,25398573,Hàng tháng,Bronze
+KH00476,Hải Hoàng Dương,Nam,30,Đồng Nai,Kinh doanh,14545649,Kim cương,4432346,1 lần/năm,Diamond
+KH00477,Cô Kim Hoàng,Nam,32,Đà Nẵng,Quản lý,40991593,Dây chuyền,19345939,1 lần/năm,Gold
+KH00478,Hà Mai Bảo Lê,Nữ,46,Đồng Nai,Quản lý,30210446,Nhẫn,16500076,Hiếm khi,Gold
+KH00479,An Lê,Nam,23,Đà Nẵng,Kỹ sư,14233322,Lắc chân,3385351,1 lần/năm,Diamond
+KH00480,Cô Hà Phạm,Nam,26,Đồng Nai,Sinh viên,16815359,Kim cương,40899735,2-3 lần/năm,Diamond
+KH00481,Duyên Vũ,Nam,53,Cần Thơ,Giáo viên,16353535,Nhẫn,16342220,2-3 lần/năm,Diamond
+KH00482,Khoa Mai,Nữ,57,Đồng Nai,Kinh doanh,31896535,Bông tai,27651960,2-3 lần/năm,Diamond
+KH00483,Ngọc Lê,Nam,56,TP.HCM,Kỹ sư,38496839,Nhẫn,38244951,Hàng tháng,Bronze
+KH00484,Huy Thị Bùi,Nam,50,Bình Dương,Quản lý,13555025,Kim cương,47549202,Hiếm khi,Silver
+KH00485,Ông Quang Dương,Nữ,19,Hà Nội,Kinh doanh,36632192,Nhẫn,17062081,2-3 lần/năm,Bronze
+KH00486,Anh Trọng Dương,Nữ,42,Cần Thơ,Quản lý,43143331,Vòng tay,43663257,2-3 lần/năm,Silver
+KH00487,Quý cô Linh Trần,Nam,60,TP.HCM,Quản lý,33926321,Bông tai,43228035,Hàng tháng,Diamond
+KH00488,Nhật Phạm,Nữ,19,Cần Thơ,Quản lý,23571157,Bông tai,4546609,1 lần/năm,Diamond
+KH00489,Chị Phương Đặng,Nữ,18,Bình Dương,Kinh doanh,34925611,Vòng tay,3122163,1 lần/năm,Silver
+KH00490,Cô Vân Hoàng,Nam,30,Cần Thơ,Nhân viên văn phòng,25153153,Lắc chân,28915535,Hàng tháng,Gold
+KH00491,Bác Vũ Dương,Nữ,54,Đồng Nai,Sinh viên,27050175,Kim cương,7541492,Hiếm khi,Gold
+KH00492,Tú Đức Hoàng,Nữ,30,Cần Thơ,Quản lý,13470707,Vòng tay,23355145,2-3 lần/năm,Gold
+KH00493,Hà Đức Trần,Nam,38,Đà Nẵng,Kỹ sư,8695568,Vòng tay,5809455,Hiếm khi,Diamond
+KH00494,Phúc Đức Lê,Nữ,51,Cần Thơ,Sinh viên,19906815,Nhẫn,37147003,Hàng tháng,Gold
+KH00495,Thành Xuân Nguyễn,Nam,31,TP.HCM,Kinh doanh,19337525,Lắc chân,17163775,1 lần/năm,Gold
+KH00496,Chị Chi Đặng,Nữ,31,TP.HCM,Quản lý,30533768,Kim cương,27125920,Hàng tháng,Silver
+KH00497,Dũng Thế Mai,Nữ,60,TP.HCM,Nhân viên văn phòng,20238405,Nhẫn,38837769,Hàng tháng,Bronze
+KH00498,Bảo Đức Bùi,Nữ,60,Bình Dương,Sinh viên,24042741,Vòng tay,24862251,Hiếm khi,Diamond
+KH00499,Bác Vũ Dương,Nữ,38,TP.HCM,Nhân viên văn phòng,29648420,Lắc chân,33308913,Hiếm khi,Diamond
+KH00500,Mai Hoàng,Nữ,34,Bình Dương,Giáo viên,36135428,Vòng tay,34428031,Hiếm khi,Diamond
+KH00501,Vi Trần,Nữ,50,Đà Nẵng,Kỹ sư,44222180,Bông tai,2125137,1 lần/năm,Silver
+KH00502,Chị Kim Nguyễn,Nam,27,Hà Nội,Nhân viên văn phòng,13086066,Kim cương,33703251,Hàng tháng,Bronze
+KH00503,Chị Hải Hoàng,Nữ,22,Hà Nội,Quản lý,18506236,Bông tai,37635696,Hiếm khi,Silver
+KH00504,Dương Dương,Nam,31,Bình Dương,Giáo viên,49878324,Lắc chân,23459571,Hàng tháng,Silver
+KH00505,An Vũ,Nữ,33,Hà Nội,Kinh doanh,7367842,Nhẫn,22434285,2-3 lần/năm,Silver
+KH00506,Chị Yến Mai,Nữ,45,Bình Dương,Quản lý,40625633,Vòng tay,21979162,2-3 lần/năm,Diamond
+KH00507,Kim Vũ,Nữ,29,Hà Nội,Quản lý,12065819,Lắc chân,26481697,Hàng tháng,Gold
+KH00508,Bảo Hoàng,Nữ,38,Hà Nội,Kinh doanh,40278673,Kim cương,33226724,Hiếm khi,Diamond
+KH00509,Anh Tùng Trần,Nam,57,Đà Nẵng,Giáo viên,46997903,Vòng tay,42345960,Hàng tháng,Gold
+KH00510,Kim Hữu Hoàng,Nữ,39,Bình Dương,Quản lý,41744268,Lắc chân,39528101,Hàng tháng,Silver
+KH00511,Kim Nguyễn,Nữ,35,Bình Dương,Quản lý,36405642,Bông tai,10859114,Hiếm khi,Gold
+KH00512,Quang Mai,Nữ,59,TP.HCM,Quản lý,23365680,Bông tai,4854675,1 lần/năm,Diamond
+KH00513,Ông Quang Lê,Nữ,29,Hà Nội,Kinh doanh,33125443,Vòng tay,1496046,Hàng tháng,Gold
+KH00514,Bác Trung Phạm,Nam,38,Bình Dương,Kinh doanh,29538999,Lắc chân,44613447,1 lần/năm,Bronze
+KH00515,Lâm Phạm,Nam,58,Đồng Nai,Kỹ sư,37083071,Bông tai,25733460,2-3 lần/năm,Diamond
+KH00516,Dũng Lê,Nữ,33,Bình Dương,Kỹ sư,13303740,Kim cương,8946046,2-3 lần/năm,Silver
+KH00517,Ông Hưng Dương,Nam,53,TP.HCM,Kinh doanh,46474183,Dây chuyền,27972211,1 lần/năm,Gold
+KH00518,An Hoàng,Nam,31,Cần Thơ,Giáo viên,32050410,Bông tai,48714053,2-3 lần/năm,Bronze
+KH00519,Chị Xuân Lê,Nam,23,Bình Dương,Kỹ sư,19008572,Nhẫn,16088454,Hiếm khi,Bronze
+KH00520,Linh Vũ,Nữ,35,Đà Nẵng,Kỹ sư,45318477,Nhẫn,31170034,Hàng tháng,Diamond
+KH00521,Bà Xuân Trần,Nam,34,Bình Dương,Giáo viên,29674320,Lắc chân,46957418,Hàng tháng,Diamond
+KH00522,Hương Nguyễn,Nữ,28,Bình Dương,Kinh doanh,31286408,Bông tai,27306510,2-3 lần/năm,Silver
+KH00523,An Hoàng,Nữ,54,Đà Nẵng,Giáo viên,8627548,Kim cương,36085094,Hàng tháng,Gold
+KH00524,Nhật Bảo Hoàng,Nữ,27,Hà Nội,Kinh doanh,39533725,Lắc chân,36019504,2-3 lần/năm,Diamond
+KH00525,Mai Trần,Nam,35,Đà Nẵng,Quản lý,38251145,Vòng tay,7973897,Hiếm khi,Gold
+KH00526,Ông Trung Dương,Nữ,54,Hà Nội,Kỹ sư,10196482,Lắc chân,31933912,Hiếm khi,Silver
+KH00527,Anh Nam Dương,Nữ,20,Đà Nẵng,Kinh doanh,26984062,Dây chuyền,9280203,1 lần/năm,Silver
+KH00528,Bác Nhiên Lê,Nam,37,Đà Nẵng,Sinh viên,26498989,Bông tai,7348972,2-3 lần/năm,Bronze
+KH00529,Anh Phúc Đặng,Nam,58,Cần Thơ,Nhân viên văn phòng,10104172,Bông tai,14997870,2-3 lần/năm,Gold
+KH00530,Quý ông Châu Phạm,Nam,38,TP.HCM,Quản lý,30250008,Kim cương,27865278,1 lần/năm,Diamond
+KH00531,Lâm Nguyễn,Nam,48,Bình Dương,Kinh doanh,45276029,Bông tai,38419168,1 lần/năm,Diamond
+KH00532,Chị Hạnh Phạm,Nam,58,TP.HCM,Kinh doanh,9297447,Bông tai,20708198,1 lần/năm,Bronze
+KH00533,Bảo Trần,Nữ,39,Hà Nội,Nhân viên văn phòng,10590717,Vòng tay,45960399,Hàng tháng,Silver
+KH00534,Hải Phạm,Nam,30,TP.HCM,Giáo viên,21792354,Nhẫn,40466775,1 lần/năm,Bronze
+KH00535,Phúc Phạm,Nam,32,Bình Dương,Nhân viên văn phòng,30391029,Kim cương,43144245,2-3 lần/năm,Silver
+KH00536,Dương Vũ,Nam,51,Cần Thơ,Quản lý,17200922,Lắc chân,21306378,2-3 lần/năm,Gold
+KH00537,Lan Dương,Nữ,18,Cần Thơ,Nhân viên văn phòng,17478764,Kim cương,3065031,Hàng tháng,Bronze
+KH00538,Bà Hà Hoàng,Nữ,21,Đồng Nai,Sinh viên,44903890,Kim cương,28688513,Hàng tháng,Bronze
+KH00539,Bảo Lê,Nam,45,Bình Dương,Quản lý,47071088,Dây chuyền,6227007,2-3 lần/năm,Diamond
+KH00540,Anh Hoàng Vũ,Nữ,36,Bình Dương,Sinh viên,19696480,Dây chuyền,7181092,1 lần/năm,Gold
+KH00541,Quý ông Quang Trần,Nam,31,Bình Dương,Quản lý,36192760,Bông tai,19919119,1 lần/năm,Bronze
+KH00542,Bà Yến Mai,Nữ,31,TP.HCM,Kinh doanh,7078939,Bông tai,15289349,Hiếm khi,Silver
+KH00543,Quý ông Quang Nguyễn,Nữ,59,Bình Dương,Nhân viên văn phòng,49856566,Vòng tay,13914643,2-3 lần/năm,Bronze
+KH00544,Thành Bảo Dương,Nữ,60,Đồng Nai,Nhân viên văn phòng,32814073,Nhẫn,14031469,1 lần/năm,Diamond
+KH00545,Trung Đức Dương,Nữ,40,Đồng Nai,Kinh doanh,38222620,Bông tai,25784112,1 lần/năm,Diamond
+KH00546,Thành Văn Dương,Nữ,19,Bình Dương,Sinh viên,6443980,Lắc chân,33611789,2-3 lần/năm,Gold
+KH00547,Duyên Vũ,Nam,51,Cần Thơ,Sinh viên,13180323,Bông tai,29874093,1 lần/năm,Diamond
+KH00548,Hà Văn Phạm,Nữ,45,Đồng Nai,Quản lý,43185375,Dây chuyền,13796360,1 lần/năm,Silver
+KH00549,Quang Dương,Nam,54,Hà Nội,Quản lý,19999678,Dây chuyền,46800934,2-3 lần/năm,Silver
+KH00550,Bà Hải Trần,Nữ,56,Cần Thơ,Kỹ sư,38408787,Dây chuyền,24278174,1 lần/năm,Gold
+KH00551,Thành Hoàng,Nữ,59,Bình Dương,Giáo viên,14664582,Nhẫn,17339079,Hiếm khi,Bronze
+KH00552,Anh Tùng Hoàng,Nam,18,Bình Dương,Quản lý,9098004,Nhẫn,24272521,Hàng tháng,Silver
+KH00553,Phương Xuân Dương,Nữ,40,TP.HCM,Giáo viên,27997451,Dây chuyền,18714437,1 lần/năm,Gold
+KH00554,Bà Phương Phạm,Nam,55,Bình Dương,Giáo viên,34591982,Kim cương,37602473,1 lần/năm,Bronze
+KH00555,Chị Bảo Trần,Nam,32,TP.HCM,Kinh doanh,44001376,Dây chuyền,48989198,2-3 lần/năm,Bronze
+KH00556,Mai Mai,Nữ,18,Đà Nẵng,Kỹ sư,42835123,Nhẫn,23765893,Hàng tháng,Diamond
+KH00557,Cô Dương Đặng,Nam,38,Bình Dương,Kinh doanh,25514481,Lắc chân,7815151,2-3 lần/năm,Silver
+KH00558,Cô Kim Phạm,Nam,31,Cần Thơ,Giáo viên,5680444,Nhẫn,29840776,Hàng tháng,Gold
+KH00559,Nhiên Thế Dương,Nữ,37,Đồng Nai,Quản lý,15695061,Nhẫn,18422495,Hiếm khi,Silver
+KH00560,Quý cô Khoa Lê,Nữ,22,Cần Thơ,Giáo viên,16209801,Vòng tay,25025252,Hàng tháng,Bronze
+KH00561,Bà Hạnh Hoàng,Nam,23,Đồng Nai,Kinh doanh,40649124,Vòng tay,3810019,2-3 lần/năm,Bronze
+KH00562,Phương Bảo Bùi,Nam,48,Hà Nội,Nhân viên văn phòng,16351837,Dây chuyền,9754025,Hàng tháng,Silver
+KH00563,Quý ông Khoa Đặng,Nam,30,Cần Thơ,Kỹ sư,47274446,Bông tai,30645323,Hàng tháng,Bronze
+KH00564,Anh Huy Vũ,Nam,48,Đà Nẵng,Nhân viên văn phòng,19933755,Lắc chân,6943750,Hàng tháng,Diamond
+KH00565,Nhật Lê,Nam,27,Bình Dương,Sinh viên,22921783,Dây chuyền,7499532,Hàng tháng,Bronze
+KH00566,Lan Nguyễn,Nữ,29,Đà Nẵng,Quản lý,38754742,Bông tai,29510268,Hàng tháng,Bronze
+KH00567,Trung Tấn Trần,Nam,56,Đà Nẵng,Kinh doanh,12478679,Lắc chân,22755560,Hiếm khi,Gold
+KH00568,Vũ Phú Phạm,Nam,45,Hà Nội,Nhân viên văn phòng,9826539,Nhẫn,17176278,Hàng tháng,Silver
+KH00569,Hoàng Văn Hoàng,Nam,49,Hà Nội,Kỹ sư,34021103,Vòng tay,3395043,Hiếm khi,Gold
+KH00570,Trung Thị Nguyễn,Nữ,35,Hà Nội,Quản lý,38990090,Bông tai,41362870,Hàng tháng,Silver
+KH00571,An Mai Mai,Nam,26,Bình Dương,Kinh doanh,15220651,Bông tai,10952099,Hàng tháng,Silver
+KH00572,Chị Bảo Mai,Nữ,41,Đà Nẵng,Nhân viên văn phòng,38284730,Vòng tay,6346244,1 lần/năm,Bronze
+KH00573,Nhiên Dương,Nam,42,Đồng Nai,Kỹ sư,16427936,Vòng tay,1557873,2-3 lần/năm,Diamond
+KH00574,Khoa Vũ,Nữ,29,Đà Nẵng,Kỹ sư,34692835,Kim cương,36415859,Hiếm khi,Gold
+KH00575,Nhật Bảo Mai,Nam,40,Đà Nẵng,Kỹ sư,27280408,Kim cương,13501647,2-3 lần/năm,Gold
+KH00576,Khoa Nguyễn,Nam,21,Bình Dương,Nhân viên văn phòng,29939381,Nhẫn,47639942,2-3 lần/năm,Gold
+KH00577,Tú Phạm,Nam,50,Đà Nẵng,Quản lý,16575994,Vòng tay,28970883,1 lần/năm,Bronze
+KH00578,Phương Phạm,Nữ,27,Cần Thơ,Giáo viên,26322083,Kim cương,34212218,Hàng tháng,Gold
+KH00579,Nam Vũ,Nữ,35,Hà Nội,Nhân viên văn phòng,40909279,Kim cương,4226493,Hàng tháng,Gold
+KH00580,Chị Phương Bùi,Nữ,23,Cần Thơ,Giáo viên,6336085,Lắc chân,49073187,2-3 lần/năm,Silver
+KH00581,Hà Vũ,Nữ,60,TP.HCM,Nhân viên văn phòng,45871941,Kim cương,33818873,Hiếm khi,Silver
+KH00582,Vân Nguyễn,Nam,34,Đà Nẵng,Nhân viên văn phòng,14554620,Vòng tay,10740055,2-3 lần/năm,Gold
+KH00583,Cô Thảo Dương,Nam,52,TP.HCM,Kỹ sư,47446300,Bông tai,14690784,Hàng tháng,Gold
+KH00584,Tú Phú Phạm,Nam,34,Cần Thơ,Sinh viên,10509647,Bông tai,29427387,Hàng tháng,Silver
+KH00585,Anh Huy Đặng,Nữ,34,TP.HCM,Kinh doanh,46222206,Kim cương,9172140,2-3 lần/năm,Bronze
+KH00586,Quý ông Trung Phạm,Nữ,34,Cần Thơ,Sinh viên,22643822,Vòng tay,22476959,Hiếm khi,Diamond
+KH00587,Bảo Quang Trần,Nữ,57,Đồng Nai,Kỹ sư,25526780,Vòng tay,34328843,Hiếm khi,Gold
+KH00588,Tùng Hoàng,Nam,40,Bình Dương,Sinh viên,28843652,Kim cương,15001731,Hàng tháng,Diamond
+KH00589,Thành Văn Dương,Nữ,37,Cần Thơ,Giáo viên,49376838,Kim cương,26618090,Hàng tháng,Bronze
+KH00590,Thành Thị Mai,Nam,36,Hà Nội,Kinh doanh,28458462,Dây chuyền,22237130,1 lần/năm,Gold
+KH00591,Chị Chi Vũ,Nam,42,Cần Thơ,Nhân viên văn phòng,6755767,Vòng tay,11221881,1 lần/năm,Silver
+KH00592,Bà Xuân Dương,Nữ,37,Đồng Nai,Kỹ sư,38027280,Bông tai,32351528,Hiếm khi,Diamond
+KH00593,Chị Hà Mai,Nam,21,Cần Thơ,Nhân viên văn phòng,14132687,Bông tai,24384513,Hiếm khi,Bronze
+KH00594,Hà Hoàng,Nam,40,Bình Dương,Sinh viên,38254089,Nhẫn,13765120,Hiếm khi,Diamond
+KH00595,Nhiên Xuân Bùi,Nữ,26,Đà Nẵng,Kinh doanh,22811581,Dây chuyền,4203329,2-3 lần/năm,Silver
+KH00596,Bà Thành Nguyễn,Nam,53,Đà Nẵng,Giáo viên,27672384,Dây chuyền,49126399,2-3 lần/năm,Diamond
+KH00597,Anh Trung Trần,Nữ,33,Cần Thơ,Quản lý,30582170,Vòng tay,15119921,Hàng tháng,Diamond
+KH00598,Anh Vũ Dương,Nữ,21,Đồng Nai,Kinh doanh,47425901,Vòng tay,3152076,Hàng tháng,Diamond
+KH00599,Chi Phạm,Nam,25,TP.HCM,Kỹ sư,44106748,Lắc chân,47636837,2-3 lần/năm,Gold
+KH00600,Linh Hoàng,Nữ,41,Hà Nội,Sinh viên,45225020,Nhẫn,21733056,Hàng tháng,Gold
+KH00601,Cô Duyên Trần,Nữ,58,Bình Dương,Kỹ sư,19138417,Vòng tay,47054725,1 lần/năm,Bronze
+KH00602,Quang Phạm,Nam,49,Đà Nẵng,Kinh doanh,31495476,Lắc chân,24149604,1 lần/năm,Diamond
+KH00603,Bà Hà Bùi,Nữ,33,Đà Nẵng,Giáo viên,47488608,Lắc chân,10656391,2-3 lần/năm,Diamond
+KH00604,Bảo Hữu Mai,Nam,60,Đà Nẵng,Quản lý,18009905,Bông tai,41557728,2-3 lần/năm,Gold
+KH00605,Bà Bảo Dương,Nữ,35,Bình Dương,Sinh viên,36350419,Lắc chân,13505235,2-3 lần/năm,Diamond
+KH00606,Dũng Mai Nguyễn,Nữ,21,TP.HCM,Sinh viên,49234266,Nhẫn,27821667,2-3 lần/năm,Bronze
+KH00607,Bác Trọng Lê,Nam,29,Đà Nẵng,Nhân viên văn phòng,17059299,Dây chuyền,14089386,Hàng tháng,Silver
+KH00608,Ngọc Dương,Nam,29,Hà Nội,Giáo viên,20684993,Dây chuyền,7088640,2-3 lần/năm,Bronze
+KH00609,Anh Nhiên Nguyễn,Nữ,42,Đà Nẵng,Nhân viên văn phòng,7315649,Nhẫn,39852543,Hiếm khi,Silver
+KH00610,Trung Mai Bảo Hoàng,Nữ,22,Đồng Nai,Quản lý,37751987,Lắc chân,14202630,Hàng tháng,Gold
+KH00611,Bác Tú Phạm,Nam,34,TP.HCM,Giáo viên,33591386,Bông tai,8933875,2-3 lần/năm,Silver
+KH00612,Phương Phú Đặng,Nữ,38,Đồng Nai,Nhân viên văn phòng,7616355,Lắc chân,25162859,1 lần/năm,Diamond
+KH00613,Lâm Đặng,Nữ,32,Bình Dương,Sinh viên,46719237,Nhẫn,23878506,1 lần/năm,Silver
+KH00614,Quý cô Xuân Hoàng,Nam,38,TP.HCM,Giáo viên,33842814,Bông tai,19938488,2-3 lần/năm,Silver
+KH00615,Trọng Mai,Nữ,38,Đồng Nai,Quản lý,33277355,Dây chuyền,45814655,1 lần/năm,Silver
+KH00616,Quý ông Huy Nguyễn,Nam,22,Bình Dương,Giáo viên,6225784,Dây chuyền,9724471,1 lần/năm,Bronze
+KH00617,Ngọc Trần,Nữ,40,Đà Nẵng,Giáo viên,49283173,Vòng tay,23994439,2-3 lần/năm,Gold
+KH00618,Hưng Vũ,Nữ,30,Bình Dương,Sinh viên,10791364,Vòng tay,17200635,1 lần/năm,Bronze
+KH00619,Hưng Hoàng Vũ,Nữ,42,Hà Nội,Quản lý,25053872,Lắc chân,21988568,Hiếm khi,Diamond
+KH00620,Khoa Đặng,Nữ,30,Đồng Nai,Nhân viên văn phòng,25735125,Dây chuyền,13711135,2-3 lần/năm,Bronze
+KH00621,Bác Hoàng Lê,Nam,49,Đà Nẵng,Kỹ sư,34434334,Nhẫn,41204647,2-3 lần/năm,Diamond
+KH00622,Bà Dương Phạm,Nữ,44,Đồng Nai,Giáo viên,47943994,Dây chuyền,11288983,1 lần/năm,Diamond
+KH00623,Nhật Đặng,Nữ,55,Hà Nội,Kỹ sư,31318061,Bông tai,17771901,1 lần/năm,Diamond
+KH00624,Bà Lan Phạm,Nam,36,Hà Nội,Kinh doanh,31042460,Lắc chân,28366925,Hiếm khi,Diamond
+KH00625,Anh Anh Mai,Nữ,47,Đà Nẵng,Nhân viên văn phòng,38758825,Vòng tay,28050972,Hàng tháng,Diamond
+KH00626,Anh Vũ Dương,Nữ,47,Cần Thơ,Nhân viên văn phòng,30669452,Kim cương,45114465,Hàng tháng,Silver
+KH00627,Bảo Bảo Trần,Nam,57,Đồng Nai,Sinh viên,9085084,Lắc chân,16225418,Hiếm khi,Silver
+KH00628,Anh Anh Phạm,Nam,18,Đà Nẵng,Kỹ sư,45009962,Nhẫn,33008955,2-3 lần/năm,Gold
+KH00629,Bà Khoa Đặng,Nam,35,TP.HCM,Kỹ sư,45810660,Vòng tay,37763784,Hiếm khi,Silver
+KH00630,Quang Quang Mai,Nam,42,TP.HCM,Sinh viên,49499268,Vòng tay,43915969,Hàng tháng,Silver
+KH00631,Vũ Thế Hoàng,Nam,51,TP.HCM,Quản lý,39092492,Bông tai,45995334,1 lần/năm,Gold
+KH00632,Kim Bùi,Nữ,44,Cần Thơ,Nhân viên văn phòng,39456574,Bông tai,11763592,Hàng tháng,Bronze
+KH00633,Nhật Phạm,Nam,45,Bình Dương,Kỹ sư,12921887,Nhẫn,31157830,Hiếm khi,Silver
+KH00634,Thành Xuân Vũ,Nam,25,Hà Nội,Kinh doanh,48921455,Bông tai,45956991,Hàng tháng,Bronze
+KH00635,Bà Hải Hoàng,Nữ,44,Hà Nội,Sinh viên,10976925,Lắc chân,2601773,Hiếm khi,Silver
+KH00636,Lâm Hữu Mai,Nữ,35,Cần Thơ,Kinh doanh,23637428,Bông tai,21264128,Hiếm khi,Bronze
+KH00637,Bác Trung Dương,Nữ,42,Cần Thơ,Kỹ sư,35722543,Lắc chân,36990399,2-3 lần/năm,Bronze
+KH00638,Hải Đặng,Nam,18,TP.HCM,Kinh doanh,23417230,Lắc chân,39741499,Hiếm khi,Bronze
+KH00639,Quý ông Nhiên Bùi,Nam,33,Đồng Nai,Quản lý,24842384,Bông tai,8434471,Hàng tháng,Bronze
+KH00640,Quang Bùi,Nam,56,Đà Nẵng,Kinh doanh,29201218,Lắc chân,46913244,2-3 lần/năm,Silver
+KH00641,Chi Dương,Nam,30,Bình Dương,Quản lý,36985340,Nhẫn,29030689,1 lần/năm,Gold
+KH00642,Chị Yến Vũ,Nữ,56,Cần Thơ,Sinh viên,40226821,Nhẫn,5830299,2-3 lần/năm,Bronze
+KH00643,Khoa Đức Dương,Nam,28,Hà Nội,Quản lý,46888687,Nhẫn,18045646,1 lần/năm,Gold
+KH00644,Cô Xuân Đặng,Nam,56,Cần Thơ,Nhân viên văn phòng,39835986,Dây chuyền,6050195,1 lần/năm,Silver
+KH00645,Phúc Xuân Lê,Nữ,30,Đồng Nai,Quản lý,48468473,Lắc chân,40892912,1 lần/năm,Gold
+KH00646,Bà Nhật Dương,Nữ,28,Cần Thơ,Giáo viên,40480426,Bông tai,42681842,2-3 lần/năm,Bronze
+KH00647,Quý cô Hồng Đặng,Nam,20,Đà Nẵng,Quản lý,43114292,Lắc chân,40740520,2-3 lần/năm,Diamond
+KH00648,Vân Trần,Nam,44,Bình Dương,Kinh doanh,11110252,Bông tai,28037541,2-3 lần/năm,Silver
+KH00649,Hồng Nguyễn,Nam,56,Cần Thơ,Quản lý,46950419,Kim cương,41696301,Hàng tháng,Gold
+KH00650,Quang Phạm,Nữ,27,TP.HCM,Giáo viên,25374263,Lắc chân,42347592,Hàng tháng,Gold
+KH00651,Quang Phú Dương,Nữ,24,Đà Nẵng,Nhân viên văn phòng,7346978,Bông tai,37987117,Hàng tháng,Diamond
+KH00652,Tú Phú Bùi,Nữ,45,Hà Nội,Sinh viên,26006387,Kim cương,2341441,1 lần/năm,Diamond
+KH00653,Linh Nguyễn,Nữ,54,Hà Nội,Nhân viên văn phòng,23892026,Bông tai,9265597,2-3 lần/năm,Silver
+KH00654,Bà Vân Trần,Nữ,57,TP.HCM,Kinh doanh,20251902,Lắc chân,29632427,2-3 lần/năm,Diamond
+KH00655,Bà Kim Mai,Nữ,46,Bình Dương,Kinh doanh,15168328,Dây chuyền,13246043,1 lần/năm,Silver
+KH00656,Bà Bảo Vũ,Nam,46,Cần Thơ,Sinh viên,35932818,Bông tai,30857490,2-3 lần/năm,Gold
+KH00657,Hải Phạm,Nữ,18,Đồng Nai,Giáo viên,22352893,Dây chuyền,26927916,2-3 lần/năm,Silver
+KH00658,Trung Nguyễn,Nữ,46,Cần Thơ,Kinh doanh,39601423,Bông tai,23888793,1 lần/năm,Bronze
+KH00659,Chị Hồng Nguyễn,Nam,51,Bình Dương,Kinh doanh,34594971,Nhẫn,9679780,Hiếm khi,Diamond
+KH00660,Bà An Nguyễn,Nữ,30,TP.HCM,Kinh doanh,27564814,Bông tai,39488430,Hàng tháng,Silver
+KH00661,Thành Mai Mai,Nữ,45,Cần Thơ,Nhân viên văn phòng,17411047,Bông tai,19754181,1 lần/năm,Gold
+KH00662,Bà Linh Nguyễn,Nữ,48,Cần Thơ,Quản lý,21621250,Vòng tay,40625652,Hiếm khi,Silver
+KH00663,An Bảo Phạm,Nữ,23,Đồng Nai,Kỹ sư,49021161,Nhẫn,40728473,1 lần/năm,Diamond
+KH00664,Phúc Quang Dương,Nữ,39,Đồng Nai,Sinh viên,33677693,Nhẫn,40459614,1 lần/năm,Silver
+KH00665,Hải Lê,Nữ,52,Đà Nẵng,Quản lý,46563195,Bông tai,20849615,2-3 lần/năm,Bronze
+KH00666,Bác Anh Mai,Nam,26,TP.HCM,Quản lý,41204096,Lắc chân,8547652,Hiếm khi,Gold
+KH00667,Nam Thị Lê,Nữ,23,Đà Nẵng,Nhân viên văn phòng,16768505,Vòng tay,17724122,1 lần/năm,Diamond
+KH00668,Bà An Hoàng,Nữ,51,Đà Nẵng,Sinh viên,10019894,Kim cương,11024454,2-3 lần/năm,Bronze
+KH00669,Trọng Hải Hoàng,Nam,42,Bình Dương,Kỹ sư,19437925,Lắc chân,38494354,1 lần/năm,Silver
+KH00670,Hồng Phạm,Nữ,53,Bình Dương,Giáo viên,10770420,Nhẫn,9750197,1 lần/năm,Silver
+KH00671,Bà Bảo Vũ,Nữ,30,Hà Nội,Giáo viên,44341804,Vòng tay,13635603,1 lần/năm,Diamond
+KH00672,Hưng Đặng,Nam,24,Bình Dương,Giáo viên,16368400,Kim cương,36804894,Hiếm khi,Silver
+KH00673,Khoa Trần,Nữ,38,Bình Dương,Nhân viên văn phòng,15421573,Dây chuyền,34833411,2-3 lần/năm,Diamond
+KH00674,Minh Hoàng,Nữ,27,Bình Dương,Kỹ sư,45784120,Lắc chân,33448574,1 lần/năm,Silver
+KH00675,Kim Nguyễn,Nam,20,TP.HCM,Kinh doanh,39465393,Dây chuyền,46776498,Hàng tháng,Silver
+KH00676,Hoàng Trí Hoàng,Nữ,49,Đồng Nai,Kỹ sư,31427627,Bông tai,16041601,2-3 lần/năm,Gold
+KH00677,An Đặng,Nữ,59,Cần Thơ,Kỹ sư,27908262,Bông tai,33285907,1 lần/năm,Diamond
+KH00678,Phương Trí Trần,Nữ,37,Hà Nội,Sinh viên,49780224,Dây chuyền,27238436,Hàng tháng,Gold
+KH00679,Chị Vi Nguyễn,Nữ,50,TP.HCM,Sinh viên,28593787,Kim cương,8190301,Hàng tháng,Gold
+KH00680,Anh Minh Bùi,Nam,53,Bình Dương,Kinh doanh,16557992,Dây chuyền,5251457,1 lần/năm,Bronze
+KH00681,Khoa Đức Vũ,Nữ,31,Cần Thơ,Sinh viên,23735310,Vòng tay,35423168,Hàng tháng,Silver
+KH00682,An Thị Đặng,Nam,48,Cần Thơ,Sinh viên,32136835,Kim cương,1584807,2-3 lần/năm,Bronze
+KH00683,Quý cô Phương Đặng,Nam,57,Cần Thơ,Kinh doanh,7683555,Nhẫn,48780632,Hiếm khi,Diamond
+KH00684,Nhiên Đức Mai,Nữ,23,Bình Dương,Giáo viên,29183404,Bông tai,10497571,2-3 lần/năm,Bronze
+KH00685,Nhật Nguyễn,Nữ,18,Đồng Nai,Kỹ sư,45010203,Vòng tay,16621143,2-3 lần/năm,Diamond
+KH00686,Khoa Văn Dương,Nam,51,Cần Thơ,Quản lý,22522534,Nhẫn,15927267,Hiếm khi,Bronze
+KH00687,Ông Quang Phạm,Nữ,48,Bình Dương,Sinh viên,9712699,Vòng tay,15906208,Hiếm khi,Silver
+KH00688,Cô Yến Bùi,Nam,38,Cần Thơ,Quản lý,18968448,Lắc chân,40723703,1 lần/năm,Silver
+KH00689,Bác Quang Bùi,Nữ,18,Hà Nội,Kinh doanh,15062043,Lắc chân,44687263,1 lần/năm,Diamond
+KH00690,Quang Thị Trần,Nữ,36,Đà Nẵng,Sinh viên,15595199,Kim cương,18563433,2-3 lần/năm,Bronze
+KH00691,Khoa Nguyễn,Nam,46,Cần Thơ,Sinh viên,17220377,Vòng tay,40660823,Hàng tháng,Silver
+KH00692,Khoa Hữu Phạm,Nam,23,Hà Nội,Nhân viên văn phòng,40476930,Nhẫn,27587498,Hàng tháng,Diamond
+KH00693,Hưng Nguyễn,Nam,28,Đồng Nai,Quản lý,5673869,Lắc chân,29983926,1 lần/năm,Bronze
+KH00694,Linh Đặng,Nam,25,Đồng Nai,Kỹ sư,32519943,Vòng tay,27328550,Hiếm khi,Silver
+KH00695,Quý ông Quang Phạm,Nữ,50,Đà Nẵng,Nhân viên văn phòng,44322179,Bông tai,14366952,1 lần/năm,Bronze
+KH00696,Nhiên Phú Nguyễn,Nam,49,TP.HCM,Kinh doanh,19150389,Dây chuyền,45052670,Hiếm khi,Gold
+KH00697,Kim Dương,Nữ,20,TP.HCM,Kỹ sư,13781425,Kim cương,38044591,Hàng tháng,Gold
+KH00698,Bà Kim Vũ,Nữ,44,Bình Dương,Quản lý,46842915,Bông tai,24130736,2-3 lần/năm,Diamond
+KH00699,Bà Bảo Dương,Nữ,25,Hà Nội,Nhân viên văn phòng,48838082,Dây chuyền,9063409,1 lần/năm,Diamond
+KH00700,Duyên Trần,Nữ,35,Cần Thơ,Nhân viên văn phòng,20609106,Lắc chân,28276289,1 lần/năm,Silver
+KH00701,Quý cô Xuân Trần,Nữ,42,Bình Dương,Kỹ sư,13043491,Kim cương,12316010,2-3 lần/năm,Gold
+KH00702,Thành Mai,Nam,57,Đà Nẵng,Quản lý,47395846,Vòng tay,23279487,Hiếm khi,Silver
+KH00703,Khoa Phú Mai,Nam,22,Hà Nội,Nhân viên văn phòng,40462852,Dây chuyền,40630124,Hàng tháng,Gold
+KH00704,Quý cô Phương Nguyễn,Nam,32,Cần Thơ,Quản lý,47604605,Lắc chân,46330548,2-3 lần/năm,Diamond
+KH00705,Trọng Mai Bảo Phạm,Nữ,51,Đà Nẵng,Giáo viên,7779411,Dây chuyền,2470601,Hiếm khi,Bronze
+KH00706,Tùng Nguyễn,Nữ,20,Đà Nẵng,Nhân viên văn phòng,33913171,Bông tai,48666495,Hàng tháng,Gold
+KH00707,Bảo Phạm,Nam,23,Bình Dương,Kỹ sư,26634465,Lắc chân,26911084,1 lần/năm,Diamond
+KH00708,Huy Mai Bảo Nguyễn,Nam,48,Đà Nẵng,Quản lý,20816644,Kim cương,32559702,1 lần/năm,Bronze
+KH00709,Hương Trần,Nữ,23,Đà Nẵng,Giáo viên,48386501,Lắc chân,41063159,Hiếm khi,Gold
+KH00710,Hồng Dương,Nam,23,TP.HCM,Nhân viên văn phòng,37834360,Lắc chân,7549756,1 lần/năm,Bronze
+KH00711,Bà Ánh Lê,Nam,23,Bình Dương,Kinh doanh,40514552,Nhẫn,6999359,1 lần/năm,Silver
+KH00712,Vũ Phạm,Nữ,25,Đồng Nai,Sinh viên,14629738,Vòng tay,18325076,Hàng tháng,Diamond
+KH00713,An Dương,Nữ,33,Cần Thơ,Quản lý,16834066,Bông tai,14972209,1 lần/năm,Bronze
+KH00714,Bà Khoa Lê,Nam,38,TP.HCM,Giáo viên,47967579,Bông tai,3246126,Hàng tháng,Silver
+KH00715,Hạnh Mai Vũ,Nữ,56,Cần Thơ,Kinh doanh,15107346,Lắc chân,44614530,Hàng tháng,Bronze
+KH00716,Hạnh Thị Lê,Nữ,26,TP.HCM,Quản lý,48030919,Kim cương,17589809,1 lần/năm,Diamond
+KH00717,Chị Linh Mai,Nam,29,TP.HCM,Kỹ sư,25499077,Dây chuyền,42317847,2-3 lần/năm,Bronze
+KH00718,Cô Hà Hoàng,Nam,23,TP.HCM,Nhân viên văn phòng,15327387,Dây chuyền,3883807,2-3 lần/năm,Bronze
+KH00719,Ông Trung Mai,Nữ,35,Hà Nội,Kinh doanh,30778006,Kim cương,41255087,1 lần/năm,Silver
+KH00720,Phúc Bảo Phạm,Nữ,38,Đà Nẵng,Kỹ sư,21709086,Vòng tay,18542163,Hiếm khi,Diamond
+KH00721,Nam Tấn Đặng,Nữ,28,TP.HCM,Kỹ sư,43905015,Nhẫn,39444968,Hàng tháng,Bronze
+KH00722,Minh Mai Bùi,Nam,18,Đà Nẵng,Nhân viên văn phòng,26109175,Lắc chân,42758290,2-3 lần/năm,Gold
+KH00723,Lâm Đức Vũ,Nữ,24,Hà Nội,Sinh viên,33141073,Dây chuyền,15297381,2-3 lần/năm,Silver
+KH00724,Ông Dũng Nguyễn,Nữ,24,TP.HCM,Sinh viên,26914840,Dây chuyền,41999302,Hiếm khi,Bronze
+KH00725,Quang Hải Bùi,Nam,38,Đồng Nai,Kinh doanh,30275657,Nhẫn,35040672,Hiếm khi,Diamond
+KH00726,Chị Hương Bùi,Nam,48,TP.HCM,Quản lý,29438776,Bông tai,9028774,Hiếm khi,Bronze
+KH00727,Hải Tấn Đặng,Nam,21,Đà Nẵng,Kinh doanh,13585541,Vòng tay,32638541,Hàng tháng,Bronze
+KH00728,Dũng Trí Phạm,Nữ,27,Đà Nẵng,Kinh doanh,42492609,Bông tai,30589102,2-3 lần/năm,Silver
+KH00729,Bà Vân Trần,Nữ,32,TP.HCM,Sinh viên,13574645,Kim cương,27356490,Hàng tháng,Gold
+KH00730,Thành Nguyễn,Nam,53,Cần Thơ,Nhân viên văn phòng,20266184,Bông tai,48916371,2-3 lần/năm,Silver
+KH00731,Hưng Hoàng,Nam,30,Cần Thơ,Kinh doanh,12985450,Lắc chân,3464347,1 lần/năm,Diamond
+KH00732,Hoàng Hải Đặng,Nữ,22,TP.HCM,Nhân viên văn phòng,36842949,Kim cương,31815053,2-3 lần/năm,Silver
+KH00733,Quý cô Ánh Phạm,Nam,37,Bình Dương,Giáo viên,9028637,Vòng tay,16009298,Hàng tháng,Gold
+KH00734,Trung Hải Phạm,Nam,32,Đà Nẵng,Sinh viên,31042143,Vòng tay,48163708,Hiếm khi,Silver
+KH00735,Lan Bùi,Nam,54,Hà Nội,Kinh doanh,23856145,Bông tai,31005370,Hiếm khi,Silver
+KH00736,Bảo Nguyễn,Nam,49,Đà Nẵng,Nhân viên văn phòng,38345966,Nhẫn,31759399,2-3 lần/năm,Gold
+KH00737,Ông Nhiên Đặng,Nam,46,TP.HCM,Giáo viên,15547656,Bông tai,26573025,Hàng tháng,Gold
+KH00738,Bác Quang Hoàng,Nam,39,TP.HCM,Kỹ sư,8212071,Lắc chân,20894865,1 lần/năm,Bronze
+KH00739,Hồng Trần,Nữ,45,Hà Nội,Kinh doanh,30077411,Nhẫn,17422599,1 lần/năm,Silver
+KH00740,Bác Trọng Đặng,Nam,27,Hà Nội,Kỹ sư,26674720,Nhẫn,2711911,1 lần/năm,Gold
+KH00741,Thành Vũ,Nữ,19,TP.HCM,Nhân viên văn phòng,30769652,Bông tai,27805413,Hiếm khi,Silver
+KH00742,Lâm Mai Bảo Dương,Nữ,26,Hà Nội,Sinh viên,15438696,Kim cương,30796711,Hàng tháng,Diamond
+KH00743,Bác Dũng Phạm,Nam,56,Bình Dương,Sinh viên,33403120,Vòng tay,39171099,2-3 lần/năm,Gold
+KH00744,Chị Phương Đặng,Nữ,35,Hà Nội,Nhân viên văn phòng,35153505,Lắc chân,2678147,Hiếm khi,Diamond
+KH00745,Hồng Nguyễn,Nam,31,Đà Nẵng,Kỹ sư,47559479,Lắc chân,29708401,2-3 lần/năm,Bronze
+KH00746,Linh Nguyễn,Nữ,58,Hà Nội,Kinh doanh,24847200,Kim cương,10878450,1 lần/năm,Gold
+KH00747,Hạnh Dương,Nam,51,Cần Thơ,Nhân viên văn phòng,23073946,Dây chuyền,40295191,Hiếm khi,Silver
+KH00748,Ông Anh Phạm,Nữ,37,Cần Thơ,Sinh viên,15508895,Vòng tay,29579490,Hiếm khi,Gold
+KH00749,Bà Vân Lê,Nam,27,Đà Nẵng,Sinh viên,37068838,Lắc chân,19453267,1 lần/năm,Silver
+KH00750,Hoàng Hải Mai,Nữ,53,Cần Thơ,Kinh doanh,40110538,Lắc chân,26652498,2-3 lần/năm,Gold
+KH00751,Ông Quang Lê,Nam,19,Cần Thơ,Kinh doanh,28327047,Vòng tay,23063136,2-3 lần/năm,Diamond
+KH00752,Hải Bùi,Nữ,27,Đà Nẵng,Kỹ sư,16215454,Kim cương,35771198,Hàng tháng,Diamond
+KH00753,Phương Hoàng,Nữ,29,TP.HCM,Giáo viên,21094365,Dây chuyền,5142914,2-3 lần/năm,Bronze
+KH00754,Chị Khoa Dương,Nữ,59,Hà Nội,Sinh viên,7923476,Nhẫn,45592557,Hàng tháng,Bronze
+KH00755,Tùng Bảo Trần,Nữ,18,TP.HCM,Sinh viên,23933105,Vòng tay,2223104,Hiếm khi,Gold
+KH00756,Quý ông Trọng Hoàng,Nam,35,Bình Dương,Nhân viên văn phòng,29989959,Vòng tay,47084144,Hiếm khi,Gold
+KH00757,Thành Vũ,Nữ,57,Hà Nội,Sinh viên,11988576,Nhẫn,29105611,1 lần/năm,Bronze
+KH00758,Bác Hoàng Dương,Nữ,56,Bình Dương,Quản lý,6919477,Vòng tay,25777073,2-3 lần/năm,Silver
+KH00759,Kim Phú Bùi,Nam,41,Đà Nẵng,Sinh viên,26217894,Kim cương,24928234,Hiếm khi,Silver
+KH00760,Khoa Hoàng,Nam,40,Cần Thơ,Kỹ sư,38573669,Nhẫn,19178242,Hàng tháng,Silver
+KH00761,Khoa Thị Bùi,Nam,45,Hà Nội,Sinh viên,48288334,Lắc chân,47160924,Hiếm khi,Bronze
+KH00762,Cô Kim Nguyễn,Nữ,31,Bình Dương,Quản lý,12225920,Nhẫn,33217264,1 lần/năm,Silver
+KH00763,Chị Nhật Vũ,Nam,40,Cần Thơ,Nhân viên văn phòng,41081053,Nhẫn,31181361,1 lần/năm,Diamond
+KH00764,Nhật Nguyễn,Nam,46,Đồng Nai,Kinh doanh,34255449,Dây chuyền,37131748,1 lần/năm,Diamond
+KH00765,Chi Nguyễn,Nam,22,Hà Nội,Quản lý,19034848,Nhẫn,25158690,Hiếm khi,Diamond
+KH00766,Yến Vũ,Nam,36,Đồng Nai,Kỹ sư,18743356,Nhẫn,47851432,1 lần/năm,Bronze
+KH00767,Bà Kim Mai,Nam,46,Cần Thơ,Giáo viên,36957496,Vòng tay,23969450,1 lần/năm,Bronze
+KH00768,Vân Lê,Nữ,21,Đà Nẵng,Giáo viên,9555863,Vòng tay,35767968,2-3 lần/năm,Bronze
+KH00769,Khoa Xuân Hoàng,Nữ,38,Cần Thơ,Nhân viên văn phòng,16965246,Nhẫn,26466279,Hiếm khi,Diamond
+KH00770,Cô Xuân Dương,Nam,46,Đồng Nai,Kỹ sư,40025318,Nhẫn,10668411,1 lần/năm,Diamond
+KH00771,Hương Bùi,Nữ,43,Hà Nội,Sinh viên,43234121,Nhẫn,42245807,Hiếm khi,Gold
+KH00772,Nhật Mai Lê,Nữ,54,Bình Dương,Nhân viên văn phòng,15759079,Vòng tay,3806013,Hàng tháng,Bronze
+KH00773,Anh Minh Trần,Nữ,55,Đồng Nai,Giáo viên,39573701,Nhẫn,43912811,1 lần/năm,Silver
+KH00774,Hải Nguyễn,Nam,36,Bình Dương,Kinh doanh,42917341,Dây chuyền,21258179,Hiếm khi,Silver
+KH00775,Bảo Vũ,Nữ,20,TP.HCM,Kinh doanh,40571080,Kim cương,36815761,Hàng tháng,Gold
+KH00776,Hương Mai,Nữ,23,TP.HCM,Giáo viên,38846648,Vòng tay,7637525,Hàng tháng,Bronze
+KH00777,Tùng Lê,Nam,30,Đà Nẵng,Kỹ sư,5267191,Lắc chân,33892642,Hiếm khi,Diamond
+KH00778,Hà Lê,Nam,29,Bình Dương,Sinh viên,7600736,Bông tai,15289712,2-3 lần/năm,Silver
+KH00779,Cô Thảo Lê,Nam,21,Đà Nẵng,Sinh viên,15961873,Bông tai,14067202,Hiếm khi,Gold
+KH00780,Hồng Trần,Nữ,22,Hà Nội,Kỹ sư,8783182,Nhẫn,15618731,2-3 lần/năm,Diamond
+KH00781,Hải Phú Vũ,Nam,42,Bình Dương,Kỹ sư,35526920,Dây chuyền,9772192,2-3 lần/năm,Gold
+KH00782,Ngọc Hoàng,Nam,25,Hà Nội,Sinh viên,45014745,Lắc chân,27493295,Hàng tháng,Gold
+KH00783,Anh Đức Lê,Nam,59,Cần Thơ,Kinh doanh,45899593,Lắc chân,10192989,Hàng tháng,Gold
+KH00784,Hoàng Dương,Nữ,31,TP.HCM,Giáo viên,22405701,Lắc chân,6339873,Hiếm khi,Diamond
+KH00785,Bà Kim Vũ,Nữ,32,Đồng Nai,Kỹ sư,14966208,Vòng tay,15062116,Hiếm khi,Silver
+KH00786,Nhật Mai Trần,Nữ,33,Bình Dương,Quản lý,18765229,Dây chuyền,37790496,1 lần/năm,Bronze
+KH00787,Thành Mai Hoàng,Nữ,57,Bình Dương,Kinh doanh,10096311,Bông tai,34584659,Hàng tháng,Diamond
+KH00788,Duyên Vũ,Nữ,51,Hà Nội,Quản lý,21848397,Lắc chân,32982138,2-3 lần/năm,Diamond
+KH00789,Linh Trần,Nữ,27,Đà Nẵng,Sinh viên,45383366,Lắc chân,13978312,2-3 lần/năm,Gold
+KH00790,Phương Vũ,Nữ,28,Hà Nội,Sinh viên,7171076,Nhẫn,41666297,2-3 lần/năm,Gold
+KH00791,Bà Linh Phạm,Nam,26,Cần Thơ,Nhân viên văn phòng,14221024,Lắc chân,12215977,Hiếm khi,Bronze
+KH00792,Phúc Mai Bảo Nguyễn,Nam,26,Bình Dương,Nhân viên văn phòng,23407676,Nhẫn,8081278,Hàng tháng,Diamond
+KH00793,Vi Đặng,Nữ,54,Đà Nẵng,Kỹ sư,29916696,Nhẫn,2458521,1 lần/năm,Diamond
+KH00794,Khoa Hữu Bùi,Nam,51,Hà Nội,Sinh viên,31320381,Kim cương,20869743,Hiếm khi,Bronze
+KH00795,Kim Đức Mai,Nam,54,Đà Nẵng,Kinh doanh,8317513,Bông tai,42505791,1 lần/năm,Bronze
+KH00796,Nhật Trần,Nữ,29,Bình Dương,Kỹ sư,34073441,Bông tai,7049252,1 lần/năm,Diamond
+KH00797,Bà Hải Phạm,Nam,42,Cần Thơ,Quản lý,30957965,Bông tai,3573106,2-3 lần/năm,Bronze
+KH00798,Quý ông Quang Bùi,Nữ,51,Cần Thơ,Kỹ sư,26456781,Nhẫn,34166513,1 lần/năm,Diamond
+KH00799,Dương Hoàng,Nam,22,Đồng Nai,Nhân viên văn phòng,7184091,Lắc chân,35003656,2-3 lần/năm,Gold
+KH00800,Cô An Đặng,Nam,35,Đà Nẵng,Giáo viên,42409293,Bông tai,39919624,1 lần/năm,Bronze
+KH00801,Chị Ngọc Bùi,Nam,23,Cần Thơ,Kỹ sư,25345306,Dây chuyền,28097864,2-3 lần/năm,Gold
+KH00802,Chị Hải Mai,Nữ,28,Bình Dương,Quản lý,10541645,Lắc chân,27293084,2-3 lần/năm,Bronze
+KH00803,Xuân Đặng,Nữ,38,TP.HCM,Quản lý,9243458,Nhẫn,12998001,1 lần/năm,Gold
+KH00804,Hà Phú Trần,Nam,59,Đà Nẵng,Kinh doanh,37936268,Lắc chân,19249701,Hàng tháng,Bronze
+KH00805,Bảo Vũ,Nam,46,Đồng Nai,Kỹ sư,25789498,Vòng tay,40482656,2-3 lần/năm,Bronze
+KH00806,Hà Văn Mai,Nữ,18,Bình Dương,Giáo viên,26572295,Kim cương,7271713,Hiếm khi,Bronze
+KH00807,Thảo Nguyễn,Nam,35,Cần Thơ,Giáo viên,21713509,Bông tai,27518464,Hàng tháng,Bronze
+KH00808,Chi Trần,Nam,50,Đồng Nai,Sinh viên,33740029,Nhẫn,49332782,Hiếm khi,Bronze
+KH00809,Tú Đức Dương,Nữ,30,TP.HCM,Nhân viên văn phòng,34196268,Lắc chân,14378320,2-3 lần/năm,Silver
+KH00810,Hà Đặng,Nữ,47,Cần Thơ,Quản lý,16324603,Dây chuyền,5945856,Hiếm khi,Gold
+KH00811,Dương Bùi,Nữ,36,Bình Dương,Nhân viên văn phòng,35619903,Dây chuyền,13353503,Hàng tháng,Silver
+KH00812,Hà Mai Bảo Phạm,Nữ,45,Đồng Nai,Kỹ sư,30294407,Bông tai,11791109,2-3 lần/năm,Diamond
+KH00813,Ánh Dương,Nữ,56,Đồng Nai,Sinh viên,16914870,Lắc chân,30318093,Hiếm khi,Bronze
+KH00814,Cô Nhật Lê,Nữ,23,Đà Nẵng,Nhân viên văn phòng,19369089,Dây chuyền,19901036,1 lần/năm,Bronze
+KH00815,Nhật Bảo Vũ,Nữ,18,Đà Nẵng,Sinh viên,14084178,Lắc chân,16773886,Hàng tháng,Gold
+KH00816,Trọng Thế Đặng,Nam,45,Hà Nội,Kinh doanh,6633094,Bông tai,33113938,2-3 lần/năm,Diamond
+KH00817,Duyên Nguyễn,Nữ,39,Cần Thơ,Sinh viên,33696931,Bông tai,29041256,2-3 lần/năm,Silver
+KH00818,Châu Đức Mai,Nam,40,Đà Nẵng,Nhân viên văn phòng,27322896,Lắc chân,47356255,Hàng tháng,Bronze
+KH00819,Vân Trần,Nam,41,Đồng Nai,Kinh doanh,36952698,Bông tai,13849622,1 lần/năm,Diamond
+KH00820,Hưng Bùi,Nữ,37,Cần Thơ,Kinh doanh,8015630,Dây chuyền,29403779,Hiếm khi,Diamond
+KH00821,Chị Bảo Bùi,Nữ,32,Hà Nội,Kỹ sư,29297474,Lắc chân,15752329,1 lần/năm,Silver
+KH00822,Quang Thị Bùi,Nữ,20,Cần Thơ,Giáo viên,20192183,Kim cương,42957329,2-3 lần/năm,Gold
+KH00823,Anh Châu Dương,Nữ,52,Đồng Nai,Sinh viên,27084844,Vòng tay,21864764,1 lần/năm,Silver
+KH00824,Thành Phú Phạm,Nam,25,Bình Dương,Sinh viên,33947039,Kim cương,31503085,2-3 lần/năm,Silver
+KH00825,Nhật Phạm,Nữ,50,Hà Nội,Giáo viên,48814393,Kim cương,43514972,Hiếm khi,Diamond
+KH00826,Chi Trần,Nữ,36,Bình Dương,Kỹ sư,12793576,Vòng tay,24127433,Hàng tháng,Silver
+KH00827,Chị Thành Vũ,Nữ,35,Đồng Nai,Nhân viên văn phòng,34324803,Dây chuyền,27680714,Hiếm khi,Bronze
+KH00828,Khoa Tấn Dương,Nữ,23,Đà Nẵng,Quản lý,38761337,Dây chuyền,15544245,2-3 lần/năm,Silver
+KH00829,Huy Mai,Nam,53,TP.HCM,Nhân viên văn phòng,33011112,Kim cương,37955470,1 lần/năm,Silver
+KH00830,Hạnh Xuân Mai,Nam,27,Đà Nẵng,Giáo viên,48147924,Vòng tay,7786502,Hiếm khi,Gold
+KH00831,An Quang Trần,Nam,29,Đà Nẵng,Kinh doanh,30172381,Lắc chân,14215691,1 lần/năm,Silver
+KH00832,Tùng Mai Bảo Nguyễn,Nam,42,Đà Nẵng,Kinh doanh,31664662,Nhẫn,25530920,Hiếm khi,Gold
+KH00833,Phúc Văn Nguyễn,Nữ,34,Đà Nẵng,Sinh viên,27849120,Nhẫn,21412059,2-3 lần/năm,Silver
+KH00834,Thành Dương,Nam,55,Bình Dương,Quản lý,29151334,Lắc chân,11810870,Hiếm khi,Bronze
+KH00835,Ông Châu Trần,Nam,21,Hà Nội,Kỹ sư,24664328,Dây chuyền,33054357,Hiếm khi,Diamond
+KH00836,Khoa Phạm,Nữ,42,Đồng Nai,Kỹ sư,13364784,Vòng tay,33467361,Hàng tháng,Diamond
+KH00837,Ánh Đặng,Nam,46,Đồng Nai,Kỹ sư,5450038,Lắc chân,4755764,Hiếm khi,Gold
+KH00838,Hoàng Lê,Nữ,57,Hà Nội,Kinh doanh,41086371,Vòng tay,43770385,Hàng tháng,Gold
+KH00839,Nam Thế Trần,Nam,20,Bình Dương,Kỹ sư,9992106,Bông tai,1994507,Hàng tháng,Diamond
+KH00840,Bà Duyên Trần,Nam,46,Bình Dương,Quản lý,31943402,Bông tai,25692858,Hiếm khi,Gold
+KH00841,Bà Chi Phạm,Nam,42,TP.HCM,Nhân viên văn phòng,17519771,Bông tai,38204419,2-3 lần/năm,Silver
+KH00842,Bà Yến Phạm,Nam,53,Đà Nẵng,Kỹ sư,30843963,Bông tai,40980443,1 lần/năm,Gold
+KH00843,Hà Phạm,Nam,23,Cần Thơ,Kỹ sư,5841865,Lắc chân,21521885,1 lần/năm,Diamond
+KH00844,Ông Bảo Vũ,Nữ,23,Đà Nẵng,Nhân viên văn phòng,23809070,Lắc chân,1353312,2-3 lần/năm,Gold
+KH00845,Kim Tấn Đặng,Nữ,56,Bình Dương,Quản lý,33646918,Vòng tay,38572310,2-3 lần/năm,Silver
+KH00846,Chị Thành Lê,Nữ,40,Bình Dương,Sinh viên,42192351,Bông tai,21568250,Hàng tháng,Diamond
+KH00847,Quang Trần,Nữ,56,Cần Thơ,Sinh viên,36672249,Kim cương,20546387,2-3 lần/năm,Gold
+KH00848,Ông Quang Lê,Nữ,31,TP.HCM,Kinh doanh,12632376,Bông tai,27826572,1 lần/năm,Gold
+KH00849,Quý cô Kim Hoàng,Nữ,50,Đồng Nai,Sinh viên,43230383,Bông tai,35316030,1 lần/năm,Bronze
+KH00850,Chị Hương Dương,Nam,55,TP.HCM,Giáo viên,49402715,Nhẫn,29143137,2-3 lần/năm,Bronze
+KH00851,Hồng Phạm,Nữ,25,Đà Nẵng,Kinh doanh,45033343,Kim cương,31876319,Hàng tháng,Diamond
+KH00852,Bà Nhật Mai,Nữ,20,Đồng Nai,Sinh viên,19141945,Vòng tay,39949640,Hàng tháng,Gold
+KH00853,Ông Huy Bùi,Nữ,54,Hà Nội,Sinh viên,21336100,Kim cương,14421528,Hàng tháng,Silver
+KH00854,Cô Lan Đặng,Nam,40,Bình Dương,Nhân viên văn phòng,40532519,Kim cương,21174764,1 lần/năm,Diamond
+KH00855,Hà Đặng,Nam,40,TP.HCM,Nhân viên văn phòng,35308086,Vòng tay,31927971,2-3 lần/năm,Gold
+KH00856,Dương Lê,Nữ,48,Cần Thơ,Nhân viên văn phòng,38991947,Bông tai,22075088,Hiếm khi,Silver
+KH00857,An Đức Vũ,Nam,40,Bình Dương,Kinh doanh,26588462,Vòng tay,9403590,1 lần/năm,Gold
+KH00858,Vi Nguyễn,Nữ,39,Đồng Nai,Nhân viên văn phòng,42306661,Lắc chân,6313132,Hàng tháng,Gold
+KH00859,Minh Dương,Nam,31,Bình Dương,Giáo viên,5318293,Bông tai,12918117,1 lần/năm,Diamond
+KH00860,Minh Trần,Nam,38,Đà Nẵng,Quản lý,17431420,Dây chuyền,42105778,1 lần/năm,Diamond
+KH00861,Hồng Hoàng,Nam,52,Đồng Nai,Giáo viên,41307932,Kim cương,36891056,2-3 lần/năm,Gold
+KH00862,Bảo Mai Phạm,Nữ,54,TP.HCM,Giáo viên,9467390,Vòng tay,30822957,Hàng tháng,Bronze
+KH00863,Thành Bùi,Nữ,35,Cần Thơ,Kỹ sư,20292414,Lắc chân,6390784,1 lần/năm,Silver
+KH00864,Kim Tấn Trần,Nữ,59,Cần Thơ,Nhân viên văn phòng,27172043,Kim cương,46163620,2-3 lần/năm,Diamond
+KH00865,Cô Linh Lê,Nữ,48,Cần Thơ,Kỹ sư,27386192,Kim cương,35942005,Hiếm khi,Diamond
+KH00866,Tú Vũ,Nữ,18,Đồng Nai,Sinh viên,35740070,Bông tai,35482133,Hiếm khi,Gold
+KH00867,Hoàng Bùi,Nữ,27,Đà Nẵng,Giáo viên,28099903,Nhẫn,48821255,2-3 lần/năm,Gold
+KH00868,Cô Hà Đặng,Nữ,52,Đà Nẵng,Quản lý,19900298,Lắc chân,12213907,Hiếm khi,Gold
+KH00869,Bác Bảo Lê,Nữ,19,Hà Nội,Quản lý,41799040,Kim cương,47842672,1 lần/năm,Diamond
+KH00870,Nhiên Dương,Nam,34,TP.HCM,Quản lý,9354019,Lắc chân,25571077,2-3 lần/năm,Silver
+KH00871,Chị An Nguyễn,Nam,27,TP.HCM,Quản lý,47049351,Nhẫn,5677125,2-3 lần/năm,Bronze
+KH00872,Quý cô Kim Mai,Nam,27,TP.HCM,Kinh doanh,6092940,Dây chuyền,8765447,2-3 lần/năm,Diamond
+KH00873,Chị Hải Nguyễn,Nữ,52,Cần Thơ,Nhân viên văn phòng,34892407,Lắc chân,5600054,Hiếm khi,Silver
+KH00874,Quang Hữu Phạm,Nam,34,Đà Nẵng,Kỹ sư,48360427,Lắc chân,33282378,2-3 lần/năm,Bronze
+KH00875,Quý ông Quang Trần,Nữ,57,Đồng Nai,Kỹ sư,8066669,Nhẫn,19687563,Hiếm khi,Gold
+KH00876,Bảo Dương,Nữ,19,TP.HCM,Kỹ sư,31055809,Dây chuyền,45517631,2-3 lần/năm,Gold
+KH00877,Cô Linh Dương,Nữ,37,Đồng Nai,Kỹ sư,46435638,Lắc chân,29620303,1 lần/năm,Bronze
+KH00878,Chị Phương Phạm,Nam,20,Cần Thơ,Giáo viên,10334160,Dây chuyền,11883907,2-3 lần/năm,Gold
+KH00879,Quý cô Bảo Dương,Nữ,27,Đồng Nai,Sinh viên,16013258,Bông tai,19579813,1 lần/năm,Bronze
+KH00880,Bà Phương Trần,Nữ,34,Đồng Nai,Quản lý,43015606,Vòng tay,38471163,1 lần/năm,Bronze
+KH00881,Quý cô Duyên Đặng,Nữ,57,Đồng Nai,Giáo viên,47136996,Vòng tay,4131432,Hàng tháng,Diamond
+KH00882,Quý ông Châu Trần,Nữ,21,Cần Thơ,Nhân viên văn phòng,36179383,Nhẫn,32975727,Hiếm khi,Bronze
+KH00883,Ông Thành Đặng,Nam,58,Bình Dương,Quản lý,33510641,Bông tai,23541278,Hiếm khi,Gold
+KH00884,Nhật Đặng,Nữ,57,Đồng Nai,Kỹ sư,21030501,Bông tai,3812881,Hàng tháng,Diamond
+KH00885,Bà Xuân Mai,Nữ,60,Đà Nẵng,Giáo viên,37671747,Kim cương,45842706,Hàng tháng,Bronze
+KH00886,Minh Phạm,Nữ,41,Hà Nội,Kỹ sư,24851106,Dây chuyền,13014809,Hiếm khi,Bronze
+KH00887,Bà Chi Bùi,Nam,29,Đà Nẵng,Kinh doanh,19668939,Kim cương,12581876,1 lần/năm,Bronze
+KH00888,Quý cô Chi Phạm,Nữ,20,Bình Dương,Sinh viên,37024234,Dây chuyền,45747493,2-3 lần/năm,Diamond
+KH00889,Chị Khoa Nguyễn,Nữ,28,TP.HCM,Sinh viên,14336741,Vòng tay,21270151,Hàng tháng,Diamond
+KH00890,Bác Quang Nguyễn,Nữ,50,Bình Dương,Kinh doanh,30983994,Kim cương,1479856,1 lần/năm,Bronze
+KH00891,Bác Hoàng Nguyễn,Nam,54,Đà Nẵng,Giáo viên,27601706,Kim cương,15031039,1 lần/năm,Bronze
+KH00892,Phúc Tấn Phạm,Nam,34,Hà Nội,Giáo viên,46763298,Lắc chân,45250409,1 lần/năm,Bronze
+KH00893,Bà Linh Phạm,Nam,20,Đồng Nai,Giáo viên,20458156,Bông tai,18727080,2-3 lần/năm,Diamond
+KH00894,Châu Thế Lê,Nữ,31,Hà Nội,Kỹ sư,22571308,Nhẫn,23018836,Hàng tháng,Silver
+KH00895,Anh Nguyễn,Nam,45,TP.HCM,Giáo viên,45429804,Kim cương,7330553,Hàng tháng,Gold
+KH00896,Duyên Hoàng,Nữ,23,TP.HCM,Kinh doanh,16593664,Bông tai,29563771,Hàng tháng,Silver
+KH00897,Châu Xuân Bùi,Nữ,50,Bình Dương,Giáo viên,12168795,Kim cương,13627275,Hàng tháng,Diamond
+KH00898,Trọng Tấn Vũ,Nữ,30,Đà Nẵng,Giáo viên,34097798,Vòng tay,32303079,Hàng tháng,Diamond
+KH00899,Kim Văn Hoàng,Nữ,52,Hà Nội,Nhân viên văn phòng,5917445,Dây chuyền,17820540,Hiếm khi,Silver
+KH00900,Khoa Trần,Nam,58,TP.HCM,Sinh viên,34490100,Lắc chân,36086616,2-3 lần/năm,Bronze
+KH00901,Bà Lan Dương,Nam,50,Đà Nẵng,Sinh viên,37630074,Lắc chân,30542947,Hàng tháng,Diamond
+KH00902,Bảo Đức Trần,Nam,38,TP.HCM,Quản lý,10803791,Bông tai,4343661,Hiếm khi,Silver
+KH00903,Nhiên Mai,Nữ,60,Đồng Nai,Kinh doanh,17427986,Bông tai,49786910,1 lần/năm,Gold
+KH00904,Bà Chi Hoàng,Nữ,42,TP.HCM,Kinh doanh,29399123,Bông tai,26162215,2-3 lần/năm,Bronze
+KH00905,Bà Chi Dương,Nam,20,Bình Dương,Giáo viên,42554743,Dây chuyền,4010132,1 lần/năm,Bronze
+KH00906,Minh Xuân Vũ,Nam,27,Đà Nẵng,Giáo viên,25110170,Bông tai,2902343,1 lần/năm,Gold
+KH00907,Bác Huy Vũ,Nữ,28,Cần Thơ,Kỹ sư,26261177,Nhẫn,22110805,Hiếm khi,Gold
+KH00908,Hoàng Hữu Trần,Nam,50,Đà Nẵng,Quản lý,14329175,Nhẫn,42363184,Hiếm khi,Bronze
+KH00909,Cô Hương Trần,Nữ,18,Cần Thơ,Sinh viên,35682858,Nhẫn,12942147,2-3 lần/năm,Silver
+KH00910,Bà Duyên Nguyễn,Nam,54,Bình Dương,Kinh doanh,29529115,Kim cương,21120071,2-3 lần/năm,Diamond
+KH00911,Hồng Phạm,Nữ,47,Đồng Nai,Kỹ sư,30904299,Lắc chân,17778802,2-3 lần/năm,Gold
+KH00912,Nhật Hoàng,Nam,20,TP.HCM,Kỹ sư,45971003,Bông tai,16036711,Hiếm khi,Gold
+KH00913,Quang Phú Nguyễn,Nam,32,Bình Dương,Kinh doanh,28338309,Kim cương,26361359,2-3 lần/năm,Bronze
+KH00914,Nhật Hữu Nguyễn,Nữ,48,Cần Thơ,Nhân viên văn phòng,7809445,Lắc chân,47369007,Hiếm khi,Bronze
+KH00915,Cô Phương Vũ,Nam,21,Hà Nội,Giáo viên,38745226,Nhẫn,41248756,1 lần/năm,Diamond
+KH00916,Hà Phạm,Nam,54,Bình Dương,Quản lý,12456503,Vòng tay,30772805,2-3 lần/năm,Diamond
+KH00917,Ông Thành Mai,Nam,59,Cần Thơ,Sinh viên,37694360,Lắc chân,21158199,2-3 lần/năm,Silver
+KH00918,Chị Hồng Hoàng,Nam,48,TP.HCM,Kỹ sư,19750366,Bông tai,40200936,1 lần/năm,Diamond
+KH00919,Dũng Hoàng Mai,Nữ,58,Cần Thơ,Quản lý,40137530,Nhẫn,49688606,1 lần/năm,Gold
+KH00920,Cô Hà Phạm,Nữ,47,Hà Nội,Sinh viên,27235780,Vòng tay,46144952,Hiếm khi,Gold
+KH00921,Bà Lan Dương,Nữ,42,Đà Nẵng,Nhân viên văn phòng,30359489,Bông tai,30945801,1 lần/năm,Silver
+KH00922,Kim Hoàng,Nam,59,TP.HCM,Kỹ sư,45599973,Bông tai,12628744,Hàng tháng,Silver
+KH00923,Chị Nhật Bùi,Nữ,44,Đà Nẵng,Sinh viên,40078832,Bông tai,44767748,1 lần/năm,Silver
+KH00924,Cô Ánh Dương,Nam,18,Đồng Nai,Sinh viên,31168917,Kim cương,15273177,2-3 lần/năm,Bronze
+KH00925,Cô Nhật Mai,Nam,53,TP.HCM,Kỹ sư,22229073,Vòng tay,13058830,2-3 lần/năm,Silver
+KH00926,Quý cô Ánh Phạm,Nam,27,Đồng Nai,Quản lý,40801612,Dây chuyền,25817246,Hiếm khi,Silver
+KH00927,Chị Hồng Dương,Nữ,26,Đồng Nai,Quản lý,30298799,Lắc chân,36741494,1 lần/năm,Bronze
+KH00928,Thành Tấn Phạm,Nữ,47,Cần Thơ,Nhân viên văn phòng,16920613,Dây chuyền,6782565,1 lần/năm,Silver
+KH00929,Bảo Bùi,Nữ,25,Cần Thơ,Kỹ sư,25888583,Nhẫn,4484543,Hiếm khi,Diamond
+KH00930,Lâm Phạm,Nữ,43,Đồng Nai,Kỹ sư,30452090,Dây chuyền,31718761,1 lần/năm,Gold
+KH00931,Mai Vũ,Nam,47,Hà Nội,Quản lý,17626754,Vòng tay,20308897,2-3 lần/năm,Gold
+KH00932,Nhật Mai Đặng,Nam,35,Đà Nẵng,Quản lý,8216432,Kim cương,47718179,1 lần/năm,Bronze
+KH00933,Bà Hạnh Vũ,Nữ,30,Hà Nội,Nhân viên văn phòng,41104552,Nhẫn,49647976,Hiếm khi,Silver
+KH00934,Trung Mai,Nam,58,Hà Nội,Kỹ sư,19535571,Dây chuyền,8926037,Hàng tháng,Bronze
+KH00935,Minh Mai Nguyễn,Nam,24,Bình Dương,Quản lý,43116843,Vòng tay,2190588,Hiếm khi,Gold
+KH00936,Cô Nhật Vũ,Nam,55,Hà Nội,Giáo viên,33160287,Nhẫn,34627474,Hiếm khi,Gold
+KH00937,Trọng Nguyễn,Nam,27,Đà Nẵng,Nhân viên văn phòng,11809118,Bông tai,47117586,1 lần/năm,Silver
+KH00938,Lâm Hoàng,Nữ,47,Bình Dương,Kỹ sư,18711657,Bông tai,3973738,1 lần/năm,Silver
+KH00939,Phúc Lê,Nam,50,TP.HCM,Kinh doanh,9887107,Lắc chân,39258839,2-3 lần/năm,Gold
+KH00940,Phương Mai,Nữ,60,TP.HCM,Nhân viên văn phòng,32862025,Vòng tay,9951250,1 lần/năm,Bronze
+KH00941,An Tấn Vũ,Nam,34,Đồng Nai,Nhân viên văn phòng,38991566,Dây chuyền,33138260,1 lần/năm,Bronze
+KH00942,Lâm Nguyễn,Nam,58,Đà Nẵng,Giáo viên,16056301,Kim cương,30904609,Hiếm khi,Diamond
+KH00943,Thành Thị Hoàng,Nữ,37,Bình Dương,Sinh viên,22925756,Vòng tay,18202541,Hiếm khi,Gold
+KH00944,Hà Mai Bảo Trần,Nữ,32,Đồng Nai,Sinh viên,16227212,Bông tai,46916205,Hàng tháng,Silver
+KH00945,Kim Dương,Nam,34,Cần Thơ,Kinh doanh,14075704,Bông tai,19365386,2-3 lần/năm,Diamond
+KH00946,Quý cô Hạnh Dương,Nam,43,TP.HCM,Kỹ sư,20234375,Vòng tay,13068896,Hàng tháng,Diamond
+KH00947,Nhật Mai,Nam,54,TP.HCM,Quản lý,44847115,Dây chuyền,7463127,Hiếm khi,Diamond
+KH00948,Vũ Xuân Dương,Nam,54,Đồng Nai,Nhân viên văn phòng,35149872,Vòng tay,9929425,1 lần/năm,Silver
+KH00949,Vũ Hoàng,Nam,39,Bình Dương,Kinh doanh,39309141,Vòng tay,40153410,Hàng tháng,Bronze
+KH00950,Lan Dương,Nam,55,Đà Nẵng,Giáo viên,24173511,Lắc chân,32851387,2-3 lần/năm,Bronze
+KH00951,Quý cô Kim Bùi,Nam,50,Đồng Nai,Nhân viên văn phòng,29595456,Dây chuyền,8827357,Hàng tháng,Silver
+KH00952,Lan Trần,Nam,60,Đồng Nai,Quản lý,29927737,Kim cương,42972595,Hàng tháng,Silver
+KH00953,Quý cô Hải Lê,Nữ,31,Đà Nẵng,Kỹ sư,36310400,Nhẫn,30473249,Hàng tháng,Diamond
+KH00954,Chị Xuân Mai,Nữ,32,TP.HCM,Kinh doanh,6446396,Vòng tay,21527874,2-3 lần/năm,Silver
+KH00955,Nhật Bùi,Nữ,37,Đồng Nai,Kinh doanh,35336819,Lắc chân,10020993,1 lần/năm,Silver
+KH00956,Anh Nguyễn,Nữ,22,Hà Nội,Kỹ sư,14803162,Dây chuyền,9986104,Hàng tháng,Diamond
+KH00957,Quý cô Hải Dương,Nam,25,Cần Thơ,Kỹ sư,30594892,Bông tai,18138161,1 lần/năm,Silver
+KH00958,Chị Hà Dương,Nam,23,Hà Nội,Kỹ sư,14912930,Dây chuyền,4934325,Hiếm khi,Bronze
+KH00959,Tú Xuân Đặng,Nam,20,TP.HCM,Nhân viên văn phòng,43670613,Dây chuyền,45564158,2-3 lần/năm,Bronze
+KH00960,Quý cô Dương Nguyễn,Nam,21,Hà Nội,Sinh viên,9261624,Kim cương,14093755,1 lần/năm,Gold
+KH00961,Bà Thành Vũ,Nữ,21,TP.HCM,Kinh doanh,47888739,Bông tai,29455536,2-3 lần/năm,Bronze
+KH00962,Nhật Phạm,Nữ,51,Cần Thơ,Nhân viên văn phòng,12103328,Dây chuyền,41585040,1 lần/năm,Diamond
+KH00963,Quang Lê,Nam,37,Đà Nẵng,Quản lý,25433232,Nhẫn,17097110,1 lần/năm,Gold
+KH00964,Hưng Hoàng,Nữ,27,TP.HCM,Sinh viên,7597481,Vòng tay,30657496,Hàng tháng,Silver
+KH00965,Tú Xuân Phạm,Nữ,21,Hà Nội,Quản lý,15535023,Kim cương,40194709,1 lần/năm,Bronze
+KH00966,Lâm Bảo Đặng,Nữ,38,Đà Nẵng,Giáo viên,7590187,Dây chuyền,7092000,1 lần/năm,Diamond
+KH00967,Quý cô Hà Vũ,Nữ,31,Cần Thơ,Kỹ sư,16601300,Dây chuyền,45987908,2-3 lần/năm,Bronze
+KH00968,Quý cô Hạnh Phạm,Nam,47,TP.HCM,Quản lý,18415211,Kim cương,14635228,2-3 lần/năm,Diamond
+KH00969,Mai Mai,Nữ,35,Đà Nẵng,Sinh viên,36086362,Lắc chân,16765341,Hàng tháng,Silver
+KH00970,Khoa Phú Vũ,Nam,21,TP.HCM,Nhân viên văn phòng,20432671,Nhẫn,46600104,2-3 lần/năm,Silver
+KH00971,Anh Anh Hoàng,Nam,41,TP.HCM,Nhân viên văn phòng,10957693,Kim cương,42253100,1 lần/năm,Diamond
+KH00972,Nhật Hoàng Đặng,Nam,35,Đồng Nai,Sinh viên,17356835,Nhẫn,16401112,2-3 lần/năm,Silver
+KH00973,Quang Mai Bảo Đặng,Nam,51,Đà Nẵng,Sinh viên,26371406,Vòng tay,5906527,2-3 lần/năm,Diamond
+KH00974,Tú Quang Lê,Nam,33,Bình Dương,Kinh doanh,22292060,Nhẫn,29023715,1 lần/năm,Silver
+KH00975,Nam Bùi,Nam,40,Cần Thơ,Giáo viên,18530862,Dây chuyền,41707416,1 lần/năm,Gold
+KH00976,Hà Dương,Nam,27,Đà Nẵng,Kỹ sư,39150064,Bông tai,10684235,Hiếm khi,Silver
+KH00977,Quang Thị Phạm,Nữ,53,Đồng Nai,Quản lý,43663278,Nhẫn,2583276,1 lần/năm,Silver
+KH00978,Chị Hương Phạm,Nam,60,Đồng Nai,Sinh viên,40923134,Bông tai,5176976,2-3 lần/năm,Bronze
+KH00979,Vi Dương,Nam,54,Hà Nội,Kinh doanh,30780648,Nhẫn,18638804,Hiếm khi,Bronze
+KH00980,Anh Huy Lê,Nữ,38,TP.HCM,Kỹ sư,12315635,Kim cương,45757180,Hàng tháng,Diamond
+KH00981,Quý cô Vi Phạm,Nam,24,Hà Nội,Quản lý,47782356,Lắc chân,37814181,Hiếm khi,Gold
+KH00982,Bảo Thị Dương,Nam,53,Cần Thơ,Giáo viên,26147366,Nhẫn,17231103,Hiếm khi,Bronze
+KH00983,Cô Hạnh Dương,Nữ,35,Đồng Nai,Quản lý,35046269,Vòng tay,11436427,Hàng tháng,Diamond
+KH00984,Bác Anh Hoàng,Nữ,18,Cần Thơ,Kỹ sư,12116187,Nhẫn,8012278,Hiếm khi,Gold
+KH00985,Tùng Trần,Nam,27,Đồng Nai,Giáo viên,7391400,Bông tai,45938370,1 lần/năm,Bronze
+KH00986,Trọng Mai Bảo Lê,Nam,57,Đồng Nai,Sinh viên,24227619,Dây chuyền,42411837,Hiếm khi,Diamond
+KH00987,Cô Bảo Dương,Nam,46,TP.HCM,Giáo viên,15496524,Vòng tay,14776901,Hiếm khi,Bronze
+KH00988,Anh Huy Mai,Nữ,52,TP.HCM,Kỹ sư,47600310,Nhẫn,18525811,Hàng tháng,Diamond
+KH00989,Quý cô Bảo Đặng,Nam,18,TP.HCM,Giáo viên,39022422,Dây chuyền,21018112,1 lần/năm,Diamond
+KH00990,Phúc Phú Hoàng,Nam,44,Cần Thơ,Quản lý,34740638,Lắc chân,43537246,Hàng tháng,Silver
+KH00991,Kim Phạm,Nữ,58,TP.HCM,Kỹ sư,17104302,Bông tai,14629572,1 lần/năm,Silver
+KH00992,Quý cô Lâm Mai,Nữ,23,Bình Dương,Quản lý,17741576,Vòng tay,26836326,1 lần/năm,Gold
+KH00993,Bà Thành Phạm,Nam,33,Cần Thơ,Kỹ sư,41722607,Kim cương,1211612,1 lần/năm,Diamond
+KH00994,Bà Hải Dương,Nam,50,Hà Nội,Kỹ sư,42258033,Dây chuyền,6330667,Hiếm khi,Bronze
+KH00995,Nhật Mai Mai,Nữ,36,Bình Dương,Kinh doanh,33569941,Dây chuyền,18613754,2-3 lần/năm,Bronze
+KH00996,Quý ông Dũng Bùi,Nam,35,Đà Nẵng,Quản lý,49409889,Vòng tay,11240057,2-3 lần/năm,Silver
+KH00997,Bà Hải Phạm,Nữ,39,Cần Thơ,Quản lý,19775683,Lắc chân,4893386,1 lần/năm,Gold
+KH00998,Xuân Hoàng,Nam,40,Đồng Nai,Kỹ sư,40103419,Dây chuyền,33195902,1 lần/năm,Diamond
+KH00999,Nhật Dương,Nam,22,Hà Nội,Nhân viên văn phòng,38106788,Vòng tay,30735085,2-3 lần/năm,Silver
+KH01000,Dũng Hoàng Trần,Nam,24,Đà Nẵng,Sinh viên,45167535,Lắc chân,42563833,Hiếm khi,Silver
+KH01001,Thảo Vũ,Nữ,24,Cần Thơ,Nhân viên văn phòng,23979455,Nhẫn,17319253,1 lần/năm,Gold
+KH01002,Chi Mai,Nữ,38,Đồng Nai,Nhân viên văn phòng,34176658,Nhẫn,29584036,Hàng tháng,Diamond
+KH01003,Tú Văn Phạm,Nữ,38,Đồng Nai,Giáo viên,48939671,Nhẫn,10654087,2-3 lần/năm,Gold
+KH01004,Duyên Đặng,Nam,45,Hà Nội,Kỹ sư,18381467,Lắc chân,31240029,1 lần/năm,Gold
+KH01005,Ông Huy Đặng,Nữ,38,Đồng Nai,Quản lý,6922545,Lắc chân,26658985,Hiếm khi,Gold
+KH01006,Vũ Vũ,Nữ,23,Bình Dương,Quản lý,37128586,Kim cương,2426216,2-3 lần/năm,Diamond
+KH01007,Thành Đặng,Nữ,19,Đà Nẵng,Kinh doanh,26169592,Dây chuyền,44182572,Hiếm khi,Gold
+KH01008,Quý ông Tú Lê,Nữ,22,Cần Thơ,Nhân viên văn phòng,24490318,Kim cương,48349972,2-3 lần/năm,Diamond
+KH01009,Khoa Mai Bảo Nguyễn,Nam,48,Đồng Nai,Quản lý,31556371,Nhẫn,25012175,Hàng tháng,Bronze
+KH01010,Bảo Phạm,Nữ,50,Bình Dương,Kỹ sư,33116487,Bông tai,41552525,2-3 lần/năm,Silver
+KH01011,Hạnh Dương,Nam,41,Đồng Nai,Giáo viên,10231977,Bông tai,47718087,2-3 lần/năm,Silver
+KH01012,Bảo Phạm,Nam,29,Đồng Nai,Sinh viên,38430706,Nhẫn,1310053,Hàng tháng,Diamond
+KH01013,Chị Bảo Trần,Nam,51,Hà Nội,Kỹ sư,42129574,Nhẫn,30874880,1 lần/năm,Silver
+KH01014,Khoa Trí Dương,Nữ,50,Đà Nẵng,Sinh viên,36475677,Nhẫn,39530740,1 lần/năm,Diamond
+KH01015,Duyên Dương,Nữ,59,Hà Nội,Nhân viên văn phòng,10997113,Lắc chân,43623545,1 lần/năm,Diamond
+KH01016,Hạnh Thị Trần,Nam,46,Đà Nẵng,Nhân viên văn phòng,27897850,Lắc chân,12085675,Hiếm khi,Bronze
+KH01017,Phương Bảo Mai,Nữ,42,Bình Dương,Giáo viên,14058838,Kim cương,34732536,2-3 lần/năm,Bronze
+KH01018,Hưng Thị Phạm,Nữ,48,Đà Nẵng,Sinh viên,12856921,Nhẫn,48918255,1 lần/năm,Gold
+KH01019,Hà Đặng,Nam,35,Hà Nội,Quản lý,23871006,Lắc chân,37283879,Hàng tháng,Gold
+KH01020,Kim Đức Bùi,Nữ,26,Đồng Nai,Nhân viên văn phòng,46911908,Lắc chân,21967161,1 lần/năm,Diamond
+KH01021,Anh Hưng Hoàng,Nữ,41,Cần Thơ,Kinh doanh,9812650,Bông tai,32087327,2-3 lần/năm,Gold
+KH01022,Quý cô Yến Vũ,Nữ,41,Cần Thơ,Giáo viên,44790537,Kim cương,20748929,2-3 lần/năm,Silver
+KH01023,Chị An Mai,Nữ,23,Cần Thơ,Giáo viên,31059351,Vòng tay,46626259,Hiếm khi,Silver
+KH01024,Bà An Dương,Nam,19,Bình Dương,Kinh doanh,49357371,Nhẫn,28506891,1 lần/năm,Bronze
+KH01025,An Hải Hoàng,Nam,21,TP.HCM,Giáo viên,12488694,Lắc chân,3434658,2-3 lần/năm,Gold
+KH01026,Cô Mai Mai,Nam,29,Cần Thơ,Kỹ sư,20279236,Dây chuyền,45272536,Hàng tháng,Gold
+KH01027,Quang Quang Lê,Nữ,39,Cần Thơ,Sinh viên,26181498,Bông tai,10699027,Hàng tháng,Bronze
+KH01028,Hải Xuân Hoàng,Nam,22,Đà Nẵng,Giáo viên,9601328,Vòng tay,38480108,2-3 lần/năm,Silver
+KH01029,Huy Vũ,Nam,22,TP.HCM,Sinh viên,37075070,Bông tai,23361211,Hiếm khi,Diamond
+KH01030,Dũng Xuân Dương,Nữ,53,Đà Nẵng,Nhân viên văn phòng,40093446,Dây chuyền,9744393,Hiếm khi,Diamond
+KH01031,Nam Mai Mai,Nữ,49,Đồng Nai,Sinh viên,47490747,Nhẫn,27291816,Hiếm khi,Diamond
+KH01032,Cô Thảo Đặng,Nữ,44,Bình Dương,Sinh viên,27617157,Lắc chân,12775022,2-3 lần/năm,Diamond
+KH01033,Lâm Xuân Trần,Nữ,46,Đà Nẵng,Kinh doanh,25186168,Bông tai,1619737,Hàng tháng,Diamond
+KH01034,Chị An Mai,Nam,32,Bình Dương,Sinh viên,46640825,Dây chuyền,47577317,Hàng tháng,Silver
+KH01035,Bà Hải Phạm,Nam,21,TP.HCM,Sinh viên,10211765,Dây chuyền,23955006,Hiếm khi,Silver
+KH01036,Hải Lê,Nữ,18,Cần Thơ,Quản lý,34824264,Lắc chân,37756985,Hàng tháng,Silver
+KH01037,Nhật Bùi,Nữ,21,TP.HCM,Kỹ sư,38322546,Vòng tay,3369780,Hàng tháng,Diamond
+KH01038,Nhật Vũ,Nam,45,TP.HCM,Giáo viên,41246292,Lắc chân,21919585,Hàng tháng,Silver
+KH01039,Châu Trí Lê,Nam,46,TP.HCM,Giáo viên,49504238,Nhẫn,33248619,Hiếm khi,Diamond
+KH01040,Bác Nhiên Dương,Nam,36,Cần Thơ,Giáo viên,26545459,Nhẫn,35030158,1 lần/năm,Gold
+KH01041,Chị Hương Vũ,Nữ,43,Cần Thơ,Nhân viên văn phòng,43204523,Bông tai,40248411,Hàng tháng,Silver
+KH01042,Hoàng Mai,Nam,41,Cần Thơ,Giáo viên,45743607,Kim cương,3427333,2-3 lần/năm,Silver
+KH01043,Bác Nam Phạm,Nam,41,Bình Dương,Kỹ sư,13316656,Kim cương,14434768,Hiếm khi,Silver
+KH01044,Hoàng Đặng,Nam,59,TP.HCM,Kỹ sư,41259017,Nhẫn,31721853,1 lần/năm,Diamond
+KH01045,Hoàng Trí Bùi,Nữ,50,Đồng Nai,Kỹ sư,25717193,Lắc chân,8377989,Hiếm khi,Bronze
+KH01046,Bác Tùng Hoàng,Nữ,38,Bình Dương,Kinh doanh,30333315,Nhẫn,8744982,2-3 lần/năm,Silver
+KH01047,Thành Nguyễn,Nữ,41,Đồng Nai,Giáo viên,11850177,Dây chuyền,29984797,Hiếm khi,Bronze
+KH01048,Quang Thế Trần,Nam,56,Bình Dương,Sinh viên,32284860,Lắc chân,17377704,Hiếm khi,Diamond
+KH01049,Bảo Xuân Dương,Nam,39,Bình Dương,Giáo viên,43843650,Bông tai,8415569,1 lần/năm,Bronze
+KH01050,Ông Minh Mai,Nữ,23,Cần Thơ,Kỹ sư,42963887,Nhẫn,49776975,1 lần/năm,Diamond
+KH01051,Bảo Đặng,Nam,25,Hà Nội,Sinh viên,7848864,Bông tai,14819223,2-3 lần/năm,Bronze
+KH01052,Khoa Vũ,Nam,56,TP.HCM,Quản lý,5563681,Kim cương,16348110,1 lần/năm,Bronze
+KH01053,Phúc Thị Đặng,Nam,25,Đà Nẵng,Giáo viên,35235146,Kim cương,2595096,1 lần/năm,Diamond
+KH01054,Bảo Bùi,Nữ,43,TP.HCM,Nhân viên văn phòng,35455341,Dây chuyền,21951838,1 lần/năm,Bronze
+KH01055,Lâm Trí Đặng,Nam,46,Đồng Nai,Kinh doanh,43524210,Nhẫn,34455411,Hiếm khi,Bronze
+KH01056,Dương Hoàng,Nữ,32,Bình Dương,Giáo viên,37361713,Nhẫn,1234232,2-3 lần/năm,Silver
+KH01057,Chị Hạnh Dương,Nữ,49,Bình Dương,Sinh viên,19169697,Nhẫn,22406751,2-3 lần/năm,Bronze
+KH01058,Thảo Nguyễn,Nữ,42,TP.HCM,Quản lý,10308405,Nhẫn,7006215,1 lần/năm,Bronze
+KH01059,Phương Phú Dương,Nam,21,Đà Nẵng,Nhân viên văn phòng,48698425,Dây chuyền,26574254,Hàng tháng,Gold
+KH01060,Nhật Phú Hoàng,Nam,59,Đà Nẵng,Giáo viên,39722231,Vòng tay,19046044,1 lần/năm,Diamond
+KH01061,Khoa Tấn Vũ,Nam,28,Bình Dương,Quản lý,8458543,Lắc chân,8052327,2-3 lần/năm,Diamond
+KH01062,Chị Thành Dương,Nam,37,Bình Dương,Nhân viên văn phòng,41003895,Nhẫn,10287050,2-3 lần/năm,Silver
+KH01063,Minh Phú Vũ,Nữ,44,Đà Nẵng,Kinh doanh,25958189,Kim cương,46263958,2-3 lần/năm,Bronze
+KH01064,Anh Dũng Hoàng,Nữ,46,Cần Thơ,Quản lý,45105491,Kim cương,1775792,1 lần/năm,Diamond
+KH01065,Linh Bùi,Nữ,19,TP.HCM,Nhân viên văn phòng,37052084,Vòng tay,33920983,1 lần/năm,Diamond
+KH01066,Chị Khoa Vũ,Nữ,37,Đà Nẵng,Giáo viên,23727823,Vòng tay,32091466,Hiếm khi,Diamond
+KH01067,Lâm Trần,Nữ,43,TP.HCM,Kinh doanh,16471391,Vòng tay,8718166,1 lần/năm,Silver
+KH01068,Anh Hoàng Bùi,Nam,24,Bình Dương,Kỹ sư,15109730,Lắc chân,26065069,1 lần/năm,Bronze
+KH01069,Bà Vi Nguyễn,Nữ,41,Hà Nội,Nhân viên văn phòng,36254442,Nhẫn,9038866,1 lần/năm,Diamond
+KH01070,Quý ông Châu Mai,Nữ,43,Đà Nẵng,Nhân viên văn phòng,27877666,Lắc chân,46566890,2-3 lần/năm,Silver
+KH01071,Cô Mai Hoàng,Nữ,37,Bình Dương,Quản lý,48693107,Kim cương,4285938,Hàng tháng,Bronze
+KH01072,Huy Thị Dương,Nam,30,Đà Nẵng,Kinh doanh,35703941,Dây chuyền,2775206,Hàng tháng,Gold
+KH01073,Cô Phương Phạm,Nữ,39,Hà Nội,Quản lý,11804074,Dây chuyền,8483390,Hiếm khi,Diamond
+KH01074,Cô Ngọc Đặng,Nam,21,Bình Dương,Kỹ sư,14704825,Vòng tay,28421419,2-3 lần/năm,Diamond
+KH01075,Quý cô Hà Dương,Nam,59,Đà Nẵng,Sinh viên,21167290,Bông tai,8357340,Hiếm khi,Silver
+KH01076,Bà Hải Vũ,Nữ,31,TP.HCM,Quản lý,12653420,Bông tai,47074226,Hàng tháng,Diamond
+KH01077,An Thế Đặng,Nam,41,TP.HCM,Giáo viên,17662747,Bông tai,11708747,Hiếm khi,Silver
+KH01078,Xuân Đặng,Nữ,57,Bình Dương,Nhân viên văn phòng,38838432,Lắc chân,45666089,Hàng tháng,Gold
+KH01079,An Thế Mai,Nữ,19,Đồng Nai,Quản lý,17562105,Vòng tay,25064056,1 lần/năm,Gold
+KH01080,Anh Dũng Dương,Nữ,24,TP.HCM,Giáo viên,24549741,Vòng tay,34962034,1 lần/năm,Diamond
+KH01081,Bà Khoa Hoàng,Nữ,22,Cần Thơ,Quản lý,25500738,Vòng tay,14178875,Hiếm khi,Bronze
+KH01082,Chi Nguyễn,Nam,30,Đà Nẵng,Nhân viên văn phòng,14117054,Bông tai,41008592,2-3 lần/năm,Diamond
+KH01083,Bảo Mai,Nữ,36,Đà Nẵng,Quản lý,27938867,Bông tai,30164531,Hiếm khi,Diamond
+KH01084,Dũng Mai Bảo Hoàng,Nam,58,Đà Nẵng,Kỹ sư,14484721,Bông tai,7029322,Hiếm khi,Bronze
+KH01085,Chị Thảo Bùi,Nữ,54,Hà Nội,Nhân viên văn phòng,40069311,Bông tai,30706793,Hiếm khi,Silver
+KH01086,Huy Mai Bảo Lê,Nữ,58,Hà Nội,Quản lý,8371543,Lắc chân,29213848,1 lần/năm,Diamond
+KH01087,Bác Anh Mai,Nữ,38,Cần Thơ,Sinh viên,15579797,Vòng tay,34251519,Hiếm khi,Diamond
+KH01088,Phương Mai Hoàng,Nam,43,Đà Nẵng,Kỹ sư,27955564,Nhẫn,4479533,Hàng tháng,Gold
+KH01089,Ánh Dương,Nữ,45,Hà Nội,Kỹ sư,29989493,Lắc chân,14000696,1 lần/năm,Diamond
+KH01090,Bác Tú Vũ,Nữ,36,Cần Thơ,Nhân viên văn phòng,19978295,Lắc chân,42129151,Hiếm khi,Diamond
+KH01091,Nhật Văn Đặng,Nam,56,Hà Nội,Quản lý,21485194,Bông tai,44492487,Hàng tháng,Gold
+KH01092,Hải Hoàng Vũ,Nữ,24,Hà Nội,Kinh doanh,16139200,Dây chuyền,34668962,Hàng tháng,Diamond
+KH01093,Nhiên Dương,Nam,40,Đồng Nai,Sinh viên,45377123,Dây chuyền,14365137,2-3 lần/năm,Silver
+KH01094,Bác Vũ Dương,Nam,32,Bình Dương,Quản lý,19503860,Vòng tay,45678104,Hiếm khi,Diamond
+KH01095,Cô Ngọc Trần,Nam,30,Bình Dương,Nhân viên văn phòng,45160165,Bông tai,36919452,Hàng tháng,Silver
+KH01096,Quang Trí Dương,Nữ,34,Bình Dương,Kinh doanh,7315848,Dây chuyền,30958056,Hiếm khi,Silver
+KH01097,Khoa Hoàng Vũ,Nữ,23,TP.HCM,Quản lý,7174254,Vòng tay,22198606,Hiếm khi,Diamond
+KH01098,Trung Thị Đặng,Nữ,38,Đà Nẵng,Kinh doanh,16911718,Lắc chân,34236594,1 lần/năm,Silver
+KH01099,Bác Bảo Bùi,Nữ,50,Đà Nẵng,Quản lý,8208833,Bông tai,25866572,Hiếm khi,Gold
+KH01100,Cô Xuân Phạm,Nữ,37,Hà Nội,Quản lý,26322175,Kim cương,13743866,1 lần/năm,Bronze
+KH01101,Bà Mai Dương,Nam,36,Bình Dương,Nhân viên văn phòng,47919204,Lắc chân,40230052,2-3 lần/năm,Diamond
+KH01102,Hương Bùi,Nam,31,Bình Dương,Kinh doanh,45878835,Vòng tay,16057991,Hàng tháng,Bronze
+KH01103,Huy Phú Nguyễn,Nữ,32,Đồng Nai,Kỹ sư,35236218,Lắc chân,4149204,Hiếm khi,Gold
+KH01104,Chị Yến Bùi,Nữ,33,Cần Thơ,Giáo viên,9775538,Kim cương,49585418,Hiếm khi,Bronze
+KH01105,Khoa Thị Lê,Nam,40,Bình Dương,Giáo viên,46801821,Nhẫn,22493808,Hàng tháng,Silver
+KH01106,Minh Mai Trần,Nữ,44,TP.HCM,Giáo viên,26293861,Bông tai,27560624,2-3 lần/năm,Gold
+KH01107,Nhiên Tấn Hoàng,Nữ,45,Cần Thơ,Sinh viên,25948532,Vòng tay,49556374,Hàng tháng,Diamond
+KH01108,Ông Bảo Đặng,Nữ,47,Đồng Nai,Quản lý,17724470,Dây chuyền,43098575,1 lần/năm,Diamond
+KH01109,Lâm Mai,Nam,29,Đồng Nai,Quản lý,26925462,Bông tai,20869693,Hàng tháng,Silver
+KH01110,Quang Tấn Đặng,Nữ,48,Bình Dương,Kỹ sư,49103500,Nhẫn,34934728,Hiếm khi,Bronze
+KH01111,Nhật Hữu Dương,Nữ,45,Đồng Nai,Kinh doanh,44938667,Lắc chân,19654514,Hàng tháng,Bronze
+KH01112,Bà Thảo Trần,Nữ,36,Đà Nẵng,Nhân viên văn phòng,30289929,Kim cương,18149696,1 lần/năm,Diamond
+KH01113,Cô Khoa Lê,Nữ,38,Hà Nội,Kỹ sư,41220753,Vòng tay,13532702,1 lần/năm,Silver
+KH01114,Hải Thế Hoàng,Nam,33,Bình Dương,Kỹ sư,27964226,Nhẫn,31353556,Hiếm khi,Silver
+KH01115,Bác Quang Mai,Nam,37,Đồng Nai,Nhân viên văn phòng,45653099,Nhẫn,48321810,Hàng tháng,Bronze
+KH01116,Bà Xuân Trần,Nam,57,Đồng Nai,Kỹ sư,18980542,Dây chuyền,19600893,2-3 lần/năm,Gold
+KH01117,Cô Ánh Mai,Nam,43,Đồng Nai,Sinh viên,21287729,Vòng tay,15686531,Hiếm khi,Diamond
+KH01118,Kim Đức Mai,Nam,27,Bình Dương,Kinh doanh,39641787,Nhẫn,32105266,2-3 lần/năm,Silver
+KH01119,Nhật Quang Trần,Nữ,19,Đồng Nai,Kinh doanh,14648729,Dây chuyền,23026005,1 lần/năm,Bronze
+KH01120,Hồng Mai,Nữ,49,Bình Dương,Nhân viên văn phòng,23350151,Lắc chân,4429440,1 lần/năm,Bronze
+KH01121,Tùng Trần,Nữ,55,TP.HCM,Giáo viên,11073260,Bông tai,22893451,Hiếm khi,Diamond
+KH01122,Bà Linh Dương,Nữ,60,Đà Nẵng,Giáo viên,10161177,Bông tai,22747006,2-3 lần/năm,Bronze
+KH01123,Anh Vũ Dương,Nam,21,Bình Dương,Quản lý,36563653,Kim cương,39363394,Hàng tháng,Diamond
+KH01124,Quý ông Quang Mai,Nam,20,Hà Nội,Kỹ sư,30586083,Vòng tay,27993598,1 lần/năm,Silver
+KH01125,Hạnh Đặng,Nữ,58,Bình Dương,Giáo viên,14377492,Nhẫn,35069586,1 lần/năm,Diamond
+KH01126,Phúc Bùi,Nữ,34,Bình Dương,Nhân viên văn phòng,26965998,Dây chuyền,49059998,2-3 lần/năm,Silver
+KH01127,Chị Nhật Nguyễn,Nam,20,Đà Nẵng,Giáo viên,6292831,Nhẫn,18505477,Hàng tháng,Diamond
+KH01128,Bà Hương Nguyễn,Nữ,38,TP.HCM,Giáo viên,16315444,Vòng tay,16524567,Hiếm khi,Diamond
+KH01129,Quý cô Bảo Dương,Nam,52,Đà Nẵng,Giáo viên,39395586,Lắc chân,1974033,Hàng tháng,Silver
+KH01130,Bà Bảo Dương,Nữ,31,Đồng Nai,Kỹ sư,41465140,Dây chuyền,43001078,Hiếm khi,Diamond
+KH01131,Vũ Dương,Nam,38,TP.HCM,Kinh doanh,24994475,Vòng tay,17077626,Hàng tháng,Bronze
+KH01132,Bác Nhiên Đặng,Nam,28,Cần Thơ,Quản lý,17187378,Nhẫn,36395899,2-3 lần/năm,Bronze
+KH01133,Hoàng Đức Vũ,Nữ,25,TP.HCM,Nhân viên văn phòng,12273782,Vòng tay,23114953,2-3 lần/năm,Gold
+KH01134,Quang Thị Mai,Nam,20,Đà Nẵng,Sinh viên,5465785,Dây chuyền,24766600,Hiếm khi,Silver
+KH01135,Hồng Dương,Nữ,46,TP.HCM,Giáo viên,25084648,Nhẫn,8504193,Hàng tháng,Bronze
+KH01136,Vũ Lê,Nữ,56,Bình Dương,Kỹ sư,28981392,Dây chuyền,36328553,Hàng tháng,Silver
+KH01137,Tú Phạm,Nữ,47,Hà Nội,Kỹ sư,29022887,Vòng tay,13647705,1 lần/năm,Silver
+KH01138,Tú Mai,Nam,24,Đồng Nai,Nhân viên văn phòng,48161028,Dây chuyền,40086975,1 lần/năm,Diamond
+KH01139,Chị Ngọc Phạm,Nữ,51,Đà Nẵng,Nhân viên văn phòng,34744940,Lắc chân,1783061,2-3 lần/năm,Silver
+KH01140,Lâm Xuân Trần,Nam,32,Đà Nẵng,Quản lý,22219042,Vòng tay,35386685,2-3 lần/năm,Gold
+KH01141,Hưng Thế Bùi,Nữ,46,Đà Nẵng,Quản lý,41404638,Lắc chân,4563377,2-3 lần/năm,Bronze
+KH01142,Hạnh Đặng,Nữ,40,Đà Nẵng,Quản lý,28383950,Vòng tay,38884175,1 lần/năm,Silver
+KH01143,Hải Văn Hoàng,Nữ,50,TP.HCM,Giáo viên,14754991,Nhẫn,41282361,Hàng tháng,Gold
+KH01144,Quang Mai,Nữ,54,TP.HCM,Sinh viên,26934945,Vòng tay,36670885,1 lần/năm,Diamond
+KH01145,Yến Mai,Nữ,57,Hà Nội,Giáo viên,22090959,Lắc chân,47894708,1 lần/năm,Bronze
+KH01146,Xuân Vũ,Nữ,45,Cần Thơ,Giáo viên,23794256,Bông tai,32245469,1 lần/năm,Bronze
+KH01147,Anh Bảo Phạm,Nữ,58,Cần Thơ,Nhân viên văn phòng,37922890,Lắc chân,49199112,2-3 lần/năm,Bronze
+KH01148,Bà Hạnh Mai,Nam,26,Hà Nội,Kinh doanh,14537811,Vòng tay,44717615,1 lần/năm,Gold
+KH01149,Kim Đặng,Nữ,47,Đà Nẵng,Kỹ sư,32447241,Bông tai,3685376,Hàng tháng,Bronze
+KH01150,Hải Đặng,Nữ,60,Bình Dương,Sinh viên,15812340,Kim cương,47192999,2-3 lần/năm,Diamond
+KH01151,Dũng Mai,Nam,60,Cần Thơ,Kinh doanh,8087168,Vòng tay,27167756,2-3 lần/năm,Gold
+KH01152,Ông Tùng Nguyễn,Nữ,48,Bình Dương,Kỹ sư,17361950,Nhẫn,23407443,1 lần/năm,Gold
+KH01153,Anh Hoàng Phạm,Nữ,38,TP.HCM,Sinh viên,28763962,Kim cương,40583441,Hàng tháng,Bronze
+KH01154,Phương Đặng,Nam,27,Cần Thơ,Kỹ sư,9132863,Nhẫn,27474350,1 lần/năm,Bronze
+KH01155,Bảo Văn Trần,Nữ,41,Cần Thơ,Kỹ sư,13032078,Vòng tay,15703390,2-3 lần/năm,Gold
+KH01156,Bà Thảo Phạm,Nam,45,Bình Dương,Quản lý,15193695,Dây chuyền,19755355,2-3 lần/năm,Diamond
+KH01157,Bảo Tấn Bùi,Nữ,26,Bình Dương,Quản lý,11633458,Dây chuyền,9510665,1 lần/năm,Gold
+KH01158,Phúc Mai,Nam,33,Hà Nội,Kỹ sư,34197728,Kim cương,13101125,Hàng tháng,Bronze
+KH01159,Hà Nguyễn,Nam,39,Bình Dương,Nhân viên văn phòng,18859052,Bông tai,7224780,2-3 lần/năm,Gold
+KH01160,Trọng Mai Đặng,Nữ,59,Cần Thơ,Giáo viên,30434754,Nhẫn,11457734,1 lần/năm,Gold
+KH01161,Cô Thành Bùi,Nữ,32,Hà Nội,Kỹ sư,29349999,Lắc chân,22179961,2-3 lần/năm,Diamond
+KH01162,Duyên Vũ,Nữ,55,Bình Dương,Kỹ sư,33104443,Kim cương,2095108,Hàng tháng,Diamond
+KH01163,Bà Xuân Trần,Nam,26,Cần Thơ,Giáo viên,44130708,Dây chuyền,35745032,Hiếm khi,Silver
+KH01164,Ngọc Bùi,Nam,41,Đà Nẵng,Nhân viên văn phòng,24003882,Kim cương,17334171,Hàng tháng,Silver
+KH01165,Cô Xuân Đặng,Nữ,19,TP.HCM,Giáo viên,39950497,Vòng tay,48617958,2-3 lần/năm,Diamond
+KH01166,Ông Thành Hoàng,Nữ,20,Hà Nội,Kỹ sư,11541503,Dây chuyền,6145978,1 lần/năm,Silver
+KH01167,Chị Yến Hoàng,Nam,60,Đồng Nai,Kinh doanh,8525287,Bông tai,19323384,2-3 lần/năm,Diamond
+KH01168,Bác Hưng Lê,Nữ,55,Đà Nẵng,Sinh viên,43210044,Lắc chân,43754391,2-3 lần/năm,Gold
+KH01169,Nhật Bảo Trần,Nam,55,Đà Nẵng,Sinh viên,24961639,Dây chuyền,36303300,Hàng tháng,Bronze
+KH01170,Nam Bảo Mai,Nữ,44,Bình Dương,Kỹ sư,7628360,Bông tai,49500215,1 lần/năm,Diamond
+KH01171,Anh Trung Hoàng,Nam,36,Đồng Nai,Nhân viên văn phòng,9470302,Vòng tay,40580599,Hiếm khi,Diamond
+KH01172,Thành Trần,Nam,26,Đồng Nai,Sinh viên,16615613,Bông tai,45556360,1 lần/năm,Silver
+KH01173,Hải Đặng,Nam,27,Đà Nẵng,Nhân viên văn phòng,48227119,Nhẫn,16568333,1 lần/năm,Diamond
+KH01174,Huy Đức Hoàng,Nam,59,TP.HCM,Quản lý,43230996,Dây chuyền,27769462,2-3 lần/năm,Bronze
+KH01175,Khoa Thị Hoàng,Nữ,35,Hà Nội,Kỹ sư,21016452,Kim cương,42664386,Hàng tháng,Diamond
+KH01176,Cô Duyên Dương,Nữ,33,Hà Nội,Nhân viên văn phòng,36500541,Dây chuyền,4451980,Hàng tháng,Diamond
+KH01177,Cô Hương Mai,Nữ,32,Bình Dương,Giáo viên,39667245,Bông tai,33611303,Hiếm khi,Bronze
+KH01178,Quý cô Chi Mai,Nữ,23,Đà Nẵng,Kỹ sư,12103360,Lắc chân,14231580,Hàng tháng,Gold
+KH01179,Bảo Dương,Nam,39,Đồng Nai,Quản lý,20224909,Bông tai,17377745,1 lần/năm,Silver
+KH01180,Yến Mai,Nữ,31,Hà Nội,Kinh doanh,38814460,Nhẫn,6362840,Hiếm khi,Bronze
+KH01181,Nhiên Phú Trần,Nam,60,Đồng Nai,Nhân viên văn phòng,45053732,Dây chuyền,33097398,1 lần/năm,Diamond
+KH01182,Chị Xuân Dương,Nam,32,Đồng Nai,Sinh viên,6671135,Lắc chân,39045204,Hàng tháng,Diamond
+KH01183,Anh Tùng Bùi,Nữ,49,TP.HCM,Sinh viên,19528785,Lắc chân,32976956,1 lần/năm,Silver
+KH01184,Trọng Mai,Nam,22,Đà Nẵng,Quản lý,28865933,Vòng tay,20897916,Hàng tháng,Silver
+KH01185,Lan Phạm,Nữ,43,Bình Dương,Kinh doanh,17772241,Dây chuyền,24983765,Hàng tháng,Silver
+KH01186,Bảo Hải Dương,Nam,24,Đà Nẵng,Sinh viên,46895338,Bông tai,43324282,Hiếm khi,Silver
+KH01187,Cô Phương Vũ,Nữ,50,Đồng Nai,Giáo viên,39540186,Dây chuyền,20919224,1 lần/năm,Gold
+KH01188,Chị An Lê,Nữ,25,Đà Nẵng,Quản lý,33288354,Lắc chân,6072452,2-3 lần/năm,Diamond
+KH01189,Bảo Đức Lê,Nữ,34,Đà Nẵng,Sinh viên,18803683,Nhẫn,30759288,Hàng tháng,Bronze
+KH01190,Duyên Trần,Nữ,51,Cần Thơ,Sinh viên,5019149,Vòng tay,41937747,2-3 lần/năm,Bronze
+KH01191,Cô Hà Nguyễn,Nam,60,Hà Nội,Sinh viên,43007077,Vòng tay,9369599,Hiếm khi,Diamond
+KH01192,Lan Bùi,Nam,35,Đà Nẵng,Sinh viên,44273670,Bông tai,24551926,Hiếm khi,Diamond
+KH01193,Nhật Hoàng Vũ,Nam,41,Cần Thơ,Kinh doanh,36400184,Kim cương,4321808,1 lần/năm,Gold
+KH01194,Bác Tú Trần,Nam,21,Đồng Nai,Giáo viên,13232737,Nhẫn,23914969,Hàng tháng,Silver
+KH01195,Quang Lê,Nam,32,Đồng Nai,Quản lý,44977787,Dây chuyền,12160487,Hiếm khi,Bronze
+KH01196,Mai Nguyễn,Nam,35,TP.HCM,Sinh viên,7159451,Vòng tay,44664160,Hiếm khi,Bronze
+KH01197,Linh Trần,Nữ,31,Đà Nẵng,Giáo viên,41253314,Lắc chân,2782498,Hàng tháng,Gold
+KH01198,Lan Hoàng,Nữ,59,Đồng Nai,Sinh viên,21246506,Kim cương,44535525,Hàng tháng,Bronze
+KH01199,Hạnh Hoàng Bùi,Nữ,53,Đồng Nai,Sinh viên,43700604,Bông tai,48366310,Hàng tháng,Silver
+KH01200,Bà Vân Mai,Nữ,26,Bình Dương,Giáo viên,38824648,Lắc chân,30391762,Hiếm khi,Diamond
+KH01201,Phương Đặng,Nam,22,Cần Thơ,Sinh viên,20977781,Nhẫn,25421868,2-3 lần/năm,Bronze
+KH01202,Quý cô Kim Trần,Nam,52,Cần Thơ,Sinh viên,25074617,Vòng tay,13203616,Hiếm khi,Silver
+KH01203,Dũng Hoàng Lê,Nam,39,Bình Dương,Nhân viên văn phòng,12560395,Nhẫn,48839980,2-3 lần/năm,Bronze
+KH01204,Phúc Dương,Nữ,27,Cần Thơ,Sinh viên,11665009,Nhẫn,23341598,1 lần/năm,Bronze
+KH01205,Quý ông Anh Mai,Nam,54,TP.HCM,Kỹ sư,17050092,Dây chuyền,47384002,2-3 lần/năm,Diamond
+KH01206,Bảo Mai Bảo Dương,Nữ,22,TP.HCM,Kỹ sư,12204400,Bông tai,6727992,2-3 lần/năm,Diamond
+KH01207,Bà Lâm Đặng,Nữ,50,TP.HCM,Nhân viên văn phòng,47333654,Lắc chân,25955770,2-3 lần/năm,Gold
+KH01208,Ông Anh Trần,Nữ,35,Đà Nẵng,Kỹ sư,19946405,Dây chuyền,2933286,Hàng tháng,Silver
+KH01209,Cô Nhật Lê,Nam,60,Hà Nội,Sinh viên,18517124,Vòng tay,35552769,Hiếm khi,Diamond
+KH01210,Duyên Mai,Nữ,41,TP.HCM,Quản lý,43699614,Bông tai,15546236,2-3 lần/năm,Bronze
+KH01211,Cô Hồng Nguyễn,Nữ,34,Đồng Nai,Sinh viên,28077179,Bông tai,42367053,1 lần/năm,Gold
+KH01212,Dương Bùi,Nam,32,TP.HCM,Giáo viên,48439065,Lắc chân,47617072,1 lần/năm,Diamond
+KH01213,Quý cô Bảo Lê,Nam,19,Hà Nội,Quản lý,26368367,Nhẫn,29771614,Hiếm khi,Bronze
+KH01214,Hương Trần,Nam,37,Hà Nội,Nhân viên văn phòng,24990283,Vòng tay,28823573,2-3 lần/năm,Diamond
+KH01215,Tú Hữu Hoàng,Nữ,20,TP.HCM,Quản lý,21487691,Nhẫn,3318018,2-3 lần/năm,Gold
+KH01216,Kim Nguyễn,Nữ,57,Bình Dương,Giáo viên,34428326,Nhẫn,42500263,1 lần/năm,Bronze
+KH01217,Chị Hạnh Nguyễn,Nam,47,Cần Thơ,Kỹ sư,41624484,Lắc chân,23719888,Hiếm khi,Silver
+KH01218,Hạnh Xuân Phạm,Nam,49,TP.HCM,Giáo viên,39696255,Bông tai,48635271,2-3 lần/năm,Gold
+KH01219,Bác Châu Mai,Nam,46,Hà Nội,Nhân viên văn phòng,9537335,Nhẫn,19817099,1 lần/năm,Silver
+KH01220,Phương Mai,Nam,43,Đồng Nai,Nhân viên văn phòng,6837490,Nhẫn,35174635,2-3 lần/năm,Bronze
+KH01221,Bà Thảo Dương,Nam,27,Bình Dương,Sinh viên,38587371,Vòng tay,22963937,1 lần/năm,Bronze
+KH01222,Quý cô Lan Đặng,Nữ,28,TP.HCM,Sinh viên,13939115,Lắc chân,1247319,Hàng tháng,Diamond
+KH01223,Quý cô Vân Mai,Nữ,35,Đà Nẵng,Nhân viên văn phòng,37804651,Bông tai,43835779,1 lần/năm,Diamond
+KH01224,Thành Hoàng,Nam,51,Bình Dương,Sinh viên,24243607,Vòng tay,43223367,Hàng tháng,Silver
+KH01225,Bảo Vũ,Nữ,60,Cần Thơ,Nhân viên văn phòng,16846376,Kim cương,1275977,1 lần/năm,Gold
+KH01226,Nhật Đức Dương,Nữ,48,Đồng Nai,Quản lý,22440388,Bông tai,19786231,Hàng tháng,Bronze
+KH01227,Cô Lan Đặng,Nữ,34,Bình Dương,Sinh viên,8543282,Bông tai,7478696,2-3 lần/năm,Silver
+KH01228,Cô Dương Trần,Nữ,36,Hà Nội,Giáo viên,16382194,Kim cương,15582622,Hàng tháng,Bronze
+KH01229,Chị Nhật Bùi,Nam,48,Bình Dương,Nhân viên văn phòng,44365267,Vòng tay,33861258,2-3 lần/năm,Silver
+KH01230,Khoa Mai,Nam,59,Đà Nẵng,Sinh viên,9504826,Lắc chân,48920589,2-3 lần/năm,Diamond
+KH01231,Lan Dương,Nam,24,Hà Nội,Sinh viên,24362299,Bông tai,4511421,Hiếm khi,Diamond
+KH01232,Nhiên Vũ,Nữ,31,Đà Nẵng,Quản lý,11540383,Bông tai,28531260,1 lần/năm,Gold
+KH01233,Chi Dương,Nữ,46,Đồng Nai,Giáo viên,20507842,Kim cương,24115020,Hàng tháng,Bronze
+KH01234,Quý cô Hà Mai,Nữ,34,Hà Nội,Kỹ sư,9772851,Dây chuyền,9632792,Hàng tháng,Gold
+KH01235,Huy Thế Nguyễn,Nữ,31,Hà Nội,Kinh doanh,16754747,Vòng tay,8589476,1 lần/năm,Diamond
+KH01236,Khoa Phạm,Nam,51,Đồng Nai,Quản lý,28759389,Vòng tay,5654509,1 lần/năm,Silver
+KH01237,Nhật Nguyễn,Nữ,59,Bình Dương,Kinh doanh,22231540,Lắc chân,20039087,1 lần/năm,Gold
+KH01238,Khoa Đặng,Nam,49,TP.HCM,Kỹ sư,31838991,Nhẫn,35015615,Hiếm khi,Silver
+KH01239,Kim Hoàng,Nữ,51,Cần Thơ,Quản lý,20863934,Vòng tay,24190878,Hiếm khi,Silver
+KH01240,Thành Quang Phạm,Nữ,26,Bình Dương,Sinh viên,21264081,Vòng tay,36093480,Hiếm khi,Bronze
+KH01241,Nhật Nguyễn,Nữ,19,Bình Dương,Quản lý,45396231,Nhẫn,49840490,Hàng tháng,Bronze
+KH01242,Anh Dương,Nữ,49,Đà Nẵng,Kinh doanh,41651177,Vòng tay,43232877,2-3 lần/năm,Silver
+KH01243,Quý cô Linh Mai,Nam,31,TP.HCM,Kinh doanh,5034193,Vòng tay,16630665,1 lần/năm,Gold
+KH01244,Hưng Trần,Nam,48,Bình Dương,Nhân viên văn phòng,47760980,Vòng tay,19990954,Hiếm khi,Gold
+KH01245,Cô Hải Vũ,Nữ,41,Đồng Nai,Kinh doanh,5582580,Kim cương,19770514,Hàng tháng,Bronze
+KH01246,Nhật Lê,Nam,36,Hà Nội,Quản lý,26217382,Vòng tay,33674115,Hiếm khi,Bronze
+KH01247,Huy Xuân Mai,Nữ,44,Hà Nội,Sinh viên,19996402,Bông tai,33381912,2-3 lần/năm,Gold
+KH01248,Bác Nam Mai,Nam,29,Đồng Nai,Kỹ sư,36992710,Nhẫn,44687544,2-3 lần/năm,Bronze
+KH01249,Tùng Mai,Nữ,44,Đà Nẵng,Giáo viên,17171729,Lắc chân,7321350,Hiếm khi,Bronze
+KH01250,Bà Lâm Vũ,Nam,37,Đà Nẵng,Kinh doanh,14557780,Lắc chân,3670723,2-3 lần/năm,Diamond
+KH01251,Bảo Bảo Lê,Nam,51,Hà Nội,Quản lý,7148011,Nhẫn,19479583,1 lần/năm,Diamond
+KH01252,Quý cô Yến Dương,Nữ,53,Cần Thơ,Kinh doanh,5670727,Dây chuyền,38114726,Hiếm khi,Bronze
+KH01253,Bác Quang Phạm,Nam,31,Đồng Nai,Nhân viên văn phòng,24548726,Nhẫn,26951970,1 lần/năm,Bronze
+KH01254,Duyên Vũ,Nam,33,Hà Nội,Nhân viên văn phòng,28736225,Nhẫn,40593026,1 lần/năm,Diamond
+KH01255,Bảo Dương,Nam,30,Bình Dương,Nhân viên văn phòng,27328653,Kim cương,31852362,Hàng tháng,Bronze
+KH01256,Kim Phạm,Nữ,23,TP.HCM,Sinh viên,36253898,Lắc chân,27815585,1 lần/năm,Gold
+KH01257,Cô Lan Lê,Nữ,19,Đồng Nai,Nhân viên văn phòng,38412083,Nhẫn,1128945,2-3 lần/năm,Bronze
+KH01258,Anh Tú Lê,Nữ,29,TP.HCM,Kỹ sư,38728687,Dây chuyền,45906937,1 lần/năm,Diamond
+KH01259,Thành Đặng,Nữ,39,Bình Dương,Giáo viên,12530714,Bông tai,44611956,Hàng tháng,Bronze
+KH01260,Quang Thế Trần,Nam,56,Bình Dương,Kỹ sư,36126204,Dây chuyền,9645063,Hàng tháng,Gold
+KH01261,Bác Tùng Trần,Nam,45,Đà Nẵng,Giáo viên,38427539,Lắc chân,39614175,Hiếm khi,Silver
+KH01262,Chị Dương Dương,Nam,44,Đà Nẵng,Kinh doanh,14292188,Nhẫn,4567043,2-3 lần/năm,Bronze
+KH01263,Cô Lan Lê,Nữ,58,Đà Nẵng,Nhân viên văn phòng,26630961,Bông tai,38343118,Hàng tháng,Diamond
+KH01264,Quý ông Huy Vũ,Nữ,26,TP.HCM,Kỹ sư,43379198,Bông tai,29401073,2-3 lần/năm,Bronze
+KH01265,Dũng Dương,Nữ,18,Hà Nội,Nhân viên văn phòng,13246012,Dây chuyền,26078685,Hiếm khi,Gold
+KH01266,Bà Nhật Nguyễn,Nam,49,Cần Thơ,Giáo viên,49520170,Kim cương,14313802,Hàng tháng,Diamond
+KH01267,Nam Nguyễn,Nữ,25,Đồng Nai,Quản lý,28777449,Kim cương,14983094,Hiếm khi,Gold
+KH01268,Khoa Phú Vũ,Nữ,32,Đà Nẵng,Quản lý,21482729,Nhẫn,6784974,Hiếm khi,Diamond
+KH01269,Chị Xuân Nguyễn,Nam,49,Bình Dương,Kỹ sư,25109982,Bông tai,27630130,Hiếm khi,Gold
+KH01270,Bà Mai Phạm,Nam,27,Bình Dương,Kinh doanh,35759673,Lắc chân,7330436,Hàng tháng,Bronze
+KH01271,Minh Phú Dương,Nam,52,TP.HCM,Giáo viên,17901154,Vòng tay,4231153,2-3 lần/năm,Gold
+KH01272,Châu Quang Lê,Nữ,20,Cần Thơ,Sinh viên,5118898,Kim cương,27958313,Hàng tháng,Silver
+KH01273,Cô Vân Đặng,Nam,32,Cần Thơ,Kinh doanh,13307869,Bông tai,35320608,Hàng tháng,Silver
+KH01274,Minh Hoàng,Nữ,34,Đồng Nai,Giáo viên,13276190,Nhẫn,19343158,Hàng tháng,Silver
+KH01275,Xuân Vũ,Nam,28,Cần Thơ,Sinh viên,35413758,Bông tai,39986244,2-3 lần/năm,Gold
+KH01276,Phương Vũ,Nữ,18,Đà Nẵng,Giáo viên,35355557,Lắc chân,5804649,Hàng tháng,Diamond
+KH01277,Chị Lâm Dương,Nam,34,Cần Thơ,Nhân viên văn phòng,32050021,Bông tai,9437599,2-3 lần/năm,Bronze
+KH01278,Chị Duyên Bùi,Nam,22,Bình Dương,Kinh doanh,31724662,Lắc chân,11116093,Hàng tháng,Bronze
+KH01279,Cô Yến Bùi,Nam,52,Hà Nội,Sinh viên,26029668,Nhẫn,4370466,Hiếm khi,Silver
+KH01280,Hồng Nguyễn,Nam,43,Cần Thơ,Sinh viên,30691653,Dây chuyền,36707519,2-3 lần/năm,Bronze
+KH01281,Hà Thế Nguyễn,Nam,51,Bình Dương,Kinh doanh,45660002,Vòng tay,23579089,Hàng tháng,Gold
+KH01282,Tùng Lê,Nữ,30,Hà Nội,Sinh viên,21467002,Nhẫn,20136351,1 lần/năm,Gold
+KH01283,Bà Chi Vũ,Nam,29,TP.HCM,Giáo viên,9021285,Kim cương,32072004,Hàng tháng,Silver
+KH01284,Quý cô An Lê,Nữ,26,TP.HCM,Giáo viên,29374246,Kim cương,11868423,Hiếm khi,Gold
+KH01285,Ông Thành Lê,Nữ,33,Cần Thơ,Kỹ sư,39796568,Vòng tay,30793636,Hàng tháng,Diamond
+KH01286,Vi Nguyễn,Nữ,56,TP.HCM,Kỹ sư,44509329,Dây chuyền,35334437,Hiếm khi,Bronze
+KH01287,Châu Thị Hoàng,Nữ,32,Hà Nội,Kinh doanh,45572429,Kim cương,25780311,2-3 lần/năm,Diamond
+KH01288,Cô Hà Lê,Nam,37,TP.HCM,Nhân viên văn phòng,41108994,Bông tai,46989357,1 lần/năm,Bronze
+KH01289,Nhật Bùi,Nữ,30,Bình Dương,Kỹ sư,39851428,Nhẫn,44785942,Hiếm khi,Bronze
+KH01290,Hưng Vũ,Nữ,47,Đà Nẵng,Giáo viên,10784494,Nhẫn,2366636,1 lần/năm,Diamond
+KH01291,Chị Vi Phạm,Nam,24,Hà Nội,Giáo viên,21032074,Dây chuyền,35491636,Hàng tháng,Gold
+KH01292,Quý cô Ánh Nguyễn,Nam,41,Đồng Nai,Sinh viên,33022492,Lắc chân,33148844,1 lần/năm,Bronze
+KH01293,Bác Thành Đặng,Nam,29,TP.HCM,Sinh viên,16644123,Lắc chân,9997027,Hàng tháng,Silver
+KH01294,Dũng Đặng,Nữ,47,Đồng Nai,Kinh doanh,31090916,Kim cương,2842584,Hàng tháng,Bronze
+KH01295,Bác Bảo Vũ,Nam,56,Đồng Nai,Nhân viên văn phòng,43663190,Kim cương,11590016,1 lần/năm,Bronze
+KH01296,Bảo Nguyễn,Nam,47,Cần Thơ,Nhân viên văn phòng,44515551,Bông tai,29426516,Hiếm khi,Silver
+KH01297,Ông Châu Nguyễn,Nam,60,Đồng Nai,Nhân viên văn phòng,27138196,Nhẫn,12332675,Hàng tháng,Gold
+KH01298,Chị Khoa Hoàng,Nam,50,TP.HCM,Nhân viên văn phòng,38464026,Nhẫn,38374010,Hiếm khi,Bronze
+KH01299,Dương Nguyễn,Nữ,25,Cần Thơ,Kinh doanh,45657133,Lắc chân,20425768,Hàng tháng,Diamond
+KH01300,Anh Châu Vũ,Nam,20,Cần Thơ,Kỹ sư,18783851,Vòng tay,41697062,1 lần/năm,Gold
+KH01301,Bà Lâm Lê,Nữ,22,Đà Nẵng,Sinh viên,27028301,Dây chuyền,37926025,1 lần/năm,Gold
+KH01302,Ông Trọng Trần,Nam,37,Bình Dương,Sinh viên,30834233,Bông tai,14128610,1 lần/năm,Diamond
+KH01303,Chị An Hoàng,Nữ,29,Hà Nội,Quản lý,8364187,Nhẫn,5321126,1 lần/năm,Silver
+KH01304,Lâm Vũ,Nữ,40,Bình Dương,Kỹ sư,46416325,Bông tai,43768313,Hàng tháng,Diamond
+KH01305,Ông Nam Lê,Nam,59,TP.HCM,Kinh doanh,29216320,Kim cương,21951012,1 lần/năm,Bronze
+KH01306,Tùng Tấn Trần,Nữ,23,Đồng Nai,Nhân viên văn phòng,5717146,Nhẫn,48254508,1 lần/năm,Gold
+KH01307,Bà Nhật Bùi,Nữ,33,Bình Dương,Quản lý,31026962,Lắc chân,5506952,2-3 lần/năm,Gold
+KH01308,Phúc Nguyễn,Nữ,30,Hà Nội,Kỹ sư,20753461,Nhẫn,4157684,Hiếm khi,Diamond
+KH01309,Bà Duyên Nguyễn,Nam,30,Đà Nẵng,Quản lý,44814185,Dây chuyền,20417065,Hàng tháng,Diamond
+KH01310,Hạnh Văn Phạm,Nữ,31,TP.HCM,Quản lý,48122368,Vòng tay,2849712,1 lần/năm,Bronze
+KH01311,Hưng Trần,Nữ,56,Đồng Nai,Kinh doanh,19949440,Nhẫn,44568044,1 lần/năm,Diamond
+KH01312,Khoa Vũ,Nữ,23,Đà Nẵng,Kinh doanh,16028914,Bông tai,21974365,2-3 lần/năm,Diamond
+KH01313,Xuân Vũ,Nữ,19,Hà Nội,Quản lý,35018885,Bông tai,12243600,Hàng tháng,Bronze
+KH01314,Ông Tú Vũ,Nữ,32,TP.HCM,Quản lý,9989258,Nhẫn,48378418,2-3 lần/năm,Gold
+KH01315,Hưng Hải Mai,Nữ,24,Bình Dương,Giáo viên,9250640,Nhẫn,38238787,2-3 lần/năm,Bronze
+KH01316,Quý ông Hoàng Đặng,Nữ,59,Hà Nội,Kỹ sư,45991648,Bông tai,23646330,Hàng tháng,Diamond
+KH01317,Quý cô Lan Dương,Nữ,29,Đồng Nai,Kinh doanh,29098573,Vòng tay,1720180,2-3 lần/năm,Bronze
+KH01318,Chị An Bùi,Nam,60,Hà Nội,Quản lý,30858276,Lắc chân,32457115,1 lần/năm,Bronze
+KH01319,Ngọc Nguyễn,Nam,54,Cần Thơ,Kinh doanh,46529421,Nhẫn,30108102,Hiếm khi,Gold
+KH01320,An Nguyễn,Nữ,32,Hà Nội,Giáo viên,35839280,Vòng tay,20251303,Hiếm khi,Bronze
+KH01321,Ông Khoa Bùi,Nam,59,Bình Dương,Giáo viên,35987493,Bông tai,15843734,Hàng tháng,Silver
+KH01322,Chi Trần,Nữ,33,TP.HCM,Giáo viên,35088542,Kim cương,36999028,Hiếm khi,Diamond
+KH01323,Quý cô Xuân Hoàng,Nữ,26,Cần Thơ,Kinh doanh,26636607,Bông tai,47539703,Hàng tháng,Silver
+KH01324,An Dương,Nam,20,TP.HCM,Nhân viên văn phòng,10860793,Lắc chân,30881090,Hàng tháng,Bronze
+KH01325,Bảo Vũ,Nam,45,Bình Dương,Giáo viên,5520756,Dây chuyền,24079559,1 lần/năm,Bronze
+KH01326,Khoa Bảo Phạm,Nữ,27,Đồng Nai,Nhân viên văn phòng,15063472,Dây chuyền,42961259,1 lần/năm,Silver
+KH01327,Quý cô Nhật Phạm,Nam,19,Cần Thơ,Kinh doanh,22579686,Lắc chân,49642376,Hiếm khi,Bronze
+KH01328,Thành Xuân Nguyễn,Nam,45,Hà Nội,Nhân viên văn phòng,33139203,Vòng tay,31487798,Hàng tháng,Silver
+KH01329,Nhật Quang Hoàng,Nữ,51,Đà Nẵng,Sinh viên,46025830,Dây chuyền,18028000,Hiếm khi,Diamond
+KH01330,Bảo Bảo Hoàng,Nam,29,Hà Nội,Quản lý,19252646,Kim cương,1005379,1 lần/năm,Bronze
+KH01331,Thành Mai,Nữ,34,Cần Thơ,Kỹ sư,41486542,Vòng tay,41008191,1 lần/năm,Gold
+KH01332,Bà Khoa Trần,Nữ,55,Đà Nẵng,Quản lý,7989700,Lắc chân,28968576,1 lần/năm,Bronze
+KH01333,Chi Phạm,Nam,48,Cần Thơ,Kỹ sư,17372206,Kim cương,35485882,1 lần/năm,Silver
+KH01334,Hạnh Đặng,Nam,44,TP.HCM,Sinh viên,46697059,Vòng tay,5162429,1 lần/năm,Gold
+KH01335,Quý cô Thành Dương,Nam,21,Đà Nẵng,Sinh viên,35188171,Lắc chân,46219874,2-3 lần/năm,Bronze
+KH01336,Ngọc Trần,Nữ,19,Bình Dương,Giáo viên,24910968,Kim cương,40373297,2-3 lần/năm,Bronze
+KH01337,Vũ Hải Bùi,Nam,24,Đồng Nai,Kỹ sư,7203115,Nhẫn,6051263,Hiếm khi,Gold
+KH01338,Khoa Hoàng,Nữ,30,Đồng Nai,Kỹ sư,5238438,Kim cương,19391078,1 lần/năm,Gold
+KH01339,Hà Trần,Nữ,40,Đồng Nai,Sinh viên,23226674,Lắc chân,29143322,2-3 lần/năm,Gold
+KH01340,Vân Nguyễn,Nam,50,Hà Nội,Kỹ sư,22880269,Bông tai,41133001,Hàng tháng,Bronze
+KH01341,An Lê,Nữ,34,TP.HCM,Giáo viên,28869352,Bông tai,1324804,Hiếm khi,Silver
+KH01342,Bác Trọng Hoàng,Nữ,22,Cần Thơ,Kinh doanh,22575217,Bông tai,9097766,Hiếm khi,Silver
+KH01343,An Vũ,Nữ,47,Đồng Nai,Nhân viên văn phòng,46791546,Dây chuyền,47135574,1 lần/năm,Diamond
+KH01344,Thành Trần,Nữ,42,Đồng Nai,Nhân viên văn phòng,26907060,Lắc chân,18696521,2-3 lần/năm,Silver
+KH01345,Bảo Trần,Nữ,22,Cần Thơ,Quản lý,8160191,Nhẫn,10525881,2-3 lần/năm,Bronze
+KH01346,Hoàng Bảo Đặng,Nữ,36,Cần Thơ,Nhân viên văn phòng,8976084,Bông tai,6906759,1 lần/năm,Bronze
+KH01347,Quý ông Quang Nguyễn,Nữ,21,TP.HCM,Giáo viên,14214041,Vòng tay,39683877,2-3 lần/năm,Diamond
+KH01348,Cô Thảo Dương,Nữ,46,Cần Thơ,Kỹ sư,41089192,Kim cương,21209602,Hàng tháng,Silver
+KH01349,Hoàng Tấn Đặng,Nam,32,TP.HCM,Giáo viên,38030214,Kim cương,15353236,Hiếm khi,Gold
+KH01350,Mai Vũ,Nữ,42,Đồng Nai,Kinh doanh,47086449,Kim cương,1015701,2-3 lần/năm,Silver
+KH01351,Ông Vũ Dương,Nữ,49,TP.HCM,Giáo viên,23769659,Kim cương,46406127,1 lần/năm,Silver
+KH01352,Minh Mai,Nữ,23,Cần Thơ,Quản lý,26355725,Dây chuyền,15697318,Hàng tháng,Bronze
+KH01353,Yến Bùi,Nam,53,Hà Nội,Giáo viên,32673649,Dây chuyền,32626462,2-3 lần/năm,Gold
+KH01354,Quý cô Lâm Trần,Nữ,25,Bình Dương,Sinh viên,45480395,Nhẫn,43122794,1 lần/năm,Silver
+KH01355,Dũng Mai,Nữ,55,Đà Nẵng,Sinh viên,8699079,Lắc chân,19192153,2-3 lần/năm,Bronze
+KH01356,Anh Trí Mai,Nam,26,TP.HCM,Kinh doanh,17859636,Kim cương,48628912,Hiếm khi,Bronze
+KH01357,Bà Hồng Lê,Nữ,38,TP.HCM,Nhân viên văn phòng,30755224,Lắc chân,26047441,1 lần/năm,Bronze
+KH01358,Ông Châu Dương,Nam,22,Cần Thơ,Kỹ sư,18914455,Vòng tay,20628552,1 lần/năm,Diamond
+KH01359,Mai Dương,Nữ,25,Bình Dương,Kinh doanh,18825999,Nhẫn,4866841,Hiếm khi,Bronze
+KH01360,Bảo Bảo Bùi,Nữ,37,Đồng Nai,Nhân viên văn phòng,12707015,Nhẫn,4260927,2-3 lần/năm,Bronze
+KH01361,Trung Trần,Nam,60,TP.HCM,Giáo viên,45516040,Vòng tay,42134269,Hàng tháng,Diamond
+KH01362,Hưng Hải Dương,Nam,47,Đồng Nai,Kỹ sư,6006539,Dây chuyền,20503898,2-3 lần/năm,Silver
+KH01363,Thành Hoàng Dương,Nữ,35,Hà Nội,Kinh doanh,25985284,Vòng tay,33807547,Hàng tháng,Bronze
+KH01364,Trung Mai,Nữ,33,TP.HCM,Quản lý,31288415,Vòng tay,46006195,2-3 lần/năm,Gold
+KH01365,Khoa Vũ,Nữ,30,TP.HCM,Giáo viên,35050852,Bông tai,36036851,2-3 lần/năm,Diamond
+KH01366,Quý cô Nhật Trần,Nam,31,TP.HCM,Kinh doanh,29826409,Kim cương,41256631,2-3 lần/năm,Gold
+KH01367,Thành Quang Mai,Nữ,25,Bình Dương,Nhân viên văn phòng,47020529,Kim cương,8596172,Hàng tháng,Diamond
+KH01368,Anh Đức Đặng,Nam,36,Cần Thơ,Kinh doanh,31773650,Bông tai,40019909,Hiếm khi,Silver
+KH01369,Hải Phú Phạm,Nữ,40,Hà Nội,Sinh viên,17507106,Kim cương,2463658,Hàng tháng,Gold
+KH01370,Duyên Trần,Nữ,56,Đồng Nai,Giáo viên,42257605,Nhẫn,5001042,Hàng tháng,Diamond
+KH01371,Quang Quang Đặng,Nữ,22,Cần Thơ,Sinh viên,22509920,Nhẫn,25808132,2-3 lần/năm,Silver
+KH01372,Yến Đặng,Nữ,48,Cần Thơ,Quản lý,12579215,Kim cương,8594083,1 lần/năm,Gold
+KH01373,Vũ Trần,Nam,42,Đồng Nai,Nhân viên văn phòng,17494034,Vòng tay,42751928,2-3 lần/năm,Silver
+KH01374,Lâm Đặng,Nam,36,Đà Nẵng,Sinh viên,22097483,Dây chuyền,5663542,Hiếm khi,Silver
+KH01375,Chị Thành Mai,Nam,18,Đà Nẵng,Giáo viên,21447826,Dây chuyền,45513274,1 lần/năm,Diamond
+KH01376,Chị Hồng Hoàng,Nữ,35,TP.HCM,Giáo viên,12193254,Nhẫn,1129115,Hiếm khi,Silver
+KH01377,Nam Bùi,Nữ,37,Hà Nội,Kinh doanh,13987507,Kim cương,38762947,2-3 lần/năm,Bronze
+KH01378,Cô Linh Hoàng,Nữ,39,Đà Nẵng,Quản lý,46198595,Nhẫn,28714580,Hàng tháng,Gold
+KH01379,Phương Đức Lê,Nữ,32,Bình Dương,Nhân viên văn phòng,45066770,Lắc chân,7984817,1 lần/năm,Gold
+KH01380,Bảo Phú Lê,Nam,55,Bình Dương,Kỹ sư,15526098,Kim cương,30399048,Hàng tháng,Silver
+KH01381,Hoàng Trí Dương,Nam,18,Đồng Nai,Giáo viên,42031840,Nhẫn,19185896,1 lần/năm,Bronze
+KH01382,Chị Hương Dương,Nữ,34,Cần Thơ,Quản lý,25390264,Vòng tay,28675846,2-3 lần/năm,Diamond
+KH01383,Quý ông Quang Vũ,Nữ,43,Cần Thơ,Nhân viên văn phòng,5799820,Lắc chân,19316711,1 lần/năm,Diamond
+KH01384,Hạnh Đặng,Nữ,59,TP.HCM,Giáo viên,6464811,Bông tai,34151230,Hiếm khi,Silver
+KH01385,Chi Hoàng,Nữ,49,Đà Nẵng,Quản lý,26780698,Lắc chân,27620925,2-3 lần/năm,Diamond
+KH01386,Lâm Vũ,Nam,35,TP.HCM,Sinh viên,43363002,Dây chuyền,17465033,Hiếm khi,Gold
+KH01387,Dũng Nguyễn,Nữ,44,Bình Dương,Kinh doanh,31652359,Bông tai,45581219,Hàng tháng,Diamond
+KH01388,Xuân Phạm,Nữ,26,Đà Nẵng,Kỹ sư,10103410,Dây chuyền,34805901,Hàng tháng,Gold
+KH01389,Thành Đặng,Nữ,28,Cần Thơ,Quản lý,9162725,Nhẫn,43700987,2-3 lần/năm,Diamond
+KH01390,Hạnh Phạm,Nữ,34,Cần Thơ,Quản lý,44379500,Vòng tay,23918566,2-3 lần/năm,Gold
+KH01391,Bà Thành Lê,Nam,25,Đồng Nai,Quản lý,44192246,Dây chuyền,23120373,Hiếm khi,Silver
+KH01392,Quý ông Tùng Lê,Nữ,24,Đà Nẵng,Giáo viên,24487550,Bông tai,42635009,Hiếm khi,Bronze
+KH01393,Nhật Phạm,Nam,42,TP.HCM,Kỹ sư,12308049,Dây chuyền,33265006,Hiếm khi,Silver
+KH01394,An Dương,Nữ,29,Hà Nội,Giáo viên,7572100,Lắc chân,31341445,2-3 lần/năm,Gold
+KH01395,Nhật Hoàng,Nữ,54,Đồng Nai,Kỹ sư,9388356,Lắc chân,45358718,Hiếm khi,Diamond
+KH01396,Bảo Bùi,Nữ,23,Cần Thơ,Kinh doanh,15108812,Bông tai,36180449,2-3 lần/năm,Diamond
+KH01397,Ánh Nguyễn,Nữ,23,Đà Nẵng,Giáo viên,28449347,Vòng tay,47320136,Hàng tháng,Gold
+KH01398,Cô Hương Trần,Nam,26,Bình Dương,Nhân viên văn phòng,15680753,Bông tai,45244591,2-3 lần/năm,Bronze
+KH01399,Hương Hoàng,Nữ,27,TP.HCM,Nhân viên văn phòng,10595620,Kim cương,16807292,Hàng tháng,Diamond
+KH01400,Quý ông Huy Mai,Nam,48,Bình Dương,Kinh doanh,38676045,Kim cương,46462162,Hiếm khi,Silver
+KH01401,Bà Linh Bùi,Nữ,20,Đồng Nai,Quản lý,17297535,Nhẫn,24859691,Hàng tháng,Gold
+KH01402,Chị Dương Hoàng,Nữ,34,Cần Thơ,Kinh doanh,26937772,Vòng tay,27470980,2-3 lần/năm,Gold
+KH01403,Bà Yến Nguyễn,Nam,54,Đà Nẵng,Giáo viên,30726166,Kim cương,34800424,Hàng tháng,Diamond
+KH01404,Khoa Đức Đặng,Nữ,21,Cần Thơ,Giáo viên,20658130,Dây chuyền,12504589,Hàng tháng,Gold
+KH01405,Thành Dương,Nữ,43,Hà Nội,Kinh doanh,38007841,Vòng tay,22088548,2-3 lần/năm,Gold
+KH01406,Dũng Thế Trần,Nam,32,Đồng Nai,Giáo viên,40032939,Lắc chân,9592299,1 lần/năm,Silver
+KH01407,Nhật Nguyễn,Nam,36,TP.HCM,Giáo viên,10163904,Lắc chân,28538987,2-3 lần/năm,Diamond
+KH01408,Phúc Mai Hoàng,Nữ,59,Hà Nội,Sinh viên,16565280,Bông tai,11110327,2-3 lần/năm,Silver
+KH01409,Nhật Đặng,Nữ,54,Cần Thơ,Kinh doanh,33121784,Dây chuyền,30359428,Hiếm khi,Bronze
+KH01410,Ông Huy Vũ,Nữ,56,Đà Nẵng,Quản lý,42911175,Dây chuyền,11658337,2-3 lần/năm,Diamond
+KH01411,Hải Dương,Nữ,25,Bình Dương,Kỹ sư,26804318,Dây chuyền,20335760,2-3 lần/năm,Bronze
+KH01412,Quý ông Nam Phạm,Nam,50,Bình Dương,Sinh viên,11023009,Nhẫn,18418316,Hàng tháng,Diamond
+KH01413,Quý cô An Mai,Nam,57,Đà Nẵng,Nhân viên văn phòng,48141860,Bông tai,31100004,Hàng tháng,Bronze
+KH01414,Trọng Bùi,Nữ,42,Đồng Nai,Sinh viên,44579715,Dây chuyền,17791953,1 lần/năm,Diamond
+KH01415,Anh Phạm,Nữ,48,Đà Nẵng,Nhân viên văn phòng,8222482,Vòng tay,6159586,Hiếm khi,Silver
+KH01416,Bà Xuân Hoàng,Nam,53,Hà Nội,Quản lý,22434353,Dây chuyền,8715600,1 lần/năm,Silver
+KH01417,Thành Mai,Nam,26,Bình Dương,Giáo viên,44383807,Kim cương,34189310,Hiếm khi,Diamond
+KH01418,Bảo Mai Bảo Bùi,Nam,44,Cần Thơ,Kinh doanh,7843465,Kim cương,6861484,Hàng tháng,Gold
+KH01419,Bà Yến Mai,Nam,37,Cần Thơ,Giáo viên,15391870,Vòng tay,46670330,2-3 lần/năm,Silver
+KH01420,Cô Hải Hoàng,Nam,39,TP.HCM,Kỹ sư,24558733,Dây chuyền,29737295,1 lần/năm,Gold
+KH01421,Phúc Phạm,Nam,48,Hà Nội,Nhân viên văn phòng,36476637,Lắc chân,29642693,Hàng tháng,Diamond
+KH01422,Phúc Bảo Đặng,Nam,59,Hà Nội,Kỹ sư,49269694,Nhẫn,30673688,Hàng tháng,Bronze
+KH01423,Chị Hồng Lê,Nam,57,Đồng Nai,Kinh doanh,29954967,Vòng tay,32712327,1 lần/năm,Gold
+KH01424,Trọng Bảo Trần,Nam,42,Hà Nội,Giáo viên,16278453,Bông tai,36017913,Hàng tháng,Gold
+KH01425,Bà Phương Phạm,Nữ,30,Hà Nội,Quản lý,41167793,Kim cương,32605782,2-3 lần/năm,Gold
+KH01426,Quý ông Minh Bùi,Nữ,58,Hà Nội,Kỹ sư,48962801,Nhẫn,38642112,Hàng tháng,Gold
+KH01427,Lan Hoàng,Nữ,22,Đà Nẵng,Giáo viên,22349017,Vòng tay,4863822,Hàng tháng,Diamond
+KH01428,Hạnh Nguyễn,Nam,56,Cần Thơ,Nhân viên văn phòng,7917572,Lắc chân,26723817,1 lần/năm,Bronze
+KH01429,Hoàng Đức Mai,Nữ,25,TP.HCM,Nhân viên văn phòng,39755969,Bông tai,45394761,Hiếm khi,Gold
+KH01430,Anh Trần,Nữ,60,Cần Thơ,Sinh viên,30558999,Lắc chân,21846409,Hàng tháng,Diamond
+KH01431,Ngọc Phạm,Nam,45,Bình Dương,Kỹ sư,12561835,Nhẫn,12800298,1 lần/năm,Gold
+KH01432,Chị An Mai,Nữ,49,Hà Nội,Kinh doanh,43653318,Lắc chân,23071547,Hàng tháng,Bronze
+KH01433,Bác Anh Vũ,Nam,49,Cần Thơ,Nhân viên văn phòng,7717147,Bông tai,12628879,Hàng tháng,Gold
+KH01434,Nhật Mai Bảo Nguyễn,Nữ,40,Hà Nội,Nhân viên văn phòng,23363190,Lắc chân,35509774,1 lần/năm,Bronze
+KH01435,Hương Bùi,Nữ,56,Hà Nội,Kỹ sư,9176024,Bông tai,31776354,2-3 lần/năm,Gold
+KH01436,Phúc Hoàng,Nữ,19,Cần Thơ,Quản lý,31906535,Dây chuyền,38239597,1 lần/năm,Gold
+KH01437,Thành Vũ,Nữ,59,TP.HCM,Kỹ sư,10642629,Nhẫn,10592022,Hàng tháng,Diamond
+KH01438,Ngọc Đặng,Nữ,19,TP.HCM,Kỹ sư,38620739,Nhẫn,9674359,2-3 lần/năm,Silver
+KH01439,Dũng Nguyễn,Nữ,43,Bình Dương,Giáo viên,48813642,Bông tai,4491189,Hàng tháng,Silver
+KH01440,Chị An Nguyễn,Nam,47,Đà Nẵng,Kỹ sư,33901215,Kim cương,40620419,Hàng tháng,Gold
+KH01441,Lâm Đức Hoàng,Nam,51,Cần Thơ,Sinh viên,10899037,Vòng tay,8814211,1 lần/năm,Diamond
+KH01442,Chị Bảo Trần,Nữ,54,TP.HCM,Kinh doanh,21010100,Vòng tay,15925520,1 lần/năm,Silver
+KH01443,Vân Trần,Nữ,40,Bình Dương,Kinh doanh,13190438,Vòng tay,34915156,1 lần/năm,Bronze
+KH01444,Kim Phú Nguyễn,Nữ,50,Đà Nẵng,Nhân viên văn phòng,30350462,Bông tai,49067900,Hiếm khi,Diamond
+KH01445,Dương Phạm,Nữ,18,Đồng Nai,Quản lý,34653028,Nhẫn,9960184,Hàng tháng,Gold
+KH01446,Kim Đức Đặng,Nam,27,Hà Nội,Kỹ sư,42557791,Kim cương,41465231,Hiếm khi,Diamond
+KH01447,Bà Nhật Đặng,Nữ,33,Đồng Nai,Quản lý,43110470,Bông tai,6656751,2-3 lần/năm,Silver
+KH01448,Duyên Nguyễn,Nữ,21,Đà Nẵng,Sinh viên,40713800,Vòng tay,4001421,1 lần/năm,Bronze
+KH01449,Quý cô Khoa Hoàng,Nữ,44,Cần Thơ,Kinh doanh,8326402,Vòng tay,23682361,1 lần/năm,Diamond
+KH01450,Ngọc Phạm,Nữ,29,Cần Thơ,Sinh viên,18324467,Bông tai,19763189,1 lần/năm,Gold
+KH01451,Huy Hải Trần,Nữ,47,Bình Dương,Nhân viên văn phòng,16577161,Lắc chân,48980108,Hàng tháng,Silver
+KH01452,Hưng Dương,Nữ,39,Đồng Nai,Kỹ sư,47324194,Dây chuyền,21320275,2-3 lần/năm,Gold
+KH01453,Kim Mai Lê,Nữ,57,Đồng Nai,Nhân viên văn phòng,21671479,Kim cương,47498385,Hiếm khi,Gold
+KH01454,Kim Xuân Bùi,Nam,33,TP.HCM,Nhân viên văn phòng,8772027,Lắc chân,47119872,Hiếm khi,Silver
+KH01455,Bảo Thị Bùi,Nam,52,Cần Thơ,Sinh viên,40531405,Dây chuyền,19842640,Hiếm khi,Diamond
+KH01456,Nhật Lê,Nữ,22,Hà Nội,Kỹ sư,30790914,Dây chuyền,16741334,Hàng tháng,Silver
+KH01457,Bà An Đặng,Nam,19,Đồng Nai,Nhân viên văn phòng,32807141,Dây chuyền,32118038,Hiếm khi,Silver
+KH01458,Chị Hải Hoàng,Nam,39,TP.HCM,Kỹ sư,47092017,Bông tai,16743232,2-3 lần/năm,Diamond
+KH01459,Nhiên Đức Trần,Nam,49,TP.HCM,Giáo viên,41503243,Kim cương,8082833,1 lần/năm,Bronze
+KH01460,Nhật Xuân Bùi,Nữ,24,Hà Nội,Nhân viên văn phòng,6297376,Nhẫn,9602282,2-3 lần/năm,Bronze
+KH01461,Quý ông Quang Hoàng,Nữ,42,Cần Thơ,Sinh viên,10354059,Lắc chân,41605607,Hiếm khi,Bronze
+KH01462,Anh Mai Bảo Phạm,Nam,49,Bình Dương,Giáo viên,7907955,Kim cương,47320828,2-3 lần/năm,Gold
+KH01463,Hà Vũ,Nam,60,Bình Dương,Nhân viên văn phòng,19537510,Kim cương,29114438,2-3 lần/năm,Gold
+KH01464,Ánh Bùi,Nam,26,TP.HCM,Giáo viên,31243391,Kim cương,2017155,1 lần/năm,Bronze
+KH01465,Cô Nhật Nguyễn,Nam,23,Đồng Nai,Kỹ sư,46325474,Kim cương,9099925,Hàng tháng,Bronze
+KH01466,Nhật Phạm,Nữ,28,Đà Nẵng,Kinh doanh,7415595,Dây chuyền,3527358,Hàng tháng,Silver
+KH01467,Cô An Dương,Nữ,26,Đồng Nai,Sinh viên,39095617,Bông tai,2706089,Hàng tháng,Bronze
+KH01468,Cô Lâm Mai,Nam,51,Cần Thơ,Nhân viên văn phòng,33593789,Bông tai,9439398,1 lần/năm,Silver
+KH01469,Hải Mai Nguyễn,Nam,28,Hà Nội,Kinh doanh,11974278,Dây chuyền,28972407,2-3 lần/năm,Gold
+KH01470,Nhật Quang Lê,Nữ,19,TP.HCM,Kỹ sư,9129295,Dây chuyền,11397103,2-3 lần/năm,Silver
+KH01471,Quý cô Hà Nguyễn,Nữ,51,Cần Thơ,Nhân viên văn phòng,42367536,Lắc chân,21570770,1 lần/năm,Gold
+KH01472,Bà Hải Dương,Nữ,51,Đà Nẵng,Sinh viên,7633551,Dây chuyền,20439862,Hiếm khi,Bronze
+KH01473,Cô Kim Bùi,Nữ,57,Bình Dương,Nhân viên văn phòng,18626336,Vòng tay,27608608,Hàng tháng,Bronze
+KH01474,Bà Mai Trần,Nam,22,Đà Nẵng,Giáo viên,10111387,Nhẫn,14158493,1 lần/năm,Bronze
+KH01475,Cô Phương Phạm,Nam,21,TP.HCM,Nhân viên văn phòng,44194611,Nhẫn,47507150,Hiếm khi,Bronze
+KH01476,Bà Hương Mai,Nữ,49,TP.HCM,Kinh doanh,8060099,Dây chuyền,2827673,Hiếm khi,Gold
+KH01477,Bảo Dương,Nữ,33,Cần Thơ,Kinh doanh,27149779,Dây chuyền,47029537,2-3 lần/năm,Diamond
+KH01478,Chị Vân Vũ,Nam,43,TP.HCM,Kỹ sư,21256884,Bông tai,48759532,1 lần/năm,Diamond
+KH01479,Hải Nguyễn,Nữ,31,Bình Dương,Quản lý,5221666,Kim cương,33144001,Hàng tháng,Bronze
+KH01480,Quý cô Thành Đặng,Nam,30,Đà Nẵng,Kinh doanh,7501305,Dây chuyền,12635085,Hàng tháng,Diamond
+KH01481,Quý ông Anh Trần,Nam,21,TP.HCM,Kinh doanh,20622813,Dây chuyền,15969958,Hiếm khi,Gold
+KH01482,Trung Mai,Nữ,55,TP.HCM,Kinh doanh,34932296,Bông tai,49822240,Hiếm khi,Bronze
+KH01483,Cô Ánh Bùi,Nam,45,Hà Nội,Nhân viên văn phòng,30886667,Kim cương,47947045,1 lần/năm,Silver
+KH01484,Phúc Phạm,Nữ,50,Cần Thơ,Nhân viên văn phòng,20903753,Dây chuyền,31517612,Hàng tháng,Gold
+KH01485,Bác Hưng Nguyễn,Nữ,29,Đà Nẵng,Kinh doanh,32221844,Vòng tay,28720562,Hàng tháng,Bronze
+KH01486,Quý cô Vân Đặng,Nữ,57,Hà Nội,Kỹ sư,45130463,Kim cương,23365819,Hàng tháng,Diamond
+KH01487,Lâm Bùi,Nam,36,Cần Thơ,Nhân viên văn phòng,22951215,Kim cương,34773357,Hàng tháng,Gold
+KH01488,Xuân Phạm,Nam,47,Hà Nội,Giáo viên,29965938,Dây chuyền,44776238,2-3 lần/năm,Diamond
+KH01489,Anh Anh Bùi,Nữ,43,Cần Thơ,Kinh doanh,20187279,Lắc chân,23764501,Hàng tháng,Silver
+KH01490,Chi Vũ,Nữ,44,Hà Nội,Giáo viên,21565948,Bông tai,13949802,Hàng tháng,Gold
+KH01491,Khoa Quang Trần,Nữ,31,Hà Nội,Giáo viên,23892768,Bông tai,10986951,1 lần/năm,Silver
+KH01492,Hạnh Bùi,Nữ,43,Cần Thơ,Giáo viên,10270100,Bông tai,37897094,2-3 lần/năm,Silver
+KH01493,Khoa Đức Lê,Nữ,32,Đồng Nai,Nhân viên văn phòng,9750890,Vòng tay,17926412,2-3 lần/năm,Gold
+KH01494,Bác Trung Bùi,Nữ,58,Đà Nẵng,Quản lý,47573563,Lắc chân,10770941,Hàng tháng,Diamond
+KH01495,Cô Vân Hoàng,Nữ,32,Cần Thơ,Kinh doanh,43175034,Nhẫn,8751793,1 lần/năm,Silver
+KH01496,Chị Hải Phạm,Nam,60,TP.HCM,Giáo viên,47588583,Bông tai,45627657,Hàng tháng,Silver
+KH01497,Quý ông Châu Lê,Nữ,36,Đồng Nai,Sinh viên,37710789,Nhẫn,23733422,Hiếm khi,Silver
+KH01498,Lâm Mai,Nam,34,TP.HCM,Kỹ sư,30482930,Dây chuyền,49313887,Hàng tháng,Gold
+KH01499,Dũng Đức Vũ,Nữ,55,Cần Thơ,Sinh viên,25428203,Vòng tay,4393569,Hiếm khi,Diamond
+KH01500,Khoa Mai Lê,Nữ,30,Hà Nội,Nhân viên văn phòng,34337036,Dây chuyền,22599215,Hàng tháng,Gold
+KH01501,Châu Mai Bảo Vũ,Nữ,38,TP.HCM,Quản lý,38642927,Bông tai,22155972,Hiếm khi,Bronze
+KH01502,Hoàng Phú Vũ,Nữ,29,Hà Nội,Kỹ sư,30726923,Lắc chân,15110240,2-3 lần/năm,Diamond
+KH01503,Quý ông Thành Bùi,Nam,50,TP.HCM,Sinh viên,15272027,Lắc chân,37888094,Hiếm khi,Diamond
+KH01504,Kim Phạm,Nữ,41,Hà Nội,Quản lý,32756774,Lắc chân,38519189,1 lần/năm,Silver
+KH01505,Dũng Trí Bùi,Nam,49,TP.HCM,Sinh viên,30637343,Bông tai,1978566,2-3 lần/năm,Bronze
+KH01506,Lâm Xuân Trần,Nam,38,Đà Nẵng,Kinh doanh,13924826,Lắc chân,49594239,1 lần/năm,Silver
+KH01507,Quý cô Dương Dương,Nữ,32,Đồng Nai,Sinh viên,26180900,Bông tai,36482168,Hiếm khi,Gold
+KH01508,Cô Mai Dương,Nam,45,Hà Nội,Giáo viên,39454353,Lắc chân,16343148,2-3 lần/năm,Diamond
+KH01509,Trọng Hoàng Bùi,Nam,29,Hà Nội,Quản lý,18184020,Nhẫn,38816720,Hiếm khi,Silver
+KH01510,Lâm Bảo Dương,Nữ,38,Cần Thơ,Quản lý,26167232,Bông tai,38939284,1 lần/năm,Silver
+KH01511,Anh Trung Lê,Nữ,60,Bình Dương,Kỹ sư,27439622,Dây chuyền,17934886,2-3 lần/năm,Bronze
+KH01512,Duyên Trần,Nữ,57,Hà Nội,Kinh doanh,46497766,Kim cương,31565394,Hiếm khi,Silver
+KH01513,Ông Thành Đặng,Nam,23,Đồng Nai,Giáo viên,18703141,Nhẫn,31033969,1 lần/năm,Gold
+KH01514,Cô Hương Trần,Nam,42,Đồng Nai,Quản lý,15560414,Vòng tay,4715271,1 lần/năm,Diamond
+KH01515,Bà Yến Đặng,Nữ,43,Cần Thơ,Nhân viên văn phòng,36461787,Bông tai,31536334,Hàng tháng,Bronze
+KH01516,Ngọc Dương,Nam,52,Đồng Nai,Kinh doanh,34384379,Nhẫn,18763841,1 lần/năm,Gold
+KH01517,Thành Nguyễn,Nữ,19,Bình Dương,Nhân viên văn phòng,19150590,Bông tai,45122484,2-3 lần/năm,Bronze
+KH01518,An Hoàng Trần,Nữ,35,Đồng Nai,Sinh viên,18944122,Nhẫn,48876607,Hàng tháng,Diamond
+KH01519,Cô Khoa Bùi,Nam,23,TP.HCM,Sinh viên,11027815,Nhẫn,2855603,Hàng tháng,Gold
+KH01520,Khoa Nguyễn,Nữ,60,Hà Nội,Giáo viên,27315563,Nhẫn,9343737,Hàng tháng,Gold
+KH01521,An Trí Nguyễn,Nữ,47,Đồng Nai,Quản lý,8555965,Dây chuyền,30339208,Hiếm khi,Diamond
+KH01522,Bảo Bùi,Nữ,38,TP.HCM,Quản lý,15628148,Bông tai,4307081,1 lần/năm,Bronze
+KH01523,Khoa Bùi,Nam,21,Hà Nội,Quản lý,49811576,Kim cương,48056204,1 lần/năm,Silver
+KH01524,Anh Tú Vũ,Nữ,54,TP.HCM,Sinh viên,28555607,Nhẫn,1027631,Hiếm khi,Bronze
+KH01525,Duyên Bùi,Nữ,30,Đà Nẵng,Kỹ sư,35159081,Lắc chân,21380350,1 lần/năm,Diamond
+KH01526,Chị Kim Phạm,Nữ,39,Cần Thơ,Nhân viên văn phòng,16014795,Lắc chân,25550280,Hàng tháng,Gold
+KH01527,Phúc Hải Trần,Nam,47,Đồng Nai,Kỹ sư,34040540,Vòng tay,24170430,Hiếm khi,Bronze
+KH01528,Chị Nhật Trần,Nam,35,Cần Thơ,Nhân viên văn phòng,33410444,Dây chuyền,18422193,Hiếm khi,Silver
+KH01529,Khoa Vũ,Nam,60,Hà Nội,Sinh viên,19590327,Bông tai,19863721,Hiếm khi,Diamond
+KH01530,Anh Minh Trần,Nữ,55,Bình Dương,Giáo viên,11328153,Vòng tay,48565865,Hiếm khi,Gold
+KH01531,Dương Trần,Nam,19,TP.HCM,Kinh doanh,36080823,Kim cương,30658135,Hiếm khi,Bronze
+KH01532,Chị Ánh Vũ,Nữ,47,Bình Dương,Nhân viên văn phòng,38910076,Vòng tay,6567718,1 lần/năm,Diamond
+KH01533,Quý ông Nam Dương,Nữ,18,TP.HCM,Quản lý,27829060,Dây chuyền,10197075,Hiếm khi,Silver
+KH01534,Quang Quang Phạm,Nữ,24,TP.HCM,Kỹ sư,35088764,Bông tai,12534873,Hiếm khi,Gold
+KH01535,An Mai,Nữ,41,TP.HCM,Quản lý,39757320,Lắc chân,23781170,2-3 lần/năm,Bronze
+KH01536,Cô Kim Bùi,Nam,31,Cần Thơ,Quản lý,29775916,Kim cương,8198008,1 lần/năm,Diamond
+KH01537,Vi Trần,Nam,42,Bình Dương,Kinh doanh,47286720,Nhẫn,30603257,2-3 lần/năm,Silver
+KH01538,Kim Trần,Nam,53,Đồng Nai,Quản lý,40483008,Nhẫn,27622656,1 lần/năm,Silver
+KH01539,Minh Phạm,Nam,57,Đồng Nai,Kỹ sư,46522200,Nhẫn,10306240,2-3 lần/năm,Gold
+KH01540,Châu Hữu Hoàng,Nữ,41,Hà Nội,Kỹ sư,21330090,Nhẫn,34136199,Hàng tháng,Diamond
+KH01541,Chị Kim Bùi,Nữ,28,Bình Dương,Kinh doanh,38485177,Nhẫn,11158971,Hàng tháng,Silver
+KH01542,Anh Hưng Trần,Nữ,43,Đà Nẵng,Sinh viên,38141723,Dây chuyền,41358205,Hàng tháng,Diamond
+KH01543,Quý cô Lâm Mai,Nữ,32,Đồng Nai,Kinh doanh,21010477,Dây chuyền,13284625,2-3 lần/năm,Gold
+KH01544,Hương Bùi,Nam,48,Bình Dương,Nhân viên văn phòng,28046327,Dây chuyền,13659781,2-3 lần/năm,Gold
+KH01545,Bà Hạnh Phạm,Nam,48,Bình Dương,Kinh doanh,49756703,Kim cương,47870132,2-3 lần/năm,Diamond
+KH01546,Bảo Hoàng Vũ,Nữ,51,Hà Nội,Sinh viên,11862826,Lắc chân,20535225,Hàng tháng,Gold
+KH01547,Hoàng Hoàng Phạm,Nữ,58,Hà Nội,Kỹ sư,23079917,Lắc chân,21382713,Hàng tháng,Gold
+KH01548,Hưng Thị Bùi,Nam,49,Cần Thơ,Nhân viên văn phòng,13484369,Lắc chân,13893996,2-3 lần/năm,Bronze
+KH01549,Minh Dương,Nữ,56,Bình Dương,Kỹ sư,12497106,Bông tai,12495314,1 lần/năm,Silver
+KH01550,Hà Đức Trần,Nữ,44,TP.HCM,Nhân viên văn phòng,27562711,Kim cương,29053873,1 lần/năm,Gold
+KH01551,Quý ông Hoàng Phạm,Nữ,33,Hà Nội,Giáo viên,20746408,Lắc chân,29576773,1 lần/năm,Silver
+KH01552,Tú Hải Trần,Nữ,56,Hà Nội,Kỹ sư,28811927,Nhẫn,44137831,1 lần/năm,Diamond
+KH01553,Khoa Dương,Nữ,19,TP.HCM,Giáo viên,8309454,Vòng tay,28114765,2-3 lần/năm,Silver
+KH01554,Ông Huy Bùi,Nam,50,TP.HCM,Nhân viên văn phòng,36955045,Kim cương,25715640,2-3 lần/năm,Gold
+KH01555,Nhật Vũ,Nam,59,Đồng Nai,Nhân viên văn phòng,6636259,Kim cương,39318443,Hiếm khi,Bronze
+KH01556,Cô Kim Trần,Nữ,50,Hà Nội,Kinh doanh,24169447,Kim cương,17808890,Hiếm khi,Silver
+KH01557,Bảo Văn Bùi,Nữ,51,Hà Nội,Sinh viên,22971285,Lắc chân,19498607,2-3 lần/năm,Gold
+KH01558,Bà Hải Trần,Nữ,49,Đà Nẵng,Kinh doanh,12570003,Vòng tay,48595109,Hàng tháng,Bronze
+KH01559,Cô Phương Lê,Nữ,39,Hà Nội,Kỹ sư,45139890,Vòng tay,3239030,1 lần/năm,Gold
+KH01560,Quang Mai,Nữ,28,TP.HCM,Kinh doanh,42197345,Nhẫn,39168880,Hiếm khi,Bronze
+KH01561,Nhật Dương,Nữ,43,TP.HCM,Sinh viên,20860806,Lắc chân,1524555,1 lần/năm,Diamond
+KH01562,Khoa Hoàng Bùi,Nam,32,Cần Thơ,Sinh viên,28684277,Lắc chân,47106059,Hiếm khi,Gold
+KH01563,Bảo Văn Đặng,Nữ,22,Hà Nội,Sinh viên,18697248,Kim cương,23436565,Hàng tháng,Silver
+KH01564,Bà Hà Trần,Nam,34,Cần Thơ,Kinh doanh,16639673,Nhẫn,19340609,1 lần/năm,Diamond
+KH01565,Anh Vũ,Nữ,27,Cần Thơ,Giáo viên,12842681,Kim cương,20865911,Hàng tháng,Diamond
+KH01566,Vân Đặng,Nữ,26,Hà Nội,Quản lý,14460019,Lắc chân,10884680,Hàng tháng,Gold
+KH01567,Bảo Hải Vũ,Nữ,43,Đồng Nai,Sinh viên,7476332,Nhẫn,21504099,2-3 lần/năm,Bronze
+KH01568,Nhật Nguyễn,Nam,42,Đà Nẵng,Kỹ sư,25293905,Dây chuyền,26040907,2-3 lần/năm,Gold
+KH01569,Phương Trần,Nam,19,TP.HCM,Giáo viên,26092260,Vòng tay,29027607,Hàng tháng,Gold
+KH01570,Anh Hưng Phạm,Nam,54,Đồng Nai,Quản lý,15619309,Kim cương,43635795,Hàng tháng,Silver
+KH01571,Quý cô Hà Đặng,Nữ,58,Đà Nẵng,Quản lý,33367242,Nhẫn,23542851,Hàng tháng,Bronze
+KH01572,Phương Bùi,Nam,60,Đà Nẵng,Giáo viên,15609366,Kim cương,32336500,1 lần/năm,Diamond
+KH01573,Phương Trí Phạm,Nam,41,Cần Thơ,Nhân viên văn phòng,44777328,Dây chuyền,19577626,2-3 lần/năm,Bronze
+KH01574,Hải Hoàng Hoàng,Nữ,48,Bình Dương,Giáo viên,20112012,Bông tai,47738704,Hàng tháng,Bronze
+KH01575,Chị Hạnh Nguyễn,Nam,33,Cần Thơ,Kỹ sư,21407823,Lắc chân,29713413,Hiếm khi,Silver
+KH01576,Bà An Mai,Nữ,39,Bình Dương,Giáo viên,42609989,Kim cương,43364989,1 lần/năm,Gold
+KH01577,Tùng Tấn Đặng,Nam,20,Bình Dương,Giáo viên,40101151,Nhẫn,20347492,Hàng tháng,Diamond
+KH01578,An Xuân Hoàng,Nữ,47,Cần Thơ,Kinh doanh,19604423,Lắc chân,34687115,Hiếm khi,Silver
+KH01579,Thành Đức Phạm,Nam,51,TP.HCM,Giáo viên,25000856,Bông tai,41700310,1 lần/năm,Silver
+KH01580,Cô An Đặng,Nam,54,Đà Nẵng,Nhân viên văn phòng,26056158,Kim cương,13110109,1 lần/năm,Gold
+KH01581,Ánh Bùi,Nữ,20,Bình Dương,Nhân viên văn phòng,32669837,Lắc chân,13443155,Hàng tháng,Diamond
+KH01582,Nhật Trần,Nữ,49,Đà Nẵng,Giáo viên,12858582,Lắc chân,30323891,Hàng tháng,Diamond
+KH01583,Phương Phạm,Nam,20,Hà Nội,Giáo viên,34281730,Nhẫn,32474866,1 lần/năm,Silver
+KH01584,Quý ông Quang Mai,Nam,47,Hà Nội,Quản lý,45001935,Bông tai,5119695,Hàng tháng,Bronze
+KH01585,Ông Phúc Phạm,Nữ,58,Bình Dương,Kỹ sư,49958180,Lắc chân,40423011,Hiếm khi,Diamond
+KH01586,Khoa Văn Vũ,Nữ,53,Đồng Nai,Nhân viên văn phòng,5340179,Lắc chân,13817034,Hiếm khi,Gold
+KH01587,Nhiên Phú Vũ,Nữ,55,TP.HCM,Sinh viên,45089001,Lắc chân,15213465,1 lần/năm,Bronze
+KH01588,Quý cô Yến Trần,Nữ,21,Đà Nẵng,Kỹ sư,44499822,Dây chuyền,19162088,Hiếm khi,Gold
+KH01589,Khoa Xuân Lê,Nam,33,Bình Dương,Sinh viên,18045186,Kim cương,20133280,Hàng tháng,Silver
+KH01590,Chị Nhật Nguyễn,Nữ,42,Đồng Nai,Giáo viên,46320180,Bông tai,43591352,2-3 lần/năm,Diamond
+KH01591,Linh Vũ,Nữ,35,TP.HCM,Nhân viên văn phòng,18695803,Dây chuyền,18883556,Hiếm khi,Silver
+KH01592,Cô Chi Đặng,Nữ,58,TP.HCM,Sinh viên,31311864,Lắc chân,28121724,Hiếm khi,Bronze
+KH01593,Ông Phúc Lê,Nam,60,Cần Thơ,Nhân viên văn phòng,47943270,Kim cương,30905325,1 lần/năm,Diamond
+KH01594,Quý cô Hương Lê,Nữ,38,Đà Nẵng,Nhân viên văn phòng,13684951,Nhẫn,47577338,1 lần/năm,Bronze
+KH01595,Quang Mai Bùi,Nam,30,TP.HCM,Quản lý,34537830,Dây chuyền,37289414,Hiếm khi,Gold
+KH01596,Tùng Hoàng,Nữ,60,Hà Nội,Kỹ sư,6480370,Vòng tay,33063031,2-3 lần/năm,Gold
+KH01597,Ông Bảo Hoàng,Nam,20,Bình Dương,Giáo viên,48597444,Bông tai,37619716,2-3 lần/năm,Gold
+KH01598,Chị Phương Vũ,Nam,56,Hà Nội,Giáo viên,30862559,Vòng tay,44738327,1 lần/năm,Bronze
+KH01599,Hoàng Vũ,Nữ,48,Đồng Nai,Kỹ sư,9603375,Dây chuyền,17563603,Hàng tháng,Gold
+KH01600,Quý cô Duyên Trần,Nam,33,TP.HCM,Quản lý,47056103,Lắc chân,43456855,Hiếm khi,Silver
+KH01601,Quý cô Phương Vũ,Nữ,22,Hà Nội,Quản lý,31737685,Lắc chân,18120400,Hiếm khi,Gold
+KH01602,Chị Bảo Trần,Nữ,41,Hà Nội,Quản lý,39892578,Dây chuyền,19149495,Hiếm khi,Silver
+KH01603,Quý ông Phúc Hoàng,Nữ,18,Bình Dương,Kinh doanh,14771584,Bông tai,32743602,1 lần/năm,Silver
+KH01604,Hải Trí Nguyễn,Nam,46,Cần Thơ,Sinh viên,27177232,Bông tai,24007327,Hàng tháng,Bronze
+KH01605,Hà Hoàng Nguyễn,Nam,23,Cần Thơ,Kinh doanh,43352699,Nhẫn,25105381,Hiếm khi,Gold
+KH01606,Thành Hoàng Lê,Nữ,50,Hà Nội,Sinh viên,38587071,Lắc chân,32261180,2-3 lần/năm,Silver
+KH01607,Kim Vũ,Nam,23,Đồng Nai,Kinh doanh,36228419,Dây chuyền,40844241,Hàng tháng,Silver
+KH01608,Quang Bùi,Nam,37,Bình Dương,Kinh doanh,28269772,Nhẫn,49812380,1 lần/năm,Bronze
+KH01609,Khoa Tấn Nguyễn,Nữ,22,Cần Thơ,Sinh viên,35034132,Dây chuyền,32285206,Hàng tháng,Gold
+KH01610,Chị Duyên Phạm,Nữ,23,Cần Thơ,Giáo viên,40659015,Nhẫn,42094784,Hiếm khi,Silver
+KH01611,Nhiên Văn Hoàng,Nữ,41,TP.HCM,Quản lý,19203641,Dây chuyền,32149813,Hàng tháng,Bronze
+KH01612,Quý cô Nhật Bùi,Nữ,23,Đồng Nai,Kinh doanh,43939167,Lắc chân,2781002,Hiếm khi,Gold
+KH01613,Bà Duyên Bùi,Nam,40,TP.HCM,Kinh doanh,6180752,Lắc chân,8305213,Hiếm khi,Bronze
+KH01614,Hoàng Văn Trần,Nữ,53,Bình Dương,Nhân viên văn phòng,12173486,Kim cương,6863595,2-3 lần/năm,Silver
+KH01615,Cô Kim Nguyễn,Nữ,59,Đồng Nai,Giáo viên,10498983,Kim cương,11265543,2-3 lần/năm,Bronze
+KH01616,Lan Bùi,Nam,34,Bình Dương,Kỹ sư,49721680,Vòng tay,18443778,Hiếm khi,Gold
+KH01617,Dũng Mai Bùi,Nữ,43,Đồng Nai,Kinh doanh,27854416,Bông tai,12836154,2-3 lần/năm,Diamond
+KH01618,Phương Trí Mai,Nữ,50,TP.HCM,Nhân viên văn phòng,13606293,Vòng tay,6902590,1 lần/năm,Gold
+KH01619,Tú Dương,Nữ,24,Đồng Nai,Kỹ sư,45265520,Vòng tay,27111991,Hàng tháng,Silver
+KH01620,Phương Bùi,Nữ,48,Cần Thơ,Nhân viên văn phòng,39545535,Kim cương,11409377,Hàng tháng,Gold
+KH01621,Phúc Mai Bảo Đặng,Nữ,33,TP.HCM,Nhân viên văn phòng,43782476,Nhẫn,43390978,2-3 lần/năm,Silver
+KH01622,Hoàng Trí Hoàng,Nữ,59,Cần Thơ,Sinh viên,47148221,Dây chuyền,25901933,1 lần/năm,Diamond
+KH01623,Ông Hoàng Hoàng,Nam,36,Hà Nội,Sinh viên,44506514,Dây chuyền,3455842,2-3 lần/năm,Bronze
+KH01624,Kim Dương,Nữ,30,Bình Dương,Giáo viên,21510653,Bông tai,23147832,2-3 lần/năm,Silver
+KH01625,Anh Anh Dương,Nữ,26,Đồng Nai,Kinh doanh,32595653,Dây chuyền,25361674,1 lần/năm,Gold
+KH01626,Chị Lâm Trần,Nam,40,Cần Thơ,Giáo viên,45120878,Kim cương,46059878,Hiếm khi,Bronze
+KH01627,Quang Bùi,Nam,29,TP.HCM,Kinh doanh,20125244,Vòng tay,24424655,Hàng tháng,Silver
+KH01628,Khoa Hoàng Mai,Nữ,39,Hà Nội,Kinh doanh,5767726,Vòng tay,1457347,1 lần/năm,Gold
+KH01629,Chị Duyên Vũ,Nam,25,Đồng Nai,Sinh viên,20977333,Kim cương,27185514,1 lần/năm,Gold
+KH01630,Mai Mai,Nữ,48,Đà Nẵng,Kỹ sư,29347451,Dây chuyền,33717568,Hàng tháng,Silver
+KH01631,Chi Hoàng,Nam,30,Đà Nẵng,Kỹ sư,36920742,Nhẫn,15493833,Hiếm khi,Diamond
+KH01632,Quý cô Vi Hoàng,Nam,27,Đồng Nai,Sinh viên,44788591,Kim cương,8602067,Hàng tháng,Gold
+KH01633,Hải Bùi,Nam,41,Cần Thơ,Kỹ sư,30755648,Nhẫn,31322597,Hiếm khi,Silver
+KH01634,Hưng Bùi,Nữ,37,TP.HCM,Kỹ sư,17104196,Lắc chân,46316124,2-3 lần/năm,Bronze
+KH01635,Hương Lê,Nữ,33,TP.HCM,Sinh viên,11948365,Lắc chân,30876118,Hàng tháng,Diamond
+KH01636,Thành Nguyễn,Nam,40,Đồng Nai,Nhân viên văn phòng,7962740,Bông tai,6254519,Hàng tháng,Gold
+KH01637,Chị Hồng Phạm,Nữ,26,Đồng Nai,Giáo viên,44659469,Nhẫn,14301551,2-3 lần/năm,Gold
+KH01638,Quý cô Thảo Dương,Nữ,22,Cần Thơ,Quản lý,37329621,Nhẫn,15378015,2-3 lần/năm,Gold
+KH01639,Hà Thị Lê,Nam,26,Bình Dương,Kinh doanh,11294066,Bông tai,40423808,2-3 lần/năm,Silver
+KH01640,Minh Mai,Nữ,51,Bình Dương,Sinh viên,14903479,Bông tai,32276208,Hiếm khi,Diamond
+KH01641,Cô Vi Đặng,Nam,54,TP.HCM,Quản lý,25454164,Lắc chân,38080307,2-3 lần/năm,Bronze
+KH01642,Chị Chi Nguyễn,Nam,40,Cần Thơ,Giáo viên,41522655,Nhẫn,20116863,1 lần/năm,Bronze
+KH01643,Bà Ngọc Phạm,Nam,41,Hà Nội,Giáo viên,31807002,Kim cương,41324207,2-3 lần/năm,Gold
+KH01644,Nhật Quang Hoàng,Nữ,28,Cần Thơ,Nhân viên văn phòng,38603178,Lắc chân,11657237,Hiếm khi,Silver
+KH01645,Bảo Mai Bảo Mai,Nam,18,Bình Dương,Kỹ sư,15340534,Lắc chân,30782354,2-3 lần/năm,Silver
+KH01646,Minh Đức Dương,Nữ,25,Cần Thơ,Giáo viên,11364757,Vòng tay,45785319,2-3 lần/năm,Bronze
+KH01647,Thành Mai,Nam,60,Đà Nẵng,Kỹ sư,21695167,Lắc chân,33388435,1 lần/năm,Bronze
+KH01648,Bà Chi Dương,Nam,42,Đà Nẵng,Quản lý,31341868,Dây chuyền,20623461,Hàng tháng,Bronze
+KH01649,Quý cô Hà Vũ,Nam,38,Hà Nội,Sinh viên,16748878,Nhẫn,23426131,1 lần/năm,Silver
+KH01650,Xuân Lê,Nam,49,Bình Dương,Sinh viên,25378142,Vòng tay,10726842,Hàng tháng,Bronze
+KH01651,Chị Hạnh Lê,Nam,32,Cần Thơ,Quản lý,16670543,Kim cương,7868960,1 lần/năm,Bronze
+KH01652,Ánh Dương,Nữ,19,Hà Nội,Giáo viên,18236672,Nhẫn,23681558,Hiếm khi,Diamond
+KH01653,Trọng Trần,Nữ,36,Cần Thơ,Giáo viên,30288916,Vòng tay,27272292,Hàng tháng,Bronze
+KH01654,Bảo Bảo Lê,Nữ,25,Đà Nẵng,Kỹ sư,21176478,Bông tai,36605483,2-3 lần/năm,Bronze
+KH01655,Tú Bùi,Nữ,33,Bình Dương,Sinh viên,31375166,Lắc chân,46328557,2-3 lần/năm,Bronze
+KH01656,Ông Vũ Hoàng,Nam,38,TP.HCM,Quản lý,31440369,Lắc chân,5423673,Hiếm khi,Silver
+KH01657,Anh Nhiên Vũ,Nữ,45,Bình Dương,Kinh doanh,32692507,Dây chuyền,28843884,2-3 lần/năm,Bronze
+KH01658,Ánh Hoàng,Nữ,59,Đồng Nai,Sinh viên,29355561,Bông tai,11709661,Hàng tháng,Gold
+KH01659,Bà Kim Hoàng,Nam,33,Hà Nội,Quản lý,40297108,Dây chuyền,33054980,2-3 lần/năm,Silver
+KH01660,Chi Trần,Nam,24,Đà Nẵng,Quản lý,46735763,Dây chuyền,45964300,Hiếm khi,Bronze
+KH01661,Khoa Thế Hoàng,Nữ,53,Đà Nẵng,Kỹ sư,6990650,Dây chuyền,28344492,Hàng tháng,Silver
+KH01662,Chị Mai Bùi,Nam,60,Cần Thơ,Quản lý,41391050,Dây chuyền,8432490,1 lần/năm,Gold
+KH01663,Cô Hạnh Đặng,Nam,55,Bình Dương,Kỹ sư,19763616,Bông tai,29651884,Hiếm khi,Silver
+KH01664,Vi Vũ,Nam,39,Cần Thơ,Giáo viên,28352331,Bông tai,21378870,1 lần/năm,Bronze
+KH01665,Anh Mai,Nữ,32,TP.HCM,Sinh viên,32724154,Dây chuyền,7779819,Hàng tháng,Diamond
+KH01666,Quang Mai Bảo Vũ,Nữ,54,Đà Nẵng,Quản lý,34425638,Nhẫn,35843189,1 lần/năm,Bronze
+KH01667,Bảo Trí Đặng,Nam,30,Đồng Nai,Sinh viên,40041364,Dây chuyền,11265544,2-3 lần/năm,Bronze
+KH01668,An Lê,Nữ,25,Đà Nẵng,Sinh viên,44914552,Lắc chân,4436607,Hiếm khi,Silver
+KH01669,Bà Hương Dương,Nam,46,Bình Dương,Giáo viên,11216716,Bông tai,21385058,1 lần/năm,Silver
+KH01670,Bác Phúc Trần,Nữ,27,Bình Dương,Giáo viên,30521106,Kim cương,21810819,1 lần/năm,Gold
+KH01671,Bảo Mai,Nữ,24,Cần Thơ,Kỹ sư,16891910,Bông tai,15614903,Hàng tháng,Gold
+KH01672,Nhật Bùi,Nam,58,Cần Thơ,Kỹ sư,38916078,Nhẫn,38954223,1 lần/năm,Bronze
+KH01673,Bà Thành Nguyễn,Nam,49,TP.HCM,Sinh viên,9038251,Vòng tay,21803034,1 lần/năm,Diamond
+KH01674,Bảo Hoàng Trần,Nam,50,Đà Nẵng,Sinh viên,17599393,Dây chuyền,27403210,1 lần/năm,Silver
+KH01675,Nhật Dương,Nam,51,Đồng Nai,Nhân viên văn phòng,21570572,Lắc chân,21885408,Hàng tháng,Diamond
+KH01676,Chị Hương Bùi,Nam,59,TP.HCM,Kỹ sư,21802952,Bông tai,23936032,2-3 lần/năm,Silver
+KH01677,Lan Phạm,Nam,52,Đồng Nai,Kinh doanh,42386490,Kim cương,27095460,1 lần/năm,Bronze
+KH01678,Bà Hương Trần,Nữ,29,TP.HCM,Kinh doanh,35270684,Kim cương,13353685,2-3 lần/năm,Diamond
+KH01679,Bác Minh Đặng,Nữ,59,Hà Nội,Kỹ sư,27198568,Vòng tay,33715173,1 lần/năm,Bronze
+KH01680,Huy Trần,Nữ,19,Đà Nẵng,Nhân viên văn phòng,41074861,Vòng tay,44977091,2-3 lần/năm,Bronze
+KH01681,Minh Mai,Nữ,37,Hà Nội,Quản lý,49416265,Vòng tay,14809488,2-3 lần/năm,Gold
+KH01682,Quý cô Kim Đặng,Nam,45,Hà Nội,Sinh viên,36647727,Nhẫn,36384198,Hàng tháng,Diamond
+KH01683,Quý cô Nhật Nguyễn,Nam,19,Đà Nẵng,Kỹ sư,31150411,Dây chuyền,46754747,Hàng tháng,Silver
+KH01684,An Bùi,Nam,50,Đồng Nai,Sinh viên,37060765,Vòng tay,17006313,2-3 lần/năm,Gold
+KH01685,Kim Mai Bảo Phạm,Nữ,56,TP.HCM,Sinh viên,9676072,Bông tai,41762926,Hàng tháng,Silver
+KH01686,Lan Phạm,Nữ,58,Đà Nẵng,Nhân viên văn phòng,35246371,Lắc chân,22567375,Hàng tháng,Silver
+KH01687,An Phạm,Nam,23,TP.HCM,Giáo viên,48392800,Lắc chân,35774899,Hàng tháng,Silver
+KH01688,Bà Nhật Bùi,Nam,35,Đà Nẵng,Quản lý,47364231,Bông tai,15371298,Hàng tháng,Gold
+KH01689,Hà Hoàng,Nữ,22,Hà Nội,Giáo viên,39958829,Bông tai,1182986,Hàng tháng,Diamond
+KH01690,Chị Dương Hoàng,Nam,47,Hà Nội,Sinh viên,46026849,Kim cương,41618732,Hàng tháng,Gold
+KH01691,Hương Hoàng,Nam,50,TP.HCM,Giáo viên,16742389,Nhẫn,7781043,Hàng tháng,Gold
+KH01692,Thành Nguyễn,Nữ,53,TP.HCM,Quản lý,20220894,Bông tai,8022543,Hiếm khi,Silver
+KH01693,Hạnh Hữu Bùi,Nam,60,Đồng Nai,Sinh viên,23794149,Lắc chân,41243852,Hiếm khi,Silver
+KH01694,Bác Phúc Đặng,Nữ,32,TP.HCM,Kỹ sư,39461254,Nhẫn,19917698,2-3 lần/năm,Silver
+KH01695,Hải Nguyễn,Nữ,33,TP.HCM,Giáo viên,17636439,Bông tai,27435485,Hàng tháng,Diamond
+KH01696,Bảo Nguyễn,Nam,38,Cần Thơ,Quản lý,5205489,Lắc chân,1629162,Hàng tháng,Bronze
+KH01697,Vân Đặng,Nam,36,Bình Dương,Kỹ sư,18013865,Lắc chân,6226630,Hiếm khi,Silver
+KH01698,Nhật Hoàng,Nữ,40,Đà Nẵng,Giáo viên,17781759,Bông tai,4239872,Hàng tháng,Gold
+KH01699,Bà Yến Dương,Nữ,54,Đồng Nai,Giáo viên,7969981,Kim cương,1631461,Hiếm khi,Silver
+KH01700,Ông Tú Trần,Nữ,46,Đà Nẵng,Giáo viên,41115060,Dây chuyền,23563476,Hàng tháng,Gold
+KH01701,Bác Thành Phạm,Nữ,41,Đà Nẵng,Sinh viên,30035745,Nhẫn,44697790,2-3 lần/năm,Silver
+KH01702,Bảo Đức Đặng,Nữ,40,TP.HCM,Giáo viên,9675807,Lắc chân,10615136,Hiếm khi,Bronze
+KH01703,Lan Dương,Nam,21,Đà Nẵng,Quản lý,24984887,Dây chuyền,17857379,Hàng tháng,Gold
+KH01704,Anh Khoa Phạm,Nữ,24,Cần Thơ,Quản lý,43989749,Dây chuyền,7623307,Hàng tháng,Gold
+KH01705,Bà Hồng Bùi,Nam,35,Hà Nội,Giáo viên,11018130,Nhẫn,8428155,2-3 lần/năm,Diamond
+KH01706,Bà Thành Hoàng,Nam,47,Đà Nẵng,Sinh viên,37076589,Bông tai,48734111,1 lần/năm,Diamond
+KH01707,Quang Bùi,Nam,52,TP.HCM,Nhân viên văn phòng,45189297,Lắc chân,32593182,Hàng tháng,Diamond
+KH01708,Chi Hoàng,Nam,18,Hà Nội,Giáo viên,23108452,Bông tai,46385203,Hiếm khi,Bronze
+KH01709,Thành Nguyễn,Nam,43,Cần Thơ,Sinh viên,8072568,Lắc chân,47996956,2-3 lần/năm,Diamond
+KH01710,Bác Dũng Dương,Nam,26,Đà Nẵng,Nhân viên văn phòng,49530996,Lắc chân,42292454,2-3 lần/năm,Silver
+KH01711,An Thị Bùi,Nam,35,Bình Dương,Quản lý,9608155,Dây chuyền,23041389,Hiếm khi,Silver
+KH01712,Nhật Mai,Nam,35,Hà Nội,Quản lý,5618075,Vòng tay,30565082,Hiếm khi,Silver
+KH01713,Nam Thị Mai,Nữ,54,Đồng Nai,Kinh doanh,12655140,Dây chuyền,30116056,Hiếm khi,Diamond
+KH01714,Vi Bùi,Nam,44,Đà Nẵng,Giáo viên,5230308,Kim cương,8850092,2-3 lần/năm,Gold
+KH01715,Bảo Thế Đặng,Nam,27,TP.HCM,Giáo viên,24983818,Nhẫn,11879452,2-3 lần/năm,Diamond
+KH01716,Nhiên Thị Dương,Nữ,51,TP.HCM,Giáo viên,12933945,Vòng tay,26991973,Hàng tháng,Gold
+KH01717,An Hữu Hoàng,Nữ,18,Cần Thơ,Kinh doanh,18937672,Bông tai,25295457,Hiếm khi,Bronze
+KH01718,Kim Tấn Hoàng,Nữ,45,Cần Thơ,Kinh doanh,41798408,Lắc chân,5839189,Hiếm khi,Silver
+KH01719,Trung Bùi,Nam,36,TP.HCM,Giáo viên,36132220,Vòng tay,30591443,1 lần/năm,Gold
+KH01720,Vũ Lê,Nam,28,Bình Dương,Sinh viên,9583128,Vòng tay,26705210,Hàng tháng,Bronze
+KH01721,Tùng Mai,Nam,41,Đồng Nai,Sinh viên,23105067,Dây chuyền,24081714,2-3 lần/năm,Gold
+KH01722,Cô Hạnh Dương,Nữ,53,Hà Nội,Kỹ sư,27764879,Lắc chân,34103036,Hàng tháng,Diamond
+KH01723,Nhật Dương,Nam,24,Đà Nẵng,Kinh doanh,35729283,Lắc chân,47668171,Hiếm khi,Gold
+KH01724,Vân Dương,Nữ,50,Cần Thơ,Quản lý,25393806,Dây chuyền,9339529,1 lần/năm,Bronze
+KH01725,Ông Anh Đặng,Nam,44,Đồng Nai,Nhân viên văn phòng,39423396,Kim cương,40504013,Hiếm khi,Bronze
+KH01726,Ông Quang Trần,Nữ,40,Đà Nẵng,Giáo viên,23974635,Nhẫn,4667198,Hiếm khi,Silver
+KH01727,Hải Dương,Nữ,38,Đồng Nai,Sinh viên,12809818,Lắc chân,10049742,Hiếm khi,Silver
+KH01728,Chị Ánh Dương,Nam,25,Bình Dương,Quản lý,9698658,Bông tai,34740125,Hiếm khi,Silver
+KH01729,Nhật Đức Hoàng,Nữ,40,TP.HCM,Nhân viên văn phòng,23519436,Dây chuyền,33409282,Hàng tháng,Bronze
+KH01730,Minh Hải Mai,Nữ,25,TP.HCM,Kỹ sư,43112350,Kim cương,34829141,Hàng tháng,Gold
+KH01731,Quý cô Hồng Dương,Nam,30,TP.HCM,Kỹ sư,21414474,Vòng tay,24940891,2-3 lần/năm,Silver
+KH01732,Ánh Vũ,Nữ,57,Cần Thơ,Quản lý,26480663,Dây chuyền,17148296,1 lần/năm,Gold
+KH01733,Bác Tú Lê,Nam,20,TP.HCM,Giáo viên,42947065,Dây chuyền,37885424,1 lần/năm,Gold
+KH01734,Bà Duyên Mai,Nam,60,TP.HCM,Quản lý,31343932,Lắc chân,15369131,2-3 lần/năm,Gold
+KH01735,Nhật Thế Nguyễn,Nam,40,Đà Nẵng,Nhân viên văn phòng,38545795,Lắc chân,17335014,Hàng tháng,Gold
+KH01736,Lâm Mai Bảo Hoàng,Nữ,44,Đà Nẵng,Sinh viên,27917738,Nhẫn,13938788,Hiếm khi,Diamond
+KH01737,Nhật Hoàng Nguyễn,Nam,53,Hà Nội,Nhân viên văn phòng,5762793,Dây chuyền,33411277,2-3 lần/năm,Gold
+KH01738,Ông Phúc Đặng,Nam,52,Bình Dương,Quản lý,19066565,Nhẫn,22326985,Hiếm khi,Silver
+KH01739,Vũ Xuân Đặng,Nữ,26,Đồng Nai,Nhân viên văn phòng,33957482,Dây chuyền,15542446,2-3 lần/năm,Silver
+KH01740,Phương Thế Phạm,Nữ,54,Đồng Nai,Kinh doanh,20453324,Nhẫn,4092198,2-3 lần/năm,Gold
+KH01741,Xuân Vũ,Nam,20,TP.HCM,Kinh doanh,14461898,Kim cương,35157822,2-3 lần/năm,Diamond
+KH01742,Ánh Trần,Nữ,32,Bình Dương,Nhân viên văn phòng,22156048,Dây chuyền,11535917,2-3 lần/năm,Gold
+KH01743,Chị Duyên Vũ,Nữ,19,TP.HCM,Sinh viên,43033077,Dây chuyền,13062727,1 lần/năm,Diamond
+KH01744,Tú Đặng,Nữ,36,Hà Nội,Kỹ sư,28214900,Nhẫn,13440175,1 lần/năm,Bronze
+KH01745,Dương Dương,Nữ,24,Bình Dương,Kinh doanh,27355846,Vòng tay,37541940,1 lần/năm,Diamond
+KH01746,Tùng Hải Lê,Nam,31,Đà Nẵng,Nhân viên văn phòng,12202486,Lắc chân,39972027,Hàng tháng,Diamond
+KH01747,Duyên Hoàng,Nam,22,Bình Dương,Giáo viên,43650589,Kim cương,29778801,Hiếm khi,Diamond
+KH01748,Quý cô Ngọc Lê,Nam,36,Bình Dương,Quản lý,24949057,Dây chuyền,8210431,Hàng tháng,Silver
+KH01749,Khoa Mai Bảo Dương,Nữ,52,Đồng Nai,Quản lý,6558130,Vòng tay,46458719,Hiếm khi,Gold
+KH01750,Chị Vi Dương,Nữ,51,Đà Nẵng,Giáo viên,16790398,Vòng tay,28341237,1 lần/năm,Diamond
+KH01751,Nhật Đặng,Nam,44,TP.HCM,Quản lý,17803337,Nhẫn,36784862,Hàng tháng,Gold
+KH01752,Bảo Dương,Nam,52,Đồng Nai,Kỹ sư,9158422,Dây chuyền,34702619,Hàng tháng,Diamond
+KH01753,Trung Thị Lê,Nam,56,Đồng Nai,Quản lý,17732712,Bông tai,48469762,Hiếm khi,Diamond
+KH01754,Bà Khoa Lê,Nam,58,Bình Dương,Sinh viên,34158821,Lắc chân,14087586,Hàng tháng,Silver
+KH01755,Nhật Quang Nguyễn,Nữ,36,TP.HCM,Kỹ sư,42191462,Lắc chân,13916866,1 lần/năm,Silver
+KH01756,Anh Khoa Vũ,Nam,43,Cần Thơ,Kinh doanh,27844687,Lắc chân,48835707,2-3 lần/năm,Diamond
+KH01757,Lâm Mai Bảo Đặng,Nam,40,Hà Nội,Giáo viên,24302944,Nhẫn,30888193,2-3 lần/năm,Gold
+KH01758,Lâm Bùi,Nam,49,Đồng Nai,Giáo viên,26381255,Vòng tay,14886913,2-3 lần/năm,Silver
+KH01759,Cô Hương Nguyễn,Nam,41,Đồng Nai,Nhân viên văn phòng,30771817,Nhẫn,11063159,2-3 lần/năm,Gold
+KH01760,Phúc Mai Bảo Nguyễn,Nữ,53,Hà Nội,Quản lý,22116769,Kim cương,12216531,1 lần/năm,Gold
+KH01761,Anh Hoàng Bùi,Nữ,19,TP.HCM,Kỹ sư,43365932,Dây chuyền,17481970,1 lần/năm,Diamond
+KH01762,Phương Nguyễn,Nữ,45,Bình Dương,Giáo viên,12272926,Bông tai,29706351,1 lần/năm,Silver
+KH01763,Bà Thành Bùi,Nam,33,Hà Nội,Nhân viên văn phòng,23270168,Nhẫn,7364140,2-3 lần/năm,Silver
+KH01764,Cô Xuân Bùi,Nam,29,TP.HCM,Giáo viên,29220962,Lắc chân,13176336,Hàng tháng,Bronze
+KH01765,Chị Nhật Bùi,Nữ,39,Đà Nẵng,Nhân viên văn phòng,13224992,Bông tai,5412533,Hiếm khi,Gold
+KH01766,Nam Mai Đặng,Nam,26,Đồng Nai,Kỹ sư,25368278,Vòng tay,18235368,Hàng tháng,Silver
+KH01767,Nhật Đức Hoàng,Nữ,54,Bình Dương,Giáo viên,19422486,Vòng tay,35599355,2-3 lần/năm,Bronze
+KH01768,Minh Dương,Nam,27,Đồng Nai,Kinh doanh,23684525,Kim cương,38618443,Hàng tháng,Silver
+KH01769,Cô Chi Nguyễn,Nam,38,Đà Nẵng,Kinh doanh,10436234,Dây chuyền,45755602,1 lần/năm,Diamond
+KH01770,Chị Vân Lê,Nữ,60,Đà Nẵng,Kinh doanh,45533534,Nhẫn,3860667,1 lần/năm,Gold
+KH01771,Bà Hồng Dương,Nữ,39,Đà Nẵng,Quản lý,18588714,Nhẫn,2894013,2-3 lần/năm,Silver
+KH01772,Cô Ngọc Đặng,Nam,40,Đà Nẵng,Nhân viên văn phòng,25344806,Lắc chân,32085430,Hàng tháng,Diamond
+KH01773,Dương Hoàng,Nữ,34,Hà Nội,Quản lý,47834751,Kim cương,33461628,Hàng tháng,Bronze
+KH01774,Minh Nguyễn,Nam,35,Đồng Nai,Kinh doanh,9436799,Nhẫn,11698083,2-3 lần/năm,Gold
+KH01775,Khoa Đức Lê,Nữ,43,Bình Dương,Nhân viên văn phòng,5089646,Nhẫn,31556013,Hiếm khi,Gold
+KH01776,Khoa Đức Vũ,Nữ,53,Đồng Nai,Giáo viên,33713190,Dây chuyền,27503240,2-3 lần/năm,Silver
+KH01777,Quang Đặng,Nữ,53,TP.HCM,Quản lý,49625436,Lắc chân,42809684,1 lần/năm,Diamond
+KH01778,Ông Trung Phạm,Nam,23,Bình Dương,Sinh viên,20308848,Vòng tay,14233011,Hiếm khi,Diamond
+KH01779,Bảo Mai,Nam,42,TP.HCM,Kỹ sư,45282327,Kim cương,16006437,Hiếm khi,Diamond
+KH01780,Quang Phú Dương,Nam,49,Bình Dương,Kinh doanh,42807723,Lắc chân,38702728,1 lần/năm,Gold
+KH01781,Bảo Đức Đặng,Nam,31,Đà Nẵng,Kỹ sư,48602979,Nhẫn,29288628,Hiếm khi,Silver
+KH01782,Quý ông Huy Mai,Nam,50,Đồng Nai,Giáo viên,7581292,Bông tai,49187213,2-3 lần/năm,Silver
+KH01783,Bà Khoa Vũ,Nữ,34,Bình Dương,Nhân viên văn phòng,13586001,Dây chuyền,17901232,1 lần/năm,Diamond
+KH01784,Chi Đặng,Nữ,59,TP.HCM,Giáo viên,5491785,Dây chuyền,36593988,1 lần/năm,Diamond
+KH01785,Anh Nam Hoàng,Nam,39,Đà Nẵng,Kỹ sư,5277313,Lắc chân,4151359,1 lần/năm,Silver
+KH01786,Lâm Hải Trần,Nữ,44,Đà Nẵng,Giáo viên,25595437,Vòng tay,12287342,1 lần/năm,Gold
+KH01787,Quý ông Huy Dương,Nữ,35,Bình Dương,Kỹ sư,45485384,Vòng tay,40218041,1 lần/năm,Bronze
+KH01788,Hưng Bùi,Nữ,26,Hà Nội,Giáo viên,42711374,Kim cương,6819106,Hàng tháng,Diamond
+KH01789,Linh Bùi,Nữ,22,TP.HCM,Quản lý,31599763,Bông tai,33381390,Hàng tháng,Gold
+KH01790,Thành Nguyễn,Nữ,45,Đồng Nai,Kinh doanh,6673694,Bông tai,24556798,1 lần/năm,Gold
+KH01791,Bác Vũ Bùi,Nam,27,Hà Nội,Giáo viên,17613950,Nhẫn,23346270,1 lần/năm,Gold
+KH01792,Xuân Vũ,Nữ,37,TP.HCM,Quản lý,21191208,Vòng tay,29166968,2-3 lần/năm,Gold
+KH01793,Nam Dương,Nam,19,Đồng Nai,Giáo viên,8426926,Vòng tay,33758265,Hiếm khi,Bronze
+KH01794,Hồng Đặng,Nam,51,Hà Nội,Quản lý,36381555,Vòng tay,22987606,Hàng tháng,Bronze
+KH01795,Vi Phạm,Nam,21,Đà Nẵng,Nhân viên văn phòng,31907026,Lắc chân,5389034,2-3 lần/năm,Bronze
+KH01796,Anh Khoa Dương,Nam,60,TP.HCM,Kinh doanh,26399822,Kim cương,34487443,2-3 lần/năm,Diamond
+KH01797,Anh Dũng Mai,Nữ,46,Bình Dương,Sinh viên,31980717,Bông tai,20837386,2-3 lần/năm,Bronze
+KH01798,Chi Lê,Nữ,30,Bình Dương,Giáo viên,37363759,Nhẫn,42554334,Hàng tháng,Diamond
+KH01799,Bà Vân Nguyễn,Nữ,20,Đồng Nai,Quản lý,35844357,Kim cương,31258203,Hiếm khi,Bronze
+KH01800,Quý ông Hoàng Vũ,Nam,35,Đồng Nai,Giáo viên,10893698,Dây chuyền,37756409,1 lần/năm,Gold
+KH01801,Yến Hoàng,Nam,55,Đà Nẵng,Kỹ sư,13510941,Dây chuyền,2288917,2-3 lần/năm,Diamond
+KH01802,Dương Lê,Nữ,58,Đà Nẵng,Kinh doanh,28231443,Bông tai,36260178,Hàng tháng,Diamond
+KH01803,Vũ Hải Lê,Nam,40,Đà Nẵng,Sinh viên,5673952,Vòng tay,6912206,2-3 lần/năm,Silver
+KH01804,Phương Đức Nguyễn,Nữ,39,Đồng Nai,Nhân viên văn phòng,48718475,Dây chuyền,42281599,Hiếm khi,Gold
+KH01805,Bà Nhật Phạm,Nam,49,TP.HCM,Kinh doanh,6074341,Nhẫn,44567659,Hiếm khi,Bronze
+KH01806,Thành Lê,Nữ,24,TP.HCM,Nhân viên văn phòng,27779149,Nhẫn,7929621,1 lần/năm,Silver
+KH01807,An Bùi,Nam,59,Cần Thơ,Kỹ sư,43382591,Kim cương,22579673,Hiếm khi,Bronze
+KH01808,Nhiên Tấn Bùi,Nam,52,Đồng Nai,Kinh doanh,23071373,Dây chuyền,17016997,2-3 lần/năm,Silver
+KH01809,Thành Phạm,Nam,18,TP.HCM,Quản lý,36543653,Bông tai,11565417,Hàng tháng,Bronze
+KH01810,Anh Tú Vũ,Nam,32,Cần Thơ,Quản lý,16186555,Bông tai,11117388,Hàng tháng,Silver
+KH01811,Bà Hồng Hoàng,Nữ,29,TP.HCM,Kỹ sư,26401035,Nhẫn,11999866,Hiếm khi,Gold
+KH01812,Dũng Trí Hoàng,Nam,41,Đà Nẵng,Quản lý,6286605,Lắc chân,42599169,Hiếm khi,Diamond
+KH01813,Ông Bảo Hoàng,Nữ,38,Đà Nẵng,Kỹ sư,45801283,Vòng tay,39729828,Hàng tháng,Diamond
+KH01814,Khoa Bùi,Nam,41,Bình Dương,Nhân viên văn phòng,34152800,Lắc chân,29449993,1 lần/năm,Diamond
+KH01815,Khoa Bùi,Nữ,53,TP.HCM,Kỹ sư,33673995,Vòng tay,10182863,2-3 lần/năm,Bronze
+KH01816,Thành Trần,Nam,54,Đồng Nai,Kinh doanh,20197464,Kim cương,1799066,Hiếm khi,Bronze
+KH01817,Nam Lê,Nam,40,Cần Thơ,Sinh viên,8957978,Nhẫn,6581384,2-3 lần/năm,Silver
+KH01818,Tùng Thị Vũ,Nữ,49,Đồng Nai,Nhân viên văn phòng,37713965,Bông tai,5581580,2-3 lần/năm,Bronze
+KH01819,Khoa Hữu Dương,Nam,34,Đà Nẵng,Giáo viên,8414303,Lắc chân,15437249,Hiếm khi,Bronze
+KH01820,Duyên Lê,Nam,40,Đồng Nai,Kỹ sư,32678639,Lắc chân,29393686,1 lần/năm,Diamond
+KH01821,Ông Nhiên Đặng,Nam,50,Đồng Nai,Giáo viên,36808401,Lắc chân,25024159,1 lần/năm,Bronze
+KH01822,Hải Đức Hoàng,Nam,28,Cần Thơ,Kinh doanh,38818756,Nhẫn,36950237,Hiếm khi,Bronze
+KH01823,Hồng Bùi,Nữ,30,Đà Nẵng,Sinh viên,20917726,Lắc chân,2626977,1 lần/năm,Diamond
+KH01824,Nam Lê,Nữ,39,Hà Nội,Giáo viên,20174229,Nhẫn,44965107,1 lần/năm,Bronze
+KH01825,Bà Khoa Mai,Nam,58,Cần Thơ,Giáo viên,14226453,Vòng tay,11474151,Hàng tháng,Bronze
+KH01826,Thành Trần,Nữ,33,Cần Thơ,Giáo viên,33250814,Dây chuyền,33932944,2-3 lần/năm,Bronze
+KH01827,Bà Nhật Phạm,Nữ,56,Hà Nội,Nhân viên văn phòng,26522232,Nhẫn,4181048,2-3 lần/năm,Silver
+KH01828,Nhiên Trí Dương,Nam,46,TP.HCM,Nhân viên văn phòng,21489863,Lắc chân,35855872,2-3 lần/năm,Diamond
+KH01829,Bác Trung Lê,Nữ,54,Đà Nẵng,Kinh doanh,34666767,Nhẫn,2022745,2-3 lần/năm,Diamond
+KH01830,Minh Lê,Nữ,35,TP.HCM,Sinh viên,38850699,Lắc chân,39900351,Hiếm khi,Diamond
+KH01831,An Đặng,Nữ,26,Đồng Nai,Kỹ sư,7569160,Vòng tay,3443518,Hàng tháng,Diamond
+KH01832,Bảo Nguyễn,Nữ,59,TP.HCM,Nhân viên văn phòng,47953251,Vòng tay,9899104,Hàng tháng,Diamond
+KH01833,Hưng Mai,Nam,19,Đà Nẵng,Giáo viên,28986753,Dây chuyền,45700412,Hiếm khi,Silver
+KH01834,Vân Vũ,Nam,32,TP.HCM,Quản lý,20867720,Lắc chân,35248974,Hiếm khi,Gold
+KH01835,Nhật Quang Trần,Nữ,53,Bình Dương,Kinh doanh,46377510,Dây chuyền,2982370,Hiếm khi,Silver
+KH01836,Dương Trần,Nữ,52,TP.HCM,Kinh doanh,9224373,Dây chuyền,16547547,Hiếm khi,Silver
+KH01837,Khoa Hoàng,Nữ,35,Đồng Nai,Kỹ sư,28978499,Bông tai,8658242,Hàng tháng,Silver
+KH01838,Cô Nhật Hoàng,Nữ,55,Cần Thơ,Quản lý,5693406,Dây chuyền,21916672,2-3 lần/năm,Diamond
+KH01839,Hải Hoàng Dương,Nam,22,Cần Thơ,Kỹ sư,23080217,Vòng tay,16032857,1 lần/năm,Bronze
+KH01840,Bà Bảo Bùi,Nam,40,Đồng Nai,Sinh viên,15392581,Lắc chân,49967683,Hiếm khi,Diamond
+KH01841,Duyên Đặng,Nam,53,Hà Nội,Kinh doanh,27017628,Bông tai,34534901,2-3 lần/năm,Gold
+KH01842,Thảo Đặng,Nữ,58,Cần Thơ,Sinh viên,33349577,Lắc chân,37569013,2-3 lần/năm,Gold
+KH01843,Bà Lâm Lê,Nam,18,Hà Nội,Sinh viên,25595821,Vòng tay,2105060,2-3 lần/năm,Bronze
+KH01844,Hoàng Mai Mai,Nam,42,Đồng Nai,Kinh doanh,25339788,Nhẫn,49473082,Hàng tháng,Silver
+KH01845,Hoàng Đức Nguyễn,Nam,53,Bình Dương,Quản lý,45275094,Lắc chân,21881715,1 lần/năm,Bronze
+KH01846,Quang Văn Hoàng,Nam,38,Đà Nẵng,Giáo viên,45459596,Dây chuyền,44386846,Hàng tháng,Bronze
+KH01847,Bác Thành Trần,Nam,60,Hà Nội,Sinh viên,18608821,Lắc chân,3329879,1 lần/năm,Silver
+KH01848,Hạnh Hoàng,Nam,55,Bình Dương,Sinh viên,11418129,Lắc chân,6203485,Hiếm khi,Bronze
+KH01849,Yến Phạm,Nữ,19,Bình Dương,Kinh doanh,44318307,Lắc chân,37875985,Hiếm khi,Bronze
+KH01850,Quý cô Linh Vũ,Nam,19,Cần Thơ,Nhân viên văn phòng,14711212,Lắc chân,30100695,Hiếm khi,Diamond
+KH01851,Phúc Phú Bùi,Nữ,41,Hà Nội,Kỹ sư,49534843,Lắc chân,18907790,Hiếm khi,Gold
+KH01852,Phúc Trí Lê,Nam,44,Đà Nẵng,Kinh doanh,8674215,Dây chuyền,36851375,2-3 lần/năm,Bronze
+KH01853,Trung Thế Lê,Nam,34,Cần Thơ,Kinh doanh,49663692,Vòng tay,23260416,2-3 lần/năm,Bronze
+KH01854,Hạnh Hoàng Mai,Nam,45,TP.HCM,Kỹ sư,24085017,Bông tai,20093126,Hàng tháng,Diamond
+KH01855,Quý cô Dương Bùi,Nữ,41,Cần Thơ,Nhân viên văn phòng,44872111,Dây chuyền,39427549,1 lần/năm,Silver
+KH01856,Quang Trí Phạm,Nam,30,TP.HCM,Quản lý,38831201,Vòng tay,13268892,2-3 lần/năm,Silver
+KH01857,Anh Thế Mai,Nam,24,TP.HCM,Kinh doanh,17686968,Lắc chân,15881016,1 lần/năm,Silver
+KH01858,Vũ Văn Mai,Nữ,21,Bình Dương,Quản lý,14392428,Lắc chân,6514272,2-3 lần/năm,Diamond
+KH01859,Lâm Thị Hoàng,Nam,58,Đồng Nai,Sinh viên,11855998,Nhẫn,32523852,Hiếm khi,Silver
+KH01860,Anh Phúc Phạm,Nam,57,TP.HCM,Giáo viên,44401084,Lắc chân,21506743,1 lần/năm,Diamond
+KH01861,Bác Châu Mai,Nữ,38,Cần Thơ,Giáo viên,17487006,Kim cương,5917235,Hàng tháng,Bronze
+KH01862,Huy Lê,Nam,44,Bình Dương,Nhân viên văn phòng,46653771,Bông tai,28622322,2-3 lần/năm,Diamond
+KH01863,Bảo Lê,Nam,60,Cần Thơ,Nhân viên văn phòng,11992538,Lắc chân,39744775,2-3 lần/năm,Silver
+KH01864,Minh Bùi,Nữ,60,Bình Dương,Quản lý,31642819,Dây chuyền,22031811,Hiếm khi,Silver
+KH01865,Tùng Hữu Hoàng,Nam,22,Cần Thơ,Nhân viên văn phòng,10398280,Lắc chân,9599031,Hiếm khi,Silver
+KH01866,Nhật Hải Nguyễn,Nữ,46,Hà Nội,Sinh viên,11678615,Nhẫn,33997927,Hiếm khi,Silver
+KH01867,Ánh Phạm,Nữ,46,Hà Nội,Kỹ sư,25912496,Vòng tay,27447005,Hàng tháng,Gold
+KH01868,Trọng Trần,Nam,55,TP.HCM,Kỹ sư,21383560,Bông tai,47783184,Hiếm khi,Diamond
+KH01869,Nam Hải Lê,Nam,35,Bình Dương,Sinh viên,43686843,Kim cương,1150150,2-3 lần/năm,Silver
+KH01870,Nhiên Hoàng,Nữ,43,Hà Nội,Giáo viên,26053970,Kim cương,8016096,Hàng tháng,Diamond
+KH01871,Anh Anh Bùi,Nữ,19,Đà Nẵng,Giáo viên,11417917,Nhẫn,26411502,Hàng tháng,Gold
+KH01872,Tú Hoàng,Nữ,39,Hà Nội,Quản lý,12315820,Bông tai,36935599,Hàng tháng,Gold
+KH01873,Nhiên Mai,Nam,29,Cần Thơ,Kinh doanh,30269647,Dây chuyền,27938933,Hiếm khi,Silver
+KH01874,Mai Bùi,Nam,31,Cần Thơ,Kỹ sư,42431681,Nhẫn,47933086,Hàng tháng,Diamond
+KH01875,Bác Trọng Vũ,Nữ,29,Hà Nội,Quản lý,5882244,Dây chuyền,46147612,2-3 lần/năm,Diamond
+KH01876,Nhật Quang Hoàng,Nữ,37,Bình Dương,Nhân viên văn phòng,5391009,Dây chuyền,29252181,1 lần/năm,Gold
+KH01877,Trọng Đức Dương,Nữ,25,Đồng Nai,Quản lý,18977837,Nhẫn,40225705,Hàng tháng,Silver
+KH01878,Cô Yến Đặng,Nữ,55,Hà Nội,Giáo viên,8766058,Kim cương,44990291,1 lần/năm,Bronze
+KH01879,Linh Dương,Nam,50,Cần Thơ,Sinh viên,22832918,Nhẫn,48619988,2-3 lần/năm,Gold
+KH01880,Ánh Phạm,Nam,30,Đà Nẵng,Quản lý,36669223,Lắc chân,16466301,Hàng tháng,Silver
+KH01881,Linh Lê,Nam,32,Cần Thơ,Quản lý,26457511,Vòng tay,3865985,Hàng tháng,Bronze
+KH01882,Quang Bảo Nguyễn,Nữ,33,Cần Thơ,Giáo viên,8185654,Nhẫn,19787580,2-3 lần/năm,Diamond
+KH01883,Cô Hạnh Lê,Nữ,54,TP.HCM,Giáo viên,13254000,Vòng tay,39019431,1 lần/năm,Bronze
+KH01884,Châu Dương,Nữ,25,TP.HCM,Nhân viên văn phòng,32108339,Dây chuyền,23709509,Hiếm khi,Gold
+KH01885,Xuân Vũ,Nam,53,Hà Nội,Kỹ sư,7777827,Nhẫn,32587414,Hàng tháng,Silver
+KH01886,Chị Vi Mai,Nữ,50,Đồng Nai,Kỹ sư,49742758,Nhẫn,31070016,2-3 lần/năm,Bronze
+KH01887,Quý cô Bảo Bùi,Nam,35,Bình Dương,Sinh viên,30866122,Vòng tay,1944928,1 lần/năm,Bronze
+KH01888,Thành Bùi,Nữ,44,Cần Thơ,Giáo viên,23752698,Nhẫn,12748671,Hiếm khi,Silver
+KH01889,Quý cô Thảo Dương,Nam,41,TP.HCM,Kỹ sư,45679683,Nhẫn,15504642,1 lần/năm,Bronze
+KH01890,Bà Yến Bùi,Nữ,56,Cần Thơ,Giáo viên,28030945,Vòng tay,43208915,Hiếm khi,Gold
+KH01891,Lâm Đức Lê,Nữ,20,Đà Nẵng,Kinh doanh,14164779,Nhẫn,17738552,Hàng tháng,Bronze
+KH01892,Trọng Bùi,Nữ,38,Hà Nội,Kinh doanh,9489778,Vòng tay,1749086,Hàng tháng,Diamond
+KH01893,Nhiên Dương,Nam,41,Đồng Nai,Giáo viên,18741384,Bông tai,29439531,Hàng tháng,Bronze
+KH01894,Ông Khoa Vũ,Nam,20,Cần Thơ,Nhân viên văn phòng,14319040,Vòng tay,21976530,Hàng tháng,Silver
+KH01895,Phương Bảo Dương,Nữ,48,TP.HCM,Kinh doanh,13187770,Vòng tay,15923501,Hàng tháng,Bronze
+KH01896,Hương Trần,Nữ,39,TP.HCM,Quản lý,18397558,Vòng tay,3572793,2-3 lần/năm,Diamond
+KH01897,Chi Trần,Nam,25,Bình Dương,Sinh viên,22695902,Dây chuyền,48962404,Hàng tháng,Bronze
+KH01898,Quý ông Anh Bùi,Nữ,43,Cần Thơ,Kỹ sư,39535367,Vòng tay,13167364,1 lần/năm,Diamond
+KH01899,Khoa Thị Phạm,Nữ,31,Đà Nẵng,Kinh doanh,29161669,Lắc chân,4590968,Hàng tháng,Bronze
+KH01900,Chị Duyên Phạm,Nam,35,TP.HCM,Nhân viên văn phòng,47284061,Nhẫn,22816757,Hàng tháng,Silver
+KH01901,Hải Thị Nguyễn,Nam,20,Đồng Nai,Kỹ sư,23250041,Vòng tay,32316477,1 lần/năm,Bronze
+KH01902,Bảo Tấn Trần,Nữ,47,Đà Nẵng,Kinh doanh,15145470,Kim cương,17961047,1 lần/năm,Diamond
+KH01903,Lâm Văn Phạm,Nữ,22,TP.HCM,Quản lý,23043724,Bông tai,28796070,Hàng tháng,Silver
+KH01904,Ngọc Phạm,Nam,55,Cần Thơ,Quản lý,12850826,Lắc chân,29006934,Hiếm khi,Silver
+KH01905,Ông Minh Hoàng,Nữ,58,Đồng Nai,Giáo viên,8987407,Nhẫn,15447126,Hàng tháng,Silver
+KH01906,Linh Trần,Nữ,22,Đồng Nai,Quản lý,46017646,Bông tai,44003225,Hiếm khi,Bronze
+KH01907,Quang Mai,Nữ,39,TP.HCM,Nhân viên văn phòng,16971921,Lắc chân,34637385,Hàng tháng,Silver
+KH01908,Cô Vi Đặng,Nữ,22,Bình Dương,Sinh viên,20373527,Dây chuyền,10021923,Hiếm khi,Silver
+KH01909,Nam Tấn Trần,Nam,38,Cần Thơ,Quản lý,5201627,Dây chuyền,3882575,2-3 lần/năm,Gold
+KH01910,Hồng Dương,Nam,46,Bình Dương,Sinh viên,41639666,Bông tai,39433093,Hiếm khi,Silver
+KH01911,Nhật Đức Dương,Nữ,44,Hà Nội,Kinh doanh,19272833,Kim cương,26980346,Hiếm khi,Gold
+KH01912,Xuân Hoàng,Nam,18,Đà Nẵng,Kỹ sư,7302745,Kim cương,2923427,Hàng tháng,Diamond
+KH01913,Bác Huy Đặng,Nữ,19,Cần Thơ,Kỹ sư,8003032,Dây chuyền,4442101,2-3 lần/năm,Silver
+KH01914,Bác Trọng Đặng,Nam,52,Hà Nội,Kinh doanh,11235891,Kim cương,31256232,1 lần/năm,Silver
+KH01915,Quang Mai Bảo Đặng,Nữ,49,Bình Dương,Kinh doanh,20051484,Dây chuyền,16182721,2-3 lần/năm,Gold
+KH01916,Anh Vũ,Nam,36,Đà Nẵng,Giáo viên,9165323,Bông tai,21943171,2-3 lần/năm,Diamond
+KH01917,Bà Lan Trần,Nam,58,Hà Nội,Kỹ sư,34141929,Bông tai,26729039,Hàng tháng,Bronze
+KH01918,Cô Linh Nguyễn,Nữ,55,Bình Dương,Giáo viên,10724363,Bông tai,10074701,2-3 lần/năm,Bronze
+KH01919,Ông Tùng Bùi,Nữ,33,Đồng Nai,Nhân viên văn phòng,35637499,Bông tai,34882944,Hàng tháng,Gold
+KH01920,Chị Dương Dương,Nam,55,Cần Thơ,Giáo viên,49971096,Bông tai,36353892,Hàng tháng,Diamond
+KH01921,Chị Nhật Phạm,Nam,43,Đồng Nai,Kinh doanh,34960369,Nhẫn,38187921,2-3 lần/năm,Gold
+KH01922,Nam Bùi,Nữ,40,Cần Thơ,Giáo viên,22884721,Vòng tay,21655790,Hàng tháng,Gold
+KH01923,Lâm Trần,Nữ,34,TP.HCM,Kinh doanh,8318848,Nhẫn,29710051,Hàng tháng,Bronze
+KH01924,Khoa Hoàng Dương,Nữ,39,Cần Thơ,Kỹ sư,25117244,Nhẫn,16655620,Hiếm khi,Bronze
+KH01925,Lâm Hoàng,Nam,49,Đồng Nai,Kinh doanh,37859829,Dây chuyền,43611435,Hàng tháng,Gold
+KH01926,Nam Lê,Nam,31,Hà Nội,Sinh viên,18712823,Lắc chân,16685917,Hàng tháng,Silver
+KH01927,Hương Nguyễn,Nam,20,Bình Dương,Giáo viên,23994073,Nhẫn,30913876,Hàng tháng,Diamond
+KH01928,Ánh Mai,Nữ,45,Cần Thơ,Sinh viên,26240399,Lắc chân,7562235,2-3 lần/năm,Diamond
+KH01929,Linh Bùi,Nam,22,TP.HCM,Sinh viên,23408029,Lắc chân,48409035,Hiếm khi,Bronze
+KH01930,Xuân Bùi,Nam,35,Đà Nẵng,Nhân viên văn phòng,44048831,Bông tai,5078689,2-3 lần/năm,Bronze
+KH01931,Ngọc Hoàng,Nữ,26,Bình Dương,Kỹ sư,48505895,Lắc chân,30662771,2-3 lần/năm,Silver
+KH01932,Ánh Bùi,Nam,50,Hà Nội,Kinh doanh,24450380,Nhẫn,26553942,Hiếm khi,Bronze
+KH01933,Hưng Trí Hoàng,Nữ,35,Hà Nội,Kỹ sư,49201657,Kim cương,35087672,Hàng tháng,Bronze
+KH01934,Hồng Đặng,Nữ,38,TP.HCM,Giáo viên,38911047,Nhẫn,21824834,Hiếm khi,Diamond
+KH01935,Ánh Dương,Nam,56,Hà Nội,Kỹ sư,24211135,Vòng tay,13452693,1 lần/năm,Gold
+KH01936,Hải Vũ,Nữ,44,Đồng Nai,Giáo viên,16230215,Vòng tay,12034939,Hiếm khi,Silver
+KH01937,Bà Chi Đặng,Nam,53,Cần Thơ,Sinh viên,35129876,Bông tai,13329709,Hiếm khi,Silver
+KH01938,Dương Đặng,Nam,51,Cần Thơ,Sinh viên,45550787,Bông tai,15299373,Hàng tháng,Bronze
+KH01939,Chị Xuân Mai,Nam,35,Cần Thơ,Kỹ sư,8981242,Kim cương,1012437,Hiếm khi,Gold
+KH01940,Ông Phúc Hoàng,Nữ,23,Đà Nẵng,Kỹ sư,41411581,Bông tai,2465771,2-3 lần/năm,Silver
+KH01941,Hồng Đặng,Nữ,35,Hà Nội,Sinh viên,46828941,Dây chuyền,47715279,Hàng tháng,Diamond
+KH01942,Dũng Nguyễn,Nam,44,Cần Thơ,Sinh viên,6757266,Bông tai,23762048,Hiếm khi,Diamond
+KH01943,Hưng Phạm,Nữ,18,Đà Nẵng,Nhân viên văn phòng,23389752,Lắc chân,43413707,1 lần/năm,Gold
+KH01944,Chị Xuân Dương,Nam,21,Đồng Nai,Kinh doanh,27704511,Vòng tay,13898058,Hiếm khi,Bronze
+KH01945,Nhật Lê,Nữ,41,Cần Thơ,Quản lý,33431942,Kim cương,14482954,Hàng tháng,Bronze
+KH01946,Lan Mai,Nam,53,Cần Thơ,Nhân viên văn phòng,12228771,Vòng tay,8396541,1 lần/năm,Bronze
+KH01947,Anh Vũ Bùi,Nữ,45,Cần Thơ,Giáo viên,14108607,Dây chuyền,16138346,2-3 lần/năm,Gold
+KH01948,Phúc Hoàng,Nữ,32,Cần Thơ,Kinh doanh,14825606,Lắc chân,40560851,Hiếm khi,Bronze
+KH01949,Cô Nhật Trần,Nam,34,Đà Nẵng,Kỹ sư,32843204,Dây chuyền,27476950,Hiếm khi,Diamond
+KH01950,Bác Quang Trần,Nam,32,Đồng Nai,Quản lý,45882137,Nhẫn,21423276,2-3 lần/năm,Diamond
+KH01951,Thành Mai Vũ,Nam,59,TP.HCM,Sinh viên,8466443,Lắc chân,44475515,Hàng tháng,Diamond
+KH01952,Anh Phúc Mai,Nữ,44,Cần Thơ,Sinh viên,11383016,Lắc chân,42855438,1 lần/năm,Silver
+KH01953,Hồng Mai,Nữ,40,TP.HCM,Nhân viên văn phòng,17060955,Vòng tay,25048781,Hàng tháng,Silver
+KH01954,Khoa Văn Phạm,Nam,60,Đồng Nai,Kinh doanh,5544157,Dây chuyền,8985540,Hiếm khi,Diamond
+KH01955,Nhật Đức Hoàng,Nam,20,Đà Nẵng,Giáo viên,17627251,Lắc chân,34747734,2-3 lần/năm,Silver
+KH01956,Chị Ngọc Bùi,Nam,35,Đà Nẵng,Kinh doanh,23900096,Vòng tay,44720117,1 lần/năm,Gold
+KH01957,Nhật Hoàng Nguyễn,Nữ,37,Bình Dương,Kỹ sư,32556671,Bông tai,19927314,2-3 lần/năm,Silver
+KH01958,Thảo Dương,Nữ,39,TP.HCM,Kinh doanh,18545249,Kim cương,23338640,1 lần/năm,Silver
+KH01959,Khoa Đức Phạm,Nữ,26,Cần Thơ,Nhân viên văn phòng,39532985,Kim cương,33374537,2-3 lần/năm,Bronze
+KH01960,Bà Khoa Đặng,Nữ,41,Đà Nẵng,Nhân viên văn phòng,35123290,Lắc chân,7214179,1 lần/năm,Bronze
+KH01961,Vân Dương,Nam,33,Hà Nội,Quản lý,21736777,Bông tai,39178602,2-3 lần/năm,Diamond
+KH01962,Hải Phạm,Nữ,22,Đà Nẵng,Nhân viên văn phòng,21327863,Vòng tay,30412551,Hàng tháng,Bronze
+KH01963,Quang Thị Dương,Nữ,59,Bình Dương,Giáo viên,11565063,Nhẫn,39239685,1 lần/năm,Diamond
+KH01964,Thành Mai Vũ,Nam,35,Bình Dương,Kinh doanh,49256968,Vòng tay,30898220,Hiếm khi,Bronze
+KH01965,Duyên Mai,Nam,26,Đà Nẵng,Sinh viên,33198840,Bông tai,20386986,1 lần/năm,Gold
+KH01966,Khoa Đặng,Nữ,20,Đồng Nai,Kinh doanh,40395802,Bông tai,11193532,1 lần/năm,Silver
+KH01967,Quý ông Trọng Hoàng,Nữ,36,Đà Nẵng,Giáo viên,23776031,Nhẫn,13354642,Hàng tháng,Diamond
+KH01968,Lan Bùi,Nam,46,Bình Dương,Giáo viên,10007032,Kim cương,5685278,Hiếm khi,Gold
+KH01969,Duyên Dương,Nam,51,Đà Nẵng,Kinh doanh,29747069,Vòng tay,1893482,2-3 lần/năm,Diamond
+KH01970,Kim Dương,Nam,50,Đà Nẵng,Nhân viên văn phòng,28096728,Bông tai,16392372,Hiếm khi,Silver
+KH01971,Nhật Nguyễn,Nam,33,Đồng Nai,Giáo viên,25696556,Kim cương,22263125,Hiếm khi,Silver
+KH01972,Bảo Đặng,Nam,38,TP.HCM,Quản lý,43043454,Kim cương,47209931,2-3 lần/năm,Bronze
+KH01973,Hương Hoàng,Nam,59,Đồng Nai,Sinh viên,15701424,Dây chuyền,17657303,Hàng tháng,Bronze
+KH01974,Quý ông Thành Đặng,Nữ,29,Cần Thơ,Quản lý,41120003,Nhẫn,10042498,2-3 lần/năm,Gold
+KH01975,Trung Mai Lê,Nữ,55,Bình Dương,Kinh doanh,38477089,Nhẫn,13240092,1 lần/năm,Silver
+KH01976,Hưng Quang Vũ,Nam,22,Đà Nẵng,Quản lý,40716200,Nhẫn,49691126,1 lần/năm,Gold
+KH01977,Ông Khoa Hoàng,Nữ,25,Hà Nội,Kỹ sư,22880850,Lắc chân,20488173,1 lần/năm,Bronze
+KH01978,Quang Đức Bùi,Nữ,28,Cần Thơ,Nhân viên văn phòng,23299224,Vòng tay,31905069,Hiếm khi,Gold
+KH01979,Nhật Phạm,Nam,56,Hà Nội,Nhân viên văn phòng,44416594,Lắc chân,6687525,1 lần/năm,Diamond
+KH01980,Chị Hải Phạm,Nữ,36,Bình Dương,Nhân viên văn phòng,41332312,Kim cương,14656482,Hàng tháng,Bronze
+KH01981,Xuân Hoàng,Nữ,41,TP.HCM,Giáo viên,22433979,Kim cương,1891161,Hiếm khi,Silver
+KH01982,Thảo Trần,Nữ,31,Cần Thơ,Kinh doanh,34367899,Kim cương,9472405,Hiếm khi,Diamond
+KH01983,Dũng Phạm,Nữ,20,Bình Dương,Kỹ sư,47864345,Dây chuyền,15999670,Hàng tháng,Bronze
+KH01984,Châu Bùi,Nam,29,Bình Dương,Kinh doanh,27046307,Kim cương,47211449,Hàng tháng,Diamond
+KH01985,Nhật Nguyễn,Nữ,60,Bình Dương,Kỹ sư,14418910,Nhẫn,28576471,Hàng tháng,Bronze
+KH01986,Cô Vi Trần,Nữ,33,Đồng Nai,Kinh doanh,41897512,Bông tai,49348102,2-3 lần/năm,Diamond
+KH01987,Linh Vũ,Nữ,33,TP.HCM,Nhân viên văn phòng,24580778,Vòng tay,29870958,Hàng tháng,Gold
+KH01988,Vân Vũ,Nam,25,Đà Nẵng,Nhân viên văn phòng,12747235,Bông tai,30666651,Hàng tháng,Silver
+KH01989,Cô Hạnh Vũ,Nữ,41,Hà Nội,Nhân viên văn phòng,49193241,Dây chuyền,36552688,Hàng tháng,Bronze
+KH01990,Quý cô Hà Trần,Nữ,31,Đà Nẵng,Sinh viên,26176095,Kim cương,27740477,2-3 lần/năm,Diamond
+KH01991,Cô Thảo Dương,Nữ,18,TP.HCM,Quản lý,30242320,Lắc chân,35258850,1 lần/năm,Bronze
+KH01992,Chị Kim Trần,Nữ,38,Hà Nội,Kinh doanh,37875713,Lắc chân,16772212,Hàng tháng,Bronze
+KH01993,Quý cô Lan Bùi,Nữ,23,Cần Thơ,Giáo viên,46049462,Lắc chân,17373696,1 lần/năm,Diamond
+KH01994,Chị Kim Đặng,Nam,38,Đà Nẵng,Nhân viên văn phòng,47168191,Nhẫn,11346795,Hiếm khi,Diamond
+KH01995,Kim Phạm,Nam,43,TP.HCM,Sinh viên,5862164,Bông tai,20064220,2-3 lần/năm,Diamond
+KH01996,Hải Mai Bảo Mai,Nam,60,TP.HCM,Kinh doanh,26449869,Vòng tay,42536660,1 lần/năm,Gold
+KH01997,Chi Đặng,Nữ,28,Cần Thơ,Kỹ sư,28826215,Dây chuyền,33333753,Hàng tháng,Silver
+KH01998,Chị Kim Vũ,Nữ,31,TP.HCM,Kỹ sư,27195280,Dây chuyền,27319252,1 lần/năm,Bronze
+KH01999,Chị Xuân Phạm,Nữ,43,Đồng Nai,Kinh doanh,7623934,Nhẫn,29996671,Hàng tháng,Bronze
+KH02000,Nhật Thị Nguyễn,Nam,60,Bình Dương,Giáo viên,10212394,Bông tai,26645513,Hiếm khi,Gold

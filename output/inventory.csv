@@ -1,0 +1,501 @@
+﻿ProductID,Stock,Warehouse
+1,116,Kho Đà Nẵng
+2,52,Kho Đà Nẵng
+3,72,Kho Hà Nội
+4,76,Kho Hà Nội
+5,146,Kho Hà Nội
+6,129,Kho Đà Nẵng
+7,175,Kho Đà Nẵng
+8,29,Kho Hà Nội
+9,68,Kho Hà Nội
+10,64,Kho Hà Nội
+11,169,Kho Đà Nẵng
+12,101,Kho HCM
+13,40,Kho HCM
+14,58,Kho Hà Nội
+15,37,Kho Đà Nẵng
+16,82,Kho Đà Nẵng
+17,93,Kho Đà Nẵng
+18,73,Kho Hà Nội
+19,64,Kho Hà Nội
+20,168,Kho Hà Nội
+21,183,Kho Đà Nẵng
+22,129,Kho Hà Nội
+23,31,Kho HCM
+24,144,Kho Đà Nẵng
+25,156,Kho HCM
+26,189,Kho Đà Nẵng
+27,22,Kho HCM
+28,30,Kho HCM
+29,76,Kho Đà Nẵng
+30,98,Kho Hà Nội
+31,189,Kho Đà Nẵng
+32,140,Kho HCM
+33,113,Kho Đà Nẵng
+34,151,Kho HCM
+35,187,Kho Đà Nẵng
+36,74,Kho Đà Nẵng
+37,134,Kho Hà Nội
+38,59,Kho Hà Nội
+39,97,Kho Đà Nẵng
+40,103,Kho Đà Nẵng
+41,171,Kho Hà Nội
+42,146,Kho Đà Nẵng
+43,156,Kho Hà Nội
+44,34,Kho Hà Nội
+45,18,Kho Đà Nẵng
+46,88,Kho Đà Nẵng
+47,149,Kho Đà Nẵng
+48,61,Kho Đà Nẵng
+49,131,Kho HCM
+50,156,Kho Hà Nội
+51,67,Kho HCM
+52,93,Kho Hà Nội
+53,99,Kho HCM
+54,5,Kho Đà Nẵng
+55,105,Kho Đà Nẵng
+56,172,Kho Hà Nội
+57,119,Kho HCM
+58,105,Kho Đà Nẵng
+59,138,Kho Đà Nẵng
+60,40,Kho Hà Nội
+61,198,Kho Hà Nội
+62,129,Kho HCM
+63,154,Kho HCM
+64,49,Kho HCM
+65,167,Kho HCM
+66,188,Kho Đà Nẵng
+67,175,Kho HCM
+68,158,Kho Đà Nẵng
+69,42,Kho HCM
+70,75,Kho Hà Nội
+71,43,Kho Đà Nẵng
+72,76,Kho Hà Nội
+73,29,Kho HCM
+74,192,Kho HCM
+75,185,Kho Đà Nẵng
+76,166,Kho HCM
+77,96,Kho HCM
+78,126,Kho Đà Nẵng
+79,142,Kho HCM
+80,67,Kho Đà Nẵng
+81,159,Kho Đà Nẵng
+82,112,Kho Đà Nẵng
+83,66,Kho HCM
+84,128,Kho Hà Nội
+85,138,Kho HCM
+86,91,Kho Hà Nội
+87,51,Kho Đà Nẵng
+88,45,Kho HCM
+89,54,Kho HCM
+90,199,Kho Hà Nội
+91,141,Kho Đà Nẵng
+92,155,Kho Đà Nẵng
+93,171,Kho HCM
+94,30,Kho Đà Nẵng
+95,104,Kho HCM
+96,92,Kho HCM
+97,30,Kho Hà Nội
+98,62,Kho Hà Nội
+99,127,Kho Đà Nẵng
+100,167,Kho Hà Nội
+101,104,Kho HCM
+102,177,Kho Đà Nẵng
+103,164,Kho Hà Nội
+104,177,Kho Hà Nội
+105,47,Kho Hà Nội
+106,179,Kho Đà Nẵng
+107,42,Kho HCM
+108,155,Kho HCM
+109,175,Kho HCM
+110,127,Kho Đà Nẵng
+111,36,Kho Đà Nẵng
+112,131,Kho Hà Nội
+113,18,Kho Hà Nội
+114,168,Kho Đà Nẵng
+115,179,Kho Đà Nẵng
+116,124,Kho HCM
+117,143,Kho Hà Nội
+118,134,Kho Hà Nội
+119,38,Kho Hà Nội
+120,10,Kho Đà Nẵng
+121,48,Kho Đà Nẵng
+122,11,Kho Hà Nội
+123,89,Kho Hà Nội
+124,83,Kho HCM
+125,91,Kho HCM
+126,161,Kho HCM
+127,77,Kho Hà Nội
+128,92,Kho Hà Nội
+129,187,Kho Đà Nẵng
+130,86,Kho Đà Nẵng
+131,86,Kho HCM
+132,79,Kho Hà Nội
+133,43,Kho HCM
+134,80,Kho Đà Nẵng
+135,171,Kho Hà Nội
+136,65,Kho HCM
+137,167,Kho HCM
+138,18,Kho Đà Nẵng
+139,109,Kho Đà Nẵng
+140,69,Kho Hà Nội
+141,132,Kho HCM
+142,28,Kho Đà Nẵng
+143,13,Kho Hà Nội
+144,195,Kho Đà Nẵng
+145,164,Kho HCM
+146,150,Kho Hà Nội
+147,113,Kho Đà Nẵng
+148,53,Kho Hà Nội
+149,93,Kho Đà Nẵng
+150,180,Kho HCM
+151,116,Kho HCM
+152,22,Kho Hà Nội
+153,28,Kho Đà Nẵng
+154,42,Kho Hà Nội
+155,138,Kho HCM
+156,140,Kho Hà Nội
+157,164,Kho HCM
+158,93,Kho HCM
+159,105,Kho Đà Nẵng
+160,76,Kho Đà Nẵng
+161,129,Kho HCM
+162,68,Kho Hà Nội
+163,185,Kho Hà Nội
+164,145,Kho Đà Nẵng
+165,9,Kho Đà Nẵng
+166,145,Kho Đà Nẵng
+167,199,Kho Đà Nẵng
+168,94,Kho HCM
+169,63,Kho Đà Nẵng
+170,42,Kho HCM
+171,60,Kho HCM
+172,171,Kho Hà Nội
+173,166,Kho HCM
+174,106,Kho HCM
+175,13,Kho Hà Nội
+176,38,Kho Đà Nẵng
+177,192,Kho HCM
+178,58,Kho HCM
+179,7,Kho Đà Nẵng
+180,146,Kho HCM
+181,189,Kho HCM
+182,33,Kho HCM
+183,188,Kho HCM
+184,169,Kho HCM
+185,81,Kho Hà Nội
+186,82,Kho Hà Nội
+187,134,Kho HCM
+188,80,Kho Đà Nẵng
+189,36,Kho Đà Nẵng
+190,186,Kho Hà Nội
+191,66,Kho Đà Nẵng
+192,110,Kho Đà Nẵng
+193,110,Kho Hà Nội
+194,165,Kho Đà Nẵng
+195,122,Kho Hà Nội
+196,21,Kho Hà Nội
+197,77,Kho HCM
+198,157,Kho Hà Nội
+199,70,Kho Đà Nẵng
+200,7,Kho Hà Nội
+201,177,Kho HCM
+202,50,Kho Đà Nẵng
+203,147,Kho Hà Nội
+204,128,Kho HCM
+205,135,Kho HCM
+206,148,Kho Hà Nội
+207,17,Kho Hà Nội
+208,156,Kho Đà Nẵng
+209,22,Kho Hà Nội
+210,128,Kho Đà Nẵng
+211,163,Kho Hà Nội
+212,186,Kho Đà Nẵng
+213,84,Kho Hà Nội
+214,138,Kho HCM
+215,146,Kho HCM
+216,22,Kho HCM
+217,162,Kho Hà Nội
+218,61,Kho HCM
+219,129,Kho Đà Nẵng
+220,14,Kho Hà Nội
+221,128,Kho Hà Nội
+222,6,Kho HCM
+223,196,Kho HCM
+224,68,Kho Hà Nội
+225,54,Kho Hà Nội
+226,199,Kho Hà Nội
+227,180,Kho Đà Nẵng
+228,179,Kho Hà Nội
+229,70,Kho Đà Nẵng
+230,54,Kho HCM
+231,176,Kho Hà Nội
+232,153,Kho Đà Nẵng
+233,79,Kho Đà Nẵng
+234,96,Kho HCM
+235,112,Kho Hà Nội
+236,112,Kho HCM
+237,40,Kho Hà Nội
+238,41,Kho HCM
+239,52,Kho Hà Nội
+240,152,Kho HCM
+241,192,Kho Hà Nội
+242,134,Kho Hà Nội
+243,43,Kho Hà Nội
+244,120,Kho Hà Nội
+245,78,Kho Hà Nội
+246,17,Kho Đà Nẵng
+247,196,Kho HCM
+248,12,Kho Đà Nẵng
+249,183,Kho HCM
+250,156,Kho Hà Nội
+251,94,Kho HCM
+252,136,Kho Hà Nội
+253,66,Kho Hà Nội
+254,56,Kho Đà Nẵng
+255,39,Kho Đà Nẵng
+256,127,Kho Hà Nội
+257,165,Kho HCM
+258,89,Kho Hà Nội
+259,184,Kho Hà Nội
+260,10,Kho Đà Nẵng
+261,132,Kho Đà Nẵng
+262,83,Kho Hà Nội
+263,85,Kho Hà Nội
+264,42,Kho Đà Nẵng
+265,38,Kho Hà Nội
+266,200,Kho Đà Nẵng
+267,139,Kho Hà Nội
+268,126,Kho Đà Nẵng
+269,170,Kho Đà Nẵng
+270,175,Kho Đà Nẵng
+271,19,Kho Đà Nẵng
+272,62,Kho Hà Nội
+273,10,Kho Hà Nội
+274,154,Kho Hà Nội
+275,70,Kho Hà Nội
+276,155,Kho Đà Nẵng
+277,85,Kho HCM
+278,42,Kho Đà Nẵng
+279,198,Kho Hà Nội
+280,78,Kho Đà Nẵng
+281,71,Kho Đà Nẵng
+282,85,Kho Đà Nẵng
+283,125,Kho Đà Nẵng
+284,167,Kho Hà Nội
+285,9,Kho Hà Nội
+286,177,Kho Đà Nẵng
+287,64,Kho Hà Nội
+288,82,Kho Hà Nội
+289,37,Kho Đà Nẵng
+290,105,Kho Hà Nội
+291,148,Kho Đà Nẵng
+292,135,Kho HCM
+293,94,Kho Đà Nẵng
+294,149,Kho Đà Nẵng
+295,82,Kho Đà Nẵng
+296,130,Kho HCM
+297,200,Kho Đà Nẵng
+298,57,Kho Đà Nẵng
+299,96,Kho Hà Nội
+300,121,Kho HCM
+301,161,Kho Đà Nẵng
+302,145,Kho Đà Nẵng
+303,118,Kho HCM
+304,171,Kho HCM
+305,174,Kho Hà Nội
+306,152,Kho Đà Nẵng
+307,127,Kho Đà Nẵng
+308,93,Kho Hà Nội
+309,127,Kho HCM
+310,43,Kho Đà Nẵng
+311,72,Kho HCM
+312,121,Kho Đà Nẵng
+313,21,Kho Hà Nội
+314,29,Kho HCM
+315,134,Kho Đà Nẵng
+316,177,Kho HCM
+317,35,Kho Hà Nội
+318,140,Kho Hà Nội
+319,42,Kho HCM
+320,8,Kho Hà Nội
+321,17,Kho HCM
+322,39,Kho HCM
+323,15,Kho Đà Nẵng
+324,111,Kho Hà Nội
+325,10,Kho Hà Nội
+326,177,Kho Hà Nội
+327,89,Kho HCM
+328,119,Kho HCM
+329,166,Kho HCM
+330,34,Kho Đà Nẵng
+331,43,Kho HCM
+332,186,Kho HCM
+333,60,Kho Đà Nẵng
+334,184,Kho Đà Nẵng
+335,21,Kho HCM
+336,78,Kho Hà Nội
+337,125,Kho HCM
+338,170,Kho Đà Nẵng
+339,42,Kho Đà Nẵng
+340,108,Kho Đà Nẵng
+341,200,Kho Hà Nội
+342,107,Kho Hà Nội
+343,152,Kho Hà Nội
+344,97,Kho Hà Nội
+345,97,Kho Đà Nẵng
+346,54,Kho Hà Nội
+347,10,Kho Đà Nẵng
+348,156,Kho Đà Nẵng
+349,40,Kho HCM
+350,49,Kho Hà Nội
+351,67,Kho HCM
+352,99,Kho Đà Nẵng
+353,176,Kho Đà Nẵng
+354,200,Kho HCM
+355,92,Kho Đà Nẵng
+356,98,Kho Đà Nẵng
+357,190,Kho Đà Nẵng
+358,116,Kho Đà Nẵng
+359,153,Kho Đà Nẵng
+360,198,Kho Hà Nội
+361,119,Kho HCM
+362,25,Kho HCM
+363,46,Kho Hà Nội
+364,190,Kho Hà Nội
+365,13,Kho Đà Nẵng
+366,27,Kho Hà Nội
+367,56,Kho HCM
+368,184,Kho HCM
+369,81,Kho HCM
+370,167,Kho HCM
+371,193,Kho Đà Nẵng
+372,175,Kho HCM
+373,50,Kho Đà Nẵng
+374,122,Kho Đà Nẵng
+375,189,Kho HCM
+376,47,Kho HCM
+377,167,Kho Đà Nẵng
+378,147,Kho Đà Nẵng
+379,200,Kho Đà Nẵng
+380,40,Kho HCM
+381,25,Kho Đà Nẵng
+382,13,Kho Hà Nội
+383,69,Kho Đà Nẵng
+384,168,Kho Hà Nội
+385,41,Kho HCM
+386,154,Kho Hà Nội
+387,93,Kho Hà Nội
+388,23,Kho Hà Nội
+389,108,Kho HCM
+390,194,Kho Hà Nội
+391,46,Kho HCM
+392,154,Kho Đà Nẵng
+393,197,Kho Đà Nẵng
+394,148,Kho Hà Nội
+395,199,Kho Hà Nội
+396,12,Kho Hà Nội
+397,180,Kho HCM
+398,49,Kho Đà Nẵng
+399,31,Kho Đà Nẵng
+400,22,Kho HCM
+401,172,Kho Hà Nội
+402,57,Kho HCM
+403,29,Kho Đà Nẵng
+404,168,Kho HCM
+405,21,Kho Hà Nội
+406,144,Kho HCM
+407,92,Kho Hà Nội
+408,175,Kho Hà Nội
+409,132,Kho HCM
+410,129,Kho Hà Nội
+411,105,Kho Đà Nẵng
+412,101,Kho HCM
+413,112,Kho HCM
+414,132,Kho Đà Nẵng
+415,195,Kho Hà Nội
+416,56,Kho Hà Nội
+417,50,Kho HCM
+418,42,Kho Hà Nội
+419,96,Kho HCM
+420,21,Kho HCM
+421,147,Kho Hà Nội
+422,179,Kho Hà Nội
+423,176,Kho Hà Nội
+424,199,Kho HCM
+425,70,Kho HCM
+426,84,Kho Đà Nẵng
+427,104,Kho Đà Nẵng
+428,189,Kho Hà Nội
+429,92,Kho HCM
+430,198,Kho HCM
+431,147,Kho Đà Nẵng
+432,28,Kho Hà Nội
+433,14,Kho HCM
+434,108,Kho Hà Nội
+435,15,Kho Hà Nội
+436,91,Kho HCM
+437,6,Kho Đà Nẵng
+438,128,Kho HCM
+439,121,Kho HCM
+440,107,Kho HCM
+441,13,Kho Đà Nẵng
+442,141,Kho Đà Nẵng
+443,133,Kho Đà Nẵng
+444,75,Kho Đà Nẵng
+445,144,Kho Hà Nội
+446,107,Kho HCM
+447,106,Kho HCM
+448,150,Kho HCM
+449,72,Kho HCM
+450,152,Kho Đà Nẵng
+451,127,Kho Đà Nẵng
+452,46,Kho Đà Nẵng
+453,169,Kho HCM
+454,26,Kho HCM
+455,79,Kho Hà Nội
+456,177,Kho HCM
+457,119,Kho Hà Nội
+458,149,Kho Hà Nội
+459,142,Kho Đà Nẵng
+460,187,Kho Đà Nẵng
+461,180,Kho Đà Nẵng
+462,29,Kho HCM
+463,199,Kho Hà Nội
+464,198,Kho Đà Nẵng
+465,50,Kho Đà Nẵng
+466,113,Kho Hà Nội
+467,59,Kho HCM
+468,59,Kho Hà Nội
+469,81,Kho Hà Nội
+470,98,Kho HCM
+471,94,Kho HCM
+472,111,Kho Đà Nẵng
+473,183,Kho Hà Nội
+474,146,Kho HCM
+475,81,Kho HCM
+476,118,Kho HCM
+477,51,Kho HCM
+478,173,Kho Đà Nẵng
+479,148,Kho Hà Nội
+480,119,Kho Đà Nẵng
+481,108,Kho Đà Nẵng
+482,14,Kho Hà Nội
+483,29,Kho HCM
+484,65,Kho Đà Nẵng
+485,119,Kho Hà Nội
+486,200,Kho Đà Nẵng
+487,15,Kho HCM
+488,190,Kho Đà Nẵng
+489,163,Kho Đà Nẵng
+490,58,Kho HCM
+491,50,Kho HCM
+492,110,Kho HCM
+493,152,Kho Đà Nẵng
+494,49,Kho Hà Nội
+495,71,Kho Hà Nội
+496,88,Kho Đà Nẵng
+497,42,Kho Đà Nẵng
+498,88,Kho HCM
+499,187,Kho HCM
+500,63,Kho Đà Nẵng
