@@ -1,0 +1,8 @@
+﻿.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+jewelry_dataset_download/dataset.zip
