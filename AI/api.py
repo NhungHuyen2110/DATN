@@ -7,6 +7,7 @@ from hybrid_recommendation import (
 
 import pandas as pd
 
+from hybrid_recommendation_v2 import recommend_v2
 
 # ============================================================
 # 1. KHỞI TẠO FASTAPI
@@ -17,6 +18,26 @@ app = FastAPI(
     description="API hệ thống gợi ý sản phẩm trang sức",
     version="1.0"
 )
+
+@app.get("/recommendations/v2")
+def recommendations_v2(
+    customer_id: str,
+    product_id: int,
+    number: int = 5
+):
+    number = max(1, min(number, 20))
+
+    result = recommend_v2(
+        customer_id=customer_id,
+        product_id=product_id,
+        top_k=number
+    )
+
+    return {
+        "success": True,
+        "data": result,
+        "number": len(result)
+    }
 
 
 # ============================================================
