@@ -1,5 +1,6 @@
 
 from hybrid_recommendation import (
+    products,
     get_content_scores,
     get_qdrant_scores,
     get_collaborative_scores,
@@ -69,8 +70,11 @@ def recommend_v2(customer_id, product_id, top_k=5):
 
         recommendations.append({
             "ProductID": pid,
-            "HybridScore": round(score, 4),
-            "GraphScore": graph.get(pid, 0)
+            "ContentScore": float(round(content.get(pid, 0), 4)),
+            "QdrantScore": float(round(qdrant.get(pid, 0), 4)),
+            "CollaborativeScore": float(round(collaborative.get(pid, 0), 4)),
+            "GraphScore": float(round(graph.get(pid, 0), 4)),
+            "HybridScore": float(round(score, 4))
         })
 
     recommendations.sort(
@@ -78,4 +82,32 @@ def recommend_v2(customer_id, product_id, top_k=5):
         reverse=True
     )
 
-    return recommendations[:top_k]
+    product_lookup = products.set_index("ProductID")
+
+    final_results = []
+
+    for item in recommendations:
+        pid = item["ProductID"]
+
+        if pid not in product_lookup.index:
+            continue
+
+        product = product_lookup.loc[pid]
+
+        if int(product["Stock"]) <= 0:
+            continue
+
+        final_results.append({
+            **item,
+            "ProductName": product["ProductName"],
+            "CategoryName": product["CategoryName"],
+            "MaterialName": product["MaterialName"],
+            "GemstoneName": product["GemstoneName"],
+            "SalePrice": float(product["SalePrice"]),
+            "Stock": int(product["Stock"])
+        })
+
+        if len(final_results) >= top_k:
+            break
+
+    return final_results

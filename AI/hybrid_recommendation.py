@@ -657,65 +657,42 @@ print("\n==============================")
 print("6. TEST HYBRID")
 print("==============================")
 
+if __name__ == "__main__":
 
-# Lấy customer đầu tiên có lịch sử mua hàng
+    print("==============================")
+    print("6. TEST HYBRID")
+    print("==============================")
 
-test_customer_id = user_product.index[0]
+    test_customer_id = "KH00001"
+    test_product_id = 1
 
+    print("Customer:", test_customer_id)
+    print("Product:", test_product_id)
 
-# Sản phẩm test
-test_product_id = 1
-
-
-print(
-    "Customer:",
-    test_customer_id
-)
-
-
-print(
-    "Product:",
-    test_product_id
-)
-
-
-result = hybrid_recommendation(
-    test_customer_id,
-    test_product_id,
-    5
-)
-
-
-print("\n==============================")
-print("KẾT QUẢ HYBRID")
-print("==============================")
-
-
-print(result)
-
-
-# ============================================================
-# 12. LƯU FILE
-# ============================================================
-
-if not result.empty:
-
-    result.to_csv(
-        "../output/recommendation_hybrid_qdrant.csv",
-        index=False,
-        encoding="utf-8-sig"
+    result = hybrid_recommendation(
+        test_customer_id,
+        test_product_id,
+        5
     )
 
+    print("==============================")
+    print("KẾT QUẢ HYBRID")
+    print("==============================")
 
-    print(
-        "\nĐã lưu:"
-    )
+    print(result)
 
-    print(
-        "../output/recommendation_hybrid_qdrant.csv"
-    )
+    if not result.empty:
+        result.to_csv(
+            "../output/recommendation_hybrid_qdrant.csv",
+            index=False,
+            encoding="utf-8-sig"
+        )
 
+        print(
+            "Đã lưu: "
+            "../output/recommendation_hybrid_qdrant.csv"
+        )
 
-print("\n==============================")
-print("HOÀN THÀNH")
-print("==============================")
+    print("==============================")
+    print("HOÀN THÀNH")
+    print("==============================")

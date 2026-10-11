@@ -1,31 +1,29 @@
-from fastapi import FastAPI
-from crewai.retrieval import (
+
+from jewelry_agents.retrieval import (
     hybrid_search,
     build_rag_context
 )
-from crewai.crew import run_crew
 
-from pydantic import BaseModel, Field
-
-app = FastAPI()
+from jewelry_agents.crew import run_crew
 
 
-class ChatRequest(BaseModel):
-    message: str = Field(min_length=1, max_length=1000)
+def answer_jewelry_question(query: str, top_k: int = 3):
+    query = query.strip()
 
+    if not query:
+        return {
+            "success": False,
+            "answer": "Vui lòng nhập câu hỏi.",
+            "products": []
+        }
 
-@app.post("/chat")
-def chat(request: ChatRequest):
-    return answer_jewelry_question(
-        request.message
-    )
-
-def answer_jewelry_question(query, top_k=3):
+    # 1. Tìm sản phẩm bằng Qdrant + Neo4j
     products = hybrid_search(
         query,
         top_k=top_k
     )
 
+    # 2. Không có sản phẩm phù hợp
     if not products:
         return {
             "success": True,
@@ -33,13 +31,13 @@ def answer_jewelry_question(query, top_k=3):
             "products": []
         }
 
+    # 3. Tạo RAG Context
     context = build_rag_context(products)
 
-    answer = run_crew(
-        query,
-        context
-    )
+    # 4. Sinh câu trả lời bằng CrewAI + Qwen
+    answer = run_crew(query, context)
 
+    # 5. Trả về dữ liệu
     return {
         "success": True,
         "answer": answer,

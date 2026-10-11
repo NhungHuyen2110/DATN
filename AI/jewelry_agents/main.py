@@ -17,12 +17,12 @@ if CURRENT_DIR not in sys.path:
 # IMPORT
 # ============================================================
 
-from retrieval import (
+from .retrieval import (
     hybrid_search,
     build_rag_context
 )
 
-from crew import run_crew
+from .crew import run_crew
 
 
 # ============================================================

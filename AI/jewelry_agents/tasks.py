@@ -1,6 +1,5 @@
 from crewai import Task
-from agents import jewelry_agent
-
+from .agents import jewelry_agent
 
 def create_recommendation_task(query, context):
 

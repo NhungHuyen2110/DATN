@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import HTTPException
+from pydantic import BaseModel, Field
+
+from rag.rag_service import answer_jewelry_question
 
 from hybrid_recommendation import (
     hybrid_recommendation
@@ -19,12 +23,41 @@ app = FastAPI(
     version="1.0"
 )
 
+
 @app.get("/recommendations/v2")
 def recommendations_v2(
     customer_id: str,
     product_id: int,
     number: int = 5
 ):
+    # Kiểm tra ProductID có tồn tại hay không
+    if product_id not in products["ProductID"].values:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Không tìm thấy sản phẩm có ID {product_id}"
+        )
+
+    # Kiểm tra số lượng sản phẩm gợi ý
+    if number < 1 or number > 20:
+        raise HTTPException(
+            status_code=422,
+            detail="number phải nằm trong khoảng từ 1 đến 20"
+        )
+
+    result = recommend_v2(
+        customer_id=customer_id,
+        product_id=product_id,
+        top_k=number
+    )
+
+    return {
+        "success": True,
+        "customer_id": customer_id,
+        "product_id": product_id,
+        "number": len(result),
+        "data": result
+    }
+
     number = max(1, min(number, 20))
 
     result = recommend_v2(
@@ -183,3 +216,21 @@ def recommendations(
             orient="records"
         )
     }
+
+# =====================================================
+# CHATBOT RAG + CREWAI
+# =====================================================
+
+class ChatRequest(BaseModel):
+    query: str = Field(min_length=1)
+    top_k: int = Field(default=3, ge=1, le=10)
+
+
+@app.post("/chat", tags=["Chatbot RAG"])
+def chat(request: ChatRequest):
+    result = answer_jewelry_question(
+        query=request.query,
+        top_k=request.top_k
+    )
+
+    return result

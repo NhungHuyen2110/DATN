@@ -12,8 +12,8 @@ if CURRENT_DIR not in sys.path:
 
 
 from crewai import Crew, Process
-from agents import jewelry_agent
-from tasks import create_recommendation_task
+from .agents import jewelry_agent
+from .tasks import create_recommendation_task
 
 
 # ============================================================
