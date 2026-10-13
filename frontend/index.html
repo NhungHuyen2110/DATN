@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="LUMIÈRE — cửa hàng trang sức mẫu xây dựng bằng HTML, CSS và JavaScript thuần." />
+  <title>LUMIÈRE — Trang sức & dấu ấn riêng</title>
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script defer src="./assets/js/products.js"></script>
+  <script defer src="./assets/js/api.js"></script>
+  <script defer src="./assets/js/app.js"></script>
+  <script defer src="./assets/js/home-auth.js"></script>
+</head>
+<body>
+  <div class="announcement">MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 2.000.000₫ <span>• BẢN DEMO KHÓA LUẬN</span></div>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <button class="icon-btn mobile-only" id="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+      <a href="#home" class="logo" aria-label="Lumière trang chủ">LUMIÈRE<span>FINE JEWELRY</span></a>
+      <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
+        <a href="#home" data-nav="home">Trang chủ</a>
+        <a href="./pages/products.html">Sản phẩm</a>
+        <a href="#collections" data-nav="collections">Bộ sưu tập</a>
+        <a href="#about" data-nav="about">Về chúng tôi</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="open-search" title="Tìm kiếm" aria-label="Tìm kiếm"><svg viewBox="0 0 24 24" fill="none"><circle cx="10.7" cy="10.7" r="6.6"/><path d="m16 16 5 5"/></svg></button>
+        <a href="./pages/login.html" class="icon-btn account-link" id="account-link" title="Tài khoản" aria-label="Tài khoản"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.7 21c.4-5.1 3-7.5 7.3-7.5s7 2.4 7.3 7.5"/></svg></a>
+        <button class="icon-btn hide-sm" id="open-wishlist" title="Yêu thích" aria-label="Yêu thích"><svg viewBox="0 0 24 24" fill="none"><path d="M20.7 8.4c0 5-8.7 11-8.7 11s-8.7-6-8.7-11A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.7 2.1Z"/></svg><span class="count-bubble" id="wishlist-count" hidden>0</span></button>
+        <button class="icon-btn" id="open-cart" title="Giỏ hàng" aria-label="Giỏ hàng"><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16l-1.3 12H5.3L4 8Z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg><span class="count-bubble" id="cart-count" hidden>0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero"><div class="hero-image"></div><div class="hero-shade"></div>
+      <div class="container hero-content"><span class="eyebrow">THE ART OF FINE JEWELRY</span><h1>Vẻ đẹp vượt<br><em>thời gian</em></h1><p>Khám phá những thiết kế trang sức tinh tế, tôn vinh vẻ đẹp và dấu ấn riêng của bạn.</p><a class="button button-dark" href="#shop">KHÁM PHÁ NGAY <span>↗</span></a></div>
+      <div class="hero-note">LUMIÈRE COLLECTION • 2026</div>
+    </section>
+
+    <section class="service-line" aria-label="Cam kết dịch vụ"><div class="container service-grid"><span>✧ Thiết kế tinh tế</span><span>✧ Tư vấn AI cá nhân hóa</span><span>✧ Chất lượng được chọn lọc</span><span>✧ Hỗ trợ khách hàng</span></div></section>
+
+    <section id="collections" class="section container"><div class="section-head"><div class="eyebrow">OUR COLLECTION</div><h2>Khám phá bộ sưu tập</h2><p>Chọn món trang sức dành cho khoảnh khắc đặc biệt.</p></div>
+      <div class="collection-grid">
+        <a href="#shop" class="collection-card" data-category="Nhẫn"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=900&q=85" alt="Bộ sưu tập nhẫn"/><span><small>THE CLASSICS</small><strong>Nhẫn</strong><b>Khám phá ↗</b></span></a>
+        <a href="#shop" class="collection-card" data-category="Dây chuyền"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=85" alt="Bộ sưu tập dây chuyền"/><span><small>EVERYDAY ELEGANCE</small><strong>Dây chuyền</strong><b>Khám phá ↗</b></span></a>
+        <a href="#shop" class="collection-card" data-category="Bông tai"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=900&q=85" alt="Bộ sưu tập bông tai"/><span><small>ICONIC DETAILS</small><strong>Bông tai</strong><b>Khám phá ↗</b></span></a>
+      </div>
+    </section>
+
+    <section id="shop" class="section shop-section"><div class="container">
+      <div class="section-head"><div class="eyebrow">CURATED FOR YOU</div><h2>Trang sức được yêu thích</h2><p>Khám phá các thiết kế nổi bật từ bộ sưu tập LUMIÈRE.</p></div>
+      <div class="shop-tools"><div class="filters" role="group" aria-label="Lọc loại trang sức"><button class="filter-chip active" data-filter="Tất cả">Tất cả</button><button class="filter-chip" data-filter="Nhẫn">Nhẫn</button><button class="filter-chip" data-filter="Dây chuyền">Dây chuyền</button><button class="filter-chip" data-filter="Bông tai">Bông tai</button><button class="filter-chip" data-filter="Vòng tay">Vòng tay</button></div><div class="shop-sort"><label for="sort-products">Sắp xếp</label><select id="sort-products"><option value="featured">Nổi bật</option><option value="price-asc">Giá thấp → cao</option><option value="price-desc">Giá cao → thấp</option><option value="name">Tên A → Z</option></select></div></div>
+      <div id="product-grid" class="product-grid"></div><div class="shop-footer"><p id="product-count" aria-live="polite"></p><button id="show-more" class="button button-outline" type="button">XEM THÊM SẢN PHẨM <span>↗</span></button></div>
+    </div></section>
+
+    <section class="story-split" id="about"><div class="story-picture" role="img" aria-label="Trang sức vàng trên nền nhung"></div><div class="story-text"><div class="eyebrow">OUR PHILOSOPHY</div><h2>Mỗi món trang sức,<br><em>một câu chuyện.</em></h2><p>Không chỉ là phụ kiện, trang sức là cách lưu giữ cảm xúc, đánh dấu những hành trình và thể hiện cá tính riêng.</p><p>LUMIÈRE là giao diện trình diễn trong khóa luận, kết hợp trải nghiệm mua sắm trực tuyến cùng công nghệ gợi ý thông minh.</p><a href="#shop" class="text-link">KHÁM PHÁ BỘ SƯU TẬP <span>↗</span></a></div></section>
+
+    <section class="ai-feature"><div class="container ai-feature-inner"><div class="ai-sparkle">✧</div><div class="eyebrow">PERSONALIZED WITH AI</div><h2>Vẻ đẹp dành riêng <em>cho bạn</em></h2><p>Chia sẻ phong cách, chất liệu hay ngân sách mong muốn. Trợ lý AI sẽ giúp bạn khám phá món trang sức phù hợp.</p><button class="button button-dark" id="open-chat-section">TRÒ CHUYỆN VỚI AI <span>↗</span></button><div class="api-note">Có thể kết nối với AI Service hiện tại qua API <code>POST /chat</code>.</div></div></section>
+  </main>
+
+  <footer class="footer"><div class="container footer-grid"><div><div class="logo footer-logo">LUMIÈRE<span>FINE JEWELRY</span></div><p>Vẻ đẹp vượt thời gian.<br>Chạm vào dấu ấn riêng của bạn.</p></div><div><h3>KHÁM PHÁ</h3><a href="./pages/products.html">Tất cả sản phẩm</a><a href="#collections">Bộ sưu tập</a><a href="#about">Câu chuyện thương hiệu</a></div><div><h3>HỖ TRỢ</h3><a href="#shop">Hướng dẫn mua hàng</a><button id="footer-chat">Tư vấn trực tuyến</button><a href="#about">Liên hệ</a></div><div><h3>ĐỒ ÁN TỐT NGHIỆP</h3><p>Mẫu frontend HTML, CSS, JavaScript thuần.<br>Dữ liệu hiển thị là dữ liệu demo.</p></div></div><div class="container footer-bottom"><span>© 2026 LUMIÈRE — Academic Prototype</span><span>DESIGNED WITH CARE ✧</span></div></footer>
+
+  <button id="chat-fab" class="chat-fab" aria-label="Mở trợ lý AI"><span>✧</span> Tư vấn AI</button>
+  <div id="overlay" class="overlay" hidden></div>
+  <aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-label="Bảng thao tác" hidden><div class="drawer-head"><h2 id="drawer-title">Giỏ hàng</h2><button id="drawer-close" class="close-btn" aria-label="Đóng">×</button></div><div id="drawer-body" class="drawer-body"></div></aside>
+  <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-label="Chi tiết sản phẩm" hidden><button class="close-btn modal-close" id="modal-close" aria-label="Đóng">×</button><div id="modal-content"></div></div>
+  <div class="chat-window" id="chat-window" role="dialog" aria-modal="false" aria-label="Trợ lý tư vấn AI" hidden><div class="chat-head"><div><strong>✧ Trợ lý LUMIÈRE</strong><small>Kết nối AI Service • Demo</small></div><button id="chat-close" aria-label="Đóng chatbot">×</button></div><div class="chat-messages" id="chat-messages" aria-live="polite"><div class="message bot">Xin chào! Tôi có thể giúp bạn tìm nhẫn, vòng tay, dây chuyền hoặc tư vấn theo ngân sách. Hãy nhập câu hỏi nhé.</div></div><form id="chat-form" class="chat-form"><label for="chat-query" class="sr-only">Câu hỏi</label><input id="chat-query" name="query" autocomplete="off" maxlength="500" placeholder="Ví dụ: Tìm nhẫn kim cương..." required/><button type="submit" aria-label="Gửi">➤</button></form></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

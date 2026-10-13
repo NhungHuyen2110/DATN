@@ -1,0 +1,57 @@
+{
+  "version": "draft-frontend-first",
+  "business_base": "http://localhost:8001",
+  "ai_base": "http://localhost:8000",
+  "implemented": [
+    "POST /auth/register",
+    "POST /auth/login",
+    "GET /auth/me",
+    "POST /auth/logout",
+    "GET /health"
+  ],
+  "planned": [
+    "GET /products",
+    "GET /products/{id}",
+    "POST /orders",
+    "GET /orders/me",
+    "GET /orders/{id}",
+    "GET /admin/dashboard",
+    "GET /staff/orders",
+    "POST /events",
+    "POST /auth/forgot-password"
+  ],
+  "product_fields": [
+    "id",
+    "sku",
+    "name",
+    "category",
+    "brand",
+    "material",
+    "gemstone",
+    "price_vnd",
+    "stock",
+    "images",
+    "description"
+  ],
+  "orders_fields": [
+    "id",
+    "code",
+    "status",
+    "items",
+    "subtotal_vnd",
+    "shipping_vnd",
+    "discount_vnd",
+    "total_vnd",
+    "payment_status"
+  ],
+  "authentication": {
+    "cookie": "lumiere_session",
+    "httponly": true,
+    "role": [
+      "customer",
+      "staff",
+      "admin"
+    ]
+  },
+  "note": "planned are proposals, not working endpoints; product demo IDs not AI IDs"
+}
