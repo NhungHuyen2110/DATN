@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
@@ -15,7 +15,7 @@ import secrets
 from fastapi import Cookie, Response
 from app.core.security import verify_password
 from app.models import UserSession
-from app.schemas.auth import LoginRequest, UserResponse
+from app.schemas.auth import LoginRequest, ProfileResponse, ProfileUpdateRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -145,7 +145,7 @@ def login(
     email = str(request.email).strip().lower()
 
     user = db.scalar(
-        select(User).where(User.email == email)
+        select(User).where(User.email == email).with_for_update()
     )
 
     if (
@@ -201,7 +201,7 @@ def login(
 # CURRENT USER
 # ================================================
 
-@router.get("/me", response_model=UserResponse)
+@router.get("/me", response_model=ProfileResponse)
 def get_me(
     user: User = Depends(get_current_user)
 ):
@@ -209,6 +209,35 @@ def get_me(
         "id": user.id,
         "full_name": user.full_name,
         "email": user.email,
+        "phone": user.phone,
+        "role": user.role.name
+    }
+
+
+@router.patch("/me", response_model=ProfileResponse)
+def update_me(
+    request: ProfileUpdateRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    # Explicit allowlist; identity comes exclusively from the existing session.
+    if "full_name" in request.model_fields_set:
+        user.full_name = request.full_name
+    if "phone" in request.model_fields_set:
+        user.phone = request.phone
+
+    try:
+        db.commit()
+        db.refresh(user)
+    except SQLAlchemyError:
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Không thể cập nhật hồ sơ") from None
+
+    return {
+        "id": user.id,
+        "full_name": user.full_name,
+        "email": user.email,
+        "phone": user.phone,
         "role": user.role.name
     }
 

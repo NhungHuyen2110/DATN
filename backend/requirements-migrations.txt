@@ -1,0 +1,2 @@
+# Install separately from the existing application environment.
+alembic>=1.13.3,<2

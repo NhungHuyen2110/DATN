@@ -1,4 +1,11 @@
 from app.routers.auth import router as auth_router
+from app.routers.catalog import router as catalog_router
+from app.routers.cart import router as cart_router
+from app.routers.orders import router as orders_router
+from app.routers.payments import router as payments_router
+from app.routers.admin_staff import router as admin_staff_router
+from app.routers.dashboard import router as dashboard_router
+from app.routers.customer_content import router as customer_content_router
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -11,6 +18,13 @@ app = FastAPI(
     version="1.0.0",
 )
 app.include_router(auth_router)
+app.include_router(catalog_router)
+app.include_router(cart_router)
+app.include_router(orders_router)
+app.include_router(payments_router)
+app.include_router(admin_staff_router)
+app.include_router(dashboard_router)
+app.include_router(customer_content_router)
 
 app.add_middleware(
     CORSMiddleware,
