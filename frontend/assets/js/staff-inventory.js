@@ -1,46 +1,100 @@
 "use strict";
-/* Staff inventory DEMO; shares same-tab preview with Admin Inventory, never touches PostgreSQL. */
+/* LUMIÈRE Staff inventory — source of truth is PostgreSQL via Business API. */
 (() => {
-  const KEY = "lumiere_admin_inventory_demo_v1";
-  const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const norm = v => String(v ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g,"D").toLowerCase();
-  const fmt = n => Number(n || 0).toLocaleString("vi-VN");
-  const read = () => {try {const v=JSON.parse(sessionStorage.getItem(KEY));return v&&typeof v==="object"&&!Array.isArray(v)&&Array.isArray(v.movements)&&v.quantities&&typeof v.quantities==="object"?v:null} catch{return null}};
-  const put = v => sessionStorage.setItem(KEY,JSON.stringify(v));
-  const baseQty = p => Math.max(0, Number(p.stock)||0);
-  window.LUMIERE_STAFF_INVENTORY = ({mount,products}) => {
-    const productsList = (products||[]).map(p=>({...p,id:Number(p.id)})).filter(p=>Number.isSafeInteger(p.id));
-    const index = new Map(productsList.map(p=>[p.id,p]));
-    let state = read() || {quantities:{},movements:[]};
-    let page=1,limit=5,query="",filter="all",historyPage=1;
-    const qty = id => Object.hasOwn(state.quantities,String(id)) ? Math.max(0,Number(state.quantities[id])||0) : baseQty(index.get(id));
-    const label = n => n===0?"Hết hàng":n<=5?"Sắp hết":"Còn hàng";
-    const cls = n => n===0?"out":n<=5?"low":"ok";
-    mount.innerHTML = `<section class="inv-root"><p class="demo-note"><strong>CHẾ ĐỘ DEMO NHÂN VIÊN.</strong> Các phiếu nhập/xuất chỉ cập nhật dữ liệu giả lập trong cùng tab; không thay đổi PostgreSQL, tồn kho thật hay đơn hàng. Backend bắt buộc xác thực quyền staff/admin và ghi nhật ký.</p>
-      <div class="inv-heading"><div><h2>Kiểm tra tồn kho</h2><p class="mini-note">Nhân viên kiểm tra, nhập và xuất tồn kho mô phỏng</p></div><button id="inv-reset" class="button button-outline" type="button">Khôi phục DEMO</button></div>
-      <div id="inv-stats" class="inv-stats"></div>
-      <div class="panel inv-panel"><div class="inv-filters"><label class="field">Tìm sản phẩm<input id="inv-search" type="search" placeholder="Tên, ID, danh mục..." autocomplete="off"></label><label class="field">Tình trạng<select id="inv-filter"><option value="all">Tất cả</option><option value="ok">Còn hàng (&gt; 5)</option><option value="low">Sắp hết (1–5)</option><option value="out">Hết hàng (0)</option></select></label><label class="field">Hiển thị<select id="inv-limit"><option value="5">5 / trang</option><option value="10">10 / trang</option><option value="20">20 / trang</option></select></label></div>
-      <div class="table-wrap"><table class="data-table inv-table"><thead><tr><th>Hình</th><th>Mã / Sản phẩm</th><th>Danh mục</th><th>Tồn kho</th><th>Tình trạng</th><th>Thao tác</th></tr></thead><tbody id="inv-body"></tbody></table></div><div class="inv-pager"><span id="inv-count"></span><div><button type="button" id="inv-prev">← Trước</button><span id="inv-page"></span><button type="button" id="inv-next">Sau →</button></div></div></div>
-      <div class="inv-heading inv-history-heading"><div><h2>Nhật ký biến động tồn kho</h2><p class="mini-note">Nhật ký thay đổi mô phỏng, chưa phải chứng từ kho hợp lệ</p></div><span id="inv-history-total" class="mini-note"></span></div>
-      <div class="panel"><div class="table-wrap"><table class="data-table inv-table"><thead><tr><th>Thời gian</th><th>Mã phiếu demo</th><th>Sản phẩm</th><th>Loại</th><th>Thay đổi</th><th>Trước → Sau</th><th>Lý do</th></tr></thead><tbody id="inv-history-body"></tbody></table></div><div class="inv-pager"><span id="inv-history-count"></span><div><button type="button" id="inv-history-prev">← Trước</button><span id="inv-history-page"></span><button type="button" id="inv-history-next">Sau →</button></div></div></div>
-      <dialog id="inv-dialog" class="inv-dialog"><div class="inv-dialog-head"><h2 id="inv-dialog-title">Điều chỉnh tồn kho</h2><button id="inv-close" type="button" aria-label="Đóng">×</button></div><p class="demo-note">Lập phiếu mô phỏng. Kiểm kê điều chỉnh tồn thực tế được dành cho quản trị viên; backend cần xác nhận quyền thao tác.</p><form id="inv-form"><input type="hidden" id="inv-id"><div class="inv-current" id="inv-current"></div><label class="field">Loại biến động<select id="inv-type"><option value="in">Nhập kho (+)</option><option value="out">Xuất kho (−)</option></select></label><label class="field" id="inv-amount-label">Số lượng<input id="inv-amount" type="number" min="1" step="1" required></label><label class="field">Lý do / ghi chú<textarea id="inv-reason" minlength="5" maxlength="300" required placeholder="Ví dụ: Nhận bổ sung từ nhà cung cấp..."></textarea></label><div id="inv-error" class="inv-error" role="alert" hidden></div><div class="inv-actions"><button id="inv-cancel" class="button button-outline" type="button">Hủy</button><button class="button button-dark" type="submit">Lưu phiếu DEMO</button></div></form></dialog></section>`;
-    const $ = id => mount.querySelector("#"+id);
-    const dialog=$("inv-dialog");
-    const save = () => put(state);
-    const statusHtml = n => `<span class="inv-status ${cls(n)}">${label(n)}</span>`;
-    const all = () => productsList.filter(p=>norm(`${p.id} ${p.name} ${p.category} ${p.material}`).includes(norm(query)) && (filter==="all"||cls(qty(p.id))===filter));
-    function stats(){const quantities=productsList.map(p=>qty(p.id));$("inv-stats").innerHTML = [["Mã sản phẩm",productsList.length],["Tổng đơn vị tồn",fmt(quantities.reduce((a,b)=>a+b,0))],["Sắp hết (1–5)",quantities.filter(n=>n>0&&n<=5).length],["Hết hàng",quantities.filter(n=>n===0).length]].map(([a,b])=>`<div class="inv-stat"><span>${a}</span><strong>${b}</strong></div>`).join("")}
-    function draw(){stats();const rows=all();const pages=Math.max(1,Math.ceil(rows.length/limit));page=Math.min(page,pages);const selected=rows.slice((page-1)*limit,page*limit);$("inv-body").innerHTML=selected.length?selected.map(p=>`<tr><td><img src="${esc(p.image)}" alt=""></td><td><strong>${esc(p.name)}</strong><small class="inv-muted">ID ${p.id} · ${esc(p.material||'')}</small></td><td>${esc(p.category)}</td><td><strong>${fmt(qty(p.id))}</strong></td><td>${statusHtml(qty(p.id))}</td><td><button type="button" class="button-sm" data-inv-adjust="${p.id}">Lập phiếu</button></td></tr>`).join(""):'<tr><td colspan="6" class="inv-empty">Không tìm thấy sản phẩm.</td></tr>';$("inv-count").textContent=`${rows.length} sản phẩm phù hợp`;$("inv-page").textContent=`${page} / ${pages}`;$("inv-prev").disabled=page<=1;$("inv-next").disabled=page>=pages;drawHistory()}
-    function drawHistory(){const moves=[...state.movements].reverse();const pages=Math.max(1,Math.ceil(moves.length/5));historyPage=Math.min(historyPage,pages);const selected=moves.slice((historyPage-1)*5,historyPage*5);$("inv-history-total").textContent=`${moves.length} phiếu DEMO`;$("inv-history-body").innerHTML=selected.length?selected.map(m=>`<tr><td>${esc(new Date(m.time).toLocaleString('vi-VN'))}</td><td>${esc(m.id)}</td><td>${esc(m.productName)}</td><td>${m.type==='in'?'Nhập':m.type==='out'?'Xuất':'Kiểm kê'}</td><td><strong>${m.delta>0?'+':''}${fmt(m.delta)}</strong></td><td>${fmt(m.before)} → ${fmt(m.after)}</td><td>${esc(m.reason)}</td></tr>`).join(''):'<tr><td colspan="7" class="inv-empty">Chưa phát sinh phiếu điều chỉnh demo.</td></tr>';$("inv-history-count").textContent=`${moves.length} phiếu`;$("inv-history-page").textContent=`${historyPage} / ${pages}`;$("inv-history-prev").disabled=historyPage<=1;$("inv-history-next").disabled=historyPage>=pages}
-    function updateAmountLabel(){const adj=false;$("inv-amount-label").firstChild.textContent=adj?"Tồn kho thực tế sau kiểm kê":"Số lượng";$("inv-amount").min=adj?"0":"1"}
-    function open(id){const p=index.get(Number(id));if(!p)return;$("inv-form").reset();$("inv-id").value=p.id;$("inv-dialog-title").textContent=`Lập phiếu – ${p.name}`;$("inv-current").textContent=`Tồn kho hiện tại: ${fmt(qty(p.id))} · ${label(qty(p.id))}`;$("inv-error").hidden=true;updateAmountLabel();dialog.showModal()}
-    function close(){dialog.close()}
-    $("inv-search").addEventListener("input",e=>{query=e.target.value;page=1;draw()});$("inv-filter").addEventListener("change",e=>{filter=e.target.value;page=1;draw()});$("inv-limit").addEventListener("change",e=>{limit=Number(e.target.value);page=1;draw()});
-    $("inv-prev").onclick=()=>{page--;draw()};$("inv-next").onclick=()=>{page++;draw()};$("inv-history-prev").onclick=()=>{historyPage--;drawHistory()};$("inv-history-next").onclick=()=>{historyPage++;drawHistory()};
-    $("inv-close").onclick=close;$("inv-cancel").onclick=close;$("inv-type").onchange=updateAmountLabel;
-    $("inv-reset").onclick=()=>{if(!confirm("Khôi phục dữ liệu tồn kho DEMO chung của Admin/Nhân viên trong tab này?"))return;state={quantities:{},movements:[]};save();page=1;historyPage=1;draw()};
-    $("inv-form").onsubmit=e=>{e.preventDefault();const id=Number($("inv-id").value),p=index.get(id),type=$("inv-type").value,amount=Number($("inv-amount").value),reason=$("inv-reason").value.trim();const before=p?qty(id):0;let after=type==="in"?before+amount:type==="out"?before-amount:amount;let err="";if(!p||!["in","out"].includes(type))err="Phiếu không hợp lệ.";else if(!Number.isSafeInteger(amount)||amount<(type==="adjust"?0:1)||!Number.isSafeInteger(after))err="Vui lòng nhập số lượng nguyên hợp lệ.";else if(after<0)err="Không thể xuất quá số lượng tồn kho.";else if(after===before)err="Tồn kho không thay đổi.";else if(reason.length<5)err="Vui lòng ghi lý do tối thiểu 5 ký tự.";if(err){$("inv-error").textContent=err;$("inv-error").hidden=false;return}const move={id:`PN-DEMO-${String(Date.now())}-${state.movements.length+1}`,productId:id,productName:p.name,type,delta:after-before,before,after,reason,time:new Date().toISOString()};state.quantities[id]=after;state.movements.push(move);save();close();historyPage=1;draw()};
-    mount.addEventListener("click",e=>{const target=e.target.closest("[data-inv-adjust]");if(target)open(target.dataset.invAdjust)});
-    draw();
+  const esc = x => String(x ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const norm = x => String(x??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').toLowerCase();
+  const fmt = x => Number(x||0).toLocaleString('vi-VN');
+  const status = n => n===0?'Hết hàng':n<=5?'Sắp hết':'Còn hàng';
+  const statusClass = n => n===0?'out':n<=5?'low':'ok';
+  const api = () => window.LUMIERE_API;
+  const msg = e => String(e?.message || e || 'Lỗi không xác định');
+  window.LUMIERE_STAFF_INVENTORY = ({mount}) => {
+    let products=[],query='',filter='all',limit=10,page=1,busy=false;
+    const $ = id => mount.querySelector('#'+id);
+    const inform=(message,failed=true)=>{const el=$('inv-feedback');if(el){el.textContent=message;el.hidden=false;el.style.color=failed?'#9f302b':'#23623b';}};
+    async function load(){
+      mount.innerHTML='<div class="panel">Đang tải tồn kho thật từ Business API / PostgreSQL…</div>';
+      try {
+        if(!api()) throw Error('Không tìm thấy api.js.');
+        const user=await api().me();
+        if(!['staff','admin'].includes(user.role)) throw Error('Tài khoản này không có quyền Staff/Admin.');
+        const records=[];
+        // All pages, not static demo catalogue. API products is paged.
+        for(let p=1;p<=100;p++){
+          const response=await api().products(p,100);
+          const batch=Array.isArray(response)?response:response.items;
+          if(!Array.isArray(batch))throw Error('API /products không trả về danh sách items hợp lệ.');
+          records.push(...batch);
+          const total=Number(response.total);
+          if((Number.isFinite(total)&&records.length>=total)||batch.length<100)break;
+          if(p===100)throw Error('Vượt giới hạn phân trang khi tải tồn kho.');
+        }
+        products=records.map(p=>({...p,id:Number(p.id),stock:Number(p.stock)}))
+          .filter(p=>Number.isSafeInteger(p.id)&&Number.isSafeInteger(p.stock)&&p.stock>=0);
+        page=1;render();
+      } catch(e){
+        mount.innerHTML=`<section class="panel"><h2>Không tải được tồn kho</h2><p>${esc(msg(e))}</p><p>Hãy kiểm tra Backend cổng 8001 và đăng nhập bằng tài khoản Staff/Admin.</p><button id="inv-retry" class="button button-outline" type="button">Thử lại</button></section>`;
+        $('inv-retry').onclick=load;
+      }
+    }
+    function filtered(){return products.filter(p=>norm([p.id,p.name,p.sku,p.category,p.material].join(' ')).includes(norm(query))&&(filter==='all'||statusClass(p.stock)===filter));}
+    function render(){
+      const rows=filtered(),pages=Math.max(1,Math.ceil(rows.length/limit));page=Math.min(page,pages);
+      const shown=rows.slice((page-1)*limit,page*limit),numbers=products.map(p=>p.stock);
+      mount.innerHTML=`<section class="inv-root">
+       <div class="inv-heading"><div><h2>Kiểm tra tồn kho</h2><p class="mini-note">Tồn kho thực từ Business API · PostgreSQL. Điều chỉnh dùng kiểm tra tồn kỳ vọng để tránh ghi đè cập nhật khác.</p></div><button id="inv-reload" type="button" class="button button-outline">Làm mới</button></div>
+       <p id="inv-feedback" class="inv-error" role="status" hidden></p>
+       <div class="inv-stats">${[['Mã sản phẩm',products.length],['Tổng đơn vị tồn',fmt(numbers.reduce((a,b)=>a+b,0))],['Sắp hết (1–5)',numbers.filter(n=>n>0&&n<=5).length],['Hết hàng',numbers.filter(n=>n===0).length]].map(([k,v])=>`<div class="inv-stat"><span>${k}</span><strong>${v}</strong></div>`).join('')}</div>
+       <div class="panel inv-panel"><div class="inv-filters"><label class="field">Tìm sản phẩm<input id="inv-search" type="search" placeholder="Tên, mã sản phẩm / ID…" value="${esc(query)}" autocomplete="off"></label><label class="field">Tình trạng<select id="inv-filter">${[['all','Tất cả'],['ok','Còn hàng (> 5)'],['low','Sắp hết (1–5)'],['out','Hết hàng (0)']].map(([v,t])=>`<option value="${v}" ${v===filter?'selected':''}>${t}</option>`).join('')}</select></label><label class="field">Hiển thị<select id="inv-limit">${[5,10,20,50].map(v=>`<option value="${v}" ${limit===v?'selected':''}>${v} / trang</option>`).join('')}</select></label></div>
+       <div class="table-wrap"><table class="data-table inv-table"><thead><tr><th>Hình</th><th>Mã / Sản phẩm</th><th>Danh mục</th><th>Tồn kho</th><th>Tình trạng</th><th>Thao tác</th></tr></thead><tbody>${shown.map(p=>`<tr><td>${p.image_url||p.image?`<img src="${esc(p.image_url||p.image)}" alt="" loading="lazy">`:'—'}</td><td><strong>${esc(p.name)}</strong><small class="inv-muted">ID ${p.id} · ${esc(p.sku||p.material||'')}</small></td><td>${esc(typeof p.category==='string'?p.category:(p.category?.name||p.category_name||'—'))}</td><td><strong>${fmt(p.stock)}</strong></td><td><span class="inv-status ${statusClass(p.stock)}">${status(p.stock)}</span></td><td><button class="button-sm" type="button" data-inv-id="${p.id}">Điều chỉnh</button></td></tr>`).join('')||'<tr><td colspan="6">Không có sản phẩm phù hợp.</td></tr>'}</tbody></table></div>
+       <div class="inv-pager"><span>${rows.length} sản phẩm phù hợp · Trang ${page}/${pages}</span><div><button id="inv-prev" type="button" ${page<=1?'disabled':''}>← Trước</button><button id="inv-next" type="button" ${page>=pages?'disabled':''}>Sau →</button></div></div></div>
+       <div class="panel"><h3>Lịch sử biến động tồn kho</h3><p>Backend hiện chưa cung cấp API nhật ký kho. Giao diện không hiển thị phiếu DEMO như giao dịch thật. Các lần điều chỉnh tồn nên được ghi nhật ký phía Backend trước khi dùng trong môi trường thực tế.</p></div>
+       <dialog id="inv-dialog" class="inv-dialog"><div class="inv-dialog-head"><h2 id="inv-dialog-title">Điều chỉnh tồn kho</h2><button id="inv-close" type="button" aria-label="Đóng">×</button></div>
+       <p class="mini-note">Ghi tồn kho mới qua API. Backend sẽ so khớp <code>expected_stock</code> với số tồn thực trước khi cập nhật.</p>
+       <form id="inv-form"><input id="inv-id" type="hidden"><div class="inv-current" id="inv-current"></div>
+       <label class="field">Loại điều chỉnh<select id="inv-type"><option value="in">Nhập thêm (+)</option><option value="out">Xuất bớt (−)</option><option value="set">Đặt tồn thực tế (kiểm kê)</option></select></label>
+       <label class="field">${'Số lượng nhập / xuất hoặc tồn mới'}<input id="inv-amount" type="number" min="1" step="1" required></label>
+       <p class="mini-note">Không có API ghi lý do/phiếu nhập xuất; chỉ sử dụng khi đã đối chiếu chứng từ bên ngoài.</p>
+       <p id="inv-modal-error" class="inv-error" role="alert" hidden></p>
+       <div class="inv-actions"><button id="inv-cancel" class="button button-outline" type="button">Hủy</button><button id="inv-save" class="button button-dark" type="submit">LƯU TỒN KHO THẬT</button></div></form></dialog></section>`;
+      $('inv-reload').onclick=load;
+      $('inv-search').oninput=e=>{query=e.target.value;page=1;render();const input=$('inv-search');input.focus();input.setSelectionRange(query.length,query.length);};
+      $('inv-filter').onchange=e=>{filter=e.target.value;page=1;render();};
+      $('inv-limit').onchange=e=>{limit=Number(e.target.value);page=1;render();};
+      $('inv-prev').onclick=()=>{page--;render();};$('inv-next').onclick=()=>{page++;render();};
+      mount.querySelectorAll('[data-inv-id]').forEach(btn=>btn.onclick=()=>open(Number(btn.dataset.invId)));
+      $('inv-close').onclick=()=> $('inv-dialog').close();$('inv-cancel').onclick=()=> $('inv-dialog').close();
+      $('inv-type').onchange=()=>{$('inv-amount').min=$('inv-type').value==='set'?'0':'1';};
+      $('inv-form').onsubmit=save;
+    }
+    function open(id){
+      const product=products.find(p=>p.id===id);if(!product)return;
+      $('inv-form').reset();$('inv-id').value=String(id);
+      $('inv-dialog-title').textContent=`Điều chỉnh kho – ${product.name}`;
+      $('inv-current').textContent=`Tồn kho đã tải: ${fmt(product.stock)} · ${status(product.stock)}`;
+      $('inv-modal-error').hidden=true;
+      $('inv-dialog').showModal();
+    }
+    async function save(e){
+      e.preventDefault();if(busy)return;
+      const id=Number($('inv-id').value),p=products.find(x=>x.id===id);
+      const type=$('inv-type').value,quantity=Number($('inv-amount').value);
+      const after=type==='in'?p?.stock+quantity:type==='out'?p?.stock-quantity:quantity;
+      const error=$('inv-modal-error'),button=$('inv-save');
+      if(!p||!['in','out','set'].includes(type)||!Number.isSafeInteger(quantity)||quantity<(type==='set'?0:1)||!Number.isSafeInteger(after)||after<0||after>2147483647){error.textContent='Số lượng không hợp lệ hoặc vượt số lượng tồn.';error.hidden=false;return;}
+      if(after===p.stock){error.textContent='Tồn kho không thay đổi.';error.hidden=false;return;}
+      if(!confirm(`Sản phẩm: ${p.name}\nTồn trước: ${p.stock}\nTồn mới: ${after}\nBạn xác nhận ghi PostgreSQL?`))return;
+      busy=true;button.disabled=true;error.hidden=true;
+      try{
+        await api().updateStaffStock(id,p.stock,after);
+        $('inv-dialog').close();
+        await load();
+        inform(`Đã gửi cập nhật tồn kho sản phẩm ID ${id}. Dữ liệu vừa được tải lại từ Backend.`,false);
+      }catch(err){
+        error.textContent=msg(err)+' — Nếu tồn kho đã thay đổi, đóng hộp thoại và nhấn Làm mới trước khi thử lại.';
+        error.hidden=false;
+      }finally{busy=false;if(button.isConnected)button.disabled=false;}
+    }
+    load();
   };
 })();
