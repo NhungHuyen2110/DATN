@@ -19,6 +19,7 @@
   window.LUMIERE_ADMIN_ANALYTICS = ({mount}) => {
     if (!mount) return;
     let days=30, groupBy='day', metric='amount', report=null, dashboard=null, loading=false;
+    let salesRows=null, salesLoading=false;
     mount.innerHTML = `<section class="ana-root">
       <div class="ana-top"><div><h2>Phân tích kinh doanh</h2><p class="mini-note">Số liệu thanh toán thực tế từ Business API · PostgreSQL</p></div>
       <label class="ana-range">Khoảng thời gian <select id="ana-days"><option value="7">7 ngày gần nhất</option><option value="30" selected>30 ngày gần nhất</option><option value="90">90 ngày gần nhất</option></select></label></div>
@@ -34,6 +35,17 @@
       <div class="table-wrap"><table class="data-table ana-table"><thead><tr><th>Kỳ</th><th>Số đơn đã thanh toán</th><th>Số tiền xác nhận</th></tr></thead><tbody id="ana-products"></tbody></table></div></article>
       <article class="panel ana-panel"><h3>Phân tích hành vi khách hàng</h3><p class="mini-note">Backend chưa cung cấp API ghi nhận sự kiện hành vi</p>
       <div id="ana-keywords"><p>Chưa có dữ liệu theo dõi lượt xem sản phẩm, tìm kiếm, thêm giỏ, yêu thích hoặc nhấp gợi ý AI.</p><p>Không suy diễn lượt tương tác từ đơn hàng và không hiển thị số liệu DEMO.</p></div></article></div>
+      <section class="panel ana-panel" style="margin-top:24px" aria-labelledby="ana-sales-title">
+        <div class="ana-panel-header"><div><h3 id="ana-sales-title">Sản phẩm bán chạy · Toàn thời gian</h3>
+          <p class="mini-note">Tổng hợp từ đơn <code>delivered</code> và <code>paid</code>; <strong>không áp dụng bộ lọc 7/30/90 ngày</strong> vì API đơn hàng chưa cung cấp thời điểm xác nhận thanh toán theo từng dòng sản phẩm.</p></div>
+          <button id="ana-sales-reload" type="button" class="button button-outline">Làm mới sản phẩm</button></div>
+        <p id="ana-sales-message" class="mini-note" role="status" aria-live="polite">Đang tải dữ liệu bán hàng...</p>
+        <div id="ana-sales-kpis" class="ana-kpis"></div>
+        <div id="ana-sales-bars" style="margin-top:18px"></div>
+        <div class="table-wrap" style="margin-top:20px"><table class="data-table ana-table"><thead><tr><th>STT</th><th>Sản phẩm</th><th>SKU</th><th>Số lượng bán</th><th>Giá trị dòng hàng</th></tr></thead><tbody id="ana-sales-rows"><tr><td colspan="5">Đang tải...</td></tr></tbody></table></div>
+        <p class="mini-note" style="margin-top:10px">Giá trị dòng hàng không phải doanh thu đã thu theo kỳ. Khi có chiết khấu, phí vận chuyển hoặc hoàn tiền, các số liệu có thể khác nhau.</p>
+        <button id="ana-sales-export" type="button" class="button button-outline" disabled>Xuất CSV sản phẩm</button>
+      </section>
       <div class="panel ana-event-panel"><div><h3>Xuất dữ liệu thực</h3><p class="mini-note">CSV gồm kỳ báo cáo, số đơn được xác nhận thanh toán và số tiền</p></div>
       <button id="ana-export" type="button" class="button button-outline" disabled>Xuất báo cáo CSV</button>
       <button id="ana-reload" type="button" class="button button-outline">Làm mới</button></div>
@@ -72,6 +84,88 @@
       if(!response.ok){const detail=typeof body.detail==='string'?body.detail:`HTTP ${response.status}`;throw new Error(response.status===401?'Vui lòng đăng nhập Admin.':response.status===403?'Tài khoản không có quyền Admin.':detail);}
       return body;
     }
+    // Order-item summaries are ALL-TIME and are not mixed with date-scoped payment reporting.
+    // No order IDs, customer details or customer addresses are rendered or exported.
+    async function loadSales(){
+      if(salesLoading)return;
+      salesLoading=true;
+      $('ana-sales-reload').disabled=true;
+      $('ana-sales-export').disabled=true;
+      $('ana-sales-message').textContent='Đang tải danh sách và chi tiết đơn hàng...';
+      const fail = message => {
+        $('ana-sales-message').textContent='Không tải được báo cáo sản phẩm: '+message;
+        $('ana-sales-kpis').innerHTML='';
+        $('ana-sales-bars').innerHTML='';
+        $('ana-sales-rows').innerHTML='<tr><td colspan="5">Chưa có báo cáo hợp lệ.</td></tr>';
+      };
+      try{
+        // Same admin authentication requirement as payment analytics.
+        const current=await requestJSON('/auth/me');
+        if(current.role!=='admin')throw new Error('Chỉ Admin được xem báo cáo.');
+        const pageSize=20;
+        const first=await requestJSON('/staff/orders?'+new URLSearchParams({page:'1',page_size:String(pageSize)}));
+        if(!Array.isArray(first.items)||!Number.isSafeInteger(Number(first.total))||Number(first.total)<0){
+          throw new Error('Phản hồi danh sách đơn hàng không hợp lệ.');
+        }
+        const total=Number(first.total);
+        const pages=Math.ceil(total/pageSize);
+        // Client-side aggregation is intended for small/test datasets. Larger data needs server reports.
+        if(pages>50)throw new Error('Có hơn 1.000 đơn. Cần API tổng hợp phía Backend để tạo báo cáo chính xác.');
+        const orders=[...first.items];
+        for(let page=2;page<=pages;page++){
+          const data=await requestJSON('/staff/orders?'+new URLSearchParams({page:String(page),page_size:String(pageSize)}));
+          if(!Array.isArray(data.items))throw new Error('Dữ liệu phân trang không hợp lệ.');
+          orders.push(...data.items);
+        }
+        if(orders.length!==total)throw new Error('Số đơn thay đổi khi tải các trang; vui lòng làm mới.');
+        const eligible=orders.filter(o=>o.status==='delivered'&&o.payment_status==='paid');
+        const detailList=[];
+        for(let i=0;i<eligible.length;i+=5){
+          const batch=eligible.slice(i,i+5);
+          detailList.push(...await Promise.all(batch.map(o=>requestJSON('/staff/orders/'+encodeURIComponent(o.id)))));
+        }
+        const byProduct=new Map();
+        let units=0;
+        for(const order of detailList){
+          if(order.status!=='delivered'||order.payment_status!=='paid'||!Array.isArray(order.items)){
+            throw new Error('Dữ liệu chi tiết đơn hàng không nhất quán.');
+          }
+          for(const item of order.items){
+            const qty=Number(item.quantity),value=Number(item.line_total_vnd);
+            if(!Number.isInteger(qty)||qty<=0||!Number.isFinite(value)||value<0||item.product_id==null){
+              throw new Error('Dữ liệu dòng sản phẩm không hợp lệ.');
+            }
+            const key=String(item.product_id);
+            const row=byProduct.get(key)||{product_id:key,sku:String(item.sku??''),product_name:String(item.product_name??''),quantity:0,line_value_vnd:0};
+            row.quantity+=qty;
+            row.line_value_vnd+=value;
+            units+=qty;
+            byProduct.set(key,row);
+          }
+        }
+        salesRows=[...byProduct.values()].sort((a,b)=>b.quantity-a.quantity||b.line_value_vnd-a.line_value_vnd);
+        const totalLineValue=salesRows.reduce((sum,r)=>sum+r.line_value_vnd,0);
+        $('ana-sales-kpis').innerHTML=[
+          kpi('Đơn hoàn tất và đã thanh toán',number(detailList.length),'Toàn thời gian'),
+          kpi('Sản phẩm khác nhau',number(salesRows.length),'Đã bán'),
+          kpi('Tổng số lượng bán',number(units),'Tất cả dòng hàng hợp lệ'),
+          kpi('Giá trị dòng hàng',money(totalLineValue),'Không phải doanh thu theo kỳ')
+        ].join('');
+        const top=salesRows.slice(0,10),maxQty=Math.max(1,...top.map(r=>r.quantity));
+        $('ana-sales-bars').innerHTML=top.length?'<h4 style="margin:0 0 12px">Top 10 theo số lượng</h4>'+top.map(r=>
+          `<div style="display:grid;grid-template-columns:minmax(120px,200px) 1fr 40px;align-items:center;gap:12px;margin:10px 0"><span title="${esc(r.product_name)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.product_name)}</span><div style="height:15px;background:#f0ebe4;overflow:hidden"><div style="height:100%;background:#9d8060;width:${(r.quantity/maxQty*100).toFixed(2)}%"></div></div><strong>${number(r.quantity)}</strong></div>`
+        ).join(''):'<p>Không có sản phẩm trong đơn đã giao và đã thanh toán.</p>';
+        $('ana-sales-rows').innerHTML=salesRows.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.product_name)}</td><td>${esc(r.sku)}</td><td>${number(r.quantity)}</td><td>${money(r.line_value_vnd)}</td></tr>`).join('')||'<tr><td colspan="5">Chưa có dữ liệu.</td></tr>';
+        $('ana-sales-message').textContent=`Đã tổng hợp ${number(detailList.length)} / ${number(total)} đơn (toàn thời gian). Nguồn: Business API /staff/orders.`;
+        $('ana-sales-export').disabled=false;
+      }catch(err){salesRows=null;fail(err.message);}
+      finally{salesLoading=false;$('ana-sales-reload').disabled=false;}
+    }
+    function downloadCSV(rows,filename){
+      const csv='\ufeff'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+      const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+      link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+    }
     async function load(){
       if(loading)return;loading=true;$('ana-reload').disabled=true;$('ana-export').disabled=true;
       showMessage('Đang tải số liệu từ PostgreSQL...');
@@ -89,6 +183,11 @@
     $('ana-days').onchange=e=>{days=Number(e.target.value);load();};
     $('ana-metric').onchange=e=>{metric=e.target.value;draw();};
     $('ana-reload').onclick=load;
+    $('ana-sales-reload').onclick=loadSales;
+    $('ana-sales-export').onclick=()=>{
+      if(!salesRows)return;
+      downloadCSV([['product_id','sku','product_name','quantity','line_value_vnd'],...salesRows.map(r=>[r.product_id,r.sku,r.product_name,r.quantity,r.line_value_vnd.toFixed(2)])], 'lumiere_products_all_time.csv');
+    };
     $('ana-export').onclick=()=>{
       if(!report)return;
       const lines=[['period_start','confirmed_payment_order_count','confirmed_payment_amount_vnd'],...(report.items||[]).map(i=>[i.period_start,i.confirmed_payment_order_count,i.confirmed_payment_amount_vnd])];
@@ -97,5 +196,6 @@
       link.href=url;link.download=`lumiere_revenue_${report.start_date}_${report.end_date}.csv`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
     };
     load();
+    loadSales();
   };
 })();
