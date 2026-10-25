@@ -4,6 +4,8 @@ from app.routers.cart import router as cart_router
 from app.routers.orders import router as orders_router
 from app.routers.payments import router as payments_router
 from app.routers.admin_staff import router as admin_staff_router
+from app.routers.admin_customers import router as admin_customers_router
+from app.routers.coupons import router as coupons_router
 from app.routers.dashboard import router as dashboard_router
 from app.routers.customer_content import router as customer_content_router
 from fastapi import FastAPI, HTTPException
@@ -23,6 +25,8 @@ app.include_router(cart_router)
 app.include_router(orders_router)
 app.include_router(payments_router)
 app.include_router(admin_staff_router)
+app.include_router(admin_customers_router)
+app.include_router(coupons_router)
 app.include_router(dashboard_router)
 app.include_router(customer_content_router)
 

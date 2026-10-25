@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.schemas.auth import RegisterRequest
+from app.schemas.coupon import CouponCode
 
 
 OrderStatus = Literal["pending", "confirmed", "packing", "shipping", "delivered", "cancelled"]
@@ -17,6 +18,7 @@ class CheckoutRequest(BaseModel):
     phone: str = Field(min_length=10, max_length=20)
     address: str = Field(min_length=5, max_length=1000)
     payment_method: Literal["cod", "vnpay"] = "cod"
+    coupon_code: CouponCode | None = None
 
     @field_validator("recipient_name", "address")
     @classmethod
@@ -67,6 +69,8 @@ class OrderSummary(BaseModel):
     shipping_vnd: Decimal
     discount_vnd: Decimal
     total_vnd: Decimal
+    coupon_id: int | None = None
+    coupon_code: str | None = None
     created_at: datetime
     updated_at: datetime
 

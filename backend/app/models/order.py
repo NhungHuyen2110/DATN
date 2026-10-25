@@ -37,6 +37,8 @@ class Order(Base):
     shipping_vnd: Mapped[Decimal] = mapped_column(Numeric(38, 2), nullable=False)
     discount_vnd: Mapped[Decimal] = mapped_column(Numeric(38, 2), nullable=False)
     total_vnd: Mapped[Decimal] = mapped_column(Numeric(38, 2), nullable=False)
+    coupon_id: Mapped[int | None] = mapped_column(ForeignKey("coupons.id", ondelete="RESTRICT"), nullable=True)
+    coupon_code: Mapped[str | None] = mapped_column(String(24), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
 

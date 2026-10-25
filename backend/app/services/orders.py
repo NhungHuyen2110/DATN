@@ -92,17 +92,28 @@ def checkout(db, user_id, request):
                 ))
             if subtotal >= Decimal(10) ** 36:
                 raise HTTPException(status_code=409, detail="Tổng tiền vượt giới hạn đơn hàng")
+        coupon = None
+        discount, total = Decimal("0.00"), subtotal
+        if request.coupon_code is not None:
+            from app.services.coupons import redeem
+            coupon, (discount, total) = redeem(db, request.coupon_code, user_id, subtotal)
         order = Order(
             code="LM" + uuid4().hex.upper(), user_id=user_id,
             recipient_name=request.recipient_name, phone=request.phone, address=request.address,
             status="pending", payment_status="unpaid", payment_method=request.payment_method, stock_restored=False,
-            subtotal_vnd=subtotal, shipping_vnd=Decimal("0.00"), discount_vnd=Decimal("0.00"),
-            total_vnd=subtotal, items=snapshots,
+            subtotal_vnd=subtotal, shipping_vnd=Decimal("0.00"), discount_vnd=discount,
+            total_vnd=total, items=snapshots,
+            coupon_id=None if coupon is None else coupon.id,
+            coupon_code=None if coupon is None else coupon.code,
         )
         if request.payment_method == "vnpay":
             from app.services.payment_providers import get_provider
-            get_provider().amount_units(subtotal)
+            get_provider().amount_units(total)
         db.add(order)
+        if coupon is not None:
+            from app.services.coupons import record_usage
+            db.flush()
+            record_usage(db, coupon, order, user_id)
         for item in items:
             products[item.product_id].stock -= item.quantity
             db.delete(item)
@@ -131,6 +142,8 @@ def change_status(db, admin_id, order_id, new_status, *, allow_staff=False):
                     if product.stock + item.quantity > 2147483647:
                         raise HTTPException(status_code=409, detail="Hoàn kho vượt giới hạn số lượng")
                     product.stock += item.quantity
+                from app.services.coupons import return_usage
+                return_usage(db, order)
                 order.stock_restored = True
             if new_status in {"packing", "shipping", "delivered"} and order.payment_method == "vnpay" and order.payment_status != "paid":
                 raise HTTPException(status_code=409, detail="Đơn VNPay chưa được xác nhận thanh toán")

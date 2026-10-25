@@ -309,7 +309,7 @@ class CustomerContentTests(profile.ProfileTests):
         from alembic.operations import Operations
         backend = Path(__file__).resolve().parents[1]
         scripts = ScriptDirectory.from_config(Config(str(backend / "alembic.ini")))
-        self.assertEqual(scripts.get_heads(), ["20261017_0005"])
+        self.assertEqual(scripts.get_heads(), ["20261023_0006"])
         revision = scripts.get_revision("20261017_0005").module
         self.assertEqual(revision.down_revision, "20261016_0004")
         output = io.StringIO()

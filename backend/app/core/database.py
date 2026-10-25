@@ -19,7 +19,7 @@ DATABASE_URL = URL.create(
     password=os.environ["POSTGRES_PASSWORD"],
     host="127.0.0.1",
     port=5433,
-    database="lumiere_db",
+    database=os.getenv("POSTGRES_DB", "lumiere_db"),
 )
 
 engine = create_engine(
