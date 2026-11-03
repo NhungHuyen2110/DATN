@@ -10,7 +10,7 @@ from app.routers.dashboard import router as dashboard_router
 from app.routers.customer_content import router as customer_content_router
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
 from app.core.database import check_database
 
 
@@ -29,10 +29,17 @@ app.include_router(admin_customers_router)
 app.include_router(coupons_router)
 app.include_router(dashboard_router)
 app.include_router(customer_content_router)
-
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:5500"
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5500"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["Content-Type", "Authorization"],

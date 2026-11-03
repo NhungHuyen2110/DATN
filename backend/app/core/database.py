@@ -15,11 +15,11 @@ load_dotenv(ROOT_DIR / ".env")
 
 DATABASE_URL = URL.create(
     drivername="postgresql+psycopg",
-    username="lumiere_user",
+    username=os.getenv("POSTGRES_USER", "lumiere_user"),
     password=os.environ["POSTGRES_PASSWORD"],
-    host="127.0.0.1",
-    port=5433,
-    database=os.getenv("POSTGRES_DB", "lumiere_db"),
+    host=os.getenv("POSTGRES_HOST", "127.0.0.1"),
+    port=int(os.getenv("POSTGRES_PORT", "5433")),
+    database=os.environ["POSTGRES_DB"],
 )
 
 engine = create_engine(

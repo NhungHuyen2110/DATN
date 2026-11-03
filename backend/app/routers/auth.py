@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
-
+import os
 from app.core.database import get_db
 from app.core.security import hash_password
 from app.models import Role, User
@@ -179,7 +179,7 @@ def login(
         key=COOKIE_NAME,
         value=token,
         httponly=True,
-        secure=False,  # Chỉ dùng khi phát triển trên localhost
+        secure=os.getenv("COOKIE_SECURE", "false").lower() == "true",  # Chỉ dùng khi phát triển trên localhost
         samesite="lax",
         max_age=SESSION_SECONDS,
         path="/"
