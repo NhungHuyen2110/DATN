@@ -13,7 +13,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from app.core.database import check_database
 
+import logging
 
+logger = logging.getLogger("uvicorn.error")
 app = FastAPI(
     title="LUMIÈRE Business API",
     description="Backend nghiệp vụ website bán trang sức",
@@ -58,11 +60,34 @@ def home():
 def health():
     try:
         database_ok = check_database()
-    except Exception:
+    except Exception as exc:
+        original = getattr(exc, "orig", None)
+        message = str(original or exc).lower()
+
+        if "password authentication failed" in message:
+            reason = "PASSWORD_AUTH_FAILED"
+        elif "could not translate host name" in message or "name or service not known" in message:
+            reason = "HOSTNAME_RESOLUTION_FAILED"
+        elif "connection refused" in message:
+            reason = "CONNECTION_REFUSED"
+        elif "timeout" in message or "timed out" in message:
+            reason = "CONNECTION_TIMEOUT"
+        elif "ssl" in message or "certificate" in message:
+            reason = "SSL_ERROR"
+        else:
+            reason = "OTHER_DATABASE_ERROR"
+
+        logger.error(
+            "LUMIERE_DATABASE_ERROR: type=%s reason=%s sqlstate=%s",
+            type(exc).__name__,
+            reason,
+            getattr(original, "sqlstate", None)
+        )
+
         raise HTTPException(
             status_code=503,
             detail="Không thể kết nối PostgreSQL"
-        )
+        ) from None
 
     if not database_ok:
         raise HTTPException(
