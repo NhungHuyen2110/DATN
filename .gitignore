@@ -16,6 +16,8 @@ __pycache__/
 *.safetensors
 qdrant_storage/
 chroma_db/
+frontend/node_modules/
+frontend/test-results/
 jewelry_dataset_download/extracted/
 .env
 **/.env

@@ -1,69 +1,66 @@
-# BÀN GIAO FRONTEND → BACKEND — LUMIÈRE
+# LUMIÈRE Business API — contract đối chiếu trực tiếp
 
-Tài liệu định hướng triển khai theo *Hướng đi khóa luận* và *Luồng hoạt động & Đặc tả Use Case* do nhóm cung cấp. Những API dưới đây ngoài `/auth/*` là **đề xuất hợp đồng**, chưa phải endpoint đã triển khai.
+Tài liệu này được đối chiếu với `backend/app/main.py`, routers, schemas và services. Backend FastAPI là nguồn có thẩm quyền; OpenAPI có tại `/openapi.json` khi chạy service.
 
-## Vai trò
-- Khách vãng lai: duyệt, tìm kiếm, lọc, xem chi tiết, hỏi chatbot, xem recommendation không cá nhân hóa.
-- Customer: giỏ hàng, yêu thích, địa chỉ, đặt hàng, lịch sử đơn, đánh giá đơn đã giao.
-- Staff: xem, xử lý đơn hàng; cập nhật trạng thái hợp lệ; kiểm tra tồn kho.
-- Admin: sản phẩm, danh mục, thương hiệu, kho, khách hàng, nhân viên, mã giảm giá, thống kê và phân tích hành vi.
+## Cấu hình và bảo mật
 
-## Các API đã có (backend hiện tại)
-| Method | Endpoint | Nghiệp vụ |
-|---|---|---|
-| POST | `/auth/register` | đăng ký customer (201) |
-| POST | `/auth/login` | tạo session HttpOnly |
-| GET | `/auth/me` | user hiện tại |
-| POST | `/auth/logout` | thu hồi session |
-| GET | `/health` | DB health |
+- Frontend production dùng same-origin Business API; local static frontend dùng `http://localhost:8001`. Có thể override bằng `window.LUMIERE_API_BASE`.
+- Session chỉ nằm trong cookie HttpOnly; mọi yêu cầu gửi `credentials: "include"`. Không lưu token hay mật khẩu trong Web Storage.
+- AI là dịch vụ độc lập; `window.LUMIERE_AI_BASE` hoặc `<meta name="lumiere-ai-api-base" content="...">` cấu hình endpoint AI. Local mặc định là `http://127.0.0.1:8000`; AI offline không chặn catalog Business API.
+- Role check ở giao diện chỉ phục vụ điều hướng. Backend vẫn xác thực session và role trên từng route.
+- UI chỉ gửi COD. VNPay không được khởi tạo từ frontend; chỉ bật sau khi merchant/IPN được cấu hình và xác nhận.
 
-API AI riêng có `GET /recommendations/v2?customer_id=...&product_id=...&number=5` và `POST /chat` (`{query, top_k}`); cần cho phép CORS `http://localhost:5500` và chuẩn hóa ProductID.
+## Endpoint hiện có
 
-## Các API đề xuất để người viết backend triển khai tiếp
-| Method | Path | Vai trò | Chức năng |
+| Method | Path | Quyền Backend | Request / kết quả chính |
 |---|---|---|---|
-| GET | `/products` | public | `q,category_id,brand_id,min_price,max_price,sort,page,page_size` |
-| GET | `/products/{id}` | public | chi tiết ảnh, chất liệu, đá quý, tồn kho |
-| GET | `/categories`, `/brands`, `/collections` | public | danh mục |
-| GET/PUT | `/cart`, `/cart/items/{id}` | customer | lấy/sửa giỏ hàng |
-| POST | `/cart/items` | customer | thêm số lượng (backend kiểm tra) |
-| DELETE | `/cart/items/{id}` | customer | xóa |
-| GET/POST/DELETE | `/wishlist` | customer | yêu thích |
-| GET/POST/PATCH/DELETE | `/addresses` | customer | địa chỉ giao hàng |
-| POST | `/orders` | customer | đặt hàng theo cart/địa chỉ, server tính giá và tồn |
-| GET | `/orders/me` | customer | danh sách đơn user |
-| GET | `/orders/{id}` | customer/staff/admin | xác thực sở hữu hoặc role |
-| POST | `/payments/intent` | customer | tạo giao dịch sandbox/simulator |
-| GET | `/shipments/{order_id}` | owner/staff/admin | tình trạng vận chuyển |
-| POST/GET | `/products/{id}/reviews` | customer/public | kiểm tra mua hàng hoàn thành |
-| POST | `/auth/forgot-password` | public | phản hồi đồng nhất chống enumerate |
-| POST | `/auth/reset-password` | public | token một lần/hết hạn |
-| GET/PATCH | `/users/me` | customer | cập nhật hồ sơ |
-| GET | `/admin/dashboard` | admin | báo cáo tổng quan |
-| CRUD | `/admin/products`,`/admin/categories`,`/admin/brands` | admin | quản trị catalog |
-| CRUD | `/admin/coupons` | admin | điều kiện và thời hạn |
-| GET/PATCH | `/staff/orders`, `/staff/orders/{id}/status` | staff/admin | xử lý đơn |
-| GET | `/admin/customers`,`/admin/staff` | admin | quản lý tài khoản |
-| POST | `/events` | guest/customer | ghi product_view, search, add_to_cart, wishlist, purchase |
-| GET | `/admin/analytics` | admin | event funnel, conversion, doanh thu |
+| POST | `/auth/register` | Public, chỉ tạo Customer | `full_name,email,phone?,password`; trả `user_id,email,role` |
+| POST | `/auth/login` | Public | `email,password`; trả user và cookie session HttpOnly |
+| GET / PATCH | `/auth/me` | User đã đăng nhập | Đọc/sửa `full_name,phone` |
+| POST | `/auth/logout` | Public/session nếu có | Thu hồi session và xóa cookie |
+| GET | `/categories`, `/brands` | Public | Danh sách lookup |
+| GET | `/products`, `/products/{id}` | Public | Tìm/lọc và phân trang; `page_size` tối đa 100 |
+| GET | `/admin/products`, `/admin/products/{id}` | Admin | Danh sách/chi tiết sản phẩm |
+| PATCH | `/admin/products/{id}` | Admin | Sửa trường cho phép; cập nhật giá cần `sale_price` và `expected_sale_price` |
+| PATCH | `/staff/products/{id}/stock` | Staff/Admin | `{expected_stock,stock}`; phát hiện tồn kho cũ |
+| GET / POST | `/cart`, `/cart/items` | User đã đăng nhập | Đọc/thêm giỏ; giá, subtotal do Backend lấy/tính |
+| PATCH / DELETE | `/cart/items/{id}` | User đã đăng nhập, chủ sở hữu item | Cập nhật số lượng/xóa |
+| POST | `/orders` | Customer | Người nhận, số điện thoại, địa chỉ, `payment_method`, `coupon_code?`; checkout transaction |
+| GET | `/orders/my` | Customer | Danh sách đơn của mình |
+| GET | `/orders/{id}` | User đã đăng nhập; Admin có thể xem mọi đơn | Chi tiết đơn, Backend kiểm tra quyền sở hữu |
+| GET / PATCH | `/admin/orders`, `/admin/orders/{id}/status` | Admin | Danh sách và cập nhật trạng thái theo state machine |
+| GET / GET detail / PATCH | `/staff/orders`, `/staff/orders/{id}`, `/staff/orders/{id}/status` | Staff/Admin | Xem và xử lý đơn; state machine vẫn do Backend kiểm tra |
+| POST | `/admin/orders/{id}/cod/confirm` | Admin | `{collection_reference}`; xác nhận thu COD hợp lệ |
+| POST | `/staff/orders/{id}/cod/confirm` | Staff/Admin | `{collection_reference}`; xác nhận thu COD theo quyền |
+| GET | `/admin/customers`, `/admin/customers/{id}` | Admin | Tìm kiếm, lọc, phân trang và chi tiết |
+| PATCH | `/admin/customers/{id}/status` | Admin | `{is_active}` |
+| GET / POST | `/admin/staff` | Admin | Danh sách và tạo tài khoản Staff |
+| GET / PATCH | `/admin/staff/{id}` | Admin | Chi tiết và sửa hồ sơ Staff |
+| PATCH | `/admin/staff/{id}/status` | Admin | Khóa/mở tài khoản Staff |
+| GET | `/admin/dashboard` | Admin | Tổng đơn, trạng thái, tồn kho, khoản thanh toán được xác nhận và đối soát |
+| GET | `/admin/reports/revenue` | Admin | `start_date,end_date,group_by`; khoản thanh toán xác nhận, không phải lợi nhuận |
+| GET / POST | `/admin/coupons` | Admin | Danh sách/tạo coupon |
+| GET / PATCH | `/admin/coupons/{id}` | Admin | Chi tiết/cập nhật coupon |
+| PATCH | `/admin/coupons/{id}/status` | Admin | Bật/tắt coupon; không có API xóa |
+| POST | `/checkout/coupon/validate` | Customer | `{coupon_code}`; kiểm tra trên giỏ Backend |
+| GET | `/wishlist` | Customer | Danh sách yêu thích |
+| POST / DELETE | `/wishlist/items`, `/wishlist/items/{product_id}` | Customer | Thêm/xóa yêu thích |
+| GET / POST | `/products/{product_id}/reviews` | Public đọc; Customer ghi | Review sản phẩm; Backend kiểm tra điều kiện mua hàng |
+| GET | `/reviews/my` | Customer | Đánh giá của mình |
+| PATCH / DELETE | `/reviews/{id}` | Customer, chủ sở hữu | Sửa/xóa review |
+| POST | `/orders/{id}/payments/vnpay` | Customer | Endpoint tạo URL có tồn tại nhưng frontend không gọi |
+| GET | `/payments/vnpay/ipn`, `/payments/vnpay/return` | Gateway callback | Xử lý callback/return theo service thanh toán |
+| GET | `/health` | Public | Kiểm tra Business API/PostgreSQL |
 
-## Đề xuất bảng PostgreSQL
-`roles, users, user_sessions` (đã có); `addresses, categories, brands, collections, products, product_images, inventory_movements, carts, cart_items, wishlists, coupons, coupon_usages, orders, order_items, payments, shipments, reviews, behavior_events, search_history, recommendation_logs, chat_sessions, chat_messages`.
+## Chưa có API / không được giả lập như nghiệp vụ thật
 
-Ràng buộc: `orders` / `order_items` lưu snapshot giá + tên/sku tại thời điểm đặt. `inventory_movements` phục vụ audit. Order state machine `pending -> confirmed -> packing -> shipping -> delivered` (hủy từ một số trạng thái; tránh tùy tiện quay ngược). Payment trạng thái riêng; không suy ra đã thanh toán từ client. Quản lý số lượng bằng transaction, không race. Các giá trị tiền nên dùng NUMERIC/Decimal và đơn vị VND; xác định rõ quy tắc VAT/phí ship. Password hash Argon2id.
+- Chưa có API tạo/xóa sản phẩm; chỉ sửa sản phẩm hiện có.
+- Category/brand chỉ có API đọc lookup; chưa có CRUD taxonomy.
+- Chưa có API inventory movement/nhập-xuất, phiếu kho hoặc audit ledger; UI chỉ cập nhật số tồn qua endpoint compare-and-set, không giả tạo chứng từ.
+- Dashboard có dữ liệu đơn/thanh toán/tồn kho và revenue report; chưa có API analytics hành vi/funnel.
+- Chưa có quên mật khẩu/email reset, quản lý địa chỉ giao hàng hoặc API liên hệ.
+- Coupon không có API xóa; frontend chỉ tạo/sửa/đổi trạng thái.
 
-## Chuẩn response đề xuất
-Products GET: `{items:[{id,sku,name,slug,category:{id,name},brand:{id,name},material,gemstone,price_vnd,stock,images:[{url,alt}],description}],page,page_size,total}`.
-Product detail GET: same item + attributes/collection + reviews summary.
-Orders POST: `{order_id,code,status,total_vnd,payment_status,items:[...]}` (HTTP 201) sau transaction.
-Error thống nhất: `{detail:"...",code:"..."}`; HTTP 400/401/403/404/409/422/500. Validate server-side Pydantic.
+## Playwright E2E an toàn
 
-## Mã định danh và tích hợp AI
-Demo `LUMIERE_PRODUCTS` ID 1..12 **không được coi là** ID đã liên kết database. CSV AI hiện trả `ProductID` khác. Backend cần mapping table `ai_product_id ↔ products.id` hoặc đồng bộ catalog trong Qdrant/Neo4j với ID sản phẩm chuẩn; tương tự `CustomerID` so với users.id. Sau đó frontend chỉ gọi backend business làm gateway hoặc gọi trực tiếp AI API có CORS, không hardcode tên/giá từ AI lên checkout.
-
-## Đặc tả quan trọng
-- Checkout yêu cầu đăng nhập; backend tính tổng và ship từ DB, kiểm tra kho; không lấy tổng từ browser.
-- Các trang Admin/Staff hiện là demo hiển thị; **phải** phân quyền phía server và ghi audit log.
-- Cookie session: `HttpOnly`, `SameSite=Lax`, `Secure` ở production; có CSRF token chống cross-site action, rate limiting, quản lý hết hạn.
-- Dùng Alembic migration thay `create_all()` khi có nhiều bảng.
-- Xây bộ test API: hợp lệ, sai role, thiếu stock, trùng email, giao dịch đồng thời, đổi giá trước checkout, đơn của user khác.
+`npm run test:e2e` chạy từ `frontend/`. Test chỉ được kích hoạt khi `LUMIERE_E2E_BASE_URL` trỏ localhost, `LUMIERE_E2E_DB_KIND=isolated`; luồng ghi cần thêm `LUMIERE_E2E_ALLOW_WRITE=1`. Cấp thông tin Customer/Admin/Staff và fixture qua các biến `LUMIERE_E2E_<ROLE>_EMAIL/PASSWORD`, `LUMIERE_E2E_ORDER_ID`, `LUMIERE_E2E_ORDER_STATUS`, `LUMIERE_E2E_STOCK_PRODUCT_ID`, `LUMIERE_E2E_COD_ORDER_ID`. Không chạy các test ghi dữ liệu trên Render/production.

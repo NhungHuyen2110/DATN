@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   if (document.getElementById('lumiere-ai-widget')) return;
-  const API = 'http://127.0.0.1:8000/chat';
+  const API = window.LUMIERE_AI_BASE ? window.LUMIERE_AI_BASE.replace(/\/$/, '') + '/chat' : '';
   const REQUEST_TIMEOUT_MS = 240000; // Thời gian chờ thử nghiệm cho CrewAI + Ollama
   const root = document.createElement('div');
   root.id = 'lumiere-ai-widget';
@@ -77,6 +77,7 @@
     input.disabled = true;
     const loading = message('AI đang phân tích yêu cầu và tìm sản phẩm. Vui lòng đợi…', 'lai-bot lai-loading');
     try {
+      if (!API) throw new Error('AI Service chưa được cấu hình trên môi trường này.');
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
       let response;

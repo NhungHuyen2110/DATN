@@ -1,3 +1,5 @@
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
 from app.routers.auth import router as auth_router
 from app.routers.catalog import router as catalog_router
 from app.routers.cart import router as cart_router
@@ -48,14 +50,6 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def home():
-    return {
-        "success": True,
-        "message": "LUMIÈRE Business API đang hoạt động"
-    }
-
-
 @app.get("/health")
 def health():
     try:
@@ -99,3 +93,11 @@ def health():
         "status": "healthy",
         "database": "connected"
     }
+
+# Serve the frontend after all API routes.
+FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
+app.mount(
+    "/",
+    StaticFiles(directory=str(FRONTEND_DIR), html=True),
+    name="frontend",
+)

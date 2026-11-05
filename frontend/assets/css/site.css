@@ -70,3 +70,46 @@
 
 /* LUMIÈRE Staff Orders – scoped styles */
 .so-title{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:21px}.so-title h2{font:400 34px var(--serif);margin:0}.so-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 25px}.so-panel{min-width:0}.so-filters{display:grid;grid-template-columns:2fr 1fr 130px;gap:12px;margin-bottom:20px}.so-filters .field{margin:0}.so-filters .field span{font-size:12px;color:var(--muted)}.so-sub{display:block;color:var(--muted);margin-top:5px}.so-pages{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px;font-size:12px;color:var(--muted)}.so-pages button{padding:10px 15px;border:1px solid var(--line);background:white;cursor:pointer}.so-pages button:disabled{opacity:.4;cursor:default}.so-empty{text-align:center!important;padding:38px!important}.so-dialog{width:min(820px,calc(100vw - 30px));max-height:calc(100vh - 35px);overflow:auto;padding:27px;background:#fcfaf7;border:1px solid var(--line);color:var(--ink)}.so-dialog::backdrop{background:#171512ad}.so-detail-heading,.so-columns,.so-total{display:flex;justify-content:space-between;gap:24px}.so-detail-heading{align-items:center}.so-detail-heading h2{font:400 31px var(--serif);margin:8px 0 22px}.so-columns{font-size:13px;line-height:1.6;margin-bottom:22px}.so-columns>div{flex:1;min-width:0}.so-columns h3{font-size:14px}.so-total{padding:18px 0;border-bottom:1px solid var(--line);font-size:13px}.so-transition{padding:22px 0}.so-transition>div{display:flex;gap:10px;margin:12px 0}.so-transition select{padding:12px;flex:1;min-width:0;border:1px solid var(--line)}.so-transition small{color:var(--muted)}.so-dialog-bottom{display:flex;justify-content:flex-end}.so-dialog button{cursor:pointer}.so-dialog button:disabled{opacity:.4;cursor:not-allowed}@media(max-width:1100px){.so-stats{grid-template-columns:repeat(2,1fr)}.so-filters{grid-template-columns:1fr 1fr}.so-filters>.field:first-child{grid-column:1/-1}}@media(max-width:650px){.so-stats,.so-filters{grid-template-columns:1fr}.so-filters>.field:first-child{grid-column:auto}.so-columns,.so-total,.so-transition>div{flex-direction:column}.so-dialog{padding:17px}.so-pages{flex-wrap:wrap}}
+
+/* Customer order history layout */
+.customer-orders-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.customer-orders-table th,
+.customer-orders-table td {
+    padding: 14px 9px;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+.customer-orders-table th:nth-child(1) { width: 19%; }
+.customer-orders-table th:nth-child(2) { width: 13%; }
+.customer-orders-table th:nth-child(3) { width: 15%; }
+.customer-orders-table th:nth-child(4) { width: 14%; }
+.customer-orders-table th:nth-child(5) { width: 12%; }
+.customer-orders-table th:nth-child(6) { width: 15%; }
+.customer-orders-table th:nth-child(7) { width: 12%; }
+.customer-order-code {
+    font-weight: 600;
+    color: #795e3e;
+    cursor: help;
+}
+.customer-order-status {
+    display: inline-block;
+    padding: 6px 8px;
+    background: #f5eee2;
+    color: #795e3e;
+    font-size: 11px;
+}
+.customer-orders-table td:last-child a {
+    display: inline-block;
+    white-space: normal;
+}
+@media (max-width: 700px) {
+    .customer-orders-table {
+        min-width: 700px;
+    }
+}

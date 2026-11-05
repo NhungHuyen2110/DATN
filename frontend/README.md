@@ -1,42 +1,36 @@
-# LUMIÈRE — Vanilla Frontend First
+# LUMIÈRE frontend
 
-## Công nghệ
-HTML5 / CSS3 / JavaScript ES6+ thuần, **không có React/Vite/Tailwind/Bootstrap**. Dùng Python `http.server` để chạy tĩnh trên localhost. FastAPI Business API (:8001), AI API (:8000) là các dịch vụ riêng.
+Frontend dùng HTML/CSS/JavaScript thuần. Business Backend sở hữu dữ liệu sản phẩm, giá, tồn kho, giỏ hàng và đơn hàng; AI Service chỉ dùng cho chat/recommendations.
 
-## Cài đặt không xóa website đang có
-1. **Sao lưu** thư mục `frontend` hiện tại (`frontend_backup_YYYYMMDD`).
-2. Giải nén ZIP; copy nội dung thư mục `lumiere-full-frontend` vào `frontend` mới.
-3. `cd D:\JewelryDatasetGenerator\frontend`
-4. `python -m http.server 5500`
-5. Mở `http://localhost:5500` và `http://localhost:5500/pages/products.html`.
+## Chạy local
 
-Không cần `npm install`. Các ảnh demo sử dụng Unsplash, cần internet để hiển thị.
+1. Chạy Business FastAPI trên `http://localhost:8001`, cấu hình `CORS_ORIGINS` cho origin frontend và dùng database local/test.
+2. Từ thư mục `frontend`, chạy `python -m http.server 5500`.
+3. Mở `http://localhost:5500/`.
 
-## Trạng thái chức năng
-- Trang chủ: bố cục, bộ lọc sản phẩm, giỏ nhanh, yêu thích, chatbot (sẵn gọi `POST http://localhost:8000/chat`).
-- Trang danh sách: tìm kiếm, lọc, sắp xếp từ **12 bản ghi demo**.
-- Trang chi tiết: số lượng, giới hạn tồn kho demo, giỏ hàng/yêu thích; liên kết sản phẩm liên quan theo danh mục demo.
-- Giỏ hàng: lưu `lumiere_cart` dạng `{ "1": 2 }`; yêu thích: `lumiere_favorites` dạng `[1,3]` trong localStorage. Không lưu mật khẩu/token.
-- Đăng ký/đăng nhập/đăng xuất/tài khoản: gọi các endpoint đã có của Business API (:8001); cookie HttpOnly, `credentials: 'include'`. Có thể đọc `GET /auth/me` để hiển thị thông tin user.
-- Trang đặt hàng: biểu mẫu và tính tổng *demo*, **không ghi đơn hàng thật**, không trừ kho, không trừ tiền.
-- Quên mật khẩu: UI scaffold **chưa kích hoạt**; backend phải xây cơ chế reset token/email.
-- Đơn hàng, đánh giá: UI scaffold, chưa có API.
-- Admin/nhân viên: giao diện quản lý và bảng DEMO; **không phải dashboard có phân quyền an toàn**; các nút CRUD chưa tạo giao dịch. Backend phải bảo vệ các endpoint bằng vai trò. Trên bản giao diện tĩnh, trang quản trị vẫn truy cập được để trình diễn; đừng coi đó là rào chắn bảo mật.
-- Phân tích hành vi và recommendation: giao diện placeholder; sẽ chỉ chạy thật sau khi đồng bộ ProductID/UserID và các API.
+`assets/js/api.js` tự chọn Business API local ở cổng 8001 và same-origin trên Render. Session được gửi bằng cookie HttpOnly với `credentials: include`; không lưu token trong Web Storage. AI mặc định `http://127.0.0.1:8000` ở local; môi trường khác cần cấu hình `window.LUMIERE_AI_BASE` hoặc meta `lumiere-ai-api-base`. AI offline không ngăn catalog tải từ Business API.
 
-## Quy ước
-`assets/js/products.js` là **nguồn dữ liệu demo duy nhất**. Chưa dùng dữ liệu PostgreSQL hoặc CSV Qdrant/Neo4j. Không giả mạo trạng thái thanh toán/đơn hàng. Không sửa AI Service. UI không phụ thuộc framework.
+## Phân quyền và giới hạn API
 
-## Trang có sẵn
-- Khách hàng: index, products, product-detail, collections, search, wishlist, cart, checkout, login, register, forgot-password, account, orders, order-detail, reviews, about, contact.
-- Admin: dashboard, products, categories, brands, inventory, orders, customers, coupons, staff, analytics.
-- Nhân viên: orders, inventory.
+- Guest: xem catalog và chi tiết; các route Admin/Staff giao diện chuyển về đăng nhập.
+- Customer: giỏ hàng, COD checkout, coupon validation, hồ sơ, đơn hàng, wishlist và reviews theo API.
+- Admin: dashboard/revenue, sản phẩm hiện có, đơn hàng, khách hàng, tài khoản Staff, coupon, tồn kho và danh sách category/brand.
+- Staff: xử lý đơn, cập nhật tồn kho và xác nhận COD theo Backend.
+- Backend là ranh giới bảo mật cuối cùng. Không hiển thị VNPay như lựa chọn thanh toán; không tự tạo giao dịch hay phiếu kho.
+- Category/brand hiện chỉ có API đọc; inventory movement ledger, analytics hành vi, tạo/xóa sản phẩm, quên mật khẩu, liên hệ và quản lý địa chỉ chưa có contract Backend. Các chức năng này không được giả lập là đã ghi dữ liệu.
 
-## Backend contract
-Xem `BACKEND_HANDOFF.md` và `API_CONTRACT.json` để phát triển backend. Ưu tiên auth/users → product catalog → cart/order/payment → tracking/review → admin/behavior → AI sync.
+Contract đã đối chiếu trực tiếp: [BACKEND_HANDOFF.md](./BACKEND_HANDOFF.md). Không dùng `API_CONTRACT.json` bản nháp làm nguồn thẩm quyền.
 
-## Security
-- Tài khoản public chỉ được tạo với role `customer`; admin/staff do quản trị cấp.
-- Bật HTTPS + Secure cookie trên production, CSRF protection cho session cookie, rate limiting đăng nhập, xác thực role ở backend.
-- Không tin tổng tiền, stock, phí ship, mã giảm giá từ frontend. Backend phải tính lại qua transaction và khóa tồn kho hợp lý.
-- Đọc sản phẩm/giao dịch qua API PostgreSQL; thống nhất ProductID với AI dataset trước khi liên kết chatbot và recommendation.
+## Backend tests và browser E2E
+
+Backend unit/API suite chỉ dùng database in-memory qua `backend/tests/run_safe.py`; test không kết nối PostgreSQL thật.
+
+Playwright:
+
+```powershell
+cd frontend
+npm install
+npm run test:e2e
+```
+
+E2E mặc định BLOCKED/skip nếu chưa xác nhận local isolated database. Chỉ bật test ghi khi `LUMIERE_E2E_BASE_URL` dùng localhost, `LUMIERE_E2E_DB_KIND=isolated` và `LUMIERE_E2E_ALLOW_WRITE=1`; cấp tài khoản/fixture thử nghiệm qua các biến môi trường được mô tả trong `BACKEND_HANDOFF.md`. Không dùng Render hoặc production cho E2E ghi dữ liệu.
