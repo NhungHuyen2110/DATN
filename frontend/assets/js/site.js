@@ -491,16 +491,48 @@ function checkout(){
     ${formField('province','Tỉnh / thành phố','text','required')}
     ${formField('coupon-code','Mã giảm giá','text','maxlength="24" autocomplete="off"')}
     <button id="coupon-validate" class="button button-outline" type="button">Kiểm tra mã giảm giá</button><p id="coupon-result" role="status"></p>
-    <p class="mini-note">Thanh toán khi nhận hàng (COD). VNPay chưa được kích hoạt.</p>
-    <button class="button button-dark button-wide" type="submit">ĐẶT HÀNG COD</button></form></section>
+    <div class="field"><label for="payment-method">Phương thức thanh toán</label><select id="payment-method"><option value="cod">Thanh toán khi nhận hàng (COD)</option><option value="vnpay" disabled>VNPay Sandbox · Chưa cấu hình</option></select><small id="vnpay-status" class="mini-note">Đang kiểm tra khả năng thanh toán VNPay...</small></div>
+    <button class="button button-dark button-wide" type="submit">ĐẶT HÀNG</button></form></section>
     <aside class="summary-card"><h2>Đơn hàng</h2>${cartLines().map(({p,qty,lineTotal})=>`<div class="summary-line"><span>${esc(p.name)} × ${qty}</span><strong>${money(lineTotal)}</strong></div>`).join('')}
-    <div class="summary-line"><span>Tạm tính theo Business API</span><strong>${money(subtotal())}</strong></div><p>Phí vận chuyển và giảm giá được Backend tính khi tạo đơn.</p></aside></div>`;
+    <div class="summary-line"><span>Tạm tính theo Business API</span><strong>${money(subtotal())}</strong></div><div class="summary-line"><span>Phí vận chuyển dự kiến</span><strong id="checkout-shipping">Đang tính...</strong></div><p id="checkout-shipping-note" class="mini-note">Mức phí chính xác được Business API xác nhận khi đặt hàng.</p></aside></div>`;
   let couponCode=null;
-  $('#coupon-validate').onclick=async()=>{const output=$('#coupon-result');output.textContent='Đang kiểm tra…';try{const result=await LUMIERE_API.validateCoupon(get('coupon-code'));if(!result.valid)throw new Error(result.reason||'Mã giảm giá không hợp lệ');couponCode=result.coupon_code;output.textContent=`Giảm ${money(result.discount_vnd)} · Tổng sau giảm ${money(result.total_vnd)}`}catch(error){couponCode=null;output.textContent=error.message}};
-  $('#checkout-form').onsubmit=async event=>{event.preventDefault();if(!user||user.role!=='customer'){alert('Đăng nhập bằng tài khoản khách hàng để đặt hàng.');return}if(couponCode&&get('coupon-code').toUpperCase()!==couponCode){alert('Mã giảm giá đã thay đổi. Hãy kiểm tra lại mã.');return}
+  let vnpayReady=false;
+  LUMIERE_API.paymentMethods().then(methods=>{
+    const vnpay=$('#payment-method option[value="vnpay"]');
+    vnpayReady=methods.vnpay?.enabled===true;
+    vnpay.disabled=!vnpayReady;
+    vnpay.textContent=vnpayReady?'VNPay Sandbox':'VNPay Sandbox · Chưa cấu hình';
+    $('#vnpay-status').textContent=methods.vnpay?.message||'Chưa có cấu hình VNPay';
+    const fee=Number(methods.shipping?.flat_fee_vnd||0);
+    const freeFrom=Number(methods.shipping?.free_from_vnd||0);
+    const shippingCost=subtotal()>=freeFrom?0:fee;
+    $('#checkout-shipping').textContent=money(shippingCost);
+    $('#checkout-shipping-note').textContent=shippingCost===0?'Miễn phí vận chuyển theo cấu hình hiện tại.':('Phí vận chuyển '+money(shippingCost)+' · miễn phí từ '+money(freeFrom)+'.');
+  }).catch(error=>{
+    $('#vnpay-status').textContent='Không xác định được trạng thái VNPay: '+error.message;
+    $('#checkout-shipping').textContent='Tính khi đặt hàng';
+  });
+  $('#coupon-code').addEventListener('input',()=>{couponCode=null;$('#coupon-result').textContent='Mã đã thay đổi; vui lòng kiểm tra lại.'});
+
+  $('#coupon-validate').onclick=async()=>{const output=$('#coupon-result');output.textContent='Đang kiểm tra…';if(!get('coupon-code')){couponCode=null;output.textContent='Nhập mã giảm giá trước khi kiểm tra.';return}try{const result=await LUMIERE_API.validateCoupon(get('coupon-code'));if(!result.valid)throw new Error(result.reason||'Mã giảm giá không hợp lệ');couponCode=result.coupon_code;output.textContent=`Giảm ${money(result.discount_vnd)} · Tổng sau giảm ${money(result.total_vnd)}`}catch(error){couponCode=null;output.textContent=error.message}};
+  $('#checkout-form').onsubmit=async event=>{event.preventDefault();if(!user||user.role!=='customer'){alert('Đăng nhập bằng tài khoản khách hàng để đặt hàng.');return}if(get('coupon-code') && (!couponCode || get('coupon-code').toUpperCase()!==couponCode)){alert('Vui lòng kiểm tra mã giảm giá trước khi đặt hàng.');return}
+    const method=get('payment-method');
+    if(method==='vnpay'&&!vnpayReady){alert('VNPay Sandbox chưa được cấu hình hợp lệ. Hãy chọn COD.');return}
     const button=event.currentTarget.querySelector('button[type="submit"]');button.disabled=true;
-    try{const order=await LUMIERE_API.createOrder({recipient_name:get('recipient'),phone:get('phone'),address:get('address')+', '+get('province'),payment_method:'cod',...(couponCode?{coupon_code:couponCode}:{})});
+    try{const order=await LUMIERE_API.createOrder({recipient_name:get('recipient'),phone:get('phone'),address:get('address')+', '+get('province'),payment_method:method,...(couponCode?{coupon_code:couponCode}:{})});
       cartData={items:[],total_quantity:0,subtotal_vnd:'0.00'};
+      if(method==='vnpay'){
+        try{
+          const payment=await LUMIERE_API.startVnpayPayment(order.id);
+          const gateway=new URL(payment.payment_url);
+          if(gateway.protocol!=='https:'||gateway.hostname!=='sandbox.vnpayment.vn')throw Error('Địa chỉ cổng thanh toán không hợp lệ');
+          location.assign(gateway.href);
+          return;
+        }catch(paymentError){
+          content.innerHTML=`<section class="panel"><h2>Đã tạo đơn hàng, chưa chuyển được sang VNPay</h2><p>Mã đơn: <strong>${esc(order.code)}</strong></p><p class="form-alert error">${esc(paymentError.message)}</p><p>Không tạo lại đơn hàng. Bạn có thể kiểm tra trạng thái trong lịch sử đơn.</p><a class="button button-dark" href="orders.html">Xem đơn hàng</a></section>`;
+          return;
+        }
+      }
       content.innerHTML=`<section class="panel"><h2>Đặt hàng thành công</h2><p>Mã đơn: <strong>${esc(order.code)}</strong></p><p>Tổng tiền: <strong>${money(order.total_vnd)}</strong></p><p>Trạng thái: ${esc(statusLabels[order.status]||order.status)}</p><p>Thanh toán: COD · ${esc(order.payment_status)}</p><a class="button button-dark" href="orders.html">Xem đơn hàng</a></section>`;
     }catch(error){alert(error.message);button.disabled=false}
   };
