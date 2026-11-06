@@ -15,3 +15,5 @@ from .order_item import OrderItem
 from .payment_transaction import PaymentTransaction
 from .customer_content import WishlistItem, ProductReview
 from .coupon import Coupon, CouponUsage
+
+from .contact_message import ContactMessage
