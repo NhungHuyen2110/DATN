@@ -9,6 +9,7 @@ from app.routers.orders import OrderID, admin, customer, staff_or_admin
 from app.schemas.payment import CODConfirmation, PaymentResponse, PaymentURLResponse
 from app.services import payments as service
 from app.services.payment_providers import VNPaySandbox
+from app.services.shipping import public_shipping_policy
 from fastapi import HTTPException
 
 
@@ -23,7 +24,8 @@ def payment_methods():
         enabled = True
     except HTTPException:
         enabled = False
-    return {"cod": {"enabled": True, "label": "Thanh toán khi nhận hàng"},
+    return {"shipping": public_shipping_policy(),
+            "cod": {"enabled": True, "label": "Thanh toán khi nhận hàng"},
             "vnpay": {"enabled": enabled, "label": "VNPay Sandbox",
                       "message": "Thanh toán VNPay Sandbox đã cấu hình" if enabled
                                  else "VNPay Sandbox chưa cấu hình merchant và URL HTTPS."}}
