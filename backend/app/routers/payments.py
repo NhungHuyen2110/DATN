@@ -8,10 +8,26 @@ from app.models import User
 from app.routers.orders import OrderID, admin, customer, staff_or_admin
 from app.schemas.payment import CODConfirmation, PaymentResponse, PaymentURLResponse
 from app.services import payments as service
+from app.services.payment_providers import VNPaySandbox
+from fastapi import HTTPException
 
 
 router = APIRouter(tags=["Payments"])
 Database = Annotated[Session, Depends(get_db)]
+
+@router.get("/checkout/payment-methods")
+def payment_methods():
+    """Public capabilities only; never expose merchant credentials."""
+    try:
+        VNPaySandbox.from_environment()
+        enabled = True
+    except HTTPException:
+        enabled = False
+    return {"cod": {"enabled": True, "label": "Thanh toán khi nhận hàng"},
+            "vnpay": {"enabled": enabled, "label": "VNPay Sandbox",
+                      "message": "Thanh toán VNPay Sandbox đã cấu hình" if enabled
+                                 else "VNPay Sandbox chưa cấu hình merchant và URL HTTPS."}}
+
 
 
 @router.post("/orders/{id}/payments/vnpay", response_model=PaymentURLResponse)
