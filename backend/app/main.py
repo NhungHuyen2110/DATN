@@ -2,6 +2,7 @@ from pathlib import Path
 from fastapi.staticfiles import StaticFiles
 from app.routers.auth import router as auth_router
 from app.routers.catalog import router as catalog_router
+from app.routers.taxonomy import router as taxonomy_router
 from app.routers.cart import router as cart_router
 from app.routers.orders import router as orders_router
 from app.routers.payments import router as payments_router
@@ -25,6 +26,7 @@ app = FastAPI(
 )
 app.include_router(auth_router)
 app.include_router(catalog_router)
+app.include_router(taxonomy_router)
 app.include_router(cart_router)
 app.include_router(orders_router)
 app.include_router(payments_router)
