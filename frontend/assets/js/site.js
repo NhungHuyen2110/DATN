@@ -507,7 +507,7 @@ function checkout(){
 }
 async function showProductReviews(){
   const id=Number(new URLSearchParams(location.search).get('id'));if(!Number.isInteger(id)||id<1)return;
-  const section=document.createElement('section');section.className='panel';section.innerHTML='<h2>Đánh giá sản phẩm</h2><p>Đang tải đánh giá…</p>';content.append(section);
+  let section=content.querySelector('#product-reviews-panel');if(!section){section=document.createElement('section');section.id='product-reviews-panel';section.className='panel';content.append(section)}section.innerHTML='<h2>Đánh giá sản phẩm</h2><p>Đang tải đánh giá…</p>';
   try{const result=await LUMIERE_API.reviews(id);section.innerHTML=`<h2>Đánh giá sản phẩm</h2>${result.items.map(review=>`<article><strong>${esc(review.author_display_name)}</strong> · ${review.rating}/5<p>${esc(review.comment)}</p></article>`).join('')||'<p>Chưa có đánh giá.</p>'}
     ${user?.role==='customer'?`<form id="review-form" class="review-form">
   <div class="review-field">
@@ -551,9 +551,29 @@ async function showMyReviews(){
 }
 function staticPage(){
   if(page==='reviews'){showMyReviews();return}
-  if(page==='contact'){content.innerHTML='<div class="panel"><h2>Liên hệ</h2><p>Backend hiện chưa cung cấp API tiếp nhận liên hệ; biểu mẫu chưa gửi dữ liệu.</p></div>';return}
-  const descriptions={about:'LUMIÈRE kết hợp thương mại điện tử trang sức với hệ thống gợi ý và tư vấn AI.',collections:'Khám phá các thiết kế trang sức theo phong cách riêng.'};
-  content.innerHTML=`<div class="panel"><h2>${page==='about'?'LUMIÈRE Jewelry':'Bộ sưu tập'}</h2><p>${descriptions[page]||''}</p>${page==='collections'?`<div class="catalog-grid">${P.slice(0,4).map(card).join('')}</div>`:''}</div>`;
+  if(page==='about'){
+    content.innerHTML=`<div class="story-hero"><span class="eyebrow">CÂU CHUYỆN THƯƠNG HIỆU</span><h2>Vẻ đẹp lưu giữ những khoảnh khắc</h2><p>LUMIÈRE là ý tưởng cửa hàng trang sức trong khuôn khổ đồ án tốt nghiệp, kết hợp trải nghiệm mua sắm trực tuyến và công nghệ tư vấn thông minh.</p></div>
+    <div class="story-grid"><section class="panel"><span class="eyebrow">01 · KHỞI NGUỒN</span><h2>Mỗi món trang sức là một câu chuyện</h2><p>Một chiếc nhẫn có thể đánh dấu lời hứa, một đôi bông tai gợi nhớ ngày đặc biệt, một sợi dây chuyền trở thành món quà mang theo kỷ niệm. Từ cảm hứng ấy, LUMIÈRE được xây dựng để việc tìm kiếm trang sức trở nên gần gũi và có ý nghĩa hơn.</p></section>
+    <section class="panel"><span class="eyebrow">02 · TRẢI NGHIỆM</span><h2>Tinh tế trong từng lựa chọn</h2><p>Khách hàng có thể khám phá danh mục theo loại trang sức, chất liệu, đá quý và ngân sách, sau đó theo dõi giỏ hàng, đơn hàng, đánh giá và sản phẩm yêu thích trong cùng một hệ thống.</p></section>
+    <section class="panel"><span class="eyebrow">03 · CÔNG NGHỆ</span><h2>Cá nhân hóa bằng AI</h2><p>Chatbot RAG hỗ trợ tư vấn theo câu hỏi tự nhiên. Hybrid Recommendation V2 kết hợp nội dung sản phẩm, tìm kiếm vector, lịch sử tương tác khi có dữ liệu và đồ thị tri thức để đưa ra gợi ý phù hợp.</p></section>
+    <section class="panel"><span class="eyebrow">04 · CAM KẾT CỦA ĐỒ ÁN</span><h2>Minh bạch và thực tiễn</h2><p>LUMIÈRE hiện là hệ thống nghiên cứu và trình diễn. Thông tin tồn kho, giá, đơn hàng lấy từ Business API; hình ảnh sản phẩm có thể là ảnh minh họa theo danh mục, không phải ảnh chụp sản phẩm thực tế.</p></section></div>
+    <div class="story-end"><h2>Tìm món trang sức dành riêng cho bạn</h2><p>Khám phá bộ sưu tập hoặc trò chuyện với trợ lý AI để bắt đầu hành trình lựa chọn.</p><a class="button button-dark" href="products.html">KHÁM PHÁ SẢN PHẨM</a></div>`;
+    return;
+  }
+  if(page==='contact'){
+    const email=window.LUMIERE_CONTACT_EMAIL||document.querySelector('meta[name="lumiere-contact-email"]')?.content||'';
+    const validEmail=/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+    content.innerHTML=`<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Bạn cần được tư vấn về kiểu dáng, ngân sách, đơn hàng hoặc cách sử dụng tính năng AI? Hãy chuẩn bị nội dung liên hệ bên dưới.</p><div class="contact-facts"><div><strong>Hỗ trợ mua sắm</strong><span>Tư vấn sản phẩm, giỏ hàng và thanh toán COD</span></div><div><strong>Theo dõi đơn hàng</strong><span>Đăng nhập rồi mở mục Đơn hàng của tôi</span></div><div><strong>Trợ lý trang sức AI</strong><span>Sử dụng nút Tư vấn AI trên trang mua sắm</span></div></div><p class="mini-note">LUMIÈRE là đồ án minh họa; không công bố số điện thoại hay địa chỉ cửa hàng chưa được xác thực.</p></section>
+    <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">${validEmail?'Biểu mẫu sẽ mở ứng dụng email để bạn xác nhận gửi.':'Chưa cấu hình địa chỉ tiếp nhận email. Bạn có thể sao chép nội dung liên hệ để lưu lại.'}</p><form id="contact-form">${formField('contact-name','Họ và tên','text','required minlength="2" maxlength="150"')}${formField('contact-email','Email liên hệ','email','required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">${validEmail?'SOẠN EMAIL LIÊN HỆ':'SAO CHÉP NỘI DUNG'}</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
+    $('#contact-form').onsubmit=async event=>{
+      event.preventDefault();
+      const message=`Họ tên: ${get('contact-name')}\\nEmail: ${get('contact-email')}\\nChủ đề: ${get('contact-topic')}\\n\\n${get('contact-message')}`;
+      if(validEmail){location.href='mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('[LUMIÈRE] '+get('contact-topic'))+'&body='+encodeURIComponent(message);$('#contact-result').textContent='Ứng dụng email đã được yêu cầu mở. Vui lòng xác nhận gửi trong ứng dụng email.'}
+      else{try{await navigator.clipboard.writeText(message);$('#contact-result').textContent='Đã sao chép nội dung. Chưa gửi yêu cầu tới máy chủ.'}catch{$('#contact-result').textContent='Trình duyệt không cho phép sao chép. Vui lòng sao chép nội dung thủ công.'}}
+    };
+    return;
+  }
+  content.innerHTML=`<div class="panel"><h2>Bộ sưu tập LUMIÈRE</h2><p>Khám phá các thiết kế trang sức theo phong cách riêng.</p><div class="catalog-grid">${P.slice(0,4).map(card).join('')}</div></div>`;
 }
 async function logout(){try{await LUMIERE_API.logout();user=null;location.href=root+'pages/login.html'}catch(e){notify(e.message,true)}}
 function render(){if(page==='products'||page==='search')catalog();else if(page==='product-detail')detail();else if(page==='cart')cartPage();else if(page==='checkout')checkout();else if(['login','register','forgot-password'].includes(page))auth(page);else if(page==='account')account();else if(['orders','order-detail'].includes(page))orders();else if(page==='wishlist')wishlist();else if(page.startsWith('admin-'))adminPage();else if(page.startsWith('staff-'))staffPage();else staticPage()}
