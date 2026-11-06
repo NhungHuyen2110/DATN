@@ -97,11 +97,14 @@ def checkout(db, user_id, request):
         if request.coupon_code is not None:
             from app.services.coupons import redeem
             coupon, (discount, total) = redeem(db, request.coupon_code, user_id, subtotal)
+        from app.services.shipping import calculate_shipping
+        shipping_cost = calculate_shipping(subtotal)
+        total += shipping_cost
         order = Order(
             code="LM" + uuid4().hex.upper(), user_id=user_id,
             recipient_name=request.recipient_name, phone=request.phone, address=request.address,
             status="pending", payment_status="unpaid", payment_method=request.payment_method, stock_restored=False,
-            subtotal_vnd=subtotal, shipping_vnd=Decimal("0.00"), discount_vnd=discount,
+            subtotal_vnd=subtotal, shipping_vnd=shipping_cost, discount_vnd=discount,
             total_vnd=total, items=snapshots,
             coupon_id=None if coupon is None else coupon.id,
             coupon_code=None if coupon is None else coupon.code,
