@@ -509,7 +509,36 @@ async function showProductReviews(){
   const id=Number(new URLSearchParams(location.search).get('id'));if(!Number.isInteger(id)||id<1)return;
   const section=document.createElement('section');section.className='panel';section.innerHTML='<h2>Đánh giá sản phẩm</h2><p>Đang tải đánh giá…</p>';content.append(section);
   try{const result=await LUMIERE_API.reviews(id);section.innerHTML=`<h2>Đánh giá sản phẩm</h2>${result.items.map(review=>`<article><strong>${esc(review.author_display_name)}</strong> · ${review.rating}/5<p>${esc(review.comment)}</p></article>`).join('')||'<p>Chưa có đánh giá.</p>'}
-    ${user?.role==='customer'?`<form id="review-form"><label>Điểm đánh giá <select name="rating"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select></label><label for="review-comment">Nhận xét</label><textarea id="review-comment" required maxlength="2000"></textarea><button class="button button-dark">Gửi đánh giá</button><p id="review-error" role="alert"></p></form>`:'<p>Đăng nhập bằng tài khoản khách hàng để đánh giá sản phẩm đã mua.</p>'}`;
+    ${user?.role==='customer'?`<form id="review-form" class="review-form">
+  <div class="review-field">
+    <label for="review-rating">Điểm đánh giá</label>
+    <select id="review-rating" name="rating">
+      <option value="5">★★★★★ – 5 sao</option>
+      <option value="4">★★★★☆ – 4 sao</option>
+      <option value="3">★★★☆☆ – 3 sao</option>
+      <option value="2">★★☆☆☆ – 2 sao</option>
+      <option value="1">★☆☆☆☆ – 1 sao</option>
+    </select>
+  </div>
+
+  <div class="review-field">
+    <label for="review-comment">Nhận xét của bạn</label>
+    <textarea
+      id="review-comment"
+      required
+      maxlength="2000"
+      placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm..."
+    ></textarea>
+  </div>
+
+  <div class="review-actions">
+    <button type="submit" class="button button-dark">
+      Gửi đánh giá
+    </button>
+  </div>
+
+  <p id="review-error" role="alert"></p>
+</form>`:'<p>Đăng nhập bằng tài khoản khách hàng để đánh giá sản phẩm đã mua.</p>'}`;
     section.querySelector('#review-form')?.addEventListener('submit',async event=>{event.preventDefault();const button=event.currentTarget.querySelector('button');button.disabled=true;try{await LUMIERE_API.createReview(id,{rating:Number(event.currentTarget.elements.rating.value),comment:section.querySelector('#review-comment').value});await showProductReviews()}catch(error){section.querySelector('#review-error').textContent=error.message;button.disabled=false}});
   }catch(error){section.innerHTML=`<h2>Đánh giá sản phẩm</h2><p>${esc(error.message)}</p>`}
 }
@@ -599,3 +628,86 @@ $('#nav-logout').onclick=logout;
   if(page==="product-detail")showProductReviews();
 })();
 })();
+const reviewStyles = document.createElement('style');
+reviewStyles.textContent = `
+/* LUMIERE - Product reviews */
+#review-form.review-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 100%;
+  margin-top: 25px;
+  padding-top: 22px;
+  border-top: 1px solid #e9dfd2;
+}
+
+#review-form .review-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+#review-form .review-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #665340;
+}
+
+#review-form select {
+  width: min(100%, 260px);
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #d9c9b4;
+  background: #fff;
+  color: #594733;
+  font-size: 14px;
+}
+
+#review-form textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 15px 17px;
+  border: 1px solid #d9c9b4;
+  background: #fff;
+  line-height: 1.7;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+#review-form select:focus,
+#review-form textarea:focus {
+  outline: 2px solid #c5a371;
+  outline-offset: 2px;
+}
+
+#review-form .review-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#review-form .review-actions button {
+  min-width: 160px;
+  height: 46px;
+  padding: 12px 25px;
+  background: #292824;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#review-form .review-actions button:hover {
+  background: #8b6a40;
+}
+
+#review-form #review-error {
+  margin: 0;
+  color: #b43e35;
+  font-size: 12px;
+}
+
+#review-form #review-error:empty {
+  display: none;
+}
+`;
+document.head.appendChild(reviewStyles);
