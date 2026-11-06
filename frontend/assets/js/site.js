@@ -34,7 +34,8 @@ function applyRoleNavigation() {
       link("&#272;&#417;n h&#224;ng", "pages/admin/orders.html"),
       link("Kh&#225;ch h&#224;ng", "pages/admin/customers.html"),
       link("Nh&#226;n vi&#234;n", "pages/admin/staff.html"),
-      link("M&#227; gi&#7843;m gi&#225;", "pages/admin/coupons.html")
+      link("M&#227; gi&#7843;m gi&#225;", "pages/admin/coupons.html"),
+      link("Liên hệ", "pages/admin/contacts.html")
     ].join("");
     account.href = root + "pages/admin/dashboard.html";
     account.textContent = user.full_name + " (Admin)";
