@@ -590,10 +590,67 @@
       <p>Tiền xác nhận là khoản thanh toán được hệ thống xác nhận, không phải lợi nhuận/doanh thu thuần.</p></div>`;
   }
 
+
   async function renderLookup(target, kind) {
-    const items = await api.request(`/${kind}`);
-    target.innerHTML = `<div class="panel"><p>Backend chỉ cung cấp danh sách tra cứu ${kind === "brands" ? "thương hiệu" : "danh mục"}; hiện chưa có API tạo, sửa hoặc xóa.</p>
-      <ul>${items.map(item => `<li>${esc(item.name)} (ID ${item.id})</li>`).join("")}</ul></div>`;
+    const title = kind === "brands" ? "thương hiệu" : "danh mục";
+    const path = "/admin/" + kind;
+    const result = await api.request(path);
+    const items = result.items || [];
+    const used = items.filter(x => x.product_count > 0).length;
+    target.innerHTML = `<div class="tax-head"><div><h2>Quản lý ${title}</h2><p class="mini-note">Dữ liệu thật từ PostgreSQL · Chỉ Admin có quyền thay đổi.</p></div><button id="lookup-add" class="button button-dark" type="button">+ Thêm ${title}</button></div>
+    <div class="tax-stats"><div class="tax-stat"><span>Tổng ${title}</span><strong>${items.length}</strong></div><div class="tax-stat"><span>Đang có sản phẩm</span><strong>${used}</strong></div><div class="tax-stat"><span>Chưa sử dụng</span><strong>${items.length-used}</strong></div></div>
+    <div class="panel"><div class="toolbar"><input type="search" id="lookup-search" placeholder="Tìm tên hoặc mã ${title}..." aria-label="Tìm kiếm" style="width:min(100%,420px);padding:12px;border:1px solid #d9c9b4"><span id="lookup-count">${items.length} kết quả</span></div>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Mã</th><th>Tên ${title}</th><th>Số sản phẩm</th><th>Tình trạng</th><th>Thao tác</th></tr></thead>
+    <tbody id="lookup-rows">${items.map(x=>`<tr data-lookup-row data-search="${esc(x.id+' '+x.name).toLowerCase()}"><td><strong>#${x.id}</strong></td><td>${esc(x.name)}</td><td>${x.product_count}</td><td><span class="tax-status ${x.product_count?'active':'inactive'}">${x.product_count?'Đang sử dụng':'Chưa sử dụng'}</span></td><td class="row-actions"><button class="button-sm" data-lookup-edit="${x.id}" type="button">Sửa tên</button><button class="button-sm" data-lookup-delete="${x.id}" type="button" ${x.product_count?'disabled title="Đang được sản phẩm sử dụng"':''}>Xóa</button></td></tr>`).join('')||'<tr><td colspan="5">Chưa có dữ liệu</td></tr>'}</tbody></table></div>
+    <p class="mini-note">Lưu ý: thay đổi tên ${title} có thể khiến dữ liệu mô tả của AI cần đồng bộ lại. Không xóa được ${title} đang gắn với sản phẩm.</p></div>
+    <dialog class="ap-modal" id="lookup-modal"><div class="ap-modal-head"><h2 id="lookup-dialog-title">Thêm ${title}</h2><button class="ap-close" id="lookup-close" type="button" aria-label="Đóng">×</button></div>
+    <form class="ap-form" id="lookup-form"><div class="field"><label for="lookup-name">Tên ${title}</label><input id="lookup-name" maxlength="150" required></div><p id="lookup-error" class="form-alert error" hidden></p><div class="ap-actions"><button class="button button-outline" type="button" id="lookup-cancel">Hủy</button><button class="button button-dark" type="submit">Lưu thay đổi</button></div></form></dialog>`;
+    const find = selector => target.querySelector(selector);
+    const modal = find("#lookup-modal");
+    let editing = null;
+    function open(item=null) {
+      editing = item;
+      find("#lookup-dialog-title").textContent=(item?"Sửa ":"Thêm ")+title;
+      find("#lookup-name").value=item?.name||"";
+      find("#lookup-error").hidden=true;
+      modal.showModal();
+      find("#lookup-name").focus();
+    }
+    find("#lookup-add").onclick=()=>open();
+    find("#lookup-close").onclick=()=>modal.close();
+    find("#lookup-cancel").onclick=()=>modal.close();
+    find("#lookup-search").oninput=event=>{
+      const query=event.target.value.trim().toLocaleLowerCase("vi");
+      let visible=0;
+      find("#lookup-rows").querySelectorAll("[data-lookup-row]").forEach(row=>{
+        row.hidden=!row.dataset.search.toLocaleLowerCase("vi").includes(query);
+        if(!row.hidden)visible++;
+      });
+      find("#lookup-count").textContent=visible+" kết quả";
+    };
+    find("#lookup-form").onsubmit=async event=>{
+      event.preventDefault();
+      const submit=find('#lookup-form button[type="submit"]');
+      const name=find("#lookup-name").value.trim();
+      if(!name)return;
+      submit.disabled=true;
+      try{
+        await api.request(editing?path+"/"+editing.id:path,{method:editing?"PATCH":"POST",body:JSON.stringify({name})});
+        modal.close();
+        await renderLookup(target,kind);
+      }catch(error){find("#lookup-error").hidden=false;find("#lookup-error").textContent=error.message}
+      finally{submit.disabled=false}
+    };
+    find("#lookup-rows").querySelectorAll("[data-lookup-edit]").forEach(button=>button.onclick=()=>{
+      open(items.find(x=>x.id===Number(button.dataset.lookupEdit)));
+    });
+    find("#lookup-rows").querySelectorAll("[data-lookup-delete]").forEach(button=>button.onclick=async()=>{
+      const item=items.find(x=>x.id===Number(button.dataset.lookupDelete));
+      if(!item||item.product_count>0)return;
+      if(!confirm("Xóa "+title+" “"+item.name+"”? Không thể hoàn tác."))return;
+      try{await api.request(path+"/"+item.id,{method:"DELETE"});await renderLookup(target,kind)}
+      catch(error){showError(target,error)}
+    });
   }
 
   window.LUMIERE_BACKEND_CONSOLE = async ({ mount, section, role }) => {
