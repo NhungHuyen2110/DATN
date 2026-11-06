@@ -43,7 +43,11 @@ jobs:
               return original(engine, *args, **kwargs)
 
           with patch.object(sa.engine.Engine, 'connect', sqlite_only):
-              suite = unittest.defaultTestLoader.discover('tests', pattern='test_payments_api.py')
+              loader = unittest.defaultTestLoader
+              suite = unittest.TestSuite([
+                  loader.discover('tests', pattern='test_payments_api.py'),
+                  loader.discover('tests', pattern='test_final_demo_features.py'),
+              ])
               result = unittest.TextTestRunner(verbosity=1).run(suite)
               if not result.wasSuccessful():
                   raise SystemExit(1)
