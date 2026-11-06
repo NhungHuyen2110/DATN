@@ -593,15 +593,29 @@ function staticPage(){
     return;
   }
   if(page==='contact'){
-    const email=window.LUMIERE_CONTACT_EMAIL||document.querySelector('meta[name="lumiere-contact-email"]')?.content||'';
-    const validEmail=/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
     content.innerHTML=`<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Bạn cần được tư vấn về kiểu dáng, ngân sách, đơn hàng hoặc cách sử dụng tính năng AI? Hãy chuẩn bị nội dung liên hệ bên dưới.</p><div class="contact-facts"><div><strong>Hỗ trợ mua sắm</strong><span>Tư vấn sản phẩm, giỏ hàng và thanh toán COD</span></div><div><strong>Theo dõi đơn hàng</strong><span>Đăng nhập rồi mở mục Đơn hàng của tôi</span></div><div><strong>Trợ lý trang sức AI</strong><span>Sử dụng nút Tư vấn AI trên trang mua sắm</span></div></div><p class="mini-note">LUMIÈRE là đồ án minh họa; không công bố số điện thoại hay địa chỉ cửa hàng chưa được xác thực.</p></section>
-    <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">${validEmail?'Biểu mẫu sẽ mở ứng dụng email để bạn xác nhận gửi.':'Chưa cấu hình địa chỉ tiếp nhận email. Bạn có thể sao chép nội dung liên hệ để lưu lại.'}</p><form id="contact-form">${formField('contact-name','Họ và tên','text','required minlength="2" maxlength="150"')}${formField('contact-email','Email liên hệ','email','required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">${validEmail?'SOẠN EMAIL LIÊN HỆ':'SAO CHÉP NỘI DUNG'}</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
+    <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">Yêu cầu sẽ được lưu trực tiếp trên hệ thống và Admin có thể xem trong hộp thư liên hệ.</p><form id="contact-form">${formField('contact-name','Họ và tên','text','required minlength="2" maxlength="150"')}${formField('contact-email','Email liên hệ','email','required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">GỬI YÊU CẦU LIÊN HỆ</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
     $('#contact-form').onsubmit=async event=>{
       event.preventDefault();
-      const message=`Họ tên: ${get('contact-name')}\\nEmail: ${get('contact-email')}\\nChủ đề: ${get('contact-topic')}\\n\\n${get('contact-message')}`;
-      if(validEmail){location.href='mailto:'+encodeURIComponent(email)+'?subject='+encodeURIComponent('[LUMIÈRE] '+get('contact-topic'))+'&body='+encodeURIComponent(message);$('#contact-result').textContent='Ứng dụng email đã được yêu cầu mở. Vui lòng xác nhận gửi trong ứng dụng email.'}
-      else{try{await navigator.clipboard.writeText(message);$('#contact-result').textContent='Đã sao chép nội dung. Chưa gửi yêu cầu tới máy chủ.'}catch{$('#contact-result').textContent='Trình duyệt không cho phép sao chép. Vui lòng sao chép nội dung thủ công.'}}
+      const button=event.currentTarget.querySelector('button[type="submit"]');
+      const result=$('#contact-result');
+      button.disabled=true;
+      result.textContent='Đang gửi yêu cầu...';
+      try {
+        const response=await LUMIERE_API.request('/contact',{
+          method:'POST',
+          body:JSON.stringify({
+            full_name:get('contact-name'),
+            email:get('contact-email'),
+            topic:get('contact-topic'),
+            message:get('contact-message')
+          })
+        });
+        result.textContent='Đã tiếp nhận yêu cầu #'+response.id+'. Bộ phận quản trị có thể xem và xử lý yêu cầu này.';
+        event.currentTarget.reset();
+      } catch(error) {
+        result.textContent='Không gửi được liên hệ: '+error.message;
+      } finally { button.disabled=false; }
     };
     return;
   }
