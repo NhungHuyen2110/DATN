@@ -5,6 +5,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Path, Query
 from sqlalchemy import func, or_, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, joinedload, load_only
 
 from app.core.database import get_db
@@ -12,7 +13,7 @@ from app.models import Brand, Category, Collection, Gemstone, Material, Product,
 from app.routers.orders import admin, staff_or_admin
 from app.schemas.catalog import (
     LookupResponse, ProductPage, ProductResponse, StockUpdateRequest, StockResponse,
-    ProductUpdateRequest,
+    ProductUpdateRequest, ProductCreateRequest,
 )
 from app.services import orders as order_service
 
@@ -114,7 +115,66 @@ def admin_products(
     return list_products(db, q=q, page=page, page_size=page_size)
 
 
-@router.get("/admin/products/{id}", response_model=ProductResponse, tags=["Admin Products"])
+@router.post(
+    "/admin/products",
+    response_model=ProductResponse,
+    status_code=201,
+    tags=["Admin Products"],
+)
+def create_product(
+    request: ProductCreateRequest,
+    user: Annotated[User, Depends(admin)],
+    db: Database,
+):
+    try:
+        with order_service.transaction(db):
+            order_service.lock_user(db, user.id, "admin")
+            if db.get(Product, request.id) is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Product ID already exists"
+                )
+            if db.scalar(
+                select(Product.id).where(Product.sku == request.sku)
+            ) is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail="SKU already exists"
+                )
+            if db.scalar(
+                select(Product.id).where(Product.barcode == request.barcode)
+            ) is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Barcode already exists"
+                )
+            for field, model in (
+                ("category_id", Category),
+                ("brand_id", Brand),
+                ("material_id", Material),
+                ("gemstone_id", Gemstone),
+                ("collection_id", Collection),
+            ):
+                if db.get(model, getattr(request, field)) is None:
+                    raise HTTPException(
+                        status_code=422,
+                        detail=f"Unknown {field}"
+                    )
+            product = Product(**request.model_dump())
+            db.add(product)
+            db.flush()
+            product = db.scalar(
+                public_product_query().where(
+                    Product.id == request.id
+                )
+            )
+            result = ProductResponse.model_validate(product)
+    except IntegrityError:
+        raise HTTPException(
+            status_code=409,
+            detail="Product ID, SKU or barcode already exists, or related data changed"
+        ) from None
+    return result@router.get("/admin/products/{id}", response_model=ProductResponse, tags=["Admin Products"])
 def admin_product(
     id: Annotated[int, Path(ge=1, le=2147483647)],
     user: Annotated[User, Depends(admin)], db: Database,

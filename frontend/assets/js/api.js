@@ -115,7 +115,12 @@ window.LUMIERE_API = {
     if (search) query.set("q", search);
     return this.request("/admin/products?" + query);
   },
-  updateProduct(id, data) {
+  createProduct(data) {
+    return this.request("/admin/products", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+  },  updateProduct(id, data) {
     return this.request(`/admin/products/${encodeURIComponent(id)}`, {
       method: "PATCH",
       body: JSON.stringify(data)

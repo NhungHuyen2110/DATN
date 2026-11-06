@@ -84,3 +84,34 @@ class ProductUpdateRequest(BaseModel):
         if ("sale_price" in fields) != ("expected_sale_price" in fields):
             raise ValueError("sale_price and expected_sale_price must be supplied together")
         return self
+
+class ProductCreateRequest(BaseModel):
+    """Validate data for a new jewelry product."""
+    model_config = ConfigDict(extra="forbid")
+    id: CatalogID
+    sku: str = Field(min_length=1, max_length=50)
+    barcode: str = Field(min_length=1, max_length=50)
+    name: str = Field(min_length=1, max_length=255)
+    category_id: CatalogID
+    brand_id: CatalogID
+    material_id: CatalogID
+    gemstone_id: CatalogID
+    collection_id: CatalogID
+    weight: Decimal = Field(
+        gt=0,
+        max_digits=10,
+        decimal_places=2,
+        allow_inf_nan=False
+    )
+    sale_price: CatalogMoney
+    wholesale_price: CatalogMoney
+    cost_price: CatalogMoney
+    stock: int = Field(
+        strict=True,
+        ge=0,
+        le=2147483647
+    )
+    @field_validator("sku", "barcode", "name", mode="before")
+    @classmethod
+    def trim_required_text(cls, value):
+        return value.strip() if isinstance(value, str) else value
