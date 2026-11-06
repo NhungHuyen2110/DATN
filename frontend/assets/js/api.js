@@ -87,6 +87,8 @@ window.LUMIERE_API = {
   removeCartItem(itemId) {
     return this.request("/cart/items/" + encodeURIComponent(itemId), { method: "DELETE" });
   },
+  paymentMethods() { return this.request("/checkout/payment-methods"); },
+  startVnpayPayment(id) { return this.request(`/orders/${encodeURIComponent(id)}/payments/vnpay`, { method: "POST" }); },
   createOrder(data) {
     return this.request("/orders", { method: "POST", body: JSON.stringify(data) });
   },
