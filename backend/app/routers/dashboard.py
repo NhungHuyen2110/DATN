@@ -29,3 +29,9 @@ def dashboard(user: ActiveAdmin, db: Database):
 def revenue(user: ActiveAdmin, db: Database, start_date: date, end_date: date,
             group_by: Literal["day", "month"] = "day"):
     return service.revenue(db, start_date, end_date, group_by)
+
+
+@router.get("/admin/reports/purchase-behavior", summary="Real purchase indicators from orders and order items")
+def purchase_behavior(user: ActiveAdmin, db: Database, start_date: date, end_date: date):
+    from app.services.purchase_behavior import analyze
+    return analyze(db, start_date, end_date)
