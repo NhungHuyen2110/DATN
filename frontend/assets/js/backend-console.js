@@ -22,7 +22,7 @@
       dashboard: "Tổng quan", products: "Sản phẩm", orders: "Đơn hàng",
       customers: "Khách hàng", staff: "Nhân viên", coupons: "Mã giảm giá",
       inventory: "Tồn kho", analytics: "Phân tích doanh thu",
-      categories: "Danh mục", brands: "Thương hiệu"
+      categories: "Danh mục", brands: "Thương hiệu", contacts: "Liên hệ"
     };
     const links = role === "staff"
       ? [["orders", "Đơn hàng"], ["inventory", "Tồn kho"]]
@@ -695,6 +695,29 @@
     });
   }
 
+
+  async function renderContacts(target,page=1) {
+    const result=await api.request("/admin/contact-messages?"+new URLSearchParams({page,page_size:20}));
+    const labels={new:"Mới",in_progress:"Đang xử lý",closed:"Đã hoàn tất"};
+    target.innerHTML=`<div class="lm-admin-head"><div><h2>Yêu cầu liên hệ</h2><p class="mini-note">Hộp thư hỗ trợ của khách hàng và khách truy cập · Dữ liệu lưu trên PostgreSQL.</p></div><span class="lm-live">${result.total} yêu cầu</span></div>
+      <div class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>Mã / Ngày</th><th>Người gửi</th><th>Chủ đề</th><th>Nội dung</th><th>Trạng thái</th></tr></thead><tbody>
+      ${(result.items||[]).map(item=>`<tr><td><strong>#${item.id}</strong><br><small>${new Date(item.created_at).toLocaleString("vi-VN")}</small></td><td>${esc(item.full_name)}<br><small>${esc(item.email)}</small></td><td>${esc(item.topic)}</td><td style="min-width:220px;max-width:350px;white-space:pre-wrap;overflow-wrap:anywhere">${esc(item.message)}</td>
+      <td><select data-contact-status="${item.id}" aria-label="Trạng thái liên hệ #${item.id}" style="padding:10px;border:1px solid #d6c9b9">${Object.entries(labels).map(([key,value])=>`<option value="${key}" ${item.status===key?"selected":""}>${value}</option>`).join('')}</select></td></tr>`).join("")||'<tr><td colspan="5">Chưa có yêu cầu liên hệ</td></tr>'}</tbody></table></div>
+      <div class="ap-pager"><span>Trang ${result.page} · ${result.total} yêu cầu</span><div class="ap-page-actions"><button id="contact-prev" ${page<=1?"disabled":""}>← Trước</button><button id="contact-next" ${page*result.page_size>=result.total?"disabled":""}>Tiếp →</button></div></div></div>`;
+    target.querySelector("#contact-prev").onclick=()=>renderContacts(target,page-1).catch(error=>showError(target,error));
+    target.querySelector("#contact-next").onclick=()=>renderContacts(target,page+1).catch(error=>showError(target,error));
+    target.querySelectorAll("[data-contact-status]").forEach(select=>select.onchange=async()=>{
+      select.disabled=true;
+      try{
+        await api.request("/admin/contact-messages/"+select.dataset.contactStatus,{
+          method:"PATCH",body:JSON.stringify({status:select.value})
+        });
+        await renderContacts(target,page);
+      }catch(error){showError(target,error)}
+      finally{select.disabled=false}
+    });
+  }
+
   window.LUMIERE_BACKEND_CONSOLE = async ({ mount, section, role }) => {
     const target = shell(mount, section, role);
     target.textContent = "Đang tải dữ liệu Business API…";
@@ -707,6 +730,7 @@
       else if (section === "staff") await renderStaff(target);
       else if (section === "coupons") await renderCoupons(target);
       else if (section === "categories" || section === "brands") await renderLookup(target, section);
+      else if (section === "contacts") await renderContacts(target);
       else if (section === "staff-inventory") await renderProducts(target, "inventory", role);
       else throw new Error("Trang này chưa có contract Backend.");
     } catch (error) {
