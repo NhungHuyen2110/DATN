@@ -561,35 +561,77 @@
     }));
   }
 
+
+  function dateText(date) {
+    return date.getFullYear()+"-"+String(date.getMonth()+1).padStart(2,"0")+"-"+String(date.getDate()).padStart(2,"0");
+  }
+  function statsBar(label, count, max) {
+    return `<div class="lm-stat-bar"><span>${esc(label)}</span><div class="lm-stat-track"><i style="width:${Math.max(0,Math.min(100,100*count/(max||1)))}%"></i></div><strong>${count}</strong></div>`;
+  }
+  function dayChart(rows, key, formatter) {
+    const max=Math.max(1,...rows.map(row=>Number(row[key]||0)));
+    return `<div class="lm-chart">${rows.map(row=>`<div class="lm-chart-day" title="${esc(row.date||row.period_start)}: ${esc(formatter(row[key]))}"><div class="lm-chart-col"><i style="height:${Math.max(2,100*Number(row[key]||0)/max)}%"></i></div><span>${esc((row.date||row.period_start).slice(5))}</span></div>`).join('')}</div>`;
+  }
   async function renderDashboard(target, analytics) {
-    if (analytics) {
-      const now = new Date();
-      const dateValue = value => [
-        value.getFullYear(),
-        String(value.getMonth() + 1).padStart(2, "0"),
-        String(value.getDate()).padStart(2, "0")
-      ].join("-");
-      const start = dateValue(new Date(now.getFullYear(), now.getMonth(), 1));
-      const end = dateValue(now);
-      const result = await api.revenue(start, end);
-      target.innerHTML = `<div class="panel"><p>Tiền thanh toán được xác nhận từ Backend; không phải lợi nhuận hoặc doanh thu thuần sau hoàn tiền.</p>
-        <strong>${money(result.confirmed_payment_amount_vnd)} · ${result.confirmed_payment_order_count} giao dịch xác nhận</strong>
-        <div class="table-wrap"><table class="data-table"><thead><tr><th>Ngày</th><th>Số đơn thanh toán</th><th>Số tiền xác nhận</th></tr></thead><tbody>
-        ${result.items.map(row => `<tr><td>${esc(row.period_start)}</td><td>${row.confirmed_payment_order_count}</td><td>${money(row.confirmed_payment_amount_vnd)}</td></tr>`).join("")}</tbody></table></div></div>`;
+    const now=new Date();
+    const today=dateText(now);
+    if(analytics){
+      target.innerHTML=`<div class="lm-admin-head"><div><h2>Hành vi mua hàng</h2><p class="mini-note">Phân tích dữ liệu đơn hàng thực, không phải lượt truy cập giả lập.</p></div><label class="field">Khoảng thời gian<select id="behavior-days"><option value="7">7 ngày gần đây</option><option value="30" selected>30 ngày gần đây</option><option value="90">90 ngày gần đây</option></select></label></div>
+      <div id="behavior-results"><p>Đang phân tích đơn hàng...</p></div>
+      <div class="panel lm-analytics-note"><h3>Phạm vi dữ liệu</h3><p>Số liệu lấy từ bảng đơn hàng và chi tiết đơn hàng PostgreSQL: số đơn, khách mua duy nhất, khách mua lại, sản phẩm được đặt và các đơn có mã giảm giá. Hệ thống chưa lưu sự kiện xem sản phẩm, nguồn truy cập hay tìm kiếm; vì vậy không hiển thị tỷ lệ chuyển đổi từ lượt xem hoặc lượt tìm kiếm.</p></div>`;
+      const select=target.querySelector("#behavior-days");
+      async function refresh(){
+        const days=Number(select.value);
+        const start=dateText(new Date(now.getFullYear(),now.getMonth(),now.getDate()-days+1));
+        const output=target.querySelector("#behavior-results");
+        output.innerHTML="<p>Đang tải dữ liệu PostgreSQL...</p>";
+        try{
+          const [behavior,revenue]=await Promise.all([
+            api.request("/admin/reports/purchase-behavior?"+new URLSearchParams({start_date:start,end_date:today})),
+            api.revenue(start,today)
+          ]);
+          const daily=behavior.daily_orders||[];
+          const max=Math.max(1,...Object.values(behavior.orders_by_status||{}));
+          output.innerHTML=`<div class="lm-kpis">
+            <div class="lm-kpi"><span>Tổng đơn đã tạo</span><strong>${behavior.total_orders}</strong><small>Trong khoảng ngày đã chọn</small></div>
+            <div class="lm-kpi"><span>Khách đã đặt hàng</span><strong>${behavior.unique_buyers}</strong><small>Số tài khoản duy nhất</small></div>
+            <div class="lm-kpi"><span>Khách mua lại</span><strong>${behavior.repeat_buyers}</strong><small>Ít nhất 2 đơn trong giai đoạn</small></div>
+            <div class="lm-kpi"><span>Số sản phẩm được đặt</span><strong>${behavior.total_units}</strong><small>Trung bình ${behavior.average_units_per_order} sản phẩm/đơn</small></div>
+            <div class="lm-kpi"><span>Đơn dùng mã giảm giá</span><strong>${behavior.orders_using_coupons}</strong><small>Theo mã đã áp dụng</small></div>
+            <div class="lm-kpi"><span>Thanh toán được xác nhận</span><strong>${money(revenue.confirmed_payment_amount_vnd)}</strong><small>${revenue.confirmed_payment_order_count} giao dịch được xác minh</small></div>
+          </div>
+          <div class="lm-data-grid"><section class="panel"><h3>Số đơn theo ngày</h3><p class="mini-note">Ngày khách tạo đơn · không phải doanh thu</p>${dayChart(daily,"orders",x=>x+" đơn")}</section>
+          <section class="panel"><h3>Trạng thái đơn hàng</h3>${Object.entries(behavior.orders_by_status||{}).map(([key,value])=>statsBar(statusNames[key]||key,value,max)).join("")||"<p>Chưa có đơn</p>"}<h3>Phương thức thanh toán</h3>${Object.entries(behavior.orders_by_payment_method||{}).map(([key,value])=>statsBar(key.toUpperCase(),value,behavior.total_orders)).join("")||"<p>Chưa có</p>"}</section></div>
+          <div class="panel"><h3>Sản phẩm được đặt nhiều nhất</h3><p class="mini-note">Đếm số lượng trên chi tiết đơn; bao gồm các đơn đã hủy, không đại diện cho doanh thu thuần.</p>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>Mã SP</th><th>Tên sản phẩm</th><th>Số lượng được đặt</th></tr></thead><tbody>${(behavior.top_products||[]).map(x=>`<tr><td>#${x.product_id}</td><td>${esc(x.name)}</td><td><strong>${x.units}</strong></td></tr>`).join("")||'<tr><td colspan="3">Chưa có dữ liệu mua hàng</td></tr>'}</tbody></table></div></div>`;
+        }catch(error){output.innerHTML=`<div class="form-alert error">${esc(error.message)}</div>`}
+      }
+      select.onchange=refresh;
+      await refresh();
       return;
     }
-    const result = await api.dashboard();
-    target.innerHTML = `<div class="dashboard-grid">
-      <div class="stat"><span>Tổng đơn hàng</span><strong>${result.total_orders}</strong></div>
-      <div class="stat"><span>Sản phẩm</span><strong>${result.total_products}</strong></div>
-      <div class="stat"><span>Đã hết hàng</span><strong>${result.out_of_stock_products}</strong></div>
-      <div class="stat"><span>Tiền xác nhận</span><strong>${money(result.confirmed_payment_amount_vnd)}</strong></div></div>
-      <div class="panel"><h3>Đơn theo trạng thái</h3>${Object.entries(result.orders_by_status).map(([key, count]) => `<p>${esc(statusNames[key] || key)}: ${count}</p>`).join("")}
-      <h3>Cần đối soát</h3><p>${result.reconciliation_order_count} đơn · tổng giá trị đơn ${money(result.reconciliation_order_value_vnd)}</p>
-      <ul>${result.reconciliation_reasons.map(row => `<li>${esc(row.reason)}: ${row.order_count}</li>`).join("")}</ul>
-      <p>Tiền xác nhận là khoản thanh toán được hệ thống xác nhận, không phải lợi nhuận/doanh thu thuần.</p></div>`;
+    const first=new Date(now.getFullYear(),now.getMonth(),now.getDate()-29);
+    const [result,orderPage,products,revenue]=await Promise.all([
+      api.dashboard(),api.adminOrders(1,5),loadAllProducts(true),api.revenue(dateText(first),today)
+    ]);
+    const low=products.filter(p=>p.stock>0&&p.stock<=5).sort((a,b)=>a.stock-b.stock).slice(0,7);
+    const statuses=result.orders_by_status||{};
+    const max=Math.max(1,...Object.values(statuses));
+    target.innerHTML=`<div class="lm-admin-head"><div><h2>Tổng quan hoạt động cửa hàng</h2><p class="mini-note">Dữ liệu trực tiếp từ Business API · báo cáo thanh toán đã xác nhận</p></div><span class="lm-live">PostgreSQL · LIVE</span></div>
+      <div class="lm-kpis">
+      <div class="lm-kpi"><span>Tổng đơn hàng</span><strong>${result.total_orders}</strong><small>${statuses.pending||0} đơn chờ xác nhận</small></div>
+      <div class="lm-kpi"><span>Sản phẩm</span><strong>${result.total_products}</strong><small>${products.length} sản phẩm đã tải</small></div>
+      <div class="lm-kpi"><span>Đã hết hàng</span><strong>${result.out_of_stock_products}</strong><small>${low.length} sản phẩm tồn kho thấp đang hiển thị</small></div>
+      <div class="lm-kpi"><span>Tổng tiền được xác nhận</span><strong>${money(result.confirmed_payment_amount_vnd)}</strong><small>Không phải lợi nhuận</small></div>
+      <div class="lm-kpi"><span>Thanh toán 30 ngày</span><strong>${money(revenue.confirmed_payment_amount_vnd)}</strong><small>${revenue.confirmed_payment_order_count} giao dịch xác minh</small></div>
+      <div class="lm-kpi"><span>Cần đối soát</span><strong>${result.reconciliation_order_count}</strong><small>Tổng giá trị đơn: ${money(result.reconciliation_order_value_vnd)}</small></div></div>
+      <div class="lm-data-grid"><section class="panel"><h3>Đơn hàng theo trạng thái</h3>${Object.entries(statuses).map(([key,value])=>statsBar(statusNames[key]||key,value,max)).join("")}<p><a class="inline-link" href="orders.html">Quản lý đơn hàng</a></p></section>
+      <section class="panel"><h3>Thanh toán được xác nhận · 30 ngày</h3><p class="mini-note">Phân bổ theo ngày xác minh giao dịch</p>${dayChart((revenue.items||[]).map(x=>({...x,date:x.period_start})),"confirmed_payment_amount_vnd",money)}</section></div>
+      <div class="lm-data-grid"><section class="panel"><h3>Đơn hàng gần nhất</h3><div class="table-wrap"><table class="data-table"><thead><tr><th>Mã</th><th>Trạng thái</th><th>Thanh toán</th><th>Tổng tiền</th></tr></thead><tbody>
+      ${(orderPage.items||[]).map(row=>`<tr><td>${esc(row.code)}</td><td>${esc(statusNames[row.status]||row.status)}</td><td>${esc(paymentNames[row.payment_status]||row.payment_status)}</td><td>${money(row.total_vnd)}</td></tr>`).join("")||'<tr><td colspan="4">Chưa có đơn</td></tr>'}</tbody></table></div></section>
+      <section class="panel"><h3>Sản phẩm gần hết hàng</h3><div class="table-wrap"><table class="data-table"><thead><tr><th>ID</th><th>Sản phẩm</th><th>Tồn kho</th></tr></thead><tbody>${low.map(p=>`<tr><td>#${p.id}</td><td>${esc(p.name)}</td><td><strong>${p.stock}</strong></td></tr>`).join("")||'<tr><td colspan="3">Chưa có sản phẩm tồn kho thấp</td></tr>'}</tbody></table></div><a class="inline-link" href="inventory.html">Kiểm tra tồn kho</a></section></div>
+      <div class="panel"><h3>Lưu ý đối soát</h3><p class="mini-note">Dữ liệu được xác nhận theo chứng từ thanh toán; số tiền không tương đương doanh thu thuần hoặc lợi nhuận.</p>${(result.reconciliation_reasons||[]).map(x=>`<p>${esc(x.reason)}: ${x.order_count} đơn</p>`).join("")||'<p>Chưa phát hiện trường hợp cần đối soát.</p>'}</div>`;
   }
-
 
   async function renderLookup(target, kind) {
     const title = kind === "brands" ? "thương hiệu" : "danh mục";
