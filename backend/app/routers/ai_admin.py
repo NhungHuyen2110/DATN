@@ -1,4 +1,5 @@
-
+from app.services.ai_admin_business import get_revenue_statistics
+from app.services.ai_admin_revenue_intent import understand_revenue_question
 import os
 from datetime import date
 from decimal import Decimal
@@ -134,7 +135,56 @@ def admin_ai_chat(
     # --------------------------------------------------------
     # BƯỚC 1: NHẬN DIỆN CÂU HỎI
     # --------------------------------------------------------
+    # Ưu tiên nhận diện câu hỏi doanh thu.
 
+    revenue_intent = understand_revenue_question(request.message)
+
+    if revenue_intent.get("intent") == "revenue_statistics":
+        result = get_revenue_statistics(
+            db=db,
+            start_date=revenue_intent["start_date"],
+            end_date=revenue_intent["end_date"],
+            group_by=revenue_intent["group_by"],
+        )
+
+        amount = format_money(
+            result["confirmed_payment_amount_vnd"]
+        )
+        count = result["confirmed_payment_order_count"]
+
+        answer = (
+            "Từ ngày "
+            f"{revenue_intent['start_date']:%d/%m/%Y} "
+            "đến ngày "
+            f"{revenue_intent['end_date']:%d/%m/%Y}, "
+            f"tổng tiền thanh toán được xác nhận là {amount}, "
+            f"với {count} đơn hàng hợp lệ."
+        )
+
+        return {
+            "answer": answer,
+            "intent": "revenue_statistics",
+            "data": result,
+        }
+
+    if revenue_intent.get("intent") == "invalid":
+        return {
+            "answer": revenue_intent.get(
+                "message", "Khoảng thời gian không hợp lệ."
+            ),
+            "intent": "invalid",
+            "data": None,
+        }
+
+    # Không trả lời một phần câu hỏi có nhiều nghiệp vụ.
+    if revenue_intent.get("message"):
+        return {
+            "answer": revenue_intent["message"],
+            "intent": "unsupported",
+            "data": None,
+        }
+
+    # Giữ nguyên luồng AI sản phẩm bán chạy.
     enable_llm = (
         os.getenv("ADMIN_AI_LLM_ENABLED", "false").lower()
         == "true"
@@ -148,6 +198,7 @@ def admin_ai_chat(
         intent = understand_admin_question(
             request.message
         )
+
 
     # --------------------------------------------------------
     # BƯỚC 2: KIỂM TRA INTENT TRƯỚC KHI TRUY VẤN
