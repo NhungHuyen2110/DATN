@@ -33,24 +33,37 @@ window.LUMIERE_LOAD_PRODUCTS = async function () {
       }
       page++;
     } while (rows.length < total);
-    const mapped = rows.map(row => {
-      const category = row.category?.name || "Khác";
-      return {
-        id: Number(row.id),
-        name: String(row.name || ""),
-        category,
-        brand: String(row.brand?.name || ""),
-        material: String(row.material?.name || ""),
-        gem: String(row.gemstone?.name || ""),
-        collection: String(row.collection?.name || ""),
-        price: Number(row.price_vnd),
-        stock: Number(row.stock),
-        image: LUMIERE_CATEGORY_IMAGES[category] ||
-               LUMIERE_CATEGORY_IMAGES.Charm,
-        imageDemo: true,
-        tag: ""
-      };
-    });
+  const mapped = rows.map(row => {
+  const category = row.category?.name || "Khác";
+  const sku = String(row.sku || "").trim().toUpperCase();
+
+  // Ảnh dự phòng theo danh mục.
+  const fallbackImage =
+    LUMIERE_CATEGORY_IMAGES[category] ||
+    LUMIERE_CATEGORY_IMAGES.Charm;
+
+  // Lấy ảnh thực tế theo SKU nếu có.
+  const actualImage = window.LUMIERE_PRODUCT_IMAGE
+    ? window.LUMIERE_PRODUCT_IMAGE(sku, fallbackImage)
+    : fallbackImage;
+
+  return {
+    id: Number(row.id),
+    sku,
+    name: String(row.name || ""),
+    category,
+    brand: String(row.brand?.name || ""),
+    material: String(row.material?.name || ""),
+    gem: String(row.gemstone?.name || ""),
+    collection: String(row.collection?.name || ""),
+    price: Number(row.price_vnd),
+    stock: Number(row.stock),
+    image: actualImage,
+    imageDemo: actualImage === fallbackImage,
+    tag: ""
+  };
+});
+
     if (mapped.some(p =>
       !Number.isInteger(p.id) ||
       p.id <= 0 ||
