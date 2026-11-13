@@ -1,3 +1,5 @@
+import mimetypes
+mimetypes.add_type("image/webp", ".webp")
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
 from app.routers.auth import router as auth_router
