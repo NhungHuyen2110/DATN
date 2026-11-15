@@ -174,7 +174,12 @@ def create_product(
             status_code=409,
             detail="Product ID, SKU or barcode already exists, or related data changed"
         ) from None
-    return result@router.get("/admin/products/{id}", response_model=ProductResponse, tags=["Admin Products"])
+    return result
+@router.get(
+    "/admin/products/{id}",
+    response_model=ProductResponse,
+    tags=["Admin Products"],
+)
 def admin_product(
     id: Annotated[int, Path(ge=1, le=2147483647)],
     user: Annotated[User, Depends(admin)], db: Database,
