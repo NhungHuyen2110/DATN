@@ -62,7 +62,7 @@ def detect_requested_tools(message: str, role: str):
         )):
             tools.append("inventory")
 
-    if role == "staff":
+    if role in ("staff", "admin"):
         if contains_phrase(text, (
             "don hang",
             "don hang cho xu ly",

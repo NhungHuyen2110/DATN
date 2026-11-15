@@ -1,7 +1,8 @@
 
 import re
 from decimal import Decimal, InvalidOperation
-
+from app.services.ai_order_tools import get_order_statistics
+from app.services.ai_multi_intent import normalize_question
 from app.services.ai_multi_intent import analyze_multi_intent
 from app.services.ai_admin_revenue_intent import (
     understand_revenue_question,
@@ -206,6 +207,57 @@ def answer_admin_multi_intent(db, message: str):
 
         sections.append("\n".join(lines))
         data["top_selling_products"] = top_selling
+
+
+    # Công cụ thống kê đơn hàng dành cho Admin.
+    if "order_statistics" in tools:
+        text = normalize_question(message)
+
+        # Không tự áp dụng mốc thời gian cho công cụ
+        # hiện chỉ thống kê toàn bộ lịch sử.
+        if re.search(
+            r"\b(hom nay|hom qua|thang|tuan|quy|ngay)\b",
+            text,
+        ):
+            return {
+                "intent": "unsupported",
+                "tools_used": [],
+                "answer": (
+                    "Tôi chưa hỗ trợ kết hợp thống kê "
+                    "đơn hàng theo thời gian với các "
+                    "nghiệp vụ khác trong cùng câu hỏi."
+                ),
+                "data": None,
+            }
+
+        orders = get_order_statistics(db)
+
+        if "cho xu ly" in text or "dang cho" in text:
+            label = "Đơn hàng đang chờ xử lý"
+            value = orders["pending_orders"]
+
+        elif "da giao" in text:
+            label = "Đơn hàng đã giao"
+            value = orders["delivered_orders"]
+
+        elif "da xac nhan" in text:
+            label = "Đơn hàng đã xác nhận"
+            value = orders["confirmed_orders"]
+
+        else:
+            label = "Tổng số đơn hàng"
+            value = orders["total_orders"]
+
+        sections.append(
+            "THỐNG KÊ ĐƠN HÀNG (TOÀN BỘ LỊCH SỬ)\n"
+            f"{label}: {value} đơn."
+        )
+
+        data["order_statistics"] = {
+            "label": label,
+            "value": value,
+            "scope": orders["scope"],
+        }
 
     # 3. Tồn kho hiện tại
     if "inventory" in tools:
