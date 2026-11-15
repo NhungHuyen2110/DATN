@@ -1,4 +1,5 @@
 from app.services.ai_admin_business import get_revenue_statistics
+from app.services.ai_inventory_chat import answer_inventory_question
 from app.services.ai_admin_revenue_intent import understand_revenue_question
 import os
 from datetime import date
@@ -16,6 +17,9 @@ from app.services.ai_admin_analytics import get_top_selling_products
 from app.services.ai_admin_intent import understand_admin_question
 from app.services.ai_admin_llm import understand_admin_question_with_llm
 
+from app.services.ai_admin_orchestrator import (
+    answer_admin_multi_intent,
+)
 
 # ============================================================
 # ROUTER AI ADMIN
@@ -134,9 +138,24 @@ def admin_ai_chat(
 
     # --------------------------------------------------------
     # BƯỚC 1: NHẬN DIỆN CÂU HỎI
+
+    # Ưu tiên xử lý nhiều nghiệp vụ.
+    multi_response = answer_admin_multi_intent(
+        db=db,
+        message=request.message,
+    )
+
+    if multi_response is not None:
+        return multi_response
     # --------------------------------------------------------
     # Ưu tiên nhận diện câu hỏi doanh thu.
 
+    inventory_response = answer_inventory_question(
+        db, request.message
+    )
+
+    if inventory_response is not None:
+        return inventory_response
     revenue_intent = understand_revenue_question(request.message)
 
     if revenue_intent.get("intent") == "revenue_statistics":
