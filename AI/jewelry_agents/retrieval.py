@@ -1,3 +1,7 @@
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 import os
 import sys
 import requests
@@ -13,14 +17,25 @@ from neo4j import GraphDatabase
 # CONFIG
 # ============================================================
 
-QDRANT_URL = "http://localhost:6333"
-QDRANT_COLLECTION = "jewelry_products"
+QDRANT_URL = os.getenv(
+    "QDRANT_URL", "http://127.0.0.1:6333"
+)
+QDRANT_COLLECTION = os.getenv(
+    "QDRANT_COLLECTION", "jewelry_products"
+)
 
-EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
+EMBEDDING_MODEL = os.getenv(
+    "EMBEDDING_MODEL",
+    "paraphrase-multilingual-MiniLM-L12-v2"
+)
 
-NEO4J_URI = "neo4j://127.0.0.1:7687"
-NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "12345678"
+NEO4J_URI = os.getenv(
+    "NEO4J_URI", "neo4j://127.0.0.1:7687"
+)
+NEO4J_USERNAME = os.getenv(
+    "NEO4J_USERNAME", "neo4j"
+)
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 
 
 # ============================================================
@@ -245,6 +260,12 @@ def extract_gemstone(query):
 
     query_lower = query.lower()
 
+
+    # CZ (Cubic Zirconia) là loại đá riêng.
+    # Nhận diện như một từ độc lập để tránh khớp nhầm.
+    if re.search(r"(?<!\w)cz(?!\w)", query_lower):
+        return "cz"
+
     gemstone_mapping = {
         "kim cương": "diamond",
         "diamond": "diamond",
@@ -258,7 +279,90 @@ def extract_gemstone(query):
         if keyword in query_lower:
             return gemstone
 
+    # Khach hang muon san pham co gan da,
+    # nhung khong chi dinh loai da cu the.
+    if any(phrase in query_lower for phrase in (
+        "có đá",
+        "gắn đá",
+        "đính đá",
+        "đá quý"
+    )):
+        return "__any_gemstone__"
+
     return None
+
+def search_neo4j_fallback(
+    category_keywords,
+    price_filter,
+    limit=3,
+):
+    """
+    Read-only fallback for category + budget queries.
+    Does not modify Qdrant, Neo4j or PostgreSQL.
+    """
+
+    if not category_keywords:
+        return []
+
+    min_price = price_filter.get("min_price")
+    max_price = price_filter.get("max_price")
+
+    if min_price is None and max_price is None:
+        return []
+
+    cypher = """
+    MATCH (p:Product)-[:BELONGS_TO]->(c:Category)
+
+    WHERE
+        any(
+            keyword IN $categories
+            WHERE toLower(c.name) CONTAINS keyword
+        )
+        AND p.sale_price IS NOT NULL
+        AND p.sale_price > 0
+        AND ($min_price IS NULL OR p.sale_price >= $min_price)
+        AND ($max_price IS NULL OR p.sale_price <= $max_price)
+        AND coalesce(p.stock, 0) > 0
+
+    OPTIONAL MATCH (p)-[:HAS_BRAND]->(b:Brand)
+    OPTIONAL MATCH (p)-[:MADE_OF]->(m:Material)
+    OPTIONAL MATCH (p)-[:HAS_GEMSTONE]->(g:Gemstone)
+    OPTIONAL MATCH (p)-[:IN_COLLECTION]->(co:Collection)
+
+    RETURN
+        p.product_id AS ProductID,
+        p.name AS ProductName,
+        c.name AS Category,
+        b.name AS Brand,
+        m.name AS Material,
+        g.name AS Gemstone,
+        co.name AS Collection,
+        p.sale_price AS Price,
+        p.stock AS Stock,
+        p.sku AS SKU
+
+    ORDER BY p.sale_price ASC, p.product_id ASC
+    LIMIT $limit
+    """
+
+    with neo4j_driver.session() as session:
+        records = session.run(
+            cypher,
+            categories=[
+                value.lower()
+                for value in category_keywords
+            ],
+            min_price=min_price,
+            max_price=max_price,
+            limit=min(max(int(limit), 1), 10),
+        )
+
+        products = [dict(record) for record in records]
+
+    for product in products:
+        product["score"] = 0.0
+
+    return products
 
 def hybrid_search(query, top_k=5):
     print()
@@ -287,7 +391,9 @@ def hybrid_search(query, top_k=5):
     # Lấy 20 sản phẩm để tránh trường hợp sản phẩm phù hợp
     # bị xếp hạng thấp bởi semantic search.
 
-    candidate_k = max(top_k * 7, 20)
+    # Lấy ít nhất 35 ứng viên trước khi áp dụng
+    # bộ lọc loại trang sức, ngân sách và chất liệu.
+    candidate_k = max(top_k * 7, 35)
 
     qdrant_results = search_qdrant(
         query,
@@ -386,11 +492,19 @@ def hybrid_search(query, top_k=5):
 
         gemstone_ok = True
 
-        if gemstone:
+        if gemstone == "__any_gemstone__":
             gemstone_ok = (
-                gemstone.lower()
-                in product_gemstone
+                bool(product_gemstone)
+                and product_gemstone not in (
+                    "none",
+                    "null",
+                    "nan",
+                    "không có",
+                    "không"
+                )
             )
+        elif gemstone:
+            gemstone_ok = gemstone.lower() in product_gemstone
 
         # ------------------------------------------------------
         # PRICE
@@ -444,6 +558,27 @@ def hybrid_search(query, top_k=5):
     # ==========================================================
     # 5. SẮP XẾP THEO ĐIỂM QDRANT
     # ==========================================================
+
+    # Fallback only for category + budget queries
+    # without additional material/gemstone restrictions.
+    if (
+        not filtered
+        and category_keywords
+        and (
+            price_filter.get("min_price") is not None
+            or price_filter.get("max_price") is not None
+        )
+        and not material
+        and not gold_type
+        and not gemstone
+    ):
+        print("Qdrant missed matching products. Trying Neo4j fallback.")
+
+        filtered = search_neo4j_fallback(
+            category_keywords=category_keywords,
+            price_filter=price_filter,
+            limit=top_k,
+        )
 
     filtered.sort(
         key=lambda x: x.get("score", 0),
@@ -565,6 +700,39 @@ def extract_price_filter(query):
             value2,
             unit2
         )
+    # Nhận diện ngân sách cụ thể:
+    # "ngân sách 7 triệu", "budget 5 triệu",
+    # "ngân sách khoảng 3 triệu".
+    if min_price is None and max_price is None:
+        budget_match = re.search(
+            r"(?:ngân sách|budget)\s*"
+            r"(?:khoảng|tầm|là|của tôi là)?\s*"
+            r"(\d+(?:[.,]\d+)?)\s*"
+            r"(triệu|nghìn|trăm)\b",
+            query_lower,
+        )
+
+        if budget_match:
+            value = budget_match.group(1).replace(",", ".")
+            unit = budget_match.group(2)
+            max_price = parse_money(value, unit)
+
+    # Nhận diện ngân sách gần đúng:
+    # "tầm 3 triệu", "khoảng 5 triệu",
+    # "tầm giá 7 triệu", "giá khoảng 4 triệu".
+    if min_price is None and max_price is None:
+        approximate_match = re.search(
+            r"(?:tầm\s*giá|giá\s*khoảng|tầm|khoảng)"
+            r"\s*(\d+(?:[.,]\d+)?)"
+            r"\s*(triệu|nghìn|trăm)\b",
+            query_lower,
+        )
+
+        if approximate_match:
+            value = approximate_match.group(1).replace(",", ".")
+            unit = approximate_match.group(2)
+            max_price = parse_money(value, unit)
+
 
     return {
         "min_price": min_price,
