@@ -1,3 +1,6 @@
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 import os
 import sys
 import requests
@@ -19,9 +22,7 @@ EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 
 NEO4J_URI = "neo4j://127.0.0.1:7687"
 NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "12345678"
-
-
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 # ============================================================
 # CONNECT QDRANT
 # ============================================================

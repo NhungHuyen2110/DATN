@@ -1,3 +1,7 @@
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+import os
 # ============================================================
 # HYBRID RETRIEVAL
 # QDRANT + NEO4J + RAG + QWEN 3B
@@ -20,8 +24,7 @@ QDRANT_COLLECTION = "jewelry_products"
 
 NEO4J_URI = "neo4j://127.0.0.1:7687"
 NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "12345678"
-
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL = "qwen2.5:3b"
 

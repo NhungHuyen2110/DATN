@@ -1,3 +1,7 @@
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+import os
 from typing import Type
 from pydantic import BaseModel, Field
 
@@ -33,8 +37,7 @@ embedding_model = SentenceTransformer(
 
 NEO4J_URI = "neo4j://127.0.0.1:7687"
 NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "12345678"
-
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 neo4j_driver = GraphDatabase.driver(
     NEO4J_URI,
     auth=(

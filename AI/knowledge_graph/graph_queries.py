@@ -1,4 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+import os
+from pathlib import Path
 from neo4j import GraphDatabase
 
 
@@ -10,9 +14,7 @@ URI = "neo4j://127.0.0.1:7687"
 
 USERNAME = "neo4j"
 
-PASSWORD = "12345678"
-
-
+PASSWORD = os.environ["NEO4J_PASSWORD"]
 # =========================================================
 # 2. KẾT NỐI
 # =========================================================
