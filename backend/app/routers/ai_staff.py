@@ -1,3 +1,4 @@
+from app.services.ai_product_lookup import answer_product_lookup
 from app.services.ai_staff_intent import normalize_text
 from app.services.ai_order_time_tools import get_orders_by_period
 from app.services.ai_order_time_intent import understand_time_order_question
@@ -82,6 +83,14 @@ def staff_ai_chat(
     - Không thay đổi trạng thái đơn hàng.
     - Không trả dữ liệu cá nhân khách hàng.
     """
+
+    product_response = answer_product_lookup(
+        db=db,
+        message=request.message,
+    )
+
+    if product_response is not None:
+        return product_response
 
     # Ưu tiên 1: Câu hỏi nhiều nghiệp vụ
     multi_response = answer_staff_multi_intent(

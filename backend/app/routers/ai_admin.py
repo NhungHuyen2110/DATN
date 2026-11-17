@@ -5,7 +5,7 @@ import os
 from datetime import date
 from decimal import Decimal
 from typing import Annotated
-
+from app.services.ai_product_lookup import answer_product_lookup
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
@@ -136,6 +136,13 @@ def admin_ai_chat(
     Chỉ Admin được truy cập.
     """
 
+    product_response = answer_product_lookup(
+        db=db,
+        message=request.message,
+    )
+
+    if product_response is not None:
+        return product_response
     # --------------------------------------------------------
     # BƯỚC 1: NHẬN DIỆN CÂU HỎI
 
