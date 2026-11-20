@@ -104,7 +104,7 @@ def classify_staff_with_ollama(question: str):
 
     with urllib.request.urlopen(
         request,
-        timeout=20,
+        timeout=5,
     ) as response:
         result = json.load(response)
 

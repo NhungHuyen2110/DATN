@@ -5,7 +5,8 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import OrderID, admin, customer, staff_or_admin
+from app.core.dependencies import admin, customer, staff_or_admin
+from app.core.api_parameters import OrderID
 from app.schemas.payment import CODConfirmation, PaymentResponse, PaymentURLResponse
 from app.services import payments as service
 from app.services.payment_providers import VNPaySandbox

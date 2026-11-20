@@ -68,12 +68,15 @@ def classify_with_ollama(question: str) -> str:
 
     with urllib.request.urlopen(
         request,
-        timeout=60,
+        timeout=5,
     ) as response:
         result = json.load(response)
 
     content = result["message"]["content"]
     parsed = json.loads(content)
+
+    if not isinstance(parsed, dict):
+        return "unsupported"
 
     intent = parsed.get("intent")
 

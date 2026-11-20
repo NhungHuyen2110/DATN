@@ -1,0 +1,40 @@
+{
+  "status": "verified",
+  "alias_version": "2026-11-19.1",
+  "schema_version": "2026-11-19.1",
+  "input": {
+    "source": "products_ai.csv",
+    "sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+    "rows_read": 500,
+    "valid_records": 500,
+    "errors": []
+  },
+  "products": 500,
+  "graph": {
+    "verified_products": 500,
+    "node_counts": {
+      "Product": 508,
+      "Category": 6,
+      "Brand": 5,
+      "Material": 5,
+      "Gemstone": 6,
+      "Collection": 6,
+      "Audience": 2,
+      "Style": 2,
+      "Occasion": 1
+    },
+    "relationship_counts": {
+      "BELONGS_TO": 500,
+      "HAS_BRAND": 500,
+      "MADE_OF": 500,
+      "HAS_GEMSTONE": 500,
+      "IN_COLLECTION": 500,
+      "SUITABLE_FOR": 0,
+      "HAS_STYLE": 0,
+      "FOR_OCCASION": 0
+    },
+    "orphan_ids": [],
+    "schema_version": "2026-11-19.1"
+  },
+  "elapsed_seconds": 1.2284854000026826
+}

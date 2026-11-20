@@ -1,6 +1,30 @@
 
 from unittest.mock import patch
 
+
+def test_malformed_ollama_json_keeps_fallback():
+    import io
+    import json
+    from app.services.ai_admin_intent import understand_admin_question
+
+    question = "Mặt hàng nào được mua nhiều nhất?"
+    expected = understand_admin_question(question)
+    for content in ([], None, "unsupported", 123):
+        body = json.dumps({"message": {"content": json.dumps(content)}}).encode()
+        with patch("app.services.ai_admin_llm.urllib.request.urlopen", return_value=io.BytesIO(body)):
+            assert understand_admin_question_with_llm(question) == expected
+
+
+def test_ollama_socket_wait_is_bounded():
+    from app.services.ai_admin_llm import classify_with_ollama
+
+    with patch("app.services.ai_admin_llm.urllib.request.urlopen", side_effect=TimeoutError()) as call:
+        try:
+            classify_with_ollama("unknown")
+        except TimeoutError:
+            pass
+    assert 0 < call.call_args.kwargs["timeout"] <= 5
+
 from app.services.ai_admin_llm import (
     understand_admin_question_with_llm,
 )

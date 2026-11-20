@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "alias_version": "2026-11-19.1",
+  "schema_version": "2026-11-19.1",
+  "input": {
+    "source": "products_ai.csv",
+    "sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+    "rows_read": 500,
+    "valid_records": 500,
+    "errors": []
+  },
+  "products": 500,
+  "vectors": {
+    "verified_products": 500,
+    "model": "paraphrase-multilingual-MiniLM-L12-v2",
+    "collection": "lumiere_evidence_v2"
+  },
+  "elapsed_seconds": 2.2883240999944974
+}

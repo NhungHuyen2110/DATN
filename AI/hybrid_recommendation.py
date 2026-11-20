@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+from pathlib import Path
 import numpy as np
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -18,17 +20,12 @@ print("1. ĐỌC DỮ LIỆU")
 print("==============================")
 
 
-products = pd.read_csv(
-    "../output/products_ai.csv"
-)
+DATA_DIR = Path(__file__).resolve().parents[1] / "output"
+products = pd.read_csv(os.getenv("AI_CATALOG_PATH", str(DATA_DIR / "products_ai.csv")))
 
-orders = pd.read_csv(
-    "../output/orders.csv"
-)
+orders = pd.read_csv(os.getenv("AI_ORDERS_PATH", str(DATA_DIR / "orders.csv")))
 
-order_details = pd.read_csv(
-    "../output/order_details.csv"
-)
+order_details = pd.read_csv(os.getenv("AI_ORDER_DETAILS_PATH", str(DATA_DIR / "order_details.csv")))
 
 
 print("Số sản phẩm:", len(products))
@@ -103,8 +100,7 @@ print("==============================")
 
 
 client = QdrantClient(
-    host="localhost",
-    port=6333
+    url=os.getenv("QDRANT_URL", "http://127.0.0.1:6333")
 )
 
 
@@ -233,7 +229,7 @@ def get_qdrant_scores(
 
 
     search_result = client.query_points(
-        collection_name="jewelry_products",
+        collection_name=os.getenv("LEGACY_QDRANT_COLLECTION", "jewelry_products"),
         query=vector,
         limit=limit + 5,
         with_payload=True

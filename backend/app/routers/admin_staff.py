@@ -10,7 +10,8 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import OrderID, Page, PageSize, admin
+from app.core.dependencies import admin
+from app.core.api_parameters import OrderID, Page, PageSize
 from app.schemas.auth import (
     ProfileUpdateRequest, StaffAccountPage, StaffAccountResponse,
     StaffCreateRequest, StaffStatusUpdate,

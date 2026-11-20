@@ -1,0 +1,109 @@
+# Isolated staging project; does not reuse the existing lumiere_postgres_data volume.
+name: lumiere-rebuild
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: lumiere_db
+      POSTGRES_USER: lumiere_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set staging POSTGRES_PASSWORD}
+    volumes: [staging_pg:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U lumiere_user -d lumiere_db]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [internal]
+  backend:
+    build: {context: ., dockerfile: backend/Dockerfile}
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: lumiere_db
+      POSTGRES_USER: lumiere_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set staging POSTGRES_PASSWORD}
+      SERVE_FRONTEND: 'false'
+      CORS_ORIGINS: ${STAGING_ORIGIN:-http://localhost:8080}
+      STAFF_OLLAMA_URL: http://ollama:11434/api/chat
+      ADMIN_OLLAMA_URL: http://ollama:11434/api/chat
+    depends_on:
+      postgres: {condition: service_healthy}
+    networks: [internal]
+  ai:
+    build: {context: ., dockerfile: AI/Dockerfile}
+    environment:
+      AI_PIPELINE: modular
+      AI_CATALOG_SOURCE: postgres
+      AI_DATABASE_URL: ${AI_DATABASE_URL:?Set a staging read-only PostgreSQL catalog DSN}
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: lumiere_products_v2
+      LEGACY_QDRANT_COLLECTION: lumiere_products_v2
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USERNAME: neo4j
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD:?Set staging NEO4J_PASSWORD}
+      AI_CORS_ORIGINS: ${STAGING_ORIGIN:-http://localhost:8080}
+    volumes: [model_cache:/srv/model-cache]
+    depends_on:
+      qdrant: {condition: service_started}
+      neo4j: {condition: service_started}
+      postgres: {condition: service_healthy}
+    networks: [internal, outbound]
+  frontend:
+    build: {context: ., dockerfile: frontend/Dockerfile}
+    ports: ['127.0.0.1:8080:8080']
+    depends_on: [backend, ai]
+    networks: [internal, outbound]
+  neo4j:
+    image: neo4j:5-community
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?Set staging NEO4J_PASSWORD}
+    volumes: [staging_graph:/data]
+    healthcheck:
+      test: [CMD-SHELL, 'wget -q -O /dev/null http://localhost:7474 || exit 1']
+      interval: 20s
+      timeout: 10s
+      retries: 15
+    networks: [internal]
+  qdrant:
+    image: qdrant/qdrant:v1.16.2
+    volumes: [staging_vectors:/qdrant/storage]
+    healthcheck:
+      test: [CMD-SHELL, 'bash -c "echo > /dev/tcp/127.0.0.1/6333"']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    networks: [internal]
+  ollama:
+    image: ollama/ollama:0.13.0
+    profiles: [generation]
+    volumes: [ollama_models:/root/.ollama]
+    healthcheck:
+      test: [CMD, ollama, list]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+    networks: [internal, outbound]
+  prometheus:
+    image: prom/prometheus:v3.7.3
+    profiles: [monitoring]
+    volumes: ['./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro', 'metrics_data:/prometheus']
+    networks: [internal]
+  grafana:
+    image: grafana/grafana:12.2.1
+    profiles: [monitoring]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:?Set staging GRAFANA_PASSWORD}
+    volumes: [dashboards:/var/lib/grafana, './infra/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/default.yaml:ro']
+    ports: ['127.0.0.1:3000:3000']
+    networks: [internal, outbound]
+networks:
+  internal: {internal: true}
+  outbound: {}
+volumes:
+  staging_pg: {}
+  staging_graph: {}
+  staging_vectors: {}
+  model_cache: {}
+  ollama_models: {}
+  metrics_data: {}
+  dashboards: {}

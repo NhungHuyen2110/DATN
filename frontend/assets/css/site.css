@@ -261,3 +261,65 @@
 @media(max-width:1050px){.lm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.lm-data-grid{grid-template-columns:1fr}}
 @media(max-width:760px){.story-grid,.contact-grid{grid-template-columns:1fr}.story-hero{padding:40px 22px}.story-grid .panel,.contact-grid .panel{padding:24px}}
 @media(max-width:540px){.lm-kpis{grid-template-columns:1fr}.lm-stat-bar{grid-template-columns:105px 1fr 26px;gap:6px}.lm-data-grid>.panel{padding:18px}.story-end{padding:40px 10px}}
+
+/* LUMIÈRE | Consistent soft luxury for Customer / Staff / Admin | 20 Nov 2026
+   Typography/layout-only refinement; original theme variables, status colors and API selectors untouched. */
+.page-main{padding-top:32px}
+.page-heading{padding:25px 0 34px}
+.page-heading h1{font-size:clamp(36px,4vw,52px)}
+.page-subtitle{font-size:15px;line-height:1.75}
+.site-bar{font-size:11px}
+.site-nav-links,.account-links,.account-links button{font-size:14px}
+.site-nav-links{gap:19px}
+.site-bottom p{font-size:14px}
+/* Content and forms, including catalog and checkout */
+.filter-panel,.summary-card,.panel,.auth-card,.form-card{border-radius:var(--ui-radius,12px);box-shadow:var(--ui-shadow,0 8px 28px rgba(41,40,36,.055))}
+.filter-panel h2,.summary-card h2,.panel h2{margin-bottom:17px}
+.field label{font-size:14px}
+.field input,.field select,.field textarea,.field-input,.toolbar select{font-family:var(--sans);font-size:15px;line-height:1.5;border-radius:var(--ui-radius-sm,9px)}
+.field small,.mini-note,.demo-note{font-size:13px;line-height:1.7}
+.button-sm{font-size:13px;line-height:1.35;border-radius:var(--ui-radius-sm,9px);min-height:36px}
+.catalog-card{border-radius:var(--ui-radius-sm,9px);overflow:hidden}
+.catalog-card .meta small{font-size:13px}
+.catalog-card .meta h3{font-size:22px}
+.specs div,.summary-line,.list-row p{font-size:14px}
+.qty-line button,.qty-line input{border-radius:var(--ui-radius-sm,9px)}
+.form-alert,.demo-note,.empty-panel{border-radius:var(--ui-radius-sm,9px)}
+.data-table th,.data-table td{font-size:14px;line-height:1.5;padding:14px 15px}
+.data-table th{letter-spacing:.015em}
+.stat,.ap-stat,.tax-stat,.cust-stat,.em-stat,.cp-stat,.inv-stat,.ana-kpi,.dash-stat,.lm-kpi{border-radius:var(--ui-radius,12px);box-shadow:var(--ui-shadow,0 8px 28px rgba(41,40,36,.055))}
+.stat span,.ap-stat span,.tax-stat span,.cust-stat span,.em-stat span,.cp-stat span,.inv-stat span,.ana-kpi span,.dash-stat span,.dash-stat small,.lm-kpi span{font-size:14px}
+/* Management navigation and controls */
+.admin-side{border-radius:var(--ui-radius,12px);overflow:hidden}
+.admin-side a{font-size:14px;line-height:1.5;border-radius:var(--ui-radius-sm,9px)}
+.ap-filters input,.ap-filters select,.ap-page-size,.tax-filters input,.tax-filters select,.ana-range select,.ana-panel-header select,.dash-chart-control select,.order-transition select{font:15px var(--sans);border-radius:var(--ui-radius-sm,9px)}
+.ap-pager button,.tax-page,.order-pagination button,.cust-pagination button,.em-pager button,.cp-pager button,.inv-pager button,.dash-shortcuts a{font-size:14px;border-radius:var(--ui-radius-sm,9px)}
+.ap-modal,.tax-modal,.order-dialog,.cust-dialog,.em-dialog,.em-detail-dialog,.cp-dialog,.inv-dialog{border-radius:var(--ui-radius,12px)}
+.badge-soft,.ap-status,.tax-status,.order-status,.cust-badge,.em-badge,.cp-badge,.inv-status{font-size:12px;border-radius:7px}
+.ap-sku,.cust-email,.cp-sub,.inv-muted,.ana-muted{font-size:12px}
+.ap-preview-note,.tax-notice,.cp-notice,.em-detail-note,.em-detail-footnote,.dash-footer-note{font-size:13px}
+.tax-pagination,.cust-pagination,.em-pager,.cp-pager,.inv-pager,.order-pagination{font-size:14px}
+.order-detail-grid,.order-totals,.cust-info div,.em-detail-info div,.inv-current,.ana-range,.ana-ratio{font-size:14px}
+.dash-head p,.dash-card-head p,.dash-card-head>a,.dash-inline-link,.dash-chart-control{font-size:13px}
+.dash-card{border-radius:var(--ui-radius,12px);box-shadow:var(--ui-shadow,0 8px 28px rgba(41,40,36,.055))}
+.dash-table th,.dash-table td{font-size:13px}
+.dash-progress-row,.dash-stock-item,.dash-shortcuts a{font-size:13px}
+.dash-footer-note,.ana-footnote{font-size:13px}
+.ana-bar-row,.ana-source-row,.ana-bar-row strong,.ana-source-row strong,.lm-stat-bar{font-size:13px}
+/* Keep narrow analytical visualizations readable without inflating their dimensions. */
+.dash-bar-value,.dash-bar-label,.ana-trend-col>span,.ana-trend-col small{font-size:11px}
+/* Universal controls used in management forms; keep their existing colors. */
+.backend-console input:not([type="checkbox"]):not([type="radio"]),
+.backend-console select,.backend-console textarea{font-family:var(--sans);font-size:15px;border-radius:var(--ui-radius-sm,9px)}
+.backend-console button{font-family:var(--sans)}
+@media(max-width:750px){
+  .page-main{padding-top:20px}
+  .page-heading{padding:18px 0 24px}
+  .site-nav-links,.account-links,.account-links button{font-size:13px}
+  .admin-side{padding:12px}
+  .admin-side a{font-size:14px}
+  .data-table th,.data-table td{font-size:13px;padding:12px 11px}
+  .filter-panel,.summary-card,.panel,.form-card{padding:20px}
+}
+@media(max-width:420px){.site-nav-links a{font-size:13px}.data-table th,.data-table td{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.button-sm,.admin-side a{transition:none}}

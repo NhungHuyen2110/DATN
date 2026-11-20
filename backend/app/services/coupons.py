@@ -196,7 +196,10 @@ def validate_cart(db, user_id, code):
         coupon, amounts, reason = evaluate(db, code, user_id, subtotal)
         from app.services.shipping import calculate_shipping
         shipping_cost = calculate_shipping(subtotal)
+        with localcontext() as context:
+            context.prec = 50
+            total = (subtotal if reason else amounts[1]) + shipping_cost
         result = {"valid": reason is None, "reason": reason, "coupon_code": code,
                   "subtotal_vnd": subtotal, "discount_vnd": Decimal("0.00") if reason else amounts[0],
-                  "total_vnd": (subtotal if reason else amounts[1]) + shipping_cost}
+                  "total_vnd": total}
     return result

@@ -1,0 +1,14 @@
+{
+  "dataset_sha256": "55c5b83cf6c07da7a1acad0884e4db3e13aef6d2b7640b2a0771cc6395acb2a2",
+  "review": {
+    "total": 136,
+    "approved": 0,
+    "pending_review": 136,
+    "rejected": 0
+  },
+  "status": "PENDING_REVIEW",
+  "sufficient_100_reviewed": false,
+  "mode": "hybrid",
+  "summary": null,
+  "results": []
+}

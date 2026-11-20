@@ -1,0 +1,9 @@
+# Small runtime for API/contracts and graph/vector SDKs. Semantic model is separate.
+fastapi==0.143.0
+uvicorn==0.53.0
+pydantic==2.12.5
+python-dotenv==1.2.3
+neo4j==6.4.1
+qdrant-client==1.20.0
+pandas==3.1.1
+psycopg[binary]==3.3.6

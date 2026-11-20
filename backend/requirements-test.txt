@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8,<10
+# FastAPI/Starlette TestClient imports httpx, not the separate httpx2 package.
+httpx==0.28.1

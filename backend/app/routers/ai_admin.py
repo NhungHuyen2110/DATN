@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import admin
+from app.core.dependencies import admin
 from app.services.ai_admin_analytics import get_top_selling_products
 from app.services.ai_admin_intent import understand_admin_question
 from app.services.ai_admin_llm import understand_admin_question_with_llm

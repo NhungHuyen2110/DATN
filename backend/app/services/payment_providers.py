@@ -1,7 +1,7 @@
 """Provider interface and VNPay 2.1.0 Sandbox adapter. No outbound requests."""
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta, timezone
 from decimal import Decimal, localcontext
 import hashlib
 import hmac

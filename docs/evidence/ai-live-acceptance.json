@@ -1,0 +1,834 @@
+{
+  "run_utc": "20261119T063504Z",
+  "scope": "engineering acceptance, NOT human-reviewed relevance benchmark",
+  "representation_version": "2026-11-19.3",
+  "sources": [
+    {
+      "file": "output\\products_ai.csv",
+      "sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786"
+    },
+    {
+      "file": "AI\\tests\\fixtures\\catalog_semantic.csv",
+      "sha256": "d0df409215111d49f8a2ec17bafe6cdb11c500eb1a19486290183197a46c75ca"
+    }
+  ],
+  "real_products": 500,
+  "synthetic_products": 8,
+  "real_products_with_optional_evidence": 0,
+  "checks": [
+    {
+      "name": "csv_graph_508_idempotent",
+      "passed": true,
+      "verification": {
+        "verified_products": 508,
+        "node_counts": {
+          "Product": 508,
+          "Category": 6,
+          "Brand": 5,
+          "Material": 5,
+          "Gemstone": 6,
+          "Collection": 6,
+          "Audience": 2,
+          "Style": 2,
+          "Occasion": 1
+        },
+        "relationship_counts": {
+          "BELONGS_TO": 508,
+          "HAS_BRAND": 508,
+          "MADE_OF": 508,
+          "HAS_GEMSTONE": 508,
+          "IN_COLLECTION": 508,
+          "SUITABLE_FOR": 8,
+          "HAS_STYLE": 8,
+          "FOR_OCCASION": 1
+        },
+        "orphan_ids": [],
+        "schema_version": "2026-11-19.1"
+      }
+    },
+    {
+      "name": "synthetic_material_update",
+      "passed": true,
+      "ids": [
+        4
+      ]
+    },
+    {
+      "name": "resume_verifies_existing_facts",
+      "passed": true
+    },
+    {
+      "name": "actual_multilingual_model",
+      "passed": true,
+      "model": "paraphrase-multilingual-MiniLM-L12-v2",
+      "dimension": 384,
+      "paraphrase_cosine": 0.9561955578771587
+    },
+    {
+      "name": "actual_vectors_508_readback",
+      "passed": true
+    },
+    {
+      "name": "vector_replay_no_duplicates",
+      "passed": true
+    },
+    {
+      "name": "top3_enough",
+      "passed": true,
+      "query": "nhẫn cho phái nữ dưới 8 triệu",
+      "ids": [
+        900101,
+        900102,
+        900103
+      ],
+      "seconds": 0.08581580000463873,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900103,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          },
+          {
+            "target_product_id": 900103,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "phai nu",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female"
+        ]
+      }
+    },
+    {
+      "name": "female_paraphrase",
+      "passed": true,
+      "query": "nhẫn thanh lịch cho phụ nữ dưới 8 triệu",
+      "ids": [
+        900101,
+        900102
+      ],
+      "seconds": 0.040072100004181266,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Thanh lịch",
+            "relationship": "HAS_STYLE",
+            "entity_id": "elegant"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Thanh lịch",
+            "relationship": "HAS_STYLE",
+            "entity_id": "elegant"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "phu nu",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "style",
+          "canonical_id": "elegant",
+          "alias": "thanh lich",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female"
+        ],
+        "style": [
+          "elegant"
+        ]
+      }
+    },
+    {
+      "name": "child_context",
+      "passed": true,
+      "query": "nhẫn cho con gái 8 tuổi",
+      "ids": [
+        900104
+      ],
+      "seconds": 0.04147170000942424,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900104,
+            "entity_name": "Bé gái",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female_child"
+          },
+          {
+            "target_product_id": 900104,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "con gai",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female_child",
+          "method": "age_context",
+          "age": 8,
+          "confidence": 1.0,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female_child"
+        ]
+      }
+    },
+    {
+      "name": "negative_material",
+      "passed": true,
+      "query": "nhẫn không vàng dưới 8 triệu",
+      "ids": [
+        900101,
+        900102,
+        900103
+      ],
+      "seconds": 0.043984899995848536,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900103,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "material",
+          "canonical_id": "vang",
+          "alias": "vang",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": true,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ]
+      }
+    },
+    {
+      "name": "graph_same_gem_style",
+      "passed": true,
+      "query": "cùng đá và phong cách với sản phẩm #900101",
+      "ids": [
+        900107,
+        900102
+      ],
+      "seconds": 0.046943900000769645,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900107,
+            "entity_name": "Thanh lịch",
+            "source_product_id": 900101,
+            "entity_id": "elegant",
+            "relationship": "HAS_STYLE"
+          },
+          {
+            "target_product_id": 900107,
+            "entity_name": "Diamond",
+            "source_product_id": 900101,
+            "entity_id": 1,
+            "relationship": "HAS_GEMSTONE"
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Thanh lịch",
+            "source_product_id": 900101,
+            "entity_id": "elegant",
+            "relationship": "HAS_STYLE"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Diamond",
+            "source_product_id": 900101,
+            "entity_id": 1,
+            "relationship": "HAS_GEMSTONE"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [],
+      "entities": {}
+    },
+    {
+      "name": "actual_graph_paths",
+      "passed": true
+    },
+    {
+      "name": "graph_fault_degrades",
+      "passed": true
+    },
+    {
+      "name": "live_catalog_revalidation",
+      "passed": true
+    },
+    {
+      "name": "real_catalog_hybrid",
+      "passed": true,
+      "ids": [
+        2,
+        218,
+        231
+      ]
+    },
+    {
+      "name": "real_sku_identity",
+      "passed": true
+    },
+    {
+      "name": "http_readiness_real_dependencies",
+      "passed": true
+    },
+    {
+      "name": "http_modular_real_dependencies",
+      "passed": true,
+      "ids": [
+        900101,
+        900102,
+        900103
+      ]
+    },
+    {
+      "name": "http_graph_recommendation",
+      "passed": true
+    }
+  ],
+  "graph_data_directory": ".cache/neo4j-test/data",
+  "retrieval_cases": [
+    {
+      "query": "nhẫn cho phái nữ dưới 8 triệu",
+      "ids": [
+        900101,
+        900102,
+        900103
+      ],
+      "seconds": 0.08581580000463873,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900103,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          },
+          {
+            "target_product_id": 900103,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "phai nu",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female"
+        ]
+      }
+    },
+    {
+      "query": "nhẫn thanh lịch cho phụ nữ dưới 8 triệu",
+      "ids": [
+        900101,
+        900102
+      ],
+      "seconds": 0.040072100004181266,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Thanh lịch",
+            "relationship": "HAS_STYLE",
+            "entity_id": "elegant"
+          },
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Phái nữ",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Thanh lịch",
+            "relationship": "HAS_STYLE",
+            "entity_id": "elegant"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "phu nu",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "style",
+          "canonical_id": "elegant",
+          "alias": "thanh lich",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female"
+        ],
+        "style": [
+          "elegant"
+        ]
+      }
+    },
+    {
+      "query": "nhẫn cho con gái 8 tuổi",
+      "ids": [
+        900104
+      ],
+      "seconds": 0.04147170000942424,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900104,
+            "entity_name": "Bé gái",
+            "relationship": "SUITABLE_FOR",
+            "entity_id": "female_child"
+          },
+          {
+            "target_product_id": 900104,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female",
+          "alias": "con gai",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "audience",
+          "canonical_id": "female_child",
+          "method": "age_context",
+          "age": 8,
+          "confidence": 1.0,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ],
+        "audience": [
+          "female_child"
+        ]
+      }
+    },
+    {
+      "query": "nhẫn không vàng dưới 8 triệu",
+      "ids": [
+        900101,
+        900102,
+        900103
+      ],
+      "seconds": 0.043984899995848536,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900101,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ],
+        [
+          {
+            "target_product_id": 900103,
+            "entity_name": "Nhẫn",
+            "relationship": "BELONGS_TO",
+            "entity_id": 1
+          }
+        ]
+      ],
+      "entity_linking_evidence": [
+        {
+          "kind": "category",
+          "canonical_id": "nhan",
+          "alias": "nhan",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": false,
+          "alias_version": "2026-11-19.1"
+        },
+        {
+          "kind": "material",
+          "canonical_id": "vang",
+          "alias": "vang",
+          "method": "exact_alias",
+          "confidence": 1.0,
+          "negated": true,
+          "alias_version": "2026-11-19.1"
+        }
+      ],
+      "entities": {
+        "category": [
+          "nhan"
+        ]
+      }
+    },
+    {
+      "query": "cùng đá và phong cách với sản phẩm #900101",
+      "ids": [
+        900107,
+        900102
+      ],
+      "seconds": 0.046943900000769645,
+      "degraded_sources": [],
+      "paths": [
+        [
+          {
+            "target_product_id": 900107,
+            "entity_name": "Thanh lịch",
+            "source_product_id": 900101,
+            "entity_id": "elegant",
+            "relationship": "HAS_STYLE"
+          },
+          {
+            "target_product_id": 900107,
+            "entity_name": "Diamond",
+            "source_product_id": 900101,
+            "entity_id": 1,
+            "relationship": "HAS_GEMSTONE"
+          }
+        ],
+        [
+          {
+            "target_product_id": 900102,
+            "entity_name": "Thanh lịch",
+            "source_product_id": 900101,
+            "entity_id": "elegant",
+            "relationship": "HAS_STYLE"
+          },
+          {
+            "target_product_id": 900102,
+            "entity_name": "Diamond",
+            "source_product_id": 900101,
+            "entity_id": 1,
+            "relationship": "HAS_GEMSTONE"
+          }
+        ]
+      ],
+      "entity_linking_evidence": [],
+      "entities": {}
+    }
+  ],
+  "ablation_smoke": {
+    "lexical": [
+      900101,
+      900102,
+      900103
+    ],
+    "dense": [
+      900101,
+      900102,
+      900103
+    ],
+    "graph": [
+      900101,
+      900102,
+      900103
+    ],
+    "hybrid": [
+      900101,
+      900102,
+      900103
+    ]
+  },
+  "qdrant_directory": ".cache\\qdrant-evidence-20261119T063504Z",
+  "status": "PASS",
+  "elapsed_seconds": 39.18728350001038
+}

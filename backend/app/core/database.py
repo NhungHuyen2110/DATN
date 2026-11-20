@@ -13,6 +13,13 @@ ROOT_DIR = Path(__file__).resolve().parents[3]
 load_dotenv(ROOT_DIR / ".env")
 
 
+def _positive_int(name, default):
+    value = int(os.getenv(name, str(default)))
+    if value <= 0:
+        raise ValueError(f"{name} must be a positive integer")
+    return value
+
+
 DATABASE_URL = URL.create(
     drivername="postgresql+psycopg",
     username=os.getenv("POSTGRES_USER", "lumiere_user"),
@@ -25,6 +32,14 @@ DATABASE_URL = URL.create(
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
+    pool_timeout=_positive_int("DB_POOL_TIMEOUT_SECONDS", 5),
+    connect_args={
+        "connect_timeout": _positive_int("DB_CONNECT_TIMEOUT_SECONDS", 5),
+        "options": (
+            f"-c statement_timeout={_positive_int('DB_STATEMENT_TIMEOUT_MS', 15000)} "
+            f"-c lock_timeout={_positive_int('DB_LOCK_TIMEOUT_MS', 5000)}"
+        ),
+    },
 )
 
 SessionLocal = sessionmaker(

@@ -1,14 +1,13 @@
 """Purchase-only behavior indicators from real orders; no fabricated browsing events."""
 
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import date, datetime, time, timedelta, timezone
-from decimal import Decimal
 from zoneinfo import ZoneInfo
 
 from fastapi import HTTPException
 from sqlalchemy import select
 
-from app.models import Order, OrderItem, Product
+from app.models import Order, OrderItem
 
 VIETNAM = ZoneInfo("Asia/Ho_Chi_Minh")
 
@@ -22,7 +21,6 @@ def analyze(db, start_date: date, end_date: date):
         select(Order).where(Order.created_at >= start, Order.created_at < end)
         .order_by(Order.created_at)
     ).all()
-    order_ids = [row.id for row in orders]
     by_status, by_payment = Counter(), Counter()
     by_day = Counter()
     buyers = Counter()

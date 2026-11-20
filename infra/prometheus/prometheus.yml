@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: business
+    static_configs:
+      - targets: ['backend:8001']
+  - job_name: ai
+    static_configs:
+      - targets: ['ai:8000']
+  - job_name: qdrant
+    static_configs:
+      - targets: ['qdrant:6333']

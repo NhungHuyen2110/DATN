@@ -1,0 +1,66 @@
+{
+  "business": {
+    "passed": 638,
+    "warnings": 1,
+    "subtests_passed": 827,
+    "seconds": 58.61,
+    "database_scope": "guarded SQLite memory; NOT live PostgreSQL"
+  },
+  "ai_modular": {
+    "tests_run": 50,
+    "passed": 49,
+    "skipped": 1,
+    "seconds": 2.751,
+    "skip_reason": "empty-graph fixture test; populated owned graph tested separately"
+  },
+  "business_openapi": {
+    "exact_equal": true,
+    "paths": 60
+  },
+  "ai_openapi": {
+    "exact_equal": true,
+    "paths": 6
+  },
+  "frontend": {
+    "passed": 5,
+    "evidence_scope": "Observed Node test runner PASS in this session; no browser E2E"
+  },
+  "legacy_ai": {
+    "status": "BLOCKED",
+    "reason": "test_price_intent imports eager external clients; requests absent; dependency installation declined"
+  },
+  "source_sha256": {
+    "AI/api.py": "c0e256db0034a3dba7337788477c900b28c803eb3689af86eca5b0e7f7721b7c",
+    "AI/config/aliases_vi.json": "62e844d74439181f21f676cda89d86462bb185e94c7229945584b0cbcb70eb4c",
+    "AI/config/knowledge_graph_schema.json": "2cd1ccec634d47c44580571f58dd6eef6bd5f7c379c014c410b52d8afcaeb2d7",
+    "AI/evaluate_retrieval.py": "c124da9d1dbec71ba6b644accddfb3119de045d2c7c6957a4e2b0968a612d4bc",
+    "AI/lumiere/__init__.py": "bdf84339e928731715dd4c6392491dc592f0a68db0b77bdb550ad3b32f1225dc",
+    "AI/lumiere/adapters.py": "ae284e89ede6ca149c983b65dd8535299158cda00387eb4f2aeb2a55a8c97da7",
+    "AI/lumiere/bootstrap.py": "61ce0ffcd502b4f1b7c86c719aec66a1e6f0e46e0750aa4c5c64a99848af7145",
+    "AI/lumiere/catalog.py": "c7ff969127a9e2219c35d4f8421e3acbffeee127146d5e6c5f2ec0db515c2b92",
+    "AI/lumiere/configuration.py": "6372e325e9e5ba14b2199842d59cc4110a27b010392907eae6a68335f47973b8",
+    "AI/lumiere/domain.py": "f18cfe1ec479798b17f9baf5903a4a042749fc2bc0b18d5876c41f802a972329",
+    "AI/lumiere/evaluation.py": "4f3ff9f90f71648df765f5f27aa9f641f0a5c09d206e7ff4b5ac7c0e43a912e3",
+    "AI/lumiere/health.py": "b298a048fd62f081649c4325b174113c5bb44f74a090012de6775f4fb52b0eef",
+    "AI/lumiere/ingestion.py": "a80d2644afc33e6e589e97ef99a010e5d7c06c955cb311931c1168eca8401b08",
+    "AI/lumiere/label_review.py": "d3c0f369049a2eedfcaf3fec3ffcaff88f26c16904f39e627d7d34c86e7418d9",
+    "AI/lumiere/linking.py": "9276c9b61bcf0675ffcf74a794fbb13851c987253d853e0e64d5682a9014a2cc",
+    "AI/lumiere/matching.py": "b301290886e774ceb669b7c585a10e38dbd52162035f1d05e9b3dd74f013e6af",
+    "AI/lumiere/metrics.py": "92e5469e66fad62866d97c7bcf8fa9d89bd89add7b191b4d70b2d47ab02385e1",
+    "AI/lumiere/ranking.py": "a34130484f32ce31a818d1106acc8d3b7f30b0e1eadef158735eefd2de9c955d",
+    "AI/lumiere/recommendation.py": "cf6930c293fa98bd6c9a839e448740d91adb90b8579e59f90e49d554e0c3eafe",
+    "AI/lumiere/retrieval.py": "e49911f8f4d4a292032b5d815f84d4e5eb9d8f965441ba51e662a8104df1f6b1",
+    "AI/lumiere/review_data.py": "ac2f72fb5736c8051c8627afa2c4bb50f66ba1d05a66f889e95bb1fc3aa194f9",
+    "AI/lumiere/text.py": "6a68cdce9447589741ee59efc995f4c516dafc0a0c947856aaff0ae82428bace",
+    "AI/lumiere/understanding.py": "253ecc0c0f5b0b731f9ef346d619e682d63087d49b203e8b0c8122bd17b937d6",
+    "AI/sync_catalog.py": "ee826e1bc86f1a65a0e3b5f3f266920e0bfe223153c08ba3bbd26472247e1923",
+    "AI/tests/test_api_contract.py": "5f6c6e5b83dc7eea35e81e5c618b64fe51d045855663f9f986e59ee2a9a65b63",
+    "AI/tests/test_csv_ingestion.py": "6590cf847265f8959c5100f660b5f3f7157d9f5a006e93eb9c143f9fc4bf8576",
+    "AI/tests/test_entity_linking.py": "c3172b8fd5ec4a60c8f71b9bb3976e6e2477500baaf40f29931a09eae66f6780",
+    "AI/tests/test_evaluation.py": "1038c10cc40a686ec78eff0999fee5d2c12073afee2af7c88749feb332e76c0f",
+    "AI/tests/test_modular_pipeline.py": "ecdf03297f39ca0e6a764f19f1ca066b94097666ce3e429c1f771ca5ee4e4389",
+    "AI/tests/test_price_intent.py": "5a2fdcf6521c33cfd7de21b93f1e6c3c4712fa56da35cdc94a7eec22245168f2",
+    "AI/tests/test_review_workflow.py": "4f161c0ffe1d0f5341f8dbfbf41561ad4533052d126d92feedcbbbd66ddf23c9",
+    "AI/tests/test_storage_integration.py": "fed46ff96c4d745d76e6a795a9423e8d208aa89526503e60eccfd70ea1b1beff"
+  }
+}

@@ -17,31 +17,8 @@ window.LUMIERE_API = {
   )).replace(/\/$/, ""),
 
   async request(path, options = {}) {
-    let response;
-    try {
-      response = await fetch(this.base + path, {
-        ...options,
-        credentials: "include",
-        headers: {
-          ...(options.body ? { "Content-Type": "application/json" } : {}),
-          ...(options.headers || {})
-        }
-      });
-    } catch (error) {
-      throw new Error("Không kết nối được Business API. Vui lòng thử lại sau.", { cause: error });
-    }
-
-    const body = response.status === 204 ? null : await response.json().catch(() => null);
-    if (!response.ok) {
-      const detail = body?.detail;
-      const message = typeof detail === "string"
-        ? detail
-        : Array.isArray(detail)
-          ? detail.map(item => item.msg).filter(Boolean).join("; ")
-          : `Yêu cầu thất bại (HTTP ${response.status})`;
-      throw new Error(message);
-    }
-    return body;
+    const { requestJson } = await import("./shared/http-client.mjs");
+    return requestJson(this.base, path, options);
   },
 
   register(data) {
@@ -52,6 +29,10 @@ window.LUMIERE_API = {
       method: "POST",
       body: JSON.stringify({ email, password })
     });
+  },
+  // Share only the initial homepage lookup; login/profile still use fresh me().
+  homeSession() {
+    return this._homeSession ||= this.me();
   },
   me() {
     return this.request("/auth/me");

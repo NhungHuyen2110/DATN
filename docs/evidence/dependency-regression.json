@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "generated_utc": "2026-11-19T07:05:12.980410+00:00",
+  "installations_performed": 0,
+  "model_downloads": 0,
+  "system_python_changes": false,
+  "production_database_connections": false,
+  "business": {
+    "passed": 640,
+    "subtests": 827,
+    "seconds": 100.28,
+    "database": "guarded SQLite memory"
+  },
+  "ai": {
+    "run": 52,
+    "passed": 51,
+    "skipped": 1,
+    "seconds": 6.231
+  },
+  "contracts": {
+    "business_paths": 60,
+    "ai_paths": 6,
+    "exact_equality": true
+  },
+  "frontend_configuration": "package.json and lock agree; dependencies unchanged",
+  "cached_model_smoke": {
+    "status": "PASS",
+    "model": "paraphrase-multilingual-MiniLM-L12-v2",
+    "dimension": 384,
+    "vectors": 2,
+    "allow_model_download": false,
+    "network_connections_forbidden": true,
+    "cache_unchanged": true,
+    "scope": "Existing-cache runtime smoke; not a semantic quality benchmark"
+  },
+  "source_sha256": {
+    "AI/lumiere/bootstrap.py": "c742d5cc610361347269a62bda3da522d271f8b518ef90a19733f9f7524dcd9a",
+    "backend/app/main.py": "bbc1bdf46b4c29283823b7681c31a8f870657365d26d480027530c3a1ee91fd5",
+    "requirements.txt": "4835fcad228e0fd454e966b7255001efe02bad47982f7ff3ba28f3a0b4ba32d3",
+    "requirements-dev.txt": "d4815f19cb68362479b174300a6eca29a74b7468d395d76a4fc7cb6a1dfaf612",
+    "backend/requirements-test.txt": "c0137f6b8350b640e474e032dad33e4972fa8ac63b072de95584c56633b2e3f8",
+    "AI/requirements-semantic.txt": "94477512bc975cbd1305c86e1f5a8f9f4c04115f6b9d3048b4eab929eca5d35e",
+    "scripts/audit_dependencies.py": "93383e90d5599dc49aa425db2a0eca877dbf113add56642c91686de96207b109"
+  }
+}

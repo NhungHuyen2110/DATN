@@ -21,7 +21,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import staff_or_admin
+from app.core.dependencies import staff_or_admin
 from app.services.ai_order_tools import get_order_statistics
 
 from pydantic import BaseModel, Field

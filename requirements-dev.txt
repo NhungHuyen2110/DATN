@@ -1,0 +1,5 @@
+# Reuse the existing .venv; audit before installing anything.
+-r backend/requirements-test.txt
+-r AI/requirements-runtime.txt
+# Used by the offline dependency audit CLI.
+packaging==26.3

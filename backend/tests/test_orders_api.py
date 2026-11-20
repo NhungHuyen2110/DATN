@@ -437,6 +437,41 @@ class OrderTests(cart_tests.CartTests):
         self.assertIn("FROM products", locks[1])
 
 
+def test_large_checkout_and_coupon_preview_keep_exact_total():
+    """Use exact Decimal inputs: SQLite Numeric cannot preserve these magnitudes."""
+    from decimal import Decimal, localcontext
+    from types import SimpleNamespace
+    from unittest.mock import Mock
+    from app.services import orders, coupons
+
+    products = {i: SimpleNamespace(id=i, sku=f"PRECISION{i}", name="Precision",
+                                  sale_price=Decimal("9999999999999999.99"), stock=2147483647)
+                for i in range(1, 6)}
+    items = [SimpleNamespace(product_id=i, quantity=2147483647) for i in products]
+    with localcontext() as context:
+        context.prec = 50
+        expected = Decimal("9999999999999999.99") * 2147483647 * 5
+    request = SimpleNamespace(recipient_name="Precision", phone="0901234567", address="Test address",
+                              payment_method="cod", coupon_code=None)
+    for module in (orders, coupons):
+        for product in products.values():
+            product.stock = 2147483647
+        db = Mock()
+        db.scalar.return_value = SimpleNamespace(id=1)
+        db.scalars.return_value.all.return_value = items
+        with patch.object(module, "lock_user"), patch.object(module, "lock_products", return_value=products), \
+                patch("app.services.shipping.calculate_shipping", return_value=Decimal("0.00")):
+            if module is orders:
+                with patch.object(orders, "serialize_order", side_effect=lambda db, order: {"total_vnd": order.total_vnd}):
+                    result = orders.checkout(db, 1, request)
+            else:
+                with patch.object(coupons, "evaluate", return_value=(None, None, "not_found")):
+                    result = coupons.validate_cart(db, 1, "UNKNOWN")
+        assert result["total_vnd"] == expected
+        db.commit.assert_called_once()
+        db.rollback.assert_not_called()
+
+
 if __name__ == "__main__":
     original_connect = sa.engine.Engine.connect
 

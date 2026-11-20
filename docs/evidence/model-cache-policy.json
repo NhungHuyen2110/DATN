@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "dimension": 384,
+  "vectors": 2,
+  "allow_model_download": false,
+  "network_connections_forbidden": true,
+  "cache_unchanged": true,
+  "scope": "Existing-cache runtime smoke; not a semantic quality benchmark"
+}

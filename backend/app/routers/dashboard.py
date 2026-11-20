@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import admin
+from app.core.dependencies import admin
 from app.schemas.dashboard import DashboardResponse, RevenueResponse
 from app.services import dashboard as service
 

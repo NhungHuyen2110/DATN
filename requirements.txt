@@ -1,0 +1,3 @@
+# Combined business + modular AI runtime. No model weights or legacy CrewAI stack.
+-r backend/requirements.txt
+-r AI/requirements-runtime.txt

@@ -1,0 +1,51 @@
+{
+  "version": "2026-11-19.1",
+  "semantic_threshold": 0.62,
+  "ambiguity_margin": 0.07,
+  "entities": {
+    "category": {
+      "nhan": {"name": "Nhẫn", "aliases": ["nhẫn", "nhan", "ring"]},
+      "bong tai": {"name": "Bông tai", "aliases": ["bông tai", "hoa tai", "earring"]},
+      "vong tay": {"name": "Vòng tay", "aliases": ["vòng tay", "lắc tay", "bracelet"]},
+      "day chuyen": {"name": "Dây chuyền", "aliases": ["dây chuyền", "necklace"]},
+      "charm": {"name": "Charm", "aliases": ["charm"]}
+    },
+    "material": {
+      "bac": {"name": "Bạc", "aliases": ["bạc", "silver"]},
+      "vang": {"name": "Vàng", "aliases": ["vàng", "gold"]},
+      "bach kim": {"name": "Bạch kim", "aliases": ["bạch kim", "platinum"]},
+      "vang trang": {"name": "Vàng trắng", "aliases": ["vàng trắng", "white gold"]},
+      "vang hong": {"name": "Vàng hồng", "aliases": ["vàng hồng", "rose gold"]},
+      "vang trang 18k": {"name": "Vàng trắng 18K", "aliases": ["vàng trắng 18k", "white gold 18k"]},
+      "vang trang 14k": {"name": "Vàng trắng 14K", "aliases": ["vàng trắng 14k"]},
+      "vang 18k": {"name": "Vàng 18K", "aliases": ["vàng 18k", "18k gold"]},
+      "vang 24k": {"name": "Vàng 24K", "aliases": ["vàng 24k", "24k gold"]},
+      "vang 14k": {"name": "Vàng 14K", "aliases": ["vàng 14k"]},
+      "vang 10k": {"name": "Vàng 10K", "aliases": ["vàng 10k"]}
+    },
+    "gemstone": {
+      "diamond": {"name": "Diamond", "aliases": ["kim cương", "diamond"]},
+      "ruby": {"name": "Ruby", "aliases": ["ruby", "hồng ngọc"]},
+      "sapphire": {"name": "Sapphire", "aliases": ["sapphire", "lam ngọc"]},
+      "emerald": {"name": "Emerald", "aliases": ["emerald", "ngọc lục bảo"]},
+      "moissanite": {"name": "Moissanite", "aliases": ["moissanite"]},
+      "cz": {"name": "CZ", "aliases": ["cz", "cubic zirconia"]}
+    },
+    "audience": {
+      "female": {"name": "Phái nữ", "aliases": ["phái nữ", "nữ giới", "phụ nữ", "con gái", "đàn bà", "dành cho nữ", "nàng", "quý cô"], "description": "Trang sức dành cho nữ, phụ nữ, phái nữ, người nhận là nữ. Không khẳng định độ tuổi."},
+      "male": {"name": "Phái nam", "aliases": ["phái nam", "nam giới", "đàn ông", "dành cho nam", "quý ông"], "description": "Trang sức dành cho nam, nam giới, đàn ông."},
+      "female_child": {"name": "Bé gái", "aliases": ["bé gái", "con gái nhỏ"], "description": "Trang sức dành cho bé gái, nữ giới là trẻ em; cần bằng chứng phù hợp độ tuổi."},
+      "child": {"name": "Trẻ em", "aliases": ["trẻ em", "em bé", "trẻ nhỏ"], "description": "Trang sức trẻ em; cần thông tin độ tuổi và an toàn."}
+    },
+    "style": {
+      "minimalist": {"name": "Tối giản", "aliases": ["tối giản", "minimalist", "minimal"], "description": "Phong cách tối giản, thiết kế đơn giản, ít chi tiết, đường nét gọn gàng."},
+      "elegant": {"name": "Thanh lịch", "aliases": ["thanh lịch", "elegant"], "description": "Phong cách thanh lịch, trang nhã, tinh tế và lịch sự."},
+      "vintage": {"name": "Cổ điển", "aliases": ["cổ điển", "vintage"], "description": "Phong cách cổ điển, hoài cổ, vintage."}
+    },
+    "occasion": {
+      "wedding": {"name": "Đám cưới", "aliases": ["đám cưới", "lễ cưới", "kết hôn"], "description": "Trang sức cho đám cưới, lễ cưới, kết hôn."},
+      "birthday": {"name": "Sinh nhật", "aliases": ["sinh nhật", "birthday"], "description": "Trang sức làm quà sinh nhật."},
+      "office": {"name": "Công sở", "aliases": ["công sở", "đi làm", "văn phòng"], "description": "Trang sức để đi làm tại văn phòng, công sở."}
+    }
+  }
+}

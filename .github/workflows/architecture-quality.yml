@@ -1,0 +1,43 @@
+name: Architectural regression
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Business regression without external DB access
+        run: python scripts/run_business_checks.py --sqlite-bootstrap --pytest --openapi docs/baseline/business-openapi-current.json
+      - name: Check business contract
+        run: python -c "import json,pathlib; p=pathlib.Path('docs/baseline'); assert json.loads((p/'business-openapi.json').read_text()) == json.loads((p/'business-openapi-current.json').read_text())"
+      - name: AI contracts, core rules and local Qdrant adapter
+        run: |
+          python -m unittest discover -s AI/tests -p test_modular_pipeline.py -v
+          python -m unittest discover -s AI/tests -p test_api_contract.py -v
+          python -m unittest discover -s AI/tests -p test_model_policy.py -v
+          python -m unittest discover -s AI/tests -p test_evaluation.py -v
+          python -m unittest discover -s AI/tests -p test_csv_ingestion.py -v
+          python -m unittest discover -s AI/tests -p test_entity_linking.py -v
+          python -m unittest discover -s AI/tests -p test_review_workflow.py -v
+          python -m unittest discover -s AI/tests -p test_storage_integration.py -v
+      - name: Frontend syntax and transport behavior
+        run: |
+          find frontend/assets/js -type f \( -name '*.js' -o -name '*.mjs' \) -exec node --check {} \;
+          node --test frontend/tests/unit/http-client.test.mjs
+      - name: Compile maintained Python
+        run: python -m compileall -q backend/app AI/lumiere AI/api.py AI/sync_catalog.py scripts
+      - name: Validate isolated Compose configuration
+        env:
+          POSTGRES_PASSWORD: ci-placeholder
+          NEO4J_PASSWORD: ci-placeholder
+          GRAFANA_PASSWORD: ci-placeholder
+          AI_DATABASE_URL: postgresql://ci:placeholder@postgres:5432/lumiere_db
+        run: docker compose -f compose.rebuild.yaml config --quiet

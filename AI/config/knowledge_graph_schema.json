@@ -1,0 +1,18 @@
+{
+  "version": "2026-11-19.1",
+  "product_key": "product_id",
+  "taxonomy": [
+    {"label": "Category", "key": "category_id", "relationship": "BELONGS_TO", "source": "CategoryID/CategoryName"},
+    {"label": "Brand", "key": "brand_id", "relationship": "HAS_BRAND", "source": "BrandID/BrandName"},
+    {"label": "Material", "key": "material_id", "relationship": "MADE_OF", "source": "MaterialID/MaterialName"},
+    {"label": "Gemstone", "key": "gemstone_id", "relationship": "HAS_GEMSTONE", "source": "GemstoneID/GemstoneName"},
+    {"label": "Collection", "key": "collection_id", "relationship": "IN_COLLECTION", "source": "CollectionID/CollectionName"}
+  ],
+  "evidence_facets": [
+    {"kind": "audience", "label": "Audience", "key": "canonical_id", "relationship": "SUITABLE_FOR"},
+    {"kind": "style", "label": "Style", "key": "canonical_id", "relationship": "HAS_STYLE"},
+    {"kind": "occasion", "label": "Occasion", "key": "canonical_id", "relationship": "FOR_OCCASION"}
+  ],
+  "fact_policy": "Optional facets require a structured source column plus nonempty evidence. No inference from images, names or collection labels.",
+  "legacy_relationships_retained": ["HAS_BRAND", "IN_COLLECTION"]
+}

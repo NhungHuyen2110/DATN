@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.models import User
-from app.routers.orders import OrderID, Page, PageSize, customer
+from app.core.dependencies import customer
+from app.core.api_parameters import OrderID, Page, PageSize
 from app.schemas.customer_content import (
     DeleteMessageResponse,
     ReviewCreate, ReviewPage, ReviewResponse, ReviewUpdate, WishlistAdd, WishlistPage, WishlistResponse,

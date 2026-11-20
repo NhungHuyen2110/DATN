@@ -7,7 +7,8 @@ from app.core.database import get_db
 from app.models import User
 from app.routers.admin_customers import Search
 from app.routers.admin_staff import SafeValidationRoute
-from app.routers.orders import OrderID, Page, PageSize, admin, customer
+from app.core.dependencies import admin, customer
+from app.core.api_parameters import OrderID, Page, PageSize
 from app.schemas.coupon import (CouponCreate, CouponPage, CouponPatch, CouponResponse,
                                CouponStatus, CouponValidateRequest, CouponValidation)
 from app.services import coupons as service

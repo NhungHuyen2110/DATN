@@ -1,0 +1,4 @@
+-r requirements-runtime.txt
+sentence-transformers==6.3.0
+# The installed 2.15.0+cpu satisfies this pin; do not replace it with a GPU wheel.
+torch==2.15.0

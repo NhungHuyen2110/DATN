@@ -53,7 +53,7 @@ test.describe("Customer account and COD", () => {
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
     await login(page, { email, password });
     await expect(page).toHaveURL(/\/pages\/account\.html$/);
-    await page.getByRole("button", { name: "ĐĂNG XUẤT" }).click();
+    await page.locator("#nav-logout").click();
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
   });
 
@@ -68,7 +68,9 @@ test.describe("Customer account and COD", () => {
     const firstCard = page.locator("#catalog-results .catalog-card")
       .filter({ has: page.locator("[data-add]:not([disabled])") }).first();
     await firstCard.locator("[data-favorite]").click();
+    await expect(page.locator("#site-toast")).toContainText(/yêu thích/);
     await firstCard.locator("[data-add]").click();
+    await expect(page.locator("#site-toast")).toContainText(/giỏ hàng/);
 
     await page.goto("/pages/cart.html");
     await expect(page.locator("#page-content")).toContainText("Giỏ hàng");
@@ -77,7 +79,7 @@ test.describe("Customer account and COD", () => {
     await page.getByLabel("Số điện thoại").fill("0901234567");
     await page.getByLabel("Địa chỉ nhận hàng").fill("12 Đường Kiểm Thử");
     await page.getByLabel("Tỉnh / thành phố").fill("TP. Hồ Chí Minh");
-    await page.getByRole("button", { name: "ĐẶT HÀNG COD" }).click();
+    await page.getByRole("button", { name: "ĐẶT HÀNG", exact: true }).click();
     await expect(page.locator("#page-content")).toContainText("Đặt hàng thành công");
 
     await page.goto("/pages/orders.html");
@@ -88,7 +90,7 @@ test.describe("Customer account and COD", () => {
     await expect(page).toHaveURL(/\/pages\/products\.html$/);
 
     await page.goto("/pages/account.html");
-    await page.getByRole("button", { name: "ĐĂNG XUẤT" }).click();
+    await page.locator("#nav-logout").click();
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
   });
 });
@@ -111,7 +113,7 @@ for (const role of ["admin", "staff"]) {
       for (const name of pages) {
         await page.goto(`/pages/${role === "admin" ? "admin/" : "staff/"}${name}.html`);
         await expect(page.locator(".backend-console")).toBeVisible();
-        await expect(page.locator(".form-alert")).toHaveCount(0);
+        await expect(page.locator(".form-alert:visible")).toHaveCount(0);
       }
 
       const denied = role === "admin" ? "/pages/staff/orders.html" : "/pages/admin/dashboard.html";

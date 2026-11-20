@@ -21,3 +21,48 @@ frontend/test-results/
 jewelry_dataset_download/extracted/
 .env
 **/.env
+*-backend.log
+docs/baseline/*-current.json
+
+# Local environments and dependency directories (at any depth)
+env/
+ENV/
+node_modules/
+
+# Generated caches, build output and test artifacts
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+dist/
+build/
+*.egg-info/
+playwright-report/
+blob-report/
+
+# Runtime logs and local database files; retain these on the workstation
+*.log
+*.log.*
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+
+# Private credentials and keys
+.aws/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

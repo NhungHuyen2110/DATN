@@ -5,7 +5,7 @@ from decimal import Decimal, localcontext
 from uuid import uuid4
 
 from fastapi import HTTPException
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import load_only, selectinload
 
@@ -99,7 +99,9 @@ def checkout(db, user_id, request):
             coupon, (discount, total) = redeem(db, request.coupon_code, user_id, subtotal)
         from app.services.shipping import calculate_shipping
         shipping_cost = calculate_shipping(subtotal)
-        total += shipping_cost
+        with localcontext() as context:
+            context.prec = 50
+            total += shipping_cost
         order = Order(
             code="LM" + uuid4().hex.upper(), user_id=user_id,
             recipient_name=request.recipient_name, phone=request.phone, address=request.address,
@@ -157,3 +159,22 @@ def change_status(db, admin_id, order_id, new_status, *, allow_staff=False):
 
 def order_query():
     return select(Order).options(selectinload(Order.items))
+
+
+def list_orders(db, page, page_size, user_id=None):
+    filters = [] if user_id is None else [Order.user_id == user_id]
+    total = db.scalar(select(func.count()).select_from(Order).where(*filters))
+    items = db.scalars(select(Order).where(*filters).order_by(Order.id.desc()).offset(
+        (page - 1) * page_size
+    ).limit(page_size)).all()
+    return {"items": items, "total": total, "page": page, "page_size": page_size}
+
+
+def get_order(db, order_id, user_id=None):
+    query = order_query().where(Order.id == order_id)
+    if user_id is not None:
+        query = query.where(Order.user_id == user_id)
+    order = db.scalar(query)
+    if order is None:
+        raise HTTPException(status_code=404, detail="Không tìm thấy đơn hàng")
+    return order

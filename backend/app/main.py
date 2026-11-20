@@ -29,6 +29,8 @@ app = FastAPI(
     description="Backend nghiệp vụ website bán trang sức",
     version="1.0.0",
 )
+from app.core.observability import install_observability
+install_observability(app)
 app.include_router(auth_router)
 app.include_router(catalog_router)
 app.include_router(taxonomy_router)
@@ -61,6 +63,7 @@ app.add_middleware(
 
 
 @app.get("/health")
+@app.get("/health/ready", include_in_schema=False)
 def health():
     try:
         database_ok = check_database()
@@ -104,10 +107,16 @@ def health():
         "database": "connected"
     }
 
+@app.get("/health/live", include_in_schema=False)
+def live():
+    return {"status": "alive"}
+
+
 # Serve the frontend after all API routes.
 FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
-app.mount(
-    "/",
-    StaticFiles(directory=str(FRONTEND_DIR), html=True),
-    name="frontend",
-)
+if os.getenv("SERVE_FRONTEND", "true").lower() == "true":
+    app.mount(
+        "/",
+        StaticFiles(directory=str(FRONTEND_DIR), html=True),
+        name="frontend",
+    )

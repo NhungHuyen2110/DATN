@@ -1,6 +1,13 @@
 
 from unittest.mock import patch
 
+
+def test_ollama_socket_wait_is_bounded():
+    with patch("app.services.ai_staff_llm.urllib.request.urlopen", side_effect=TimeoutError()) as call:
+        result = understand_staff_question_with_llm("Có bao nhiêu đơn chờ xử lý?")
+    assert result["field"] == "pending_orders"
+    assert 0 < call.call_args.kwargs["timeout"] <= 5
+
 from app.services.ai_staff_llm import (
     understand_staff_question_with_llm,
 )

@@ -1,0 +1,116 @@
+.venv/Scripts/python.exe : test_catalog_failure_returns_unavailable_without_disclosing_details
+(test_api_contract.ApiContractTests.test_catalog_failure_returns_unavailable_without_disclosing_details) ... ok
+At line:2 char:1
++ .venv/Scripts/python.exe scripts/run_ai_checks.py > docs/evidence/ai- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (test_catalog_fa...details) ... ok:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+test_chat_input_bounds_remain_compatible (test_api_contract.ApiContractTests.test_chat_input_bounds_remain_compatible)
+... ok
+test_composed_pipeline_degrades_without_leaking_source_errors
+(test_api_contract.ApiContractTests.test_composed_pipeline_degrades_without_leaking_source_errors) ...
+retrieval_source_unavailable source=dense
+retrieval_source_unavailable source=graph
+ok
+test_legacy_chat_function_remains_default
+(test_api_contract.ApiContractTests.test_legacy_chat_function_remains_default) ... ok
+test_liveness_does_not_load_the_model (test_api_contract.ApiContractTests.test_liveness_does_not_load_the_model) ... ok
+test_modular_chat_real_catalog_lexical_mode
+(test_api_contract.ApiContractTests.test_modular_chat_real_catalog_lexical_mode) ... ok
+test_modular_query_top_k_and_explicit_body_precedence
+(test_api_contract.ApiContractTests.test_modular_query_top_k_and_explicit_body_precedence) ... ok
+test_openapi_matches_checkpoint_schema (test_api_contract.ApiContractTests.test_openapi_matches_checkpoint_schema) ...
+ok
+test_public_catalog_contract_and_missing_product_legacy_200
+(test_api_contract.ApiContractTests.test_public_catalog_contract_and_missing_product_legacy_200) ... ok
+test_readiness_distinguishes_dependencies_and_redacts_failures
+(test_api_contract.ApiContractTests.test_readiness_distinguishes_dependencies_and_redacts_failures) ... ok
+test_v2_validation_and_response_shape (test_api_contract.ApiContractTests.test_v2_validation_and_response_shape) ... ok
+test_aliases_accents_and_specific_material
+(test_modular_pipeline.ModularPipelineTests.test_aliases_accents_and_specific_material) ... ok
+test_exact_top_k_after_hard_filters_and_duplicate_source_ids
+(test_modular_pipeline.ModularPipelineTests.test_exact_top_k_after_hard_filters_and_duplicate_source_ids) ... ok
+test_fusion_deduplicates_each_source (test_modular_pipeline.ModularPipelineTests.test_fusion_deduplicates_each_source)
+... ok
+test_grounded_price_does_not_round_fractional_or_large_decimal_facts
+(test_modular_pipeline.ModularPipelineTests.test_grounded_price_does_not_round_fractional_or_large_decimal_facts) ...
+ok
+test_invalid_values_and_conflicting_taxonomy_rejected
+(test_modular_pipeline.ModularPipelineTests.test_invalid_values_and_conflicting_taxonomy_rejected) ... ok
+test_material_and_gemstone_never_fallback_to_unrelated_stock
+(test_modular_pipeline.ModularPipelineTests.test_material_and_gemstone_never_fallback_to_unrelated_stock) ... ok
+test_price_ranges_and_shared_units (test_modular_pipeline.ModularPipelineTests.test_price_ranges_and_shared_units) ...
+ok
+test_source_catalog_validates_all_500_records_and_stable_ids
+(test_modular_pipeline.ModularPipelineTests.test_source_catalog_validates_all_500_records_and_stable_ids) ... ok
+test_source_faults_cannot_relax_filters_or_invent_products
+(test_modular_pipeline.ModularPipelineTests.test_source_faults_cannot_relax_filters_or_invent_products) ...
+retrieval_source_unavailable source=graph
+ok
+test_ties_stable_and_grounded_answer_ignores_injected_name_in_query
+(test_modular_pipeline.ModularPipelineTests.test_ties_stable_and_grounded_answer_ignores_injected_name_in_query) ... ok
+test_unknown_query_does_not_return_arbitrary_catalog_rows
+(test_modular_pipeline.ModularPipelineTests.test_unknown_query_does_not_return_arbitrary_catalog_rows) ... ok
+test_validation_before_sync_and_replay_uses_same_identities
+(test_modular_pipeline.ModularPipelineTests.test_validation_before_sync_and_replay_uses_same_identities) ... ok
+test_direct_sku_lookup_is_not_a_recommendation_seed
+(test_csv_ingestion.CsvIngestionTests.test_direct_sku_lookup_is_not_a_recommendation_seed) ... ok
+test_duplicate_headers_and_missing_evidence_are_rejected
+(test_csv_ingestion.CsvIngestionTests.test_duplicate_headers_and_missing_evidence_are_rejected) ... ok
+test_facts_lineage_and_optional_metadata_are_not_guessed
+(test_csv_ingestion.CsvIngestionTests.test_facts_lineage_and_optional_metadata_are_not_guessed) ... ok
+test_filters_published_age_and_no_unrelated_backfill
+(test_csv_ingestion.CsvIngestionTests.test_filters_published_age_and_no_unrelated_backfill) ... ok
+test_live_revalidation_excludes_newly_hidden_or_expensive_stock
+(test_csv_ingestion.CsvIngestionTests.test_live_revalidation_excludes_newly_hidden_or_expensive_stock) ... ok
+test_quoted_decimal_bom_and_invalid_rows_have_reports
+(test_csv_ingestion.CsvIngestionTests.test_quoted_decimal_bom_and_invalid_rows_have_reports) ... ok
+test_seed_is_revalidated_after_retrieval
+(test_csv_ingestion.CsvIngestionTests.test_seed_is_revalidated_after_retrieval) ... ok
+test_stale_graph_paths_cannot_be_claimed_as_verified
+(test_csv_ingestion.CsvIngestionTests.test_stale_graph_paths_cannot_be_claimed_as_verified) ... ok
+test_child_context_does_not_link_to_generic_adult_products
+(test_entity_linking.EntityLinkingTests.test_child_context_does_not_link_to_generic_adult_products) ... ok
+test_female_paraphrases_link_without_assuming_adult_age
+(test_entity_linking.EntityLinkingTests.test_female_paraphrases_link_without_assuming_adult_age) ... ok
+test_negation_and_homograph_recipient (test_entity_linking.EntityLinkingTests.test_negation_and_homograph_recipient)
+... ok
+test_semantic_linking_uses_cosine_threshold_and_margin
+(test_entity_linking.EntityLinkingTests.test_semantic_linking_uses_cosine_threshold_and_margin) ... ok
+test_top_k_seed_and_nfc (test_entity_linking.EntityLinkingTests.test_top_k_seed_and_nfc) ... ok
+test_unknown_mandatory_style_requires_clarification
+(test_entity_linking.EntityLinkingTests.test_unknown_mandatory_style_requires_clarification) ... ok
+test_duplicate_candidates_cannot_inflate_metrics
+(test_evaluation.EvaluationTests.test_duplicate_candidates_cannot_inflate_metrics) ... ok
+test_known_ranking_metrics (test_evaluation.EvaluationTests.test_known_ranking_metrics) ... ok
+test_short_result_is_penalized_and_no_relevance_is_zero
+(test_evaluation.EvaluationTests.test_short_result_is_penalized_and_no_relevance_is_zero) ... ok
+test_all_generated_candidates_are_pending_and_not_scored
+(test_review_workflow.ReviewWorkflowTests.test_all_generated_candidates_are_pending_and_not_scored) ... ok
+test_approval_without_reviewer_or_answers_is_rejected
+(test_review_workflow.ReviewWorkflowTests.test_approval_without_reviewer_or_answers_is_rejected) ... ok
+test_entity_accuracy_requires_exact_canonical_set
+(test_review_workflow.ReviewWorkflowTests.test_entity_accuracy_requires_exact_canonical_set) ... ok
+test_explicit_human_annotation_provenance_and_stale_source_guard
+(test_review_workflow.ReviewWorkflowTests.test_explicit_human_annotation_provenance_and_stale_source_guard) ... ok
+test_pending_labels_cannot_be_exported
+(test_review_workflow.ReviewWorkflowTests.test_pending_labels_cannot_be_exported) ... ok
+test_reviewed_test_fixture_runs_real_lexical_evaluator
+(test_review_workflow.ReviewWorkflowTests.test_reviewed_test_fixture_runs_real_lexical_evaluator) ... ok
+test_import_replay_and_relationship_replacement
+(test_storage_integration.Neo4jIntegrationTests.test_import_replay_and_relationship_replacement) ... skipped
+'Dedicated empty Neo4j test instance is not enabled'
+test_incompatible_cosine_collection_is_preserved
+(test_storage_integration.StorageAdapterTests.test_incompatible_cosine_collection_is_preserved) ... ok
+test_qdrant_real_local_storage_upsert_and_filter
+(test_storage_integration.StorageAdapterTests.test_qdrant_real_local_storage_upsert_and_filter) ... ok
+test_stale_representation_cannot_be_reported_as_current_dense_hit
+(test_storage_integration.StorageAdapterTests.test_stale_representation_cannot_be_reported_as_current_dense_hit) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 2.751s
+
+OK (skipped=1)
+{"status": "invalid_input", "products": 0, "error_type": null}
+{"status": "PENDING_REVIEW", "total": 136, "approved": 0, "pending_review": 136, "rejected": 0}

@@ -1,0 +1,2235 @@
+{
+  "generated_utc": "2026-11-19T07:02:51.088635+00:00",
+  "policy": "offline inventory; no installs, model loads, database calls or Docker start",
+  "python": {
+    "version": "3.11.9",
+    "executable": ".venv/Scripts/python.exe",
+    "is_venv": true,
+    "system_site_packages": false
+  },
+  "installed_distributions": [
+    {
+      "name": "alembic",
+      "version": "1.20.0"
+    },
+    {
+      "name": "annotated-doc",
+      "version": "0.0.6"
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "anyio",
+      "version": "4.16.0"
+    },
+    {
+      "name": "argon2-cffi",
+      "version": "25.1.0"
+    },
+    {
+      "name": "argon2-cffi-bindings",
+      "version": "26.2.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1"
+    },
+    {
+      "name": "click",
+      "version": "8.5.1"
+    },
+    {
+      "name": "cloudpickle",
+      "version": "3.1.3"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6"
+    },
+    {
+      "name": "dnspython",
+      "version": "2.9.2"
+    },
+    {
+      "name": "email-validator",
+      "version": "2.4.0"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.143.0"
+    },
+    {
+      "name": "filelock",
+      "version": "4.2.12"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0"
+    },
+    {
+      "name": "grpcio",
+      "version": "1.85.3"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0"
+    },
+    {
+      "name": "h2",
+      "version": "4.4.1"
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.8.0"
+    },
+    {
+      "name": "hpack",
+      "version": "4.2.0"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9"
+    },
+    {
+      "name": "httpcore2",
+      "version": "2.16.0"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1"
+    },
+    {
+      "name": "httpx2",
+      "version": "2.16.0"
+    },
+    {
+      "name": "huggingface_hub",
+      "version": "2.4.0"
+    },
+    {
+      "name": "hyperframe",
+      "version": "6.1.0"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6"
+    },
+    {
+      "name": "joblib",
+      "version": "1.6.0"
+    },
+    {
+      "name": "Mako",
+      "version": "1.4.3"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.3.0"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    },
+    {
+      "name": "narwhals",
+      "version": "2.29.0"
+    },
+    {
+      "name": "neo4j",
+      "version": "6.4.1"
+    },
+    {
+      "name": "networkx",
+      "version": "3.6.1"
+    },
+    {
+      "name": "numpy",
+      "version": "2.4.6"
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.2"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pandas",
+      "version": "3.1.1"
+    },
+    {
+      "name": "pip",
+      "version": "24.0"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "portalocker",
+      "version": "4.4.2"
+    },
+    {
+      "name": "protobuf",
+      "version": "7.36.2"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6"
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.6"
+    },
+    {
+      "name": "pwdlib",
+      "version": "0.3.1"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.12"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.12.5"
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.41.5"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pytest",
+      "version": "9.2.0"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.3"
+    },
+    {
+      "name": "pytz",
+      "version": "2026.6"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "qdrant-client",
+      "version": "1.20.0"
+    },
+    {
+      "name": "regex",
+      "version": "2026.11.19"
+    },
+    {
+      "name": "rich",
+      "version": "15.0.0"
+    },
+    {
+      "name": "safetensors",
+      "version": "0.8.0"
+    },
+    {
+      "name": "scikit-learn",
+      "version": "1.9.1"
+    },
+    {
+      "name": "scipy",
+      "version": "1.17.1"
+    },
+    {
+      "name": "sentence-transformers",
+      "version": "6.3.0"
+    },
+    {
+      "name": "setuptools",
+      "version": "84.2.1"
+    },
+    {
+      "name": "shellingham",
+      "version": "1.5.4"
+    },
+    {
+      "name": "SQLAlchemy",
+      "version": "2.1.4"
+    },
+    {
+      "name": "starlette",
+      "version": "1.10.0"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "threadpoolctl",
+      "version": "3.8.0"
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.23.3"
+    },
+    {
+      "name": "torch",
+      "version": "2.15.0+cpu"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1"
+    },
+    {
+      "name": "transformers",
+      "version": "5.23.0"
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.5"
+    },
+    {
+      "name": "typer",
+      "version": "0.29.2"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.5"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.53.0"
+    }
+  ],
+  "requirements": {
+    "requirements.txt": [
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "SQLAlchemy==2.1.4",
+        "installed": "2.1.4",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "alembic==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pwdlib==0.3.1",
+        "installed": "0.3.1",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "argon2-cffi==25.1.0",
+        "installed": "25.1.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "email-validator<3,>=2.2",
+        "installed": "2.4.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "neo4j==6.4.1",
+        "installed": "6.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "qdrant-client==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pandas==3.1.1",
+        "installed": "3.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      }
+    ],
+    "requirements-dev.txt": [
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "SQLAlchemy==2.1.4",
+        "installed": "2.1.4",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "alembic==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pwdlib==0.3.1",
+        "installed": "0.3.1",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "argon2-cffi==25.1.0",
+        "installed": "25.1.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "email-validator<3,>=2.2",
+        "installed": "2.4.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements-test.txt",
+        "requirement": "pytest<10,>=8",
+        "installed": "9.2.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements-test.txt",
+        "requirement": "httpx==0.28.1",
+        "installed": "0.28.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "neo4j==6.4.1",
+        "installed": "6.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "qdrant-client==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pandas==3.1.1",
+        "installed": "3.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "requirements-dev.txt",
+        "requirement": "packaging==26.3",
+        "installed": "26.3",
+        "status": "compatible"
+      }
+    ],
+    "backend/requirements-migrations.txt": [
+      {
+        "file": "backend/requirements-migrations.txt",
+        "requirement": "alembic<2,>=1.13.3",
+        "installed": "1.20.0",
+        "status": "compatible"
+      }
+    ],
+    "backend/requirements-test.txt": [
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "SQLAlchemy==2.1.4",
+        "installed": "2.1.4",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "alembic==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pwdlib==0.3.1",
+        "installed": "0.3.1",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "argon2-cffi==25.1.0",
+        "installed": "25.1.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "email-validator<3,>=2.2",
+        "installed": "2.4.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements-test.txt",
+        "requirement": "pytest<10,>=8",
+        "installed": "9.2.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements-test.txt",
+        "requirement": "httpx==0.28.1",
+        "installed": "0.28.1",
+        "status": "compatible"
+      }
+    ],
+    "backend/requirements.txt": [
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "SQLAlchemy==2.1.4",
+        "installed": "2.1.4",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "alembic==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "pwdlib==0.3.1",
+        "installed": "0.3.1",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "argon2-cffi==25.1.0",
+        "installed": "25.1.0",
+        "status": "compatible"
+      },
+      {
+        "file": "backend/requirements.txt",
+        "requirement": "email-validator<3,>=2.2",
+        "installed": "2.4.0",
+        "status": "compatible"
+      }
+    ],
+    "AI/requirements-runtime.txt": [
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "neo4j==6.4.1",
+        "installed": "6.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "qdrant-client==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pandas==3.1.1",
+        "installed": "3.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      }
+    ],
+    "AI/requirements-semantic.txt": [
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "fastapi==0.143.0",
+        "installed": "0.143.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "uvicorn==0.53.0",
+        "installed": "0.53.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "python-dotenv==1.2.3",
+        "installed": "1.2.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "neo4j==6.4.1",
+        "installed": "6.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "qdrant-client==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "pandas==3.1.1",
+        "installed": "3.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-runtime.txt",
+        "requirement": "psycopg[binary]==3.3.6",
+        "installed": "3.3.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-semantic.txt",
+        "requirement": "sentence-transformers==6.3.0",
+        "installed": "6.3.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements-semantic.txt",
+        "requirement": "torch==2.15.0",
+        "installed": "2.15.0+cpu",
+        "status": "compatible"
+      }
+    ],
+    "AI/requirements.txt": [
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "aiofiles==24.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "aiohappyeyeballs==2.7.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "aiohttp==3.14.5",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "aiosignal==1.4.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "aiosqlite==0.21.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "annotated-doc==0.0.6",
+        "installed": "0.0.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "annotated-types==0.8.0",
+        "installed": "0.8.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "anyio==4.16.0",
+        "installed": "4.16.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "appdirs==1.4.4",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "attrs==26.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "bcrypt==5.0.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "build==1.6.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "cel-python==0.5.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "certifi==2026.10.23",
+        "installed": "2026.10.23",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "cffi==2.1.1",
+        "installed": "2.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "charset-normalizer==3.5.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "chromadb==1.5.9",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "click==8.5.1",
+        "installed": "8.5.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "cloudpickle==3.1.2",
+        "installed": "3.1.3",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "colorama==0.4.6",
+        "installed": "0.4.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "crewai==1.15.41",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "crewai-cli==1.15.41",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "crewai-core==1.15.41",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "cryptography==50.0.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "deprecation==2.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "distro==1.9.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "docstring_parser==0.18.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "durationpy==0.11",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "et_xmlfile==2.0.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "fastapi==0.163.1",
+        "installed": "0.143.0",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "filelock==4.2.10",
+        "installed": "4.2.12",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "flatbuffers==25.12.19",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "frozenlist==1.8.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "fsspec==2026.9.0",
+        "installed": "2026.9.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "google-re2==1.1.20251105",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "googleapis-common-protos==1.76.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "grpcio==1.85.1",
+        "installed": "1.85.3",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "h11==0.16.0",
+        "installed": "0.16.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "h2==4.4.1",
+        "installed": "4.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "hf-xet==1.8.0",
+        "installed": "1.8.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "hpack==4.2.0",
+        "installed": "4.2.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httpcore==1.0.9",
+        "installed": "1.0.9",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httpcore2==2.16.0",
+        "installed": "2.16.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httptools==0.9.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httpx==0.28.1",
+        "installed": "0.28.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httpx-sse==0.4.3",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "httpx2==2.16.0",
+        "installed": "2.16.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "huggingface_hub==2.4.0",
+        "installed": "2.4.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "hyperframe==6.1.0",
+        "installed": "6.1.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "idna==3.20",
+        "installed": "3.20",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "importlib_resources==7.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "instructor==1.15.4",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "Jinja2==3.1.6",
+        "installed": "3.1.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "jiter==0.14.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "jmespath==1.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "joblib==1.6.0",
+        "installed": "1.6.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "json5==0.10.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "json_repair==0.60.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "jsonref==1.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "jsonschema==4.26.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "jsonschema-specifications==2025.9.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "kubernetes==36.0.3",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "lance-namespace==0.13.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "lance-namespace-urllib3-client==0.13.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "lancedb==0.41.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "lark==1.3.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "linkify-it-py==2.2.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "markdown-it-py==4.3.0",
+        "installed": "4.3.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "MarkupSafe==3.0.4",
+        "installed": "3.0.4",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "mcp==1.30.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "mdit-py-plugins==0.7.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "mdurl==0.1.2",
+        "installed": "0.1.2",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "mmh3==5.3.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "mpmath==1.3.0",
+        "installed": "1.3.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "multidict==7.2.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "narwhals==2.28.0",
+        "installed": "2.29.0",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "neo4j==6.4.1",
+        "installed": "6.4.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "networkx==3.6.1",
+        "installed": "3.6.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "numpy==2.4.6",
+        "installed": "2.4.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "oauthlib==4.0.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "onnxruntime==1.32.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "openai==2.54.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "openpyxl==3.1.5",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-api==1.45.2",
+        "installed": "1.45.2",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-exporter-http-transport==0.66b2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-exporter-otlp-common==0.66b2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-exporter-otlp-proto-common==1.45.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-exporter-otlp-proto-grpc==1.45.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-exporter-otlp-proto-http==1.45.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-proto==1.45.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-sdk==1.45.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "opentelemetry-semantic-conventions==0.66b2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "orjson==3.13.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "overrides==7.7.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "packaging==26.3",
+        "installed": "26.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pandas==3.1.1",
+        "installed": "3.1.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pdfminer.six==20260107",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pdfplumber==0.11.10",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pendulum==3.3.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pillow==13.0.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "platformdirs==4.14.5",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "portalocker==2.7.0",
+        "installed": "4.4.2",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "propcache==0.5.4",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "protobuf==7.36.2",
+        "installed": "7.36.2",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pyarrow==26.0.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pybase64==1.5.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pycparser==3.12",
+        "installed": "3.12",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pydantic==2.12.5",
+        "installed": "2.12.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pydantic-settings==2.16.3",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pydantic_core==2.41.5",
+        "installed": "2.41.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "Pygments==2.21.0",
+        "installed": "2.21.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "PyJWT==2.15.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pypdfium2==5.15.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "PyPika==0.51.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pyproject_hooks==1.3.3",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "python-dateutil==4.0.0",
+        "installed": "4.0.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "python-dotenv==1.2.4",
+        "installed": "1.2.3",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "python-multipart==0.0.33",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pytz==2026.6",
+        "installed": "2026.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "pywin32==312",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "PyYAML==6.0.3",
+        "installed": "6.0.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "qdrant-client==1.20.0",
+        "installed": "1.20.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "referencing==0.37.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "regex==2026.1.15",
+        "installed": "2026.11.19",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "requests==2.34.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "requests-oauthlib==2.0.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "rich==14.3.4",
+        "installed": "15.0.0",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "rpds-py==2026.9.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "safetensors==0.8.0",
+        "installed": "0.8.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "scikit-learn==1.9.1",
+        "installed": "1.9.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "scipy==1.17.1",
+        "installed": "1.17.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "sentence-transformers==6.3.0",
+        "installed": "6.3.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "shellingham==1.5.4",
+        "installed": "1.5.4",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "six==1.17.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "sniffio==1.3.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "sse-starlette==3.7.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "starlette==1.10.0",
+        "installed": "1.10.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "sympy==1.14.0",
+        "installed": "1.14.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tenacity==9.2.1",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "textual==8.2.8",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "threadpoolctl==3.8.0",
+        "installed": "3.8.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tokenizers==0.23.3",
+        "installed": "0.23.3",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tomli==2.0.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tomli_w==1.1.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "torch==2.15.0",
+        "installed": "2.15.0+cpu",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tqdm==4.70.1",
+        "installed": "4.70.1",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "transformers==5.23.0",
+        "installed": "5.23.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "truststore==0.10.5",
+        "installed": "0.10.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "typer==0.29.1",
+        "installed": "0.29.2",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "typing-inspection==0.4.5",
+        "installed": "0.4.5",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "typing_extensions==4.16.0",
+        "installed": "4.16.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "tzdata==2026.6",
+        "installed": "2026.6",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "urllib3==2.8.0",
+        "installed": "2.8.0",
+        "status": "compatible"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "uv==0.13.8",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "uvicorn==0.54.0",
+        "installed": "0.53.0",
+        "status": "version_mismatch"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "watchfiles==1.3.0",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "websocket-client==1.9.2",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "websockets==17.4",
+        "installed": null,
+        "status": "not_installed"
+      },
+      {
+        "file": "AI/requirements.txt",
+        "requirement": "yarl==1.25.1",
+        "installed": null,
+        "status": "not_installed"
+      }
+    ]
+  },
+  "source_imports": {
+    "backend_runtime": {
+      "scanned_files": 86,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "dotenv",
+          "distributions": [
+            "python-dotenv"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "fastapi",
+          "distributions": [
+            "fastapi"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pwdlib",
+          "distributions": [
+            "pwdlib"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pydantic",
+          "distributions": [
+            "pydantic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sqlalchemy",
+          "distributions": [
+            "SQLAlchemy"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "backend_tests": {
+      "scanned_files": 37,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "alembic",
+          "distributions": [
+            "alembic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "fastapi",
+          "distributions": [
+            "fastapi"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pytest",
+          "distributions": [
+            "pytest"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sqlalchemy",
+          "distributions": [
+            "SQLAlchemy"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "backend_tools": {
+      "scanned_files": 9,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "alembic",
+          "distributions": [
+            "alembic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pydantic",
+          "distributions": [
+            "pydantic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sqlalchemy",
+          "distributions": [
+            "SQLAlchemy"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "modular_ai": {
+      "scanned_files": 22,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "fastapi",
+          "distributions": [
+            "fastapi"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "neo4j",
+          "distributions": [
+            "neo4j"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "psycopg",
+          "distributions": [
+            "psycopg"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pydantic",
+          "distributions": [
+            "pydantic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "qdrant_client",
+          "distributions": [
+            "qdrant-client"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sentence_transformers",
+          "distributions": [
+            "sentence-transformers"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "ai_tests": {
+      "scanned_files": 9,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "fastapi",
+          "distributions": [
+            "fastapi"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "neo4j",
+          "distributions": [
+            "neo4j"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "qdrant_client",
+          "distributions": [
+            "qdrant-client"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "dataset_tools": {
+      "scanned_files": 23,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "PIL",
+          "distributions": [
+            "Pillow"
+          ],
+          "installed_distribution_found": false
+        },
+        {
+          "import": "faker",
+          "distributions": [
+            "Faker"
+          ],
+          "installed_distribution_found": false
+        },
+        {
+          "import": "huggingface_hub",
+          "distributions": [
+            "huggingface_hub"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pandas",
+          "distributions": [
+            "pandas"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "scripts": {
+      "scanned_files": 8,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "fastapi",
+          "distributions": [
+            "fastapi"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "neo4j",
+          "distributions": [
+            "neo4j"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "packaging",
+          "distributions": [
+            "packaging"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "psycopg",
+          "distributions": [
+            "psycopg"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pytest",
+          "distributions": [
+            "pytest"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "qdrant_client",
+          "distributions": [
+            "qdrant-client"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sqlalchemy",
+          "distributions": [
+            "SQLAlchemy"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    },
+    "legacy_ai": {
+      "scanned_files": 42,
+      "parse_errors": [],
+      "third_party": [
+        {
+          "import": "crewai",
+          "distributions": [
+            "crewai"
+          ],
+          "installed_distribution_found": false
+        },
+        {
+          "import": "dotenv",
+          "distributions": [
+            "python-dotenv"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "neo4j",
+          "distributions": [
+            "neo4j"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "numpy",
+          "distributions": [
+            "numpy"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pandas",
+          "distributions": [
+            "pandas"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "pydantic",
+          "distributions": [
+            "pydantic"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "qdrant_client",
+          "distributions": [
+            "qdrant-client"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "requests",
+          "distributions": [
+            "requests"
+          ],
+          "installed_distribution_found": false
+        },
+        {
+          "import": "sentence_transformers",
+          "distributions": [
+            "sentence-transformers"
+          ],
+          "installed_distribution_found": true
+        },
+        {
+          "import": "sklearn",
+          "distributions": [
+            "scikit-learn"
+          ],
+          "installed_distribution_found": true
+        }
+      ]
+    }
+  },
+  "pip_check": {
+    "exit_code": 0,
+    "stdout": "No broken requirements found.",
+    "stderr": ""
+  },
+  "import_probes": [
+    {
+      "module": "sqlalchemy",
+      "status": "importable"
+    },
+    {
+      "module": "psycopg",
+      "status": "importable"
+    },
+    {
+      "module": "fastapi",
+      "status": "importable"
+    },
+    {
+      "module": "neo4j",
+      "status": "importable"
+    },
+    {
+      "module": "numpy",
+      "status": "importable"
+    },
+    {
+      "module": "qdrant_client",
+      "status": "importable"
+    },
+    {
+      "module": "pytest",
+      "status": "importable"
+    },
+    {
+      "module": "httpx",
+      "status": "importable"
+    },
+    {
+      "module": "sklearn",
+      "status": "importable"
+    },
+    {
+      "module": "sentence_transformers",
+      "status": "importable"
+    },
+    {
+      "module": "pandas",
+      "status": "import_failed",
+      "error_type": "ImportError",
+      "application_control_blocked": true
+    }
+  ],
+  "tools": {
+    "node": {
+      "exit_code": 0,
+      "stdout": "v22.16.0",
+      "stderr": ""
+    },
+    "docker": {
+      "cli_present": true,
+      "images_inventory": null,
+      "status": "engine_unavailable_or_access_denied"
+    },
+    "frontend": {
+      "node_modules_present": false,
+      "npm_on_path": false,
+      "playwright_lock_version": "1.64.1"
+    }
+  },
+  "cached_model": {
+    "path": ".cache/hf/models",
+    "present": true,
+    "stored_bytes": 479729245,
+    "note": "Disk usage only; no model loaded/downloaded, no new transfer size estimated"
+  },
+  "portable_runtimes": [
+    "jdk-21.0.9+10",
+    "neo4j-community-5.26.33"
+  ],
+  "summary": {
+    "installed_distributions": 83,
+    "active_profile_gaps": [],
+    "import_probe_failures": [
+      {
+        "module": "pandas",
+        "status": "import_failed",
+        "error_type": "ImportError",
+        "application_control_blocked": true
+      }
+    ]
+  },
+  "status": "PARTIAL",
+  "metadata_refreshed_utc": "2026-11-19T07:05:11.080495+00:00",
+  "metadata_refresh_scope": "Added backend command/migration sources; library probes retained because installed distributions did not change. Pandas blocker classified separately."
+}
