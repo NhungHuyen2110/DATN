@@ -1,0 +1,23 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "cases": [
+    "customer why refers to original IDs and creates no new product cards",
+    "customer correction produces no new search or product cards",
+    "general exchange is not automatically product search",
+    "admin browser keeps authenticated conversation and explains prior aggregate",
+    "staff browser keeps authenticated conversation and explains prior aggregate"
+  ],
+  "passed": 5,
+  "customer_target": "serving original-data copy on 18080",
+  "management_target": "private QA copy on 18081",
+  "mocked_api_responses": false,
+  "injected_runtime_config": false,
+  "serving_original_accounts_modified": false,
+  "natural_llm_live_verified": false,
+  "scope": "context regression; does not claim ChatGPT-like general dialogue",
+  "real_model_readiness_attempts": 14,
+  "qa_readiness_attempts": 1,
+  "real_model_readiness_timeouts": 0,
+  "readiness_budget_seconds": 180
+}

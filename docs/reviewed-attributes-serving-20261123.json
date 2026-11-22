@@ -1,0 +1,44 @@
+{
+  "successful": true,
+  "verified_utc": "2026-11-22T18:31:36.617416+00:00",
+  "base_url": "http://127.0.0.1:18080",
+  "feature_flags": {
+    "business-api": true,
+    "ai-api": true,
+    "index-worker": true
+  },
+  "schema_revision": "20261122_0010",
+  "catalog_products": 500,
+  "review_store": {
+    "total": 0,
+    "active": 0,
+    "qa": 0
+  },
+  "outbox_states": {
+    "done": 500
+  },
+  "managed_graph_products": 500,
+  "graph_review_nodes": 0,
+  "graph_constraints": [
+    "lumiere_brand_id",
+    "lumiere_category_id",
+    "lumiere_collection_id",
+    "lumiere_gemstone_id",
+    "lumiere_material_id",
+    "lumiere_product_id",
+    "lumiere_review_audience_canonical_id",
+    "lumiere_review_style_canonical_id"
+  ],
+  "qdrant_products": 500,
+  "qdrant_collection": "jewelry_products_v_c0efd814ee4f",
+  "qdrant_dimension": 384,
+  "qdrant_metric": "Cosine",
+  "new_labels_created": false,
+  "graph_schema_only_added_constraints": true,
+  "admin_page_served": true,
+  "anonymous_admin_options_status": 401,
+  "original_source_still_stopped": true,
+  "original_source_written": false,
+  "full_retrieval_validation": "separate browser acceptance required",
+  "llm_live_verified": false
+}

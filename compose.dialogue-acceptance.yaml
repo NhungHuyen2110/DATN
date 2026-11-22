@@ -1,0 +1,79 @@
+# Isolated dialogue acceptance. Pause the main dense/graph stack on the 8 GB lab.
+# Existing model files are mounted read-only; this suite never pulls a model.
+services:
+  business-qa:
+    environment:
+      LUMIERE_DIALOGUE_LLM_ENABLED: 'true'
+      LUMIERE_DIALOGUE_URL: http://ollama:11434/api/chat
+      LUMIERE_DIALOGUE_MODEL: qwen2.5:3b
+      LUMIERE_DIALOGUE_TIMEOUT_SECONDS: '40'
+      LUMIERE_DIALOGUE_KEEP_ALIVE: 5m
+      CORS_ORIGINS: http://127.0.0.1:18081,http://127.0.0.1:18082,http://127.0.0.1:18083
+    networks: [dialogue]
+  ai-dialogue-qa:
+    extends:
+      file: compose.yaml
+      service: ai-api
+    image: lumiere-rebuild-test-ai-api:latest
+    profiles: [dialogue-acceptance]
+    environment:
+      BUSINESS_API_URL: http://business-qa:8001
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+      LUMIERE_DENSE_ENABLED: 'false'
+      LUMIERE_GRAPH_ENABLED: 'false'
+      LUMIERE_MODEL_WARMUP_ENABLED: 'false'
+      LUMIERE_SHOPPING_ADVICE_ENABLED: 'false'
+      LUMIERE_DIALOGUE_LLM_ENABLED: 'true'
+      LUMIERE_DIALOGUE_URL: http://ollama:11434/api/chat
+      LUMIERE_DIALOGUE_MODEL: qwen2.5:3b
+      LUMIERE_DIALOGUE_TIMEOUT_SECONDS: '40'
+      LUMIERE_DIALOGUE_KEEP_ALIVE: 5m
+    networks: [dialogue]
+    mem_limit: 384m
+  proxy-dialogue-qa:
+    image: nginx:1.28-alpine
+    profiles: [dialogue-acceptance]
+    ports: ['127.0.0.1:18083:8080']
+    volumes: ['./infra/proxy/nginx-dialogue-acceptance.conf:/etc/nginx/nginx.conf:ro']
+    networks: [edge]
+    mem_limit: 64m
+  ollama:
+    profiles: [dialogue-acceptance]
+    environment:
+      OLLAMA_MODELS: /cached-models
+      OLLAMA_NOPRUNE: 'true'
+      OLLAMA_MAX_LOADED_MODELS: '1'
+      OLLAMA_NUM_PARALLEL: '1'
+      OLLAMA_MAX_QUEUE: '2'
+      OLLAMA_CONTEXT_LENGTH: '2048'
+    volumes:
+      - type: bind
+        source: ${OLLAMA_LOCAL_MODEL_CACHE:?Select the existing model cache for read-only QA}
+        target: /cached-models
+        read_only: true
+    networks: [dialogue]
+    mem_limit: 3g
+    cpus: 2.0
+    healthcheck:
+      test: [CMD, ollama, list]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 6
+  dialogue-acceptance:
+    image: lumiere-rebuild-test-business-api:latest
+    profiles: [dialogue-acceptance]
+    restart: 'no'
+    entrypoint: ['python', '-B', '/qa/verify_dialogue_acceptance.py']
+    environment:
+      QA_BASE: http://proxy-dialogue-qa:8080
+      MAIN_BASE: http://reverse-proxy:8080
+      OLLAMA_BASE: http://ollama:11434
+    volumes:
+      - ./scripts/verify_dialogue_acceptance.py:/qa/verify_dialogue_acceptance.py:ro
+      - ./.local-tmp/original-db-20261122-014434/ai-acceptance:/qa/private:ro
+      - ${DIALOGUE_QA_OUTPUT:?Select a new private QA output directory}:/qa/output
+    networks: [edge, dialogue]
+    mem_limit: 192m
+networks:
+  dialogue: {internal: true}

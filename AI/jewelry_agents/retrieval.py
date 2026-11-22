@@ -1,18 +1,21 @@
 from pathlib import Path
 from dotenv import load_dotenv
-
-load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 import os
+
+if os.getenv('LUMIERE_LOAD_DOTENV', 'true').lower() != 'false':
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 import sys
 import requests
 import re
 import threading
+import math
 from decimal import Decimal, InvalidOperation
 
 from qdrant_client import QdrantClient
 
 from neo4j import GraphDatabase
 from shared.retrieval_limits import SourceGate
+from shared.verified_attributes import reviews_enabled, REVIEW_OWNER, CATALOG_OWNER
 
 _dense_timeout = float(os.getenv('LUMIERE_DENSE_TIMEOUT_SECONDS', '3'))
 if not 1 <= _dense_timeout <= 10:
@@ -116,8 +119,10 @@ def plan_shopping_advice(query):
     # unlimited intent work or delay ordinary lexical/graph fallback.
     def operation():
         from .advice_planner import plan_advice
-        return plan_advice(query,get_dense_services()[1])
-    return _bounded_source(_dense_gate,operation)
+        return plan_advice(query,get_dense_services()[1],include_embedding=True)
+    if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
+        return _dense_gate.call_with_timeout(10, operation)
+    return operation()
 
 
 def warm_shopping_model():
@@ -137,7 +142,7 @@ def graph_expand_candidates(anchor_ids, top_k=35):
     return _bounded_source(_graph_gate, _graph_expand_candidates, anchor_ids, top_k)
 
 
-def _graph_expand_candidates(anchor_ids, top_k):
+def _graph_expand_candidates(anchor_ids, top_k, *, driver=None):
     if not anchor_ids:
         return []
     if (not 1 <= top_k <= 1000 or len(anchor_ids) > 1000
@@ -147,79 +152,111 @@ def _graph_expand_candidates(anchor_ids, top_k):
         UNWIND range(0, size($anchors)-1) AS anchor_rank
         MATCH (source:Product {product_id:$anchors[anchor_rank]})-[left]->(entity)<-[right]-(p:Product)
         WHERE p.product_id <> source.product_id AND type(left)=type(right)
-          AND ((type(left)='BELONGS_TO' AND entity:Category)
-            OR (type(left)='MADE_OF' AND entity:Material)
-            OR (type(left)='HAS_GEMSTONE' AND entity:Gemstone))
-        WITH p, source, entity, left, anchor_rank ORDER BY anchor_rank ASC
+          AND p.projection_owner=$catalog_owner AND source.projection_owner=$catalog_owner
+          AND (((type(left)='BELONGS_TO' AND entity:Category
+                 OR type(left)='MADE_OF' AND entity:Material
+                 OR type(left)='HAS_GEMSTONE' AND entity:Gemstone)
+                AND left.projection_owner=$catalog_owner AND right.projection_owner=$catalog_owner)
+            OR ($review_enabled AND entity.projection_owner=$review_owner
+                AND left.projection_owner=$review_owner AND right.projection_owner=$review_owner
+                AND left.active=true AND right.active=true
+                AND (type(left)='HAS_STYLE' AND entity:Style OR type(left)='SUITABLE_FOR' AND entity:Audience)))
+        WITH p, source, entity, left, right, anchor_rank ORDER BY anchor_rank ASC
         WITH p, min(anchor_rank) AS best_anchor, count(DISTINCT entity) AS shared,
              collect(DISTINCT {relationship:type(left),
-                 target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id),
+                 target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id,entity.canonical_id),
+                 target_label:CASE WHEN entity:Style THEN 'Style' WHEN entity:Audience THEN 'Audience' ELSE null END,
+                 evidence_sha256:right.source_reference_sha256,
+                 anchor_evidence_sha256:left.source_reference_sha256,
                  source_product_id:source.product_id,
                  candidate_product_id:p.product_id}) AS paths
         RETURN p.product_id AS ProductID, paths[0..6] AS paths
         ORDER BY best_anchor ASC, shared DESC, ProductID ASC LIMIT $limit
     """
-    with get_graph_driver().session() as session:
+    with (driver or get_graph_driver()).session() as session:
         return [record.data() for record in session.run(
-            cypher, anchors=list(dict.fromkeys(anchor_ids)), limit=top_k)]
+            cypher, anchors=list(dict.fromkeys(anchor_ids)), limit=top_k,
+            review_enabled=reviews_enabled(), catalog_owner=CATALOG_OWNER, review_owner=REVIEW_OWNER)]
 
 
 def graph_search_candidates(query, understanding):
     return _bounded_source(_graph_gate, _graph_search_candidates, query, understanding)
 
 
-def _graph_search_candidates(query, understanding):
+def _graph_search_candidates(query, understanding, *, driver=None):
     reference = understanding.get('reference_product')
     if reference:
         cypher = """
             MATCH (source:Product {product_id:$source_id})-[left]->(entity)<-[right]-(p:Product)
             WHERE p.product_id <> source.product_id AND type(left)=type(right)
-              AND ((type(left)='BELONGS_TO' AND entity:Category AND entity.category_id=$category)
+              AND p.projection_owner=$catalog_owner AND source.projection_owner=$catalog_owner
+              AND (((type(left)='BELONGS_TO' AND entity:Category AND entity.category_id=$category)
                 OR (type(left)='MADE_OF' AND entity:Material AND entity.material_id=$material)
                 OR (type(left)='HAS_GEMSTONE' AND entity:Gemstone AND entity.gemstone_id=$gemstone))
+                AND left.projection_owner=$catalog_owner AND right.projection_owner=$catalog_owner
+                OR ($review_enabled AND type(left)='HAS_STYLE' AND entity:Style
+                    AND entity.canonical_id IN $styles AND entity.projection_owner=$review_owner
+                    AND left.projection_owner=$review_owner AND right.projection_owner=$review_owner
+                    AND left.active=true AND right.active=true))
               AND (size($required)=0 OR type(left) IN $required)
             WITH p, collect(DISTINCT type(left)) AS types,
                  collect(DISTINCT {relationship:type(left),
-                    target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id),
+                    target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id,entity.canonical_id),
+                    target_label:CASE WHEN entity:Style THEN 'Style' ELSE null END,
+                    evidence_sha256:right.source_reference_sha256,
+                    anchor_evidence_sha256:left.source_reference_sha256,
                     target_name:entity.name, source_product_id:source.product_id,
                     candidate_product_id:p.product_id}) AS paths
             WHERE all(relation IN $required WHERE relation IN types)
             RETURN p.product_id AS ProductID, paths
             ORDER BY size(paths) DESC, ProductID ASC LIMIT 100
         """
-        with get_graph_driver().session() as session:
+        with (driver or get_graph_driver()).session() as session:
             return [record.data() for record in session.run(cypher, source_id=reference['ProductID'],
                 category=reference.get('CategoryID'), material=reference.get('MaterialID'),
-                gemstone=reference.get('GemstoneID'), required=understanding.get('required_relationships', []))]
+                gemstone=reference.get('GemstoneID'), required=understanding.get('required_relationships', []),
+                styles=[fact['canonical_id'] for fact in reference.get('verified_attributes', []) if fact['label']=='Style'],
+                review_enabled=reviews_enabled(), catalog_owner=CATALOG_OWNER, review_owner=REVIEW_OWNER)]
     categories = [e["graph_id"] for e in understanding["entities"] if e["label"] == "Category"]
     gemstones = [e["graph_id"] for e in understanding["entities"] if e["label"] == "Gemstone"]
-    if not categories and not gemstones:
+    audiences = [e['canonical_id'] for e in understanding['entities'] if e['label']=='Audience'] if reviews_enabled() else []
+    styles = [e['canonical_id'] for e in understanding['entities'] if e['label']=='Style'] if reviews_enabled() else []
+    if not categories and not gemstones and not audiences and not styles:
         return []
     cypher = """
         MATCH (p:Product)-[rel]->(entity)
-        WHERE (type(rel) = 'BELONGS_TO' AND entity:Category AND entity.category_id IN $categories)
-           OR (type(rel) = 'HAS_GEMSTONE' AND entity:Gemstone AND entity.gemstone_id IN $gemstones)
+        WHERE p.projection_owner=$catalog_owner AND (
+            ((type(rel) = 'BELONGS_TO' AND entity:Category AND entity.category_id IN $categories
+              OR type(rel) = 'HAS_GEMSTONE' AND entity:Gemstone AND entity.gemstone_id IN $gemstones)
+               AND rel.projection_owner=$catalog_owner)
+           OR ((type(rel)='SUITABLE_FOR' AND entity:Audience AND entity.canonical_id IN $audiences
+               OR type(rel)='HAS_STYLE' AND entity:Style AND entity.canonical_id IN $styles)
+               AND rel.projection_owner=$review_owner AND entity.projection_owner=$review_owner AND rel.active=true))
         WITH p, collect(DISTINCT {relationship: type(rel),
-             target_id: coalesce(entity.category_id, entity.gemstone_id), target_name: entity.name}) AS paths
+             target_id: coalesce(entity.category_id, entity.gemstone_id,entity.canonical_id), target_name: entity.name,
+             target_label:CASE WHEN entity:Style THEN 'Style' WHEN entity:Audience THEN 'Audience' ELSE null END,
+             evidence_sha256:rel.source_reference_sha256}) AS paths
         RETURN p.product_id AS ProductID, paths
         ORDER BY size(paths) DESC, ProductID ASC LIMIT 100
     """
-    with get_graph_driver().session() as session:
-        return [record.data() for record in session.run(cypher, categories=categories, gemstones=gemstones)]
+    with (driver or get_graph_driver()).session() as session:
+        return [record.data() for record in session.run(cypher, categories=categories, gemstones=gemstones,
+                audiences=audiences, styles=styles, catalog_owner=CATALOG_OWNER, review_owner=REVIEW_OWNER)]
 
 
 # ============================================================
 # QDRANT SEARCH
 # ============================================================
 
-def search_qdrant(query, top_k=5, eligible_ids=None):
-    return _bounded_source(_dense_gate, _search_qdrant, query, top_k=top_k, eligible_ids=eligible_ids)
+def search_qdrant(query, top_k=5, eligible_ids=None, *, request_embedding=None):
+    return _bounded_source(_dense_gate, _search_qdrant, query, top_k=top_k, eligible_ids=eligible_ids,
+                           request_embedding=request_embedding)
 
 
-def _search_qdrant(query, top_k=5, eligible_ids=None):
+def _search_qdrant(query, top_k=5, eligible_ids=None, *, services=None, request_embedding=None):
     if eligible_ids is not None and not eligible_ids:
         return []
-    client, model = get_dense_services()
+    client, model = services if services is not None else get_dense_services()
     dimension = model.get_sentence_embedding_dimension()
     if QDRANT_COLLECTION.startswith("jewelry_products_v_"):
         from vector_index import index_identity
@@ -235,9 +272,16 @@ def _search_qdrant(query, top_k=5, eligible_ids=None):
     if (isinstance(configuration, dict) or configuration.size != dimension
             or str(configuration.distance.value).lower() != "cosine"):
         raise ValueError("Qdrant dimension/distance differs from embedding contract")
-    vector = model.encode(
-        query
-    ).tolist()
+    from .advice_planner import RequestEmbedding
+    if request_embedding is not None and not isinstance(request_embedding, RequestEmbedding):
+        raise ValueError('Invalid request embedding context')
+    if request_embedding is not None and request_embedding.matches(query, model):
+        vector = list(request_embedding.vector)
+    else:
+        vector = model.encode(query).tolist()
+    if (len(vector) != dimension or not all(math.isfinite(float(x)) for x in vector)
+            or not any(float(x) for x in vector)):
+        raise ValueError('Invalid query vector for the current embedding contract')
 
     query_filter = None
     if eligible_ids is not None:

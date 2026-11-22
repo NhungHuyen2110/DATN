@@ -1,0 +1,14 @@
+{
+  "successful": false,
+  "suite": "review",
+  "paused_services": [
+    "ai-api",
+    "grafana",
+    "index-worker",
+    "neo4j",
+    "prometheus",
+    "qdrant"
+  ],
+  "failure_type": "RuntimeError",
+  "paused_services_restored_running": true
+}

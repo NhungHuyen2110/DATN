@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nhãn tư vấn sản phẩm | LUMIÈRE</title>
+<link rel="stylesheet" href="../../assets/css/style.css"><link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="stylesheet" href="../../assets/css/product-attributes.css">
+<script defer src="../../assets/js/api.js"></script><script defer src="../../assets/js/admin-product-attributes.js"></script>
+</head><body data-area="admin" data-page="admin-product-attributes">
+<header class="site-nav"><div class="container site-nav-inner"><a class="logo" href="dashboard.html">LUMIÈRE<span>QUẢN TRỊ</span></a>
+<nav class="site-nav-links"><a href="dashboard.html">Tổng quan</a><a href="products.html">Sản phẩm</a></nav></div></header>
+<main class="container page-main"><div class="page-heading"><h1>Nhãn tư vấn sản phẩm</h1>
+<p>Xác nhận đối tượng sử dụng và phong cách khi có đủ căn cứ. Nhãn đã xác nhận được dùng để lọc và giải thích gợi ý.</p></div>
+<p id="review-status" role="status" aria-live="polite">Đang kiểm tra quyền truy cập…</p>
+<a id="review-login" class="button button-outline" href="../login.html" hidden>Đăng nhập</a>
+<fieldset id="review-editor" disabled>
+<section class="panel"><h2>Chọn sản phẩm</h2><form id="review-search" class="review-search">
+<label for="review-q">Tên hoặc mã SKU</label><input id="review-q" type="search" maxlength="255" placeholder="Ví dụ: SP000079">
+<button class="button button-dark" type="submit">Tìm sản phẩm</button></form><ul id="review-results" class="review-results"></ul></section>
+<section class="panel" id="review-detail" hidden><h2 id="review-product-name"></h2><p id="review-product-info"></p>
+<a id="review-product-link" target="_blank" rel="noopener">Xem ảnh và chi tiết sản phẩm</a>
+<h3>Nhãn đã xác nhận</h3><ul id="review-history" class="review-history"></ul>
+<form id="review-confirm" class="review-confirm">
+<div class="field"><label for="review-label">Nhóm thuộc tính</label><select id="review-label" required></select></div>
+<div class="field"><label for="review-canonical">Nhãn</label><select id="review-canonical" required></select></div>
+<div class="field"><label for="review-source">Nguồn tham chiếu hoặc ghi chú đánh giá</label>
+<input id="review-source" required minlength="3" maxlength="200" placeholder="Tài liệu, ảnh sản phẩm hoặc căn cứ đánh giá"></div>
+<label class="review-confirmation"><input id="review-approved" type="checkbox" required> Tôi đã kiểm tra căn cứ và xác nhận nhãn này.</label>
+<button class="button button-dark" type="submit">Lưu xác nhận</button></form></section>
+</fieldset></main></body></html>

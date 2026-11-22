@@ -12,7 +12,7 @@ def current_product(session, product_id):
         joinedload(Product.gemstone), joinedload(Product.collection)))
     if product is None:
         return None
-    return {
+    snapshot = {
         'ProductID': product.id, 'SKU': product.sku, 'Barcode': product.barcode,
         'ProductName': product.name, 'Weight': str(product.weight), 'SalePrice': str(product.sale_price),
         'Stock': product.stock, 'source_row': product.id,
@@ -21,6 +21,10 @@ def current_product(session, product_id):
         **{prefix + 'Name': getattr(product, prefix.lower()).name
            for prefix in ('Category', 'Brand', 'Material', 'Gemstone', 'Collection')},
     }
+    from app.services.product_attributes import reviews_enabled, projected_reviews
+    if reviews_enabled():
+        snapshot['verified_attributes'] = projected_reviews(session, product_id)
+    return snapshot
 
 
 def run_one(session_factory, deliver, now=None, lease_seconds=120, max_attempts=5):

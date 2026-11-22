@@ -1,0 +1,71 @@
+{
+  "successful": true,
+  "paused_services": [
+    "ai-api",
+    "grafana",
+    "index-worker",
+    "neo4j",
+    "prometheus",
+    "qdrant"
+  ],
+  "verified_utc": "2026-11-22T17:52:42.321940+00:00",
+  "cases": [
+    "authenticated Admin confirmations persisted only in QA review store",
+    "public catalog exposes canonical facts and evidence hashes without reviewer or raw notes",
+    "real Neo4j batch MERGE replay preserves node/edge counts and exact reviewed evidence",
+    "real 384-dimensional encoder indexes only canonical QA facts into separate Qdrant volume",
+    "real dense-anchor graph fusion returns exactly the three approved female elegant rings below 8m",
+    "same-style traversal verifies evidence hashes on both reference and recommended products",
+    "revocation updates public filters, vector payload and inactive graph edge while retaining audited history",
+    "Top-3 returns two eligible products without padding with unlabelled or revoked products"
+  ],
+  "passed": 8,
+  "real_encoder": "paraphrase-multilingual-MiniLM-L12-v2",
+  "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "graph_initial_validation": {
+    "requested_products": 4,
+    "products": 4,
+    "duplicate_products": 0,
+    "unmanaged_products": 0,
+    "relationships": {
+      "BELONGS_TO": {
+        "count": 4,
+        "violations": 0
+      },
+      "HAS_BRAND": {
+        "count": 4,
+        "violations": 0
+      },
+      "MADE_OF": {
+        "count": 4,
+        "violations": 0
+      },
+      "HAS_GEMSTONE": {
+        "count": 4,
+        "violations": 0
+      },
+      "IN_COLLECTION": {
+        "count": 4,
+        "violations": 0
+      }
+    },
+    "pass": true,
+    "reviewed_attributes": {
+      "expected": 6,
+      "active": 6,
+      "violations": 0
+    }
+  },
+  "idempotent_graph_counts": {
+    "nodes": 18,
+    "edges": 26
+  },
+  "catalog_products": 500,
+  "indexed_qa_products": 4,
+  "labels": "synthetic QA fixture only; not human labels or real product claims",
+  "serving_graph_vector_written": false,
+  "original_database_written": false,
+  "real_model_quality": "not_evaluated",
+  "llm": "not_run",
+  "paused_services_restored_running": true
+}

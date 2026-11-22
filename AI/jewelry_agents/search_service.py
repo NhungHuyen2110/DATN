@@ -7,7 +7,8 @@ from shared.observability import measure
 from shared.retrieval_limits import SourceUnavailable
 
 from .entity_linking import link_query, normalize
-from .ranking import reciprocal_rank_fusion, finalize_topk, price_and_stock_valid
+from .ranking import reciprocal_rank_fusion, finalize_topk, price_and_stock_valid, approved_facts, reviewed_constraints_valid
+from shared.verified_attributes import reviews_enabled
 from .query_reference import reference_request, resolve_reference
 
 
@@ -26,6 +27,36 @@ def verified_paths(paths, product, reference=None, anchors=None):
     result, seen = [], set()
     for path in paths:
         relation = path.get('relationship')
+        if relation in {'HAS_STYLE', 'SUITABLE_FOR'}:
+            if not reviews_enabled():
+                continue
+            label = 'Style' if relation == 'HAS_STYLE' else 'Audience'
+            if path.get('target_label') != label:
+                continue
+            key = (label, path.get('target_id'))
+            fact = approved_facts(product).get(key)
+            if fact is None or path.get('evidence_sha256') != fact['source_reference_sha256']:
+                continue
+            source = reference
+            if source is None and path.get('source_product_id') is not None:
+                source = (anchors or {}).get(path['source_product_id'])
+                if source is None:
+                    continue
+            if source is not None:
+                source_fact = approved_facts(source).get(key)
+                if (path.get('source_product_id') != source['ProductID']
+                        or path.get('candidate_product_id') != product['ProductID'] or source_fact is None
+                        or path.get('anchor_evidence_sha256') != source_fact['source_reference_sha256']):
+                    continue
+            if key not in seen:
+                clean = {'relationship': relation, 'target_label': label, 'target_id': path['target_id'],
+                         'target_name': fact['name'], 'evidence_sha256': fact['source_reference_sha256']}
+                if source is not None:
+                    clean.update(source_product_id=source['ProductID'], candidate_product_id=product['ProductID'],
+                                 anchor_evidence_sha256=source_fact['source_reference_sha256'])
+                result.append(clean)
+                seen.add(key)
+            continue
         if relation not in fields:
             continue
         id_field, name_field = fields[relation]
@@ -81,7 +112,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     unsupported = [e for e in understanding["entities"] if e["label"] in {"Audience", "Style"}]
     # Current catalog has no verified Audience/Style fields. Never pretend these
     # constraints were satisfied using gender stereotypes or collection names.
-    if unsupported and not related['active']:
+    if unsupported and not related['active'] and not reviews_enabled():
         return {"products": [], "status": "missing_verified_attributes", "understanding": understanding}
     try:
         live = call('catalog', catalog)
@@ -104,10 +135,12 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         understanding['normalized_query'] = normalize(query)
         if understanding['needs_clarification']:
             return {'products': [], 'status': 'clarification_required', 'understanding': understanding}
-        if any(item['label'] in {'Audience', 'Style'} for item in understanding['entities']):
+        if not reviews_enabled() and any(item['label'] in {'Audience', 'Style'} for item in understanding['entities']):
             return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
         understanding['reference_product'] = {key: reference.get(key) for key in
             ('ProductID', 'ProductName', 'CategoryID', 'MaterialID', 'GemstoneID')}
+        if reviews_enabled():
+            understanding['reference_product']['verified_attributes'] = reference.get('verified_attributes', [])
         understanding['required_relationships'] = related['relations']
     normalized = normalize(query)
     content_query = re.sub(r'\btop\s*\d+\b', ' ', query, flags=re.I)
@@ -126,6 +159,11 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     constraints["max_exclusive"] = bool(re.search(r"\bduoi\b", normalized))
     constraints["min_exclusive"] = bool(re.search(r"\btren\b", normalized))
     constraints["attributes"] = {}
+    constraints['reviewed_attributes'] = {entity['label']: entity['canonical_id'] for entity in understanding['entities']
+                                         if entity['label'] in {'Audience', 'Style'}}
+    for label in constraints['reviewed_attributes']:
+        if not any(any(key[0] == label for key in approved_facts(product)) for product in live.values()):
+            return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
     for entity in understanding["entities"]:
         if entity["label"] in {"Category", "Gemstone"}:
             constraints["attributes"][entity["label"] + "ID"] = entity["graph_id"]
@@ -144,6 +182,17 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     if reference is not None:
         required = {'HAS_GEMSTONE': 'GemstoneID', 'MADE_OF': 'MaterialID', 'BELONGS_TO': 'CategoryID'}
         for relation in related['relations']:
+            if relation == 'HAS_STYLE':
+                styles = sorted(key[1] for key in approved_facts(reference) if key[0] == 'Style')
+                if not styles:
+                    return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
+                if (constraints['reviewed_attributes'].get('Style') is not None
+                        and constraints['reviewed_attributes']['Style'] not in styles):
+                    understanding['ambiguities'].append('conflicting_reference_style')
+                    understanding['needs_clarification'] = True
+                    return {'products': [], 'status': 'clarification_required', 'understanding': understanding}
+                constraints['shared_reference_styles'] = styles
+                continue
             field, value = required[relation], reference.get(required[relation])
             if value is None:
                 return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
@@ -166,6 +215,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     # at finalization. Otherwise a small semantic pool can contain only products
     # outside the budget, discarding useful dense ranks after retrieval.
     eligible = {pid: p for pid, p in live.items() if price_and_stock_valid(p, constraints)
+                and reviewed_constraints_valid(p, constraints)
                 and (reference is None or pid != reference['ProductID'])
                 and all(p.get(field) == value for field, value in constraints['attributes'].items())}
     # Requested result count is a planner control, not a product-name token.
@@ -179,6 +229,8 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     for pid, product in (eligible.items() if 'lexical' in selected and lexical_retriever is None else []):
         representation = normalize(" ".join(str(product.get(field, "")) for field in
                                            ("SKU", "ProductName", "Category", "Material", "Gemstone", "Collection")))
+        if reviews_enabled():
+            representation += ' ' + normalize(' '.join(fact['name'] for fact in approved_facts(product).values()))
         hits = len(tokens.intersection(representation.split()))
         if hits:
             lexical.append((hits, pid))
@@ -262,13 +314,15 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             return {'products': [], 'status': 'reference_unavailable', 'understanding': understanding,
                     'requested_k': top_k, 'returned_k': 0}
         if any(current_reference.get(field) != reference.get(field) for field in
-               ('ProductName', 'CategoryID', 'MaterialID', 'GemstoneID')):
+               ('ProductName', 'CategoryID', 'MaterialID', 'GemstoneID', *(
+                   ('verified_attributes',) if 'HAS_STYLE' in related['relations'] else ()))):
             return {'products': [], 'status': 'reference_changed', 'understanding': understanding,
                     'requested_k': top_k, 'returned_k': 0}
     if reranker is not None and fused:
         rerank_input = [
             {**item, **latest[item['ProductID']], 'score': item['score']} for item in fused
             if item['ProductID'] in latest and price_and_stock_valid(latest[item['ProductID']], constraints)
+            and reviewed_constraints_valid(latest[item['ProductID']], constraints)
             and all(latest[item['ProductID']].get(field) == value for field, value in constraints['attributes'].items())]
         if rerank_input:
             reranked = call('rerank', reranker, query, rerank_input)
@@ -280,7 +334,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             fused = reranked
     products = finalize_topk(fused, top_k, constraints, latest)
     for product in products:
-        matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone'}]
+        matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone', 'Audience', 'Style'}]
         product['matched_entities'] = [{'label': e['label'], 'canonical_id': e['canonical_id']} for e in matched]
         reasons = []
         if 'CategoryID' in constraints['attributes']:
@@ -289,10 +343,13 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             reasons.append('đúng loại đá ' + product['Gemstone'])
         if constraints.get('max_price') is not None or constraints.get('min_price') is not None:
             reasons.append('trong khoảng giá yêu cầu')
+        for label, canonical in constraints['reviewed_attributes'].items():
+            reasons.append('có nhãn ' + approved_facts(product)[(label, canonical)]['name'] + ' đã được xác nhận')
         if reference is not None:
             reasons.append('thuộc tính được đối soát với sản phẩm #' + str(reference['ProductID']))
         relation_names = {'BELONGS_TO': 'cùng danh mục', 'MADE_OF': 'cùng chất liệu',
-                          'HAS_GEMSTONE': 'cùng loại đá'}
+                          'HAS_GEMSTONE': 'cùng loại đá', 'HAS_STYLE': 'cùng phong cách',
+                          'SUITABLE_FOR': 'cùng đối tượng sử dụng'}
         for path in product.get('graph_paths', [])[:2]:
             if path.get('source_product_id') is not None:
                 reasons.append(relation_names[path['relationship']] + ' ' + path['target_name']

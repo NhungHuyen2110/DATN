@@ -37,6 +37,12 @@ logger = logging.getLogger("uvicorn.error")
 @asynccontextmanager
 async def lifespan(app):
     try:
+        from shared.verified_attributes import reviews_enabled
+        if reviews_enabled():
+            from sqlalchemy import inspect
+            with engine.connect() as connection:
+                if not inspect(connection).has_table('product_attribute_reviews'):
+                    raise RuntimeError('Apply the reviewed-attribute migration before activation')
         yield
     finally:
         engine.dispose()

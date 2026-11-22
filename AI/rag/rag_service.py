@@ -6,6 +6,7 @@ from jewelry_agents.retrieval import (
 )
 
 import os
+from functools import partial
 
 from jewelry_agents.business_catalog import fetch_catalog, fetch_shipping_policy, CatalogUnavailable
 from jewelry_agents.intent_router import classify_query
@@ -94,7 +95,9 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             except Exception:
                 pass  # Advice is optional; authoritative retrieval still executes.
         try:
-            result = search(query, top_k, dense=search_qdrant, catalog=fetch_catalog,
+            dense = (partial(search_qdrant, request_embedding=advice['_request_embedding'])
+                     if advice and advice.get('_request_embedding') is not None else search_qdrant)
+            result = search(query, top_k, dense=dense, catalog=fetch_catalog,
                             parse_price=extract_price_filter, graph=graph_search_candidates,
                             graph_expander=graph_expand_candidates)
         except RetrievalUnavailable:

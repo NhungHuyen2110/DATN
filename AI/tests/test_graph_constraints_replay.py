@@ -13,7 +13,9 @@ class GraphConstraintsReplayTests(unittest.TestCase):
     def constraints(self):
         return [{'name': 'lumiere_' + label.lower() + '_id', 'type': 'UNIQUENESS',
                  'labelsOrTypes': [label], 'properties': [label.lower() + '_id']}
-                for label in ['Product', *LOOKUPS]]
+                for label in ['Product', *LOOKUPS]] + [
+                    {'name': 'lumiere_review_' + label.lower() + '_canonical_id', 'type': 'UNIQUENESS',
+                     'labelsOrTypes': [label], 'properties': ['canonical_id']} for label in ['Audience', 'Style']]
 
     def test_replay_checks_existing_schema_without_six_ddl_transactions(self):
         session = MagicMock()

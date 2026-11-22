@@ -1,0 +1,20 @@
+{
+  "successful": true,
+  "passed": 7,
+  "cases": [
+    "guest is denied by the API and cannot use the editor",
+    "staff is denied by the API and cannot use the editor",
+    "customer is denied by the API and cannot use the editor",
+    "Admin reviews a real catalog product and confirms a label with explicit unchecked-by-default consent",
+    "raw evidence is rendered as text and creates no executable image element",
+    "public API exposes canonical label and evidence hash without private review note",
+    "Admin revocation keeps visible history and immediately removes public active label"
+  ],
+  "base_url": "http://127.0.0.1:18082",
+  "browser": "installed Chrome",
+  "response_mocks": false,
+  "injected_runtime_config": false,
+  "qa_fixture_only": true,
+  "original_accounts_changed": false,
+  "serving_database_written": false
+}

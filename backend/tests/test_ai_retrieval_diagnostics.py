@@ -41,11 +41,23 @@ class RetrievalDiagnosticsRoleTests(unittest.TestCase):
         response = Mock()
         response.json.return_value = {'status': 'ok', 'products': [{'ProductID': 1, 'score': .01,
             'cost_price': 'SECRET', 'user_email': 'private@example.com'}], 'server_token': 'SECRET'}
-        with patch.dict('os.environ', {'LUMIERE_AI_DIAGNOSTICS_TOKEN': 'synthetic-token'}), \
+        with patch.dict('os.environ', {'LUMIERE_AI_DIAGNOSTICS_TOKEN': 'synthetic-token',
+                                      'LUMIERE_AI_DIAGNOSTICS_TIMEOUT_SECONDS': '30'}), \
                 patch('requests.post', return_value=response) as post:
             result = retrieval_diagnostics({'query': 'nhẫn', 'top_k': 1})
         self.assertNotIn('cost_price', result['products'][0])
         self.assertNotIn('user_email', result['products'][0])
         self.assertNotIn('server_token', result)
         self.assertEqual(post.call_args.kwargs['headers']['Authorization'], 'Bearer synthetic-token')
-        self.assertEqual(post.call_args.kwargs['timeout'], 15)
+        self.assertEqual(post.call_args.kwargs['timeout'], (3, 30))
+
+    def test_invalid_read_budget_fails_closed_without_network_or_raw_config(self):
+        for value in ('2', '41', 'NaN', 'not-a-number'):
+            with self.subTest(value=value), patch.dict('os.environ', {
+                    'LUMIERE_AI_DIAGNOSTICS_TOKEN': 'synthetic-token',
+                    'LUMIERE_AI_DIAGNOSTICS_TIMEOUT_SECONDS': value}), patch('requests.post') as post:
+                with self.assertRaises(HTTPException) as caught:
+                    retrieval_diagnostics({'query': 'nhẫn'})
+                self.assertEqual(caught.exception.status_code, 503)
+                self.assertNotIn(value, str(caught.exception.detail))
+                post.assert_not_called()

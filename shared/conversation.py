@@ -53,6 +53,30 @@ def followup_kind(message):
     return None
 
 
+def knowledge_request(message):
+    """Explicit explanation/writing acts must not become product searches."""
+    text = normalized(message)
+    if any(term in text for term in ('mat khau', 'system prompt', 'reset token',
+                                     'bo qua huong dan', 'ignore previous instructions')):
+        return False  # Preserve the existing server/tool policy decisions.
+    if re.search(r'\bsku\b|#[0-9]+\b|\bsp[0-9]+\b', message, flags=re.I):
+        return False
+    if re.search(r'\b(?:san pham|ma don|don hang)\s+[0-9]+\b', text):
+        return False
+    if any(term in text for term in ('hom nay', 'thang nay', 'tuan nay', 'nam nay')):
+        return False
+    if 'bao nhieu' in text and any(term in text for term in
+            ('don hang', 'don cho', 'khach hang', 'san pham', 'ton kho', 'doanh thu')):
+        return False
+    for prefix in ('ban hay ', 'hay ', 'giup toi ', 'giup minh '):
+        if text.startswith(prefix):
+            text = text[len(prefix):]
+    return (' la gi ' in ' ' + text + ' ' or text.startswith((
+        'giai thich ', 'phan biet ', 'so sanh khai niem ', 'tom tat ', 'dien dat ',
+        'viet loi ', 'viet mot loi ', 'soan loi ', 'viet cau ', 'viet mot cau ',
+        'viet doan ', 'viet mot doan ', 'viet bai ', 'soan thong bao ')))
+
+
 def followup_reply(message,row):
     kind=followup_kind(message)
     if kind=='correction':
@@ -100,12 +124,17 @@ def converse(message,conversation_id,scope,tool):
     try:
         response=followup_reply(message,row)
         if response is None:
-            response=tool(message)
+            if knowledge_request(message):
+                response={'success':True,'status':'general_question','intent':'general_question','products':[],
+                    'answer':'Tôi hiểu bạn đang muốn giải thích hoặc trao đổi, không phải tìm sản phẩm. '
+                             'Lớp hội thoại tự nhiên hiện chưa sẵn sàng; tôi chưa thể trả lời đầy đủ câu này.'}
+            else:
+                response=tool(message)
             if response.get('intent') in {'unsupported','general_question','out_of_scope'}:
                 from .local_dialogue import answer_general
                 natural=answer_general(message,row['history'],str(scope[0]))
                 if natural:
-                    response={**response,'answer':natural,'products':[],
+                    response={**response,'success':True,'answer':natural,'products':[],
                               'response_mode':'local_llm_dialogue'}
             if response.get('success') is not False and response.get('intent') not in {
                     'unsupported','general_question','out_of_scope'}:

@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
-from shared.verified_attributes import validate_attribute
+from shared.verified_attributes import validate_attribute, PublicAttribute
 
 
 class AttributeReviewRequest(BaseModel):
@@ -10,6 +10,13 @@ class AttributeReviewRequest(BaseModel):
     canonical_id: str=Field(min_length=1,max_length=32)
     source_reference: str=Field(min_length=3,max_length=200)
     confirmed_review: Literal[True]
+
+    @field_validator('confirmed_review',mode='before')
+    @classmethod
+    def explicit_confirmation(cls,value):
+        if value is not True:
+            raise ValueError('An explicit boolean review confirmation is required')
+        return value
 
     @field_validator('source_reference',mode='before')
     @classmethod
@@ -22,12 +29,8 @@ class AttributeReviewRequest(BaseModel):
         return self
 
 
-class PublicVerifiedAttribute(BaseModel):
+class PublicVerifiedAttribute(PublicAttribute):
     model_config=ConfigDict(from_attributes=True)
-    label: str
-    canonical_id: str
-    name: str
-    source_reference_sha256: str
 
 
 class AttributeReviewResponse(PublicVerifiedAttribute):

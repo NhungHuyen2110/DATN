@@ -10,7 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    log = ROOT / '.local-tmp/database-fault-backend-full.log'
+    log = ROOT / '.local-tmp/knowledge-routing-backend-tests.log'
+    if not log.exists():
+        log = ROOT / '.local-tmp/review-ai-budget-backend-final.log'
+    if not log.exists():
+        log = ROOT / '.local-tmp/review-wiring-backend-final.log'
+    if not log.exists():
+        log = ROOT / '.local-tmp/database-fault-backend-full.log'
     if not log.exists():
         log = ROOT / '.local-tmp/conversation-backend.log'
     raw = log.read_bytes()
@@ -27,7 +33,15 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = ('original-review-kit-tests-20261122.json'
+    ai_name = ('knowledge-routing-tests-20261123.json'
+               if (ROOT / 'docs/knowledge-routing-tests-20261123.json').exists() else
+               'review-request-embedding-tests-20261123.json'
+               if (ROOT / 'docs/review-request-embedding-tests-20261123.json').exists() else
+               'review-host-timeout-tests-20261123.json'
+               if (ROOT / 'docs/review-host-timeout-tests-20261123.json').exists() else
+               'review-wiring-ai-tests-20261123.json'
+               if (ROOT / 'docs/review-wiring-ai-tests-20261123.json').exists() else
+               'original-review-kit-tests-20261122.json'
                if (ROOT / 'docs/original-review-kit-tests-20261122.json').exists() else
                'dense-anchor-fault-guard-tests-20261122.json'
                if (ROOT / 'docs/dense-anchor-fault-guard-tests-20261122.json').exists() else
@@ -143,7 +157,9 @@ def main():
                       '500-catalog full hosting semantic acceptance; 105-query SQL ablation',
                       'LLM narrative/grounding evaluation', 'Full CI/CD scans/staging/approved hosting/HTTPS',
                       'Host/container exporters, alerts and complete DATN diagrams/report']}
-    original_path = ROOT / 'docs/original-project-after-faults-20261122.json'
+    original_path = ROOT / 'docs/original-project-reviewed-facts-20261123-r3.json'
+    if not original_path.exists():
+        original_path = ROOT / 'docs/original-project-after-faults-20261122.json'
     if not original_path.exists():
         original_path = ROOT / 'docs/original-project-data-readonly-20261122.json'
     if original_path.exists():
@@ -160,7 +176,9 @@ def main():
             current['active_dataset']['shopping_advice_smoke']=report(advice_path.name)
             current['active_dataset']['shopping_advice_browser']=report('shopping-advice-browser-20261122.json')
         current['runtime_open_issue'] = 'Original project data activated; full role/write regression on original-data copy and hosting acceptance pending'
-        conversation_path=ROOT/'docs/dense-anchor-conversation-browser-20261122.json'
+        conversation_path=ROOT/'docs/reviewed-facts-conversation-browser-20261123-r4.json'
+        if not conversation_path.exists():
+            conversation_path=ROOT/'docs/dense-anchor-conversation-browser-20261122.json'
         if not conversation_path.exists():
             conversation_path=ROOT/'docs/conversation-browser-final-20261122.json'
         if conversation_path.exists():
@@ -179,7 +197,9 @@ def main():
         current['dense_anchor_runtime']['failed_cold_probe_report'] = 'dense-anchor-runtime-20261122.json'
         current['runtime_open_issue'] = ('Dense-anchor smoke recorded; cold/concurrent load, full role/write regression, '
                                          'real Qwen dialogue and approved hosting acceptance remain open')
-    roles_path = ROOT / 'docs/postgres-control-roles-browser-20261122.json'
+    roles_path = ROOT / 'docs/reviewed-facts-roles-browser-20261123.json'
+    if not roles_path.exists():
+        roles_path = ROOT / 'docs/postgres-control-roles-browser-20261122.json'
     if not roles_path.exists():
         roles_path = ROOT / 'docs/dense-anchor-roles-browser-20261122.json'
     if roles_path.exists():
@@ -194,7 +214,33 @@ def main():
     review_path = ROOT / 'docs/human-review-original-20261122.json'
     if review_path.exists():
         current['original_catalog_human_review_kit'] = report(review_path.name)
-    for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:
+    current['hosting_user_decision'] = {'status': 'VPS not rented; continue local development',
+                                        'budget_vnd_per_month': 300000, 'public_deployment': False}
+    current['reviewed_product_facts'] = {'human_ground_truth_available': False,
+        'serving_feature_activation': 'not_verified', 'documentation': '28-reviewed-product-facts.md'}
+    for key, filename in {
+            'qa_schema': 'review-schema-qa-20261123.json',
+            'qa_real_integration': ('reviewed-attributes-integration-20261123-r4.json'
+                 if (ROOT / 'docs/reviewed-attributes-integration-20261123-r4.json').exists()
+                 and report('reviewed-attributes-integration-20261123-r4.json').get('successful')
+                 else 'reviewed-attributes-integration-20261123-r3.json'),
+            'qa_browser': 'reviewed-attributes-browser-20261123-r2.json',
+            'serving_schema': 'review-schema-serving-copy-20261123.json',
+            'serving_runtime': 'reviewed-attributes-serving-20261123.json'}.items():
+        if (ROOT / 'docs' / filename).exists():
+            current['reviewed_product_facts'][key] = {**report(filename), 'report': filename}
+    activated = current['reviewed_product_facts'].get('serving_runtime', {})
+    if activated.get('successful') and all(activated.get('feature_flags', {}).get(service) is True
+            for service in ('business-api', 'ai-api', 'index-worker')):
+        current['reviewed_product_facts']['serving_feature_activation'] = 'verified_local_copy'
+    dialogue_path = ROOT / 'docs/qwen-dialogue-acceptance-20261123.json'
+    if dialogue_path.exists():
+        dialogue = report(dialogue_path.name)
+        current['natural_dialogue_llm'] = {'isolated_qa': dialogue, 'report': dialogue_path.name,
+            'live_verified': dialogue.get('successful') is True, 'local_enabled': False,
+            'full_hybrid_llm_stack_tested': False,
+            'needs': ['simultaneous stack resource acceptance', 'human dialogue and product grounding evaluation']}
+    for filename, data in [('backend-reviewed-facts-20261123.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],
                       'ai_passed': current['offline_ai_tests']['passed'], 'browser_passed': browser['stats']['expected'],

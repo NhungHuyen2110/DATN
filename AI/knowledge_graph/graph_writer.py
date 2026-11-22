@@ -9,11 +9,15 @@ import re
 
 try:
     from .csv_validation import LOOKUPS
+    from .reviewed_attributes import write_reviewed_attributes, verify_reviewed_attributes
 except ImportError:
     from csv_validation import LOOKUPS
+    from reviewed_attributes import write_reviewed_attributes, verify_reviewed_attributes
+
+from shared.verified_attributes import ATTRIBUTE_NAMES, REVIEW_OWNER, CATALOG_OWNER, normalize_projected_attributes
 
 
-OWNER = "lumiere-products-v1"
+OWNER = CATALOG_OWNER
 
 
 class ProjectionConflict(ValueError):
@@ -24,6 +28,8 @@ def prepare_rows(records, source_file, source_sha256):
     rows = []
     for record in records:
         row = dict(record)
+        row['_reviewed_facts_present'] = 'verified_attributes' in record
+        row['_reviewed_facts'] = normalize_projected_attributes(record['verified_attributes']) if row['_reviewed_facts_present'] else []
         price = Decimal(record["SalePrice"])
         snapshot = float(price)
         if Decimal(str(snapshot)) != price:
@@ -82,6 +88,8 @@ def write_batch(tx, rows):
                 edge.extraction_method = 'structured'
         """, rows=rows, owner=OWNER).consume()
 
+    write_reviewed_attributes(tx, rows, OWNER, ProjectionConflict)
+
 
 def mark_deleted(driver, database, product_id):
     def tombstone(tx):
@@ -121,6 +129,9 @@ def verify_projection(session, rows):
     report["pass"] = (report["products"] == len(ids) and report["duplicate_products"] == 0
                       and report["unmanaged_products"] == 0
                       and all(item["violations"] == 0 for item in report["relationships"].values()))
+    if any(row.get('_reviewed_facts_present') for row in rows):
+        report['reviewed_attributes'] = verify_reviewed_attributes(session, rows)
+        report['pass'] = report['pass'] and report['reviewed_attributes']['violations'] == 0
     return report
 
 
@@ -128,6 +139,8 @@ def ensure_constraints(session, statements):
     """Check schema once per import; avoid six schema transactions per replay."""
     expected = {'lumiere_' + label.lower() + '_id': (label, label.lower() + '_id')
                 for label in ['Product', *LOOKUPS]}
+    expected.update({'lumiere_review_' + label.lower() + '_canonical_id': (label, 'canonical_id')
+                     for label in ATTRIBUTE_NAMES})
     existing = {row['name']: row for row in session.run(
         'SHOW CONSTRAINTS YIELD name, type, labelsOrTypes, properties RETURN name, type, labelsOrTypes, properties')}
     for name, (label, field) in expected.items():
@@ -154,10 +167,13 @@ def import_projection(driver, database, records, source_file, source_sha256, bat
     with driver.session(database=database) as session:
         conflicts = session.run("""
             MATCH (n)
-            WHERE NOT any(label IN labels(n) WHERE label IN $allowed_labels)
+            WHERE size(labels(n))=0 OR any(label IN labels(n) WHERE NOT label IN $allowed_labels)
                OR (n:Product AND coalesce(n.projection_owner, '') <> $owner)
+               OR (any(label IN labels(n) WHERE label IN $review_labels)
+                   AND (coalesce(n.projection_owner,'') <> $review_owner OR size(labels(n))<>1))
             RETURN count(n) AS conflicts
-        """, allowed_labels=['Product', *LOOKUPS], owner=OWNER).single()['conflicts']
+        """, allowed_labels=['Product', *LOOKUPS, *ATTRIBUTE_NAMES], owner=OWNER,
+             review_labels=list(ATTRIBUTE_NAMES), review_owner=REVIEW_OWNER).single()['conflicts']
         if conflicts:
             raise ProjectionConflict("Target contains unmanaged products or non-catalog data; refusing all writes")
         ensure_constraints(session, statements)

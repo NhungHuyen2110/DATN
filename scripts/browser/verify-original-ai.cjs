@@ -101,4 +101,4 @@ const base='http://127.0.0.1:18081';
    cases,passed:cases.length,qa_login_session_writes:true,production_accessed:false};
   fs.writeFileSync(reportPath,JSON.stringify(report,null,2));console.log(JSON.stringify(report));
  }finally{await browser.close()}
-})().catch(error=>{console.error(error.message);process.exitCode=1});
+})().catch(error=>require('./secure-failure.cjs')(error,fixturePath,reportPath));

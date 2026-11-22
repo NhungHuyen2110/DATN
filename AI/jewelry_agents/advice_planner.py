@@ -6,6 +6,18 @@ No names, prices, gender, product occasions or ranking are generated here.
 from .entity_linking import cosine
 import threading
 from weakref import WeakKeyDictionary
+from dataclasses import dataclass, field
+
+
+@dataclass(frozen=True, repr=False)
+class RequestEmbedding:
+    """One-request vector, bound to the exact text and encoder; never cached."""
+    query: str = field(repr=False)
+    encoder: object = field(repr=False)
+    vector: tuple = field(repr=False)
+
+    def matches(self, query, encoder):
+        return self.query == query and self.encoder is encoder
 
 _anchors=WeakKeyDictionary()
 _anchor_lock=threading.Lock()
@@ -34,7 +46,7 @@ GIFT_INTRO = (
 )
 
 
-def plan_advice(query, encoder, threshold=.45, margin=.04):
+def plan_advice(query, encoder, threshold=.45, margin=.04, *, include_embedding=False):
     texts=[text for group in PROTOTYPES.values() for text in group]
     # Only public fixed prototypes are cached, never user messages/vectors.
     # The same pinned encoder stays the cache key; replacing it invalidates data.
@@ -59,6 +71,8 @@ def plan_advice(query, encoder, threshold=.45, margin=.04):
     ranked=sorted(scores,key=lambda label:(-scores[label],label))
     winner=ranked[0]
     accepted=scores[winner]>=threshold and scores[winner]-scores[ranked[1]]>=margin
-    return {'intent':winner if accepted else 'product_search',
-            'method':'local_embedding_prototypes','accepted':accepted,
-            'scores':scores}
+    result = {'intent':winner if accepted else 'product_search',
+              'method':'local_embedding_prototypes','accepted':accepted,'scores':scores}
+    if include_embedding:
+        result['_request_embedding'] = RequestEmbedding(query, encoder, tuple(float(x) for x in vectors[0]))
+    return result

@@ -1,0 +1,72 @@
+# Explicit QA only: separate graph/vector volumes, QA database and loopback UI.
+# Combine with compose.yaml, compose.original-data.yaml and compose.ai-acceptance.yaml.
+services:
+  business-qa:
+    environment:
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+      PRODUCT_INDEX_SYNC_ENABLED: 'true'
+      CORS_ORIGINS: http://127.0.0.1:18081,http://127.0.0.1:18082
+  frontend-review-qa:
+    image: lumiere-rebuild-test-frontend:latest
+    profiles: [review-acceptance]
+    networks: [edge]
+    mem_limit: 64m
+  proxy-review-qa:
+    image: nginx:1.28-alpine
+    profiles: [review-acceptance]
+    ports: ['127.0.0.1:18082:8080']
+    volumes: ['./infra/proxy/nginx-review-acceptance.conf:/etc/nginx/nginx.conf:ro']
+    networks: [edge]
+    mem_limit: 64m
+  neo4j-facts-qa:
+    extends:
+      file: compose.yaml
+      service: neo4j
+    profiles: [review-acceptance]
+    volumes: [review_qa_neo4j:/data, review_qa_neo4j_logs:/logs]
+    healthcheck:
+      interval: 60s
+      timeout: 20s
+  qdrant-facts-qa:
+    extends:
+      file: compose.yaml
+      service: qdrant
+    profiles: [review-acceptance]
+    volumes: [review_qa_qdrant:/qdrant/storage]
+  review-acceptance:
+    image: lumiere-rebuild-test-index-worker:latest
+    profiles: [review-acceptance]
+    restart: 'no'
+    entrypoint: ['python', '-B', '/qa/verify_reviewed_attributes.py']
+    environment:
+      LUMIERE_LOAD_DOTENV: 'false'
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+      PRODUCT_INDEX_SYNC_ENABLED: 'false'
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: '5432'
+      POSTGRES_DB: lumiere_test_ai_acceptance
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      BUSINESS_API_URL: http://business-qa:8001
+      NEO4J_URI: bolt://neo4j-facts-qa:7687
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD}
+      QDRANT_URL: http://qdrant-facts-qa:6333
+      QDRANT_COLLECTION: ${QDRANT_COLLECTION}
+      EMBEDDING_REVISION: e8f8c211226b894fcb81acc59f3b34ba3efd5f42
+      HF_HOME: /models
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    volumes:
+      - ./AI:/srv/AI:ro
+      - ./backend:/srv/backend:ro
+      - ./shared:/srv/shared:ro
+      - ./scripts/verify_reviewed_attributes.py:/qa/verify_reviewed_attributes.py:ro
+      - ./.local-tmp/original-db-20261122-014434/ai-acceptance:/qa/private:ro
+      - ./.local-tmp/original-db-20261122-014434/review-schema-qa-20261122:/qa/recovery:ro
+      - ${MODEL_CACHE_PATH:-./.local-tmp/models}:/models:ro
+    networks: [edge, ai-data, business-data]
+    mem_limit: 3g
+volumes:
+  review_qa_neo4j: {}
+  review_qa_neo4j_logs: {}
+  review_qa_qdrant: {}

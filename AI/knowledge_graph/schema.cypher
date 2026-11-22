@@ -13,3 +13,7 @@ CREATE CONSTRAINT lumiere_gemstone_id IF NOT EXISTS
 FOR (g:Gemstone) REQUIRE g.gemstone_id IS UNIQUE;
 CREATE CONSTRAINT lumiere_collection_id IF NOT EXISTS
 FOR (c:Collection) REQUIRE c.collection_id IS UNIQUE;
+CREATE CONSTRAINT lumiere_review_audience_canonical_id IF NOT EXISTS
+FOR (a:Audience) REQUIRE a.canonical_id IS UNIQUE;
+CREATE CONSTRAINT lumiere_review_style_canonical_id IF NOT EXISTS
+FOR (s:Style) REQUIRE s.canonical_id IS UNIQUE;

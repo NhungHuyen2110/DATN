@@ -16,6 +16,7 @@ from app.schemas.catalog import (
     ProductUpdateRequest, ProductCreateRequest,
 )
 from app.services import orders as order_service
+from app.services.product_attributes import public_products
 
 
 router = APIRouter(tags=["Catalog"])
@@ -93,7 +94,7 @@ def list_products(
         public_product_query().where(*filters).order_by(Product.id)
         .offset((page - 1) * page_size).limit(page_size)
     ).all()
-    return {"items": items, "page": page, "page_size": page_size, "total": total}
+    return {"items": public_products(db, items), "page": page, "page_size": page_size, "total": total}
 
 
 @router.get("/products/{id}", response_model=ProductResponse)
@@ -101,7 +102,7 @@ def get_product(id: Annotated[int, Path(ge=1, le=2147483647)], db: Database):
     product = db.scalar(public_product_query().where(Product.id == id))
     if product is None:
         raise HTTPException(status_code=404, detail="Không tìm thấy sản phẩm")
-    return product
+    return public_products(db, [product])[0]
 
 
 @router.get("/admin/products", response_model=ProductPage, tags=["Admin Products"])

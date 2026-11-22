@@ -1,6 +1,29 @@
 """Deterministic rank fusion and final verification; no service/model side effects."""
 from decimal import Decimal, InvalidOperation
 import math
+from shared.verified_attributes import PublicAttribute
+
+
+def approved_facts(product):
+    result = {}
+    values = product.get('verified_attributes', [])
+    if not isinstance(values, list):
+        return result
+    for value in values:
+        try:
+            fact = PublicAttribute.model_validate(value).model_dump()
+        except (ValueError, TypeError):
+            continue
+        result[(fact['label'], fact['canonical_id'])] = fact
+    return result
+
+
+def reviewed_constraints_valid(product, constraints):
+    facts = approved_facts(product)
+    if any((label, canonical) not in facts for label, canonical in constraints.get('reviewed_attributes', {}).items()):
+        return False
+    shared_styles = constraints.get('shared_reference_styles')
+    return not shared_styles or any(('Style', style) in facts for style in shared_styles)
 
 
 def reciprocal_rank_fusion(rankings, constant=60):
@@ -50,6 +73,8 @@ def finalize_topk(candidates, top_k, constraints, live_products):
         if not price_and_stock_valid(live, constraints):
             continue
         if any(live.get(field) != expected for field, expected in constraints.get("attributes", {}).items()):
+            continue
+        if not reviewed_constraints_valid(live, constraints):
             continue
         seen.add(pid)
         ordered.append({**candidate, **live, "score": score, "rank": len(ordered) + 1})

@@ -1,0 +1,10 @@
+{
+  "successful": false,
+  "record_type": "manual_failure_record_from_observed_browser_output",
+  "phase": "model_readiness",
+  "failure": "Diagnostics HTTP request exceeded the 20-second browser deadline after container rollout",
+  "conversation_cases_completed": 0,
+  "next_attempt": "bounded startup readiness retries; require both dense and graph ranks before conversation cases",
+  "credentials_published": false,
+  "scope": "sanitized public report only; raw browser error output is not a publication artifact"
+}

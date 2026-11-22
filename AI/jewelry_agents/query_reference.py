@@ -1,6 +1,7 @@
 """Resolve explicit IDs/unique catalog names for related-product queries; no inferred product facts."""
 import re
 from .entity_linking import normalize
+from shared.verified_attributes import reviews_enabled
 
 
 def reference_request(query):
@@ -15,6 +16,9 @@ def reference_request(query):
     unsupported_style = bool(re.search(r'\bcung phong cach\b|\bphong cach tuong tu\b', text)
                              or (re.search(r'\bphong cach\b', text) and re.search(r'\b(?:cung|giong|tuong tu)\b', text)))
     active = bool(requested or unsupported_style or re.search(r'\b(?:giong|tuong tu)\b', text))
+    if unsupported_style and reviews_enabled():
+        requested.append('HAS_STYLE')
+        unsupported_style = False
     return {'active': active, 'relations': requested, 'unsupported_style': unsupported_style}
 
 

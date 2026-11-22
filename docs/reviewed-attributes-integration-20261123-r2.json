@@ -1,0 +1,13 @@
+{
+  "successful": false,
+  "record_type": "manual_failure_record_from_observed_runner_and_recovery_outputs",
+  "failure": "QA runner exceeded its 300-second limit before completing acceptance",
+  "partial_graph_or_vector_writes": "QA volumes only; not counted as acceptance",
+  "runner_container_manually_stopped": true,
+  "automatic_restoration": "Compose start exceeded 150 seconds while awaiting Neo4j health",
+  "manual_recovery": "Neo4j observed healthy; existing index-worker container started explicitly",
+  "full_retrieval_recovery_verified_in_this_report": false,
+  "serving_database_written": false,
+  "original_database_written": false,
+  "next_attempt": "batch projection and replay; named runner cleanup; exact prior container restart"
+}

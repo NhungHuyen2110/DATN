@@ -6,11 +6,14 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 import time
 from urllib.request import urlopen
 from urllib.error import HTTPError
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from shared.host_process import run_bounded
 COMPOSE = ['docker','compose','--env-file','.env.example','-f','compose.yaml','-f','compose.original-data.yaml']
 
 
@@ -30,7 +33,7 @@ def main():
     if not audit.get('successful') or not restored.get('successful'):
         parser.error('Verified backup and restore required')
     def run(command, timeout=120):
-        result = subprocess.run(command,cwd=ROOT,capture_output=True,timeout=timeout)
+        result = run_bounded(command,cwd=ROOT,timeout=timeout)
         if result.returncode:
             # Inherit the private audit directory ACL; do not expose command/env details.
             failure=args.audit.parent/('verification-failure-'+str(time.time_ns())+'.log')
@@ -51,6 +54,23 @@ def main():
         raise ValueError('Wrong local PostgreSQL project')
     target_user = dict(v.split('=',1) for v in target['Config']['Env'] if '=' in v)['POSTGRES_USER']
     source_user = dict(v.split('=',1) for v in source['Config']['Env'] if '=' in v)['POSTGRES_USER']
+    clone = inspect(audit['clone_container'])
+    if (not clone['State']['Running'] or clone['HostConfig']['NetworkMode'] != 'none'
+            or 'default_transaction_read_only=on' not in (clone['Config'].get('Cmd') or [])):
+        raise ValueError('An isolated read-only audit clone must be running')
+    deadline = time.monotonic() + 180
+    while True:
+        if time.monotonic() >= deadline:
+            raise RuntimeError('Read-only audit clone did not finish recovery within its startup budget')
+        try:
+            ready = run_bounded(['docker', 'exec', audit['clone_container'], 'pg_isready', '-q', '-t', '3',
+                                 '-U', source_user, '-d', 'lumiere_backend_test'], cwd=ROOT,
+                                timeout=max(1, min(30, deadline - time.monotonic())))
+            if ready.returncode == 0:
+                break
+        except subprocess.TimeoutExpired:
+            pass  # Docker CLI cold start is part of this overall startup budget.
+        time.sleep(1)
     preserved, session_lifecycle = [], None
     counts = audit['databases']['lumiere_backend_test']['table_counts']
     for table in counts:

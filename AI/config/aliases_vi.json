@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "entities": [
     {"label":"Category","canonical_id":"ring","graph_id":1,"aliases":["nhẫn","nhan"]},
     {"label":"Category","canonical_id":"necklace","graph_id":2,"aliases":["dây chuyền","day chuyen"]},
@@ -7,8 +7,8 @@
     {"label":"Category","canonical_id":"chain_bracelet","graph_id":4,"aliases":["lắc tay"]},
     {"label":"Category","canonical_id":"bracelet","graph_id":5,"aliases":["vòng tay"]},
     {"label":"Category","canonical_id":"charm","graph_id":6,"aliases":["charm"]},
-    {"label":"Audience","canonical_id":"female","aliases":["phái nữ","phụ nữ","nữ giới","dành cho nữ","đàn bà","con gái"]},
-    {"label":"Audience","canonical_id":"male","aliases":["phái nam","nam giới","đàn ông","dành cho nam"]},
+    {"label":"Audience","canonical_id":"female","aliases":["phái nữ","phụ nữ","nữ giới","dành cho nữ","cho nữ","đàn bà","con gái"]},
+    {"label":"Audience","canonical_id":"male","aliases":["phái nam","nam giới","đàn ông","dành cho nam","cho nam"]},
     {"label":"Audience","canonical_id":"child_female","aliases":["bé gái"]},
     {"label":"Style","canonical_id":"elegant","aliases":["thanh lịch","trang nhã"]},
     {"label":"Style","canonical_id":"minimalist","aliases":["tối giản","minimalist"]},

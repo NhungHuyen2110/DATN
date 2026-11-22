@@ -3,7 +3,9 @@
 from decimal import Decimal
 from typing import Annotated
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator, model_serializer
+from app.schemas.product_attributes import PublicVerifiedAttribute
+from shared.verified_attributes import reviews_enabled
 
 
 class LookupResponse(BaseModel):
@@ -28,6 +30,14 @@ class ProductResponse(BaseModel):
     weight: Decimal
     price_vnd: Decimal = Field(validation_alias="sale_price")
     stock: int
+    verified_attributes: list[PublicVerifiedAttribute] = Field(default_factory=list)
+
+    @model_serializer(mode='wrap')
+    def serialize_review_metadata(self, handler):
+        values = handler(self)
+        if not reviews_enabled() or 'verified_attributes' not in self.model_fields_set:
+            values.pop('verified_attributes', None)
+        return values
 
 
 class ProductPage(BaseModel):

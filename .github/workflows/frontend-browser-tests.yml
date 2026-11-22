@@ -28,6 +28,7 @@ jobs:
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - run: node scripts/browser/test-secure-failure.cjs
       - run: python -m pip install -r backend/requirements-test.txt -r AI/requirements-test.txt
       - run: python -B scripts/probe_ai_lightweight_startup.py
       - run: npm install --prefix .local-tmp/browser-tools --ignore-scripts --no-audit --no-fund @playwright/test@1.56.1

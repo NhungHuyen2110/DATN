@@ -1,0 +1,18 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {spawnSync}=require('node:child_process'),{randomBytes}=require('node:crypto');
+const root=path.resolve(__dirname,'../..');
+fs.mkdirSync(path.join(root,'.local-tmp'),{recursive:true});
+const folder=fs.mkdtempSync(path.join(root,'.local-tmp/failure-redaction-'));
+const fixture=path.join(folder,'synthetic-fixture.json'),report=path.join(folder,'public-result.json');
+fs.writeFileSync(fixture,'{}');
+const marker='SYNTHETIC-ONLY-'+randomBytes(16).toString('hex');
+const program=`require(process.argv[1])(new Error('Cookie: lumiere_session='+process.argv[4]+'\\nAuthorization: Bearer '+process.argv[4]),process.argv[2],process.argv[3],process.argv[4]);`;
+const child=spawnSync(process.execPath,['-e',program,path.join(__dirname,'secure-failure.cjs'),fixture,report,marker],{encoding:'utf8',timeout:15000});
+assert.equal(child.status,1);
+assert.ok(!(child.stdout+child.stderr).includes(marker),'Synthetic session marker must never reach console output');
+const publicText=fs.readFileSync(report,'utf8');assert.ok(!publicText.includes(marker));
+const result=JSON.parse(publicText);
+assert.equal(result.successful,false);assert.equal(result.phase,'acceptance');
+assert.equal(result.credentials_published,false);assert.equal(result.private_failure_log_retained,true);
+assert.ok(fs.readFileSync(report+'.failure.log','utf8').includes(marker),'Details retained only in fixture directory');
+console.log(JSON.stringify({successful:true,synthetic_marker_only:true,public_report_and_console_redacted:true,private_detail_retained:true}));

@@ -1,0 +1,11 @@
+body[data-page="admin-product-attributes"] fieldset {border:0;padding:0;margin:0;min-width:0}
+body[data-page="admin-product-attributes"] .review-search {display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+body[data-page="admin-product-attributes"] .review-search input {flex:1;min-width:180px}
+body[data-page="admin-product-attributes"] .review-results,
+body[data-page="admin-product-attributes"] .review-history {list-style:none;padding:0;display:grid;gap:10px}
+body[data-page="admin-product-attributes"] .review-results button {width:100%;text-align:left;white-space:normal}
+body[data-page="admin-product-attributes"] .review-history li {border:1px solid #e6ded1;border-radius:8px;padding:12px;overflow-wrap:anywhere}
+body[data-page="admin-product-attributes"] .review-history p {margin:6px 0}
+body[data-page="admin-product-attributes"] .review-confirm {display:grid;gap:14px;margin-top:24px;max-width:700px}
+body[data-page="admin-product-attributes"] .review-confirmation {display:flex;gap:10px;align-items:flex-start}
+body[data-page="admin-product-attributes"] #review-status {overflow-wrap:anywhere}

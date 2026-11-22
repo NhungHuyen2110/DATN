@@ -11,8 +11,15 @@ def retrieval_diagnostics(payload):
         raise HTTPException(status_code=503, detail='Chẩn đoán AI chưa được cấu hình')
     base = os.getenv('LUMIERE_AI_INTERNAL_URL', 'http://127.0.0.1:8000').rstrip('/')
     try:
+        read_timeout = float(os.getenv('LUMIERE_AI_DIAGNOSTICS_TIMEOUT_SECONDS', '30'))
+        if not 3 <= read_timeout <= 40:
+            raise ValueError('Invalid AI read budget')
+    except ValueError:
+        raise HTTPException(status_code=503, detail='Thời gian chờ chẩn đoán AI chưa được cấu hình hợp lệ') from None
+    try:
         response = requests.post(base + '/internal/retrieval-diagnostics', json=payload,
-                                 headers={'Authorization': 'Bearer ' + token, **correlation_headers()}, timeout=15)
+                                 headers={'Authorization': 'Bearer ' + token, **correlation_headers()},
+                                 timeout=(3, read_timeout))
         response.raise_for_status()
         result = response.json()
         if not isinstance(result, dict) or not isinstance(result.get('products'), list):

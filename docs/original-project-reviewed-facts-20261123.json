@@ -1,0 +1,10 @@
+{
+  "successful": false,
+  "record_type": "manual_failure_record_from_private_postgresql_error_classification",
+  "failure": "First read-only comparison reached the audit clone while PostgreSQL reported recovery",
+  "data_integrity_verdict_issued": false,
+  "original_source_started": false,
+  "audit_clone_stopped_in_finally": true,
+  "raw_database_error_published": false,
+  "next_attempt": "wait for pg_isready on the isolated read-only clone before comparison"
+}

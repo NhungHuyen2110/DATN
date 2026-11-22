@@ -3,6 +3,7 @@ import os
 import requests
 from decimal import Decimal
 from shared.observability import correlation_headers
+from shared.verified_attributes import PublicAttribute
 
 
 class CatalogUnavailable(RuntimeError):
@@ -50,6 +51,9 @@ def fetch_catalog():
                         "Collection": item["collection"]["name"],
                         "verified_source": "business_api",
                     }
+                    if 'verified_attributes' in item:
+                        products[pid]['verified_attributes'] = [PublicAttribute.model_validate(fact).model_dump()
+                                                               for fact in item['verified_attributes']]
                 if len(products) == total:
                     return products
                 if not items or len(products) > total:

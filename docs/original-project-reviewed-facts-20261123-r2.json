@@ -1,0 +1,9 @@
+{
+  "successful": false,
+  "record_type": "manual_failure_record_from_observed_timeout",
+  "failure": "Docker pg_isready invocation exceeded the individual 10-second probe limit",
+  "data_integrity_verdict_issued": false,
+  "original_source_started": false,
+  "audit_clone_stopped_in_finally": true,
+  "next_attempt": "bounded 180-second readiness deadline, retry CLI probe timeouts before comparing"
+}

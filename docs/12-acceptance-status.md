@@ -1,10 +1,12 @@
-# Đối chiếu đặc tả — cập nhật 22/11/2026
+# Đối chiếu đặc tả — cập nhật 23/11/2026
 
 **Toàn dự án chưa hoàn thành.** Website local `http://127.0.0.1:18080` đã dùng bản sao đầy đủ database cũ và AI mới. Chưa có Qwen hội thoại chạy thật hoặc hosting công khai. Smoke tests không phải benchmark chất lượng.
 
 ## Trạng thái mới thay thế các gate lịch sử phía dưới
 
-- Đã push checkpoint `a7a5c46` lên `rebuild/lumiere-demo-20261122`; năm workflow CI đạt, không merge nhánh cũ.
+- Luồng nhãn được xác nhận: backend mới 683 tests/833 subtests đạt; AI/tools 132 run, 131 đạt/1 skip; Chrome QA 7/7; graph/vector/encoder thật QA 8/8, gồm replay và thu hồi. Flag đã bật trên bản sao local, 500 sản phẩm PG/graph/vector, outbox 500 done, review store 0. Chưa có ground truth người duyệt cho catalog. Xem `28-reviewed-product-facts.md`; lỗi readiness sau rollout và kiểm tra hội thoại được giữ bằng report riêng.
+- Người dùng chưa thuê VPS và chọn tiếp tục hoàn thiện local; chưa có public staging/HTTPS.
+- Đã push checkpoint `f4a7a6a` lên `rebuild/lumiere-demo-20261122`; năm workflow của mốc `a7a5c46` đạt, không merge nhánh cũ. Thay đổi mới chỉ tính đã push/CI sau khi có commit và kết quả riêng.
 - Bản sao dữ liệu cũ có đủ 500 sản phẩm/ảnh, 11 tài khoản, 12 đơn, 15 dòng đơn và 9 giao dịch; nguồn và backup được giữ nguyên.
 - Runtime dense → Neo4j anchor expansion → RRF/filter/live recheck → Top-K đạt 8/8 checks. Outbox 500 done sau restart, không requeue toàn bộ.
 - Chrome thật đạt 13 ca role/UI và 5 ca context; Staff trả số đơn đúng SQL, Admin đếm 500 sản phẩm, Customer hiển thị Top-3/Top-10. Đây chưa là full write/checkout/payment UAT trên dữ liệu cũ.

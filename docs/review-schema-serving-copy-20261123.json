@@ -1,0 +1,12 @@
+{
+  "successful": true,
+  "database": "lumiere_test_original_data",
+  "revision_before": "20261121_0009",
+  "revision_after": "20261122_0010",
+  "preexisting_tables_preserved": 21,
+  "backup_sha256": "6ea93f2799e722dbe22925aee561fdd1cb141bedb10d7e3724e27a309d004f76",
+  "private_backup_directory": ".local-tmp\\original-db-20261122-014434\\review-schema-serving-copy-20261122",
+  "private_dump_created": true,
+  "private_rows_published": false,
+  "verified_utc": "2026-11-22T18:19:09.902987+00:00"
+}

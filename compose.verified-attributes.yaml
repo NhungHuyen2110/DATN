@@ -1,0 +1,14 @@
+# Serving local COPY only. Apply schema 0010 with a verified backup before using.
+# Combine with compose.yaml and compose.original-data.yaml, never with production.
+services:
+  business-api:
+    environment:
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+  ai-api:
+    environment:
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+  index-worker:
+    environment:
+      LUMIERE_ATTRIBUTE_REVIEWS_ENABLED: 'true'
+    volumes:
+      - ./.local-tmp/original-db-20261122-014434/review-schema-serving-copy-20261122:/recovery:ro

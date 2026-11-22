@@ -1,0 +1,22 @@
+{
+  "record_type": "single_controlled_internal_diagnostic_observation",
+  "quality_benchmark": false,
+  "http_status": 200,
+  "status": "ok",
+  "source_counts": {"lexical": 35, "dense": 35, "graph": 35},
+  "timings_seconds": {
+    "parse": 0.015104592999705346,
+    "catalog": 7.434095237000292,
+    "dense": 6.050386054001137,
+    "graph": 5.651246197998262,
+    "fusion": 0.0019352639974385966,
+    "verification": 1.562342108998564
+  },
+  "finding": "Healthy multi-source response exceeded the previous 15-second Business diagnostics read deadline",
+  "new_default_connect_read_seconds": [3, 30],
+  "configurable_read_bounds_seconds": [3, 40],
+  "ai_proxy_read_seconds": 50,
+  "browser_diagnostic_request_seconds": 40,
+  "ordinary_business_route_timeout_changed": false,
+  "relevance_or_latency_sla_claimed": false
+}
