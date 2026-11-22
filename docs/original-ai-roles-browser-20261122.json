@@ -1,0 +1,25 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "base_url": "http://127.0.0.1:18081",
+  "scope": "QA copy of 500 original products and 12 original orders; three synthetic QA accounts",
+  "injected_runtime_config": false,
+  "mocked_api_responses": false,
+  "serving_original_accounts_modified": false,
+  "cases": [
+    "guest denied admin AI",
+    "guest denied staff AI",
+    "admin browser login on original-data QA",
+    "admin chatbot correct /api route, SQL aggregate and visible answer",
+    "staff browser login on original-data QA",
+    "staff denied admin AI",
+    "staff chatbot correct /api route, SQL aggregate and visible answer",
+    "customer browser login on original-data QA",
+    "customer denied admin AI",
+    "customer denied staff AI",
+    "homepage customer AI actual three products and budget/stock"
+  ],
+  "passed": 11,
+  "qa_login_session_writes": true,
+  "production_accessed": false
+}

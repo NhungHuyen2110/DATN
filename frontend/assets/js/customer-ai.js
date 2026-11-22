@@ -3,7 +3,7 @@
   'use strict';
   if (document.getElementById('lumiere-ai-widget')) return;
   const API = window.LUMIERE_AI_BASE ? window.LUMIERE_AI_BASE.replace(/\/$/, '') + '/chat' : '';
-  const REQUEST_TIMEOUT_MS = 240000; // Thời gian chờ thử nghiệm cho CrewAI + Ollama
+  const REQUEST_TIMEOUT_MS = 50000;
   const root = document.createElement('div');
   root.id = 'lumiere-ai-widget';
   root.innerHTML = `
@@ -43,21 +43,39 @@
     if (!Array.isArray(products) || !products.length) return;
     const wrap = document.createElement('div');
     wrap.className = 'lai-products';
-    for (const p of products.slice(0, 5)) {
+    for (const p of products.slice(0, 10)) {
       if (!p || typeof p !== 'object') continue;
       const item = document.createElement('article');
       item.className = 'lai-product';
-      const name = document.createElement('strong');
+      const name = document.createElement('a');
       name.textContent = String(p.ProductName ?? p.name ?? 'Sản phẩm');
+      const productId = Number(p.ProductID ?? p.id);
+      if (Number.isSafeInteger(productId) && productId > 0) {
+        name.href = '/pages/product-detail.html?id=' + productId;
+      }
+      const imagePath = window.LUMIERE_PRODUCT_IMAGE?.(p.SKU ?? p.sku, null);
+      if (imagePath) {
+        const photo = document.createElement('img');
+        photo.src = imagePath;
+        photo.alt = name.textContent;
+        photo.loading = 'lazy';
+        item.append(photo);
+      }
       const meta = document.createElement('small');
       const priceValue = p.Price ?? p.SalePrice;
       const price = priceValue == null ? NaN : Number(priceValue);
       const fields = [p.Material ?? p.MaterialName, p.Gemstone ?? p.GemstoneName].filter(Boolean).map(String);
       if (Number.isFinite(price) && price >= 0) fields.push(price.toLocaleString('vi-VN') + ' ₫');
+      if (Number.isInteger(p.Stock) && p.Stock >= 0) fields.push('Còn ' + p.Stock + ' sản phẩm');
       meta.textContent = fields.join(' · ');
       const id = document.createElement('small');
-      id.textContent = p.ProductID != null ? `Mã AI: ${p.ProductID}` : '';
+      id.textContent = p.ProductID != null ? `Mã sản phẩm: ${p.ProductID}` : '';
       item.append(name, meta, id);
+      if (p.reason) {
+        const reason = document.createElement('small');
+        reason.textContent = String(p.reason);
+        item.append(reason);
+      }
       wrap.append(item);
     }
     if (wrap.children.length) {
@@ -102,9 +120,9 @@
     } catch (error) {
       loading.remove();
       const errorMessage = error?.name === 'AbortError'
-        ? 'AI xử lý vượt thời gian chờ (4 phút). Bạn hãy kiểm tra log AI và thử lại.'
+        ? 'Phản hồi đang lâu hơn dự kiến. Bạn hãy thử lại sau; các chức năng mua sắm vẫn hoạt động.'
         : error instanceof TypeError
-          ? 'Không thể kết nối tới AI Service. Hãy kiểm tra cổng 8000, CORS và tab Network.'
+          ? 'Trợ lý tạm thời chưa kết nối được. Bạn vẫn có thể xem sản phẩm và đặt hàng; hãy thử lại sau.'
           : (error?.message || 'AI Service gặp lỗi không xác định.');
       message(errorMessage, 'lai-bot lai-error');
       console.warn('LUMIERE AI chatbot request failed:', error);

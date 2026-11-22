@@ -2,6 +2,8 @@
 
 **Bạn có thể test bản demo local ngay tại http://127.0.0.1:18080. Toàn bộ đồ án chưa nghiệm thu xong; hosting chưa triển khai.**
 
+**AI giao diện vừa sửa:** chatbot Staff/Admin gọi thiếu `/api`, đã sửa và build vào frontend đang chạy. Widget Customer đã vẽ đủ Top 10, có ảnh SKU/link/tồn kho/lý do; lỗi chat không ảnh hưởng catalog. Chrome thực trên QA copy đầy đủ 500 sản phẩm/12 đơn đạt **13 kiểm tra AI/role**, không inject URL hoặc mock response thành công. Không thay mật khẩu/tài khoản cũ đang phục vụ. Xem [bằng chứng và giới hạn](22-ai-ui-repair-and-acceptance.md).
+
 Đã đạt:
 
 - **10 container chạy cùng nhau:** frontend, proxy, Business API, AI API, PostgreSQL, Neo4j, Qdrant, worker, Prometheus và Grafana. Đủ 4 image ứng dụng build riêng.

@@ -1,0 +1,19 @@
+# QA copy only. Existing serving DB and source users are never changed by these tests.
+services:
+  business-qa:
+    extends:
+      file: compose.yaml
+      service: business-api
+    image: lumiere-rebuild-test-business-api:latest
+    profiles: [acceptance]
+    environment:
+      POSTGRES_DB: lumiere_test_ai_acceptance
+      PRODUCT_INDEX_SYNC_ENABLED: 'false'
+      CORS_ORIGINS: http://127.0.0.1:18081
+  proxy-qa:
+    image: nginx:1.28-alpine
+    profiles: [acceptance]
+    ports: ['127.0.0.1:18081:8080']
+    volumes: ['./infra/proxy/nginx-ai-acceptance.conf:/etc/nginx/nginx.conf:ro']
+    networks: [edge]
+    mem_limit: 64m

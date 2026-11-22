@@ -17,7 +17,8 @@
 
   window.__lumiereManagementAI = true;
 
-  const endpoint = ENDPOINTS[role];
+  const apiBase = window.LUMIERE_API?.base || window.LUMIERE_API_BASE || window.location.origin;
+  const endpoint = apiBase.replace(/\/$/, "") + ENDPOINTS[role];
   const isAdmin = role === "admin";
 
   const examples = isAdmin
