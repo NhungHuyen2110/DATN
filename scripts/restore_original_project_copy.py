@@ -85,7 +85,7 @@ def main():
     if any(after[table]!=before[table] for table in before if table!='alembic_version'):
         raise ValueError('Existing rows changed during additive migration')
     heads=query(pgid,target_user,TARGET_DB,"SELECT json_agg(version_num) FROM alembic_version")
-    if heads!=['20261121_0009']:
+    if heads not in (['20261121_0009'], ['20261122_0010']):
         raise ValueError('Migration head differs')
     # Match original database SKUs to the actual local image assets, not placeholders.
     skus=query(pgid,target_user,TARGET_DB,"SELECT json_agg(sku ORDER BY id) FROM products")

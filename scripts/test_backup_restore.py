@@ -64,7 +64,7 @@ def main():
             payment_mismatch = db.scalar(text('''SELECT count(*) FROM payment_transactions p JOIN orders o ON o.id=p.order_id
                 WHERE p.status='succeeded' AND (p.amount_vnd<>o.total_vnd OR o.payment_status<>'paid')'''))
             migration = db.scalar(text('SELECT version_num FROM alembic_version'))
-        if any((orphan, arithmetic, item_totals, payment_mismatch)) or migration != '20261121_0009':
+        if any((orphan, arithmetic, item_totals, payment_mismatch)) or migration not in {'20261121_0009','20261122_0010'}:
             raise AssertionError('Restore relational/business invariants failed')
         report = {'successful': True, 'source': source_name, 'restored_target': target.database,
                   'source_modified': False, 'production_accessed': False, 'table_counts': after,

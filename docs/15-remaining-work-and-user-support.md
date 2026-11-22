@@ -2,6 +2,8 @@
 
 Ngày cập nhật: 22/11/2026. Những dòng ghi “đã xử lý” là việc vừa hoàn tất; các dòng còn lại là gate chưa đóng. Agent tiếp tục code/test/audit/tài liệu, không yêu cầu người dùng tự lập trình.
 
+**Sau khi giảm tải:** full backend 675 test/829 subtest và AI 90 đạt/1 skip. Semantic gift-advice đạt model thật với hai cách diễn đạt; Top 3 có ngân sách vẫn đúng, giá/tồn kho đều đối chiếu Business. Browser tại 18080 xác nhận lời tư vấn và 3 link. Feature đã bật local; chưa có Qwen narrative/bộ nhớ nhiều lượt. Nền API fact review qua regression nhưng chưa migrate/live hoặc nối graph/filter. [Chi tiết](23-semantic-advice-in-progress.md).
+
 **AI trên giao diện:** đã sửa URL Staff/Admin thiếu `/api`; sửa Customer widget cắt Top 10 còn 5 thẻ, thêm link/ảnh/tồn kho/lý do và timeout/chặn gửi trùng. Đã build và kiểm Chrome thực **13 ca AI/role** trên QA copy dữ liệu cũ, không sửa mật khẩu nguồn, không mock API thành công. [Chi tiết](22-ai-ui-repair-and-acceptance.md). CI của `d67614e` đã đủ 5 workflow thành công. Full business write suite, fact Audience/Style có nguồn, LLM narrative/RAM, human benchmark, hosting và fault matrix rộng vẫn chưa hoàn tất.
 
 **Nguồn dữ liệu đã đổi theo yêu cầu:** website local đang chạy bản sao đầy đủ database cũ `lumiere_test_original_data`: 500 sản phẩm/500 ảnh, 11 tài khoản, 12 đơn và 9 giao dịch. Digest 20 bảng nghiệp vụ giữ nguyên, 500 ảnh HTTP khớp file, Chrome guest đạt. Dùng tài khoản cũ. Báo cáo 18 ca phía dưới thuộc DB giả trước khi chuyển, chưa thay thế kiểm role/write trên dữ liệu cũ. Hosting phải dùng bản sao database cũ, không seed CSV trống. Xem [chi tiết bảo toàn và rollback](21-original-project-data.md).

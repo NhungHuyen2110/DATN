@@ -98,6 +98,15 @@ def get_graph_driver():
     return neo4j_driver
 
 
+def plan_shopping_advice(query):
+    # Shares the bounded dense worker: a cold/unavailable model cannot queue
+    # unlimited intent work or delay ordinary lexical/graph fallback.
+    def operation():
+        from .advice_planner import plan_advice
+        return plan_advice(query,get_dense_services()[1])
+    return _bounded_source(_dense_gate,operation)
+
+
 def graph_search_candidates(query, understanding):
     return _bounded_source(_graph_gate, _graph_search_candidates, query, understanding)
 

@@ -13,6 +13,7 @@ services:
       - ./.local-tmp/recovery/original-data-20261122:/recovery:ro
   ai-api:
     environment:
+      LUMIERE_SHOPPING_ADVICE_ENABLED: 'true'
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
   neo4j:

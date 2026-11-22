@@ -12,6 +12,7 @@ from jewelry_agents.intent_router import classify_query
 from shared.observability import record_intent
 from jewelry_agents.search_service import search, RetrievalUnavailable
 from jewelry_agents.retrieval import search_qdrant, extract_price_filter, graph_search_candidates
+from jewelry_agents.advice_planner import GIFT_INTRO
 
 
 def build_safe_answer(products):
@@ -73,6 +74,13 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                       f"Phí vận chuyển hiện tại là {format_price(fee)}; miễn phí với giá trị hàng từ {format_price(threshold)}.")
             return {'success': True, 'status': 'shipping_policy', 'intent': intent,
                     'products': [], 'answer': answer, 'verified_source': 'business_shipping_policy'}
+        advice=None
+        if os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
+            try:
+                from jewelry_agents.retrieval import plan_shopping_advice
+                advice=plan_shopping_advice(query)
+            except Exception:
+                pass  # Advice is optional; authoritative retrieval still executes.
         try:
             result = search(query, top_k, dense=search_qdrant, catalog=fetch_catalog,
                             parse_price=extract_price_filter, graph=graph_search_candidates)
@@ -100,6 +108,8 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                                "Bạn có thể chọn loại trang sức, chất liệu, loại đá và ngân sách để tìm trước.")}
         products = result["products"]
         answer = build_safe_answer(products) if products else "Không tìm thấy sản phẩm phù hợp với điều kiện hiện tại."
+        if advice and advice['intent']=='gift_advice':
+            answer=GIFT_INTRO+'\n\n'+answer
         if products and len(products) < result["requested_k"]:
             answer += f"\nHiện chỉ có {len(products)} sản phẩm phù hợp."
         if result["status"] == "degraded":
@@ -108,6 +118,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                             if key not in {"score", "score_type", "rrf_score", "rerank_features", "graph_paths", "retrieval_sources"}}
                            for p in products]
         return {"success": True, "answer": answer, "products": public_products,
+                "advice_intent":advice['intent'] if advice else None,
                 "status": result["status"], "requested_k": result["requested_k"],
                 "returned_k": len(products)}
 

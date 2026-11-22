@@ -1,5 +1,6 @@
 
 from .role import Role
+from .product_attribute_review import ProductAttributeReview
 from .user import User
 from .user_session import UserSession
 from .category import Category

@@ -1,10 +1,10 @@
 {
-  "passed": 673,
+  "passed": 675,
   "subtests_passed": 829,
-  "warnings": 1,
-  "duration_seconds": 123.71,
-  "log": ".local-tmp\\backend-demo-final-20261122.log",
-  "log_sha256": "aaff64a6dca35dda857131567f8ed2784b207c8d01d72475d9b4cc958307529a",
+  "warnings": 13,
+  "duration_seconds": 98.45,
+  "log": ".local-tmp\\attribute-foundation-backend-after-close.log",
+  "log_sha256": "0e31774a4b3f56707f4e90349cb0c2e86d19ab3d46fc270bacdf5f1b61d422d1",
   "scope": "guarded offline runner: SQLite memory only, external network blocked",
   "unique_scenarios_not_claimed": true
 }

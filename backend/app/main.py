@@ -20,6 +20,7 @@ from app.routers.dashboard import router as dashboard_router
 from app.routers.customer_content import router as customer_content_router
 from app.routers.ai_admin import router as ai_admin_router
 from app.routers.ai_staff import router as ai_staff_router
+from app.routers.product_attributes import router as product_attributes_router
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import os
@@ -61,6 +62,7 @@ app.include_router(dashboard_router)
 app.include_router(customer_content_router)
 app.include_router(ai_admin_router)
 app.include_router(ai_staff_router)
+app.include_router(product_attributes_router)
 allowed_origins = [
     origin.strip()
     for origin in os.getenv(

@@ -1,0 +1,38 @@
+{
+  "warmup_http_status": 200,
+  "cases": [
+    {
+      "query": "Lễ tình nhân tặng gì?",
+      "http": 200,
+      "advice_intent": "gift_advice",
+      "status": "ok",
+      "returned_products": 3,
+      "live_price_stock_verified": true,
+      "advice_verified": true
+    },
+    {
+      "query": "Muốn chọn một món quà trang sức cho người thương, tư vấn giúp mình",
+      "http": 200,
+      "advice_intent": "gift_advice",
+      "status": "ok",
+      "returned_products": 3,
+      "live_price_stock_verified": true,
+      "advice_verified": true
+    },
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "http": 200,
+      "advice_intent": "product_search",
+      "status": "ok",
+      "returned_products": 3,
+      "live_price_stock_verified": true,
+      "advice_verified": true
+    }
+  ],
+  "successful": true,
+  "real_model": true,
+  "quality_benchmark": false,
+  "private_rows_accessed": false,
+  "writes_performed": false,
+  "ai_image_id": "sha256:f628ee9eb034e66f9d9347bb57dd6ed4a892edeea5a08bb796b9a4bc2ef75b10"
+}

@@ -24,7 +24,7 @@ def main():
     reset_token = 'synthetic-compose-reset-2026-abcdef0123456789'
     fixture_env = {}
     with SessionLocal() as db, db.begin():
-        if db.scalar(text('SELECT version_num FROM alembic_version')) != '20261121_0009':
+        if db.scalar(text('SELECT version_num FROM alembic_version')) not in {'20261121_0009','20261122_0010'}:
             raise ValueError('Expected the verified additive migration head')
         for model in (Role, User, Product, Category, Brand, Material, Gemstone, Collection, Order):
             if db.scalar(select(func.count()).select_from(model)):

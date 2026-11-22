@@ -27,7 +27,7 @@ def main():
     email = 'lumiere-reset-' + nonce + '@example.com'
     fixture = {'synthetic_only': True, 'project': 'lumiere-rebuild-test', 'fixture_env': {}}
     with SessionLocal() as db, db.begin():
-        if db.scalar(text('SELECT version_num FROM alembic_version')) != '20261121_0009':
+        if db.scalar(text('SELECT version_num FROM alembic_version')) not in {'20261121_0009','20261122_0010'}:
             raise ValueError('Unexpected migration head')
         if db.scalar(select(func.count()).select_from(Product)) != 5:
             raise ValueError('Only the five-product synthetic fixture is supported')

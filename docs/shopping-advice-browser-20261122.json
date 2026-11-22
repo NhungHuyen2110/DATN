@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "base_url": "http://127.0.0.1:18080",
+  "query": "Lễ tình nhân tặng gì?",
+  "advice_intent": "gift_advice",
+  "visible_advice": true,
+  "linked_product_cards": 3,
+  "mocked_api_responses": false,
+  "injected_runtime_config": false,
+  "quality_benchmark": false,
+  "authenticated": false,
+  "writes_performed": false
+}

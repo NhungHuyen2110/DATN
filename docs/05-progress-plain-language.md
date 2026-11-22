@@ -2,6 +2,8 @@
 
 **Bạn có thể test bản demo local ngay tại http://127.0.0.1:18080. Toàn bộ đồ án chưa nghiệm thu xong; hosting chưa triển khai.**
 
+**Tư vấn ngữ nghĩa đã kiểm model thật:** “Lễ tình nhân tặng gì?” và một câu diễn đạt lại nhận lời hướng dẫn chọn quà kèm 3 sản phẩm khớp giá/tồn kho; Top 3 nhẫn dưới 8 triệu vẫn giữ đúng điều kiện. Chrome thật ở 18080 xác nhận câu trả lời và 3 link sản phẩm. Full backend mới **675 test/829 subtest**, AI **90 đạt/1 skip**. Đây chưa là hội thoại nhiều lượt/Qwen hoặc relevance benchmark. [Kết quả và giới hạn](23-semantic-advice-in-progress.md).
+
 **AI giao diện vừa sửa:** chatbot Staff/Admin gọi thiếu `/api`, đã sửa và build vào frontend đang chạy. Widget Customer đã vẽ đủ Top 10, có ảnh SKU/link/tồn kho/lý do; lỗi chat không ảnh hưởng catalog. Chrome thực trên QA copy đầy đủ 500 sản phẩm/12 đơn đạt **13 kiểm tra AI/role**, không inject URL hoặc mock response thành công. Không thay mật khẩu/tài khoản cũ đang phục vụ. Xem [bằng chứng và giới hạn](22-ai-ui-repair-and-acceptance.md).
 
 Đã đạt:
