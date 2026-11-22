@@ -1,0 +1,42 @@
+{
+    "successful":  true,
+    "tested_commit":  "a7a5c46efc907cd5b493e031890ac025361c2b3c",
+    "workflows":  [
+                      {
+                          "name":  "Isolated PostgreSQL synchronization",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416772",
+                          "head_sha":  "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+                      },
+                      {
+                          "name":  "Graph and retrieval tests",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416846",
+                          "head_sha":  "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+                      },
+                      {
+                          "name":  "Independent service builds",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416877",
+                          "head_sha":  "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+                      },
+                      {
+                          "name":  "Backend regression",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416830",
+                          "head_sha":  "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+                      },
+                      {
+                          "name":  "Frontend browser and source API integration",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416867",
+                          "head_sha":  "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+                      }
+                  ],
+    "scope":  "Five public CI workflows; no public deployment or Qwen live acceptance"
+}

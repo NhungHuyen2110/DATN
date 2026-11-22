@@ -1,6 +1,20 @@
 # Đối chiếu đặc tả — cập nhật 22/11/2026
 
-**Toàn dự án chưa hoàn thành.** Source mới chưa kích hoạt vào website đang phục vụ. Native tests không thay container tests; smoke predictions không phải benchmark chất lượng.
+**Toàn dự án chưa hoàn thành.** Website local `http://127.0.0.1:18080` đã dùng bản sao đầy đủ database cũ và AI mới. Chưa có Qwen hội thoại chạy thật hoặc hosting công khai. Smoke tests không phải benchmark chất lượng.
+
+## Trạng thái mới thay thế các gate lịch sử phía dưới
+
+- Đã push checkpoint `a7a5c46` lên `rebuild/lumiere-demo-20261122`; năm workflow CI đạt, không merge nhánh cũ.
+- Bản sao dữ liệu cũ có đủ 500 sản phẩm/ảnh, 11 tài khoản, 12 đơn, 15 dòng đơn và 9 giao dịch; nguồn và backup được giữ nguyên.
+- Runtime dense → Neo4j anchor expansion → RRF/filter/live recheck → Top-K đạt 8/8 checks. Outbox 500 done sau restart, không requeue toàn bộ.
+- Chrome thật đạt 13 ca role/UI và 5 ca context; Staff trả số đơn đúng SQL, Admin đếm 500 sản phẩm, Customer hiển thị Top-3/Top-10. Đây chưa là full write/checkout/payment UAT trên dữ liệu cũ.
+- Local backend mới 680 tests/829 subtests đạt; AI/tool contracts mới 118 tests, 117 đạt/1 skip. Bản sửa DB timeout/503 đã qua container fault và 13 ca Chrome.
+- AI/Qdrant/Neo4j/PostgreSQL outage và phục hồi đã có report riêng. Giữ lần Neo4j chưa đạt 60 giây và PostgreSQL timeout trước sửa; không coi là full fault matrix khi Ollama chưa chạy thật.
+- Còn thiếu: semantic audit đủ từng file; public semantic planning/entity linking hoàn chỉnh; facts Audience/Style/Occasion có evidence; Qwen live; calibrated reranker; human ground truth/ablation; full fault/load/security/staging/hosting/TLS acceptance.
+
+Chứng cứ: `25-master-spec-runtime-audit.md`, `26-dense-anchor-recovery.md`, các report `dense-anchor-*`, `current-implementation.json`. Xem [Test và bước hosting](20-demo-test-and-hosting-next-steps.md). Ngân sách hosting tối đa 300.000đ/tháng; chưa có VPS/IP/domain và chưa public deploy.
+
+## Các mốc và bảng gate lịch sử
 
 **Mốc mới nhất 22/11:** 10 container demo, 4 image riêng; Chrome **18/18, không skip/flaky**. Có model thật, ba nguồn lexical/dense/graph, 5 job hoàn tất và đồng bộ checkout generation 2. Prometheus có 3 target up, Grafana có ảnh thật. Nhánh GitHub mới đã push; 5 workflow commit `2ad4a93` đạt. Bootstrap 500 CSV/3 user ở DB mới riêng, backup và guard không overwrite đạt. Compose/Caddy hosting validate đạt nhưng chưa public deploy. Các gate cũ phía dưới là lịch sử; audit, human benchmark, LLM, hosting, full fault matrix và security scans vẫn mở. [Test và bước hosting](20-demo-test-and-hosting-next-steps.md).
 

@@ -65,12 +65,46 @@ def validate_base(value):
 
 def probe(base, path):
     try:
-        with urlopen(Request(base.rstrip('/') + path), timeout=2) as response:
+        # The DB connect budget is 3 s; allow the API to return its controlled
+        # 503 instead of recording a caller timeout before that budget expires.
+        with urlopen(Request(base.rstrip('/') + path), timeout=5) as response:
             return response.status
     except HTTPError as exc:
         return exc.code
     except OSError:
         return 0
+
+
+def retrieval_snapshot(ai_container):
+    """Fixed public-catalog query; internal credentials never leave the container."""
+    code = r'''
+import json,os,urllib.request,urllib.error
+from decimal import Decimal
+request=urllib.request.Request('http://127.0.0.1:8000/internal/retrieval-diagnostics',
+ data=json.dumps({'query':'Top 3 nh\u1eabn d\u01b0\u1edbi 8 tri\u1ec7u','top_k':3}).encode(),
+ headers={'Content-Type':'application/json','Authorization':'Bearer '+os.environ['LUMIERE_AI_DIAGNOSTICS_TOKEN']})
+try:
+ with urllib.request.urlopen(request,timeout=25) as response: data=json.load(response)
+ d=data.get('diagnostics',{})
+ print(json.dumps({'http':200,'status':data.get('status'),
+  'products':len(data.get('products',[])),
+  'dense_candidates':len(d.get('source_ranks',{}).get('dense',[])),
+  'graph_candidates':len(d.get('source_ranks',{}).get('graph',[])),
+  'source_errors':d.get('source_errors',{}),
+  'live_filters_valid':all(p['CategoryID']==1 and p['Stock']>0 and Decimal(str(p['Price']))<8000000 and p.get('verified_source')=='business_api' for p in data.get('products',[]))}))
+except urllib.error.HTTPError as exc: print(json.dumps({'http':exc.code}))
+'''
+    process = subprocess.run(['docker', 'exec', '-i', ai_container, 'python', '-B', '-'],
+                             input=code, capture_output=True, text=True, timeout=35)
+    if process.returncode:
+        raise RuntimeError('Internal retrieval probe failed; raw output suppressed')
+    return json.loads(process.stdout)
+
+
+def retrieval_healthy(snapshot):
+    return (snapshot.get('http') == 200 and snapshot.get('status') == 'ok'
+            and snapshot.get('dense_candidates', 0) > 0 and snapshot.get('graph_candidates', 0) > 0
+            and snapshot.get('products') == 3 and snapshot.get('live_filters_valid') is True)
 
 
 def main():
@@ -82,11 +116,24 @@ def main():
     parser.add_argument('--report', type=Path)
     parser.add_argument('--business-transaction-probe', action='store_true',
                         help='AI outage only: login/COD/ownership probes against the synthetic Compose fixture')
+    parser.add_argument('--retrieval-probe', action='store_true',
+                        help='Read-only dense/graph failure and semantic recovery checks')
+    parser.add_argument('--recovery-timeout', type=int, default=60,
+                        help='Explicit recovery observation budget, 30..300 seconds')
+    parser.add_argument('--baseline-timeout', type=int, default=60,
+                        help='Wait for healthy retrieval before stopping anything, 1..180 seconds')
     args = parser.parse_args()
+    if not 30 <= args.recovery_timeout <= 300:
+        parser.error('Recovery timeout must be 30..300 seconds')
+    if not 1 <= args.baseline_timeout <= 180:
+        parser.error('Baseline timeout must be 1..180 seconds')
     if args.business_transaction_probe and (args.service != 'ai-api' or not args.apply):
         parser.error('Synthetic business write probes require an applied isolated AI fault')
+    if args.retrieval_probe and (args.service not in {'qdrant', 'neo4j', 'postgres'} or not args.apply):
+        parser.error('Retrieval probes require an applied isolated Qdrant/Neo4j/PostgreSQL fault')
     validate_base(args.base_url)
     plan = {'project': PROJECT, 'service': args.service, 'applied': False,
+            'recovery_budget_seconds': args.recovery_timeout,
             'limitation': 'HTTP isolation smoke only; not login/checkout or semantic fallback quality verification'}
     if not args.apply:
         print(json.dumps(plan))
@@ -104,6 +151,32 @@ def main():
     if any(code != 200 for code in baseline.values()):
         raise ValueError('Healthy seeded baseline required before stopping anything')
     plan['baseline'] = baseline
+    ai_container = None
+    if args.retrieval_probe:
+        ai_ids = docker('ps', '-q', '--filter', 'label=com.docker.compose.project=' + PROJECT,
+                        '--filter', 'label=com.docker.compose.service=ai-api').splitlines()
+        if len(ai_ids) != 1:
+            raise ValueError('Exactly one isolated AI container required')
+        ai_container = ai_ids[0]
+        verify_identity(json.loads(docker('inspect', ai_container))[0], 'ai-api')
+        probes = plan['retrieval_baseline_probes'] = []
+        deadline = time.perf_counter() + args.baseline_timeout
+        while time.perf_counter() < deadline:
+            try:
+                snapshot = retrieval_snapshot(ai_container)
+            except Exception as error:
+                snapshot = {'error_type': type(error).__name__}
+            probes.append(snapshot)
+            if retrieval_healthy(snapshot):
+                break
+            time.sleep(3)
+        plan['retrieval_baseline'] = probes[-1] if probes else {'error_type': 'BaselineBudgetElapsed'}
+        if not retrieval_healthy(plan['retrieval_baseline']):
+            plan.update({'isolation_passed': False, 'fault_not_started': 'retrieval_baseline_unavailable'})
+            with args.report.open('x', encoding='utf-8') as handle:
+                json.dump(plan, handle, indent=2)
+            print(json.dumps(plan))
+            return 1
     stopped = False
     try:
         # Mark before calling: even a CLI timeout may have stopped the container.
@@ -123,6 +196,19 @@ def main():
         else:
             passed = all(code == 200 for code in during.values())
         plan['isolation_passed'] = passed
+        if args.retrieval_probe:
+            snapshot = plan['retrieval_during_failure'] = retrieval_snapshot(ai_container)
+            if args.service == 'postgres':
+                semantic_passed = snapshot.get('http') == 503
+            else:
+                failed_source, fallback = ('dense', 'graph') if args.service == 'qdrant' else ('graph', 'dense')
+                semantic_passed = (snapshot.get('status') == 'degraded'
+                    and failed_source in snapshot.get('source_errors', {})
+                    and snapshot.get(fallback + '_candidates', 0) > 0
+                    and snapshot.get('products') == 3 and snapshot.get('live_filters_valid') is True)
+            plan['retrieval_fault_passed'] = semantic_passed
+            plan['isolation_passed'] = passed and semantic_passed
+            plan['limitation'] = 'Actual isolated dependency fault with read-only dense/graph fallback and live filters; no checkout or Qwen quality claim'
         if args.business_transaction_probe:
             plan['business_transaction_probe'] = business_transaction_probe(args.base_url)
             plan['limitation'] = 'Actual container AI outage with synthetic login/COD/role guard; not all dependency faults or quality evaluation'
@@ -135,10 +221,8 @@ def main():
             recovered = False
             try:
                 docker('start', container)
-                deadline = time.perf_counter() + 60
-                for _ in range(30):
-                    if time.perf_counter() >= deadline:
-                        break
+                deadline = start + args.recovery_timeout
+                while time.perf_counter() < deadline:
                     current = {path: probe(args.base_url, path) for path in paths}
                     if current == baseline:
                         recovered = True
@@ -164,6 +248,16 @@ def main():
                                 and live['stock'] == product['Stock'] and live['stock'] > 0)
                             plan['recovered_product_live_price_stock_verified'] = recovered
                     plan['ai_recovered_with_verified_product'] = recovered
+                if recovered and args.retrieval_probe:
+                    probes = []
+                    while time.perf_counter() < deadline:
+                        snapshot = retrieval_snapshot(ai_container)
+                        probes.append(snapshot)
+                        if retrieval_healthy(snapshot):
+                            break
+                        time.sleep(3)
+                    plan['retrieval_recovery_probes'] = probes
+                    recovered = bool(probes) and retrieval_healthy(probes[-1])
             except Exception as exc:
                 recovered = False
                 plan['recovery_error_type'] = type(exc).__name__

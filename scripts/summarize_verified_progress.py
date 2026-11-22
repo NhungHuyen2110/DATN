@@ -10,7 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    log = ROOT / '.local-tmp/conversation-backend.log'
+    log = ROOT / '.local-tmp/database-fault-backend-full.log'
+    if not log.exists():
+        log = ROOT / '.local-tmp/conversation-backend.log'
     raw = log.read_bytes()
     text = raw.decode('utf-16' if raw.startswith((b'\xff\xfe', b'\xfe\xff')) else 'utf-8-sig', errors='replace')
     result = re.search(r'(\d+) passed, (\d+) warnings?, (\d+) subtests passed in ([\d.]+)s', text)
@@ -25,7 +27,13 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = ('dense-anchor-worker-tests-20261122.json'
+    ai_name = ('original-review-kit-tests-20261122.json'
+               if (ROOT / 'docs/original-review-kit-tests-20261122.json').exists() else
+               'dense-anchor-fault-guard-tests-20261122.json'
+               if (ROOT / 'docs/dense-anchor-fault-guard-tests-20261122.json').exists() else
+               'dense-anchor-fault-contract-tests-20261122.json'
+               if (ROOT / 'docs/dense-anchor-fault-contract-tests-20261122.json').exists() else
+               'dense-anchor-worker-tests-20261122.json'
                if (ROOT / 'docs/dense-anchor-worker-tests-20261122.json').exists() else
                'conversation-context-model-tests-20261122.json'
                if (ROOT / 'docs/conversation-context-model-tests-20261122.json').exists() else
@@ -51,7 +59,8 @@ def main():
     worker_build = report('docker-worker-bootstrap-image-20261122.json')
     semantic = report('compose-semantic-verified-r2-20261122.json')
     operations = report('compose-demo-operations-20261122.json')
-    ci = report('github-ci-baseline-20261122.json')
+    ci = report('dense-anchor-ci-20261122.json' if (ROOT / 'docs/dense-anchor-ci-20261122.json').exists()
+                else 'github-ci-baseline-20261122.json')
     hosting_seed = report('hosting-catalog-bootstrap-rehearsal-20261122.json')
     caption = report('compose-public-copy-browser-20261122.json')
     branch = subprocess.check_output(['git', 'branch', '--show-current'], cwd=ROOT, text=True).strip()
@@ -127,14 +136,16 @@ def main():
         'evaluation': {'draft_queries': 105, 'human_reviewed_queries': 0,
                        'smoke_predictions': sum(mode['queries'] for mode in ablation['modes'].values()),
                        'quality_metrics_computed': False, 'controlled_latency_comparison': False,
-                       'note': 'Smoke run predates related-reference query enhancement',
+                       'note': 'Historical CSV-seed smoke, not final original-catalog/anchor relevance evaluation',
                        'report': 'ablation-smoke-20261121/summary.json'},
         'remaining': ['Full per-file semantic audit', 'Evidence-backed Audience/Style facts and human-reviewed benchmark',
                       'Remaining dependency fault matrix; controlled cold-start/concurrency/load acceptance',
                       '500-catalog full hosting semantic acceptance; 105-query SQL ablation',
                       'LLM narrative/grounding evaluation', 'Full CI/CD scans/staging/approved hosting/HTTPS',
                       'Host/container exporters, alerts and complete DATN diagrams/report']}
-    original_path = ROOT / 'docs/original-project-data-readonly-20261122.json'
+    original_path = ROOT / 'docs/original-project-after-faults-20261122.json'
+    if not original_path.exists():
+        original_path = ROOT / 'docs/original-project-data-readonly-20261122.json'
     if original_path.exists():
         original = report(original_path.name)
         if not original.get('successful') or not original.get('serving_application_switched'):
@@ -159,16 +170,30 @@ def main():
                 'needs':['server and model provisioning','actual Qwen quality, latency and privacy acceptance']}
         current['product_index_sync']['enabled_on_current_business_database'] = True
         current['product_index_sync']['migration_applied_to_current_database'] = True
-    anchor_final = ROOT / 'docs/dense-anchor-runtime-final-20261122.json'
+    anchor_final = ROOT / 'docs/post-fault-full-recovery-20261122.json'
+    if not anchor_final.exists():
+        anchor_final = ROOT / 'docs/dense-anchor-runtime-final-20261122.json'
     if anchor_final.exists():
         current['dense_anchor_runtime'] = report(anchor_final.name)
         current['dense_anchor_runtime']['report'] = anchor_final.name
         current['dense_anchor_runtime']['failed_cold_probe_report'] = 'dense-anchor-runtime-20261122.json'
         current['runtime_open_issue'] = ('Dense-anchor smoke recorded; cold/concurrent load, full role/write regression, '
                                          'real Qwen dialogue and approved hosting acceptance remain open')
-    roles_path = ROOT / 'docs/dense-anchor-roles-browser-20261122.json'
+    roles_path = ROOT / 'docs/postgres-control-roles-browser-20261122.json'
+    if not roles_path.exists():
+        roles_path = ROOT / 'docs/dense-anchor-roles-browser-20261122.json'
     if roles_path.exists():
         current['original_data_roles_browser'] = report(roles_path.name)
+    fault_reports = {'ai': 'dense-anchor-fault-ai-20261122.json',
+                     'qdrant': 'dense-anchor-fault-qdrant-20261122.json',
+                     'neo4j': 'dense-anchor-fault-neo4j-r2-20261122.json',
+                     'postgres': 'dense-anchor-fault-postgres-r2-20261122.json'}
+    current['original_data_dependency_faults'] = {
+        name: report(filename) for name, filename in fault_reports.items() if (ROOT / 'docs' / filename).exists()}
+    current['original_data_dependency_faults']['ollama'] = 'not_run_requires_live_model_service'
+    review_path = ROOT / 'docs/human-review-original-20261122.json'
+    if review_path.exists():
+        current['original_catalog_human_review_kit'] = report(review_path.name)
     for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],

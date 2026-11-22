@@ -1,0 +1,161 @@
+{
+  "project": "lumiere-rebuild-test",
+  "service": "neo4j",
+  "applied": true,
+  "limitation": "Actual isolated dependency fault with read-only dense/graph fallback and live filters; no checkout or Qwen quality claim",
+  "baseline": {
+    "/": 200,
+    "/api/health/live": 200,
+    "/api/health/ready": 200,
+    "/api/products?page_size=1": 200,
+    "/ai/health/live": 200
+  },
+  "retrieval_baseline": {
+    "http": 200,
+    "status": "ok",
+    "products": 3,
+    "dense_candidates": 19,
+    "graph_candidates": 19,
+    "source_errors": {},
+    "live_filters_valid": true
+  },
+  "during_failure": {
+    "/": 200,
+    "/api/health/live": 200,
+    "/api/health/ready": 200,
+    "/api/products?page_size=1": 200,
+    "/ai/health/live": 200
+  },
+  "isolation_passed": true,
+  "retrieval_during_failure": {
+    "http": 200,
+    "status": "degraded",
+    "products": 3,
+    "dense_candidates": 19,
+    "graph_candidates": 0,
+    "source_errors": {
+      "graph": {
+        "error_type": "SourceUnavailable",
+        "reason": "cooldown"
+      }
+    },
+    "live_filters_valid": true
+  },
+  "retrieval_fault_passed": true,
+  "retrieval_recovery_probes": [
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    },
+    {
+      "http": 200,
+      "status": "degraded",
+      "products": 3,
+      "dense_candidates": 19,
+      "graph_candidates": 0,
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "cooldown"
+        }
+      },
+      "live_filters_valid": true
+    }
+  ],
+  "recovered": false,
+  "recovery_seconds": 59.129561900000226
+}

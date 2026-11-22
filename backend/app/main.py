@@ -22,6 +22,8 @@ from app.routers.ai_admin import router as ai_admin_router
 from app.routers.ai_staff import router as ai_staff_router
 from app.routers.product_attributes import router as product_attributes_router
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
+from sqlalchemy.exc import OperationalError, InterfaceError, TimeoutError as PoolTimeoutError
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from app.core.database import check_database, engine
@@ -47,6 +49,19 @@ app = FastAPI(
     lifespan=lifespan,
 )
 install_observability(app, 'business-api')
+
+
+async def database_unavailable(request, exc):
+    # Do not echo SQL, bound values, connection URLs or the driver's message.
+    logger.warning('LUMIERE_DATABASE_UNAVAILABLE: type=%s', type(exc).__name__)
+    return JSONResponse(status_code=503,
+        content={'detail': 'Dịch vụ dữ liệu tạm gián đoạn. Vui lòng thử lại sau.'},
+        headers={'Retry-After': '5'})
+
+
+for error_type in (OperationalError, InterfaceError, PoolTimeoutError):
+    app.add_exception_handler(error_type, database_unavailable)
+
 app.include_router(auth_router)
 app.include_router(password_reset.router)
 app.include_router(catalog_router)

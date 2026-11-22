@@ -23,9 +23,16 @@ DATABASE_URL = URL.create(
     database=os.environ["POSTGRES_DB"],
 )
 
+connect_timeout = int(os.getenv('DATABASE_CONNECT_TIMEOUT_SECONDS', '3'))
+pool_timeout = float(os.getenv('DATABASE_POOL_TIMEOUT_SECONDS', '3'))
+if not 1 <= connect_timeout <= 30 or not 1 <= pool_timeout <= 30:
+    raise ValueError('Database connection/pool timeouts must be 1..30 seconds')
+
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
+    pool_timeout=pool_timeout,
+    connect_args={'connect_timeout': connect_timeout},
 )
 
 SessionLocal = sessionmaker(

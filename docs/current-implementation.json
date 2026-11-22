@@ -1,21 +1,21 @@
 {
-  "updated_utc": "2026-11-22T13:35:48.153945+00:00",
+  "updated_utc": "2026-11-22T14:44:52.543393+00:00",
   "branch": "rebuild/lumiere-demo-20261122",
   "complete_project": false,
   "source_state": "Demo branch; exact source/CI commits recorded separately; no production activation",
   "acceptance_checklist": "12-acceptance-status.md",
   "backend_regression": {
-    "passed": 675,
+    "passed": 680,
     "subtests_passed": 829,
     "warnings": 13,
-    "duration_seconds": 121.96,
-    "log": ".local-tmp\\conversation-backend.log",
-    "log_sha256": "0321c9daf98c1243a6e8f5ed870c532ceedc6a617acabecc373478f67cfbee49",
+    "duration_seconds": 186.94,
+    "log": ".local-tmp\\database-fault-backend-full.log",
+    "log_sha256": "32825dd3eecf16c21421a7321c1d385e00a1b5b53bb05fb432a9cb7bc46e6b1c",
     "scope": "guarded offline runner: SQLite memory only, external network blocked",
     "unique_scenarios_not_claimed": true
   },
   "offline_ai_tests": {
-    "tests_run": 111,
+    "tests_run": 118,
     "failures": 0,
     "errors": 0,
     "skipped": 1,
@@ -23,8 +23,8 @@
     "graph_integration": "not_run_requires_isolated_server",
     "qdrant": "actual_in_memory_engine_with_synthetic_vectors",
     "real_model_quality": "not_evaluated",
-    "passed": 110,
-    "report": "dense-anchor-worker-tests-20261122.json"
+    "passed": 117,
+    "report": "original-review-kit-tests-20261122.json"
   },
   "docker_browser_integration": {
     "successful": true,
@@ -147,45 +147,45 @@
   },
   "github_ci_baseline": {
     "successful": true,
-    "tested_commit": "2ad4a939628ec68774b7de67ea2aaa564b375adf",
+    "tested_commit": "a7a5c46efc907cd5b493e031890ac025361c2b3c",
     "workflows": [
       {
-        "name": "Independent service builds",
+        "name": "Isolated PostgreSQL synchronization",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742278",
-        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
-      },
-      {
-        "name": "Backend regression",
-        "status": "completed",
-        "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742327",
-        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416772",
+        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
       },
       {
         "name": "Graph and retrieval tests",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742277",
-        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416846",
+        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
       },
       {
-        "name": "Isolated PostgreSQL synchronization",
+        "name": "Independent service builds",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742275",
-        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416877",
+        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+      },
+      {
+        "name": "Backend regression",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416830",
+        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
       },
       {
         "name": "Frontend browser and source API integration",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742281",
-        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416867",
+        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
       }
     ],
-    "note": "Baseline commit only; later commits must be checked separately"
+    "scope": "Five public CI workflows; no public deployment or Qwen live acceptance"
   },
   "hosting_catalog_bootstrap_rehearsal": {
     "successful": true,
@@ -458,7 +458,7 @@
     "smoke_predictions": 525,
     "quality_metrics_computed": false,
     "controlled_latency_comparison": false,
-    "note": "Smoke run predates related-reference query enhancement",
+    "note": "Historical CSV-seed smoke, not final original-catalog/anchor relevance evaluation",
     "report": "ablation-smoke-20261121/summary.json"
   },
   "remaining": [
@@ -472,13 +472,13 @@
   ],
   "active_dataset": {
     "successful": true,
-    "verified_utc": "2026-11-22T02:02:58.178492+00:00",
+    "verified_utc": "2026-11-22T14:15:10.977267+00:00",
     "scope": "read-only original-project copy; not full role/browser acceptance or relevance benchmark",
     "source_database": "lumiere_backend_test",
     "active_database": "lumiere_test_original_data",
     "serving_application_switched": true,
     "original_source_still_stopped": true,
-    "existing_tables_row_digests_preserved": 20,
+    "existing_tables_row_digests_preserved": 19,
     "original_counts": {
       "alembic_version": 1,
       "brands": 4,
@@ -502,12 +502,22 @@
       "users": 11,
       "wishlist_items": 1
     },
+    "original_id_sequences_preserved": 13,
+    "interactive_session_lifecycle": {
+      "source_rows": 14,
+      "current_rows": 14,
+      "unchanged_surviving_rows": 13,
+      "removed_rows": 1,
+      "added_rows": 1,
+      "baseline_restore_all_sessions_preserved": true
+    },
     "public_catalog_products": 500,
     "original_sku_images_http_bytes_verified": 500,
+    "transient_http_retry_statuses": [],
     "accounts_reset": false,
     "public_deployment": false,
     "private_rows_exported": false,
-    "report": "original-project-data-readonly-20261122.json",
+    "report": "original-project-after-faults-20261122.json",
     "browser": {
       "successful": true,
       "browser": "actual installed Chrome",
@@ -688,78 +698,6 @@
     "attempts": [
       {
         "attempt": 1,
-        "ready": false,
-        "source_errors": [
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "cooldown"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "cooldown"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "cooldown"
-            }
-          }
-        ]
-      },
-      {
-        "attempt": 2,
-        "ready": false,
-        "source_errors": [
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          }
-        ]
-      },
-      {
-        "attempt": 3,
-        "ready": false,
-        "source_errors": [
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          },
-          {
-            "dense": {
-              "error_type": "SourceUnavailable",
-              "reason": "in_flight"
-            }
-          }
-        ]
-      },
-      {
-        "attempt": 4,
         "ready": true,
         "source_errors": [
           {},
@@ -785,12 +723,12 @@
         "budget_category_verified": null,
         "source_errors": {},
         "timings_seconds": {
-          "parse": 0.0019343819999448897,
-          "catalog": 0.21712659100012388,
-          "dense": 0.574176216000069,
-          "graph": 0.6360070430000633,
-          "fusion": 0.0005164989997865632,
-          "verification": 0.2417769489998136
+          "parse": 0.0035824530004902044,
+          "catalog": 0.391788842999631,
+          "dense": 2.48830103399996,
+          "graph": 2.136294900999019,
+          "fusion": 0.0008751390005272697,
+          "verification": 0.31355204499959655
         }
       },
       {
@@ -809,12 +747,12 @@
         "budget_category_verified": true,
         "source_errors": {},
         "timings_seconds": {
-          "parse": 0.0006852510000499024,
-          "catalog": 0.14910950500006948,
-          "dense": 0.22862328600012916,
-          "graph": 0.3683050790004927,
-          "fusion": 0.0004090600000381528,
-          "verification": 0.20161204099986207
+          "parse": 0.000847026999508671,
+          "catalog": 0.37427679000029457,
+          "dense": 0.32924313500006974,
+          "graph": 0.991043520999483,
+          "fusion": 0.00022109400015324354,
+          "verification": 0.24974490800013882
         }
       },
       {
@@ -835,12 +773,12 @@
         "budget_category_verified": null,
         "source_errors": {},
         "timings_seconds": {
-          "parse": 0.0005319849997249548,
-          "catalog": 0.3142997030004153,
-          "dense": 1.7735683119999521,
-          "graph": 0.9621015860002444,
-          "fusion": 0.0009118069997384737,
-          "verification": 0.852461897000012
+          "parse": 0.000721313000212831,
+          "catalog": 0.2553966779996699,
+          "dense": 0.22898853700007749,
+          "graph": 0.45580707199951576,
+          "fusion": 0.0005149649996383232,
+          "verification": 0.2769058829999267
         }
       }
     ],
@@ -865,7 +803,7 @@
     "successful": true,
     "natural_llm_live_verified": false,
     "quality_benchmark": "not_evaluated",
-    "report": "dense-anchor-runtime-final-20261122.json",
+    "report": "post-fault-full-recovery-20261122.json",
     "failed_cold_probe_report": "dense-anchor-runtime-20261122.json"
   },
   "original_data_roles_browser": {
@@ -894,5 +832,431 @@
     "passed": 13,
     "qa_login_session_writes": true,
     "production_accessed": false
+  },
+  "original_data_dependency_faults": {
+    "ai": {
+      "project": "lumiere-rebuild-test",
+      "service": "ai-api",
+      "applied": true,
+      "recovery_budget_seconds": 120,
+      "limitation": "HTTP isolation smoke only; not login/checkout or semantic fallback quality verification",
+      "baseline": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "during_failure": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 502
+      },
+      "isolation_passed": true,
+      "recovered": true,
+      "recovery_seconds": 28.857610499999282
+    },
+    "qdrant": {
+      "project": "lumiere-rebuild-test",
+      "service": "qdrant",
+      "applied": true,
+      "limitation": "Actual isolated dependency fault with read-only dense/graph fallback and live filters; no checkout or Qwen quality claim",
+      "baseline": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "retrieval_baseline": {
+        "http": 200,
+        "status": "ok",
+        "products": 3,
+        "dense_candidates": 19,
+        "graph_candidates": 19,
+        "source_errors": {},
+        "live_filters_valid": true
+      },
+      "during_failure": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "isolation_passed": true,
+      "retrieval_during_failure": {
+        "http": 200,
+        "status": "degraded",
+        "products": 3,
+        "dense_candidates": 0,
+        "graph_candidates": 19,
+        "source_errors": {
+          "dense": {
+            "error_type": "ResponseHandlingException"
+          }
+        },
+        "live_filters_valid": true
+      },
+      "retrieval_fault_passed": true,
+      "retrieval_recovery_probes": [
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 0,
+          "graph_candidates": 19,
+          "source_errors": {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 0,
+          "graph_candidates": 19,
+          "source_errors": {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 0,
+          "graph_candidates": 19,
+          "source_errors": {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "ok",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 19,
+          "source_errors": {},
+          "live_filters_valid": true
+        }
+      ],
+      "recovered": true,
+      "recovery_seconds": 20.692906799999946
+    },
+    "neo4j": {
+      "project": "lumiere-rebuild-test",
+      "service": "neo4j",
+      "applied": true,
+      "recovery_budget_seconds": 180,
+      "limitation": "Actual isolated dependency fault with read-only dense/graph fallback and live filters; no checkout or Qwen quality claim",
+      "baseline": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "retrieval_baseline": {
+        "http": 200,
+        "status": "ok",
+        "products": 3,
+        "dense_candidates": 19,
+        "graph_candidates": 19,
+        "source_errors": {},
+        "live_filters_valid": true
+      },
+      "during_failure": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "isolation_passed": true,
+      "retrieval_during_failure": {
+        "http": 200,
+        "status": "degraded",
+        "products": 3,
+        "dense_candidates": 19,
+        "graph_candidates": 0,
+        "source_errors": {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        },
+        "live_filters_valid": true
+      },
+      "retrieval_fault_passed": true,
+      "retrieval_recovery_probes": [
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 19,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "timeout"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "degraded",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 0,
+          "source_errors": {
+            "graph": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          "live_filters_valid": true
+        },
+        {
+          "http": 200,
+          "status": "ok",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 19,
+          "source_errors": {},
+          "live_filters_valid": true
+        }
+      ],
+      "recovered": true,
+      "recovery_seconds": 115.56503699999985
+    },
+    "postgres": {
+      "project": "lumiere-rebuild-test",
+      "service": "postgres",
+      "applied": true,
+      "recovery_budget_seconds": 120,
+      "limitation": "Actual isolated dependency fault with read-only dense/graph fallback and live filters; no checkout or Qwen quality claim",
+      "baseline": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 200,
+        "/api/products?page_size=1": 200,
+        "/ai/health/live": 200
+      },
+      "retrieval_baseline_probes": [
+        {
+          "http": 200,
+          "status": "ok",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 19,
+          "source_errors": {},
+          "live_filters_valid": true
+        }
+      ],
+      "retrieval_baseline": {
+        "http": 200,
+        "status": "ok",
+        "products": 3,
+        "dense_candidates": 19,
+        "graph_candidates": 19,
+        "source_errors": {},
+        "live_filters_valid": true
+      },
+      "during_failure": {
+        "/": 200,
+        "/api/health/live": 200,
+        "/api/health/ready": 503,
+        "/api/products?page_size=1": 503,
+        "/ai/health/live": 200
+      },
+      "isolation_passed": true,
+      "retrieval_during_failure": {
+        "http": 503
+      },
+      "retrieval_fault_passed": true,
+      "retrieval_recovery_probes": [
+        {
+          "http": 200,
+          "status": "ok",
+          "products": 3,
+          "dense_candidates": 19,
+          "graph_candidates": 19,
+          "source_errors": {},
+          "live_filters_valid": true
+        }
+      ],
+      "recovered": true,
+      "recovery_seconds": 12.38859760000014
+    },
+    "ollama": "not_run_requires_live_model_service"
+  },
+  "original_catalog_human_review_kit": {
+    "successful": true,
+    "public_catalog_rows": 500,
+    "draft_queries": 105,
+    "dataset_sha256": "c63609591ae3280fd6a8165215fd4b945ca24263ce8c7038aff7f73313eb82d5",
+    "human_reviewed_products": 0,
+    "human_reviewed_queries": 0,
+    "source": "Bản sao database cũ, đọc qua http://127.0.0.1:18080/api/products",
+    "quality_metrics_computed": false,
+    "customer_fields_exported": false,
+    "cost_fields_exported": false,
+    "database_writes": false,
+    "directory": ".local-tmp\\human-review-original-20261122"
   }
 }
