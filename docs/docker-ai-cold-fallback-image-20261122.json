@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "service": "ai-api",
+  "exit_code": 0,
+  "completed_utc": "2026-11-21T18:28:57.623219+00:00",
+  "dockerfile_sha256": "5e8778580c5e9f0e89a1366bedc6a11cce8df7b10fb1c815452ee1d6c160211d",
+  "log": ".local-tmp\\docker-ai-cold-fallback-image-20261122.log",
+  "log_sha256": "250175c5a3693ed9a7eeff5d63190d3d5e8bbeeabc44929ed16053fc5c3c77f5",
+  "source_state": "uncommitted local changes; image is not a published release",
+  "pushed": false,
+  "containers_started": false,
+  "production_database_accessed": false,
+  "image_id": "sha256:d4848aea4e1f86510e7c7cfa6576da53b6123ad24a23b609fa9ae530ff06c3b6"
+}

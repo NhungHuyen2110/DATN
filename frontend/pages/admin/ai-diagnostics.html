@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chẩn đoán tìm kiếm AI | LUMIÈRE Admin</title>
+<link rel="stylesheet" href="../../assets/css/style.css"><link rel="stylesheet" href="../../assets/css/site.css">
+<script defer src="../../assets/js/api.js"></script><script defer src="../../assets/js/ai-diagnostics.js"></script></head>
+<body><main class="container page-main"><div class="page-heading"><div class="eyebrow">LUMIÈRE · ADMIN</div>
+<h1>Chẩn đoán tìm kiếm AI</h1><p><a href="dashboard.html">← Về quản trị</a></p></div>
+<section class="panel"><p>Hiển thị thực thể, nguồn truy xuất, bằng chứng graph và thứ tự sản phẩm. Điểm xếp hạng không phải xác suất phù hợp.</p>
+<form id="diagnostics-form" hidden><div class="field"><label for="query">Câu hỏi</label><input id="query" required maxlength="1000" value="Top 3 nhẫn dưới 8 triệu"></div>
+<div class="field"><label for="top-k">Số sản phẩm tối đa</label><input id="top-k" type="number" min="1" max="10" value="3" required></div>
+<p><label><input id="rerank" type="checkbox"> Thử graph-feature reranking (chưa hiệu chỉnh bằng benchmark)</label></p>
+<p><label><input id="semantic-entities" type="checkbox"> Thử entity linking bằng embedding cache (có thể chậm khi khởi tạo)</label></p>
+<button class="button button-dark" type="submit">CHẠY CHẨN ĐOÁN</button></form>
+<p id="diagnostics-status" role="status">Đang xác minh quyền Admin...</p></section>
+<section id="diagnostics-output" class="panel" hidden><h2>Kết quả và bằng chứng</h2><pre id="diagnostics-json" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></section>
+</main></body></html>

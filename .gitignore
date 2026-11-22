@@ -6,6 +6,7 @@ __pycache__/
 .env.*
 !.env.example
 .cache/
+.local-tmp/
 .pytest_cache/
 *.zip
 *.7z
@@ -21,3 +22,8 @@ frontend/test-results/
 jewelry_dataset_download/extracted/
 .env
 **/.env
+*.bak
+*.vhd
+*.vhdx
+/tatus --short
+/-files *

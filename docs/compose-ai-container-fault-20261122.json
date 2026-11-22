@@ -1,0 +1,34 @@
+{
+  "project": "lumiere-rebuild-test",
+  "service": "ai-api",
+  "applied": true,
+  "limitation": "Actual container AI outage with synthetic login/COD/role guard; not all dependency faults or quality evaluation",
+  "baseline": {
+    "/": 200,
+    "/api/health/live": 200,
+    "/api/health/ready": 200,
+    "/api/products?page_size=1": 200,
+    "/ai/health/live": 200
+  },
+  "during_failure": {
+    "/": 200,
+    "/api/health/live": 200,
+    "/api/health/ready": 200,
+    "/api/products?page_size=1": 200,
+    "/ai/health/live": 0
+  },
+  "isolation_passed": true,
+  "business_transaction_probe": {
+    "passed": true,
+    "customer_login": 200,
+    "cod_checkout": 201,
+    "own_order_read": 200,
+    "customer_admin_access": 403,
+    "order_id": 204,
+    "production_accessed": false
+  },
+  "recovered_product_live_price_stock_verified": true,
+  "ai_recovered_with_verified_product": true,
+  "recovered": true,
+  "recovery_seconds": 46.03661229996942
+}

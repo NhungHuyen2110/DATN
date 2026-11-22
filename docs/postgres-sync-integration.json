@@ -1,0 +1,15 @@
+{
+  "successful": true,
+  "postgres_version": "17.9",
+  "checks": [
+    "business_and_outbox_rollback_atomic",
+    "concurrent_upsert_preserves_all_12_generations",
+    "skip_locked_claims_other_job_while_first_row_locked",
+    "worker_reads_current_product_and_acknowledges_real_postgres_job",
+    "orm_update_emits_next_job_without_manual_enqueue",
+    "delete_keeps_tombstone_job_after_product_disappears"
+  ],
+  "projection_delivery": "injected function; not full Neo4j/Qdrant integration",
+  "production_accessed": false,
+  "fixture_data_preserved_for_inspection": true
+}

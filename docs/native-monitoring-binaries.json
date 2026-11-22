@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "tool": "prometheus",
+      "url": "https://github.com/prometheus/prometheus/releases/download/v3.7.3/prometheus-3.7.3.windows-amd64.zip",
+      "sha256": "a775b4718910cacfa5c80e97c39c4666818640afef59bc0c0d96b5398cc84531",
+      "extracted_to": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\native-monitoring\\binaries\\prometheus"
+    },
+    {
+      "tool": "grafana",
+      "url": "https://dl.grafana.com/oss/grafana_12.2.1_18966576697_windows_amd64.zip",
+      "sha256": "98c4ac4878e3ac0c05af23e3640c4aea94fd23ba2ae2bafd56aae6d6ea386996",
+      "extracted_to": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\native-monitoring\\binaries\\grafana"
+    }
+  ],
+  "system_installation": false,
+  "services_started": false
+}

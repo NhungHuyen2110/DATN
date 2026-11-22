@@ -6,11 +6,26 @@ import os
 import sys
 import requests
 import re
+from decimal import Decimal, InvalidOperation
 
 from qdrant_client import QdrantClient
-from sentence_transformers import SentenceTransformer
 
 from neo4j import GraphDatabase
+from shared.retrieval_limits import SourceGate
+
+_dense_gate = SourceGate('dense')
+_graph_gate = SourceGate('graph')
+
+
+def _bounded_source(gate, function, *args, **kwargs):
+    if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
+        return gate.call(function, *args, **kwargs)
+    return function(*args, **kwargs)
+
+
+def close_retrieval_limits():
+    _dense_gate.close()
+    _graph_gate.close()
 
 
 # ============================================================
@@ -35,56 +50,137 @@ NEO4J_URI = os.getenv(
 NEO4J_USERNAME = os.getenv(
     "NEO4J_USERNAME", "neo4j"
 )
-NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "")
 
 
 # ============================================================
 # CONNECT QDRANT
 # ============================================================
 
-print("Đang kết nối Qdrant...")
+qdrant_client = None
+embedding_model = None
 
-qdrant_client = QdrantClient(
-    url=QDRANT_URL
-)
 
-embedding_model = SentenceTransformer(
-    EMBEDDING_MODEL
-)
-
-print("Qdrant + Embedding sẵn sàng.")
+def get_dense_services():
+    global qdrant_client, embedding_model
+    if os.getenv('LUMIERE_DENSE_ENABLED', 'true').lower() != 'true':
+        raise RuntimeError('Dense retrieval disabled by runtime policy')
+    if qdrant_client is None:
+        qdrant_client = QdrantClient(url=QDRANT_URL, timeout=3)
+    if embedding_model is None:
+        # A cold model is expensive. If its vector source/index is unavailable,
+        # fail before loading weights so lexical/graph fallback stays bounded.
+        qdrant_client.get_collection(QDRANT_COLLECTION)
+        from sentence_transformers import SentenceTransformer
+        # A request must not trigger an unapproved model download.
+        embedding_model = SentenceTransformer(EMBEDDING_MODEL, revision=os.getenv("EMBEDDING_REVISION") or None,
+                                              local_files_only=True)
+    return qdrant_client, embedding_model
 
 
 # ============================================================
 # CONNECT NEO4J
 # ============================================================
 
-print("Đang kết nối Neo4j...")
+neo4j_driver = None
 
-neo4j_driver = GraphDatabase.driver(
-    NEO4J_URI,
-    auth=(
-        NEO4J_USERNAME,
-        NEO4J_PASSWORD
-    )
-)
 
-print("Neo4j sẵn sàng.")
+def get_graph_driver():
+    global neo4j_driver
+    if os.getenv('LUMIERE_GRAPH_ENABLED', 'true').lower() != 'true':
+        raise RuntimeError('Graph retrieval disabled by runtime policy')
+    if neo4j_driver is None:
+        if not NEO4J_PASSWORD:
+            raise RuntimeError("Neo4j credential not configured")
+        neo4j_driver = GraphDatabase.driver(
+            NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD),
+            connection_timeout=3, max_transaction_retry_time=5)
+    return neo4j_driver
+
+
+def graph_search_candidates(query, understanding):
+    return _bounded_source(_graph_gate, _graph_search_candidates, query, understanding)
+
+
+def _graph_search_candidates(query, understanding):
+    reference = understanding.get('reference_product')
+    if reference:
+        cypher = """
+            MATCH (source:Product {product_id:$source_id})-[left]->(entity)<-[right]-(p:Product)
+            WHERE p.product_id <> source.product_id AND type(left)=type(right)
+              AND ((type(left)='BELONGS_TO' AND entity:Category AND entity.category_id=$category)
+                OR (type(left)='MADE_OF' AND entity:Material AND entity.material_id=$material)
+                OR (type(left)='HAS_GEMSTONE' AND entity:Gemstone AND entity.gemstone_id=$gemstone))
+              AND (size($required)=0 OR type(left) IN $required)
+            WITH p, collect(DISTINCT type(left)) AS types,
+                 collect(DISTINCT {relationship:type(left),
+                    target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id),
+                    target_name:entity.name, source_product_id:source.product_id,
+                    candidate_product_id:p.product_id}) AS paths
+            WHERE all(relation IN $required WHERE relation IN types)
+            RETURN p.product_id AS ProductID, paths
+            ORDER BY size(paths) DESC, ProductID ASC LIMIT 100
+        """
+        with get_graph_driver().session() as session:
+            return [record.data() for record in session.run(cypher, source_id=reference['ProductID'],
+                category=reference.get('CategoryID'), material=reference.get('MaterialID'),
+                gemstone=reference.get('GemstoneID'), required=understanding.get('required_relationships', []))]
+    categories = [e["graph_id"] for e in understanding["entities"] if e["label"] == "Category"]
+    gemstones = [e["graph_id"] for e in understanding["entities"] if e["label"] == "Gemstone"]
+    if not categories and not gemstones:
+        return []
+    cypher = """
+        MATCH (p:Product)-[rel]->(entity)
+        WHERE (type(rel) = 'BELONGS_TO' AND entity:Category AND entity.category_id IN $categories)
+           OR (type(rel) = 'HAS_GEMSTONE' AND entity:Gemstone AND entity.gemstone_id IN $gemstones)
+        WITH p, collect(DISTINCT {relationship: type(rel),
+             target_id: coalesce(entity.category_id, entity.gemstone_id), target_name: entity.name}) AS paths
+        RETURN p.product_id AS ProductID, paths
+        ORDER BY size(paths) DESC, ProductID ASC LIMIT 100
+    """
+    with get_graph_driver().session() as session:
+        return [record.data() for record in session.run(cypher, categories=categories, gemstones=gemstones)]
 
 
 # ============================================================
 # QDRANT SEARCH
 # ============================================================
 
-def search_qdrant(query, top_k=5):
+def search_qdrant(query, top_k=5, eligible_ids=None):
+    return _bounded_source(_dense_gate, _search_qdrant, query, top_k=top_k, eligible_ids=eligible_ids)
 
-    vector = embedding_model.encode(
+
+def _search_qdrant(query, top_k=5, eligible_ids=None):
+    if eligible_ids is not None and not eligible_ids:
+        return []
+    client, model = get_dense_services()
+    dimension = model.get_sentence_embedding_dimension()
+    if QDRANT_COLLECTION.startswith("jewelry_products_v_"):
+        from vector_index import index_identity
+        expected, _ = index_identity(EMBEDDING_MODEL, os.getenv("EMBEDDING_REVISION"),
+                                     dimension)
+        if expected != QDRANT_COLLECTION:
+            raise ValueError("Embedding version does not match Qdrant collection")
+    elif (QDRANT_COLLECTION != "jewelry_products"
+          or EMBEDDING_MODEL != "paraphrase-multilingual-MiniLM-L12-v2"
+          or os.getenv("EMBEDDING_REVISION") or dimension != 384):
+        raise ValueError("Unversioned collection is only supported for the known legacy embedding contract")
+    configuration = client.get_collection(QDRANT_COLLECTION).config.params.vectors
+    if (isinstance(configuration, dict) or configuration.size != dimension
+            or str(configuration.distance.value).lower() != "cosine"):
+        raise ValueError("Qdrant dimension/distance differs from embedding contract")
+    vector = model.encode(
         query
     ).tolist()
 
-    results = qdrant_client.query_points(
+    query_filter = None
+    if eligible_ids is not None:
+        from qdrant_client.models import Filter, HasIdCondition
+        query_filter = Filter(must=[HasIdCondition(has_id=eligible_ids)])
+    results = client.query_points(
         collection_name=QDRANT_COLLECTION,
         query=vector,
+        query_filter=query_filter,
         limit=top_k,
         with_payload=True
     ).points
@@ -134,7 +230,7 @@ def get_product_from_neo4j(product_id):
         p.sku AS SKU
     """
 
-    with neo4j_driver.session() as session:
+    with get_graph_driver().session() as session:
 
         result = session.run(
             query,
@@ -160,16 +256,19 @@ def format_price(price):
 
     try:
 
-        price = int(float(price))
-
-        return (
-            f"{price:,}"
-            .replace(",", ".")
-            + " VNĐ"
-        )
+        amount = Decimal(str(price))
+        if not amount.is_finite():
+            return "Không có thông tin"
+        whole, _, fraction = format(amount, "f").partition(".")
+        formatted = f"{int(whole):,}".replace(",", ".")
+        fraction = fraction.rstrip("0")
+        if fraction:
+            formatted += "," + fraction
+        return formatted + " VNĐ"
 
     except (
         ValueError,
+        InvalidOperation,
         TypeError
     ):
 
@@ -345,7 +444,7 @@ def search_neo4j_fallback(
     LIMIT $limit
     """
 
-    with neo4j_driver.session() as session:
+    with get_graph_driver().session() as session:
         records = session.run(
             cypher,
             categories=[

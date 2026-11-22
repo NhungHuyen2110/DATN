@@ -1,0 +1,5662 @@
+{
+  "format_version": 1,
+  "scope": "offline inventory and Python AST syntax only; no imports, database or model calls",
+  "files": [
+    {
+      "path": "convert_images.py",
+      "bytes": 3767,
+      "sha256": "7db38dd40301d5a89015ca48ad4785d275b9ddf6e16e075e3464e749eae3b69a",
+      "review_status": "inventory-only",
+      "lines": 205,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "docker-compose.yml",
+      "bytes": 600,
+      "sha256": "4369dfaff12539eb77ea2510ff9342664ef22234b3968979787ebc5fbab5060a",
+      "review_status": "inventory-only",
+      "lines": 28
+    },
+    {
+      "path": "download_jewelry_images.py",
+      "bytes": 6033,
+      "sha256": "4adf971b6dd9b8d0585ede8f376b46fa76fc6aa154017728a95bbcc1fb04da50",
+      "review_status": "inventory-only",
+      "lines": 381,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "main.py",
+      "bytes": 979,
+      "sha256": "c0abe480c0a525b1940aacfe19d6f11af785905b87c4d960167ffea6c52bd843",
+      "review_status": "inventory-only",
+      "lines": 43,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "main",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "AI/api.py",
+      "bytes": 5493,
+      "sha256": "1b32d7b90b34fcc1953fd33bf70f6008a5a2a6a8ce944164cd41571da82bed86",
+      "review_status": "inventory-only",
+      "lines": 236,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "recommendations_v2",
+          "line": 28
+        },
+        {
+          "name": "home",
+          "line": 103
+        },
+        {
+          "name": "get_products",
+          "line": 115
+        },
+        {
+          "name": "get_product",
+          "line": 146
+        },
+        {
+          "name": "recommendations",
+          "line": 188
+        },
+        {
+          "name": "ChatRequest",
+          "line": 224
+        },
+        {
+          "name": "chat",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "path": "AI/check_qdrant.py",
+      "bytes": 159,
+      "sha256": "bbd2cf4db5ba5345aa71d0bbd300e82e697dd2b7ded45a4435468e86e88ba152",
+      "review_status": "inventory-only",
+      "lines": 7,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/config.py",
+      "bytes": 342,
+      "sha256": "f4a2ab029fd98cbd4849b21469c7dcf0d73adc1c7475aee4661d99ff98ce601f",
+      "review_status": "inventory-only",
+      "lines": 19,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/embedding.py",
+      "bytes": 777,
+      "sha256": "75e0ec84f4ebfef9fa9893e778969aef449aebdae32f3db47009aa4c536eb03a",
+      "review_status": "inventory-only",
+      "lines": 33,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/generate_recommendation_dataset.py",
+      "bytes": 1490,
+      "sha256": "9febfb59ae1526f15f29a066bc69c023cb270725eba209346a818cac0c9a0ffd",
+      "review_status": "inventory-only",
+      "lines": 117,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/hybrid_recommendation.py",
+      "bytes": 13276,
+      "sha256": "c94efa549b6a69e61ac29b8668f08cbfcf0c46b3b14c95c772753335b05ac2b4",
+      "review_status": "inventory-only",
+      "lines": 698,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_content_scores",
+          "line": 172
+        },
+        {
+          "name": "get_qdrant_scores",
+          "line": 212
+        },
+        {
+          "name": "get_collaborative_scores",
+          "line": 280
+        },
+        {
+          "name": "normalize_scores",
+          "line": 381
+        },
+        {
+          "name": "hybrid_recommendation",
+          "line": 423
+        }
+      ]
+    },
+    {
+      "path": "AI/hybrid_recommendation_v2.py",
+      "bytes": 2861,
+      "sha256": "9b413a3d0ed0841a7c22138b53016426de0c6c45d8dbc5dedeab2b0d4abc0375",
+      "review_status": "inventory-only",
+      "lines": 113,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "recommend_v2",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "AI/hybrid_retrieval.py",
+      "bytes": 6709,
+      "sha256": "31f20c648e31ce445df3d7001c63fa980041f85c158e91c700d0f06a76b5b451",
+      "review_status": "inventory-only",
+      "lines": 331,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "search_qdrant",
+          "line": 61
+        },
+        {
+          "name": "enrich_with_neo4j",
+          "line": 109
+        },
+        {
+          "name": "hybrid_search",
+          "line": 171
+        }
+      ]
+    },
+    {
+      "path": "AI/import_qdrant.py",
+      "bytes": 2134,
+      "sha256": "e3029e524cf1abd4c3cffc593a5f3fa71a4db687827ea5ee991805b0f28d364f",
+      "review_status": "inventory-only",
+      "lines": 91,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/prepare_products.py",
+      "bytes": 1731,
+      "sha256": "c79aaf7ccb86e2dcf0d64c5ebd3f784b1443e94e1881008e773fa9c989eeb61d",
+      "review_status": "inventory-only",
+      "lines": 90,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "load_json",
+          "line": 9
+        },
+        {
+          "name": "merge_lookup",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "AI/rag.py",
+      "bytes": 1,
+      "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+      "review_status": "inventory-only",
+      "lines": 1,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/read_products.py",
+      "bytes": 479,
+      "sha256": "db21cfdd49b68bb544b0e5491021182e8ecb29deb6f08e6601c7c2dade286740",
+      "review_status": "inventory-only",
+      "lines": 22,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/recommendation.py",
+      "bytes": 16178,
+      "sha256": "a1c51079ee85165acd7f2931ce1b6ec99ccebfbb78e5cd8a2ba4121bb67ac5cf",
+      "review_status": "inventory-only",
+      "lines": 839,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "recommend_content",
+          "line": 170
+        },
+        {
+          "name": "recommend_collaborative",
+          "line": 393
+        },
+        {
+          "name": "hybrid_recommendation",
+          "line": 593
+        }
+      ]
+    },
+    {
+      "path": "AI/recommendation_qdrant.py",
+      "bytes": 5259,
+      "sha256": "46f31ca2fbb7819f4b79223cf7d4780a27e2b853cba1c95a655b4c9ba5201830",
+      "review_status": "inventory-only",
+      "lines": 267,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "recommend_qdrant",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "path": "AI/search_products.py",
+      "bytes": 531,
+      "sha256": "3a2b0ff6b61af7d4e802336ed526fcbc772f07e0f79258a9f96919c1747ca308",
+      "review_status": "inventory-only",
+      "lines": 29,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/test_hybrid_v2.py",
+      "bytes": 178,
+      "sha256": "bae38c754909371217e53bd0fbedec5a541a296e4a014155898f3710f0d95980",
+      "review_status": "inventory-only",
+      "lines": 10,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/test_qdrant.py",
+      "bytes": 142,
+      "sha256": "7ea1c37cdc0432d00718b6b57ec2ca615ef9143fe74b7b40e7ee9b5f5561513d",
+      "review_status": "inventory-only",
+      "lines": 8,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/agents.py",
+      "bytes": 1077,
+      "sha256": "b6a8b0dea78f85e79cc1a5452a21b8e51350a12074b9ed960a53c89bd970c457",
+      "review_status": "inventory-only",
+      "lines": 38,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/crew.py",
+      "bytes": 968,
+      "sha256": "0134c0fc95343677345c3ac5fcfdd2e18babb8a6f2cd6efc13e7f7962e318b6a",
+      "review_status": "inventory-only",
+      "lines": 46,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "run_crew",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "path": "AI/jewelry_agents/hybrid_retrieval.py",
+      "bytes": 17819,
+      "sha256": "85f8b96e868c1cdd918f946cc355ce953c0bb14c7d8527ddbf86ff14162c0949",
+      "review_status": "inventory-only",
+      "lines": 770,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "search_qdrant",
+          "line": 79
+        },
+        {
+          "name": "get_product_from_neo4j",
+          "line": 124
+        },
+        {
+          "name": "hybrid_search",
+          "line": 167
+        },
+        {
+          "name": "build_rag_context",
+          "line": 429
+        },
+        {
+          "name": "format_price",
+          "line": 463
+        },
+        {
+          "name": "generate_answer",
+          "line": 489
+        }
+      ]
+    },
+    {
+      "path": "AI/jewelry_agents/main.py",
+      "bytes": 3636,
+      "sha256": "4dadad3537c058889fca00063c3eea9553d9196cc9c358bbc8487086bcc2021c",
+      "review_status": "inventory-only",
+      "lines": 165,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "main",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "AI/jewelry_agents/retrieval.py",
+      "bytes": 21863,
+      "sha256": "b53e00e5cf0a3123a1051daf8b4a85e0906ad634a1f6e73f244882520d193aa1",
+      "review_status": "inventory-only",
+      "lines": 874,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "search_qdrant",
+          "line": 79
+        },
+        {
+          "name": "get_product_from_neo4j",
+          "line": 113
+        },
+        {
+          "name": "format_price",
+          "line": 156
+        },
+        {
+          "name": "extract_category",
+          "line": 183
+        },
+        {
+          "name": "extract_material",
+          "line": 214
+        },
+        {
+          "name": "extract_gold_type",
+          "line": 236
+        },
+        {
+          "name": "extract_gemstone",
+          "line": 256
+        },
+        {
+          "name": "search_neo4j_fallback",
+          "line": 294
+        },
+        {
+          "name": "hybrid_search",
+          "line": 367
+        },
+        {
+          "name": "parse_money",
+          "line": 602
+        },
+        {
+          "name": "extract_price_filter",
+          "line": 621
+        },
+        {
+          "name": "build_rag_context",
+          "line": 849
+        }
+      ]
+    },
+    {
+      "path": "AI/jewelry_agents/tasks.py",
+      "bytes": 2929,
+      "sha256": "eea95db0970775641b5f16c61394c2f828d6188e546beb42b1ee0f2849972355",
+      "review_status": "inventory-only",
+      "lines": 122,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "create_recommendation_task",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "AI/jewelry_agents/test_agent.py",
+      "bytes": 1091,
+      "sha256": "451d344f91163b6fd9e0437244051c6501ea5d88b14b4687976bace5424a7cd9",
+      "review_status": "inventory-only",
+      "lines": 49,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/test_crewai.py",
+      "bytes": 806,
+      "sha256": "a5624f808408908ebba6171eff3c9f410067ae9133eda03018620cf6341bbf45",
+      "review_status": "inventory-only",
+      "lines": 46,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/test_ollama_tool.py",
+      "bytes": 2310,
+      "sha256": "a0a2c1779b4b62a1a6adf19da8c21ff6129b9491f5b8cc5a64978196d1a5e876",
+      "review_status": "inventory-only",
+      "lines": 93,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/test_qdrant_agent.py",
+      "bytes": 2336,
+      "sha256": "5f8a7765e47f99e1eef563ed29791bdf19a5fad94119bf1cbc35b4e1236b9eec",
+      "review_status": "inventory-only",
+      "lines": 104,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/test_qdrant_tool_only.py",
+      "bytes": 404,
+      "sha256": "344a689875c263f07efd834423ca08ecf8f2082d16b4e03c917d961bcb700c43",
+      "review_status": "inventory-only",
+      "lines": 23,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/jewelry_agents/tools.py",
+      "bytes": 7287,
+      "sha256": "7832482ee148b302c84924aefc73f218d55b4e5c7d723d8332147f6f9881a054",
+      "review_status": "inventory-only",
+      "lines": 297,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "QdrantSearchInput",
+          "line": 54
+        },
+        {
+          "name": "QdrantSearchTool",
+          "line": 76
+        },
+        {
+          "name": "Neo4jProductInput",
+          "line": 154
+        },
+        {
+          "name": "Neo4jProductTool",
+          "line": 170
+        },
+        {
+          "name": "close_connections",
+          "line": 292
+        },
+        {
+          "name": "_run",
+          "line": 89
+        },
+        {
+          "name": "_run",
+          "line": 183
+        }
+      ]
+    },
+    {
+      "path": "AI/knowledge_graph/check_data.py",
+      "bytes": 2757,
+      "sha256": "d545edf648a3cd7d69a1d891c0bc40e673efe3458d914b24854cde487ee60666",
+      "review_status": "inventory-only",
+      "lines": 120,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/knowledge_graph/connection.py",
+      "bytes": 1427,
+      "sha256": "b09203fd7ca33b61d989153410d0dcbc5ac22bfac0c507691c2fd8c76908b606",
+      "review_status": "inventory-only",
+      "lines": 56,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_connection",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "path": "AI/knowledge_graph/graph_queries.py",
+      "bytes": 6996,
+      "sha256": "752a7dc40393c36dddabe559a602cee44abafa4ae60e1961eaa9bcdd194c6aaa",
+      "review_status": "inventory-only",
+      "lines": 293,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_product",
+          "line": 32
+        },
+        {
+          "name": "get_products",
+          "line": 89
+        },
+        {
+          "name": "search_products_by_attributes",
+          "line": 147
+        },
+        {
+          "name": "get_customer_history",
+          "line": 215
+        },
+        {
+          "name": "get_customer_purchased_products",
+          "line": 259
+        },
+        {
+          "name": "close",
+          "line": 291
+        }
+      ]
+    },
+    {
+      "path": "AI/knowledge_graph/graph_recommendation.py",
+      "bytes": 1771,
+      "sha256": "aafefb6f9632be1ba46d6b7f7a3cfa04bf600ccd759dcabce3782b614d8caa40",
+      "review_status": "inventory-only",
+      "lines": 57,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "GraphRecommender",
+          "line": 4
+        },
+        {
+          "name": "__init__",
+          "line": 5
+        },
+        {
+          "name": "recommend",
+          "line": 10
+        },
+        {
+          "name": "close",
+          "line": 56
+        }
+      ]
+    },
+    {
+      "path": "AI/knowledge_graph/import_data.py",
+      "bytes": 12060,
+      "sha256": "4b28f234ea13493081eb4f1808d03d80da664603285143cebda2e332c56ad8b4",
+      "review_status": "inventory-only",
+      "lines": 544,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "run_query",
+          "line": 57
+        },
+        {
+          "name": "import_categories",
+          "line": 73
+        },
+        {
+          "name": "import_brands",
+          "line": 104
+        },
+        {
+          "name": "import_materials",
+          "line": 135
+        },
+        {
+          "name": "import_gemstones",
+          "line": 166
+        },
+        {
+          "name": "import_collections",
+          "line": 197
+        },
+        {
+          "name": "import_products",
+          "line": 228
+        },
+        {
+          "name": "import_customers",
+          "line": 293
+        },
+        {
+          "name": "import_orders",
+          "line": 328
+        },
+        {
+          "name": "import_order_details",
+          "line": 368
+        },
+        {
+          "name": "check_files",
+          "line": 401
+        },
+        {
+          "name": "main",
+          "line": 432
+        }
+      ]
+    },
+    {
+      "path": "AI/knowledge_graph/schema.cypher",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0
+    },
+    {
+      "path": "AI/knowledge_graph/test_graph.py",
+      "bytes": 1691,
+      "sha256": "b8eda27588a023bb26322009587576a71680d98284dbb686e55eda5d4a69fc26",
+      "review_status": "inventory-only",
+      "lines": 95,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/rag/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/rag/context_builder.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/rag/rag_service.py",
+      "bytes": 2118,
+      "sha256": "d26c616ea152ac6ef29980d9df35faded86e69ff56f2bf99131832dc77c78b2d",
+      "review_status": "inventory-only",
+      "lines": 83,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "build_safe_answer",
+          "line": 11
+        },
+        {
+          "name": "answer_jewelry_question",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "path": "AI/rag/retriever.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "AI/tests/test_price_intent.py",
+      "bytes": 774,
+      "sha256": "5a2fdcf6521c33cfd7de21b93f1e6c3c4712fa56da35cdc94a7eec22245168f2",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "PriceIntentTests",
+          "line": 6
+        },
+        {
+          "name": "test_budget_phrases",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic.ini",
+      "bytes": 180,
+      "sha256": "39435fa10beb41bffd0b28feba40a632af35401fc09b1f233fba302060d689ef",
+      "review_status": "inventory-only",
+      "lines": 6
+    },
+    {
+      "path": "backend/create_admin.py",
+      "bytes": 4946,
+      "sha256": "33143674091ecc36725eff873b603cefe856572c7810c6f45b72dcc81f23e57c",
+      "review_status": "inventory-only",
+      "lines": 106,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "AdminCreationError",
+          "line": 9
+        },
+        {
+          "name": "main",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/init_password_reset_table.py",
+      "bytes": 387,
+      "sha256": "a97d66202ee50d5b238bb6a2704b9d31dd455f39cc9779cc0d3a49f65dfc7cc2",
+      "review_status": "inventory-only",
+      "lines": 11,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/alembic/env.py",
+      "bytes": 1006,
+      "sha256": "f386fc1d3e171557ef0ed483ae9dbdc580e0fb89b5b604ff841811221f71667f",
+      "review_status": "inventory-only",
+      "lines": 38,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "run_migrations_offline",
+          "line": 12
+        },
+        {
+          "name": "run_migrations_online",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261015_0001_initial_schema.py",
+      "bytes": 10966,
+      "sha256": "cde76e6935b1d4d87f8c86ac49766303b7a4d9d6bc5afb64e17d1f29e4db31fe",
+      "review_status": "inventory-only",
+      "lines": 244,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "_schema",
+          "line": 23
+        },
+        {
+          "name": "_check_expression",
+          "line": 145
+        },
+        {
+          "name": "_validate_existing",
+          "line": 151
+        },
+        {
+          "name": "upgrade",
+          "line": 222
+        },
+        {
+          "name": "downgrade",
+          "line": 241
+        },
+        {
+          "name": "mismatch",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261016_0002_carts.py",
+      "bytes": 1321,
+      "sha256": "4d68b582a11fc48182e06c4ed8f3cafca95ff261f6364b0ac096bd4bec13aaee",
+      "review_status": "inventory-only",
+      "lines": 36,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261016_0003_orders.py",
+      "bytes": 3397,
+      "sha256": "5e6d3989a6c9e73b594633e325130923d0c990e678afd72aba6df3b4ed431824",
+      "review_status": "inventory-only",
+      "lines": 60,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261016_0004_payments.py",
+      "bytes": 2548,
+      "sha256": "a5923812d2157d646fbe71f1b74ac5177ed7a8d757907ef532cc9754033d1209",
+      "review_status": "inventory-only",
+      "lines": 49,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261017_0005_customer_content.py",
+      "bytes": 2072,
+      "sha256": "33cc785b29557bd6022db106b09a1240c914e97344e0fd5ebcc9ede00dc847a6",
+      "review_status": "inventory-only",
+      "lines": 43,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261023_0006_coupons.py",
+      "bytes": 3830,
+      "sha256": "63dcdb587449cfac19866ae4b90e5f9baf5e47e215efc976b648de6b72997657",
+      "review_status": "inventory-only",
+      "lines": 62,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "backend/alembic/versions/20261106_0007_contact.py",
+      "bytes": 1143,
+      "sha256": "83c5e1c10de0fdc5f590d6983b91a76cb5c8f672ba8c51fbc1492dee15ea1814",
+      "review_status": "inventory-only",
+      "lines": 32,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "upgrade",
+          "line": 16
+        },
+        {
+          "name": "downgrade",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/import_catalog.py",
+      "bytes": 13032,
+      "sha256": "eb182fafca75747658e9e96e18711a401e12dcb5dae973d64c21db975dc9dbff",
+      "review_status": "inventory-only",
+      "lines": 283,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CatalogError",
+          "line": 33
+        },
+        {
+          "name": "integer",
+          "line": 37
+        },
+        {
+          "name": "string",
+          "line": 48
+        },
+        {
+          "name": "decimal_value",
+          "line": 56
+        },
+        {
+          "name": "json_pairs",
+          "line": 72
+        },
+        {
+          "name": "check_unique",
+          "line": 81
+        },
+        {
+          "name": "parse_products",
+          "line": 90
+        },
+        {
+          "name": "load_sources",
+          "line": 119
+        },
+        {
+          "name": "load_models",
+          "line": 146
+        },
+        {
+          "name": "check_models",
+          "line": 152
+        },
+        {
+          "name": "plan_table",
+          "line": 181
+        },
+        {
+          "name": "build_plan",
+          "line": 208
+        },
+        {
+          "name": "insert_plan",
+          "line": 217
+        },
+        {
+          "name": "database_run",
+          "line": 225
+        },
+        {
+          "name": "main",
+          "line": 245
+        }
+      ]
+    },
+    {
+      "path": "backend/app/init_db.py",
+      "bytes": 584,
+      "sha256": "d823778677f56a99e4b6550c64dc8f998eee3872038eaab5c2054d41f73c6881",
+      "review_status": "inventory-only",
+      "lines": 26,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "init_database",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "backend/app/main.py",
+      "bytes": 3972,
+      "sha256": "0e3c6e3db535328c8d3c6c81e00aefce4c4bb46423aca8eabfc00e79acc394a5",
+      "review_status": "inventory-only",
+      "lines": 115,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "health",
+          "line": 66
+        }
+      ]
+    },
+    {
+      "path": "backend/app/core/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/core/database.py",
+      "bytes": 1148,
+      "sha256": "0712da7c39471a050cf203495a5ced624083e24f1ed6f2ffccf4271c02f21afb",
+      "review_status": "inventory-only",
+      "lines": 52,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Base",
+          "line": 37
+        },
+        {
+          "name": "get_db",
+          "line": 41
+        },
+        {
+          "name": "check_database",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "path": "backend/app/core/security.py",
+      "bytes": 289,
+      "sha256": "0ca43fa4cb38e09f6df1a1d7eb12a379d8622dc60b5cfd9dc0af17e22f82d4c6",
+      "review_status": "inventory-only",
+      "lines": 13,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "hash_password",
+          "line": 8
+        },
+        {
+          "name": "verify_password",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/__init__.py",
+      "bytes": 595,
+      "sha256": "1dc7fb0b35dc10e55834e01559d5be9cce69803f4ecf40e99871e52a26314de6",
+      "review_status": "inventory-only",
+      "lines": 19,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/models/brand.py",
+      "bytes": 743,
+      "sha256": "f4ab35a7d7dd3f2c7dfe5f7f87895d1c8895f98dcfca79faa5c12d3b5605471a",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Brand",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/cart.py",
+      "bytes": 705,
+      "sha256": "ecbace9a8f9414c94e5f92547ba84427ad97be1d69fd87d9babf440244ab4715",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Cart",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/cart_item.py",
+      "bytes": 1056,
+      "sha256": "6d359fa3921caa597a9a378e48c9c1460793ca474bb982c17ac8d797c97151c3",
+      "review_status": "inventory-only",
+      "lines": 30,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CartItem",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/category.py",
+      "bytes": 761,
+      "sha256": "3cc96ab34eeec57d6fa02959d560e94ddabab127c673d740ac8c0b30b164f6a8",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Category",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/collection.py",
+      "bytes": 768,
+      "sha256": "a9f7f18da28faa44c7242bfd0d0dfc43a5073ac2f975db110da335fa01b2db1c",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Collection",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/contact_message.py",
+      "bytes": 1093,
+      "sha256": "f713d1a58c868caaad2b0e2b8d9a0803e7e87001921778b3025f01334a345301",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "ContactMessage",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/coupon.py",
+      "bytes": 3419,
+      "sha256": "39fe9eff50346cb33ef183c585be3778b702d8a29d1343fd5f9401d405d663c2",
+      "review_status": "inventory-only",
+      "lines": 50,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Coupon",
+          "line": 10
+        },
+        {
+          "name": "CouponUsage",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/customer_content.py",
+      "bytes": 2087,
+      "sha256": "603b1a4c33e690651f0b09f187ea174f038959a212f8cfd35e52bd889d6df366",
+      "review_status": "inventory-only",
+      "lines": 39,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "WishlistItem",
+          "line": 13
+        },
+        {
+          "name": "ProductReview",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/gemstone.py",
+      "bytes": 758,
+      "sha256": "2d2326fc8111549f2c4806a8a0150287f4622bdba1e47f7a4edcb83578831790",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Gemstone",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/material.py",
+      "bytes": 758,
+      "sha256": "a1d05bbce312cd8e7319779d66de3fd2c485fe1895b657ee56c43061dbe77ddc",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Material",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/order.py",
+      "bytes": 2950,
+      "sha256": "62020606b1f3024a0e75cd8f2fccc1a794ff57283a1d5a151849328718a761fa",
+      "review_status": "inventory-only",
+      "lines": 46,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Order",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/order_item.py",
+      "bytes": 1514,
+      "sha256": "16c12041b8ba64caf60a5c9028055136ed53ed24dc03ea351c5d0e9dd2a77732",
+      "review_status": "inventory-only",
+      "lines": 32,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "OrderItem",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/payment_transaction.py",
+      "bytes": 2300,
+      "sha256": "4327c2ef4eb9fbdbf8f452fb7b99296a3c7f8c3a7f146f85a9e71c1c77cb2b40",
+      "review_status": "inventory-only",
+      "lines": 36,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "PaymentTransaction",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/product.py",
+      "bytes": 3293,
+      "sha256": "72ad49a9a82a8df9bc00e81305cb9d29f9382150aa50a6611f969afb03a8b664",
+      "review_status": "inventory-only",
+      "lines": 64,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Product",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/role.py",
+      "bytes": 435,
+      "sha256": "6a24b45c403dfcf00563baf7d14fa066ca3d960ed70916f784dc42dcaf25305a",
+      "review_status": "inventory-only",
+      "lines": 17,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Role",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/user.py",
+      "bytes": 1182,
+      "sha256": "bca9c603c0412201a02983d5d0029c0a8f867ecdc1e9b06dd162e495bb77b9b2",
+      "review_status": "inventory-only",
+      "lines": 49,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "User",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/models/user_session.py",
+      "bytes": 709,
+      "sha256": "118e5495469d6cad3c8cca2783d0ba887e569860948b66ac29a69668c534cb09",
+      "review_status": "inventory-only",
+      "lines": 30,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "UserSession",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/routers/admin_customers.py",
+      "bytes": 1766,
+      "sha256": "ed60d6aafb5723406815e8dd048b2567dbc53f470ecf727e207a72de80322f9c",
+      "review_status": "inventory-only",
+      "lines": 44,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "clean_search",
+          "line": 17
+        },
+        {
+          "name": "list_accounts",
+          "line": 32
+        },
+        {
+          "name": "get_account",
+          "line": 38
+        },
+        {
+          "name": "set_account_status",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/admin_staff.py",
+      "bytes": 2401,
+      "sha256": "770415b2b08d90c7287b45ede3934dea379720cfbb40129eb8ba477e56675b23",
+      "review_status": "inventory-only",
+      "lines": 62,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "SafeValidationRoute",
+          "line": 21
+        },
+        {
+          "name": "list_accounts",
+          "line": 41
+        },
+        {
+          "name": "get_account",
+          "line": 46
+        },
+        {
+          "name": "create_account",
+          "line": 51
+        },
+        {
+          "name": "update_account",
+          "line": 56
+        },
+        {
+          "name": "set_account_status",
+          "line": 61
+        },
+        {
+          "name": "get_route_handler",
+          "line": 22
+        },
+        {
+          "name": "safe_handler",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/ai_admin.py",
+      "bytes": 9029,
+      "sha256": "b5fa6cb1a07517e3de3b62567de67ee5bbac3c120d9aa73c7464013fe0b9ac52",
+      "review_status": "inventory-only",
+      "lines": 300,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "top_selling_products",
+          "line": 43
+        },
+        {
+          "name": "AdminChatRequest",
+          "line": 62
+        },
+        {
+          "name": "format_money",
+          "line": 73
+        },
+        {
+          "name": "is_valid_top_selling_intent",
+          "line": 82
+        },
+        {
+          "name": "admin_ai_chat",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/ai_staff.py",
+      "bytes": 8032,
+      "sha256": "568e793aa8b4632b50cc8e29956e33d8aed227b4be925497b60a663392a13d60",
+      "review_status": "inventory-only",
+      "lines": 283,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "staff_order_statistics",
+          "line": 47
+        },
+        {
+          "name": "StaffChatRequest",
+          "line": 66
+        },
+        {
+          "name": "staff_ai_chat",
+          "line": 74
+        },
+        {
+          "name": "staff_inventory_statistics",
+          "line": 269
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/auth.py",
+      "bytes": 7137,
+      "sha256": "300323dca660feb5f84b773906f0f5ee6b7d5c699110b7dd2af9bc7a3f3e694d",
+      "review_status": "inventory-only",
+      "lines": 277,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "register",
+          "line": 28
+        },
+        {
+          "name": "hash_session_token",
+          "line": 93
+        },
+        {
+          "name": "get_current_user",
+          "line": 97
+        },
+        {
+          "name": "login",
+          "line": 140
+        },
+        {
+          "name": "get_me",
+          "line": 205
+        },
+        {
+          "name": "update_me",
+          "line": 218
+        },
+        {
+          "name": "logout",
+          "line": 250
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/cart.py",
+      "bytes": 6029,
+      "sha256": "4271dae0cf616f7a60d249bf685f71b02891d688144b47717b663d35596c7c33",
+      "review_status": "inventory-only",
+      "lines": 149,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "find_cart",
+          "line": 24
+        },
+        {
+          "name": "cart_response",
+          "line": 28
+        },
+        {
+          "name": "mutation",
+          "line": 55
+        },
+        {
+          "name": "locked_product",
+          "line": 78
+        },
+        {
+          "name": "check_stock",
+          "line": 87
+        },
+        {
+          "name": "owned_item",
+          "line": 92
+        },
+        {
+          "name": "get_cart",
+          "line": 103
+        },
+        {
+          "name": "add_item",
+          "line": 108
+        },
+        {
+          "name": "update_item",
+          "line": 131
+        },
+        {
+          "name": "delete_item",
+          "line": 143
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/catalog.py",
+      "bytes": 10431,
+      "sha256": "ad98478fde7aecbcad9ce37900c692d64c19327dbe3ae4d8bc9b7edcd04078cf",
+      "review_status": "inventory-only",
+      "lines": 252,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "public_product_query",
+          "line": 30
+        },
+        {
+          "name": "list_categories",
+          "line": 45
+        },
+        {
+          "name": "list_brands",
+          "line": 50
+        },
+        {
+          "name": "list_products",
+          "line": 55
+        },
+        {
+          "name": "get_product",
+          "line": 100
+        },
+        {
+          "name": "admin_products",
+          "line": 108
+        },
+        {
+          "name": "create_product",
+          "line": 124
+        },
+        {
+          "name": "admin_product",
+          "line": 183
+        },
+        {
+          "name": "update_product",
+          "line": 191
+        },
+        {
+          "name": "update_stock",
+          "line": 228
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/contact.py",
+      "bytes": 3421,
+      "sha256": "0cc0a792ea0e88744345e167fa03b3ab5b33cd2ca693bd67886508cd7eed8d4c",
+      "review_status": "inventory-only",
+      "lines": 87,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "ContactCreate",
+          "line": 21
+        },
+        {
+          "name": "ContactStatus",
+          "line": 45
+        },
+        {
+          "name": "submit",
+          "line": 51
+        },
+        {
+          "name": "inbox",
+          "line": 64
+        },
+        {
+          "name": "change_status",
+          "line": 77
+        },
+        {
+          "name": "clean",
+          "line": 30
+        },
+        {
+          "name": "clean_email",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/coupons.py",
+      "bytes": 2191,
+      "sha256": "5647251f67ef6f676ea374377e7d9604a950d28bec6e56f911dee9570c45d0ca",
+      "review_status": "inventory-only",
+      "lines": 49,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "list_coupons",
+          "line": 22
+        },
+        {
+          "name": "detail",
+          "line": 28
+        },
+        {
+          "name": "create",
+          "line": 33
+        },
+        {
+          "name": "update",
+          "line": 38
+        },
+        {
+          "name": "status",
+          "line": 43
+        },
+        {
+          "name": "validate",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/customer_content.py",
+      "bytes": 3050,
+      "sha256": "f2c60285b0b08944ba4869c8630f7c4a46ec326128dd0e4b24993def69871832",
+      "review_status": "inventory-only",
+      "lines": 66,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "wishlist",
+          "line": 24
+        },
+        {
+          "name": "add_wishlist",
+          "line": 29
+        },
+        {
+          "name": "delete_wishlist",
+          "line": 36
+        },
+        {
+          "name": "product_reviews",
+          "line": 42
+        },
+        {
+          "name": "my_reviews",
+          "line": 47
+        },
+        {
+          "name": "create_review",
+          "line": 52
+        },
+        {
+          "name": "update_review",
+          "line": 57
+        },
+        {
+          "name": "delete_review",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/dashboard.py",
+      "bytes": 1504,
+      "sha256": "de643d7bde84e3b8b3f483f3d270f68e18d0136ba8d571762fa318d111b547f8",
+      "review_status": "inventory-only",
+      "lines": 37,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "dashboard",
+          "line": 23
+        },
+        {
+          "name": "revenue",
+          "line": 29
+        },
+        {
+          "name": "purchase_behavior",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/orders.py",
+      "bytes": 4162,
+      "sha256": "5c0284ede1f770ff80bcc5c24e86478acd217187d81078a14c6bed7b4fbe1f34",
+      "review_status": "inventory-only",
+      "lines": 99,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "customer",
+          "line": 25
+        },
+        {
+          "name": "admin",
+          "line": 31
+        },
+        {
+          "name": "staff_or_admin",
+          "line": 37
+        },
+        {
+          "name": "create_order",
+          "line": 44
+        },
+        {
+          "name": "list_orders",
+          "line": 48
+        },
+        {
+          "name": "my_orders",
+          "line": 59
+        },
+        {
+          "name": "get_order",
+          "line": 64
+        },
+        {
+          "name": "admin_orders",
+          "line": 75
+        },
+        {
+          "name": "update_status",
+          "line": 80
+        },
+        {
+          "name": "staff_orders",
+          "line": 85
+        },
+        {
+          "name": "staff_order_detail",
+          "line": 90
+        },
+        {
+          "name": "staff_order_status",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/password_reset.py",
+      "bytes": 5186,
+      "sha256": "f1b453b88e082a338f91686b212307d66412a1e3e7efdffd5aa223d3014f31b1",
+      "review_status": "inventory-only",
+      "lines": 121,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "PasswordResetToken",
+          "line": 25
+        },
+        {
+          "name": "ForgotPasswordRequest",
+          "line": 35
+        },
+        {
+          "name": "ResetPasswordRequest",
+          "line": 39
+        },
+        {
+          "name": "_token_hash",
+          "line": 48
+        },
+        {
+          "name": "_send_email",
+          "line": 52
+        },
+        {
+          "name": "forgot_password",
+          "line": 73
+        },
+        {
+          "name": "reset_password",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/payments.py",
+      "bytes": 4348,
+      "sha256": "35d8895687d03a55d10bb9ae93dcbba6704589e2e1b6b228dadc2ce82c810eee",
+      "review_status": "inventory-only",
+      "lines": 81,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "payment_methods",
+          "line": 22
+        },
+        {
+          "name": "create_url",
+          "line": 38
+        },
+        {
+          "name": "confirm_cod",
+          "line": 44
+        },
+        {
+          "name": "staff_confirm_cod",
+          "line": 49
+        },
+        {
+          "name": "vnpay_ipn",
+          "line": 54
+        },
+        {
+          "name": "vnpay_return",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "backend/app/routers/taxonomy.py",
+      "bytes": 4844,
+      "sha256": "7da9c7e987b4fee57908506a53801112c595556b30d6de703092dadf0454eb8b",
+      "review_status": "inventory-only",
+      "lines": 144,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "LookupWrite",
+          "line": 21
+        },
+        {
+          "name": "model_for",
+          "line": 34
+        },
+        {
+          "name": "product_count",
+          "line": 38
+        },
+        {
+          "name": "rows",
+          "line": 43
+        },
+        {
+          "name": "add",
+          "line": 52
+        },
+        {
+          "name": "change",
+          "line": 71
+        },
+        {
+          "name": "remove",
+          "line": 89
+        },
+        {
+          "name": "categories",
+          "line": 108
+        },
+        {
+          "name": "create_category",
+          "line": 113
+        },
+        {
+          "name": "edit_category",
+          "line": 118
+        },
+        {
+          "name": "delete_category",
+          "line": 123
+        },
+        {
+          "name": "brands",
+          "line": 128
+        },
+        {
+          "name": "create_brand",
+          "line": 133
+        },
+        {
+          "name": "edit_brand",
+          "line": 138
+        },
+        {
+          "name": "delete_brand",
+          "line": 143
+        },
+        {
+          "name": "clean_name",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/schemas/admin_customer.py",
+      "bytes": 607,
+      "sha256": "c24617bf46f7675cb6dc352d230fb657f91831ab824d29984617330fd8cdc5b4",
+      "review_status": "inventory-only",
+      "lines": 24,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CustomerResponse",
+          "line": 10
+        },
+        {
+          "name": "CustomerPage",
+          "line": 15
+        },
+        {
+          "name": "CustomerStatusUpdate",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/auth.py",
+      "bytes": 3726,
+      "sha256": "fdfa599345aede24a5afbb4d8fad625de3591c509e761a71e1c8d739533c356f",
+      "review_status": "inventory-only",
+      "lines": 132,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "RegisterRequest",
+          "line": 6
+        },
+        {
+          "name": "RegisterResponse",
+          "line": 41
+        },
+        {
+          "name": "LoginRequest",
+          "line": 49
+        },
+        {
+          "name": "UserResponse",
+          "line": 54
+        },
+        {
+          "name": "ProfileUpdateRequest",
+          "line": 61
+        },
+        {
+          "name": "ProfileResponse",
+          "line": 86
+        },
+        {
+          "name": "StaffCreateRequest",
+          "line": 90
+        },
+        {
+          "name": "StaffStatusUpdate",
+          "line": 108
+        },
+        {
+          "name": "StaffAccountResponse",
+          "line": 113
+        },
+        {
+          "name": "StaffAccountPage",
+          "line": 128
+        },
+        {
+          "name": "validate_name",
+          "line": 14
+        },
+        {
+          "name": "validate_phone",
+          "line": 22
+        },
+        {
+          "name": "validate_full_name",
+          "line": 69
+        },
+        {
+          "name": "validate_profile_phone",
+          "line": 76
+        },
+        {
+          "name": "require_update",
+          "line": 80
+        },
+        {
+          "name": "normalize_email",
+          "line": 97
+        },
+        {
+          "name": "reject_nul_name",
+          "line": 102
+        },
+        {
+          "name": "utc_created_at",
+          "line": 124
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/cart.py",
+      "bytes": 869,
+      "sha256": "a5d0f8fb11f023d1f0267955b5cec8c65de3bcb9c76aac1b2ae743615d70b4f5",
+      "review_status": "inventory-only",
+      "lines": 43,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "AddCartItem",
+          "line": 10
+        },
+        {
+          "name": "UpdateCartItem",
+          "line": 17
+        },
+        {
+          "name": "CartProduct",
+          "line": 23
+        },
+        {
+          "name": "CartItemResponse",
+          "line": 30
+        },
+        {
+          "name": "CartResponse",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/catalog.py",
+      "bytes": 3682,
+      "sha256": "f5d0d9c2efe05893ac6471915c6261269798b548895da22063b0e27ea45dd7d7",
+      "review_status": "inventory-only",
+      "lines": 117,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "LookupResponse",
+          "line": 9
+        },
+        {
+          "name": "ProductResponse",
+          "line": 16
+        },
+        {
+          "name": "ProductPage",
+          "line": 33
+        },
+        {
+          "name": "StockUpdateRequest",
+          "line": 40
+        },
+        {
+          "name": "StockResponse",
+          "line": 47
+        },
+        {
+          "name": "ProductUpdateRequest",
+          "line": 59
+        },
+        {
+          "name": "ProductCreateRequest",
+          "line": 88
+        },
+        {
+          "name": "trim_name",
+          "line": 74
+        },
+        {
+          "name": "validate_patch",
+          "line": 78
+        },
+        {
+          "name": "trim_required_text",
+          "line": 116
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/coupon.py",
+      "bytes": 4336,
+      "sha256": "f8f3245c7ccbf6595c85c3dd7ca804b1e21ee5d655ecfb384cd7659b4039fda2",
+      "review_status": "inventory-only",
+      "lines": 122,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "normalize_code",
+          "line": 9
+        },
+        {
+          "name": "CouponCreate",
+          "line": 24
+        },
+        {
+          "name": "CouponPatch",
+          "line": 62
+        },
+        {
+          "name": "CouponStatus",
+          "line": 86
+        },
+        {
+          "name": "CouponResponse",
+          "line": 91
+        },
+        {
+          "name": "CouponPage",
+          "line": 104
+        },
+        {
+          "name": "CouponValidateRequest",
+          "line": 111
+        },
+        {
+          "name": "CouponValidation",
+          "line": 116
+        },
+        {
+          "name": "timezone_required",
+          "line": 39
+        },
+        {
+          "name": "description_valid",
+          "line": 46
+        },
+        {
+          "name": "coherent",
+          "line": 52
+        },
+        {
+          "name": "meaningful_patch",
+          "line": 76
+        },
+        {
+          "name": "timezone_required",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/customer_content.py",
+      "bytes": 2157,
+      "sha256": "e6bdf6b06d2d5c63c49a07e88ea47ea7334eddac6f563873befa2fd51c5ba7da",
+      "review_status": "inventory-only",
+      "lines": 81,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "DeleteMessageResponse",
+          "line": 15
+        },
+        {
+          "name": "WishlistAdd",
+          "line": 19
+        },
+        {
+          "name": "WishlistResponse",
+          "line": 24
+        },
+        {
+          "name": "WishlistPage",
+          "line": 31
+        },
+        {
+          "name": "CommentValidation",
+          "line": 38
+        },
+        {
+          "name": "ReviewCreate",
+          "line": 51
+        },
+        {
+          "name": "ReviewUpdate",
+          "line": 56
+        },
+        {
+          "name": "ReviewResponse",
+          "line": 67
+        },
+        {
+          "name": "ReviewPage",
+          "line": 77
+        },
+        {
+          "name": "normalize_comment",
+          "line": 43
+        },
+        {
+          "name": "nonempty_patch",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/dashboard.py",
+      "bytes": 1448,
+      "sha256": "dce7d76c1310424a6882b39c12ca6d2345f96a9b66d7d45c32ca14c8dfc52277",
+      "review_status": "inventory-only",
+      "lines": 41,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "ReconciliationReason",
+          "line": 10
+        },
+        {
+          "name": "DashboardResponse",
+          "line": 15
+        },
+        {
+          "name": "RevenueBucket",
+          "line": 27
+        },
+        {
+          "name": "RevenueResponse",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/order.py",
+      "bytes": 2883,
+      "sha256": "d74b7a7317f5a3fbf3fdc3c4e5e65abb78864866d57affa8475f79c76958a1f1",
+      "review_status": "inventory-only",
+      "lines": 108,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CheckoutRequest",
+          "line": 14
+        },
+        {
+          "name": "StatusUpdate",
+          "line": 41
+        },
+        {
+          "name": "OrderItemResponse",
+          "line": 47
+        },
+        {
+          "name": "OrderSummary",
+          "line": 59
+        },
+        {
+          "name": "OrderResponse",
+          "line": 78
+        },
+        {
+          "name": "OrderPage",
+          "line": 85
+        },
+        {
+          "name": "StaffOrderSummary",
+          "line": 92
+        },
+        {
+          "name": "StaffOrderResponse",
+          "line": 97
+        },
+        {
+          "name": "StaffOrderPage",
+          "line": 104
+        },
+        {
+          "name": "validate_text",
+          "line": 25
+        },
+        {
+          "name": "validate_phone",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "backend/app/schemas/payment.py",
+      "bytes": 1166,
+      "sha256": "043c132cd41bce2e14123ae3769fb97b47e6cc749bd838c397d10e4aa3df526c",
+      "review_status": "inventory-only",
+      "lines": 41,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CODConfirmation",
+          "line": 7
+        },
+        {
+          "name": "PaymentResponse",
+          "line": 20
+        },
+        {
+          "name": "PaymentURLResponse",
+          "line": 39
+        },
+        {
+          "name": "reference_not_blank",
+          "line": 13
+        },
+        {
+          "name": "utc_expiry",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "review_status": "inventory-only",
+      "lines": 0,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/app/services/admin_customers.py",
+      "bytes": 4049,
+      "sha256": "21009d60cbabb1f386c2130c56320d199751b44e85bf5a7cae72c13df6a4e650",
+      "review_status": "inventory-only",
+      "lines": 101,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "customer_query",
+          "line": 16
+        },
+        {
+          "name": "get_customer",
+          "line": 20
+        },
+        {
+          "name": "responses",
+          "line": 30
+        },
+        {
+          "name": "list_customers",
+          "line": 53
+        },
+        {
+          "name": "customer_detail",
+          "line": 68
+        },
+        {
+          "name": "customer_write",
+          "line": 73
+        },
+        {
+          "name": "set_customer_status",
+          "line": 92
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_analytics.py",
+      "bytes": 3149,
+      "sha256": "88fc7fdc155f2270471e975bf48a41444b8b293115dfdb21f4a009f024ff9562",
+      "review_status": "inventory-only",
+      "lines": 117,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_top_selling_products",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_business.py",
+      "bytes": 2092,
+      "sha256": "39b405614d84b0d7352bbf3d596ce886333c84b1836b317b039e8f86ee2ad70d",
+      "review_status": "inventory-only",
+      "lines": 73,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_revenue_statistics",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_intent.py",
+      "bytes": 2517,
+      "sha256": "b80272b3228a976ce0fb43e43ada595d8e1503fe801f633ba6b0d22a97a29410",
+      "review_status": "inventory-only",
+      "lines": 92,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "understand_admin_question",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_llm.py",
+      "bytes": 3282,
+      "sha256": "0163472dae77901659759b8da5a2c9a447caec61bee4e32aad526dd4cb3394db",
+      "review_status": "inventory-only",
+      "lines": 122,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "classify_with_ollama",
+          "line": 22
+        },
+        {
+          "name": "understand_admin_question_with_llm",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_orchestrator.py",
+      "bytes": 9143,
+      "sha256": "0664105d226e9b36bf3e76c2e38b6c16f5dbb5aed879120f43332b8da7eba78c",
+      "review_status": "inventory-only",
+      "lines": 312,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "format_vnd",
+          "line": 21
+        },
+        {
+          "name": "resolve_period",
+          "line": 29
+        },
+        {
+          "name": "answer_admin_multi_intent",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_admin_revenue_intent.py",
+      "bytes": 2819,
+      "sha256": "21375a606583d0e5ab53213a33ba032cbe450421c36b298600c18f1d63446c0e",
+      "review_status": "inventory-only",
+      "lines": 104,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "understand_revenue_question",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_inventory_chat.py",
+      "bytes": 3285,
+      "sha256": "a29a7d58120cfca2990854f252d7cb2ea0b96e369805e9a450a7523272b05b6b",
+      "review_status": "inventory-only",
+      "lines": 119,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "answer_inventory_question",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_inventory_tools.py",
+      "bytes": 2655,
+      "sha256": "bd5f648efefcc11f10a0ce1fe5e42dcf54a4a38469ff3f7633ad71b9d652a008",
+      "review_status": "inventory-only",
+      "lines": 103,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_inventory_statistics",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_multi_intent.py",
+      "bytes": 2752,
+      "sha256": "b889b579982a738e71b2b578967eddda476c020086e48e7321662771874ba7fc",
+      "review_status": "inventory-only",
+      "lines": 110,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "normalize_question",
+          "line": 6
+        },
+        {
+          "name": "contains_phrase",
+          "line": 23
+        },
+        {
+          "name": "detect_requested_tools",
+          "line": 33
+        },
+        {
+          "name": "analyze_multi_intent",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_order_time_intent.py",
+      "bytes": 3199,
+      "sha256": "ba1786bb3144776bb6ff846db157ce06421048f07c43a6339215fda9a3632b22",
+      "review_status": "inventory-only",
+      "lines": 130,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "understand_time_order_question",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_order_time_tools.py",
+      "bytes": 2081,
+      "sha256": "f0eeda46e4ed91a9e6da5a5a13494ca223bbadcc54c70f01de4b61a839f72cd6",
+      "review_status": "inventory-only",
+      "lines": 82,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_orders_by_period",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_order_tools.py",
+      "bytes": 1614,
+      "sha256": "35226c6d5efcd561601d5f0aae43c10859f5533bd7bd6215664addde30c07d08",
+      "review_status": "inventory-only",
+      "lines": 57,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "get_order_statistics",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_product_lookup.py",
+      "bytes": 5081,
+      "sha256": "3f7fd26707a35e1e332f06a94508dc07fb8bf9834de52b0e601239da9863ab01",
+      "review_status": "inventory-only",
+      "lines": 205,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "extract_product_query",
+          "line": 10
+        },
+        {
+          "name": "answer_product_lookup",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_staff_intent.py",
+      "bytes": 2128,
+      "sha256": "ac405638881190a51b928de5ead5b1c78742bd9885a5513ff8f8329ad2340254",
+      "review_status": "inventory-only",
+      "lines": 92,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "normalize_text",
+          "line": 5
+        },
+        {
+          "name": "understand_staff_question",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_staff_llm.py",
+      "bytes": 5072,
+      "sha256": "d481d794a51ba9256dd4efb15d29ec39f62103abd92db6aecd233e5e0e712d53",
+      "review_status": "inventory-only",
+      "lines": 186,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "unsupported",
+          "line": 33
+        },
+        {
+          "name": "classify_staff_with_ollama",
+          "line": 43
+        },
+        {
+          "name": "understand_staff_question_with_llm",
+          "line": 132
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/ai_staff_orchestrator.py",
+      "bytes": 3863,
+      "sha256": "3dfc30abf8d06ab65fa36b2e9a428f5a0fc64febe18e9da3199417b4750ce824",
+      "review_status": "inventory-only",
+      "lines": 131,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "answer_staff_multi_intent",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/coupons.py",
+      "bytes": 8726,
+      "sha256": "4f92e9537759154727864f6838d7746a493d0303d282d11df172a5cc8c77f0fa",
+      "review_status": "inventory-only",
+      "lines": 202,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "aware",
+          "line": 17
+        },
+        {
+          "name": "get_coupon",
+          "line": 22
+        },
+        {
+          "name": "serialize",
+          "line": 32
+        },
+        {
+          "name": "admin_write",
+          "line": 39
+        },
+        {
+          "name": "list_coupons",
+          "line": 58
+        },
+        {
+          "name": "create_coupon",
+          "line": 72
+        },
+        {
+          "name": "update_coupon",
+          "line": 80
+        },
+        {
+          "name": "failure_reason",
+          "line": 98
+        },
+        {
+          "name": "price",
+          "line": 119
+        },
+        {
+          "name": "evaluate",
+          "line": 136
+        },
+        {
+          "name": "redeem",
+          "line": 148
+        },
+        {
+          "name": "record_usage",
+          "line": 155
+        },
+        {
+          "name": "return_usage",
+          "line": 161
+        },
+        {
+          "name": "validate_cart",
+          "line": 176
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/customer_content.py",
+      "bytes": 6867,
+      "sha256": "76f7fb3694c13da801d5a1e3e9a556f13c48f4020fb29a3f4d8a6a85ab17ee4f",
+      "review_status": "inventory-only",
+      "lines": 153,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "customer_write",
+          "line": 16
+        },
+        {
+          "name": "require_product",
+          "line": 36
+        },
+        {
+          "name": "wishlist_query",
+          "line": 41
+        },
+        {
+          "name": "list_wishlist",
+          "line": 50
+        },
+        {
+          "name": "add_wishlist",
+          "line": 58
+        },
+        {
+          "name": "delete_wishlist",
+          "line": 72
+        },
+        {
+          "name": "review_query",
+          "line": 82
+        },
+        {
+          "name": "review_response",
+          "line": 88
+        },
+        {
+          "name": "list_reviews",
+          "line": 95
+        },
+        {
+          "name": "create_review",
+          "line": 109
+        },
+        {
+          "name": "owned_review",
+          "line": 132
+        },
+        {
+          "name": "update_review",
+          "line": 141
+        },
+        {
+          "name": "delete_review",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/dashboard.py",
+      "bytes": 7553,
+      "sha256": "da28560a8e8b21b39511461c3abd897d29a826d02317e1a44049a1fd5ccf8966",
+      "review_status": "inventory-only",
+      "lines": 149,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "payment_summary_query",
+          "line": 20
+        },
+        {
+          "name": "classify",
+          "line": 50
+        },
+        {
+          "name": "dashboard",
+          "line": 76
+        },
+        {
+          "name": "revenue",
+          "line": 109
+        },
+        {
+          "name": "count_if",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/orders.py",
+      "bytes": 7771,
+      "sha256": "d308f203787f91f4953fbe5efd64ff972be37ed0f363c5d0dd956c4cd3332222",
+      "review_status": "inventory-only",
+      "lines": 159,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "transaction",
+          "line": 26
+        },
+        {
+          "name": "lock_user",
+          "line": 44
+        },
+        {
+          "name": "lock_products",
+          "line": 54
+        },
+        {
+          "name": "serialize_order",
+          "line": 64
+        },
+        {
+          "name": "checkout",
+          "line": 69
+        },
+        {
+          "name": "change_status",
+          "line": 127
+        },
+        {
+          "name": "order_query",
+          "line": 158
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/payment_providers.py",
+      "bytes": 5381,
+      "sha256": "5345c2a49d91f4b925db30ea2b45d4152f49a56d3fcb5daedd80dab6cc7d53e8",
+      "review_status": "inventory-only",
+      "lines": 117,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "canonical",
+          "line": 21
+        },
+        {
+          "name": "PaymentProvider",
+          "line": 25
+        },
+        {
+          "name": "VNPaySandbox",
+          "line": 34
+        },
+        {
+          "name": "aware",
+          "line": 108
+        },
+        {
+          "name": "get_provider",
+          "line": 113
+        },
+        {
+          "name": "amount_units",
+          "line": 28
+        },
+        {
+          "name": "payment_url",
+          "line": 29
+        },
+        {
+          "name": "verify",
+          "line": 30
+        },
+        {
+          "name": "from_environment",
+          "line": 40
+        },
+        {
+          "name": "sign",
+          "line": 56
+        },
+        {
+          "name": "amount_units",
+          "line": 60
+        },
+        {
+          "name": "payment_url",
+          "line": 69
+        },
+        {
+          "name": "verify",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/payments.py",
+      "bytes": 10254,
+      "sha256": "e34108db07175d6fb7bd8bb44dd25dfbe1f8d38a5b47dd38c25ff6f34bba1593",
+      "review_status": "inventory-only",
+      "lines": 183,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "order_lock",
+          "line": 17
+        },
+        {
+          "name": "cancellation_allowed",
+          "line": 24
+        },
+        {
+          "name": "create_vnpay_url",
+          "line": 30
+        },
+        {
+          "name": "confirm_cod",
+          "line": 60
+        },
+        {
+          "name": "checked_callback",
+          "line": 87
+        },
+        {
+          "name": "validate_payment_order",
+          "line": 96
+        },
+        {
+          "name": "ipn",
+          "line": 107
+        },
+        {
+          "name": "return_result",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/purchase_behavior.py",
+      "bytes": 3026,
+      "sha256": "f69256fd45afc746705af75623ec527b46a907824d26778cd5d110c7dfa738b6",
+      "review_status": "inventory-only",
+      "lines": 70,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "analyze",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/shipping.py",
+      "bytes": 1248,
+      "sha256": "fb1350e14a1b7c019428b72f1cf81b382790532004ea5231a6a4eef98ffa05bb",
+      "review_status": "inventory-only",
+      "lines": 31,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "shipping_policy",
+          "line": 7
+        },
+        {
+          "name": "calculate_shipping",
+          "line": 24
+        },
+        {
+          "name": "public_shipping_policy",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "path": "backend/app/services/staff.py",
+      "bytes": 3579,
+      "sha256": "0324bdb6578c97924b07070f0c9a8de34d4eb96eb7154aa6a6b1cd8aa3a95764",
+      "review_status": "inventory-only",
+      "lines": 93,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "staff_query",
+          "line": 15
+        },
+        {
+          "name": "get_staff",
+          "line": 19
+        },
+        {
+          "name": "staff_write",
+          "line": 30
+        },
+        {
+          "name": "list_staff",
+          "line": 49
+        },
+        {
+          "name": "response",
+          "line": 55
+        },
+        {
+          "name": "create_staff",
+          "line": 60
+        },
+        {
+          "name": "update_staff",
+          "line": 75
+        },
+        {
+          "name": "set_staff_status",
+          "line": 86
+        }
+      ]
+    },
+    {
+      "path": "backend/scripts/run_coupon_tests.py",
+      "bytes": 817,
+      "sha256": "19ad5a1e171f8c14f34c9fbdeb44562f6b6b41b64aaecefed813eeea3204a82d",
+      "review_status": "inventory-only",
+      "lines": 34,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "backend/tests/check_ai_admin_data.py",
+      "bytes": 1948,
+      "sha256": "bfed56ef609b2acb056630e6c0e0906d2a16e06371f1fe85097b64c2a3f67189",
+      "review_status": "inventory-only",
+      "lines": 70,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "main",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/check_ollama_admin.py",
+      "bytes": 1951,
+      "sha256": "d4e93a63c77eca3cbcee627936d603cc8ad22c744e46dadaebe3f04500c8a45c",
+      "review_status": "inventory-only",
+      "lines": 72,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "main",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/pg_coupon_races.py",
+      "bytes": 5321,
+      "sha256": "8940da48b6050d431840d9223aa89f902ee200c556c5ba9aa6b7d36d7170d97a",
+      "review_status": "inventory-only",
+      "lines": 106,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "PostgreSQLCouponRaces",
+          "line": 26
+        },
+        {
+          "name": "setUp",
+          "line": 27
+        },
+        {
+          "name": "race",
+          "line": 70
+        },
+        {
+          "name": "test_two_customers_last_use",
+          "line": 96
+        },
+        {
+          "name": "test_same_customer_two_checkouts",
+          "line": 99
+        },
+        {
+          "name": "cleanup",
+          "line": 42
+        },
+        {
+          "name": "worker",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/run_safe.py",
+      "bytes": 1204,
+      "sha256": "91178c26166058c18d37b01432ed968473b44a8b61e06b1c8eb7be5470ae9c07",
+      "review_status": "inventory-only",
+      "lines": 35,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "Result",
+          "line": 10
+        },
+        {
+          "name": "main",
+          "line": 19
+        },
+        {
+          "name": "addSubTest",
+          "line": 13
+        },
+        {
+          "name": "memory_only",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_admin_customers.py",
+      "bytes": 10757,
+      "sha256": "e8bdcd5db09649b85ee2f2b767fd5b996e92fec299ecd5a7be715afaf8bc2acd",
+      "review_status": "inventory-only",
+      "lines": 186,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CustomerTests",
+          "line": 22
+        },
+        {
+          "name": "setUp",
+          "line": 23
+        },
+        {
+          "name": "customers",
+          "line": 39
+        },
+        {
+          "name": "toggle",
+          "line": 46
+        },
+        {
+          "name": "test_customer_permissions_all_routes",
+          "line": 49
+        },
+        {
+          "name": "test_customer_fields_zero_stats_and_sensitive_data",
+          "line": 60
+        },
+        {
+          "name": "test_customer_noncustomer_or_missing_404",
+          "line": 72
+        },
+        {
+          "name": "test_customer_search_status_and_stable_pagination",
+          "line": 79
+        },
+        {
+          "name": "test_customer_validation",
+          "line": 97
+        },
+        {
+          "name": "test_customer_spending_matches_dashboard_exclusions",
+          "line": 109
+        },
+        {
+          "name": "test_customer_multiple_transactions_and_user_isolation",
+          "line": 122
+        },
+        {
+          "name": "test_customer_lock_revokes_all_sessions_and_unlock_does_not_restore",
+          "line": 135
+        },
+        {
+          "name": "test_customer_status_rollback",
+          "line": 150
+        },
+        {
+          "name": "test_customer_login_and_lock_serialization_contract",
+          "line": 158
+        },
+        {
+          "name": "memory_only",
+          "line": 181
+        },
+        {
+          "name": "wrapped",
+          "line": 40
+        },
+        {
+          "name": "record",
+          "line": 164
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_admin_products.py",
+      "bytes": 8027,
+      "sha256": "0d76bff68eca205cf8c03c4f31e52b1642b2edd573f50e164799bc0d82612cc1",
+      "review_status": "inventory-only",
+      "lines": 146,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "AdminProductTests",
+          "line": 18
+        },
+        {
+          "name": "product_call",
+          "line": 19
+        },
+        {
+          "name": "product_snapshot",
+          "line": 29
+        },
+        {
+          "name": "test_product_permissions",
+          "line": 33
+        },
+        {
+          "name": "test_product_reads_search_pagination_and_missing",
+          "line": 41
+        },
+        {
+          "name": "test_product_updates_each_allowed_field_and_preserves_rest",
+          "line": 63
+        },
+        {
+          "name": "test_product_validation_and_foreign_keys",
+          "line": 85
+        },
+        {
+          "name": "test_product_price_compare_and_snapshot",
+          "line": 102
+        },
+        {
+          "name": "test_product_rollback_and_lock_order",
+          "line": 120
+        },
+        {
+          "name": "memory_only",
+          "line": 141
+        },
+        {
+          "name": "app",
+          "line": 22
+        },
+        {
+          "name": "record",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_admin_staff.py",
+      "bytes": 11512,
+      "sha256": "7c6040bad1385a60bd2afc00284eeed3eed7ab57ddda9d4413ca383dd10952b3",
+      "review_status": "inventory-only",
+      "lines": 186,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "StaffManagementTests",
+          "line": 19
+        },
+        {
+          "name": "creation",
+          "line": 20
+        },
+        {
+          "name": "test_admin_success_all_five_endpoints",
+          "line": 25
+        },
+        {
+          "name": "test_permissions_and_inactive_admin",
+          "line": 49
+        },
+        {
+          "name": "test_non_staff_targets_cannot_be_read_or_changed",
+          "line": 63
+        },
+        {
+          "name": "test_duplicate_email_conflict_and_no_overwrite",
+          "line": 71
+        },
+        {
+          "name": "test_creation_validation_mass_assignment_and_no_password_echo",
+          "line": 93
+        },
+        {
+          "name": "test_update_allowlist_and_strict_status",
+          "line": 106
+        },
+        {
+          "name": "test_disable_revokes_all_sessions_and_reenable_does_not_restore",
+          "line": 117
+        },
+        {
+          "name": "test_status_error_rolls_back_both_user_and_session_deletion",
+          "line": 135
+        },
+        {
+          "name": "test_missing_role_is_not_created",
+          "line": 144
+        },
+        {
+          "name": "test_pagination_and_login_user_lock",
+          "line": 154
+        },
+        {
+          "name": "memory_only",
+          "line": 180
+        },
+        {
+          "name": "fail_new_user",
+          "line": 80
+        },
+        {
+          "name": "record",
+          "line": 168
+        },
+        {
+          "name": "wrapped",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_analytics.py",
+      "bytes": 5172,
+      "sha256": "134e6081e66387f62b1acfe43357b5171c971282cf4ae1919878088638df7cee",
+      "review_status": "inventory-only",
+      "lines": 192,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_top_selling_products",
+          "line": 13
+        },
+        {
+          "name": "test_invalid_date_range",
+          "line": 72
+        },
+        {
+          "name": "test_invalid_limit",
+          "line": 83
+        },
+        {
+          "name": "test_cancelled_orders_are_excluded",
+          "line": 95
+        },
+        {
+          "name": "test_cancelled_order_items_not_counted",
+          "line": 129
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_business.py",
+      "bytes": 2906,
+      "sha256": "f081229dfb3790213dae3de6f1449c4c9c51f6c02285a841c7c91269759f5039",
+      "review_status": "inventory-only",
+      "lines": 108,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_revenue_statistics",
+          "line": 15
+        },
+        {
+          "name": "test_invalid_group_by",
+          "line": 63
+        },
+        {
+          "name": "test_invalid_date_range",
+          "line": 75
+        },
+        {
+          "name": "test_no_confirmed_payments",
+          "line": 86
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_chat.py",
+      "bytes": 2079,
+      "sha256": "2821c66f4d2efd31e72a93408088729845dda3d2f1a4dff747ea4805243116a9",
+      "review_status": "inventory-only",
+      "lines": 75,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_admin_chat_permissions",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_feature_flag.py",
+      "bytes": 2153,
+      "sha256": "04e5cd14f008e04124e0daae179ceb18f35691470e659ef6bf1b5259bb408823",
+      "review_status": "inventory-only",
+      "lines": 71,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_admin_llm_feature_flag",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_integration.py",
+      "bytes": 1712,
+      "sha256": "51ce62b322b0a1281a07b9feea535bf1417af6342d9ad7fa9d4f82241b6e4da9",
+      "review_status": "inventory-only",
+      "lines": 65,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_ai_admin_in_main_app",
+          "line": 21
+        },
+        {
+          "name": "fake_db",
+          "line": 27
+        },
+        {
+          "name": "fake_analytics",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_llm.py",
+      "bytes": 1750,
+      "sha256": "0678b02306a893e5e3c982016e85acabf3c2af308c5c8320d78a4bcb837fc9e9",
+      "review_status": "inventory-only",
+      "lines": 61,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_existing_question_still_works",
+          "line": 9
+        },
+        {
+          "name": "test_llm_understands_new_phrase",
+          "line": 25
+        },
+        {
+          "name": "test_unsupported_question",
+          "line": 40
+        },
+        {
+          "name": "test_ollama_failure_keeps_fallback",
+          "line": 52
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_revenue_chat.py",
+      "bytes": 1922,
+      "sha256": "3a897b2f844e7d903d2a472c549e96a4eba0a6143d92798a7e3c6105bf21304d",
+      "review_status": "inventory-only",
+      "lines": 65,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_revenue_chat_permissions",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_revenue_intent.py",
+      "bytes": 1895,
+      "sha256": "de49979a83aeaa2808af99a199951323a833832284a53a83230914dfb8bda751",
+      "review_status": "inventory-only",
+      "lines": 72,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_revenue_specific_month",
+          "line": 10
+        },
+        {
+          "name": "test_revenue_today",
+          "line": 21
+        },
+        {
+          "name": "test_invalid_month",
+          "line": 36
+        },
+        {
+          "name": "test_unrelated_question",
+          "line": 44
+        },
+        {
+          "name": "test_revenue_previous_month",
+          "line": 52
+        },
+        {
+          "name": "test_combined_question_not_silently_answered",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_admin_router.py",
+      "bytes": 2380,
+      "sha256": "d0b658fcee6733462334079d22ddb687468fe60c8054e77349d8ef00b46dcc9b",
+      "review_status": "inventory-only",
+      "lines": 94,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_admin_ai_endpoint_requires_authentication",
+          "line": 8
+        },
+        {
+          "name": "test_admin_ai_role_permissions",
+          "line": 44
+        },
+        {
+          "name": "fake_service",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_multi_orchestrator.py",
+      "bytes": 4313,
+      "sha256": "22429c75208ae629d10b4b74b25e0923773e53b398b6921181d2b76b04aca915",
+      "review_status": "inventory-only",
+      "lines": 160,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "fake_inventory",
+          "line": 20
+        },
+        {
+          "name": "test_admin_combines_three_tools",
+          "line": 38
+        },
+        {
+          "name": "test_staff_combines_orders_and_inventory",
+          "line": 98
+        },
+        {
+          "name": "test_admin_single_question_keeps_old_flow",
+          "line": 131
+        },
+        {
+          "name": "test_staff_single_question_keeps_old_flow",
+          "line": 141
+        },
+        {
+          "name": "test_admin_rejects_invalid_month",
+          "line": 150
+        },
+        {
+          "name": "fake_revenue",
+          "line": 41
+        },
+        {
+          "name": "fake_top",
+          "line": 49
+        },
+        {
+          "name": "fake_orders",
+          "line": 99
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_order_tools.py",
+      "bytes": 2330,
+      "sha256": "5463c246545f9cdaf086503d31f5b22bec5463a034eba4c290930a708620aa1f",
+      "review_status": "inventory-only",
+      "lines": 91,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_order_statistics",
+          "line": 9
+        },
+        {
+          "name": "test_empty_orders",
+          "line": 51
+        },
+        {
+          "name": "test_unknown_status_is_preserved",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_role_access_matrix.py",
+      "bytes": 2689,
+      "sha256": "c88a8592aa5d6f8a6b5c804a0a0d74200c71a95ec24d9de1fa08eae5ba12fd8a",
+      "review_status": "inventory-only",
+      "lines": 108,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "fake_user",
+          "line": 21
+        },
+        {
+          "name": "fake_chat_response",
+          "line": 28
+        },
+        {
+          "name": "test_ai_role_access",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_chat.py",
+      "bytes": 3177,
+      "sha256": "59c6f6b7a32e52d9a3dc27455ae5f63d7a78bc19831b9482853db03af0a28f48",
+      "review_status": "inventory-only",
+      "lines": 112,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_staff_chat_permissions",
+          "line": 39
+        },
+        {
+          "name": "test_staff_chat_statistics",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_feature_flag.py",
+      "bytes": 2840,
+      "sha256": "a076b855e9655f8b06d84351703e9096e6c6c453a0afc8ac31edeffe73ce77db",
+      "review_status": "inventory-only",
+      "lines": 101,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_staff_llm_feature_flag",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_intent.py",
+      "bytes": 1069,
+      "sha256": "264ea9f7fe0f6e4579e0476894b1136176e8cca3a143ae582aebbac3a4740f62",
+      "review_status": "inventory-only",
+      "lines": 38,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_staff_intent",
+          "line": 20
+        },
+        {
+          "name": "test_unsupported_question",
+          "line": 27
+        },
+        {
+          "name": "test_empty_question",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_llm.py",
+      "bytes": 2500,
+      "sha256": "0c737cc6ce1c3b2460dab4d858f1b0397972f9759b7b496a2a2c069eb76d8af8",
+      "review_status": "inventory-only",
+      "lines": 91,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_llm_pending_orders",
+          "line": 9
+        },
+        {
+          "name": "test_llm_delivered_orders",
+          "line": 25
+        },
+        {
+          "name": "test_llm_unsupported_question",
+          "line": 40
+        },
+        {
+          "name": "test_ollama_timeout_fallback",
+          "line": 55
+        },
+        {
+          "name": "test_empty_question",
+          "line": 68
+        },
+        {
+          "name": "test_time_filter_not_supported",
+          "line": 74
+        },
+        {
+          "name": "test_order_list_not_supported",
+          "line": 86
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_router.py",
+      "bytes": 2120,
+      "sha256": "94696dcc25e2ba255269d13027ea2a075e46976a1285d281bc704f7c4c929067",
+      "review_status": "inventory-only",
+      "lines": 84,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_staff_ai_permissions",
+          "line": 22
+        },
+        {
+          "name": "test_staff_ai_requires_login",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_ai_staff_scope_safety.py",
+      "bytes": 2100,
+      "sha256": "df69a0fe3c939f0bc1e5f79ca6af532e470866baea824ba6315148fa78a64727",
+      "review_status": "inventory-only",
+      "lines": 73,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "test_today_question_uses_period_tool",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_auth_profile.py",
+      "bytes": 9877,
+      "sha256": "819a2601dfd9b2bd413b2802d5468e5bb17b4dc577e768c49a7d4436c2d8f809",
+      "review_status": "inventory-only",
+      "lines": 198,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "request",
+          "line": 20
+        },
+        {
+          "name": "ProfileTests",
+          "line": 49
+        },
+        {
+          "name": "receive",
+          "line": 25
+        },
+        {
+          "name": "send",
+          "line": 32
+        },
+        {
+          "name": "setUpClass",
+          "line": 51
+        },
+        {
+          "name": "tearDownClass",
+          "line": 75
+        },
+        {
+          "name": "setUp",
+          "line": 78
+        },
+        {
+          "name": "call",
+          "line": 98
+        },
+        {
+          "name": "snapshot",
+          "line": 101
+        },
+        {
+          "name": "test_update_own_profile_and_get",
+          "line": 106
+        },
+        {
+          "name": "test_partial_update_and_clear_phone",
+          "line": 121
+        },
+        {
+          "name": "test_missing_invalid_and_expired_cookie",
+          "line": 127
+        },
+        {
+          "name": "test_inactive_or_deleted_user",
+          "line": 137
+        },
+        {
+          "name": "test_invalid_input_does_not_write",
+          "line": 145
+        },
+        {
+          "name": "test_forbidden_fields_reject_entire_request",
+          "line": 156
+        },
+        {
+          "name": "test_commit_failure_rolls_back_and_hides_driver_error",
+          "line": 163
+        },
+        {
+          "name": "test_register_login_patch_logout_existing_flow",
+          "line": 171
+        },
+        {
+          "name": "memory_only",
+          "line": 192
+        },
+        {
+          "name": "restore_utc",
+          "line": 67
+        },
+        {
+          "name": "override_db",
+          "line": 90
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_cart_api.py",
+      "bytes": 10450,
+      "sha256": "7c3610178bd71433e8394cf357defad54b50d56124cc0bc7af5f32703d8cd713",
+      "review_status": "inventory-only",
+      "lines": 203,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CartTests",
+          "line": 21
+        },
+        {
+          "name": "setUp",
+          "line": 23
+        },
+        {
+          "name": "cart_call",
+          "line": 38
+        },
+        {
+          "name": "add",
+          "line": 42
+        },
+        {
+          "name": "test_empty_get_does_not_create_cart",
+          "line": 45
+        },
+        {
+          "name": "test_every_cart_route_requires_login",
+          "line": 52
+        },
+        {
+          "name": "test_duplicate_add_accumulates_and_uses_db_prices",
+          "line": 57
+        },
+        {
+          "name": "test_stock_conflict_rolls_back_and_no_cart_on_failed_first_add",
+          "line": 73
+        },
+        {
+          "name": "test_patch_replaces_quantity_and_delete_returns_cart",
+          "line": 83
+        },
+        {
+          "name": "test_other_user_cannot_access_or_change_items",
+          "line": 95
+        },
+        {
+          "name": "test_invalid_inputs_and_forged_prices_rejected",
+          "line": 104
+        },
+        {
+          "name": "test_missing_products_and_items",
+          "line": 118
+        },
+        {
+          "name": "test_current_price_and_reduced_stock_are_visible_without_reserving",
+          "line": 123
+        },
+        {
+          "name": "test_commit_failure_rolls_back_cart_and_item",
+          "line": 136
+        },
+        {
+          "name": "test_integrity_conflict_rolls_back",
+          "line": 143
+        },
+        {
+          "name": "test_db_unique_and_quantity_constraints",
+          "line": 148
+        },
+        {
+          "name": "test_postgresql_lock_order_and_new_migration_offline",
+          "line": 165
+        },
+        {
+          "name": "memory_only",
+          "line": 197
+        },
+        {
+          "name": "record",
+          "line": 170
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_catalog_api.py",
+      "bytes": 10268,
+      "sha256": "4b6318e382831b5ee74dc83dd960154b0f7653f25ba392af871b477c17218120",
+      "review_status": "inventory-only",
+      "lines": 210,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "asgi_get",
+          "line": 20
+        },
+        {
+          "name": "CatalogAPITests",
+          "line": 46
+        },
+        {
+          "name": "receive",
+          "line": 24
+        },
+        {
+          "name": "send",
+          "line": 31
+        },
+        {
+          "name": "setUpClass",
+          "line": 48
+        },
+        {
+          "name": "tearDownClass",
+          "line": 71
+        },
+        {
+          "name": "get",
+          "line": 75
+        },
+        {
+          "name": "test_lookup_json_and_order",
+          "line": 78
+        },
+        {
+          "name": "test_default_pagination_and_public_json",
+          "line": 86
+        },
+        {
+          "name": "test_pagination_boundaries_and_no_overlap",
+          "line": 97
+        },
+        {
+          "name": "test_search_name_sku_and_literal_wildcards",
+          "line": 107
+        },
+        {
+          "name": "test_all_five_filters_and_combination",
+          "line": 116
+        },
+        {
+          "name": "test_price_bounds_and_combined_search",
+          "line": 128
+        },
+        {
+          "name": "test_invalid_queries_return_422",
+          "line": 137
+        },
+        {
+          "name": "test_detail_original_id_related_objects_and_404",
+          "line": 146
+        },
+        {
+          "name": "test_decimal_serialization_does_not_use_float",
+          "line": 158
+        },
+        {
+          "name": "test_read_only_queries_and_postgresql_compilation",
+          "line": 165
+        },
+        {
+          "name": "test_auth_routes_and_openapi_have_no_conflicts",
+          "line": 188
+        },
+        {
+          "name": "memory_only",
+          "line": 204
+        },
+        {
+          "name": "override_db",
+          "line": 63
+        },
+        {
+          "name": "record",
+          "line": 171
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_coupons_api.py",
+      "bytes": 20352,
+      "sha256": "3974ebd840879e350c6e70c8c179f0e9cb7269a52d7f0a75089b1c2050f173f6",
+      "review_status": "inventory-only",
+      "lines": 364,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "CouponTests",
+          "line": 20
+        },
+        {
+          "name": "setUp",
+          "line": 21
+        },
+        {
+          "name": "payload",
+          "line": 26
+        },
+        {
+          "name": "create_coupon",
+          "line": 34
+        },
+        {
+          "name": "coupon_cart",
+          "line": 39
+        },
+        {
+          "name": "coupon_order",
+          "line": 44
+        },
+        {
+          "name": "coupon_state",
+          "line": 50
+        },
+        {
+          "name": "validate_coupon",
+          "line": 55
+        },
+        {
+          "name": "test_coupon_admin_crud_and_snapshot",
+          "line": 58
+        },
+        {
+          "name": "test_coupon_permissions",
+          "line": 77
+        },
+        {
+          "name": "test_coupon_invalid_create_and_patch",
+          "line": 95
+        },
+        {
+          "name": "test_coupon_search_filters_pagination",
+          "line": 114
+        },
+        {
+          "name": "test_coupon_validation_does_not_reserve",
+          "line": 128
+        },
+        {
+          "name": "test_coupon_responses_do_not_expose_account_or_payment_secrets",
+          "line": 142
+        },
+        {
+          "name": "test_coupon_conditions_and_time_boundaries",
+          "line": 153
+        },
+        {
+          "name": "test_coupon_fixed_percent_rounding_and_zero_total",
+          "line": 180
+        },
+        {
+          "name": "test_coupon_once_per_customer_and_return_after_cancellation",
+          "line": 192
+        },
+        {
+          "name": "test_coupon_last_use_rechecked_at_checkout",
+          "line": 209
+        },
+        {
+          "name": "test_coupon_transaction_rollback",
+          "line": 222
+        },
+        {
+          "name": "test_coupon_usage_limit_cannot_be_reduced_below_used",
+          "line": 240
+        },
+        {
+          "name": "test_coupon_cod_after_discount_and_paid_cancel_blocked",
+          "line": 249
+        },
+        {
+          "name": "test_coupon_vnpay_amount_and_pending_cancel_blocked",
+          "line": 261
+        },
+        {
+          "name": "test_coupon_vnpay_error_does_not_consume",
+          "line": 277
+        },
+        {
+          "name": "test_coupon_postgres_lock_order",
+          "line": 287
+        },
+        {
+          "name": "test_coupon_database_usage_constraints",
+          "line": 312
+        },
+        {
+          "name": "test_coupon_migration_preserves_old_order",
+          "line": 328
+        },
+        {
+          "name": "memory_only",
+          "line": 359
+        },
+        {
+          "name": "scalar",
+          "line": 291
+        },
+        {
+          "name": "scalars",
+          "line": 294
+        },
+        {
+          "name": "wrapped",
+          "line": 121
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_create_admin.py",
+      "bytes": 6857,
+      "sha256": "802c6c77fe68e62c29aa57b7d06759ceada87a8b071ba94d21dba76edbae2ead",
+      "review_status": "inventory-only",
+      "lines": 143,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "AccountCLITests",
+          "line": 21
+        },
+        {
+          "name": "setUpClass",
+          "line": 23
+        },
+        {
+          "name": "setUp",
+          "line": 31
+        },
+        {
+          "name": "run_cli",
+          "line": 41
+        },
+        {
+          "name": "users",
+          "line": 48
+        },
+        {
+          "name": "test_default_role_is_staff_and_password_is_hashed",
+          "line": 52
+        },
+        {
+          "name": "test_explicit_admin_is_still_supported",
+          "line": 63
+        },
+        {
+          "name": "test_explicit_staff",
+          "line": 67
+        },
+        {
+          "name": "test_duplicate_email_never_promotes_or_changes_password",
+          "line": 71
+        },
+        {
+          "name": "test_missing_role_does_not_seed",
+          "line": 78
+        },
+        {
+          "name": "test_invalid_input_is_rejected_without_disclosing_password",
+          "line": 88
+        },
+        {
+          "name": "test_invalid_role_rejected_before_prompt_or_database",
+          "line": 96
+        },
+        {
+          "name": "test_getpass_fallback_is_blocked",
+          "line": 104
+        },
+        {
+          "name": "test_failure_after_insert_rolls_back_and_hides_error_details",
+          "line": 112
+        },
+        {
+          "name": "test_integrity_error_rolls_back_and_is_sanitized",
+          "line": 125
+        },
+        {
+          "name": "memory_only",
+          "line": 137
+        },
+        {
+          "name": "unsupported_terminal",
+          "line": 105
+        },
+        {
+          "name": "fail_after_flush",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_customer_content.py",
+      "bytes": 19573,
+      "sha256": "be6bafb82ff33a59f349ba023ff45bcfabc9337350796f448e1a2e2803f7d236",
+      "review_status": "inventory-only",
+      "lines": 337,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "request",
+          "line": 22
+        },
+        {
+          "name": "CustomerContentTests",
+          "line": 45
+        },
+        {
+          "name": "receive",
+          "line": 25
+        },
+        {
+          "name": "send",
+          "line": 31
+        },
+        {
+          "name": "setUpClass",
+          "line": 47
+        },
+        {
+          "name": "setUp",
+          "line": 58
+        },
+        {
+          "name": "api",
+          "line": 82
+        },
+        {
+          "name": "buy",
+          "line": 85
+        },
+        {
+          "name": "add_favorite",
+          "line": 101
+        },
+        {
+          "name": "review",
+          "line": 104
+        },
+        {
+          "name": "count",
+          "line": 108
+        },
+        {
+          "name": "business_snapshot",
+          "line": 112
+        },
+        {
+          "name": "test_wishlist_add_repeat_list_current_product_and_remove",
+          "line": 117
+        },
+        {
+          "name": "test_wishlist_owner_missing_and_validation",
+          "line": 141
+        },
+        {
+          "name": "test_customer_content_all_private_routes_permissions",
+          "line": 153
+        },
+        {
+          "name": "test_customer_content_expired_session_and_locked_account",
+          "line": 164
+        },
+        {
+          "name": "test_reviews_create_public_edit_delete_and_private_data",
+          "line": 175
+        },
+        {
+          "name": "test_reviews_purchase_requirement_all_states",
+          "line": 190
+        },
+        {
+          "name": "test_reviews_duplicate_ownership_and_refunded_after_creation",
+          "line": 210
+        },
+        {
+          "name": "test_reviews_validation_unknown_products_and_pagination",
+          "line": 224
+        },
+        {
+          "name": "test_customer_content_rollback_and_business_data_unchanged",
+          "line": 247
+        },
+        {
+          "name": "test_customer_content_unique_constraints_and_lock_order",
+          "line": 269
+        },
+        {
+          "name": "test_delete_success_openapi_documents_json_200",
+          "line": 291
+        },
+        {
+          "name": "test_customer_content_migration_offline_and_sqlite",
+          "line": 305
+        },
+        {
+          "name": "memory_only",
+          "line": 49
+        },
+        {
+          "name": "record",
+          "line": 272
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_dashboard_api.py",
+      "bytes": 12718,
+      "sha256": "63e5609707d390e5e67f80c5ba462a6ed9b70f1a0d5a47040eeaf60e207e9979",
+      "review_status": "inventory-only",
+      "lines": 216,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "DashboardTests",
+          "line": 18
+        },
+        {
+          "name": "report",
+          "line": 19
+        },
+        {
+          "name": "revenue",
+          "line": 26
+        },
+        {
+          "name": "seed_order",
+          "line": 30
+        },
+        {
+          "name": "test_dashboard_empty_and_product_counts",
+          "line": 48
+        },
+        {
+          "name": "test_dashboard_permissions_and_inactive_admin",
+          "line": 65
+        },
+        {
+          "name": "test_dashboard_status_counts_and_current_stock",
+          "line": 75
+        },
+        {
+          "name": "test_dashboard_exclusions_and_reconciliation_reasons",
+          "line": 87
+        },
+        {
+          "name": "test_dashboard_duplicate_values_and_multiple_order_items",
+          "line": 111
+        },
+        {
+          "name": "test_dashboard_multiple_successful_transactions_quarantined",
+          "line": 124
+        },
+        {
+          "name": "test_revenue_vietnam_day_month_boundaries_and_zero_fill",
+          "line": 144
+        },
+        {
+          "name": "test_revenue_invalid_filters",
+          "line": 160
+        },
+        {
+          "name": "test_dashboard_callback_duplicate_and_browser_return",
+          "line": 168
+        },
+        {
+          "name": "test_dashboard_read_only_and_decimal_precision",
+          "line": 179
+        },
+        {
+          "name": "test_dashboard_postgresql_query_compiles_offline",
+          "line": 200
+        },
+        {
+          "name": "memory_only",
+          "line": 211
+        },
+        {
+          "name": "wrapped",
+          "line": 20
+        },
+        {
+          "name": "record",
+          "line": 183
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_final_demo_features.py",
+      "bytes": 2781,
+      "sha256": "1b3f1d23f3058867bb3edc0cbb14de055c15e87ecfaf84fd1028a602d8c25999",
+      "review_status": "inventory-only",
+      "lines": 57,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "FinalDemoFeatures",
+          "line": 13
+        },
+        {
+          "name": "setUpClass",
+          "line": 15
+        },
+        {
+          "name": "setUp",
+          "line": 21
+        },
+        {
+          "name": "test_contact_is_persisted_and_admin_can_update_status",
+          "line": 26
+        },
+        {
+          "name": "test_admin_taxonomy_create_rename_delete_unused",
+          "line": 38
+        },
+        {
+          "name": "test_shipping_opt_in_and_free_threshold",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_import_catalog.py",
+      "bytes": 7123,
+      "sha256": "73e8929087418cfafdcc888bd26441b141042b9fb96a7c0017b831833b7deac2",
+      "review_status": "inventory-only",
+      "lines": 143,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "ImportCatalogTests",
+          "line": 20
+        },
+        {
+          "name": "setUpClass",
+          "line": 22
+        },
+        {
+          "name": "setUp",
+          "line": 30
+        },
+        {
+          "name": "test_real_source_and_model_compatibility",
+          "line": 35
+        },
+        {
+          "name": "test_decimal_validation_preserves_exact_value",
+          "line": 41
+        },
+        {
+          "name": "test_integer_and_required_values",
+          "line": 48
+        },
+        {
+          "name": "test_csv_rejects_count_duplicate_and_malformed_header",
+          "line": 56
+        },
+        {
+          "name": "test_duplicate_json_keys_and_unique_fields",
+          "line": 69
+        },
+        {
+          "name": "test_missing_source_foreign_key",
+          "line": 78
+        },
+        {
+          "name": "test_same_id_changed_field_and_unique_owner_conflicts",
+          "line": 84
+        },
+        {
+          "name": "test_import_and_rerun_in_memory_preserve_all_fields",
+          "line": 99
+        },
+        {
+          "name": "test_product_error_rolls_back_lookup_inserts_in_memory",
+          "line": 112
+        },
+        {
+          "name": "test_dry_run_is_read_only_and_never_calls_insert",
+          "line": 123
+        },
+        {
+          "name": "memory_only",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_orders_api.py",
+      "bytes": 25113,
+      "sha256": "90b3cd992ecf58c412fb31b294d447d2b1dd98d973eb0c6867e28e1777520e8b",
+      "review_status": "inventory-only",
+      "lines": 449,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "OrderTests",
+          "line": 20
+        },
+        {
+          "name": "setUp",
+          "line": 21
+        },
+        {
+          "name": "shipping",
+          "line": 33
+        },
+        {
+          "name": "checkout",
+          "line": 36
+        },
+        {
+          "name": "admin_call",
+          "line": 39
+        },
+        {
+          "name": "status",
+          "line": 42
+        },
+        {
+          "name": "order_count",
+          "line": 45
+        },
+        {
+          "name": "stock",
+          "line": 49
+        },
+        {
+          "name": "test_checkout_snapshots_stock_and_cart_atomic",
+          "line": 53
+        },
+        {
+          "name": "test_empty_cart_and_duplicate_submit",
+          "line": 79
+        },
+        {
+          "name": "test_out_of_stock_retains_cart_without_order",
+          "line": 86
+        },
+        {
+          "name": "test_another_customer_cannot_spend_last_stock",
+          "line": 95
+        },
+        {
+          "name": "test_missing_product_detected_without_partial_order",
+          "line": 103
+        },
+        {
+          "name": "test_checkout_failure_after_flush_rolls_back_everything",
+          "line": 115
+        },
+        {
+          "name": "test_authorization_owner_admin_and_staff",
+          "line": 125
+        },
+        {
+          "name": "test_all_endpoints_require_auth",
+          "line": 138
+        },
+        {
+          "name": "test_list_ownership_my_route_and_pagination",
+          "line": 143
+        },
+        {
+          "name": "test_cancel_restores_stock_exactly_once",
+          "line": 167
+        },
+        {
+          "name": "test_status_machine_and_terminal_states",
+          "line": 181
+        },
+        {
+          "name": "test_confirmed_cancel_and_paid_cancel_blocked",
+          "line": 192
+        },
+        {
+          "name": "test_cancel_failure_rolls_back_stock_and_status",
+          "line": 205
+        },
+        {
+          "name": "test_restoration_overflow_rolls_back_all_products",
+          "line": 216
+        },
+        {
+          "name": "test_shipping_and_mass_assignment_validation",
+          "line": 227
+        },
+        {
+          "name": "test_order_lock_sequence_and_migration_offline",
+          "line": 240
+        },
+        {
+          "name": "test_staff_routes_permissions_and_minimal_customer_data",
+          "line": 268
+        },
+        {
+          "name": "test_staff_status_flow_does_not_grant_cod_or_admin_permissions",
+          "line": 289
+        },
+        {
+          "name": "test_staff_cancellation_reuses_single_stock_restoration",
+          "line": 303
+        },
+        {
+          "name": "test_staff_cannot_bypass_payment_or_pending_transaction_guards",
+          "line": 313
+        },
+        {
+          "name": "test_staff_status_failure_rolls_back_and_service_checks_roles",
+          "line": 329
+        },
+        {
+          "name": "test_staff_pagination_not_found_and_validation",
+          "line": 346
+        },
+        {
+          "name": "product_snapshot",
+          "line": 366
+        },
+        {
+          "name": "test_staff_and_admin_stock_update_preserves_product_fields",
+          "line": 371
+        },
+        {
+          "name": "test_stock_update_auth_and_missing_product",
+          "line": 381
+        },
+        {
+          "name": "test_stock_update_strict_validation_and_integer_boundaries",
+          "line": 388
+        },
+        {
+          "name": "test_stock_update_detects_stale_staff_and_checkout_values",
+          "line": 403
+        },
+        {
+          "name": "test_stock_update_commit_failure_rolls_back",
+          "line": 415
+        },
+        {
+          "name": "test_stock_update_postgresql_lock_order",
+          "line": 423
+        },
+        {
+          "name": "memory_only",
+          "line": 443
+        },
+        {
+          "name": "wrapped",
+          "line": 153
+        },
+        {
+          "name": "record",
+          "line": 245
+        },
+        {
+          "name": "record",
+          "line": 428
+        },
+        {
+          "name": "invalid_query",
+          "line": 162
+        },
+        {
+          "name": "wrapped",
+          "line": 353
+        }
+      ]
+    },
+    {
+      "path": "backend/tests/test_payments_api.py",
+      "bytes": 20569,
+      "sha256": "f8eb72bcbb39c57e7b087d92bc098188e35ba9b0bc51fd34e495d9cc24eb4761",
+      "review_status": "inventory-only",
+      "lines": 361,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "PaymentTests",
+          "line": 25
+        },
+        {
+          "name": "setUp",
+          "line": 26
+        },
+        {
+          "name": "online_order",
+          "line": 38
+        },
+        {
+          "name": "callback_params",
+          "line": 48
+        },
+        {
+          "name": "callback",
+          "line": 60
+        },
+        {
+          "name": "payment",
+          "line": 70
+        },
+        {
+          "name": "test_cod_confirmation_requires_admin_delivered_and_receipt",
+          "line": 75
+        },
+        {
+          "name": "test_vnpay_url_canonical_hmac_and_idempotent_creation",
+          "line": 96
+        },
+        {
+          "name": "test_return_is_read_only_even_if_correctly_signed",
+          "line": 113
+        },
+        {
+          "name": "test_ipn_success_duplicate_and_no_inventory_change",
+          "line": 121
+        },
+        {
+          "name": "test_tampered_signature_duplicate_params_and_merchant",
+          "line": 131
+        },
+        {
+          "name": "test_signed_wrong_amount_reference_and_order",
+          "line": 142
+        },
+        {
+          "name": "test_failed_payment_does_not_restore_stock_until_admin_cancel",
+          "line": 148
+        },
+        {
+          "name": "test_pending_unknown_or_locally_expired_cannot_cancel_or_retry",
+          "line": 159
+        },
+        {
+          "name": "test_success_pay_date_or_bank_reference_invalid_requires_review",
+          "line": 171
+        },
+        {
+          "name": "test_conflicting_late_success_after_cancel_is_flagged_not_paid",
+          "line": 180
+        },
+        {
+          "name": "test_callback_commit_failure_rolls_back_and_gateway_can_retry",
+          "line": 190
+        },
+        {
+          "name": "test_gateway_transaction_cannot_pay_two_orders",
+          "line": 199
+        },
+        {
+          "name": "test_cod_confirmation_failure_rolls_back_ledger_and_paid",
+          "line": 208
+        },
+        {
+          "name": "test_missing_config_blocks_online_checkout_without_consuming_cart",
+          "line": 219
+        },
+        {
+          "name": "test_ownership_config_and_online_fulfilment_guard",
+          "line": 230
+        },
+        {
+          "name": "test_payment_method_validation_and_schema",
+          "line": 241
+        },
+        {
+          "name": "test_new_payment_migration_offline",
+          "line": 251
+        },
+        {
+          "name": "test_staff_cod_confirmation_audit_and_cross_role_retry",
+          "line": 262
+        },
+        {
+          "name": "test_staff_cod_permissions_and_service_role_checks",
+          "line": 287
+        },
+        {
+          "name": "test_staff_cod_invalid_states_and_methods",
+          "line": 302
+        },
+        {
+          "name": "test_staff_cod_validation_and_missing_order",
+          "line": 325
+        },
+        {
+          "name": "test_staff_cod_database_failure_rolls_back",
+          "line": 336
+        },
+        {
+          "name": "memory_only",
+          "line": 355
+        },
+        {
+          "name": "wrapped",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 13309,
+      "sha256": "ab5eee9ee9873bb88ea14b49327375dbfe2e7506392ccadb31641c541ed3b5db",
+      "review_status": "inventory-only",
+      "lines": 421
+    },
+    {
+      "path": "frontend/playwright.config.js",
+      "bytes": 472,
+      "sha256": "ba62880069aa9db05ef33969be0484841846c5b81d28acf16e1aa6377ca2795a",
+      "review_status": "inventory-only",
+      "lines": 19
+    },
+    {
+      "path": "frontend/assets/css/customer-ai.css",
+      "bytes": 2669,
+      "sha256": "da2f1f7d43aa77ac60115c14b1f3d27ddbc26d082b42fb33e37a81d2d6201050",
+      "review_status": "inventory-only",
+      "lines": 19
+    },
+    {
+      "path": "frontend/assets/css/management-ai-polish.css",
+      "bytes": 3225,
+      "sha256": "8a6e0c71eb1aa36008ab06bb58a1e24773436e4ed2961c23c5765952263055fe",
+      "review_status": "inventory-only",
+      "lines": 169
+    },
+    {
+      "path": "frontend/assets/css/site.css",
+      "bytes": 43987,
+      "sha256": "d4c2e2b565bbb95d4eece94fac620f43126b0e867f1d82e4059ca70df8474af5",
+      "review_status": "inventory-only",
+      "lines": 263
+    },
+    {
+      "path": "frontend/assets/css/style.css",
+      "bytes": 16035,
+      "sha256": "acc8ab9d66b5b8c55f327b713775fa50016cecabb5c10c233df0b42dea6c2aaa",
+      "review_status": "inventory-only",
+      "lines": 5
+    },
+    {
+      "path": "frontend/assets/js/admin-analytics.js",
+      "bytes": 8259,
+      "sha256": "a027d4bb2dd4ede1c8c97093c88e84a272a1fe3590ae58a8c8f7c71bb68104e3",
+      "review_status": "inventory-only",
+      "lines": 48
+    },
+    {
+      "path": "frontend/assets/js/admin-coupons.js",
+      "bytes": 11689,
+      "sha256": "a3cf696e10575522360f011de8d662e613a8ab01b9afc92b9654076c420fa018",
+      "review_status": "inventory-only",
+      "lines": 74
+    },
+    {
+      "path": "frontend/assets/js/admin-customers.js",
+      "bytes": 9514,
+      "sha256": "25aa3ac2a8ec96dcf937fa6caa82a84c4abf6d2d2ba535544977af6404b1e452",
+      "review_status": "inventory-only",
+      "lines": 100
+    },
+    {
+      "path": "frontend/assets/js/admin-dashboard.js",
+      "bytes": 7713,
+      "sha256": "85bc0ab329eac7c0a521eea9cfa4f91dc0915b7c0afd1787067f60d22a11c07f",
+      "review_status": "inventory-only",
+      "lines": 74
+    },
+    {
+      "path": "frontend/assets/js/admin-inventory.js",
+      "bytes": 10640,
+      "sha256": "b0c2029941ea6c82570f577fd09068619801a7a013c84867c536cc56fcc5bc97",
+      "review_status": "inventory-only",
+      "lines": 46
+    },
+    {
+      "path": "frontend/assets/js/admin-orders.js",
+      "bytes": 11624,
+      "sha256": "775af04d75e32b0b21ecd122f61002402adeb0d189872aaf2fdf54203dcf93c0",
+      "review_status": "inventory-only",
+      "lines": 95
+    },
+    {
+      "path": "frontend/assets/js/admin-products.js",
+      "bytes": 12528,
+      "sha256": "1227b83522ad29da30eb395858dc3d7a79e90e6be6824c32b1e3534d8821324c",
+      "review_status": "inventory-only",
+      "lines": 116
+    },
+    {
+      "path": "frontend/assets/js/admin-staff.js",
+      "bytes": 13199,
+      "sha256": "df7c2a7ee511bafb447ef4936de9b1c991eaa6ca4163be067118895739415b46",
+      "review_status": "inventory-only",
+      "lines": 135
+    },
+    {
+      "path": "frontend/assets/js/admin-taxonomy.js",
+      "bytes": 9483,
+      "sha256": "e1a7c000891097b99f4873e5e9088e02a08584fd569fba2740f590f76820e32e",
+      "review_status": "inventory-only",
+      "lines": 87
+    },
+    {
+      "path": "frontend/assets/js/api.js",
+      "bytes": 8599,
+      "sha256": "53c430cc798d6b121737a6d2170d02053933141f43a6f2aa2fe746d78f9197b9",
+      "review_status": "inventory-only",
+      "lines": 239
+    },
+    {
+      "path": "frontend/assets/js/app.js",
+      "bytes": 17605,
+      "sha256": "7f08f88cafba2cd65963cf257d39215d2230521d75620b89b9c47a988eea338c",
+      "review_status": "inventory-only",
+      "lines": 75
+    },
+    {
+      "path": "frontend/assets/js/backend-console.js",
+      "bytes": 49014,
+      "sha256": "09e9d226b5ef8a97d0628a941dc88eb35ec1892bf766cbf68def5a66eef58c7a",
+      "review_status": "inventory-only",
+      "lines": 740
+    },
+    {
+      "path": "frontend/assets/js/customer-ai.js",
+      "bytes": 6289,
+      "sha256": "c1c2a58943803a096a6ef608ce9d9c7dc0965e4d2fed27cc4decadbc3ec50c0d",
+      "review_status": "inventory-only",
+      "lines": 115
+    },
+    {
+      "path": "frontend/assets/js/forgot-password-flow.js",
+      "bytes": 3240,
+      "sha256": "08f8c3243fce09236f263425f51de76e41fc1c0c7171b5a94f5f34b04082c031",
+      "review_status": "inventory-only",
+      "lines": 132
+    },
+    {
+      "path": "frontend/assets/js/home-auth.js",
+      "bytes": 335,
+      "sha256": "bfaf195413e8005b9640b69ad7cf1fa2b9884b5e42dfa98975d78eb06c22f396",
+      "review_status": "inventory-only",
+      "lines": 2
+    },
+    {
+      "path": "frontend/assets/js/management-ai.js",
+      "bytes": 8677,
+      "sha256": "343f751f24bd87ad14f6fb65b85a52a88dce589015c3c780a152a00ee1f9620f",
+      "review_status": "inventory-only",
+      "lines": 344
+    },
+    {
+      "path": "frontend/assets/js/product-image-map.js",
+      "bytes": 29532,
+      "sha256": "45baa80dc002d260cade7ccbd8a158adf8d47129a05bad0f4f67aa8e8927f491",
+      "review_status": "inventory-only",
+      "lines": 507
+    },
+    {
+      "path": "frontend/assets/js/products.js",
+      "bytes": 3163,
+      "sha256": "419d28ee17b76a6854626892ee0054ce10e235cb46e5e8da2b02a77fe5d6d2a5",
+      "review_status": "inventory-only",
+      "lines": 92
+    },
+    {
+      "path": "frontend/assets/js/site.js",
+      "bytes": 65766,
+      "sha256": "d94a613c4fbb1feb99165f06d10946300ac2ad4582834c540fc1ae59398f754e",
+      "review_status": "inventory-only",
+      "lines": 781
+    },
+    {
+      "path": "frontend/assets/js/staff-inventory.js",
+      "bytes": 10591,
+      "sha256": "7b29c3cebd51b2d4c566bb6c5ef03ec6d846cdd53fb251f843f05d7ef432ed69",
+      "review_status": "inventory-only",
+      "lines": 46
+    },
+    {
+      "path": "frontend/assets/js/staff-orders.js",
+      "bytes": 10342,
+      "sha256": "da0f203d63c07245ad9f44b77f1366a7a92fc24c636d9781bc411edf141fae9b",
+      "review_status": "inventory-only",
+      "lines": 65
+    },
+    {
+      "path": "frontend/pages/about.html",
+      "bytes": 1051,
+      "sha256": "7fc5fce670c0cc25e86e35f5ea31afd7041bb71ccb3704ff914c7ca16a6cf320",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/account.html",
+      "bytes": 1049,
+      "sha256": "26437dd704d86684370cb718e9cff7e51ebfee234c79b8241ce1fa878f27ce5c",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/cart.html",
+      "bytes": 1048,
+      "sha256": "852cde18637cd94501d9cabac2b91761a59336819022dbb652bdf3b1066393d2",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/checkout.html",
+      "bytes": 1051,
+      "sha256": "6e75b7b733316e1e269f21618a91f2999304f339fe35513666985e2b7546c181",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/collections.html",
+      "bytes": 1063,
+      "sha256": "c819e1cac8a68932c27d4a6ec0fb2bd6e555da94294712d97139c26b1311b26c",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/contact.html",
+      "bytes": 1053,
+      "sha256": "ad30bf80f54d86c9e93e254d8d81a977132b58546d4e58e80a562ccdf772be42",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/forgot-password.html",
+      "bytes": 1134,
+      "sha256": "c136e19867c2b6a0c66f8d60fcbd753cdea4e5664489f7601255a88e04fb303e",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/login.html",
+      "bytes": 1057,
+      "sha256": "28799f7eccaf68cd298addc0994ba6b2f3a09d737452821ba4a54835e6592859",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/order-detail.html",
+      "bytes": 1059,
+      "sha256": "e73b71192e2472715d39920b6f113e834bc560806621d530c08d9220706d2ebe",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/orders.html",
+      "bytes": 1049,
+      "sha256": "88536b4809ba249743a24038af30594cce5b53b690b4cfcfeba73332923443b4",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/product-detail.html",
+      "bytes": 1200,
+      "sha256": "b5ec693f96c5f51e9c18e4602d4021df0770de4f10574ae5acc20a83ee88f1f8",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/products.html",
+      "bytes": 1237,
+      "sha256": "5253c630ca2235e50654ac3ace8c93422522a142a7cb511c9ea2010f09c31055",
+      "review_status": "inventory-only",
+      "lines": 27
+    },
+    {
+      "path": "frontend/pages/register.html",
+      "bytes": 1055,
+      "sha256": "5767abb2f7a82972a489c32beef57e036295422d24142427578928ab67002281",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/reset-password.html",
+      "bytes": 2803,
+      "sha256": "f8a46507a95ce07095ddab6b647d093f0ecb97a5113ddf4c81fa91cd1978d922",
+      "review_status": "inventory-only",
+      "lines": 44
+    },
+    {
+      "path": "frontend/pages/reviews.html",
+      "bytes": 1050,
+      "sha256": "3bba4bd16e93e167d8c044baf0435f983753e2a4c15e41e6a48ebb3017f1865c",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/search.html",
+      "bytes": 1050,
+      "sha256": "8802e3c193fffb0665ea3fd59bb51bc2f9f612f0e21e4a0b724f8250cc5050e4",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/wishlist.html",
+      "bytes": 1053,
+      "sha256": "3cbe4a6adc8d96f38180b1e2bdbc81b472612ea487859aefdb22b2666fbe03f1",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/analytics.html",
+      "bytes": 1011,
+      "sha256": "9567f2f87986b9979033222a4e78bdfd7bd6ddff5a76f164c169c702014d6685",
+      "review_status": "inventory-only",
+      "lines": 6
+    },
+    {
+      "path": "frontend/pages/admin/brands.html",
+      "bytes": 1137,
+      "sha256": "6e4c8e6a67e33d1f7e2b7cafd3ed4c40aba7b6b6756f585fbca30ad5dba82295",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/categories.html",
+      "bytes": 1131,
+      "sha256": "edbcfb4ac0dfb9126ba001245d7db5629257b9163f91236ba76c191835782d59",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/contacts.html",
+      "bytes": 1049,
+      "sha256": "239ecbae039a14d08272f3ee7d5c243225d9f31fb4472e2575688899322a7800",
+      "review_status": "inventory-only",
+      "lines": 10
+    },
+    {
+      "path": "frontend/pages/admin/coupons.html",
+      "bytes": 1033,
+      "sha256": "a366a9555bca98ac28eb91263af238b5f56b62ae58566f096259e74bc8101389",
+      "review_status": "inventory-only",
+      "lines": 6
+    },
+    {
+      "path": "frontend/pages/admin/customers.html",
+      "bytes": 1106,
+      "sha256": "1082cd79a9f00762ff7d66f26a3a7a61a76f69326a645515f5a90446c635797d",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/dashboard.html",
+      "bytes": 1253,
+      "sha256": "af3fb164abf9b0cf57040bfaf15f548bc99f9f3a53f0d90d22e7992852e0963d",
+      "review_status": "inventory-only",
+      "lines": 21
+    },
+    {
+      "path": "frontend/pages/admin/inventory.html",
+      "bytes": 1011,
+      "sha256": "6c70b761f6962af234044fdc5a8056797a01be25c972b29aa879215e287f7f05",
+      "review_status": "inventory-only",
+      "lines": 6
+    },
+    {
+      "path": "frontend/pages/admin/orders.html",
+      "bytes": 1097,
+      "sha256": "2c3bb08edf0ca1c7d7a74702903fb6a8f4f29770b7879c03b4338fcd4ef55f61",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/products.html",
+      "bytes": 1155,
+      "sha256": "c658d5ff0ecc50175ce4fd0cd2d15d0d63f497f31b5ddb9c3838615e90b79501",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/admin/staff.html",
+      "bytes": 1189,
+      "sha256": "ccafc660c5d8d90a6d930cbb3cdaea2c9fbb23e6c72b54472a02e83a6df8ea84",
+      "review_status": "inventory-only",
+      "lines": 23
+    },
+    {
+      "path": "frontend/pages/staff/inventory.html",
+      "bytes": 1117,
+      "sha256": "c25a018adbf27f9efb4ea65de9682b881790505ee6246908263993acfe8d5303",
+      "review_status": "inventory-only",
+      "lines": 7
+    },
+    {
+      "path": "frontend/pages/staff/orders.html",
+      "bytes": 1377,
+      "sha256": "1809208fd17701509591c4c3182809e6dca3eec09ea320bb2e3694eb771ad5ea",
+      "review_status": "inventory-only",
+      "lines": 24
+    },
+    {
+      "path": "frontend/tests/e2e/lumiere.spec.js",
+      "bytes": 8528,
+      "sha256": "fd96ea2b1815aa3bbc55a0a86f42e46a2d260dd7b8e08fd3829ccaca8070715a",
+      "review_status": "inventory-only",
+      "lines": 164
+    },
+    {
+      "path": "Website/index.html",
+      "bytes": 3707,
+      "sha256": "01d3e938ccef93f84ab7ee94ba0d50b1068ecf4ed27f82921bf11192a55b4c0f",
+      "review_status": "inventory-only",
+      "lines": 200
+    },
+    {
+      "path": "Website/product.html",
+      "bytes": 38532,
+      "sha256": "868453b168441940fee209101505a2b50345c64fffc6877e33ba8b24fad4ea9d",
+      "review_status": "inventory-only",
+      "lines": 1980
+    },
+    {
+      "path": "Website/product.js",
+      "bytes": 10555,
+      "sha256": "8b2997c8de2022e7a509a1e040e4a01ce8ab91fcfe258c944694b9bf28c7b6da",
+      "review_status": "inventory-only",
+      "lines": 545
+    },
+    {
+      "path": "Website/products.html",
+      "bytes": 1081,
+      "sha256": "9d4bd5c08ddeb32ee8b4cfd8f9570e4dd0baffea40c65cfbee3af92e375a48af",
+      "review_status": "inventory-only",
+      "lines": 79
+    },
+    {
+      "path": "Website/products.js",
+      "bytes": 3166,
+      "sha256": "aed39a94f850eaaa876dabb5acf27026411bf8a665a365f4bc5f6727bdd2502f",
+      "review_status": "inventory-only",
+      "lines": 168
+    },
+    {
+      "path": "Website/script.js",
+      "bytes": 6386,
+      "sha256": "b7393fe0d31ffc3028f1ab058c8c1ed5cee6a09b54536e2efd4b12fa81724503",
+      "review_status": "inventory-only",
+      "lines": 338
+    },
+    {
+      "path": "Website/style.css",
+      "bytes": 9091,
+      "sha256": "de50e98ab8a3aa4ccd652f9c14e0c038c4832e87ab0df7c6155c5892d1b75368",
+      "review_status": "inventory-only",
+      "lines": 735
+    },
+    {
+      "path": "scripts/audit_workspace.py",
+      "bytes": 4108,
+      "sha256": "dd19df292797ba2dd7f163f13ed64c0f52bf82e0694cf3c15f6b9307a5088668",
+      "review_status": "inventory-only",
+      "lines": 95,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "source_paths",
+          "line": 23
+        },
+        {
+          "name": "inventory",
+          "line": 38
+        },
+        {
+          "name": "main",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "path": "scripts/check_final_demo.ps1",
+      "bytes": 2171,
+      "sha256": "72b022d7cb3d5478182b43e8d0627080cba9c67d4c333e4fef349f81ec4925bb",
+      "review_status": "inventory-only",
+      "lines": 48
+    },
+    {
+      "path": "scripts/probe_retrieval_baseline.py",
+      "bytes": 2533,
+      "sha256": "797e05a4e061d6c281a12fc3f51d9d275552e1548dd1f487156cdd1ad3577e7f",
+      "review_status": "inventory-only",
+      "lines": 55,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "probe",
+          "line": 16
+        },
+        {
+          "name": "unavailable",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "path": "scripts/tests/test_audit_workspace.py",
+      "bytes": 1794,
+      "sha256": "e69b9b2ed07d812951c8b0a4310e609415219e97af4bd262d3733d30953e21c2",
+      "review_status": "inventory-only",
+      "lines": 39,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "AuditInventoryTests",
+          "line": 12
+        },
+        {
+          "name": "test_inventory_never_executes_sources_or_reads_secrets",
+          "line": 13
+        },
+        {
+          "name": "test_syntax_failure_does_not_echo_source",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "path": "generators/behavior_generator.py",
+      "bytes": 634,
+      "sha256": "50f4ed67a0348823f871d8928320cc0f8a7f09a36f476a0a50ef99264e7895e0",
+      "review_status": "inventory-only",
+      "lines": 54,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/brand_generator.py",
+      "bytes": 274,
+      "sha256": "e032ca11ad8bad007ad8e75863ff330c9e4149456f378e867aa2f28abfd002ce",
+      "review_status": "inventory-only",
+      "lines": 15,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_brands",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "generators/category_generator.py",
+      "bytes": 1202,
+      "sha256": "0be22c7963654ea2ed102765ea017621345bf3283f59a485dc957442c1eaf918",
+      "review_status": "inventory-only",
+      "lines": 36,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_categories",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "generators/collection_generator.py",
+      "bytes": 284,
+      "sha256": "807f337b42a6033e72342231f82727ca4c80877b2bf44a22ce4d7cfa0e3d5a69",
+      "review_status": "inventory-only",
+      "lines": 12,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_collections",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "generators/coupons_generator.py",
+      "bytes": 214,
+      "sha256": "5423eb7cf74393da4a032956cdc528305ea5cc9eb9bbe3df9fec1b30d93ac07d",
+      "review_status": "inventory-only",
+      "lines": 25,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/customer_generator.py",
+      "bytes": 1986,
+      "sha256": "3ffa4d0623a8bbe129db704f1e1a2dc1d5985b21f560ec6a25e72481ca81d403",
+      "review_status": "inventory-only",
+      "lines": 153,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/evaluate.py",
+      "bytes": 114,
+      "sha256": "f72684de801bc5451f61b392e4eeda0f84512616631de3b5dfc78c40169ed138",
+      "review_status": "inventory-only",
+      "lines": 11,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/gemstone_generator.py",
+      "bytes": 266,
+      "sha256": "10d0b96ad8b57d1ab912f47113e09bb50b601aa88ebdd923d9bf7798138e58f7",
+      "review_status": "inventory-only",
+      "lines": 12,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_gemstones",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "generators/generate_inventory.py",
+      "bytes": 487,
+      "sha256": "358f6c11e33dbebaf665e0562d0a7baa7eb43a077402f2c2dff6d1c11fce0f33",
+      "review_status": "inventory-only",
+      "lines": 43,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/generate_order_details.py",
+      "bytes": 812,
+      "sha256": "e6d69379c2fa8c72dea05cf015471fae5bf062fe24aa4b8b87d00aac437bd9c7",
+      "review_status": "inventory-only",
+      "lines": 67,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/generate_reviews.py",
+      "bytes": 650,
+      "sha256": "019d9da4d66087e5d7ac34df989846cd21b15e191e7341d9352d349d07d3c5c7",
+      "review_status": "inventory-only",
+      "lines": 54,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/generate_wishlist.py",
+      "bytes": 859,
+      "sha256": "4a49569b68c2ef07d565a14d8801b4028921709ac2c17b833bdadada5a2a2ff3",
+      "review_status": "inventory-only",
+      "lines": 74,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/material_generator.py",
+      "bytes": 266,
+      "sha256": "2539beb0d1dad1bf6dc0dfac7172a39042b4a0463d169f0e5e15cc204e68c1c2",
+      "review_status": "inventory-only",
+      "lines": 12,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_materials",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "generators/order_generator.py",
+      "bytes": 2502,
+      "sha256": "254c9bd1b6b0f0974787e4b73a0d295815a6baeda47e61e061fcc1226ac10cfa",
+      "review_status": "inventory-only",
+      "lines": 207,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/product_generator.py",
+      "bytes": 1897,
+      "sha256": "c3845dc0da7a2346a86f1f6a453c7f6859c6fb2307354394faa8d767572240ba",
+      "review_status": "inventory-only",
+      "lines": 84,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_products",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "generators/search_history_generator.py",
+      "bytes": 528,
+      "sha256": "735bcf2bd92048e2d9f96ac807e2d60c12b993b04feb7816244ea27d3a5d4490",
+      "review_status": "inventory-only",
+      "lines": 44,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": "generators/supplier_generator.py",
+      "bytes": 1367,
+      "sha256": "f0a2b7953503cf2def1fe2d8b9469dd52a856bcdd2f14039c7448b458b44701b",
+      "review_status": "inventory-only",
+      "lines": 43,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "generate_suppliers",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "utils/file_helper.py",
+      "bytes": 120,
+      "sha256": "6f675463ff8ee24bd326634ac3404a45223a7a2494d337271ef324c623b6d5d9",
+      "review_status": "inventory-only",
+      "lines": 5,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "load_json",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "utils/random_helper.py",
+      "bytes": 266,
+      "sha256": "13e5798b4aa881c8bac073c7d891b92db31d849a932e72dae5a05a1141eeddea",
+      "review_status": "inventory-only",
+      "lines": 13,
+      "syntax": "pass",
+      "definitions": [
+        {
+          "name": "random_choice",
+          "line": 3
+        },
+        {
+          "name": "random_price",
+          "line": 6
+        },
+        {
+          "name": "random_stock",
+          "line": 9
+        },
+        {
+          "name": "random_weight",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "config/settings.py",
+      "bytes": 113,
+      "sha256": "f1a7f20e97b3cdf5099c77074eaf0bd2a385918a5102e3f0a646e5a0da850c40",
+      "review_status": "inventory-only",
+      "lines": 9,
+      "syntax": "pass",
+      "definitions": []
+    },
+    {
+      "path": ".github/workflows/final-demo-check.yml",
+      "bytes": 2038,
+      "sha256": "f948f2121681c2910b867ea4fcf887e1c8964a76944d1b6adbd1c5dd56e67f9a",
+      "review_status": "inventory-only",
+      "lines": 54
+    }
+  ],
+  "summary": {
+    "files": 262,
+    "python_files": 192,
+    "syntax_failures": 0
+  }
+}

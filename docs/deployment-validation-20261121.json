@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-21",
+  "offline_structural_checks": "passed",
+  "compose_config_quiet_exit_code": 0,
+  "docker_server_probe": {"error_type": "TimeoutExpired", "timeout_seconds": 12},
+  "backend_health_tests": {"passed": 2, "deselected": 647, "warnings": 1},
+  "backend_migration_regression": {"passed": 1, "deselected": 646},
+  "not_run": ["image build", "container startup", "container fault injection", "browser proxy smoke", "GitHub workflow"],
+  "existing_services_restarted": false,
+  "existing_database_migrated": false,
+  "existing_env_modified": false
+}

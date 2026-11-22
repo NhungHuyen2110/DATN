@@ -1,0 +1,88 @@
+{
+  "source_product_id": 1,
+  "scope": "existing CSV projected into isolated test graph",
+  "results": [
+    {
+      "ProductID": 469,
+      "GraphScore": 1.0,
+      "paths": [
+        {
+          "candidate_product_id": 469,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Moissanite",
+          "relationship": "HAS_GEMSTONE"
+        },
+        {
+          "candidate_product_id": 469,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Vàng trắng 18K",
+          "relationship": "MADE_OF"
+        },
+        {
+          "candidate_product_id": 469,
+          "attribute_id": 3,
+          "source_product_id": 1,
+          "attribute_name": "Bông tai",
+          "relationship": "BELONGS_TO"
+        }
+      ]
+    },
+    {
+      "ProductID": 479,
+      "GraphScore": 1.0,
+      "paths": [
+        {
+          "candidate_product_id": 479,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Moissanite",
+          "relationship": "HAS_GEMSTONE"
+        },
+        {
+          "candidate_product_id": 479,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Vàng trắng 18K",
+          "relationship": "MADE_OF"
+        },
+        {
+          "candidate_product_id": 479,
+          "attribute_id": 3,
+          "source_product_id": 1,
+          "attribute_name": "Bông tai",
+          "relationship": "BELONGS_TO"
+        }
+      ]
+    },
+    {
+      "ProductID": 486,
+      "GraphScore": 1.0,
+      "paths": [
+        {
+          "candidate_product_id": 486,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Moissanite",
+          "relationship": "HAS_GEMSTONE"
+        },
+        {
+          "candidate_product_id": 486,
+          "attribute_id": 5,
+          "source_product_id": 1,
+          "attribute_name": "Vàng trắng 18K",
+          "relationship": "MADE_OF"
+        },
+        {
+          "candidate_product_id": 486,
+          "attribute_id": 3,
+          "source_product_id": 1,
+          "attribute_name": "Bông tai",
+          "relationship": "BELONGS_TO"
+        }
+      ]
+    }
+  ],
+  "not_live_business_verified": true
+}

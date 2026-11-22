@@ -1,0 +1,76 @@
+# HELP lumiere_http_requests_total Completed HTTP requests
+# TYPE lumiere_http_requests_total counter
+lumiere_http_requests_total{method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke",status="200"} 20.0
+lumiere_http_requests_total{method="GET",route="/failure",service="synthetic-asgi-smoke",status="500"} 1.0
+# HELP lumiere_http_requests_created Completed HTTP requests
+# TYPE lumiere_http_requests_created gauge
+lumiere_http_requests_created{method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke",status="200"} 1.795263937057191e+09
+lumiere_http_requests_created{method="GET",route="/failure",service="synthetic-asgi-smoke",status="500"} 1.7952639371854143e+09
+# HELP lumiere_http_duration_seconds HTTP duration in seconds
+# TYPE lumiere_http_duration_seconds histogram
+lumiere_http_duration_seconds_bucket{le="0.005",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 19.0
+lumiere_http_duration_seconds_bucket{le="0.025",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="0.1",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="0.25",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="0.5",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="1.0",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="2.5",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="5.0",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="10.0",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="30.0",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="60.0",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_bucket{le="+Inf",method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_count{method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 20.0
+lumiere_http_duration_seconds_sum{method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 0.035167300258763134
+lumiere_http_duration_seconds_bucket{le="0.005",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="0.025",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="0.1",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="0.25",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="0.5",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="1.0",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="2.5",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="5.0",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="10.0",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="30.0",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="60.0",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_bucket{le="+Inf",method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_count{method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.0
+lumiere_http_duration_seconds_sum{method="GET",route="/failure",service="synthetic-asgi-smoke"} 0.0019051999552175403
+# HELP lumiere_http_duration_seconds_created HTTP duration in seconds
+# TYPE lumiere_http_duration_seconds_created gauge
+lumiere_http_duration_seconds_created{method="GET",route="/probe/{identity}",service="synthetic-asgi-smoke"} 1.795263937057191e+09
+lumiere_http_duration_seconds_created{method="GET",route="/failure",service="synthetic-asgi-smoke"} 1.7952639371854143e+09
+# HELP lumiere_ai_stage_seconds AI stage duration and outcome
+# TYPE lumiere_ai_stage_seconds histogram
+lumiere_ai_stage_seconds_bucket{le="0.005",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="0.025",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="0.1",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="0.25",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="0.5",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="1.0",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="2.5",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="5.0",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="10.0",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="30.0",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="60.0",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_bucket{le="+Inf",outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_count{outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 20.0
+lumiere_ai_stage_seconds_sum{outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 0.0006058000726625323
+lumiere_ai_stage_seconds_bucket{le="0.005",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="0.025",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="0.1",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="0.25",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="0.5",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="1.0",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="2.5",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="5.0",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="10.0",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="30.0",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="60.0",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_bucket{le="+Inf",outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_count{outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.0
+lumiere_ai_stage_seconds_sum{outcome="error",service="synthetic-asgi-smoke",stage="dense"} 0.00014299992471933365
+# HELP lumiere_ai_stage_seconds_created AI stage duration and outcome
+# TYPE lumiere_ai_stage_seconds_created gauge
+lumiere_ai_stage_seconds_created{outcome="ok",service="synthetic-asgi-smoke",stage="parse"} 1.7952639370559695e+09
+lumiere_ai_stage_seconds_created{outcome="error",service="synthetic-asgi-smoke",stage="dense"} 1.795263937184904e+09

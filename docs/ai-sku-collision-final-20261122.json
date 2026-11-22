@@ -1,0 +1,10 @@
+{
+  "tests_run": 79,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1,
+  "successful": true,
+  "graph_integration": "not_run_requires_isolated_server",
+  "qdrant": "actual_in_memory_engine_with_synthetic_vectors",
+  "real_model_quality": "not_evaluated"
+}

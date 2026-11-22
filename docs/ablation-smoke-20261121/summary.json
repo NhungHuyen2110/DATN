@@ -1,0 +1,56 @@
+{
+  "scope": "CSV seed fixture; not live Business API",
+  "dataset_sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "index": {
+    "collection": "jewelry_products_v_c0efd814ee4f",
+    "fingerprint": "c0efd814ee4f6a77e5298a9b53ad6d3235f5369756a33640408cfcddad4f60a1",
+    "dimension": 384,
+    "metric": "COSINE",
+    "requested_products": 500,
+    "verified_products": 500,
+    "pass": true
+  },
+  "graph_read_only": true,
+  "initialization_seconds": 29.966677099931985,
+  "smoke_only": true,
+  "human_reviewed_queries": 0,
+  "quality_metrics_computed": false,
+  "modes": {
+    "lexical": {
+      "queries": 105,
+      "returned_products": 252,
+      "degraded_queries": 0,
+      "median_measured_seconds": 0.003027800004929304,
+      "experimental_untuned_reranker": false
+    },
+    "dense": {
+      "queries": 105,
+      "returned_products": 252,
+      "degraded_queries": 0,
+      "median_measured_seconds": 0.05751920002512634,
+      "experimental_untuned_reranker": false
+    },
+    "dense_lexical": {
+      "queries": 105,
+      "returned_products": 252,
+      "degraded_queries": 0,
+      "median_measured_seconds": 0.0557427000021562,
+      "experimental_untuned_reranker": false
+    },
+    "dense_graph": {
+      "queries": 105,
+      "returned_products": 252,
+      "degraded_queries": 0,
+      "median_measured_seconds": 0.09433390002232045,
+      "experimental_untuned_reranker": false
+    },
+    "full_graph_reranked": {
+      "queries": 105,
+      "returned_products": 252,
+      "degraded_queries": 0,
+      "median_measured_seconds": 0.07554250000976026,
+      "experimental_untuned_reranker": true
+    }
+  }
+}

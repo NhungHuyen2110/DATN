@@ -1,0 +1,49 @@
+name: Frontend browser and source API integration
+on:
+  push:
+    branches: ['rebuild/lumiere-demo-*']
+  pull_request:
+    paths: ['frontend/**', 'backend/**', 'AI/**', 'shared/**', 'scripts/browser/**', 'scripts/test_browser_integration.py', '.github/workflows/frontend-browser-tests.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: lumiere_test_browser_ci
+          POSTGRES_USER: lumiere_test
+          POSTGRES_PASSWORD: synthetic-only-ci-password
+        ports: ['15439:5432']
+        options: >-
+          --health-cmd "pg_isready -U lumiere_test -d lumiere_test_browser_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python -m pip install -r backend/requirements-test.txt -r AI/requirements-test.txt
+      - run: python -B scripts/probe_ai_lightweight_startup.py
+      - run: npm install --prefix .local-tmp/browser-tools --ignore-scripts --no-audit --no-fund @playwright/test@1.56.1
+      - name: Customer/Staff/Admin and source AI fallback (no model downloads)
+        env:
+          LUMIERE_SYNC_TEST_URL: postgresql+psycopg://lumiere_test:synthetic-only-ci-password@127.0.0.1:15439/lumiere_test_browser_ci
+          LUMIERE_BROWSER_WITH_AI: '1'
+          LUMIERE_BROWSER_USE_MIGRATIONS: '1'
+        run: python -B scripts/test_browser_integration.py --confirm-isolated --report browser-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-integration-evidence
+          include-hidden-files: true
+          path: |
+            browser-results.json
+            .local-tmp/lumiere_test_browser_ci/*.log
+            .local-tmp/lumiere_test_browser_ci/playwright.json
+            .local-tmp/lumiere_test_browser_ci/artifacts/

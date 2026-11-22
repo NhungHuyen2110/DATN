@@ -1,0 +1,35 @@
+{
+  "successful": true,
+  "container_name": "lumiere-rebuild-test-qdrant-worker-4",
+  "container_id": "d19cf88dba5725de00269857a84dc011bf53414b395ae4b643875ea3dbbca5db",
+  "image_id": "sha256:0bd98fa7977f1e75694779359ca4e212822e5a71334e28421182f72f209d5286",
+  "server_version": "1.18.3",
+  "images_pulled": false,
+  "data_mounts_on_d": true,
+  "projection": {
+    "successful": true,
+    "business_database": "actual isolated PostgreSQL",
+    "graph": "actual isolated Neo4j",
+    "qdrant": "actual container HTTP server",
+    "embedding": "actual pinned MiniLM 384-dimensional; not a quality benchmark",
+    "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "vector_dimension": 384,
+    "synthetic_product_id": 900025,
+    "synthetic_taxonomy_id": 990025,
+    "checks": [
+      "partial graph write retried",
+      "stable vector identity",
+      "live stock/price update",
+      "product deletion graph tombstone and vector removal"
+    ],
+    "existing_500_catalog_product_ids_modified": false,
+    "production_accessed": false
+  },
+  "production_accessed": false,
+  "storage_backend": "Docker named volumes inside the verified D-backed VHD",
+  "test_volumes_preserved": {
+    "storage": "lumiere-rebuild-test-qdrant-worker-4-storage",
+    "snapshots": "lumiere-rebuild-test-qdrant-worker-4-snapshots"
+  },
+  "scope": "Qdrant container + native isolated PG/Neo4j + real cached model; not full Compose deployment"
+}

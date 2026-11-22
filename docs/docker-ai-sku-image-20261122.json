@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "service": "ai-api",
+  "exit_code": 0,
+  "completed_utc": "2026-11-21T18:15:53.962341+00:00",
+  "dockerfile_sha256": "5e8778580c5e9f0e89a1366bedc6a11cce8df7b10fb1c815452ee1d6c160211d",
+  "log": ".local-tmp\\docker-ai-sku-image-20261122.log",
+  "log_sha256": "98bdc9cef6b87e106387c91c74a49ebabb9697196ba0af9dd5ae351182e76837",
+  "source_state": "uncommitted local changes; image is not a published release",
+  "pushed": false,
+  "containers_started": false,
+  "production_database_accessed": false,
+  "image_id": "sha256:2b5f9cbdbbf7d3587e268c8dabc0d3bf8a436bb6cfff39b71e5b7e3d0dcd3b35"
+}

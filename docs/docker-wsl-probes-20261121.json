@@ -1,0 +1,26 @@
+{
+  "changes_made": false,
+  "distro": "docker-desktop",
+  "probes": {
+    "process_names": {
+      "returncode": 0,
+      "stdout": "PID   COMMAND\n    1 init(docker-des\n    5 init\n    8 SessionLeader\n    9 Relay(11)\n   10 Relay(12)\n   11 wsl-bootstrap\n   12 vpnkit-bridge\n   44 unshare\n   45 init\n   60 init\n   80 sh\n   81 login\n   86 bash\n  112 containerd-star\n  129 containerd\n  152 dockerd\n42164 SessionLeader\n42165 Relay(42166)\n42166 ps\n",
+      "stderr": ""
+    },
+    "docker_cli": {
+      "returncode": 0,
+      "stdout": "/usr/local/bin/docker\n",
+      "stderr": ""
+    },
+    "docker_socket": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "ls: /var/run/docker.sock: No such file or directory\n"
+    },
+    "docker_disk": {
+      "returncode": 1,
+      "stdout": "Filesystem                Size      Used Available Use% Mounted on\n",
+      "stderr": "df: /var/lib/docker: can't find mount point\n"
+    }
+  }
+}

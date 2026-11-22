@@ -1,0 +1,18 @@
+{
+  "successful": true,
+  "database": "actual PostgreSQL 17 isolated synthetic fixtures",
+  "checks": [
+    "underscore_in_sku_is_literal_not_sql_wildcard",
+    "eligible_ids_and_deterministic_sql_order",
+    "bound_query_terms_do_not_execute_injection",
+    "empty_eligibility_returns_no_candidates",
+    "shared_query_planner_and_final_live_filters_with_actual_sql_baseline"
+  ],
+  "production_accessed": false,
+  "quality_benchmark": false,
+  "sql_baseline": "parameterized ILIKE, accent-sensitive, no semantic synonyms",
+  "topk_fixture_product_ids": [
+    1,
+    4
+  ]
+}

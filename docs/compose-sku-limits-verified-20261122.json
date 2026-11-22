@@ -1,0 +1,36 @@
+{
+  "successful": true,
+  "ai_image_id": "sha256:5d778c877a55c39b2ed5cbc4d5119b1ac2d759402d2c6e5bc9fc6e7deb4f97cf",
+  "samples": [
+    {
+      "query": "Top 1 SYNTHETIC5",
+      "product_ids": [
+        5
+      ],
+      "status": "degraded",
+      "live_fields_independently_verified": true
+    },
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "product_ids": [
+        1,
+        2,
+        3
+      ],
+      "status": "degraded",
+      "live_fields_independently_verified": true
+    },
+    {
+      "query": "Top 3 nhan duoi 8 trieu",
+      "product_ids": [
+        1,
+        2,
+        3
+      ],
+      "status": "degraded",
+      "live_fields_independently_verified": true
+    }
+  ],
+  "scope": "real Docker proxy/AI/Business/PostgreSQL, 5 synthetic fixture products; not quality benchmark",
+  "production_accessed": false
+}

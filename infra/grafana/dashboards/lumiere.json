@@ -1,0 +1,15 @@
+{
+  "title": "LUMIÈRE — real application metrics",
+  "uid": "lumiere-runtime",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": {"from": "now-30m", "to": "now"},
+  "panels": [
+    {"id": 1, "title": "Requests / second", "type": "timeseries", "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8}, "datasource": {"type": "prometheus", "uid": "lumiere-prometheus"}, "targets": [{"refId": "A", "expr": "sum by(service) (rate(lumiere_http_requests_total[5m]))"}]},
+    {"id": 2, "title": "HTTP 5xx / second", "type": "timeseries", "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8}, "datasource": {"type": "prometheus", "uid": "lumiere-prometheus"}, "targets": [{"refId": "A", "expr": "sum by(service) (rate(lumiere_http_requests_total{status=~\"5..\"}[5m]))"}]},
+    {"id": 3, "title": "HTTP p50/p95/p99 seconds (bucket estimates)", "type": "timeseries", "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8}, "datasource": {"type": "prometheus", "uid": "lumiere-prometheus"}, "targets": [{"refId": "A", "legendFormat": "p95 {{service}}", "expr": "histogram_quantile(0.95, sum by(le,service) (rate(lumiere_http_duration_seconds_bucket[5m])))"}, {"refId": "B", "legendFormat": "p50 {{service}}", "expr": "histogram_quantile(0.50, sum by(le,service) (rate(lumiere_http_duration_seconds_bucket[5m])))"}, {"refId": "C", "legendFormat": "p99 {{service}}", "expr": "histogram_quantile(0.99, sum by(le,service) (rate(lumiere_http_duration_seconds_bucket[5m])))"}]},
+    {"id": 4, "title": "AI stage errors / second", "type": "timeseries", "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8}, "datasource": {"type": "prometheus", "uid": "lumiere-prometheus"}, "targets": [{"refId": "A", "expr": "sum by(stage) (rate(lumiere_ai_stage_seconds_count{outcome=\"error\"}[5m]))"}]},
+    {"id": 5, "title": "Scrape target health", "type": "timeseries", "gridPos": {"x": 0, "y": 16, "w": 24, "h": 6}, "datasource": {"type": "prometheus", "uid": "lumiere-prometheus"}, "targets": [{"refId": "A", "expr": "up{job=\"lumiere-applications\"}"}]}
+  ]
+}

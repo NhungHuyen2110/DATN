@@ -1,0 +1,10 @@
+﻿{
+    "observed_utc":  "2026-11-21T19:40:29.9942953Z",
+    "total_memory_kib":  8077608,
+    "free_memory_kib":  72236,
+    "docker_server_report":  "docker-during-worker-build-20261122.json",
+    "note":  "Observed RAM pressure and intermittent CLI/API timeouts; causality of every failure not proven",
+    "user_applications_closed":  false,
+    "native_test_graph_stopped":  true,
+    "worker_image_accepted":  false
+}

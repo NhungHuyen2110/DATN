@@ -1,0 +1,110 @@
+{
+  "scope": "actual isolated Neo4j, CSV seed projection, not live business facts",
+  "read_only": true,
+  "products": [
+    1,
+    469
+  ],
+  "edges": [
+    {
+      "product_id": 1,
+      "product_name": "Bông tai Angel",
+      "relationship": "BELONGS_TO",
+      "label": "Category",
+      "attributes": {
+        "category_id": 3,
+        "name": "Bông tai"
+      }
+    },
+    {
+      "product_id": 1,
+      "product_name": "Bông tai Angel",
+      "relationship": "HAS_BRAND",
+      "label": "Brand",
+      "attributes": {
+        "name": "PNJ",
+        "brand_id": 2
+      }
+    },
+    {
+      "product_id": 1,
+      "product_name": "Bông tai Angel",
+      "relationship": "HAS_GEMSTONE",
+      "label": "Gemstone",
+      "attributes": {
+        "gemstone_id": 5,
+        "name": "Moissanite"
+      }
+    },
+    {
+      "product_id": 1,
+      "product_name": "Bông tai Angel",
+      "relationship": "IN_COLLECTION",
+      "label": "Collection",
+      "attributes": {
+        "collection_id": 4,
+        "name": "Minimal"
+      }
+    },
+    {
+      "product_id": 1,
+      "product_name": "Bông tai Angel",
+      "relationship": "MADE_OF",
+      "label": "Material",
+      "attributes": {
+        "name": "Vàng trắng 18K",
+        "material_id": 5
+      }
+    },
+    {
+      "product_id": 469,
+      "product_name": "Bông tai Princess",
+      "relationship": "BELONGS_TO",
+      "label": "Category",
+      "attributes": {
+        "category_id": 3,
+        "name": "Bông tai"
+      }
+    },
+    {
+      "product_id": 469,
+      "product_name": "Bông tai Princess",
+      "relationship": "HAS_BRAND",
+      "label": "Brand",
+      "attributes": {
+        "name": "DOJI",
+        "brand_id": 3
+      }
+    },
+    {
+      "product_id": 469,
+      "product_name": "Bông tai Princess",
+      "relationship": "HAS_GEMSTONE",
+      "label": "Gemstone",
+      "attributes": {
+        "gemstone_id": 5,
+        "name": "Moissanite"
+      }
+    },
+    {
+      "product_id": 469,
+      "product_name": "Bông tai Princess",
+      "relationship": "IN_COLLECTION",
+      "label": "Collection",
+      "attributes": {
+        "collection_id": 2,
+        "name": "Wedding"
+      }
+    },
+    {
+      "product_id": 469,
+      "product_name": "Bông tai Princess",
+      "relationship": "MADE_OF",
+      "label": "Material",
+      "attributes": {
+        "name": "Vàng trắng 18K",
+        "material_id": 5
+      }
+    }
+  ]
+}

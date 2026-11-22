@@ -1,0 +1,37 @@
+name: Isolated PostgreSQL synchronization
+on:
+  push:
+    branches: ['rebuild/lumiere-demo-*']
+  pull_request:
+    paths: ['backend/**', 'shared/**', 'scripts/test_postgres_sync.py', '.github/workflows/postgres-sync-tests.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  postgres-sync:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: lumiere_test_sync
+          POSTGRES_USER: lumiere_test
+          POSTGRES_PASSWORD: synthetic-only-ci-password
+        ports: ['15439:5432']
+        options: >-
+          --health-cmd "pg_isready -U lumiere_test -d lumiere_test_sync"
+          --health-interval 5s --health-timeout 5s --health-retries 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -r backend/requirements.txt
+      - name: Real upsert concurrency, SKIP LOCKED and durable delivery
+        env:
+          LUMIERE_SYNC_TEST_URL: postgresql+psycopg://lumiere_test:synthetic-only-ci-password@127.0.0.1:15439/lumiere_test_sync
+        run: python -B scripts/test_postgres_sync.py --confirm-isolated --report postgres-sync-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: postgres-sync-results
+          path: postgres-sync-results.json

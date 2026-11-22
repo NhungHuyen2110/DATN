@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "service": "business-api",
+  "exit_code": 0,
+  "completed_utc": "2026-11-21T17:41:21.963485+00:00",
+  "dockerfile_sha256": "3c95bf97206e2fe6c2a064c467a4c5b9d57270c5d3499907aa981b0b0b80a9ca",
+  "log": ".local-tmp\\docker-business-image-20261122.log",
+  "log_sha256": "c023702f7c0c282b789b17184fc112a100203e1525d04a883f031fe1e4a84630",
+  "source_state": "uncommitted local changes; image is not a published release",
+  "pushed": false,
+  "containers_started": false,
+  "production_database_accessed": false,
+  "image_id": "sha256:6ef09ee10cc2a13a54a61523c9c58a815b347ab2b369d8b15f74ca0449cada8f"
+}

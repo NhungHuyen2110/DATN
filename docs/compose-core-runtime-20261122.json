@@ -1,0 +1,29 @@
+{
+  "successful": true,
+  "project": "lumiere-rebuild-test",
+  "proxy": "http://127.0.0.1:18080",
+  "services": [
+    "postgres",
+    "business-api",
+    "frontend",
+    "reverse-proxy",
+    "ai-api"
+  ],
+  "statuses": {
+    "/": 200,
+    "/pages/login.html": 200,
+    "/api/health/live": 200,
+    "/api/health/ready": 200,
+    "/ai/health/live": 200
+  },
+  "schema": "actual alembic upgrade head",
+  "catalog": "5 synthetic test products, not production/quality benchmark",
+  "chat": {
+    "status": "degraded",
+    "returned_k": 3,
+    "verified_source": "business_api"
+  },
+  "scope": "real containers/proxy; optional dense/graph dependencies not yet started",
+  "production_accessed": false,
+  "test_services_left_running": true
+}

@@ -1,0 +1,28 @@
+{
+  "user_authorized_start_and_recovery": true,
+  "initial_state": {
+    "desktop_processes_present": true,
+    "service": "Stopped",
+    "engine": "Client only or timeout"
+  },
+  "actions_executed": [
+    "Attempted Start-Service; ordinary session lacked Windows administrator rights",
+    "Launched installed Docker Desktop",
+    "Attempted official docker desktop restart; CLI remained pending and was cancelled",
+    "Started com.docker.service through Windows RunAs helper; verified Running",
+    "Terminated only Docker-owned docker-desktop WSL distro; command succeeded",
+    "Verified Docker installation paths before restarting stuck Desktop/backend host processes",
+    "Launched Docker Desktop again; verified both Docker contexts respond"
+  ],
+  "final_verified_server_version": "28.5.1",
+  "final_verified_contexts": ["default", "desktop-linux"],
+  "evidence": "docker-after-host-restart-20261121.json",
+  "factory_reset_performed": false,
+  "volumes_removed": false,
+  "containers_removed": false,
+  "wsl_distro_unregistered": false,
+  "vhd_moved": false,
+  "daemon_security_settings_changed": false,
+  "existing_containers_inventory": "8 pre-existing stopped containers observed after recovery",
+  "storage_gate": "Docker VHD remains on C; separate approval requested before backup/move to D and large builds"
+}

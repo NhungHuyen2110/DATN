@@ -1,0 +1,10 @@
+{
+  "passed": 671,
+  "subtests_passed": 829,
+  "warnings": 1,
+  "duration_seconds": 142.38,
+  "log": ".local-tmp\\backend-regression-latest-20261121.log",
+  "log_sha256": "ceaffcdb18fa6d7f9aeda8892361843e72a61b2cdbbac7eb25de7e1d0cac4f78",
+  "scope": "guarded offline runner: SQLite memory only, external network blocked",
+  "unique_scenarios_not_claimed": true
+}

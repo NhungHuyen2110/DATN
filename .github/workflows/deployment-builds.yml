@@ -1,0 +1,42 @@
+name: Independent service builds
+on:
+  push:
+    branches: ['rebuild/lumiere-demo-*']
+  pull_request:
+    paths: ['frontend/**', 'backend/**', 'AI/**', 'shared/**', 'data/**', 'output/products_ai.csv', 'infra/**', 'scripts/changed_services.py', 'scripts/run_index_worker.py', 'compose.yaml', '.dockerignore', '.github/workflows/deployment-builds.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      has_changes: ${{ steps.plan.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - id: plan
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/changed_services.py --base "$BASE_SHA" --github-output
+  build:
+    needs: changes
+    if: needs.changes.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.file }}
+          push: false
+          tags: lumiere-${{ matrix.image }}:${{ github.sha }}
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.service }}

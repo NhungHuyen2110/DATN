@@ -1,0 +1,17 @@
+{
+  "successful": true,
+  "business_database": "actual isolated PostgreSQL",
+  "graph": "actual isolated Neo4j",
+  "qdrant": "actual in-memory engine",
+  "embedding": "synthetic 3-dimensional; no model-quality claim",
+  "synthetic_product_id": 900021,
+  "synthetic_taxonomy_id": 990021,
+  "checks": [
+    "partial graph write retried",
+    "stable vector identity",
+    "live stock/price update",
+    "product deletion graph tombstone and vector removal"
+  ],
+  "existing_500_catalog_product_ids_modified": false,
+  "production_accessed": false
+}

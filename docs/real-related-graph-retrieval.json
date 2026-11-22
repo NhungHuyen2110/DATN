@@ -1,0 +1,370 @@
+{
+  "scope": "CSV seed fixture, not live Business API; not a relevance benchmark",
+  "model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "index": {
+    "collection": "jewelry_products_v_c0efd814ee4f",
+    "fingerprint": "c0efd814ee4f6a77e5298a9b53ad6d3235f5369756a33640408cfcddad4f60a1",
+    "dimension": 384,
+    "metric": "COSINE",
+    "requested_products": 500,
+    "verified_products": 500,
+    "pass": true
+  },
+  "graph_read_only": true,
+  "elapsed_seconds": 36.542,
+  "samples": [
+    {
+      "query": "Top 3 nhẫn cùng loại đá với sản phẩm 1",
+      "status": "ok",
+      "requested_k": 3,
+      "returned_k": 3,
+      "products": [
+        {
+          "ProductID": 142,
+          "score": 0.04918032786885246,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 142
+            }
+          ],
+          "ProductName": "Nhẫn Angel",
+          "SKU": "SP000142",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 5,
+          "Material": "Vàng trắng 18K",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Valentine",
+          "Price": "23627613",
+          "Stock": 36,
+          "rank": 1,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 149,
+          "score": 0.04692742126540875,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 149
+            }
+          ],
+          "ProductName": "Nhẫn Shining Star",
+          "SKU": "SP000149",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 4,
+          "Material": "Vàng 18K",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Office",
+          "Price": "20816892",
+          "Stock": 66,
+          "rank": 2,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 252,
+          "score": 0.046649531024531024,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 252
+            }
+          ],
+          "ProductName": "Nhẫn Princess",
+          "SKU": "SP000252",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 2,
+          "Material": "Vàng 10K",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Minimal",
+          "Price": "18216160",
+          "Stock": 8,
+          "rank": 3,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ],
+      "understanding": {
+        "normalized": "top 3 nhan cung loai da voi san pham 1",
+        "entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring",
+            "graph_id": 1,
+            "method": "normalized_alias",
+            "alias": "nhẫn",
+            "similarity": null
+          }
+        ],
+        "ambiguities": [],
+        "needs_clarification": false,
+        "semantic_attempted": false,
+        "alias_version": 1,
+        "normalized_query": "top 3 nhan cung loai da voi san pham 1",
+        "reference_product": {
+          "ProductID": 1,
+          "ProductName": "Bông tai Angel",
+          "CategoryID": 3,
+          "MaterialID": 5,
+          "GemstoneID": 5
+        },
+        "required_relationships": [
+          "HAS_GEMSTONE"
+        ]
+      }
+    },
+    {
+      "query": "Top 3 sản phẩm giống sản phẩm 1",
+      "status": "ok",
+      "requested_k": 3,
+      "returned_k": 3,
+      "products": [
+        {
+          "ProductID": 479,
+          "score": 0.046459914611005695,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 479
+            },
+            {
+              "relationship": "MADE_OF",
+              "target_id": 5,
+              "target_name": "Vàng trắng 18K",
+              "source_product_id": 1,
+              "candidate_product_id": 479
+            },
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 3,
+              "target_name": "Bông tai",
+              "source_product_id": 1,
+              "candidate_product_id": 479
+            }
+          ],
+          "ProductName": "Bông tai Celina",
+          "SKU": "SP000479",
+          "CategoryID": 3,
+          "Category": "Bông tai",
+          "MaterialID": 5,
+          "Material": "Vàng trắng 18K",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Luxury",
+          "Price": "24995661",
+          "Stock": 35,
+          "rank": 1,
+          "matched_entities": [],
+          "reason": "đúng loại Bông tai; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 275,
+          "score": 0.0447650709945792,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "MADE_OF",
+              "target_id": 5,
+              "target_name": "Vàng trắng 18K",
+              "source_product_id": 1,
+              "candidate_product_id": 275
+            },
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 3,
+              "target_name": "Bông tai",
+              "source_product_id": 1,
+              "candidate_product_id": 275
+            }
+          ],
+          "ProductName": "Bông tai Angel",
+          "SKU": "SP000275",
+          "CategoryID": 3,
+          "Category": "Bông tai",
+          "MaterialID": 5,
+          "Material": "Vàng trắng 18K",
+          "GemstoneID": 3,
+          "Gemstone": "Sapphire",
+          "Collection": "Wedding",
+          "Price": "1991880",
+          "Stock": 22,
+          "rank": 2,
+          "matched_entities": [],
+          "reason": "đúng loại Bông tai; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 202,
+          "score": 0.04316099572838415,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 202
+            },
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 3,
+              "target_name": "Bông tai",
+              "source_product_id": 1,
+              "candidate_product_id": 202
+            }
+          ],
+          "ProductName": "Bông tai Angel",
+          "SKU": "SP000202",
+          "CategoryID": 3,
+          "Category": "Bông tai",
+          "MaterialID": 2,
+          "Material": "Vàng 10K",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Minimal",
+          "Price": "10502987",
+          "Stock": 14,
+          "rank": 3,
+          "matched_entities": [],
+          "reason": "đúng loại Bông tai; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ],
+      "understanding": {
+        "normalized": "top 3 san pham giong san pham 1",
+        "entities": [],
+        "ambiguities": [],
+        "needs_clarification": false,
+        "semantic_attempted": false,
+        "alias_version": 1,
+        "normalized_query": "top 3 san pham giong san pham 1",
+        "reference_product": {
+          "ProductID": 1,
+          "ProductName": "Bông tai Angel",
+          "CategoryID": 3,
+          "MaterialID": 5,
+          "GemstoneID": 5
+        },
+        "required_relationships": []
+      }
+    },
+    {
+      "query": "nhẫn cùng đá với Bông tai Angel",
+      "status": "clarification_required",
+      "requested_k": 3,
+      "returned_k": 0,
+      "products": [],
+      "understanding": {
+        "normalized": "nhan cung da voi bong tai angel",
+        "entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring",
+            "graph_id": 1,
+            "method": "normalized_alias",
+            "alias": "nhẫn",
+            "similarity": null
+          },
+          {
+            "label": "Category",
+            "canonical_id": "earring",
+            "graph_id": 3,
+            "method": "normalized_alias",
+            "alias": "bông tai",
+            "similarity": null
+          }
+        ],
+        "ambiguities": [
+          "multiple_category",
+          "reference_product_id_required"
+        ],
+        "needs_clarification": true,
+        "semantic_attempted": false,
+        "alias_version": 1
+      }
+    },
+    {
+      "query": "cùng loại đá và phong cách với sản phẩm 1",
+      "status": "missing_verified_attributes",
+      "requested_k": null,
+      "returned_k": 0,
+      "products": [],
+      "understanding": {
+        "normalized": "cung loai da va phong cach voi san pham 1",
+        "entities": [],
+        "ambiguities": [],
+        "needs_clarification": false,
+        "semantic_attempted": false,
+        "alias_version": 1
+      }
+    }
+  ]
+}

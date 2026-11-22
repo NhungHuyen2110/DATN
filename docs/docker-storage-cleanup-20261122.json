@@ -1,0 +1,9 @@
+﻿{
+    "successful":  true,
+    "removed_only_verified_old_vhd":  "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk.before-move-20261122\\docker_data.vhdx",
+    "bytes_reclaimed":  14054064128,
+    "independent_backup_preserved":  "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-recovery\\20261122\\docker_data.before-move.vhdx",
+    "active_physical_data":  "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-desktop-data\\disk",
+    "recursive_delete_used":  false,
+    "container_volumes_deleted":  false
+}

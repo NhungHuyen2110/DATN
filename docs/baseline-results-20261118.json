@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-18",
+  "timezone": "Asia/Bangkok",
+  "base_commit": "cb645852891748b045ac966cb1a18df637c50554",
+  "branch": "rebuild/lumiere-audit-20261118",
+  "backend": {
+    "runner": "scripts/run_backend_tests.py",
+    "passed_items": 633,
+    "passed_subtests": 827,
+    "warnings": 1,
+    "duration_seconds": 121.84,
+    "exit_code": 0,
+    "limitations": ["SQLite in-memory only", "Some unittest classes are collected from multiple modules", "No live PostgreSQL or browser E2E"]
+  },
+  "guard_canaries": {"file_database_blocked": true, "network_blocked": true, "memory_database_allowed": true, "internal_socketpair_allowed": true, "collected_items": 633},
+  "csv_preflight": {"passed_tests": 10, "source_records": 500, "valid_records": 500, "validation_errors": 0, "writes_performed": false, "report": "csv-preflight-baseline.json"},
+  "inventory_utility": {"passed_tests": 2},
+  "retrieval_probe": {"known_defects_reproduced": 4, "fixed": false},
+  "not_verified": ["Full semantic review of every source file", "Neo4j import/idempotency", "Qdrant live collection", "End-to-end role workflows", "Docker fault isolation", "Monitoring", "Retrieval evaluation"]
+}

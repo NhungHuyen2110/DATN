@@ -1,0 +1,10 @@
+﻿{
+    "action":  "Terminated only verified owned native Neo4j test JVM to relieve RAM pressure",
+    "pid":  18512,
+    "verified_home":  "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\neo4j-community-test\\neo4j-community-5.26.33",
+    "files_deleted":  false,
+    "production_accessed":  false,
+    "note":  "Native graph lab stopped; test graph files retained and require recovery/start before native graph tests",
+    "total_memory_kib":  8077608,
+    "observed_free_memory_kib_before":  54988
+}

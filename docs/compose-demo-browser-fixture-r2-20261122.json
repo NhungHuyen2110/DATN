@@ -1,0 +1,10 @@
+{
+  "successful": true,
+  "synthetic_only": true,
+  "new_reset_users": 1,
+  "new_orders": 4,
+  "previous_rows_preserved": true,
+  "backup_sha256": "ab77bd5d2317b1dbef86c5c304eaa19c33b2f87906c72c8ef671ac5b2df981d7",
+  "fixture": ".local-tmp\\compose-demo-browser-fixture-r2-20261122\\fixture.json",
+  "production_accessed": false
+}

@@ -3,6 +3,7 @@
 const { test, expect } = require("@playwright/test");
 
 const baseURL = process.env.LUMIERE_E2E_BASE_URL || "http://127.0.0.1:8001";
+const apiPath = path => (process.env.LUMIERE_E2E_API_PREFIX || '') + path;
 const localHost = ["localhost", "127.0.0.1"].includes(new URL(baseURL).hostname);
 const isolatedDatabase = process.env.LUMIERE_E2E_DB_KIND === "isolated";
 const allowWrites = process.env.LUMIERE_E2E_ALLOW_WRITE === "1";
@@ -18,6 +19,8 @@ async function login(page, credentials) {
   await page.getByLabel("Email").fill(credentials.email);
   await page.locator("#password").fill(credentials.password);
   await page.getByRole("button", { name: "ĐĂNG NHẬP" }).click();
+  // Do not navigate away before the login response sets its session cookie.
+  await expect(page).not.toHaveURL(/\/pages\/login\.html$/);
 }
 
 test.describe("Guest shopping", () => {
@@ -41,7 +44,7 @@ test.describe("Customer account and COD", () => {
     "BLOCKED: cần cho phép ghi trên database test độc lập.");
 
   test("registers a local test customer and logs in", async ({ page }) => {
-    const email = `lumiere-e2e-${Date.now()}@example.test`;
+    const email = `lumiere-e2e-${Date.now()}@example.com`;
     const password = "E2E-Test-Password-123!";
     await page.goto("/pages/register.html");
     await page.getByLabel("Họ tên").fill("Khách kiểm thử LUMIÈRE");
@@ -53,7 +56,7 @@ test.describe("Customer account and COD", () => {
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
     await login(page, { email, password });
     await expect(page).toHaveURL(/\/pages\/account\.html$/);
-    await page.getByRole("button", { name: "ĐĂNG XUẤT" }).click();
+    await page.locator('#logout-main').click();
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
   });
 
@@ -67,28 +70,55 @@ test.describe("Customer account and COD", () => {
     await expect(page.locator("#catalog-results .catalog-card").first()).toBeVisible();
     const firstCard = page.locator("#catalog-results .catalog-card")
       .filter({ has: page.locator("[data-add]:not([disabled])") }).first();
+    // This isolated fixture account may already have favorites from a prior run.
+    // Establish the add precondition without changing application toggle behavior.
+    const productId = Number(await firstCard.locator('[data-favorite]').getAttribute('data-favorite'));
+    const wishlistResponse = await page.request.get(apiPath('/wishlist'));
+    expect(wishlistResponse.ok()).toBeTruthy();
+    const savedWishlist = await wishlistResponse.json();
+    if (savedWishlist.items.some(item => item.product.id === productId)) {
+      expect((await page.request.delete(apiPath(`/wishlist/items/${productId}`))).ok()).toBeTruthy();
+    }
+    const favoriteSaved = page.waitForResponse(response =>
+      new URL(response.url()).pathname === apiPath('/wishlist/items') && response.request().method() === 'POST');
     await firstCard.locator("[data-favorite]").click();
+    expect((await favoriteSaved).ok()).toBeTruthy();
+    const cartSaved = page.waitForResponse(response =>
+      new URL(response.url()).pathname === apiPath('/cart/items') && response.request().method() === 'POST');
     await firstCard.locator("[data-add]").click();
+    expect((await cartSaved).ok()).toBeTruthy();
 
     await page.goto("/pages/cart.html");
-    await expect(page.locator("#page-content")).toContainText("Giỏ hàng");
+    await expect(page.getByRole("heading", { name: "Giỏ hàng của bạn", exact: true })).toBeVisible();
     await page.goto("/pages/checkout.html");
     await page.getByLabel("Họ và tên").fill("Khách kiểm thử LUMIÈRE");
     await page.getByLabel("Số điện thoại").fill("0901234567");
     await page.getByLabel("Địa chỉ nhận hàng").fill("12 Đường Kiểm Thử");
     await page.getByLabel("Tỉnh / thành phố").fill("TP. Hồ Chí Minh");
-    await page.getByRole("button", { name: "ĐẶT HÀNG COD" }).click();
+    await page.locator('#payment-method').selectOption('cod');
+    const createdResponse = page.waitForResponse(response =>
+      new URL(response.url()).pathname === apiPath('/orders') && response.request().method() === 'POST');
+    await page.getByRole("button", { name: "ĐẶT HÀNG", exact: true }).click();
+    const created = await createdResponse;
+    expect(created.ok()).toBeTruthy();
+    const order = await created.json();
+    expect(order.payment_method).toBe('cod');
     await expect(page.locator("#page-content")).toContainText("Đặt hàng thành công");
 
     await page.goto("/pages/orders.html");
-    await expect(page.locator("#page-content")).toContainText("Đơn hàng của tôi");
+    await expect(page.getByRole('heading', {name: 'Đơn hàng của tôi', exact: true})).toBeVisible();
+    const orderLink = page.locator(`#page-content a[href*="order-detail.html?id=${order.id}"]`);
+    await expect(orderLink).toBeVisible();
+    await orderLink.click();
+    await expect(page.locator('#page-content')).toContainText(order.code);
     await page.goto("/pages/wishlist.html");
-    await expect(page.locator("#page-content")).toContainText("Yêu thích");
+    await expect(page.getByRole('heading', {name: 'Sản phẩm yêu thích', exact: true})).toBeVisible();
+    await expect(page.locator('#page-content .catalog-card').first()).toBeVisible();
     await page.goto("/pages/admin/dashboard.html");
     await expect(page).toHaveURL(/\/pages\/products\.html$/);
 
     await page.goto("/pages/account.html");
-    await page.getByRole("button", { name: "ĐĂNG XUẤT" }).click();
+    await page.locator('#logout-main').click();
     await expect(page).toHaveURL(/\/pages\/login\.html$/);
   });
 });
@@ -111,7 +141,7 @@ for (const role of ["admin", "staff"]) {
       for (const name of pages) {
         await page.goto(`/pages/${role === "admin" ? "admin/" : "staff/"}${name}.html`);
         await expect(page.locator(".backend-console")).toBeVisible();
-        await expect(page.locator(".form-alert")).toHaveCount(0);
+        await expect(page.locator(".form-alert:visible")).toHaveCount(0);
       }
 
       const denied = role === "admin" ? "/pages/staff/orders.html" : "/pages/admin/dashboard.html";
@@ -122,7 +152,7 @@ for (const role of ["admin", "staff"]) {
     });
 
     test("updates a fixture order status when an isolated order is configured", async ({ page }) => {
-      const orderId = process.env.LUMIERE_E2E_ORDER_ID;
+      const orderId = process.env[`LUMIERE_E2E_${role.toUpperCase()}_ORDER_ID`] || process.env.LUMIERE_E2E_ORDER_ID;
       const nextStatus = process.env.LUMIERE_E2E_ORDER_STATUS;
       test.skip(!canWriteLocal || !orderId || !nextStatus,
         "BLOCKED: thiếu fixture đơn hàng và trạng thái chuyển hợp lệ trên database test.");
@@ -149,14 +179,14 @@ for (const role of ["admin", "staff"]) {
     });
 
     test("confirms collection for a delivered COD fixture when configured", async ({ page }) => {
-      const orderId = process.env.LUMIERE_E2E_COD_ORDER_ID;
+      const orderId = process.env[`LUMIERE_E2E_${role.toUpperCase()}_COD_ORDER_ID`] || process.env.LUMIERE_E2E_COD_ORDER_ID;
       test.skip(!canWriteLocal || !orderId,
         "BLOCKED: cần đơn COD delivered/unpaid fixture trên database test độc lập.");
       await login(page, credentials);
       await page.goto(`/pages/${role === "admin" ? "admin" : "staff"}/orders.html`);
       const confirm = page.locator(`button[data-cod="${orderId}"]`);
       await expect(confirm).toBeEnabled();
-      page.once("dialog", dialog => dialog.accept("E2E-COLLECTION-001"));
+      page.once("dialog", dialog => dialog.accept(`E2E-COLLECTION-${role}-${orderId}`));
       await confirm.click();
       await expect(page.locator(`button[data-cod="${orderId}"]`)).toBeDisabled();
     });

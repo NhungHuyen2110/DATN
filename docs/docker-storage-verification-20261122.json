@@ -1,0 +1,15 @@
+{
+  "successful": true,
+  "verified_utc": "2026-11-21T17:32:00.376683+00:00",
+  "server_version": "28.5.1",
+  "logical_path": "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk",
+  "physical_path": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-desktop-data\\disk",
+  "same_file_identity_through_junction": true,
+  "container_ids_preserved": 9,
+  "image_ids_preserved": 13,
+  "volume_names_preserved": 13,
+  "running_container_state_preserved": true,
+  "independent_backup": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-recovery\\20261122\\docker_data.before-move.vhdx",
+  "original_c_directory_retained_for_final_cleanup": true,
+  "method": "NTFS directory junction; Docker logical setting remains C, actual data VHD is D"
+}

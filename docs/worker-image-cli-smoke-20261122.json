@@ -1,0 +1,12 @@
+{
+  "successful": true,
+  "image_id": "sha256:6f085d766d443895b8e4f64c63bb265933ecedd2a94a9d3e0500de7c100bba2a",
+  "pip_check_exit_code": 0,
+  "worker_help_exit_code": 0,
+  "network": "none",
+  "filesystem": "read-only",
+  "capabilities": "ALL dropped; no-new-privileges",
+  "production_accessed": false,
+  "scope": "dependency and CLI smoke only; not full worker integration",
+  "note": "pip disabled its unwritable user cache; dependency check reported no broken requirements"
+}

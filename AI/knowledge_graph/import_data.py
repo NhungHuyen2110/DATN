@@ -1,544 +1,94 @@
-from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+"""Product-only CSV -> Neo4j CLI; dry-run default, explicit isolated-dev apply.
+
+Never imports customers/orders, reads .env, deletes a graph, or connects on import.
+The previous importer is preserved in the local source checkpoint.
+"""
+import argparse
+import hashlib
+import json
 import os
-import pandas as pd
+import time
 from pathlib import Path
-from neo4j import GraphDatabase
+from urllib.parse import urlsplit
+
+if __package__:
+    from .csv_validation import ROOT, validate_csv, summary
+else:
+    from csv_validation import ROOT, validate_csv, summary
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--file", type=Path, required=True)
+    parser.add_argument("--lookup-dir", type=Path, default=ROOT / "data")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--dry-run", action="store_true")
+    mode.add_argument("--apply", action="store_true")
+    parser.add_argument("--delimiter", default=",")
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--batch-size", type=int, default=100)
+    parser.add_argument("--report", type=Path)
+    parser.add_argument("--environment", choices=["dev", "test"])
+    parser.add_argument("--confirm-isolated", action="store_true")
+    parser.add_argument("--backup-reference", type=Path, help="Existing local source/data recovery manifest")
+    parser.add_argument("--uri", help="Explicit Neo4j target; never inferred from .env")
+    parser.add_argument("--database", default="neo4j")
+    args = parser.parse_args(argv)
+    if not 1 <= args.batch_size <= 10000:
+        parser.error("batch-size must be 1..10000")
+    if args.report and args.report.exists():
+        parser.error("report exists; refusing to overwrite")
+    if args.apply:
+        uri = urlsplit(args.uri or "")
+        if (not args.environment or not args.confirm_isolated or not args.backup_reference
+                or not args.backup_reference.is_file() or uri.scheme not in {"bolt", "neo4j"}
+                or uri.hostname not in {"localhost", "127.0.0.1", "::1"}
+                or uri.username or uri.password or uri.query or uri.fragment):
+            parser.error("apply requires dev/test, confirm-isolated, existing backup-reference and explicit loopback Neo4j URI")
+    report = None
+    started = time.perf_counter()
+    try:
+        before = hashlib.sha256(args.file.read_bytes()).hexdigest()
+        result = validate_csv(args.file, args.lookup_dir, args.delimiter, args.limit)
+        report = summary(result, args.file)
+        if report["source_sha256"] != before:
+            raise ValueError("source_changed_during_validation")
+        code = 1 if result["errors"] else 0
+        if args.apply and code == 0:
+            password = os.environ.get("LUMIERE_GRAPH_PASSWORD")
+            if not password:
+                raise ValueError("missing_explicit_dev_credential")
+            if __package__:
+                from .graph_writer import import_projection
+            else:
+                from graph_writer import import_projection
+            from neo4j import GraphDatabase
+            report["mode"] = "apply"
+            report["verification"] = None
+            report["committed_records"] = 0
+            report["write_attempted"] = True
+            def progress(count):
+                report["committed_records"] = count
+            with GraphDatabase.driver(args.uri, auth=(os.getenv("LUMIERE_GRAPH_USER", "neo4j"), password),
+                                      connection_timeout=5, max_transaction_retry_time=10) as driver:
+                report["verification"] = import_projection(
+                    driver, args.database, result["records"], args.file.name, before, args.batch_size, progress=progress)
+            report["write_allowed"] = True
+            report["completed"] = bool(report["verification"]["pass"])
+            code = 0 if report["verification"]["pass"] else 1
+    except Exception as exc:
+        report = report or {"mode": "apply" if args.apply else "dry-run"}
+        report.update(error_type=type(exc).__name__, completed=False)
+        report["partial_write_possible"] = bool(report.get("write_attempted"))
+        code = 2
+    report['elapsed_seconds'] = round(time.perf_counter() - started, 6)
+    if args.report:
+        with args.report.open("x", encoding="utf-8") as handle:
+            json.dump(report, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+    print(json.dumps(report, ensure_ascii=True, indent=2))
+    return code
 
-
-# =========================================================
-# 1. CẤU HÌNH
-# =========================================================
-
-URI = "neo4j://127.0.0.1:7687"
-
-USERNAME = "neo4j"
-
-PASSWORD = os.environ["NEO4J_PASSWORD"]
-# =========================================================
-# 2. XÁC ĐỊNH THƯ MỤC PROJECT
-# =========================================================
-
-CURRENT_FILE = Path(__file__).resolve()
-
-# import_data.py:
-# D:\JewelryDatasetGenerator\AI\neo4j\import_data.py
-
-PROJECT_DIR = CURRENT_FILE.parents[2]
-
-OUTPUT_DIR = PROJECT_DIR / "output"
-
-
-# =========================================================
-# 3. ĐƯỜNG DẪN CÁC FILE CSV
-# =========================================================
-
-PRODUCT_FILE = OUTPUT_DIR / "products_ai.csv"
-CUSTOMER_FILE = OUTPUT_DIR / "customers.csv"
-ORDER_FILE = OUTPUT_DIR / "orders.csv"
-ORDER_DETAIL_FILE = OUTPUT_DIR / "order_details.csv"
-
-
-# =========================================================
-# 4. KẾT NỐI NEO4J
-# =========================================================
-
-driver = GraphDatabase.driver(
-    URI,
-    auth=(USERNAME, PASSWORD)
-)
-
-
-# =========================================================
-# 5. HÀM CHẠY QUERY
-# =========================================================
-
-def run_query(query, parameters=None):
-
-    with driver.session() as session:
-
-        result = session.run(
-            query,
-            parameters or {}
-        )
-
-        return result.consume()
-
-
-# =========================================================
-# 6. IMPORT CATEGORY
-# =========================================================
-
-def import_categories(products):
-
-    print("\n[1/9] IMPORT CATEGORY")
-
-    data = (
-        products[
-            ["CategoryID", "CategoryName"]
-        ]
-        .drop_duplicates()
-        .to_dict("records")
-    )
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (c:Category {
-        category_id: toInteger(row.CategoryID)
-    })
-
-    SET c.name = row.CategoryName
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Category:", len(data))
-
-
-# =========================================================
-# 7. IMPORT BRAND
-# =========================================================
-
-def import_brands(products):
-
-    print("\n[2/9] IMPORT BRAND")
-
-    data = (
-        products[
-            ["BrandID", "BrandName"]
-        ]
-        .drop_duplicates()
-        .to_dict("records")
-    )
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (b:Brand {
-        brand_id: toInteger(row.BrandID)
-    })
-
-    SET b.name = row.BrandName
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Brand:", len(data))
-
-
-# =========================================================
-# 8. IMPORT MATERIAL
-# =========================================================
-
-def import_materials(products):
-
-    print("\n[3/9] IMPORT MATERIAL")
-
-    data = (
-        products[
-            ["MaterialID", "MaterialName"]
-        ]
-        .drop_duplicates()
-        .to_dict("records")
-    )
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (m:Material {
-        material_id: toInteger(row.MaterialID)
-    })
-
-    SET m.name = row.MaterialName
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Material:", len(data))
-
-
-# =========================================================
-# 9. IMPORT GEMSTONE
-# =========================================================
-
-def import_gemstones(products):
-
-    print("\n[4/9] IMPORT GEMSTONE")
-
-    data = (
-        products[
-            ["GemstoneID", "GemstoneName"]
-        ]
-        .drop_duplicates()
-        .to_dict("records")
-    )
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (g:Gemstone {
-        gemstone_id: toInteger(row.GemstoneID)
-    })
-
-    SET g.name = row.GemstoneName
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Gemstone:", len(data))
-
-
-# =========================================================
-# 10. IMPORT COLLECTION
-# =========================================================
-
-def import_collections(products):
-
-    print("\n[5/9] IMPORT COLLECTION")
-
-    data = (
-        products[
-            ["CollectionID", "CollectionName"]
-        ]
-        .drop_duplicates()
-        .to_dict("records")
-    )
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (c:Collection {
-        collection_id: toInteger(row.CollectionID)
-    })
-
-    SET c.name = row.CollectionName
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Collection:", len(data))
-
-
-# =========================================================
-# 11. IMPORT PRODUCT
-# =========================================================
-
-def import_products(products):
-
-    print("\n[6/9] IMPORT PRODUCT")
-
-    data = products.to_dict("records")
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (p:Product {
-        product_id: toInteger(row.ProductID)
-    })
-
-    SET
-        p.sku = row.SKU,
-        p.barcode = row.Barcode,
-        p.name = row.ProductName,
-        p.weight = toFloat(row.Weight),
-        p.sale_price = toFloat(row.SalePrice),
-        p.wholesale_price = toFloat(row.WholesalePrice),
-        p.cost_price = toFloat(row.CostPrice),
-        p.stock = toInteger(row.Stock)
-
-    WITH p, row
-
-    MATCH (category:Category {
-        category_id: toInteger(row.CategoryID)
-    })
-
-    MATCH (brand:Brand {
-        brand_id: toInteger(row.BrandID)
-    })
-
-    MATCH (material:Material {
-        material_id: toInteger(row.MaterialID)
-    })
-
-    MATCH (gemstone:Gemstone {
-        gemstone_id: toInteger(row.GemstoneID)
-    })
-
-    MATCH (collection:Collection {
-        collection_id: toInteger(row.CollectionID)
-    })
-
-    MERGE (p)-[:BELONGS_TO]->(category)
-
-    MERGE (p)-[:HAS_BRAND]->(brand)
-
-    MERGE (p)-[:MADE_OF]->(material)
-
-    MERGE (p)-[:HAS_GEMSTONE]->(gemstone)
-
-    MERGE (p)-[:IN_COLLECTION]->(collection)
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Product:", len(data))
-
-
-# =========================================================
-# 12. IMPORT CUSTOMER
-# =========================================================
-
-def import_customers(customers):
-
-    print("\n[7/9] IMPORT CUSTOMER")
-
-    data = customers.to_dict("records")
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (c:Customer {
-        customer_id: row.CustomerID
-    })
-
-    SET
-        c.full_name = row.FullName,
-        c.gender = row.Gender,
-        c.age = toInteger(row.Age),
-        c.city = row.City,
-        c.job = row.Job,
-        c.income = toFloat(row.Income),
-        c.favorite_category = row.FavoriteCategory,
-        c.budget = toFloat(row.Budget),
-        c.shopping_frequency = row.ShoppingFrequency,
-        c.member_level = row.MemberLevel
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Customer:", len(data))
-
-
-# =========================================================
-# 13. IMPORT ORDER
-# =========================================================
-
-def import_orders(orders):
-
-    print("\n[8/9] IMPORT ORDER")
-
-    data = orders.to_dict("records")
-
-    query = """
-    UNWIND $rows AS row
-
-    MERGE (o:Order {
-        order_id: row.OrderID
-    })
-
-    SET
-        o.order_date = row.OrderDate,
-        o.quantity = toInteger(row.Quantity),
-        o.unit_price = toFloat(row.UnitPrice),
-        o.total_amount = toFloat(row.TotalAmount),
-        o.payment_method = row.PaymentMethod,
-        o.status = row.Status,
-        o.main_product_id = toInteger(row.ProductID)
-
-    WITH o, row
-
-    MATCH (c:Customer {
-        customer_id: row.CustomerID
-    })
-
-    MERGE (c)-[:PLACED]->(o)
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Order:", len(data))
-
-
-# =========================================================
-# 14. IMPORT ORDER DETAILS
-# =========================================================
-
-def import_order_details(order_details):
-
-    print("\n[9/9] IMPORT ORDER DETAILS")
-
-    data = order_details.to_dict("records")
-
-    query = """
-    UNWIND $rows AS row
-
-    MATCH (o:Order {
-        order_id: row.OrderID
-    })
-
-    MATCH (p:Product {
-        product_id: toInteger(row.ProductID)
-    })
-
-    MERGE (o)-[r:CONTAINS]->(p)
-
-    SET
-        r.quantity = toInteger(row.Quantity),
-        r.unit_price = toFloat(row.UnitPrice)
-    """
-
-    run_query(query, {"rows": data})
-
-    print("So Order Details:", len(data))
-
-
-# =========================================================
-# 15. KIỂM TRA DỮ LIỆU TRƯỚC KHI IMPORT
-# =========================================================
-
-def check_files():
-
-    files = [
-        PRODUCT_FILE,
-        CUSTOMER_FILE,
-        ORDER_FILE,
-        ORDER_DETAIL_FILE
-    ]
-
-    print("\n")
-    print("=" * 70)
-    print("KIEM TRA FILE")
-    print("=" * 70)
-
-    for file in files:
-
-        print("\n", file)
-
-        if not file.exists():
-
-            raise FileNotFoundError(
-                f"Khong tim thay file: {file}"
-            )
-
-        print("OK")
-
-
-# =========================================================
-# 16. MAIN
-# =========================================================
-
-def main():
-
-    print("=" * 70)
-    print("IMPORT JEWELRY KNOWLEDGE GRAPH")
-    print("=" * 70)
-
-    print("\nProject:")
-    print(PROJECT_DIR)
-
-    print("\nOutput:")
-    print(OUTPUT_DIR)
-
-    # -----------------------------------------------------
-    # Kiểm tra file
-    # -----------------------------------------------------
-
-    check_files()
-
-    # -----------------------------------------------------
-    # Đọc CSV
-    # -----------------------------------------------------
-
-    print("\n")
-    print("=" * 70)
-    print("DOC DU LIEU CSV")
-    print("=" * 70)
-
-    products = pd.read_csv(PRODUCT_FILE)
-
-    customers = pd.read_csv(CUSTOMER_FILE)
-
-    orders = pd.read_csv(ORDER_FILE)
-
-    order_details = pd.read_csv(
-        ORDER_DETAIL_FILE
-    )
-
-    print("\nProducts:", len(products))
-
-    print("Customers:", len(customers))
-
-    print("Orders:", len(orders))
-
-    print("Order details:", len(order_details))
-
-    # -----------------------------------------------------
-    # Kiểm tra kết nối
-    # -----------------------------------------------------
-
-    print("\n")
-    print("=" * 70)
-    print("KIEM TRA KET NOI NEO4J")
-    print("=" * 70)
-
-    driver.verify_connectivity()
-
-    print("Ket noi Neo4j thanh cong.")
-
-    # -----------------------------------------------------
-    # Import
-    # -----------------------------------------------------
-
-    import_categories(products)
-
-    import_brands(products)
-
-    import_materials(products)
-
-    import_gemstones(products)
-
-    import_collections(products)
-
-    import_products(products)
-
-    import_customers(customers)
-
-    import_orders(orders)
-
-    import_order_details(order_details)
-
-    # -----------------------------------------------------
-    # Hoàn thành
-    # -----------------------------------------------------
-
-    print("\n")
-    print("=" * 70)
-    print("IMPORT THANH CONG")
-    print("=" * 70)
-
-
-# =========================================================
-# CHẠY CHƯƠNG TRÌNH
-# =========================================================
 
 if __name__ == "__main__":
-
-    try:
-
-        main()
-
-    except Exception as e:
-
-        print("\n")
-        print("=" * 70)
-        print("IMPORT THAT BAI")
-        print("=" * 70)
-
-        print("\nLoi:")
-        print(e)
-
-    finally:
-
-        driver.close()
+    raise SystemExit(main())

@@ -1,0 +1,11 @@
+{
+  "successful": true,
+  "requests": 21,
+  "http_200": 20,
+  "http_500": 1,
+  "traffic": "synthetic actual ASGI requests",
+  "exporter": "actual prometheus-client exposition",
+  "scraped_by_prometheus_server": false,
+  "grafana_screenshot": false,
+  "private_query_or_exception_in_export": false
+}

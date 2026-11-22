@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "service": "ai-api",
+  "exit_code": 0,
+  "completed_utc": "2026-11-21T18:59:32.525838+00:00",
+  "dockerfile_sha256": "5e8778580c5e9f0e89a1366bedc6a11cce8df7b10fb1c815452ee1d6c160211d",
+  "log": ".local-tmp\\docker-ai-limits-contract-image-20261122.log",
+  "log_sha256": "24a8fe0305c63957b4ecf3cbd306cf7822a19bafe8c3028c9add63cb8fbfd347",
+  "source_state": "uncommitted local changes; image is not a published release",
+  "pushed": false,
+  "containers_started": false,
+  "production_database_accessed": false,
+  "image_id": "sha256:5d778c877a55c39b2ed5cbc4d5119b1ac2d759402d2c6e5bc9fc6e7deb4f97cf"
+}

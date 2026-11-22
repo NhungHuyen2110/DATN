@@ -1,0 +1,10 @@
+﻿{
+    "successful":  true,
+    "source_permissions":  "Original Docker wsl parent directory",
+    "targets":  [
+                    "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-desktop-data",
+                    "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-recovery"
+                ],
+    "inherited_broad_workspace_write_permissions_removed":  true,
+    "original_user_system_admin_permissions_preserved":  true
+}

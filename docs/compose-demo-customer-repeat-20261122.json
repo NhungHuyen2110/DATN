@@ -1,0 +1,21 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+  "base_url": "http://127.0.0.1:18080",
+  "api_prefix": "/api",
+  "stats": {
+    "startTime": "2026-11-22T00:00:20.974Z",
+    "duration": 8412.911,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "production_accessed": false,
+  "public_deployment": false,
+  "selection": "login, catalog, wishlist, cart",
+  "optional_dense_graph": "not started; actual lexical fallback through source AI API",
+  "monitoring_case": "skipped; native monitoring evidence exists separately",
+  "artifacts": ".local-tmp\\compose-demo-customer-repeat-20261122"
+}

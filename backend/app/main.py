@@ -1,6 +1,10 @@
+from app.routers import password_reset
 import mimetypes
 mimetypes.add_type("image/webp", ".webp")
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from shared.observability import install as install_observability
 from fastapi.staticfiles import StaticFiles
 from app.routers.auth import router as auth_router
 from app.routers.catalog import router as catalog_router
@@ -19,17 +23,31 @@ from app.routers.ai_staff import router as ai_staff_router
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from app.core.database import check_database
+from app.core.database import check_database, engine
+from contextlib import asynccontextmanager
 
 import logging
 
 logger = logging.getLogger("uvicorn.error")
+
+
+@asynccontextmanager
+async def lifespan(app):
+    try:
+        yield
+    finally:
+        engine.dispose()
+
+
 app = FastAPI(
     title="LUMIÈRE Business API",
     description="Backend nghiệp vụ website bán trang sức",
     version="1.0.0",
+    lifespan=lifespan,
 )
+install_observability(app, 'business-api')
 app.include_router(auth_router)
+app.include_router(password_reset.router)
 app.include_router(catalog_router)
 app.include_router(taxonomy_router)
 app.include_router(contact_router)
@@ -103,6 +121,16 @@ def health():
         "status": "healthy",
         "database": "connected"
     }
+
+@app.get('/health/live')
+def liveness():
+    return {'status': 'alive'}
+
+
+@app.get('/health/ready')
+def readiness():
+    return health()
+
 
 # Serve the frontend after all API routes.
 FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"

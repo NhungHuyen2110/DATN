@@ -1,0 +1,9 @@
+{
+  "source": "graph-sample-live.json",
+  "source_sha256": "80e7beff79352cd679a2bdb3cf6547d59dc0d1870279349565506445025fc0b1",
+  "nodes": 9,
+  "edges": 10,
+  "manual_fact_creation": false,
+  "scope": "actual isolated Neo4j, CSV seed projection, not live business facts",
+  "neo4j_browser_screenshot": false
+}

@@ -10,7 +10,8 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 # Đọc .env tại thư mục gốc JewelryDatasetGenerator
 ROOT_DIR = Path(__file__).resolve().parents[3]
-load_dotenv(ROOT_DIR / ".env")
+if os.getenv('LUMIERE_LOAD_DOTENV', 'true').lower() == 'true':
+    load_dotenv(ROOT_DIR / ".env")
 
 
 DATABASE_URL = URL.create(

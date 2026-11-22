@@ -1,0 +1,184 @@
+{
+  "scope": "CSV seed fixture, not live Business API; not a relevance benchmark",
+  "model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "index": {
+    "collection": "jewelry_products_v_c0efd814ee4f",
+    "fingerprint": "c0efd814ee4f6a77e5298a9b53ad6d3235f5369756a33640408cfcddad4f60a1",
+    "dimension": 384,
+    "metric": "COSINE",
+    "requested_products": 500,
+    "verified_products": 500,
+    "pass": true
+  },
+  "graph_read_only": true,
+  "elapsed_seconds": 29.335,
+  "samples": [
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "status": "ok",
+      "requested_k": 3,
+      "returned_k": 3,
+      "products": [
+        {
+          "ProductID": 2,
+          "score": 0.03278688524590164,
+          "retrieval_sources": [
+            "lexical",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "target_name": "Nhẫn",
+              "target_id": 1,
+              "relationship": "BELONGS_TO"
+            }
+          ],
+          "ProductName": "Nhẫn Golden Dream",
+          "SKU": "SP000002",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 1,
+          "Material": "Bạc 925",
+          "GemstoneID": 1,
+          "Gemstone": "Diamond",
+          "Collection": "Office",
+          "Price": "2619639",
+          "Stock": 62,
+          "rank": 1,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 79,
+          "score": 0.029850746268656716,
+          "retrieval_sources": [
+            "lexical",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "target_name": "Nhẫn",
+              "target_id": 1,
+              "relationship": "BELONGS_TO"
+            }
+          ],
+          "ProductName": "Nhẫn Angel",
+          "SKU": "SP000079",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 4,
+          "Material": "Vàng 18K",
+          "GemstoneID": 3,
+          "Gemstone": "Sapphire",
+          "Collection": "Luxury",
+          "Price": "5712887",
+          "Stock": 97,
+          "rank": 2,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 87,
+          "score": 0.029411764705882353,
+          "retrieval_sources": [
+            "lexical",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "target_name": "Nhẫn",
+              "target_id": 1,
+              "relationship": "BELONGS_TO"
+            }
+          ],
+          "ProductName": "Nhẫn Sunshine",
+          "SKU": "SP000087",
+          "CategoryID": 1,
+          "Category": "Nhẫn",
+          "MaterialID": 4,
+          "Material": "Vàng 18K",
+          "GemstoneID": 4,
+          "Gemstone": "Emerald",
+          "Collection": "Luxury",
+          "Price": "1388487",
+          "Stock": 75,
+          "rank": 3,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ]
+    },
+    {
+      "query": "Top 1 bông tai moissanite",
+      "status": "ok",
+      "requested_k": 1,
+      "returned_k": 1,
+      "products": [
+        {
+          "ProductID": 238,
+          "score": 0.04669647292598113,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "target_name": "Bông tai",
+              "target_id": 3,
+              "relationship": "BELONGS_TO"
+            },
+            {
+              "target_name": "Moissanite",
+              "target_id": 5,
+              "relationship": "HAS_GEMSTONE"
+            }
+          ],
+          "ProductName": "Bông tai Luxury",
+          "SKU": "SP000238",
+          "CategoryID": 3,
+          "Category": "Bông tai",
+          "MaterialID": 1,
+          "Material": "Bạc 925",
+          "GemstoneID": 5,
+          "Gemstone": "Moissanite",
+          "Collection": "Minimal",
+          "Price": "8768981",
+          "Stock": 24,
+          "rank": 1,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "earring"
+            },
+            {
+              "label": "Gemstone",
+              "canonical_id": "moissanite"
+            }
+          ],
+          "reason": "đúng loại Bông tai; đúng loại đá Moissanite; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ]
+    }
+  ]
+}

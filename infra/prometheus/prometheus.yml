@@ -1,0 +1,20 @@
+# Isolated LOCAL test token. Replace via a private generated config for hosting.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+scrape_configs:
+  - job_name: lumiere-applications
+    metrics_path: /internal/metrics
+    authorization:
+      type: Bearer
+      credentials: test-only-local-scrape-token
+    static_configs:
+      - targets: ['business-api:8001', 'ai-api:8000']
+  # This optional target is down until the sync profile is explicitly enabled.
+  - job_name: lumiere-worker
+    metrics_path: /internal/metrics
+    authorization:
+      type: Bearer
+      credentials: test-only-local-scrape-token
+    static_configs:
+      - targets: ['index-worker:9101']

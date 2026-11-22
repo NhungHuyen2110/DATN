@@ -1,0 +1,275 @@
+{
+  "updated_utc": "2026-11-22T00:01:09.403713+00:00",
+  "branch": "rebuild/lumiere-demo-20261122",
+  "complete_project": false,
+  "source_state": "uncommitted; existing user changes preserved; no production activation",
+  "acceptance_checklist": "12-acceptance-status.md",
+  "backend_regression": {
+    "passed": 671,
+    "subtests_passed": 829,
+    "warnings": 1,
+    "duration_seconds": 142.38,
+    "log": ".local-tmp\\backend-regression-latest-20261121.log",
+    "log_sha256": "ceaffcdb18fa6d7f9aeda8892361843e72a61b2cdbbac7eb25de7e1d0cac4f78",
+    "scope": "guarded offline runner: SQLite memory only, external network blocked",
+    "unique_scenarios_not_claimed": true
+  },
+  "offline_ai_tests": {
+    "tests_run": 85,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "successful": true,
+    "graph_integration": "not_run_requires_isolated_server",
+    "qdrant": "actual_in_memory_engine_with_synthetic_vectors",
+    "real_model_quality": "not_evaluated",
+    "passed": 84,
+    "report": "ai-limits-contract-final-20261122.json"
+  },
+  "docker_browser_integration": {
+    "successful": true,
+    "browser": "actual installed Chrome",
+    "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+    "base_url": "http://127.0.0.1:18080",
+    "api_prefix": "/api",
+    "stats": {
+      "startTime": "2026-11-21T23:58:16.492Z",
+      "duration": 53849.976,
+      "expected": 17,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "production_accessed": false,
+    "public_deployment": false,
+    "selection": "full configured suite",
+    "optional_dense_graph": "not started; actual lexical fallback through source AI API",
+    "monitoring_case": "skipped; native monitoring evidence exists separately",
+    "artifacts": ".local-tmp\\compose-demo-full-browser-r2-20261122",
+    "report": "compose-demo-full-browser-r2-20261122.json",
+    "scope_note": "Latest full core container suite: 17 passed, 1 optional Grafana skip; lexical fallback"
+  },
+  "docker_storage": {
+    "successful": true,
+    "verified_utc": "2026-11-21T17:32:00.376683+00:00",
+    "server_version": "28.5.1",
+    "logical_path": "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk",
+    "physical_path": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-desktop-data\\disk",
+    "same_file_identity_through_junction": true,
+    "container_ids_preserved": 9,
+    "image_ids_preserved": 13,
+    "volume_names_preserved": 13,
+    "running_container_state_preserved": true,
+    "independent_backup": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-recovery\\20261122\\docker_data.before-move.vhdx",
+    "original_c_directory_retained_for_final_cleanup": true,
+    "method": "NTFS directory junction; Docker logical setting remains C, actual data VHD is D",
+    "old_c_copy_removed_after_verified_hash": true,
+    "cleanup_report": "docker-storage-cleanup-20261122.json",
+    "active_data_do_not_delete": ".local-tmp/docker-desktop-data"
+  },
+  "docker_ai_fault": {
+    "project": "lumiere-rebuild-test",
+    "service": "ai-api",
+    "applied": true,
+    "limitation": "Actual container AI outage with synthetic login/COD/role guard; not all dependency faults or quality evaluation",
+    "baseline": {
+      "/": 200,
+      "/api/health/live": 200,
+      "/api/health/ready": 200,
+      "/api/products?page_size=1": 200,
+      "/ai/health/live": 200
+    },
+    "during_failure": {
+      "/": 200,
+      "/api/health/live": 200,
+      "/api/health/ready": 200,
+      "/api/products?page_size=1": 200,
+      "/ai/health/live": 0
+    },
+    "isolation_passed": true,
+    "business_transaction_probe": {
+      "passed": true,
+      "customer_login": 200,
+      "cod_checkout": 201,
+      "own_order_read": 200,
+      "customer_admin_access": 403,
+      "order_id": 205,
+      "production_accessed": false
+    },
+    "recovered_product_live_price_stock_verified": true,
+    "ai_recovered_with_verified_product": true,
+    "recovered": true,
+    "recovery_seconds": 34.63216089992784,
+    "report": "compose-ai-container-fault-final-20261122.json",
+    "scope_note": "Single synthetic lab episode on bounded-source image; not an SLA"
+  },
+  "docker_browser_latest_subset": {
+    "successful": true,
+    "browser": "actual installed Chrome",
+    "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+    "base_url": "http://127.0.0.1:18080",
+    "api_prefix": "/api",
+    "stats": {
+      "startTime": "2026-11-21T23:58:16.492Z",
+      "duration": 53849.976,
+      "expected": 17,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "production_accessed": false,
+    "public_deployment": false,
+    "selection": "full configured suite",
+    "optional_dense_graph": "not started; actual lexical fallback through source AI API",
+    "monitoring_case": "skipped; native monitoring evidence exists separately",
+    "artifacts": ".local-tmp\\compose-demo-full-browser-r2-20261122",
+    "report": "compose-demo-full-browser-r2-20261122.json",
+    "scope_note": "Supersedes failed earlier subsets; full semantic/monitoring deployment still pending"
+  },
+  "runtime_open_issue": "Latest full core suite and 9 internal reads passed after memory relief; full semantic stack/cold-start matrix pending",
+  "runtime_resources": {
+    "report": "runtime-memory-pressure-20261122.json",
+    "native_graph_lab_running": false,
+    "original_user_applications_closed": false
+  },
+  "browser_integration": {
+    "passed": 18,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "schema_setup": "alembic upgrade head on empty test database",
+    "report": "native-public-recommendation-browser-final-20261121.json"
+  },
+  "csv_to_graph": {
+    "catalog_products": 500,
+    "catalog_relationships": 2500,
+    "imports_executed": 2,
+    "uniqueness_constraints": 6,
+    "historical_import_report": "neo4j-catalog-import-second.json",
+    "note": "Additional synthetic fixtures exist; do not mistake historical counts for current global counts"
+  },
+  "real_live_catalog_smoke": {
+    "successful": true,
+    "catalog": "actual HTTP Business API backed by PostgreSQL with 500 CSV seed fixtures",
+    "qdrant": "actual memory engine",
+    "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "concurrent_change_candidate_excluded": true,
+    "quality_benchmark": false,
+    "report": "live-business-model-graph-retrieval-final-20261121.json"
+  },
+  "product_index_sync": {
+    "postgres_checks_passed": 7,
+    "enabled_on_current_business_database": false,
+    "migration_applied_to_current_database": false,
+    "network_qdrant_real_model_worker_verified": true,
+    "full_compose_worker_verified": false,
+    "reports": [
+      "postgres-worker-metrics-integration.json",
+      "qdrant-named-volume-real-model-worker-20261122.json"
+    ]
+  },
+  "observability": {
+    "successful": true,
+    "prometheus_targets_up": [
+      "127.0.0.1:18000",
+      "127.0.0.1:18001"
+    ],
+    "grafana_dashboard_uid": "lumiere-runtime",
+    "grafana_datasource_query_verified": true,
+    "source": "actual source APIs and PostgreSQL synthetic fixtures, lexical AI fallback",
+    "production_accessed": false,
+    "native_not_docker": true,
+    "enabled_on_existing_serving_processes": false,
+    "screenshot": "figures/grafana-native-20261121.png",
+    "worker_queue_verified": true
+  },
+  "native_fault_injection": {
+    "actual_ai_process_unavailable": true,
+    "business_readiness": 200,
+    "catalog": 200,
+    "customer_login": 200,
+    "customer_cod_checkout": 201,
+    "customer_order_read": 200,
+    "customer_admin_access": 403,
+    "guest_browser_catalog": "passed",
+    "scope": "actual native source processes, not a container failure test",
+    "production_accessed": false,
+    "ai_recovered_with_verified_product": true,
+    "recovery_seconds": 9.428329100017436
+  },
+  "backup_restore": {
+    "successful": true,
+    "table_count": 22,
+    "migration_head": "20261121_0009",
+    "production_accessed": false,
+    "worker_backup_guard": {
+      "verified": true,
+      "database_name": "lumiere_test_browser_10",
+      "backup_sha256": "293ff6981b77caf4f0306e3587f3cebf35133471cb373aada53a22175a3bf6a4"
+    },
+    "report": "backup-restore-guard-final-20261121.json"
+  },
+  "deployment_packaging": {
+    "services": 11,
+    "independent_builds": [
+      "frontend",
+      "business-api",
+      "ai-api",
+      "index-worker"
+    ],
+    "compose_parse": "passed",
+    "images_built": [
+      "frontend",
+      "business-api",
+      "ai-api",
+      "index-worker"
+    ],
+    "worker_image_built": true,
+    "worker_build_attempt": {
+      "successful": true,
+      "service": "index-worker",
+      "exit_code": 0,
+      "completed_utc": "2026-11-21T23:51:49.273195+00:00",
+      "dockerfile_sha256": "67c346596e8f8d44a8504d9d1d8b6449282512c6bf003733db84924b8b6dbd7c",
+      "log": ".local-tmp\\docker-worker-cached-image-20261122.log",
+      "log_sha256": "8258513a7aa60d29865cc663c72d2bac1242088a4670181ab69e12564eb419de",
+      "source_state": "uncommitted local changes; image is not a published release",
+      "pushed": false,
+      "containers_started": false,
+      "production_database_accessed": false,
+      "image_id": "sha256:6f085d766d443895b8e4f64c63bb265933ecedd2a94a9d3e0500de7c100bba2a"
+    },
+    "core_containers_started": [
+      "postgres",
+      "business-api",
+      "frontend",
+      "reverse-proxy",
+      "ai-api"
+    ],
+    "core_runtime_report": "compose-core-runtime-20261122.json",
+    "core_optional_graph_dense": "not started; lexical fallback",
+    "container_ai_fault_test_executed": true,
+    "full_fault_matrix_executed": false,
+    "github_workflows_executed": false,
+    "docker_data_vhd_physically_on_d": true,
+    "public_deployment": false
+  },
+  "evaluation": {
+    "draft_queries": 105,
+    "human_reviewed_queries": 0,
+    "smoke_predictions": 525,
+    "quality_metrics_computed": false,
+    "controlled_latency_comparison": false,
+    "note": "Smoke run predates related-reference query enhancement",
+    "report": "ablation-smoke-20261121/summary.json"
+  },
+  "remaining": [
+    "Full per-file semantic audit",
+    "Evidence-backed Audience/Style facts and human-reviewed benchmark",
+    "Full Compose graph/dense/worker/monitoring and remaining dependency fault matrix",
+    "105-query SQL baseline ablation; intermittent cold-start/catalog API failure and repeated-request acceptance",
+    "LLM narrative/grounding evaluation",
+    "Full CI/CD scans/staging/approved hosting/HTTPS",
+    "Host/container exporters, alerts and complete DATN diagrams/report"
+  ]
+}

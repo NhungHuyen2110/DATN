@@ -1,0 +1,71 @@
+{
+  "successful": true,
+  "samples": [
+    {
+      "turn": 1,
+      "source": "business_catalog",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.8318
+    },
+    {
+      "turn": 1,
+      "source": "ai_sku",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 3.3918
+    },
+    {
+      "turn": 1,
+      "source": "ai_public_recommendations",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 3.0426
+    },
+    {
+      "turn": 2,
+      "source": "business_catalog",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0106
+    },
+    {
+      "turn": 2,
+      "source": "ai_sku",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0278
+    },
+    {
+      "turn": 2,
+      "source": "ai_public_recommendations",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0266
+    },
+    {
+      "turn": 3,
+      "source": "business_catalog",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0085
+    },
+    {
+      "turn": 3,
+      "source": "ai_sku",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0253
+    },
+    {
+      "turn": 3,
+      "source": "ai_public_recommendations",
+      "http_status": 200,
+      "contract_verified": true,
+      "seconds": 0.0209
+    }
+  ],
+  "scope": "read-only inside AI container; single lab, not SLA or quality benchmark",
+  "production_accessed": false,
+  "ai_image_id": "sha256:5d778c877a55c39b2ed5cbc4d5119b1ac2d759402d2c6e5bc9fc6e7deb4f97cf"
+}

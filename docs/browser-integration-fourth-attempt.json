@@ -1,0 +1,18 @@
+{
+  "successful": false,
+  "database": "actual isolated PostgreSQL",
+  "browser": "actual installed Chrome",
+  "business_api": "source on loopback port18001",
+  "production_accessed": false,
+  "external_browser_requests_blocked": true,
+  "artifacts": ".local-tmp\\lumiere_test_browser_4",
+  "returncode": 1,
+  "stats": {
+    "startTime": "2026-11-21T13:22:57.180Z",
+    "duration": 72622.7,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

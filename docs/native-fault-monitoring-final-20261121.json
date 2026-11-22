@@ -1,0 +1,31 @@
+{
+  "successful": false,
+  "database": "actual isolated PostgreSQL",
+  "browser": "actual installed Chrome",
+  "business_api": "source on loopback port18001",
+  "production_accessed": false,
+  "external_browser_requests_blocked": true,
+  "artifacts": ".local-tmp\\lumiere_test_browser_9",
+  "returncode": 1,
+  "ai_api": "actual source; dense/graph explicitly disabled to test lexical fallback",
+  "monitoring": {
+    "successful": true,
+    "prometheus_targets_up": [
+      "127.0.0.1:18000",
+      "127.0.0.1:18001"
+    ],
+    "grafana_dashboard_uid": "lumiere-runtime",
+    "grafana_datasource_query_verified": true,
+    "source": "actual source APIs and PostgreSQL synthetic fixtures, lexical AI fallback",
+    "production_accessed": false,
+    "native_not_docker": true
+  },
+  "stats": {
+    "startTime": "2026-11-21T13:58:53.263Z",
+    "duration": 155083.298,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "created_utc": "2026-11-21T17:18:21.447946+00:00",
+  "source": "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk\\docker_data.vhdx",
+  "backup": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-recovery\\20261122\\docker_data.before-move.vhdx",
+  "bytes": 14048821248,
+  "source_sha256": "e64cdc0a261b14d4feb5881820fb105f207ccb6601b6b7db63507ee7d31d99e2",
+  "backup_sha256": "e64cdc0a261b14d4feb5881820fb105f207ccb6601b6b7db63507ee7d31d99e2",
+  "source_size_and_mtime_unchanged": true,
+  "offline_backup": true,
+  "source_deleted": false,
+  "storage_relocated": false,
+  "elapsed_seconds": 313.0
+}

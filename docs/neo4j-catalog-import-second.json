@@ -1,0 +1,63 @@
+{
+  "mode": "apply",
+  "source_file": "products_ai.csv",
+  "source_sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+  "scope": "whole_file",
+  "rows_seen": 500,
+  "valid_records": 500,
+  "errors": [],
+  "planned_nodes": {
+    "Category": 6,
+    "Brand": 4,
+    "Material": 5,
+    "Gemstone": 6,
+    "Collection": 5,
+    "Product": 500
+  },
+  "planned_relationships": {
+    "BELONGS_TO": 500,
+    "HAS_BRAND": 500,
+    "MADE_OF": 500,
+    "HAS_GEMSTONE": 500,
+    "IN_COLLECTION": 500
+  },
+  "write_allowed": true,
+  "notes": [
+    "Counts are a plan, not live graph measurements.",
+    "Any error must block the entire import, including valid rows.",
+    "No Audience/Style facts inferred from product names.",
+    "CSV prices/stock must never overwrite PostgreSQL business data."
+  ],
+  "verification": {
+    "requested_products": 500,
+    "products": 500,
+    "duplicate_products": 0,
+    "unmanaged_products": 0,
+    "relationships": {
+      "BELONGS_TO": {
+        "count": 500,
+        "violations": 0
+      },
+      "HAS_BRAND": {
+        "count": 500,
+        "violations": 0
+      },
+      "MADE_OF": {
+        "count": 500,
+        "violations": 0
+      },
+      "HAS_GEMSTONE": {
+        "count": 500,
+        "violations": 0
+      },
+      "IN_COLLECTION": {
+        "count": 500,
+        "violations": 0
+      }
+    },
+    "pass": true
+  },
+  "committed_records": 500,
+  "write_attempted": true,
+  "completed": true
+}

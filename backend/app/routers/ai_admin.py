@@ -34,6 +34,25 @@ Database = Annotated[Session, Depends(get_db)]
 ActiveAdmin = Annotated[User, Depends(admin)]
 
 
+class RetrievalDiagnosticsRequest(BaseModel):
+    query: str = Field(min_length=1, max_length=1000)
+    top_k: int = Field(default=3, ge=1, le=10)
+    rerank: bool = False
+    semantic_entities: bool = False
+
+
+@router.post('/retrieval-diagnostics')
+def diagnose_retrieval(request: RetrievalDiagnosticsRequest, user: ActiveAdmin):
+    from app.services.ai_retrieval_diagnostics import retrieval_diagnostics
+    return retrieval_diagnostics(request.model_dump())
+
+
+@router.get('/sync-status')
+def product_sync_status(user: ActiveAdmin, db: Database):
+    from app.services.product_index_jobs import sync_status
+    return sync_status(db)
+
+
 # ============================================================
 # API 1: THỐNG KÊ SẢN PHẨM BÁN CHẠY
 # GET /admin/ai/top-selling-products

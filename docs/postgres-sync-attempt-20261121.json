@@ -1,0 +1,13 @@
+{
+  "successful": false,
+  "phase": "initdb",
+  "error_type": "TimeoutExpired",
+  "timeout_seconds": 60,
+  "target": "D:/LUMIERE-FINAL-TEST/.local-tmp/postgres-sync-20261121/data",
+  "postgres_test_server_started": false,
+  "existing_database_modified": false,
+  "integration_checks_executed": false,
+  "partial_directory_preserved": true,
+  "ci_workflow_created": ".github/workflows/postgres-sync-tests.yml",
+  "ci_workflow_executed": false
+}

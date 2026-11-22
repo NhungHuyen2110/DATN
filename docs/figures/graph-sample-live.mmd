@@ -1,0 +1,20 @@
+flowchart LR
+  p1["Product 1: Bông tai Angel"]
+  Category3["Category 3: Bông tai"]
+  p1 -->|BELONGS_TO| Category3
+  Brand2["Brand 2: PNJ"]
+  p1 -->|HAS_BRAND| Brand2
+  Gemstone5["Gemstone 5: Moissanite"]
+  p1 -->|HAS_GEMSTONE| Gemstone5
+  Collection4["Collection 4: Minimal"]
+  p1 -->|IN_COLLECTION| Collection4
+  Material5["Material 5: Vàng trắng 18K"]
+  p1 -->|MADE_OF| Material5
+  p469["Product 469: Bông tai Princess"]
+  p469 -->|BELONGS_TO| Category3
+  Brand3["Brand 3: DOJI"]
+  p469 -->|HAS_BRAND| Brand3
+  p469 -->|HAS_GEMSTONE| Gemstone5
+  Collection2["Collection 2: Wedding"]
+  p469 -->|IN_COLLECTION| Collection2
+  p469 -->|MADE_OF| Material5

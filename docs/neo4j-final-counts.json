@@ -1,0 +1,83 @@
+{
+  "server": "Neo4j Community 5.26.33",
+  "scope": "isolated localhost test instance",
+  "catalog_products": 500,
+  "fixture_products": 3,
+  "catalog_edges": 2500,
+  "fixture_edges": 15,
+  "imported_twice_same_verification": true,
+  "labels": [
+    {
+      "label": "Brand",
+      "count": 4
+    },
+    {
+      "label": "Category",
+      "count": 6
+    },
+    {
+      "label": "Collection",
+      "count": 5
+    },
+    {
+      "label": "Gemstone",
+      "count": 6
+    },
+    {
+      "label": "Material",
+      "count": 5
+    },
+    {
+      "label": "Product",
+      "count": 503
+    }
+  ],
+  "relationships": [
+    {
+      "relationship": "BELONGS_TO",
+      "count": 503
+    },
+    {
+      "relationship": "HAS_BRAND",
+      "count": 503
+    },
+    {
+      "relationship": "HAS_GEMSTONE",
+      "count": 503
+    },
+    {
+      "relationship": "IN_COLLECTION",
+      "count": 503
+    },
+    {
+      "relationship": "MADE_OF",
+      "count": 503
+    }
+  ],
+  "constraints": [
+    {
+      "name": "lumiere_brand_id",
+      "type": "UNIQUENESS"
+    },
+    {
+      "name": "lumiere_category_id",
+      "type": "UNIQUENESS"
+    },
+    {
+      "name": "lumiere_collection_id",
+      "type": "UNIQUENESS"
+    },
+    {
+      "name": "lumiere_gemstone_id",
+      "type": "UNIQUENESS"
+    },
+    {
+      "name": "lumiere_material_id",
+      "type": "UNIQUENESS"
+    },
+    {
+      "name": "lumiere_product_id",
+      "type": "UNIQUENESS"
+    }
+  ]
+}

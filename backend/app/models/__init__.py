@@ -17,3 +17,6 @@ from .customer_content import WishlistItem, ProductReview
 from .coupon import Coupon, CouponUsage
 
 from .contact_message import ContactMessage
+from .product_index_job import ProductIndexJob
+# Register the feature-gated transactional hook after all business models load.
+from app.services import product_index_jobs as _product_index_jobs

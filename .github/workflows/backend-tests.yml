@@ -1,0 +1,19 @@
+name: Backend regression
+on:
+  push:
+    branches: ['rebuild/lumiere-demo-*']
+  pull_request:
+    paths: ['backend/**', 'shared/**', 'evaluation/**', 'scripts/run_backend_tests.py', 'scripts/fault_injection.py', '.github/workflows/backend-tests.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install -r backend/requirements-test.txt
+      - name: Business and role regression with DB/network guards
+        run: python -B scripts/run_backend_tests.py -x

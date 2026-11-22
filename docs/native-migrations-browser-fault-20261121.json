@@ -1,0 +1,46 @@
+{
+  "successful": true,
+  "database": "actual isolated PostgreSQL",
+  "browser": "actual installed Chrome",
+  "business_api": "source on loopback port18001",
+  "production_accessed": false,
+  "external_browser_requests_blocked": true,
+  "artifacts": ".local-tmp\\lumiere_test_browser_10",
+  "returncode": 0,
+  "ai_api": "actual source; dense/graph explicitly disabled to test lexical fallback",
+  "monitoring": {
+    "successful": true,
+    "prometheus_targets_up": [
+      "127.0.0.1:18000",
+      "127.0.0.1:18001"
+    ],
+    "grafana_dashboard_uid": "lumiere-runtime",
+    "grafana_datasource_query_verified": true,
+    "source": "actual source APIs and PostgreSQL synthetic fixtures, lexical AI fallback",
+    "production_accessed": false,
+    "native_not_docker": true
+  },
+  "schema_setup": "alembic upgrade head on empty test database",
+  "native_fault_injection": {
+    "actual_ai_process_unavailable": true,
+    "business_readiness": 200,
+    "catalog": 200,
+    "customer_login": 200,
+    "customer_cod_checkout": 201,
+    "customer_order_read": 200,
+    "customer_admin_access": 403,
+    "guest_browser_catalog": "passed",
+    "scope": "actual native source processes, not a container failure test",
+    "production_accessed": false,
+    "ai_recovered_with_verified_product": true,
+    "recovery_seconds": 10.559922800050117
+  },
+  "stats": {
+    "startTime": "2026-11-21T14:10:02.827Z",
+    "duration": 170959.596,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

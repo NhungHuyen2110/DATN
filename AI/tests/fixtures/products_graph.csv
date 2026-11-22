@@ -1,0 +1,4 @@
+ProductID,SKU,Barcode,ProductName,CategoryID,BrandID,MaterialID,GemstoneID,CollectionID,Weight,SalePrice,WholesalePrice,CostPrice,Stock,CategoryName,BrandName,MaterialName,GemstoneName,CollectionName
+900001,TEST000001,000000900001,Nhẫn Phái nữ - dữ liệu kiểm thử,1,1,1,6,4,1.25,7000000.01,2,1,3,Nhẫn,KAT Jewelry,Bạc 925,CZ,Minimal
+900002,TEST000002,000000900002,Nhẫn con gái - dữ liệu kiểm thử,1,1,1,6,4,1.50,6000000,2,1,2,Nhẫn,KAT Jewelry,Bạc 925,CZ,Minimal
+900003,TEST000003,000000900003,Nhẫn hết hàng - dữ liệu kiểm thử,1,1,1,6,4,1.00,5000000,2,1,0,Nhẫn,KAT Jewelry,Bạc 925,CZ,Minimal

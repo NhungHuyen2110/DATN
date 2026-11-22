@@ -4,6 +4,7 @@ from alembic import context
 
 from app.core.database import Base, DATABASE_URL, engine
 import app.models  # noqa: F401 -- register all models on Base.metadata
+from app.routers.password_reset import PasswordResetToken  # noqa: F401 -- existing feature metadata
 
 
 target_metadata = Base.metadata

@@ -1,0 +1,7 @@
+{
+  "successful": false,
+  "error_type": "TimeoutExpired",
+  "phase": "Docker CLI/control plane; API probe not completed",
+  "timeout_seconds": 20,
+  "production_accessed": false
+}

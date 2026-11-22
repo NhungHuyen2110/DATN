@@ -1,0 +1,69 @@
+{
+  "disk_free_gib": {
+    "C": 16.39,
+    "D": 164.27
+  },
+  "actions": "read_only_no_restart_no_reset_no_disk_move",
+  "wsl_list": {
+    "returncode": 0,
+    "stdout": "  NAME              STATE           VERSION\r\n* docker-desktop    Running         2\r\n",
+    "stderr": ""
+  },
+  "docker_contexts": {
+    "returncode": 0,
+    "stdout": "default\ndesktop-linux\n",
+    "stderr": ""
+  },
+  "desktop_server": {
+    "returncode": 0,
+    "stdout": "\"28.5.1\"\n",
+    "stderr": ""
+  },
+  "default_server": {
+    "returncode": 0,
+    "stdout": "\"28.5.1\"\n",
+    "stderr": ""
+  },
+  "storage_settings": [],
+  "log_summaries": [
+    {
+      "file": "com.docker.backend.exe.log",
+      "tail_bytes": 256000,
+      "category_counts": {
+        "space": 0,
+        "permission": 0,
+        "wsl_error": 0,
+        "timeout": 0,
+        "engine_unavailable": 0,
+        "pipe_error": 0
+      },
+      "raw_log_exported": false
+    },
+    {
+      "file": "Docker Desktop.exe.log",
+      "tail_bytes": 31152,
+      "category_counts": {
+        "space": 0,
+        "permission": 0,
+        "wsl_error": 0,
+        "timeout": 0,
+        "engine_unavailable": 0,
+        "pipe_error": 0
+      },
+      "raw_log_exported": false
+    },
+    {
+      "file": "docker-desktop.exe.log",
+      "tail_bytes": 105177,
+      "category_counts": {
+        "space": 0,
+        "permission": 0,
+        "wsl_error": 0,
+        "timeout": 0,
+        "engine_unavailable": 0,
+        "pipe_error": 0
+      },
+      "raw_log_exported": false
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+name: Graph and retrieval tests
+on:
+  push:
+    branches: ['rebuild/lumiere-demo-*']
+  pull_request:
+    paths: ['AI/**', 'shared/**', 'scripts/run_ai_tests.py', 'data/**', '.github/workflows/graph-retrieval-tests.yml']
+  workflow_dispatch:
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r AI/requirements-test.txt
+      - name: Offline contracts, ASGI and Qdrant local engine
+        run: python -B scripts/run_ai_tests.py --report ai-test-results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai-test-results
+          path: ai-test-results.json
+  neo4j-integration:
+    runs-on: ubuntu-latest
+    services:
+      neo4j:
+        image: neo4j:5-community
+        env:
+          NEO4J_AUTH: neo4j/test-only-lumiere-2026
+        ports: ['17687:7687']
+        options: >-
+          --health-cmd "cypher-shell -u neo4j -p test-only-lumiere-2026 'RETURN 1'"
+          --health-interval 5s --health-timeout 5s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'neo4j>=5,<7'
+      - name: Actual empty graph replay and taxonomy replacement
+        env:
+          LUMIERE_ALLOW_ISOLATED_GRAPH_TEST: '1'
+          LUMIERE_NEO4J_INTEGRATION_URI: bolt://127.0.0.1:17687
+          LUMIERE_GRAPH_PASSWORD: test-only-lumiere-2026
+          LUMIERE_GRAPH_TEST_REPORT: neo4j-test-results.json
+        run: python -B -m unittest discover -s AI/tests -p test_graph_integration.py -v
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neo4j-test-results
+          path: neo4j-test-results.json

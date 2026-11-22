@@ -1,0 +1,16 @@
+{
+  "backend": {"passed": 659, "subtests_passed": 827, "warnings": 1, "duration_seconds": 179.52,
+              "log": ".local-tmp/backend-observability-regression.log", "database_and_network_guard": true},
+  "ai": {"passed": 53, "skipped": 1, "failures": 0, "errors": 0,
+          "report": "ai-instrumented-chat-tests.json", "skip_reason": "Neo4j live integration excluded from offline runner"},
+  "additional_focused_tests": {"observability_after_process_collector": 4, "fault_safety": 3, "independent_build_selection": 2},
+  "native_projection_integration": {"passed": true, "report": "postgres-graph-vector-integration.json",
+                                    "services": "PostgreSQL native, Neo4j native, Qdrant actual memory engine, synthetic vectors"},
+  "docker_compose_with_monitoring": {"config_quiet_exit_code": 0, "runtime_tested": false},
+  "metrics": {"report": "monitoring-smoke-20261121.json", "actual_synthetic_asgi_requests": 21,
+              "prometheus_server_scrape_verified": false},
+  "evaluation": {"draft_queries": 105, "human_reviewed": 0, "quality_benchmark_executed": false},
+  "postgres_native_attempt": {"initial_initdb_timeout_seconds": 60, "resumed_initialized_cluster": true,
+                              "passed": true, "checks_passed": 6,
+                              "report": "postgres-sync-integration.json", "test_cluster_stopped": true}
+}

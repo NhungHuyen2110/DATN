@@ -1,0 +1,51 @@
+{
+  "workspace": "D:/LUMIERE-FINAL-TEST",
+  "feature_enabled_on_existing_database": false,
+  "migration_applied_on_existing_database": false,
+  "full_backend_regression": {
+    "passed": 646,
+    "subtests_passed": 827,
+    "warnings": 1,
+    "log": ".local-tmp/backend-sync-regression-final.log",
+    "note": "Full suite was collected before the additional migration test; migration was then verified in focused 14-test run. Reported wall time includes an overnight interruption and is not a performance measurement."
+  },
+  "focused_backend": {
+    "passed": 14,
+    "deselected": 633,
+    "warnings": 1,
+    "duration_seconds": 10.47,
+    "database": "SQLite in-memory only; network and file databases blocked",
+    "log": ".local-tmp/product-index-tests.log",
+    "checks": [
+      "disabled mode without outbox table",
+      "explicit stable product ID creation",
+      "business rollback includes queue",
+      "coalesced flushes and successive generations",
+      "taxonomy rename",
+      "lease expiry and token ownership",
+      "updates during delivery",
+      "bounded retry and sanitized errors",
+      "restart after partial delivery",
+      "deletion job survives product deletion",
+      "reconciliation of bulk changes and missing products",
+      "repair after overlapping lease-lost delivery",
+      "admin-only status endpoint",
+      "additive PostgreSQL offline DDL and SQLite migration/model constraints"
+    ]
+  },
+  "ai_projection": {
+    "tests_passed": 2,
+    "qdrant": "actual in-memory engine",
+    "graph": "stubbed",
+    "encoder": "synthetic three-dimensional vectors",
+    "checks": ["update/delete/recreate with stable ID", "graph verification failure does not write vectors"],
+    "suite_report": "ai-projection-regression.json"
+  },
+  "not_verified": [
+    "PostgreSQL locking and concurrent workers",
+    "end-to-end actual business DB / worker / graph / vector services",
+    "activation on existing serving processes"
+  ],
+  "consistency": "at-least-once with repair and reconciliation; not cross-store exactly-once",
+  "rollback_guide": "06-product-index-sync.md"
+}

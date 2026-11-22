@@ -1,0 +1,25 @@
+{
+  "scope": "actual cached model, Qdrant memory, isolated graph, CSV seed fixture; not relevance benchmark",
+  "checks": [
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "product_ids": [
+        79,
+        87,
+        114
+      ],
+      "returned_k": 3,
+      "hard_filters_pass": true,
+      "dense_contributed_to_all_selected": true
+    },
+    {
+      "query": "Top 1 bông tai moissanite",
+      "product_ids": [
+        1
+      ],
+      "returned_k": 1,
+      "hard_filters_pass": true,
+      "dense_contributed_to_all_selected": true
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "scope": "real embedding + Qdrant memory + isolated graph; CSV seed fixture, not live Business API or relevance benchmark",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "dimension": 384,
+  "checks": [
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "expected_k": 3,
+      "actual_k": 3,
+      "product_ids": [
+        2,
+        79,
+        87
+      ],
+      "all_hard_constraints_pass": true,
+      "retrieval_sources": [
+        [
+          "lexical",
+          "graph"
+        ],
+        [
+          "lexical",
+          "graph"
+        ],
+        [
+          "lexical",
+          "graph"
+        ]
+      ]
+    },
+    {
+      "query": "Top 1 bông tai moissanite",
+      "expected_k": 1,
+      "actual_k": 1,
+      "product_ids": [
+        238
+      ],
+      "all_hard_constraints_pass": true,
+      "retrieval_sources": [
+        [
+          "lexical",
+          "dense",
+          "graph"
+        ]
+      ]
+    }
+  ]
+}

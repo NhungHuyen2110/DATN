@@ -1,0 +1,378 @@
+{
+  "successful": true,
+  "catalog": "actual HTTP Business API backed by PostgreSQL with 500 CSV seed fixtures",
+  "model": "actual cached MiniLM on D",
+  "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "qdrant": "actual memory engine",
+  "neo4j": "actual isolated read-only seed graph",
+  "samples": [
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "status": "ok",
+      "products": [
+        {
+          "ProductID": 79,
+          "score": 0.04740957966764418,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn"
+            }
+          ],
+          "ProductName": "Nhẫn Angel",
+          "SKU": "SP000079",
+          "Price": "5712887.00",
+          "Stock": 97,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "SJC",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Sapphire",
+          "GemstoneID": 3,
+          "Collection": "Luxury",
+          "verified_source": "business_api",
+          "rank": 1,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 87,
+          "score": 0.046671404880360104,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn"
+            }
+          ],
+          "ProductName": "Nhẫn Sunshine",
+          "SKU": "SP000087",
+          "Price": "1388487.00",
+          "Stock": 75,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Emerald",
+          "GemstoneID": 4,
+          "Collection": "Luxury",
+          "verified_source": "business_api",
+          "rank": 2,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 114,
+          "score": 0.046634615384615385,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn"
+            }
+          ],
+          "ProductName": "Nhẫn Princess",
+          "SKU": "SP000114",
+          "Price": "5461510.00",
+          "Stock": 59,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "KAT Jewelry",
+          "Material": "Vàng 10K",
+          "MaterialID": 2,
+          "Gemstone": "Emerald",
+          "GemstoneID": 4,
+          "Collection": "Office",
+          "verified_source": "business_api",
+          "rank": 3,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ]
+    },
+    {
+      "query": "Top 3 nhẫn cùng loại đá với sản phẩm 1",
+      "status": "ok",
+      "products": [
+        {
+          "ProductID": 142,
+          "score": 0.04918032786885246,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 142
+            }
+          ],
+          "ProductName": "Nhẫn Angel",
+          "SKU": "SP000142",
+          "Price": "23627613.00",
+          "Stock": 36,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "PNJ",
+          "Material": "Vàng trắng 18K",
+          "MaterialID": 5,
+          "Gemstone": "Moissanite",
+          "GemstoneID": 5,
+          "Collection": "Valentine",
+          "verified_source": "business_api",
+          "rank": 1,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 149,
+          "score": 0.04692742126540875,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 149
+            }
+          ],
+          "ProductName": "Nhẫn Shining Star",
+          "SKU": "SP000149",
+          "Price": "20816892.00",
+          "Stock": 66,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Moissanite",
+          "GemstoneID": 5,
+          "Collection": "Office",
+          "verified_source": "business_api",
+          "rank": 2,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 252,
+          "score": 0.046649531024531024,
+          "retrieval_sources": [
+            "lexical",
+            "dense",
+            "graph"
+          ],
+          "score_type": "rrf",
+          "graph_paths": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 1,
+              "candidate_product_id": 252
+            }
+          ],
+          "ProductName": "Nhẫn Princess",
+          "SKU": "SP000252",
+          "Price": "18216160.00",
+          "Stock": 8,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 10K",
+          "MaterialID": 2,
+          "Gemstone": "Moissanite",
+          "GemstoneID": 5,
+          "Collection": "Minimal",
+          "verified_source": "business_api",
+          "rank": 3,
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; đúng loại đá Moissanite; thuộc tính được đối soát với sản phẩm #1; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ]
+    }
+  ],
+  "concurrent_price_stock_change": {
+    "changed_product_id": 79,
+    "stale_candidate_excluded": true,
+    "final_products": [
+      {
+        "ProductID": 87,
+        "score": 0.046671404880360104,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nhẫn"
+          }
+        ],
+        "ProductName": "Nhẫn Sunshine",
+        "SKU": "SP000087",
+        "Price": "1388487.00",
+        "Stock": 75,
+        "Category": "Nhẫn",
+        "CategoryID": 1,
+        "Brand": "DOJI",
+        "Material": "Vàng 18K",
+        "MaterialID": 4,
+        "Gemstone": "Emerald",
+        "GemstoneID": 4,
+        "Collection": "Luxury",
+        "verified_source": "business_api",
+        "rank": 1,
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+      },
+      {
+        "ProductID": 114,
+        "score": 0.046634615384615385,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nhẫn"
+          }
+        ],
+        "ProductName": "Nhẫn Princess",
+        "SKU": "SP000114",
+        "Price": "5461510.00",
+        "Stock": 59,
+        "Category": "Nhẫn",
+        "CategoryID": 1,
+        "Brand": "KAT Jewelry",
+        "Material": "Vàng 10K",
+        "MaterialID": 2,
+        "Gemstone": "Emerald",
+        "GemstoneID": 4,
+        "Collection": "Office",
+        "verified_source": "business_api",
+        "rank": 2,
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+      },
+      {
+        "ProductID": 2,
+        "score": 0.04648551538288794,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nhẫn"
+          }
+        ],
+        "ProductName": "Nhẫn Golden Dream",
+        "SKU": "SP000002",
+        "Price": "2619639.00",
+        "Stock": 62,
+        "Category": "Nhẫn",
+        "CategoryID": 1,
+        "Brand": "SJC",
+        "Material": "Bạc 925",
+        "MaterialID": 1,
+        "Gemstone": "Diamond",
+        "GemstoneID": 1,
+        "Collection": "Office",
+        "verified_source": "business_api",
+        "rank": 3,
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+      }
+    ]
+  },
+  "production_accessed": false,
+  "quality_benchmark": false
+}

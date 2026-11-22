@@ -1,0 +1,96 @@
+{
+  "first_import": {
+    "requested_products": 3,
+    "products": 3,
+    "duplicate_products": 0,
+    "unmanaged_products": 0,
+    "relationships": {
+      "BELONGS_TO": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_BRAND": {
+        "count": 3,
+        "violations": 0
+      },
+      "MADE_OF": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_GEMSTONE": {
+        "count": 3,
+        "violations": 0
+      },
+      "IN_COLLECTION": {
+        "count": 3,
+        "violations": 0
+      }
+    },
+    "pass": true
+  },
+  "second_import": {
+    "requested_products": 3,
+    "products": 3,
+    "duplicate_products": 0,
+    "unmanaged_products": 0,
+    "relationships": {
+      "BELONGS_TO": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_BRAND": {
+        "count": 3,
+        "violations": 0
+      },
+      "MADE_OF": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_GEMSTONE": {
+        "count": 3,
+        "violations": 0
+      },
+      "IN_COLLECTION": {
+        "count": 3,
+        "violations": 0
+      }
+    },
+    "pass": true
+  },
+  "changed_taxonomy": {
+    "requested_products": 3,
+    "products": 3,
+    "duplicate_products": 0,
+    "unmanaged_products": 0,
+    "relationships": {
+      "BELONGS_TO": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_BRAND": {
+        "count": 3,
+        "violations": 0
+      },
+      "MADE_OF": {
+        "count": 3,
+        "violations": 0
+      },
+      "HAS_GEMSTONE": {
+        "count": 3,
+        "violations": 0
+      },
+      "IN_COLLECTION": {
+        "count": 3,
+        "violations": 0
+      }
+    },
+    "pass": true
+  },
+  "idempotency_pass": true,
+  "batch_rollback_pass": true,
+  "recommendation_ids": [
+    900002
+  ],
+  "recommendation_paths_verified": true,
+  "data_kind": "synthetic_fixture_only"
+}

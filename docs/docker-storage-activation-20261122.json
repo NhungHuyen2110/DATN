@@ -1,0 +1,10 @@
+{
+  "successful": true,
+  "logical_docker_directory": "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk",
+  "physical_docker_directory": "D:\\LUMIERE-FINAL-TEST\\.local-tmp\\docker-desktop-data\\disk",
+  "link_type": "Junction",
+  "retained_original_directory": "C:\\Users\\Admin\\AppData\\Local\\Docker\\wsl\\disk.before-move-20261122",
+  "original_removed": false,
+  "existing_settings_modified": false,
+  "runtime_verified": false
+}
