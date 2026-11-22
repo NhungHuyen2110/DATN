@@ -8,7 +8,8 @@ class AdvicePlannerTests(unittest.TestCase):
         class Encoder:
             def encode(self,texts):
                 self.texts=texts
-                return [[1.,0.]]+[[1.,0.] for _ in PROTOTYPES['gift_advice']]+[[0.,1.] for _ in range(5)]
+                non_gift=PROTOTYPES['product_search']+PROTOTYPES['other']
+                return [[0.,1.] if text in non_gift else [1.,0.] for text in texts]
         encoder=Encoder()
         result=plan_advice('Một món dành tặng người thương?',encoder)
         self.assertEqual(result['intent'],'gift_advice')
@@ -23,3 +24,15 @@ class AdvicePlannerTests(unittest.TestCase):
         class Encoder:
             def encode(self,texts): return []
         with self.assertRaises(ValueError): plan_advice('quà',Encoder())
+
+    def test_fixed_prototypes_are_encoded_once_and_queries_are_not_cached(self):
+        class Encoder:
+            def __init__(self): self.calls=[]
+            def encode(self,texts):
+                self.calls.append(list(texts))
+                return [[1.,0.] for _ in texts]
+        encoder=Encoder()
+        plan_advice('first private question',encoder)
+        plan_advice('second private question',encoder)
+        self.assertEqual([len(call) for call in encoder.calls],[8,1,1])
+        self.assertNotIn('first private question',encoder.calls[0])

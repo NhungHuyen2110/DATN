@@ -29,6 +29,7 @@ function closeModal(){$('#product-modal').hidden=true;$('#overlay').hidden=true;
 function showChat(){$('#chat-window').hidden=false;$('#chat-query').focus();}function closeChat(){$('#chat-window').hidden=true;}
 function chatMessage(text,kind='bot'){const div=document.createElement('div');div.className=`message ${kind}`;div.textContent=text;$('#chat-messages').append(div);$('#chat-messages').scrollTop=$('#chat-messages').scrollHeight;return div;}
 let homeAIPending=false;
+let homeConversationId=null;
 async function askAI(query){
   if(homeAIPending)return;
   homeAIPending=true;
@@ -41,9 +42,10 @@ async function askAI(query){
     if(!window.LUMIERE_AI_BASE)throw new Error('AI chưa được cấu hình.');
     const response=await fetch(window.LUMIERE_AI_BASE.replace(/\/$/,'')+'/chat',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({query,top_k:3}),signal:controller.signal
+      body:JSON.stringify({query,top_k:3,conversation_id:homeConversationId}),signal:controller.signal
     });
     const result=await response.json().catch(()=>({}));
+    if(typeof result.conversation_id==='string')homeConversationId=result.conversation_id;
     if(!response.ok||result.success===false)throw new Error('AI tạm thời chưa sẵn sàng.');
     pending.textContent=result.answer||'Chưa có sản phẩm phù hợp. Bạn có thể thử loại trang sức và ngân sách khác.';
     if(Array.isArray(result.products)&&result.products.length){

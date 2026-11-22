@@ -14,6 +14,7 @@ services:
   ai-api:
     environment:
       LUMIERE_SHOPPING_ADVICE_ENABLED: 'true'
+      LUMIERE_MODEL_WARMUP_ENABLED: 'true'
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
   neo4j:

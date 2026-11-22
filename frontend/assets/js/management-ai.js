@@ -224,6 +224,7 @@
   const send = root.querySelector(".ai-send");
 
   let busy = false;
+  let conversationId = null;
 
   function addMessage(text, type = "bot") {
     const node = document.createElement("div");
@@ -284,7 +285,7 @@
           "Content-Type": "application/json",
           "Accept": "application/json",
         },
-        body: JSON.stringify({ message: question }),
+        body: JSON.stringify({ message: question, conversation_id: conversationId }),
         signal: controller.signal,
       });
 
@@ -298,6 +299,7 @@
       }
 
       const data = await response.json();
+      if (typeof data.conversation_id === 'string') conversationId = data.conversation_id;
 
       return typeof data.answer === "string"
         ? data.answer

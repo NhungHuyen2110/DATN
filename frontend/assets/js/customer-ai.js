@@ -23,6 +23,7 @@
   const messages = root.querySelector('.lai-messages');
   const submit = form.querySelector('button[type=submit]');
   let pending = false;
+  let conversationId = null;
   function toggle(open) {
     dialog.hidden = !open;
     launch.setAttribute('aria-expanded', String(open));
@@ -103,11 +104,12 @@
         response = await fetch(API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query, top_k: 3 }),
+          body: JSON.stringify({ query, top_k: 3, conversation_id: conversationId }),
           signal: controller.signal,
         });
       } finally { clearTimeout(timer); }
       const data = await response.json().catch(() => ({}));
+      if (typeof data.conversation_id === 'string') conversationId = data.conversation_id;
       if (!response.ok || data.success === false) {
         const detail = typeof data.detail === 'string' ? data.detail :
           (typeof data.message === 'string' ? data.message : `AI Service trả lỗi HTTP ${response.status}.`);

@@ -64,14 +64,14 @@ def staff_order_statistics(
 # ============================================================
 
 class StaffChatRequest(BaseModel):
+    conversation_id: str | None = Field(default=None,max_length=128)
     message: str = Field(
         min_length=1,
         max_length=1000,
     )
 
 
-@router.post("/chat")
-def staff_ai_chat(
+def _staff_ai_tools(
     request: StaffChatRequest,
     user: ActiveStaff,
     db: Database,
@@ -281,3 +281,10 @@ def staff_inventory_statistics(
         threshold=threshold,
         limit=limit,
     )
+
+
+@router.post('/chat')
+def staff_ai_chat(request:StaffChatRequest,user:ActiveStaff,db:Database):
+    from shared.conversation import converse
+    return converse(request.message,request.conversation_id,('staff',user.id),
+                    lambda message:_staff_ai_tools(StaffChatRequest(message=message),user,db))

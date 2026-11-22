@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    log = ROOT / '.local-tmp/attribute-foundation-backend-after-close.log'
+    log = ROOT / '.local-tmp/conversation-backend.log'
     raw = log.read_bytes()
     text = raw.decode('utf-16' if raw.startswith((b'\xff\xfe', b'\xfe\xff')) else 'utf-8-sig', errors='replace')
     result = re.search(r'(\d+) passed, (\d+) warnings?, (\d+) subtests passed in ([\d.]+)s', text)
@@ -25,7 +25,9 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = ('ai-advice-contract-final-20261122.json'
+    ai_name = ('conversation-context-model-tests-20261122.json'
+               if (ROOT / 'docs/conversation-context-model-tests-20261122.json').exists() else
+               'ai-advice-contract-final-20261122.json'
                if (ROOT / 'docs/ai-advice-contract-final-20261122.json').exists() else
                'ai-source-diagnostics-tests-20261122.json'
                if (ROOT / 'docs/ai-source-diagnostics-tests-20261122.json').exists()
@@ -145,6 +147,12 @@ def main():
             current['active_dataset']['shopping_advice_smoke']=report(advice_path.name)
             current['active_dataset']['shopping_advice_browser']=report('shopping-advice-browser-20261122.json')
         current['runtime_open_issue'] = 'Original project data activated; full role/write regression on original-data copy and hosting acceptance pending'
+        conversation_path=ROOT/'docs/conversation-browser-final-20261122.json'
+        if conversation_path.exists():
+            current['conversation_regression']=report(conversation_path.name)
+            current['natural_dialogue_llm']={'live_verified':False,'local_enabled':False,
+                'prepared_override':'compose.dialogue.yaml','target':'approved VPS; monthly budget <=300000 VND',
+                'needs':['server and model provisioning','actual Qwen quality, latency and privacy acceptance']}
         current['product_index_sync']['enabled_on_current_business_database'] = True
         current['product_index_sync']['migration_applied_to_current_database'] = True
     for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:

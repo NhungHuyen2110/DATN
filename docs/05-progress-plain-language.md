@@ -2,6 +2,10 @@
 
 **Bạn có thể test bản demo local ngay tại http://127.0.0.1:18080. Toàn bộ đồ án chưa nghiệm thu xong; hosting chưa triển khai.**
 
+**Checkpoint hội thoại mới nhất:** 5/5 scenario Chrome đạt trên source cuối sau sửa cache/warmup; AI **100 đạt/1 skip**, backend **675/829 subtest**. Cần tải lại trang để JavaScript mới gửi conversation ID; context cũ trước khi cập nhật không tự phục hồi. Câu hỏi giải thích/đính chính không đổi bộ sản phẩm. Qwen tự nhiên vẫn chưa bật local/chưa nghiệm thu trên VPS; không coi đây là đã đạt khả năng ChatGPT.
+
+**Sửa lỗi hội thoại người dùng báo:** đã thêm context ở server và cả ba UI. Chrome thật kiểm 5 scenario: hỏi lý do giữ đúng sản phẩm trước, phản hồi không hỏi sản phẩm không sinh thẻ mới, Staff/Admin giữ đúng ngữ cảnh báo cáo. Đây chưa phải general dialogue kiểu ChatGPT; Qwen chưa bật/chưa kiểm live. Người dùng chọn VPS tối đa 300.000đ/tháng; cấu hình model đã chuẩn bị, cần chốt giá cuối và có server. [Chi tiết và giới hạn](24-conversation-and-vps-dialogue.md).
+
 **Tư vấn ngữ nghĩa đã kiểm model thật:** “Lễ tình nhân tặng gì?” và một câu diễn đạt lại nhận lời hướng dẫn chọn quà kèm 3 sản phẩm khớp giá/tồn kho; Top 3 nhẫn dưới 8 triệu vẫn giữ đúng điều kiện. Chrome thật ở 18080 xác nhận câu trả lời và 3 link sản phẩm. Full backend mới **675 test/829 subtest**, AI **90 đạt/1 skip**. Đây chưa là hội thoại nhiều lượt/Qwen hoặc relevance benchmark. [Kết quả và giới hạn](23-semantic-advice-in-progress.md).
 
 **AI giao diện vừa sửa:** chatbot Staff/Admin gọi thiếu `/api`, đã sửa và build vào frontend đang chạy. Widget Customer đã vẽ đủ Top 10, có ảnh SKU/link/tồn kho/lý do; lỗi chat không ảnh hưởng catalog. Chrome thực trên QA copy đầy đủ 500 sản phẩm/12 đơn đạt **13 kiểm tra AI/role**, không inject URL hoặc mock response thành công. Không thay mật khẩu/tài khoản cũ đang phục vụ. Xem [bằng chứng và giới hạn](22-ai-ui-repair-and-acceptance.md).

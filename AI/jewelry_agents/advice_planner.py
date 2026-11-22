@@ -4,6 +4,11 @@ Occasion describes the customer's request, never a verified product attribute.
 No names, prices, gender, product occasions or ranking are generated here.
 """
 from .entity_linking import cosine
+import threading
+from weakref import WeakKeyDictionary
+
+_anchors=WeakKeyDictionary()
+_anchor_lock=threading.Lock()
 
 PROTOTYPES = {
     'gift_advice': [
@@ -31,9 +36,21 @@ GIFT_INTRO = (
 
 def plan_advice(query, encoder, threshold=.45, margin=.04):
     texts=[text for group in PROTOTYPES.values() for text in group]
-    vectors=encoder.encode([query,*texts])
-    if len(vectors)!=len(texts)+1:
-        raise ValueError('Invalid intent encoder output')
+    # Only public fixed prototypes are cached, never user messages/vectors.
+    # The same pinned encoder stays the cache key; replacing it invalidates data.
+    with _anchor_lock:
+        cached=_anchors.get(encoder)
+        if cached is None or cached[0]!=tuple(texts):
+            anchors=encoder.encode(texts)
+            if len(anchors)!=len(texts):
+                raise ValueError('Invalid prototype encoder output')
+            _anchors[encoder]=(tuple(texts),anchors)
+        else:
+            anchors=cached[1]
+    query_vectors=encoder.encode([query])
+    if len(query_vectors)!=1:
+        raise ValueError('Invalid query encoder output')
+    vectors=[query_vectors[0],*anchors]
     offset=1
     scores={}
     for label,group in PROTOTYPES.items():

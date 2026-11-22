@@ -4,6 +4,13 @@ from rag.rag_service import answer_jewelry_question
 
 
 class AdviceRagContractTests(unittest.TestCase):
+    def test_unavailable_sources_do_not_claim_catalog_has_no_matching_products(self):
+        with patch.dict('os.environ',{'LUMIERE_SHOPPING_ADVICE_ENABLED':'false'}), \
+             patch('rag.rag_service.search',return_value={'status':'degraded','products':[],'requested_k':3}):
+            response=answer_jewelry_question('Top 3 nhẫn')
+        self.assertIn('chưa sẵn sàng',response['answer'])
+        self.assertNotIn('Không tìm thấy sản phẩm',response['answer'])
+
     def test_gift_planner_cannot_rewrite_budget_products_or_rank(self):
         product={'ProductID':17,'ProductName':'QA necklace','Price':1200000,'Stock':2,
                  'Material':'Bạc 925','Gemstone':'CZ','reason':'giá và tồn kho đã kiểm tra'}

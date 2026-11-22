@@ -19,6 +19,15 @@ from shared.observability import install as install_observability
 
 @asynccontextmanager
 async def lifespan(app):
+    if os.getenv('LUMIERE_MODEL_WARMUP_ENABLED','false').lower()=='true':
+        import threading
+        def warm_model():
+            try:
+                from jewelry_agents import retrieval
+                retrieval.warm_shopping_model()
+            except Exception as exc:
+                logging.getLogger('uvicorn.error').info('Optional model warmup: %s',type(exc).__name__)
+        threading.Thread(target=warm_model,name='lumiere-model-warmup',daemon=True).start()
     yield
     from jewelry_agents import retrieval
     retrieval.close_retrieval_limits()
@@ -263,6 +272,7 @@ def public_recommendation_response(customer_id, product_id, number):
 class ChatRequest(BaseModel):
     query: str = Field(min_length=1, max_length=1000)
     top_k: int = Field(default=3, ge=1, le=10)
+    conversation_id: str | None = Field(default=None,max_length=128)
 
 
 class DiagnosticsRequest(ChatRequest):
@@ -295,9 +305,6 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
 
 @app.post("/chat", tags=["Chatbot RAG"])
 def chat(request: ChatRequest):
-    result = answer_jewelry_question(
-        query=request.query,
-        top_k=request.top_k
-    )
-
-    return result
+    from shared.conversation import converse
+    return converse(request.query,request.conversation_id,('customer-public',),
+                    lambda query:answer_jewelry_question(query=query,top_k=request.top_k))

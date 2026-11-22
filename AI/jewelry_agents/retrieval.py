@@ -107,6 +107,15 @@ def plan_shopping_advice(query):
     return _bounded_source(_dense_gate,operation)
 
 
+def warm_shopping_model():
+    # One bounded background task warms weights, kernels and fixed prototypes.
+    # Readiness must not become true between weight load and prototype encoding.
+    def operation():
+        from .advice_planner import plan_advice
+        return plan_advice('tư vấn quà trang sức',get_dense_services()[1])
+    return _bounded_source(_dense_gate,operation)
+
+
 def graph_search_candidates(query, understanding):
     return _bounded_source(_graph_gate, _graph_search_candidates, query, understanding)
 

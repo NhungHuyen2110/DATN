@@ -51,7 +51,16 @@ def answer_jewelry_question(query: str, top_k: int = 3):
         }
 
     if os.getenv("LUMIERE_RETRIEVAL_V2_ENABLED", "true").lower() == "true":
+        advice=None
         intent = classify_query(query)
+        if intent=='general_question' and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
+            try:
+                from jewelry_agents.retrieval import plan_shopping_advice
+                advice=plan_shopping_advice(query)
+                if advice.get('accepted') and advice['intent']=='gift_advice':
+                    intent='product_search'
+            except Exception:
+                pass
         record_intent(intent)
         messages = {
             'greeting': 'Chào bạn! Bạn muốn tìm loại trang sức, chất liệu, loại đá hoặc khoảng giá nào?',
@@ -61,6 +70,10 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             'unverified_policy': 'Hiện chưa có chính sách bảo hành hoặc đổi trả đã được xác minh để trả lời. '
                                  'Bạn có thể gửi yêu cầu tại trang Liên hệ.',
             'out_of_scope': 'Tôi hỗ trợ tìm kiếm và lựa chọn trang sức LUMIÈRE. Bạn có thể cho biết loại sản phẩm và ngân sách.'}
+        messages['general_question']=(
+            'Tôi hiểu đây là câu hỏi trao đổi, không phải yêu cầu tìm sản phẩm. '
+            'Bạn có thể nói rõ phần bạn muốn tìm hiểu; tôi sẽ không tự thêm danh sách gợi ý. '
+            'Lớp trả lời tự nhiên hiện chưa sẵn sàng, nên tôi không muốn đoán câu trả lời.')
         if intent in messages:
             return {'success': True, 'status': intent, 'intent': intent, 'products': [], 'answer': messages[intent]}
         if intent == 'shipping_policy':
@@ -74,8 +87,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                       f"Phí vận chuyển hiện tại là {format_price(fee)}; miễn phí với giá trị hàng từ {format_price(threshold)}.")
             return {'success': True, 'status': 'shipping_policy', 'intent': intent,
                     'products': [], 'answer': answer, 'verified_source': 'business_shipping_policy'}
-        advice=None
-        if os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
+        if advice is None and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
             try:
                 from jewelry_agents.retrieval import plan_shopping_advice
                 advice=plan_shopping_advice(query)
@@ -108,6 +120,9 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                                "Bạn có thể chọn loại trang sức, chất liệu, loại đá và ngân sách để tìm trước.")}
         products = result["products"]
         answer = build_safe_answer(products) if products else "Không tìm thấy sản phẩm phù hợp với điều kiện hiện tại."
+        if not products and result['status']=='degraded':
+            answer=('Một nguồn tìm kiếm chưa sẵn sàng, nên tôi chưa thể xác nhận danh sách phù hợp. '
+                    'Bạn hãy thử lại sau; tôi không muốn kết luận là không có sản phẩm khi nguồn tìm kiếm đang gián đoạn.')
         if advice and advice['intent']=='gift_advice':
             answer=GIFT_INTRO+'\n\n'+answer
         if products and len(products) < result["requested_k"]:

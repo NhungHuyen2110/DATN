@@ -79,6 +79,7 @@ def top_selling_products(
 # ============================================================
 
 class AdminChatRequest(BaseModel):
+    conversation_id: str | None = Field(default=None,max_length=128)
     message: str = Field(
         min_length=1,
         max_length=1000,
@@ -138,8 +139,7 @@ def is_valid_top_selling_intent(intent):
 # POST /admin/ai/chat
 # ============================================================
 
-@router.post("/chat")
-def admin_ai_chat(
+def _admin_ai_tools(
     request: AdminChatRequest,
     user: ActiveAdmin,
     db: Database,
@@ -317,3 +317,10 @@ def admin_ai_chat(
         "intent": "top_selling_products",
         "data": result,
     }
+
+
+@router.post('/chat')
+def admin_ai_chat(request:AdminChatRequest,user:ActiveAdmin,db:Database):
+    from shared.conversation import converse
+    return converse(request.message,request.conversation_id,('admin',user.id),
+                    lambda message:_admin_ai_tools(AdminChatRequest(message=message),user,db))

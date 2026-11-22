@@ -14,7 +14,8 @@ def review_case():
     case=fixtures.OrderTests()
     case.setUp()
     try:
-        yield case,TestClient(case.app)
+        with patch.dict(os.environ,{'LUMIERE_ATTRIBUTE_REVIEWS_ENABLED':'true'}):
+            yield case,TestClient(case.app)
     finally:
         case.doCleanups()
         fixtures.OrderTests.tearDownClass()

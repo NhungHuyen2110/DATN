@@ -1,5 +1,6 @@
 """Admin-confirmed product facts; no automatic classification from names/images."""
 from datetime import datetime, timezone
+import os
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Path, Query, Response
 from sqlalchemy import select
@@ -13,7 +14,12 @@ from app.services.orders import lock_user, transaction
 from app.services.product_index_jobs import enabled, enqueue
 from shared.verified_attributes import ATTRIBUTE_NAMES
 
-router=APIRouter(tags=['Verified product attributes'])
+def require_review_feature():
+    if os.getenv('LUMIERE_ATTRIBUTE_REVIEWS_ENABLED','false').lower()!='true':
+        raise HTTPException(404,'Not found')
+
+
+router=APIRouter(tags=['Verified product attributes'],dependencies=[Depends(require_review_feature)])
 Database=Annotated[Session,Depends(get_db)]
 ActiveAdmin=Annotated[User,Depends(admin)]
 ProductID=Annotated[int,Path(ge=1,le=2147483647)]

@@ -1,0 +1,29 @@
+# Prepared for approved Linux VPS. Do not enable on the 8 GB Windows lab.
+services:
+  ai-api:
+    environment:
+      LUMIERE_DIALOGUE_LLM_ENABLED: 'true'
+      LUMIERE_DIALOGUE_URL: http://ollama:11434/api/chat
+      LUMIERE_DIALOGUE_MODEL: qwen2.5:3b
+      LUMIERE_DIALOGUE_TIMEOUT_SECONDS: '40'
+      LUMIERE_DIALOGUE_KEEP_ALIVE: 5m
+      LUMIERE_MODEL_WARMUP_ENABLED: 'true'
+    networks: [dialogue]
+  business-api:
+    environment:
+      LUMIERE_DIALOGUE_LLM_ENABLED: 'true'
+      LUMIERE_DIALOGUE_URL: http://ollama:11434/api/chat
+      LUMIERE_DIALOGUE_MODEL: qwen2.5:3b
+      LUMIERE_DIALOGUE_TIMEOUT_SECONDS: '40'
+      LUMIERE_DIALOGUE_KEEP_ALIVE: 5m
+    networks: [dialogue]
+  ollama:
+    mem_limit: 3g
+    cpus: 2.0
+    environment:
+      OLLAMA_MAX_LOADED_MODELS: '1'
+      OLLAMA_NUM_PARALLEL: '1'
+      OLLAMA_CONTEXT_LENGTH: '2048'
+    networks: [dialogue]
+networks:
+  dialogue: {internal: true}
