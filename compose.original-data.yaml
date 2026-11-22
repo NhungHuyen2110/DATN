@@ -1,0 +1,28 @@
+# Local full project copy; source database/old synthetic volumes remain intact.
+services:
+  business-api:
+    environment:
+      POSTGRES_DB: lumiere_test_original_data
+      PRODUCT_INDEX_SYNC_ENABLED: 'true'
+  index-worker:
+    environment:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      LUMIERE_SYNC_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/lumiere_test_original_data
+    volumes:
+      - ./.local-tmp/recovery/original-data-20261122:/recovery:ro
+  ai-api:
+    environment:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+  neo4j:
+    volumes:
+      - original_neo4j:/data
+      - original_neo4j_logs:/logs
+  qdrant:
+    volumes:
+      - original_qdrant:/qdrant/storage
+volumes:
+  original_neo4j: {}
+  original_neo4j_logs: {}
+  original_qdrant: {}

@@ -2,21 +2,17 @@
 
 ## Bản bạn có thể test ngay
 
-Mở http://127.0.0.1:18080 trên máy này. Ba tài khoản local:
+Mở http://127.0.0.1:18080 trên máy này. Website đã chuyển sang **bản sao đầy đủ database cũ `lumiere_backend_test`**, tên bản sao chạy local là `lumiere_test_original_data`. Có **500 sản phẩm/500 ảnh đúng SKU, 11 tài khoản, 12 đơn, 15 dòng đơn và 9 giao dịch**; giữ cả giỏ hàng, yêu thích, đánh giá, coupon và liên hệ. Dùng tài khoản/mật khẩu cũ của bạn; không reset hoặc thay bằng tài khoản giả. Xóa cookie cũ hoặc mở cửa sổ riêng tư nếu trình duyệt vẫn giữ phiên thử nghiệm trước.
 
-| Vai trò | Email | Mật khẩu local giả |
-|---|---|---|
-| Customer | lumiere-e2e-customer@example.com | test-only-compose-password-2026! |
-| Staff | lumiere-e2e-staff@example.com | test-only-compose-password-2026! |
-| Admin | lumiere-e2e-admin@example.com | test-only-compose-password-2026! |
+Digest toàn bộ dòng ở 20 bảng nghiệp vụ khớp sau chuyển ứng dụng; migration chỉ bổ sung schema/outbox. Cả 500 ảnh qua HTTP khớp từng byte với file gốc; Chrome thật tải đủ catalog và giải mã được ảnh catalog/chi tiết, gồm sản phẩm ID 500. Bằng chứng: `original-project-data-readonly-20261122.json`, `original-project-browser-20261122.json`. Đây là kiểm tra guest/read-only; chưa chạy lại toàn bộ 18 ca có ghi dữ liệu trên các tài khoản cũ.
 
-Đây là **5 sản phẩm giả**, không phải catalog 500 sản phẩm. Có 10 container chạy độc lập: frontend, proxy, Business, AI, PostgreSQL, Neo4j, Qdrant, worker, Prometheus, Grafana. Ollama chưa bật; câu trả lời sản phẩm hiện deterministic, không nhận LLM narrative đã hoàn tất.
+Có 10 service ứng dụng chạy độc lập; Neo4j/Qdrant dùng volume mới cho catalog cũ. **Kiểm semantic 500 đã đạt:** 500 job done, 500 Product/2.500 quan hệ/500 vector 384 chiều, ba nguồn lexical/dense/graph, Top 3 có giá/tồn kho và graph paths được đối chiếu (`original-project-semantic-20261122.json`). Lượt cuối không retry HTTP; có chờ sẵn sàng retrieval 5 lần, không coi là SLA. Sau hoạt động login/logout, 13 phiên cũ còn nguyên, 1 phiên bị bỏ và 1 phiên mới; 19 bảng còn lại và 13 bộ đếm ID không đổi. Bản restore ban đầu giữ đủ toàn bộ phiên. Ollama chưa bật; chưa nhận LLM narrative đã hoàn tất.
 
-Bạn thử Customer: đăng nhập → sản phẩm → yêu thích → giỏ hàng → COD → xem đơn. Với Staff/Admin: xem đơn, đổi trạng thái fixture phù hợp, tồn kho, quản trị theo quyền và chẩn đoán AI. Câu mẫu: “Top 3 nhẫn dưới 8 triệu”. Không dùng các tài khoản giả này cho hosting công khai.
+Bạn thử Customer: đăng nhập tài khoản cũ → sản phẩm → yêu thích → giỏ hàng → COD → xem đơn. Staff/Admin dùng tài khoản cũ đúng vai trò để kiểm tra đơn và tồn kho; thao tác đổi trạng thái sẽ ghi vào bản sao local. Câu mẫu: “Top 3 nhẫn dưới 8 triệu”. Database gốc vẫn dừng, không bị ghi; bản 5 sản phẩm và volume AI cũ được giữ để rollback.
 
 Grafana local: http://localhost:18080/grafana, tài khoản `admin`, mật khẩu test `test-only-change-before-hosting`. [Ảnh dashboard thật](figures/grafana-compose-20261122.png).
 
-## Đã kiểm chứng
+## Bằng chứng hồi quy trước khi chuyển dữ liệu (5 sản phẩm giả)
 
 - Full Chrome **18/18, 0 skip, 0 flaky** sau cập nhật backend/worker: `compose-release-full-browser-20261122.json`. Sau đó chỉ sửa câu mô tả gợi ý public để không nhận cá nhân hóa/lịch sử mua hàng; kiểm riêng cards/caption qua Chrome đạt (`compose-public-copy-browser-20261122.json`). Không cộng thành 19 ca full suite.
 - Model pinned MiniLM thật + 3 nguồn lexical/dense/graph, giá/tồn kho đối chiếu Business, 5 Product/25 cạnh/5 vector 384 chiều: `compose-semantic-verified-r2-20261122.json`.
@@ -47,10 +43,11 @@ python3 scripts/prepare_demo_hosting.py --domain TEN-DA-DANG-KY.duckdns.org
 docker compose --env-file private/demo.env -f compose.yaml -f compose.hosting.yaml build frontend business-api ai-api index-worker
 # Chỉ PostgreSQL, chưa mở website công khai:
 docker compose --env-file private/demo.env -f compose.yaml -f compose.hosting.yaml up -d postgres
-python3 scripts/bootstrap_demo_catalog.py --apply --confirm-demo --report private/bootstrap-result.json
+# DỪNG: chuẩn bị restore bản sao database cũ đã duyệt trước khi mở website.
+# Không chạy bootstrap_demo_catalog.py cho lần triển khai dùng dữ liệu cũ.
 ```
 
-Generator từ chối ghi đè cấu hình; mật khẩu ngẫu nhiên nằm trong `private/` đã loại khỏi Git/build context. Bootstrap chỉ chấp nhận DB mới `lumiere_test_demo_hosting`, snapshot trước seed, không cập nhật dữ liệu cũ. Mật khẩu demo mới nằm tại `private/recovery/demo-accounts.json`; backup/reference có group read cho UID/GID 10001, tài khoản mật khẩu vẫn chỉ owner đọc.
+Generator từ chối ghi đè cấu hình; mật khẩu ngẫu nhiên nằm trong `private/` đã loại khỏi Git/build context. Bootstrap CSV trước đây chỉ là diễn tập DB trống, không còn là nguồn cho lần triển khai theo yêu cầu mới. Phải chuẩn bị restore database cũ qua kênh riêng, giữ ID/quan hệ/ảnh, kiểm dữ liệu tài khoản/phiên trước công khai và tạo backup-reference khớp DB hosting. Không đưa dump hoặc dữ liệu khách hàng lên GitHub. Chưa chạy restore hosting vì chưa có server được duyệt.
 
 Sau khi được duyệt tải public model trên VPS, có thể chuẩn bị cache đúng revision (không tải từ request của người dùng):
 

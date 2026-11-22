@@ -25,7 +25,9 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = 'ai-limits-contract-final-20261122.json'
+    ai_name = ('ai-source-diagnostics-tests-20261122.json'
+               if (ROOT / 'docs/ai-source-diagnostics-tests-20261122.json').exists()
+               else 'ai-limits-contract-final-20261122.json')
     ai = report(ai_name)
     browser = report('native-public-recommendation-browser-final-20261121.json')
     live = report('live-business-model-graph-retrieval-final-20261121.json')
@@ -126,6 +128,19 @@ def main():
                       '500-catalog full hosting semantic acceptance; 105-query SQL ablation',
                       'LLM narrative/grounding evaluation', 'Full CI/CD scans/staging/approved hosting/HTTPS',
                       'Host/container exporters, alerts and complete DATN diagrams/report']}
+    original_path = ROOT / 'docs/original-project-data-readonly-20261122.json'
+    if original_path.exists():
+        original = report(original_path.name)
+        if not original.get('successful') or not original.get('serving_application_switched'):
+            raise ValueError('Original data activation evidence failed')
+        current['active_dataset'] = {**original, 'report': original_path.name,
+            'browser': report('original-project-browser-20261122.json'),
+            'prior_18_case_suite_scope': 'historical synthetic five-product DB; not rerun against original accounts'}
+        semantic_path = ROOT / 'docs/original-project-semantic-20261122.json'
+        current['active_dataset']['semantic_verification'] = report(semantic_path.name) if semantic_path.exists() else 'pending'
+        current['runtime_open_issue'] = 'Original project data activated; full role/write regression on original-data copy and hosting acceptance pending'
+        current['product_index_sync']['enabled_on_current_business_database'] = True
+        current['product_index_sync']['migration_applied_to_current_database'] = True
     for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],

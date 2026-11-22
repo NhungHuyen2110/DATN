@@ -4,6 +4,7 @@ import unicodedata
 import math
 import time
 from shared.observability import measure
+from shared.retrieval_limits import SourceUnavailable
 
 from .entity_linking import link_query, normalize
 from .ranking import reciprocal_rank_fusion, finalize_topk, price_and_stock_valid
@@ -180,14 +181,23 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     if 'lexical' in selected and lexical_retriever is not None:
         rankings['lexical'] = [pid for pid in call('lexical', lexical_retriever, query,
                               eligible_ids=list(eligible), top_k=pool_size) if pid in eligible][:pool_size]
-    degraded = []
+    degraded, source_errors = [], {}
+    def source_failure(name, error):
+        # Internal diagnostics expose controlled codes, never raw exception text/URLs/queries.
+        source_errors[name] = {'error_type': type(error).__name__}
+        if isinstance(error, SourceUnavailable):
+            reasons = {'Source is cooling down': 'cooldown',
+                       'Source already has a retrieval in flight': 'in_flight',
+                       'Retrieval exceeded its source time budget': 'timeout'}
+            source_errors[name]['reason'] = reasons.get(str(error), 'unavailable')
     if 'dense' in selected:
         try:
             rankings["dense"] = [int(p["ProductID"]) for p in call('dense', dense, retrieval_query, top_k=pool_size,
                                                                    eligible_ids=list(eligible))
                                  if p.get("ProductID") is not None and int(p['ProductID']) in eligible]
-        except Exception:
+        except Exception as error:
             degraded.append("dense_unavailable")
+            source_failure('dense', error)
     evidence = {}
     if 'graph' in selected:
         try:
@@ -198,8 +208,9 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
                         for p in graph_products if int(p['ProductID']) in eligible}
             rankings["graph"] = [int(p['ProductID']) for p in graph_products
                                  if evidence.get(int(p['ProductID']))][:pool_size]
-        except Exception:
+        except Exception as error:
             degraded.append("graph_unavailable")
+            source_failure('graph', error)
     fused = [{"ProductID": pid, "score": score, "retrieval_sources": sources,
               "score_type": "rrf", "graph_paths": evidence.get(pid, [])}
              for pid, score, sources in call('fusion', reciprocal_rank_fusion, rankings)]
@@ -257,7 +268,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             "degraded": degraded, "requested_k": top_k, "returned_k": len(products),
             "understanding": understanding}
     if diagnostics:
-        result['diagnostics'] = {'source_ranks': rankings, 'candidate_k': pool_size,
+        result['diagnostics'] = {'source_ranks': rankings, 'source_errors': source_errors, 'candidate_k': pool_size,
                                  'eligible_products': len(eligible), 'candidate_union': len(fused),
                                  'timings_seconds': timings, 'total_seconds': time.perf_counter() - started,
                                  'reranker': getattr(reranker, 'name', None)}

@@ -1,0 +1,11 @@
+{
+    "successful":  true,
+    "browser":  "actual installed Chrome",
+    "catalog_products":  500,
+    "all_catalog_sku_images_mapped":  true,
+    "catalog_first_image_decoded":  true,
+    "detail_images_decoded":  2,
+    "authentication_tested":  false,
+    "private_rows_accessed":  false,
+    "writes_performed":  false
+}

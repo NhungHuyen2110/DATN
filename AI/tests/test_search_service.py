@@ -53,6 +53,20 @@ class SearchServiceTests(unittest.TestCase):
         with self.assertRaises(RetrievalUnavailable):
             search('nhẫn', 3, dense=lambda *a, **k: [], catalog=failed, parse_price=parse_price)
 
+    def test_source_diagnostics_never_exposes_exception_credentials(self):
+        from shared.retrieval_limits import SourceUnavailable
+        for error, expected in ((ConnectionError('private-password-in-upstream-url'),
+                                  {'error_type': 'ConnectionError'}),
+                                 (SourceUnavailable('Source already has a retrieval in flight'),
+                                  {'error_type': 'SourceUnavailable', 'reason': 'in_flight'})):
+            def failed(*args, **kwargs):
+                raise error
+            options = dict(dense=failed, catalog=lambda: {1: product(1)}, parse_price=parse_price)
+            result = search('nhẫn', 1, diagnostics=True, **options)
+            self.assertEqual(result['diagnostics']['source_errors']['dense'], expected)
+            self.assertNotIn('private-password', str(result))
+            self.assertNotIn('diagnostics', search('nhẫn', 1, **options))
+
     def test_children_and_missing_audience_facts_not_invented(self):
         self.assertEqual(self.run_search('nhẫn cho con gái 8 tuổi')['status'], 'clarification_required')
         self.assertEqual(self.run_search('nhẫn cho phái nữ')['status'], 'missing_verified_attributes')
