@@ -1,0 +1,10 @@
+{
+  "passed": 673,
+  "subtests_passed": 829,
+  "warnings": 1,
+  "duration_seconds": 123.71,
+  "log": ".local-tmp\\backend-demo-final-20261122.log",
+  "log_sha256": "aaff64a6dca35dda857131567f8ed2784b207c8d01d72475d9b4cc958307529a",
+  "scope": "guarded offline runner: SQLite memory only, external network blocked",
+  "unique_scenarios_not_claimed": true
+}

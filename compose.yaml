@@ -96,7 +96,7 @@ services:
       neo4j: {condition: service_healthy}
   qdrant:
     <<: *runtime
-    image: qdrant/qdrant:v1.15.5
+    image: qdrant/qdrant:v1.18.3
     volumes: [rebuild_qdrant:/qdrant/storage]
     networks: [ai-data]
     mem_limit: 1g

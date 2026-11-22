@@ -9,6 +9,7 @@ import hashlib
 import os
 import secrets
 import smtplib
+import ssl
 from email.message import EmailMessage
 from urllib.parse import quote
 
@@ -63,7 +64,7 @@ def _send_email(recipient: str, url: str) -> bool:
     message["To"] = recipient
     message.set_content(f"Đường dẫn đặt lại mật khẩu (hết hạn sau 15 phút):\n{url}\n\nNếu bạn không yêu cầu, hãy bỏ qua email này.")
     with smtplib.SMTP(host, int(os.getenv("SMTP_PORT", "587")), timeout=10) as client:
-        client.starttls()
+        client.starttls(context=ssl.create_default_context())
         client.login(username, password)
         client.send_message(message)
     return True

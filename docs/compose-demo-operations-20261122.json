@@ -1,0 +1,54 @@
+{
+  "prometheus_targets": [
+    {
+      "instance": "business-api:8001",
+      "health": "up"
+    },
+    {
+      "instance": "ai-api:8000",
+      "health": "up"
+    },
+    {
+      "instance": "index-worker:9101",
+      "health": "up"
+    }
+  ],
+  "catalog_products": 5,
+  "business_graph_stock_match": true,
+  "current_stock_product_1": 94,
+  "projection_jobs": [
+    {
+      "product_id": 1,
+      "generation": 2,
+      "delivered_generation": 2,
+      "status": "done"
+    },
+    {
+      "product_id": 2,
+      "generation": 1,
+      "delivered_generation": 1,
+      "status": "done"
+    },
+    {
+      "product_id": 3,
+      "generation": 1,
+      "delivered_generation": 1,
+      "status": "done"
+    },
+    {
+      "product_id": 4,
+      "generation": 1,
+      "delivered_generation": 1,
+      "status": "done"
+    },
+    {
+      "product_id": 5,
+      "generation": 1,
+      "delivered_generation": 1,
+      "status": "done"
+    }
+  ],
+  "successful": true,
+  "production_accessed": false,
+  "scope": "single warm demo episode, not load/SLA benchmark"
+}

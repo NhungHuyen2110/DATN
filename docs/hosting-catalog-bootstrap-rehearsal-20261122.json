@@ -1,0 +1,18 @@
+{
+  "successful": true,
+  "mode": "apply",
+  "products": 500,
+  "source_sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+  "production_accessed": false,
+  "empty_database_backup_sha256": "897264610dafc2f6969612cdb0b8d7ef9dfba1489ccbb52985b6a131ea658945",
+  "demo_users": 3,
+  "orders": 0,
+  "existing_rows_overwritten": false,
+  "credentials_printed": false,
+  "independent_sql_counts": "500|3|0",
+  "seeded_database_backup_sha256": "060c2c607d402e5a2b61cd47c21b1e7f0c3821c273c1875c55da5ae9344fcc5a",
+  "previous_five_product_database_preserved": true,
+  "credentials_file": ".local-tmp\\recovery\\hosting-bootstrap-20261122\\demo-accounts.json",
+  "note": "No graph/vector activation; use separate hosting project volumes for this catalog",
+  "completed_utc": "2026-11-22T00:28:04.691658+00:00"
+}

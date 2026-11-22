@@ -1,0 +1,11 @@
+﻿{
+    "successful":  true,
+    "compose_hosting_parse":  "passed",
+    "caddy_validation":  "actual image, valid configuration",
+    "caddy_version":  "2.10.2-alpine",
+    "validation_network":  "none",
+    "credentials_printed":  false,
+    "public_deployment":  false,
+    "certificates_issued":  false,
+    "hosting_purchased":  false
+}

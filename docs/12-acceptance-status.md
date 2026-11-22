@@ -2,6 +2,8 @@
 
 **Toàn dự án chưa hoàn thành.** Source mới chưa kích hoạt vào website đang phục vụ. Native tests không thay container tests; smoke predictions không phải benchmark chất lượng.
 
+**Mốc mới nhất 22/11:** 10 container demo, 4 image riêng; Chrome **18/18, không skip/flaky**. Có model thật, ba nguồn lexical/dense/graph, 5 job hoàn tất và đồng bộ checkout generation 2. Prometheus có 3 target up, Grafana có ảnh thật. Nhánh GitHub mới đã push; 5 workflow commit `2ad4a93` đạt. Bootstrap 500 CSV/3 user ở DB mới riêng, backup và guard không overwrite đạt. Compose/Caddy hosting validate đạt nhưng chưa public deploy. Các gate cũ phía dưới là lịch sử; audit, human benchmark, LLM, hosting, full fault matrix và security scans vẫn mở. [Test và bước hosting](20-demo-test-and-hosting-next-steps.md).
+
 **Mốc 22/11 thay thế các gate Docker cũ trong bảng lịch sử:** Docker data đã chuyển D, có backup/checksum/rollback (`16-docker-storage-on-d.md`). Đã build 3 image và chạy 5 core containers. Full Chrome trên image trước: 17 đạt/1 skip Grafana. AI container outage: COD vẫn hoạt động, AI phục hồi có đối chiếu live. Worker dùng model thật và Qdrant HTTP container + PG/Neo4j native đã đạt retry/update/delete. Đó chưa là full Compose.
 
 AI regression mới: 84 đạt/1 skip (`ai-limits-contract-final-20261122.json`); 3 SKU/Top-K smoke queries đạt trên image giới hạn nguồn. Browser subset mới: public recommendations đạt, Admin diagnostics timeout; cold-start đầu thiếu trường kết quả. Giữ các lỗi và gate chưa đóng, không ghi nghiệm thu thành công. Source/full worker image, monitoring containers, toàn fault matrix, human labels và remote deployment còn thiếu.

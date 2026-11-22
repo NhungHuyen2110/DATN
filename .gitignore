@@ -27,3 +27,4 @@ jewelry_dataset_download/extracted/
 *.vhdx
 /tatus --short
 /-files *
+/private/

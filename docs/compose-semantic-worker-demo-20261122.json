@@ -1,0 +1,19 @@
+{
+  "successful": false,
+  "project": "lumiere-rebuild-test",
+  "production_accessed": false,
+  "scope": "5 synthetic products in actual Compose; real pinned model; not quality benchmark",
+  "artifacts": ".local-tmp\\compose-semantic-worker-demo-20261122",
+  "backup_sha256": "345baa7f17dc32c5c06e7904681434c616a86f03dcca1f00e9b2934534d252ea",
+  "sync_status": {
+    "enabled": true,
+    "states": {
+      "done": 5
+    },
+    "last_success": "2026-11-22T00:12:31.028027+00:00",
+    "oldest_pending_seconds": null
+  },
+  "error_type": "RuntimeError",
+  "error_summary": "Lab command failed; see artifact 77",
+  "completed_utc": "2026-11-22T00:12:36.452286+00:00"
+}

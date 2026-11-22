@@ -2,6 +2,8 @@
 
 CURRENT: instrumentation đã nối vào Business API và AI API qua `shared/observability.py`. Mặc định tắt khi chạy source cũ; Compose test bật bằng `LUMIERE_METRICS_ENABLED=true`. Không đổi `.env` đang dùng. Cần cài dependency mới từ requirements trước khi bật.
 
+Mốc mới 22/11: Prometheus/Grafana đã chạy trong Compose thật; scrape Business/AI/worker đều up và Chrome dashboard đạt trong full suite 18/18. Ảnh `figures/grafana-compose-20261122.png`, báo cáo `compose-demo-operations-20261122.json`. GitHub nhánh demo đã chạy 5 workflow thành công ở commit `2ad4a93`; commit sau cần đối chiếu CI riêng. Còn security scans, image publish/staging, host/container metrics và alert baseline. Kết quả native bên dưới là lịch sử riêng, không thay thế kết quả Compose mới.
+
 CHANGE: counter HTTP theo service/method/route template/status, histogram thời gian HTTP và các bước parse/catalog/dense/graph/fusion/verification. Correlation UUID đi từ request AI sang request catalog; context được reset sau request. Log chỉ chứa UUID, method, route template, status và thời gian. Không log body/query string/token/ID người dùng. Nginx access log cũng không chứa URI/query string. Dữ liệu metrics không chứa request_id để tránh cardinality tăng theo request.
 
 Endpoint `/internal/metrics` yêu cầu bearer token; thiếu hoặc sai token trả 404. Proxy chặn `/api/internal/` và `/ai/internal/`. Prometheus scrape trực tiếp qua network riêng. Token trong `infra/prometheus/prometheus.yml` và `.env.example` là cùng một giá trị giả cho LOCAL test; khi thay token phải thay cả config scrape riêng, không dùng token giả để hosting. Grafana yêu cầu đăng nhập, signup/anonymous bị tắt; dashboard tại `/grafana/` chỉ có khi profile monitoring hoạt động.

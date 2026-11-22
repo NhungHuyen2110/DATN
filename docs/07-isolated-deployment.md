@@ -1,6 +1,6 @@
 # PHASE 7 — Đóng gói triển khai cách ly
 
-CURRENT 22/11: Engine 28.5.1 đã phục hồi; Docker VHD hoạt động trên D qua junction, có backup/checksum/rollback (`16-docker-storage-on-d.md`). Frontend, Business và AI image đã build; 5 core containers chạy qua loopback proxy 18080. Full Chrome trên image trước đạt 17/1 skip Grafana. AI container outage bản mới đạt login/COD/role guard và recovery có đối chiếu live (`compose-ai-container-fault-final-20261122.json`). Worker image/full graph/dense/monitoring Compose và dependency fault matrix còn thiếu; PHASE 7 chưa nghiệm thu.
+CURRENT 22/11: Engine 28.5.1, Docker data trên D có backup/checksum. Đủ 4 image và 10 container demo cùng chạy; Chrome 18/18 với graph/vector/model/worker/Grafana. CSV bootstrap 500 sản phẩm đã diễn tập ở DB mới riêng; website local vẫn dùng 5 sản phẩm giả. AI outage/COD trên stack semantic đạt (`compose-semantic-ai-fault-20261122.json`). Hosting Compose/Caddy đã validate nhưng chưa public deploy. Còn toàn fault/load matrix, cloud staging, SMTP và Ollama/LLM acceptance; PHASE 7 chưa nghiệm thu toàn bộ đặc tả. Xem `20-demo-test-and-hosting-next-steps.md`.
 
 CHANGE: `compose.yaml` dùng project `lumiere-rebuild-test`, volume riêng, không dùng tên container cố định, không mount `.env` hay source host vào container. Chỉ proxy mở cổng loopback 18080. PostgreSQL, Qdrant, Neo4j và Ollama không publish cổng. Business API không phụ thuộc AI/graph/vector trong startup. Ollama là profile tùy chọn; chat mới trả lời deterministic khi không dùng LLM.
 

@@ -1,16 +1,16 @@
 {
-  "updated_utc": "2026-11-22T00:01:09.403713+00:00",
+  "updated_utc": "2026-11-22T01:11:28.801137+00:00",
   "branch": "rebuild/lumiere-demo-20261122",
   "complete_project": false,
-  "source_state": "uncommitted; existing user changes preserved; no production activation",
+  "source_state": "Demo branch; exact source/CI commits recorded separately; no production activation",
   "acceptance_checklist": "12-acceptance-status.md",
   "backend_regression": {
-    "passed": 671,
+    "passed": 673,
     "subtests_passed": 829,
     "warnings": 1,
-    "duration_seconds": 142.38,
-    "log": ".local-tmp\\backend-regression-latest-20261121.log",
-    "log_sha256": "ceaffcdb18fa6d7f9aeda8892361843e72a61b2cdbbac7eb25de7e1d0cac4f78",
+    "duration_seconds": 123.71,
+    "log": ".local-tmp\\backend-demo-final-20261122.log",
+    "log_sha256": "aaff64a6dca35dda857131567f8ed2784b207c8d01d72475d9b4cc958307529a",
     "scope": "guarded offline runner: SQLite memory only, external network blocked",
     "unique_scenarios_not_claimed": true
   },
@@ -33,21 +33,198 @@
     "base_url": "http://127.0.0.1:18080",
     "api_prefix": "/api",
     "stats": {
-      "startTime": "2026-11-21T23:58:16.492Z",
-      "duration": 53849.976,
-      "expected": 17,
-      "skipped": 1,
+      "startTime": "2026-11-22T00:51:31.748Z",
+      "duration": 212015.287,
+      "expected": 18,
+      "skipped": 0,
       "unexpected": 0,
       "flaky": 0
     },
     "production_accessed": false,
     "public_deployment": false,
     "selection": "full configured suite",
-    "optional_dense_graph": "not started; actual lexical fallback through source AI API",
-    "monitoring_case": "skipped; native monitoring evidence exists separately",
-    "artifacts": ".local-tmp\\compose-demo-full-browser-r2-20261122",
-    "report": "compose-demo-full-browser-r2-20261122.json",
-    "scope_note": "Latest full core container suite: 17 passed, 1 optional Grafana skip; lexical fallback"
+    "optional_dense_graph": "actual Compose graph/vector and pinned model",
+    "monitoring_case": "actual Compose Grafana browser",
+    "artifacts": ".local-tmp\\compose-release-full-browser-20261122",
+    "report": "compose-release-full-browser-20261122.json",
+    "scope_note": "18/18 with actual graph/vector/model, worker and Grafana; five synthetic products"
+  },
+  "compose_semantic": {
+    "successful": true,
+    "project": "lumiere-rebuild-test",
+    "production_accessed": false,
+    "scope": "read-only verification of actual Compose with five synthetic products and pinned model",
+    "backup_guard": {
+      "verified": true,
+      "database_name": "lumiere_test_rebuild",
+      "backup_sha256": "345baa7f17dc32c5c06e7904681434c616a86f03dcca1f00e9b2934534d252ea"
+    },
+    "sync_status": {
+      "enabled": true,
+      "states": {
+        "done": 5
+      },
+      "last_success": "2026-11-22T00:12:31.028027+00:00",
+      "oldest_pending_seconds": null
+    },
+    "retrieval": {
+      "successful": true,
+      "sources": [
+        "lexical",
+        "dense",
+        "graph"
+      ],
+      "returned_ids": [
+        1,
+        2,
+        3
+      ],
+      "live_price_stock_verified": true,
+      "verified_graph_paths": true,
+      "graph_products": 5,
+      "graph_edges": 25,
+      "qdrant_points": 5,
+      "vector_dimension": 384,
+      "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+      "readiness_attempts": 1,
+      "quality_benchmark": false
+    },
+    "verified_utc": "2026-11-22T00:17:19.013685+00:00"
+  },
+  "compose_operations": {
+    "prometheus_targets": [
+      {
+        "instance": "business-api:8001",
+        "health": "up"
+      },
+      {
+        "instance": "ai-api:8000",
+        "health": "up"
+      },
+      {
+        "instance": "index-worker:9101",
+        "health": "up"
+      }
+    ],
+    "catalog_products": 5,
+    "business_graph_stock_match": true,
+    "current_stock_product_1": 94,
+    "projection_jobs": [
+      {
+        "product_id": 1,
+        "generation": 2,
+        "delivered_generation": 2,
+        "status": "done"
+      },
+      {
+        "product_id": 2,
+        "generation": 1,
+        "delivered_generation": 1,
+        "status": "done"
+      },
+      {
+        "product_id": 3,
+        "generation": 1,
+        "delivered_generation": 1,
+        "status": "done"
+      },
+      {
+        "product_id": 4,
+        "generation": 1,
+        "delivered_generation": 1,
+        "status": "done"
+      },
+      {
+        "product_id": 5,
+        "generation": 1,
+        "delivered_generation": 1,
+        "status": "done"
+      }
+    ],
+    "successful": true,
+    "production_accessed": false,
+    "scope": "single warm demo episode, not load/SLA benchmark"
+  },
+  "github_ci_baseline": {
+    "successful": true,
+    "tested_commit": "2ad4a939628ec68774b7de67ea2aaa564b375adf",
+    "workflows": [
+      {
+        "name": "Independent service builds",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742278",
+        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+      },
+      {
+        "name": "Backend regression",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742327",
+        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+      },
+      {
+        "name": "Graph and retrieval tests",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742277",
+        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+      },
+      {
+        "name": "Isolated PostgreSQL synchronization",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742275",
+        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+      },
+      {
+        "name": "Frontend browser and source API integration",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742281",
+        "head_sha": "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+      }
+    ],
+    "note": "Baseline commit only; later commits must be checked separately"
+  },
+  "hosting_catalog_bootstrap_rehearsal": {
+    "successful": true,
+    "mode": "apply",
+    "products": 500,
+    "source_sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+    "production_accessed": false,
+    "empty_database_backup_sha256": "897264610dafc2f6969612cdb0b8d7ef9dfba1489ccbb52985b6a131ea658945",
+    "demo_users": 3,
+    "orders": 0,
+    "existing_rows_overwritten": false,
+    "credentials_printed": false,
+    "independent_sql_counts": "500|3|0",
+    "seeded_database_backup_sha256": "060c2c607d402e5a2b61cd47c21b1e7f0c3821c273c1875c55da5ae9344fcc5a",
+    "previous_five_product_database_preserved": true,
+    "credentials_file": ".local-tmp\\recovery\\hosting-bootstrap-20261122\\demo-accounts.json",
+    "note": "No graph/vector activation; use separate hosting project volumes for this catalog",
+    "completed_utc": "2026-11-22T00:28:04.691658+00:00"
+  },
+  "frontend_caption_smoke": {
+    "successful": true,
+    "browser": "actual installed Chrome",
+    "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+    "base_url": "http://127.0.0.1:18080",
+    "api_prefix": "/api",
+    "stats": {
+      "startTime": "2026-11-22T01:04:33.262Z",
+      "duration": 59201.506,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "production_accessed": false,
+    "public_deployment": false,
+    "selection": "public recommendations",
+    "optional_dense_graph": "actual Compose graph/vector and pinned model",
+    "monitoring_case": "skipped; native evidence separate",
+    "artifacts": ".local-tmp\\compose-public-copy-browser-20261122"
   },
   "docker_storage": {
     "successful": true,
@@ -93,14 +270,14 @@
       "cod_checkout": 201,
       "own_order_read": 200,
       "customer_admin_access": 403,
-      "order_id": 205,
+      "order_id": 221,
       "production_accessed": false
     },
     "recovered_product_live_price_stock_verified": true,
     "ai_recovered_with_verified_product": true,
     "recovered": true,
-    "recovery_seconds": 34.63216089992784,
-    "report": "compose-ai-container-fault-final-20261122.json",
+    "recovery_seconds": 11.256851600001028,
+    "report": "compose-semantic-ai-fault-20261122.json",
     "scope_note": "Single synthetic lab episode on bounded-source image; not an SLA"
   },
   "docker_browser_latest_subset": {
@@ -110,23 +287,23 @@
     "base_url": "http://127.0.0.1:18080",
     "api_prefix": "/api",
     "stats": {
-      "startTime": "2026-11-21T23:58:16.492Z",
-      "duration": 53849.976,
-      "expected": 17,
-      "skipped": 1,
+      "startTime": "2026-11-22T00:51:31.748Z",
+      "duration": 212015.287,
+      "expected": 18,
+      "skipped": 0,
       "unexpected": 0,
       "flaky": 0
     },
     "production_accessed": false,
     "public_deployment": false,
     "selection": "full configured suite",
-    "optional_dense_graph": "not started; actual lexical fallback through source AI API",
-    "monitoring_case": "skipped; native monitoring evidence exists separately",
-    "artifacts": ".local-tmp\\compose-demo-full-browser-r2-20261122",
-    "report": "compose-demo-full-browser-r2-20261122.json",
-    "scope_note": "Supersedes failed earlier subsets; full semantic/monitoring deployment still pending"
+    "optional_dense_graph": "actual Compose graph/vector and pinned model",
+    "monitoring_case": "actual Compose Grafana browser",
+    "artifacts": ".local-tmp\\compose-release-full-browser-20261122",
+    "report": "compose-release-full-browser-20261122.json",
+    "scope_note": "Supersedes failed earlier subsets; full dependency/cold-start/load matrix still pending"
   },
-  "runtime_open_issue": "Latest full core suite and 9 internal reads passed after memory relief; full semantic stack/cold-start matrix pending",
+  "runtime_open_issue": "Local 18-case semantic/monitoring demo passed; hosting and wider load/fault acceptance pending",
   "runtime_resources": {
     "report": "runtime-memory-pressure-20261122.json",
     "native_graph_lab_running": false,
@@ -162,7 +339,8 @@
     "enabled_on_current_business_database": false,
     "migration_applied_to_current_database": false,
     "network_qdrant_real_model_worker_verified": true,
-    "full_compose_worker_verified": false,
+    "full_compose_worker_verified": true,
+    "enabled_on_isolated_compose_demo": true,
     "reports": [
       "postgres-worker-metrics-integration.json",
       "qdrant-named-volume-real-model-worker-20261122.json"
@@ -182,6 +360,24 @@
     "enabled_on_existing_serving_processes": false,
     "screenshot": "figures/grafana-native-20261121.png",
     "worker_queue_verified": true
+  },
+  "compose_monitoring": {
+    "targets": [
+      {
+        "instance": "business-api:8001",
+        "health": "up"
+      },
+      {
+        "instance": "ai-api:8000",
+        "health": "up"
+      },
+      {
+        "instance": "index-worker:9101",
+        "health": "up"
+      }
+    ],
+    "screenshot": "figures/grafana-compose-20261122.png",
+    "browser_verified": true
   },
   "native_fault_injection": {
     "actual_ai_process_unavailable": true,
@@ -229,15 +425,15 @@
       "successful": true,
       "service": "index-worker",
       "exit_code": 0,
-      "completed_utc": "2026-11-21T23:51:49.273195+00:00",
+      "completed_utc": "2026-11-22T00:48:36.511545+00:00",
       "dockerfile_sha256": "67c346596e8f8d44a8504d9d1d8b6449282512c6bf003733db84924b8b6dbd7c",
-      "log": ".local-tmp\\docker-worker-cached-image-20261122.log",
-      "log_sha256": "8258513a7aa60d29865cc663c72d2bac1242088a4670181ab69e12564eb419de",
+      "log": ".local-tmp\\docker-worker-bootstrap-image-20261122.log",
+      "log_sha256": "41aa19b94b0085fa79b44ddf0c938f85d7daae11fade6bf8804b80d6d0283ace",
       "source_state": "uncommitted local changes; image is not a published release",
       "pushed": false,
       "containers_started": false,
       "production_database_accessed": false,
-      "image_id": "sha256:6f085d766d443895b8e4f64c63bb265933ecedd2a94a9d3e0500de7c100bba2a"
+      "image_id": "sha256:e3c8325eed0e71dfbea40102c07c6c9651990a3e207782fcd4d29be396c80e74"
     },
     "core_containers_started": [
       "postgres",
@@ -247,10 +443,12 @@
       "ai-api"
     ],
     "core_runtime_report": "compose-core-runtime-20261122.json",
-    "core_optional_graph_dense": "not started; lexical fallback",
+    "core_optional_graph_dense": "actual Compose graph/dense/model verified",
+    "running_demo_services": 10,
+    "ollama_enabled": false,
     "container_ai_fault_test_executed": true,
     "full_fault_matrix_executed": false,
-    "github_workflows_executed": false,
+    "github_workflows_executed": true,
     "docker_data_vhd_physically_on_d": true,
     "public_deployment": false
   },
@@ -266,8 +464,8 @@
   "remaining": [
     "Full per-file semantic audit",
     "Evidence-backed Audience/Style facts and human-reviewed benchmark",
-    "Full Compose graph/dense/worker/monitoring and remaining dependency fault matrix",
-    "105-query SQL baseline ablation; intermittent cold-start/catalog API failure and repeated-request acceptance",
+    "Remaining dependency fault matrix; controlled cold-start/concurrency/load acceptance",
+    "500-catalog full hosting semantic acceptance; 105-query SQL ablation",
     "LLM narrative/grounding evaluation",
     "Full CI/CD scans/staging/approved hosting/HTTPS",
     "Host/container exporters, alerts and complete DATN diagrams/report"

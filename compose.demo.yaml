@@ -1,0 +1,8 @@
+# Local synthetic demo only. Keep the base deployment's sync flag disabled.
+services:
+  business-api:
+    environment:
+      PRODUCT_INDEX_SYNC_ENABLED: 'true'
+  index-worker:
+    volumes:
+      - ./.local-tmp/recovery/compose-demo-20261122:/recovery:ro

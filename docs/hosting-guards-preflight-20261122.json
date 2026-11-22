@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "existing_credentials_preserved": true,
+  "invalid_domain_rejected": true,
+  "linux_permissions": {
+    "worker_can_read_backup": true,
+    "worker_cannot_read_account_passwords": true,
+    "worker_cannot_write_backup": true
+  },
+  "nonempty_database_reseed_rejected": true,
+  "independent_sql_counts": "500|3|0",
+  "production_accessed": false,
+  "public_deployment": false
+}

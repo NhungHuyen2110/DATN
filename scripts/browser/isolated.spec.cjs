@@ -66,7 +66,7 @@ for (const role of ['customer', 'staff']) {
   });
 }
 
-test('Admin sees actual lexical fallback diagnostics and opt-in graph feature scores', async ({ page }) => {
+test('Admin sees verified retrieval diagnostics and opt-in graph feature scores', async ({ page }) => {
   // Includes login, page boot and two separate diagnostic requests. Keep the
   // API/proxy per-request deadlines unchanged; this is a whole-scenario budget.
   test.setTimeout(90000);
@@ -85,16 +85,23 @@ test('Admin sees actual lexical fallback diagnostics and opt-in graph feature sc
     return result.json();
   }
   const result = await diagnose();
-  expect(result.status).toBe('degraded');
+  const semantic = process.env.LUMIERE_BROWSER_WITH_SEMANTIC === '1';
+  expect(result.status).toBe(semantic ? 'ok' : 'degraded');
   expect(result.returned_k).toBe(3);
   expect(result.products[0].score_type).toBe('rrf');
   expect(result.products[0].score).toBeGreaterThan(0);
-  expect(result.products[0].retrieval_sources).toEqual(['lexical']);
+  if (semantic) {
+    expect(result.products[0].retrieval_sources).toEqual(expect.arrayContaining(['lexical', 'dense', 'graph']));
+    expect(result.products[0].graph_paths.length).toBeGreaterThan(0);
+  } else {
+    expect(result.products[0].retrieval_sources).toEqual(['lexical']);
+  }
   await expect(page.locator('#diagnostics-output')).toBeVisible();
   await page.locator('#rerank').check();
   const reranked = await diagnose();
   expect(reranked.products[0].score_type).toBe('normalized_rrf_verified_graph_v1');
-  expect(reranked.products[0].rerank_features.verified_graph).toBe(0);
+  if (semantic) expect(reranked.products[0].rerank_features.verified_graph).toBeGreaterThan(0);
+  else expect(reranked.products[0].rerank_features.verified_graph).toBe(0);
 });
 
 test('public recommendations ignore supplied customer identity and render compatible cards', async ({ page }) => {

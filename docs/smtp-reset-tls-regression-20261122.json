@@ -1,0 +1,13 @@
+{
+  "successful": true,
+  "scope": "mock SMTP protocol security plus full guarded backend regression; no real mail delivery",
+  "tls_certificate_verification": "CERT_REQUIRED",
+  "tls_hostname_verification": true,
+  "certificate_failure_prevents_login_and_send": true,
+  "backend_passed": 673,
+  "backend_subtests_passed": 829,
+  "warnings": 1,
+  "log": ".local-tmp/backend-demo-final-20261122.log",
+  "production_accessed": false,
+  "emails_sent_to_real_recipients": false
+}

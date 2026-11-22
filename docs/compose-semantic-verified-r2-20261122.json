@@ -1,0 +1,42 @@
+{
+  "successful": true,
+  "project": "lumiere-rebuild-test",
+  "production_accessed": false,
+  "scope": "read-only verification of actual Compose with five synthetic products and pinned model",
+  "backup_guard": {
+    "verified": true,
+    "database_name": "lumiere_test_rebuild",
+    "backup_sha256": "345baa7f17dc32c5c06e7904681434c616a86f03dcca1f00e9b2934534d252ea"
+  },
+  "sync_status": {
+    "enabled": true,
+    "states": {
+      "done": 5
+    },
+    "last_success": "2026-11-22T00:12:31.028027+00:00",
+    "oldest_pending_seconds": null
+  },
+  "retrieval": {
+    "successful": true,
+    "sources": [
+      "lexical",
+      "dense",
+      "graph"
+    ],
+    "returned_ids": [
+      1,
+      2,
+      3
+    ],
+    "live_price_stock_verified": true,
+    "verified_graph_paths": true,
+    "graph_products": 5,
+    "graph_edges": 25,
+    "qdrant_points": 5,
+    "vector_dimension": 384,
+    "model_revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "readiness_attempts": 1,
+    "quality_benchmark": false
+  },
+  "verified_utc": "2026-11-22T00:17:19.013685+00:00"
+}

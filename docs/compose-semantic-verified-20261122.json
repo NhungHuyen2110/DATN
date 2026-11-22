@@ -1,0 +1,21 @@
+{
+  "successful": false,
+  "project": "lumiere-rebuild-test",
+  "production_accessed": false,
+  "scope": "read-only verification of actual Compose with five synthetic products and pinned model",
+  "backup_guard": {
+    "verified": true,
+    "database_name": "lumiere_test_rebuild",
+    "backup_sha256": "345baa7f17dc32c5c06e7904681434c616a86f03dcca1f00e9b2934534d252ea"
+  },
+  "sync_status": {
+    "enabled": true,
+    "states": {
+      "done": 5
+    },
+    "last_success": "2026-11-22T00:12:31.028027+00:00",
+    "oldest_pending_seconds": null
+  },
+  "error_type": "CalledProcessError",
+  "verified_utc": "2026-11-22T00:14:42.222876+00:00"
+}

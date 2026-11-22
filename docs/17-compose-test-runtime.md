@@ -2,6 +2,8 @@
 
 URL: http://127.0.0.1:18080. Đây là project `lumiere-rebuild-test`, chỉ mở loopback, dùng 5 sản phẩm giả. Website và database cũ chưa chuyển sang bản này.
 
+**Lịch sử core ban đầu:** các đoạn dưới ghi mốc 5 container/fallback. Hiện đã có 10 container và đầy đủ graph/vector/model/worker/monitoring, Chrome 18/18. Hướng dẫn hiện tại và tài khoản: [20-demo-test-and-hosting-next-steps.md](20-demo-test-and-hosting-next-steps.md).
+
 Core đang chạy gồm reverse proxy, frontend, Business API, AI API và PostgreSQL. Neo4j/Qdrant trong Compose chưa được khởi động/index; chat/gợi ý đang kiểm chứng lexical fallback khi thiếu các nguồn này. Lab worker model thật dùng Qdrant container riêng và PostgreSQL/Neo4j native, không nhận là full Compose deployment.
 
 Tài khoản fixture: `lumiere-e2e-customer@example.com`, `lumiere-e2e-staff@example.com`, `lumiere-e2e-admin@example.com`. Mật khẩu giả dùng chung: `test-only-compose-password-2026!`. Chỉ dành cho bản thử local; không dùng các giá trị này khi triển khai công khai. Fixture reset một lần đã được sử dụng, không chạy lại ca đó mà không tạo fixture mới.

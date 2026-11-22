@@ -1,0 +1,14 @@
+{
+  "successful": true,
+  "service": "frontend",
+  "exit_code": 0,
+  "completed_utc": "2026-11-22T01:03:52.457351+00:00",
+  "dockerfile_sha256": "1b87650e9d17bb41eaaa77a47dad673324ea7be6720a94619cb89a64ebd502b0",
+  "log": ".local-tmp\\docker-frontend-public-copy-image-20261122.log",
+  "log_sha256": "f08a77f9f5834cf2691f52c1464f74934a9af59fb836b3dfb694dc7ac51346be",
+  "source_state": "uncommitted local changes; image is not a published release",
+  "pushed": false,
+  "containers_started": false,
+  "production_database_accessed": false,
+  "image_id": "sha256:e65f0971889ef8ffe71283dcf492c4e47290b3221d4a6abdb723e489a4e898ac"
+}

@@ -1,0 +1,21 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+  "base_url": "http://127.0.0.1:18080",
+  "api_prefix": "/api",
+  "stats": {
+    "startTime": "2026-11-22T01:04:33.262Z",
+    "duration": 59201.506,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "production_accessed": false,
+  "public_deployment": false,
+  "selection": "public recommendations",
+  "optional_dense_graph": "actual Compose graph/vector and pinned model",
+  "monitoring_case": "skipped; native evidence separate",
+  "artifacts": ".local-tmp\\compose-public-copy-browser-20261122"
+}

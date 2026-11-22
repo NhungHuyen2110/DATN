@@ -1,0 +1,21 @@
+{
+  "successful": true,
+  "browser": "actual installed Chrome",
+  "target": "actual frontend/proxy/business/AI/PostgreSQL containers",
+  "base_url": "http://127.0.0.1:18080",
+  "api_prefix": "/api",
+  "stats": {
+    "startTime": "2026-11-22T00:18:59.717Z",
+    "duration": 122586.711,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "production_accessed": false,
+  "public_deployment": false,
+  "selection": "full configured suite",
+  "optional_dense_graph": "actual Compose graph/vector and pinned model",
+  "monitoring_case": "actual Compose Grafana browser",
+  "artifacts": ".local-tmp\\compose-full-semantic-browser-20261122"
+}

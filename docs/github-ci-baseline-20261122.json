@@ -1,0 +1,42 @@
+﻿{
+    "successful":  true,
+    "tested_commit":  "2ad4a939628ec68774b7de67ea2aaa564b375adf",
+    "workflows":  [
+                      {
+                          "name":  "Independent service builds",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742278",
+                          "head_sha":  "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+                      },
+                      {
+                          "name":  "Backend regression",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742327",
+                          "head_sha":  "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+                      },
+                      {
+                          "name":  "Graph and retrieval tests",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742277",
+                          "head_sha":  "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+                      },
+                      {
+                          "name":  "Isolated PostgreSQL synchronization",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742275",
+                          "head_sha":  "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+                      },
+                      {
+                          "name":  "Frontend browser and source API integration",
+                          "status":  "completed",
+                          "conclusion":  "success",
+                          "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/44964742281",
+                          "head_sha":  "2ad4a939628ec68774b7de67ea2aaa564b375adf"
+                      }
+                  ],
+    "note":  "Baseline commit only; later commits must be checked separately"
+}

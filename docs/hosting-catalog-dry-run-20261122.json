@@ -1,0 +1,9 @@
+{
+  "successful": true,
+  "mode": "dry-run",
+  "products": 500,
+  "source_sha256": "1233ae8d83c503fb38c65d29716119aac5d2a84a71281dc4f7e2165096686786",
+  "production_accessed": false,
+  "database_accessed": false,
+  "completed_utc": "2026-11-22T00:27:43.151162+00:00"
+}

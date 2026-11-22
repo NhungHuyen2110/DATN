@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    log = ROOT / '.local-tmp/backend-regression-latest-20261121.log'
+    log = ROOT / '.local-tmp/backend-demo-final-20261122.log'
     raw = log.read_bytes()
     text = raw.decode('utf-16' if raw.startswith((b'\xff\xfe', b'\xfe\xff')) else 'utf-8-sig', errors='replace')
     result = re.search(r'(\d+) passed, (\d+) warning, (\d+) subtests passed in ([\d.]+)s', text)
@@ -32,39 +32,49 @@ def main():
     backup = report('backup-restore-guard-final-20261121.json')
     sync = report('postgres-worker-metrics-integration.json')
     ablation = report('ablation-smoke-20261121/summary.json')
-    docker_browser_name = 'compose-demo-full-browser-r2-20261122.json'
+    docker_browser_name = 'compose-release-full-browser-20261122.json'
     docker_browser = report(docker_browser_name)
     storage = report('docker-storage-verification-20261122.json')
     network_worker = report('qdrant-named-volume-real-model-worker-20261122.json')
-    fault_name = 'compose-ai-container-fault-final-20261122.json'
+    fault_name = 'compose-semantic-ai-fault-20261122.json'
     fault = report(fault_name)
     subset_name = docker_browser_name
     subset = report(subset_name)
-    worker_build = report('docker-worker-cached-image-20261122.json')
+    worker_build = report('docker-worker-bootstrap-image-20261122.json')
+    semantic = report('compose-semantic-verified-r2-20261122.json')
+    operations = report('compose-demo-operations-20261122.json')
+    ci = report('github-ci-baseline-20261122.json')
+    hosting_seed = report('hosting-catalog-bootstrap-rehearsal-20261122.json')
+    caption = report('compose-public-copy-browser-20261122.json')
     branch = subprocess.check_output(['git', 'branch', '--show-current'], cwd=ROOT, text=True).strip()
-    if not all(item['successful'] for item in (ai, browser, live, backup, sync, storage, network_worker, docker_browser)):
+    if not all(item['successful'] for item in (ai, browser, live, backup, sync, storage, network_worker, docker_browser, semantic, operations, ci, hosting_seed)):
         raise ValueError('Required evidence contains a failed result')
     if not all(fault.get(key) is True for key in ('isolation_passed', 'recovered', 'recovered_product_live_price_stock_verified')):
         raise ValueError('Container fault/recovery evidence required')
     current = {
         'updated_utc': datetime.now(timezone.utc).isoformat(),
         'branch': branch, 'complete_project': False,
-        'source_state': 'uncommitted; existing user changes preserved; no production activation',
+        'source_state': 'Demo branch; exact source/CI commits recorded separately; no production activation',
         'acceptance_checklist': '12-acceptance-status.md',
         'backend_regression': backend,
         'offline_ai_tests': {**ai, 'passed': ai['tests_run'] - ai['skipped'],
                              'report': ai_name},
         'docker_browser_integration': {**docker_browser,
             'report': docker_browser_name,
-            'scope_note': 'Latest full core container suite: 17 passed, 1 optional Grafana skip; lexical fallback'},
+            'scope_note': '18/18 with actual graph/vector/model, worker and Grafana; five synthetic products'},
+        'compose_semantic': semantic,
+        'compose_operations': operations,
+        'github_ci_baseline': ci,
+        'hosting_catalog_bootstrap_rehearsal': hosting_seed,
+        'frontend_caption_smoke': caption,
         'docker_storage': {**storage, 'old_c_copy_removed_after_verified_hash': True,
             'cleanup_report': 'docker-storage-cleanup-20261122.json',
             'active_data_do_not_delete': '.local-tmp/docker-desktop-data'},
         'docker_ai_fault': {**fault, 'report': fault_name,
             'scope_note': 'Single synthetic lab episode on bounded-source image; not an SLA'},
         'docker_browser_latest_subset': {**subset, 'report': subset_name,
-            'scope_note': 'Supersedes failed earlier subsets; full semantic/monitoring deployment still pending'},
-        'runtime_open_issue': 'Latest full core suite and 9 internal reads passed after memory relief; full semantic stack/cold-start matrix pending',
+            'scope_note': 'Supersedes failed earlier subsets; full dependency/cold-start/load matrix still pending'},
+        'runtime_open_issue': 'Local 18-case semantic/monitoring demo passed; hosting and wider load/fault acceptance pending',
         'runtime_resources': {'report': 'runtime-memory-pressure-20261122.json',
             'native_graph_lab_running': False, 'original_user_applications_closed': False},
         'browser_integration': {'passed': browser['stats']['expected'],
@@ -82,11 +92,14 @@ def main():
                                'enabled_on_current_business_database': False,
                                'migration_applied_to_current_database': False,
                                'network_qdrant_real_model_worker_verified': network_worker['successful'],
-                               'full_compose_worker_verified': False,
+                               'full_compose_worker_verified': True,
+                               'enabled_on_isolated_compose_demo': True,
                                'reports': ['postgres-worker-metrics-integration.json', 'qdrant-named-volume-real-model-worker-20261122.json']},
         'observability': {**browser['monitoring'], 'enabled_on_existing_serving_processes': False,
                           'screenshot': 'figures/grafana-native-20261121.png',
                           'worker_queue_verified': True},
+        'compose_monitoring': {'targets': operations['prometheus_targets'],
+                              'screenshot':'figures/grafana-compose-20261122.png', 'browser_verified':True},
         'native_fault_injection': browser['native_fault_injection'],
         'backup_restore': {'successful': backup['successful'], 'table_count': len(backup['table_counts']),
                            'migration_head': backup['migration_head'], 'production_accessed': False,
@@ -98,9 +111,10 @@ def main():
                                  'worker_build_attempt': worker_build,
                                  'core_containers_started': ['postgres', 'business-api', 'frontend', 'reverse-proxy', 'ai-api'],
                                  'core_runtime_report': 'compose-core-runtime-20261122.json',
-                                 'core_optional_graph_dense': 'not started; lexical fallback',
+                                 'core_optional_graph_dense': 'actual Compose graph/dense/model verified',
+                                 'running_demo_services':10, 'ollama_enabled':False,
                                  'container_ai_fault_test_executed': True, 'full_fault_matrix_executed': False,
-                                 'github_workflows_executed': False,
+                                 'github_workflows_executed': True,
                                  'docker_data_vhd_physically_on_d': True, 'public_deployment': False},
         'evaluation': {'draft_queries': 105, 'human_reviewed_queries': 0,
                        'smoke_predictions': sum(mode['queries'] for mode in ablation['modes'].values()),
@@ -108,11 +122,11 @@ def main():
                        'note': 'Smoke run predates related-reference query enhancement',
                        'report': 'ablation-smoke-20261121/summary.json'},
         'remaining': ['Full per-file semantic audit', 'Evidence-backed Audience/Style facts and human-reviewed benchmark',
-                      'Full Compose graph/dense/worker/monitoring and remaining dependency fault matrix',
-                      '105-query SQL baseline ablation; intermittent cold-start/catalog API failure and repeated-request acceptance',
+                      'Remaining dependency fault matrix; controlled cold-start/concurrency/load acceptance',
+                      '500-catalog full hosting semantic acceptance; 105-query SQL ablation',
                       'LLM narrative/grounding evaluation', 'Full CI/CD scans/staging/approved hosting/HTTPS',
                       'Host/container exporters, alerts and complete DATN diagrams/report']}
-    for filename, data in [('backend-regression-latest-20261121.json', backend), ('current-implementation.json', current)]:
+    for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],
                       'ai_passed': current['offline_ai_tests']['passed'], 'browser_passed': browser['stats']['expected'],
