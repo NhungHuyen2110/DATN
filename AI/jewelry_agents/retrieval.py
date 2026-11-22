@@ -6,6 +6,7 @@ import os
 import sys
 import requests
 import re
+import threading
 from decimal import Decimal, InvalidOperation
 
 from qdrant_client import QdrantClient
@@ -13,7 +14,10 @@ from qdrant_client import QdrantClient
 from neo4j import GraphDatabase
 from shared.retrieval_limits import SourceGate
 
-_dense_gate = SourceGate('dense')
+_dense_timeout = float(os.getenv('LUMIERE_DENSE_TIMEOUT_SECONDS', '3'))
+if not 1 <= _dense_timeout <= 10:
+    raise ValueError('Dense timeout must be between 1 and 10 seconds')
+_dense_gate = SourceGate('dense', timeout=_dense_timeout)
 _graph_gate = SourceGate('graph')
 
 
@@ -59,6 +63,7 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "")
 
 qdrant_client = None
 embedding_model = None
+_model_lock = threading.Lock()
 
 
 def get_dense_services():
@@ -67,6 +72,14 @@ def get_dense_services():
         raise RuntimeError('Dense retrieval disabled by runtime policy')
     if qdrant_client is None:
         qdrant_client = QdrantClient(url=QDRANT_URL, timeout=3)
+    if embedding_model is None:
+        with _model_lock:
+            return _load_dense_services()
+    return qdrant_client, embedding_model
+
+
+def _load_dense_services():
+    global embedding_model
     if embedding_model is None:
         # A cold model is expensive. If its vector source/index is unavailable,
         # fail before loading weights so lexical/graph fallback stays bounded.
@@ -113,7 +126,42 @@ def warm_shopping_model():
     def operation():
         from .advice_planner import plan_advice
         return plan_advice('tư vấn quà trang sức',get_dense_services()[1])
-    return _bounded_source(_dense_gate,operation)
+    if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
+        # Startup includes weight loading and eight prototype embeddings. Keep
+        # the normal request budget unchanged and never queue concurrent work.
+        return _dense_gate.call_with_timeout(60, operation)
+    return operation()
+
+
+def graph_expand_candidates(anchor_ids, top_k=35):
+    return _bounded_source(_graph_gate, _graph_expand_candidates, anchor_ids, top_k)
+
+
+def _graph_expand_candidates(anchor_ids, top_k):
+    if not anchor_ids:
+        return []
+    if (not 1 <= top_k <= 1000 or len(anchor_ids) > 1000
+            or any(type(pid) is not int or pid <= 0 for pid in anchor_ids)):
+        raise ValueError('Invalid graph anchors or candidate limit')
+    cypher = """
+        UNWIND range(0, size($anchors)-1) AS anchor_rank
+        MATCH (source:Product {product_id:$anchors[anchor_rank]})-[left]->(entity)<-[right]-(p:Product)
+        WHERE p.product_id <> source.product_id AND type(left)=type(right)
+          AND ((type(left)='BELONGS_TO' AND entity:Category)
+            OR (type(left)='MADE_OF' AND entity:Material)
+            OR (type(left)='HAS_GEMSTONE' AND entity:Gemstone))
+        WITH p, source, entity, left, anchor_rank ORDER BY anchor_rank ASC
+        WITH p, min(anchor_rank) AS best_anchor, count(DISTINCT entity) AS shared,
+             collect(DISTINCT {relationship:type(left),
+                 target_id:coalesce(entity.category_id,entity.material_id,entity.gemstone_id),
+                 source_product_id:source.product_id,
+                 candidate_product_id:p.product_id}) AS paths
+        RETURN p.product_id AS ProductID, paths[0..6] AS paths
+        ORDER BY best_anchor ASC, shared DESC, ProductID ASC LIMIT $limit
+    """
+    with get_graph_driver().session() as session:
+        return [record.data() for record in session.run(
+            cypher, anchors=list(dict.fromkeys(anchor_ids)), limit=top_k)]
 
 
 def graph_search_candidates(query, understanding):

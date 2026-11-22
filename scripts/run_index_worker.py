@@ -78,18 +78,22 @@ def main():
             revision = os.environ['LUMIERE_SYNC_MODEL_REVISION']
             if not model_path.is_dir() or not revision:
                 raise ValueError('Cached model path and pinned revision required')
-            from sentence_transformers import SentenceTransformer
             from neo4j import GraphDatabase
             from qdrant_client import QdrantClient
             from product_projection import ProductProjection
-            # Load before claiming any lease; no event is held during cold start.
-            encoder = SentenceTransformer(str(model_path), device='cpu', local_files_only=True)
             driver = stack.enter_context(GraphDatabase.driver(uri, auth=('neo4j', os.environ['LUMIERE_SYNC_GRAPH_PASSWORD']),
                                                                connection_timeout=5, max_transaction_retry_time=10))
             qdrant = stack.enter_context(closing(QdrantClient(url=url, timeout=5)))
-            deliver = ProductProjection(driver, 'neo4j', qdrant, encoder,
+            deliver = ProductProjection(driver, 'neo4j', qdrant, None,
                                         'paraphrase-multilingual-MiniLM-L12-v2', revision)
+            def ensure_encoder():
+                # No lease is held during cold start. Idle worker boot does
+                # not import Torch or retain a second embedding model.
+                if deliver.encoder is None:
+                    from sentence_transformers import SentenceTransformer
+                    deliver.encoder = SentenceTransformer(str(model_path), device='cpu', local_files_only=True)
             if args.reconcile:
+                ensure_encoder()
                 projected = deliver.known_product_ids()
                 with SessionLocal() as db, db.begin():
                     print(json.dumps({'reconciled_jobs': reconcile(db, projected)}))
@@ -97,6 +101,18 @@ def main():
             while args.watch or processed < args.max_jobs:
                 if observer:
                     observer.refresh(SessionLocal)
+                with SessionLocal() as db:
+                    states = sync_status(db)['states']
+                if not (states.get('pending', 0) or states.get('processing', 0)):
+                    if deliver.encoder is not None:
+                        deliver.encoder = None
+                        import gc
+                        gc.collect()
+                    if args.watch:
+                        time.sleep(5)
+                        continue
+                    break
+                ensure_encoder()
                 attempt_start = time.perf_counter()
                 result = run_one(SessionLocal, deliver)
                 if observer:

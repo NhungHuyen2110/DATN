@@ -20,7 +20,7 @@ def measured_call(stage, function, *args, **kwargs):
         return function(*args, **kwargs)
 
 
-def verified_paths(paths, product, reference=None):
+def verified_paths(paths, product, reference=None, anchors=None):
     fields = {'BELONGS_TO': ('CategoryID', 'Category'), 'HAS_GEMSTONE': ('GemstoneID', 'Gemstone'),
               'MADE_OF': ('MaterialID', 'Material')}
     result, seen = [], set()
@@ -31,21 +31,27 @@ def verified_paths(paths, product, reference=None):
         id_field, name_field = fields[relation]
         if path.get('target_id') != product.get(id_field) or product.get(id_field) is None:
             continue
-        if reference is not None and (path.get('source_product_id') != reference['ProductID']
-                or path.get('candidate_product_id') != product['ProductID'] or reference.get(id_field) != path['target_id']):
+        source = reference
+        if source is None and path.get('source_product_id') is not None:
+            source = (anchors or {}).get(path['source_product_id'])
+            if source is None:
+                continue
+        if source is not None and (path.get('source_product_id') != source['ProductID']
+                or path.get('candidate_product_id') != product['ProductID'] or source.get(id_field) != path['target_id']):
             continue
         key = (relation, path['target_id'])
         if key not in seen:
             clean = {'relationship': relation, 'target_id': path['target_id'], 'target_name': product[name_field]}
-            if reference is not None:
-                clean.update({'source_product_id': reference['ProductID'], 'candidate_product_id': product['ProductID']})
+            if source is not None:
+                clean.update({'source_product_id': source['ProductID'], 'candidate_product_id': product['ProductID']})
             result.append(clean)
             seen.add(key)
     return result
 
 
 def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=None,
-           candidate_k=None, reranker=None, entity_encoder=None, diagnostics=False, lexical_retriever=None):
+           candidate_k=None, reranker=None, entity_encoder=None, diagnostics=False, lexical_retriever=None,
+           graph_expander=None):
     started, timings = time.perf_counter(), {}
     def call(stage, function, *args, **kwargs):
         stage_start = time.perf_counter()
@@ -211,6 +217,27 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         except Exception as error:
             degraded.append("graph_unavailable")
             source_failure('graph', error)
+        # Dense candidates are real anchors, before fusion or final Top-K.
+        # Explicit reference requests retain their stricter reference traversal.
+        anchor_ids = list(dict.fromkeys(rankings.get('dense', [])))[:pool_size]
+        if graph_expander is not None and anchor_ids and reference is None:
+            try:
+                expanded = call('graph', graph_expander, anchor_ids, top_k=pool_size)
+                anchor_products = {pid: eligible[pid] for pid in anchor_ids}
+                accepted = []
+                for item in expanded:
+                    pid = item.get('ProductID')
+                    if pid not in eligible:
+                        continue
+                    paths = verified_paths(item.get('paths', []), eligible[pid], anchors=anchor_products)
+                    if paths:
+                        evidence.setdefault(pid, []).extend(paths)
+                        accepted.append(pid)
+                rankings['graph'] = list(dict.fromkeys(rankings.get('graph', []) + accepted))[:pool_size]
+            except Exception as error:
+                if 'graph_unavailable' not in degraded:
+                    degraded.append('graph_unavailable')
+                source_failure('graph', error)
     fused = [{"ProductID": pid, "score": score, "retrieval_sources": sources,
               "score_type": "rrf", "graph_paths": evidence.get(pid, [])}
              for pid, score, sources in call('fusion', reciprocal_rank_fusion, rankings)]
@@ -227,7 +254,8 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             latest = {pid: p for pid, p in latest.items()
                       if ' ' + required_material + ' ' in ' ' + normalize(p['Material']) + ' '}
     for candidate in fused:
-        candidate['graph_paths'] = verified_paths(candidate['graph_paths'], latest.get(candidate['ProductID'], {}), reference)
+        candidate['graph_paths'] = verified_paths(candidate['graph_paths'], latest.get(candidate['ProductID'], {}),
+                                                   reference, anchors=latest)
     if reference is not None and fused:
         current_reference = latest_reference
         if current_reference is None:
@@ -263,6 +291,12 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             reasons.append('trong khoảng giá yêu cầu')
         if reference is not None:
             reasons.append('thuộc tính được đối soát với sản phẩm #' + str(reference['ProductID']))
+        relation_names = {'BELONGS_TO': 'cùng danh mục', 'MADE_OF': 'cùng chất liệu',
+                          'HAS_GEMSTONE': 'cùng loại đá'}
+        for path in product.get('graph_paths', [])[:2]:
+            if path.get('source_product_id') is not None:
+                reasons.append(relation_names[path['relationship']] + ' ' + path['target_name']
+                               + ' với sản phẩm #' + str(path['source_product_id']))
         product['reason'] = '; '.join(reasons + ['giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại'])
     result = {"products": products, "status": "degraded" if degraded else "ok",
             "degraded": degraded, "requested_k": top_k, "returned_k": len(products),

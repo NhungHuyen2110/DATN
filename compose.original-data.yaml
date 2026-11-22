@@ -5,6 +5,9 @@ services:
       POSTGRES_DB: lumiere_test_original_data
       PRODUCT_INDEX_SYNC_ENABLED: 'true'
   index-worker:
+    # Outbox resumes incomplete jobs on restart. Full reconciliation remains
+    # an explicit maintenance command instead of re-queuing all 500 on boot.
+    command: ['python', '-B', 'scripts/run_index_worker.py', '--environment', 'test', '--confirm-isolated', '--backup-reference', '/recovery/backup-reference.json', '--watch']
     environment:
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
@@ -15,6 +18,9 @@ services:
     environment:
       LUMIERE_SHOPPING_ADVICE_ENABLED: 'true'
       LUMIERE_MODEL_WARMUP_ENABLED: 'true'
+      # Warm queries measured 0.16-2.25 s; allow scheduling jitter on the
+      # memory-constrained Windows demo, without changing the default policy.
+      LUMIERE_DENSE_TIMEOUT_SECONDS: '6'
       OMP_NUM_THREADS: '2'
       MKL_NUM_THREADS: '2'
   neo4j:

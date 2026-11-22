@@ -25,7 +25,9 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = ('conversation-context-model-tests-20261122.json'
+    ai_name = ('dense-anchor-worker-tests-20261122.json'
+               if (ROOT / 'docs/dense-anchor-worker-tests-20261122.json').exists() else
+               'conversation-context-model-tests-20261122.json'
                if (ROOT / 'docs/conversation-context-model-tests-20261122.json').exists() else
                'ai-advice-contract-final-20261122.json'
                if (ROOT / 'docs/ai-advice-contract-final-20261122.json').exists() else
@@ -147,7 +149,9 @@ def main():
             current['active_dataset']['shopping_advice_smoke']=report(advice_path.name)
             current['active_dataset']['shopping_advice_browser']=report('shopping-advice-browser-20261122.json')
         current['runtime_open_issue'] = 'Original project data activated; full role/write regression on original-data copy and hosting acceptance pending'
-        conversation_path=ROOT/'docs/conversation-browser-final-20261122.json'
+        conversation_path=ROOT/'docs/dense-anchor-conversation-browser-20261122.json'
+        if not conversation_path.exists():
+            conversation_path=ROOT/'docs/conversation-browser-final-20261122.json'
         if conversation_path.exists():
             current['conversation_regression']=report(conversation_path.name)
             current['natural_dialogue_llm']={'live_verified':False,'local_enabled':False,
@@ -155,6 +159,16 @@ def main():
                 'needs':['server and model provisioning','actual Qwen quality, latency and privacy acceptance']}
         current['product_index_sync']['enabled_on_current_business_database'] = True
         current['product_index_sync']['migration_applied_to_current_database'] = True
+    anchor_final = ROOT / 'docs/dense-anchor-runtime-final-20261122.json'
+    if anchor_final.exists():
+        current['dense_anchor_runtime'] = report(anchor_final.name)
+        current['dense_anchor_runtime']['report'] = anchor_final.name
+        current['dense_anchor_runtime']['failed_cold_probe_report'] = 'dense-anchor-runtime-20261122.json'
+        current['runtime_open_issue'] = ('Dense-anchor smoke recorded; cold/concurrent load, full role/write regression, '
+                                         'real Qwen dialogue and approved hosting acceptance remain open')
+    roles_path = ROOT / 'docs/dense-anchor-roles-browser-20261122.json'
+    if roles_path.exists():
+        current['original_data_roles_browser'] = report(roles_path.name)
     for filename, data in [('backend-regression-demo-final-20261122.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],

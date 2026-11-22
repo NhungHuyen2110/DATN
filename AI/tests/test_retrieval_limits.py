@@ -5,6 +5,31 @@ from shared.retrieval_limits import SourceGate, SourceUnavailable
 
 
 class RetrievalLimitTests(unittest.TestCase):
+    def test_startup_budget_does_not_change_request_budget_or_allow_queueing(self):
+        release, entered = threading.Event(), threading.Event()
+        gate = SourceGate('test-startup', timeout=.01, cooldown=0)
+        results = []
+        def startup():
+            entered.set()
+            release.wait(1)
+            return 'ready'
+        worker = threading.Thread(target=lambda: results.append(gate.call_with_timeout(1, startup)))
+        try:
+            worker.start()
+            self.assertTrue(entered.wait(1))
+            with self.assertRaises(SourceUnavailable):
+                gate.call(lambda: 'must not queue')
+            time.sleep(.03)  # startup may exceed the ordinary request budget
+            release.set()
+            worker.join(1)
+            self.assertEqual(results, ['ready'])
+            self.assertEqual(gate.timeout, .01)
+            self.assertEqual(gate.call(lambda: 'fresh'), 'fresh')
+        finally:
+            release.set()
+            worker.join(1)
+            gate.close()
+
     def test_failed_source_is_not_retried_until_cooldown_then_can_recover(self):
         now, calls = [100], []
         gate = SourceGate('test-cooldown', clock=lambda: now[0], cooldown=10)

@@ -1,0 +1,1885 @@
+{
+    "baseline":  "0684da518c5777945647ef403c06a61bd0c78a8f",
+    "full_per_file_review_complete":  false,
+    "source_files_in_inventory":  313,
+    "entries":  [
+                    {
+                        "path":  "scripts/native_monitoring_lab.py",
+                        "bytes":  7488,
+                        "sha256":  "6415e80445da1ad085983bf4c4310c3c4c99de52f6bae309c8f54997ad3c2c9e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/native_fault_lab.py",
+                        "bytes":  2773,
+                        "sha256":  "819d17f7ad67d75c91cc2f2fa4483dc5215adad10930376d88acdc24046f99e1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/fault_injection.py",
+                        "bytes":  9773,
+                        "sha256":  "202730b7766beb172c9f0646208b73369f662dcc525178cf7c323d689da4f0c0",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/export_graph_sample.py",
+                        "bytes":  2941,
+                        "sha256":  "af81455eb9c50a32cd8b370a64d7aa4b991c8f4d1965173c0cb707af246c7381",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/evaluate_retrieval.py",
+                        "bytes":  1108,
+                        "sha256":  "7f6e6554eb532565928093a64ce2082bbc9d6c54f76708bde523e3ca78adeec7",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/diagnose_docker_engine.py",
+                        "bytes":  3795,
+                        "sha256":  "85839d57b054eec1f202565015baa38fb55250695b61f1d749b91a827f5d038a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/check_staged_release.py",
+                        "bytes":  3191,
+                        "sha256":  "03cacf6cf295605d7f13abadbd1aa885de29248d04e7d377e5993fd9e6e3e117",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/changed_services.py",
+                        "bytes":  2376,
+                        "sha256":  "a1a66d2c378669e79b67cb8c2c9e5aff32e25a8a094e0b2c82f44d6f09b01337",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/cache_embedding_on_d.py",
+                        "bytes":  2311,
+                        "sha256":  "dc921515020889387791a59174c9b27f3bf79293dca2322f2f5567d181e10191",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/build_isolated_service.py",
+                        "bytes":  3547,
+                        "sha256":  "c08b69e908085e1a830899108134b88b0f94ac9df1c9ac9fdf440d755d70a05b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/postgres-sync-tests.yml",
+                        "bytes":  1391,
+                        "sha256":  "83856d93b5c3fbc60d6052e3df60e5f31111278f7260f27db84dd8d230d4eb03",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/graph-retrieval-tests.yml",
+                        "bytes":  1866,
+                        "sha256":  "d7c94489326b202dcc63f2badd78f252e02604e0ad61f277f1be3e6300cdb93a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/frontend-browser-tests.yml",
+                        "bytes":  2096,
+                        "sha256":  "ff2a24eb90071ce3cf1ca7df49796459c62c51f0b2cba670701a164e657ba4d0",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/final-demo-check.yml",
+                        "bytes":  2038,
+                        "sha256":  "f948f2121681c2910b867ea4fcf887e1c8964a76944d1b6adbd1c5dd56e67f9a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/deployment-builds.yml",
+                        "bytes":  1506,
+                        "sha256":  "fdccbf17e2a333ccff3fe0cbe2c74bd603a0153069bc7873baa20595ef569a3c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  ".github/workflows/backend-tests.yml",
+                        "bytes":  657,
+                        "sha256":  "6a6d8ee6ef2a1167a6511cf862e1c7e693bc69a80587123e9405b07452b6537c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/probe_compose_internal_reads.py",
+                        "bytes":  4129,
+                        "sha256":  "db3c13acabcd4c6a9a5fbb46e0f4ca4d99bbd3f139d35c09aed7cedac5781797",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/probe_build_environment.py",
+                        "bytes":  2213,
+                        "sha256":  "c887d3bf6d618fcc40852cf924c92cc26dd5735ce81727339e7099683993415f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/probe_ai_lightweight_startup.py",
+                        "bytes":  982,
+                        "sha256":  "a3c864df5dcd72cece4446ec768fe570ec4af9558d183977b3a0c6b8ced03bdc",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/prepare_original_ai_acceptance.py",
+                        "bytes":  4514,
+                        "sha256":  "6dfdf85e730a31fe144b42b9300f566e2bde64038cfa7be150151637b1b1ac16",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/prepare_native_monitoring.py",
+                        "bytes":  3098,
+                        "sha256":  "f5d7267180e306a0c122c5471dda9165f86b2a53c8e64f6656e1eb981f59ad76",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/prepare_human_review_kit.py",
+                        "bytes":  3635,
+                        "sha256":  "306be38604e584a204cf33d069aae8b0eac958bbcea391c1aaa1249f88e89c22",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/prepare_evaluation_queries.py",
+                        "bytes":  1793,
+                        "sha256":  "a9749fcd0b2293f6621658e65b8607e376e2087ddd9df412517eb8cf870c4dad",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/prepare_demo_hosting.py",
+                        "bytes":  3045,
+                        "sha256":  "61101aace07eb4ea5ba536790c286b2c056e1fa6a91a5eeb5e81ccd9ea6c1e8c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/plot_graph_sample.py",
+                        "bytes":  3846,
+                        "sha256":  "a8e1dabe200c51117af39cc485ae0ba145f4d969c3362945cea82922b0af0adb",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/plot_ablation_smoke.py",
+                        "bytes":  3114,
+                        "sha256":  "85b88019bd0ff15074511d2d237ab92ebe7cfb7e80e52093d5a48a3ba4b437f8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_backend_tests.py",
+                        "bytes":  3954,
+                        "sha256":  "43fc3ca95421371a4576a081b01e7cc3d8d6b64e8bf45c509c7f039ead1fcc01",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_ai_tests.py",
+                        "bytes":  2520,
+                        "sha256":  "eb6783f1fa3a59e348519b88396907d5eee74bbf6472d5e1640648397ea38bc5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/restore_original_project_copy.py",
+                        "bytes":  8357,
+                        "sha256":  "6f845d33028a0a73416e0d5f07a0954969ff03c5fac0ac15977243de2d787d36",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/refresh_compose_browser_fixture.py",
+                        "bytes":  3354,
+                        "sha256":  "01cf066ec521a6aa89b3aba7eeb9ce6d58cab535db433064472c90933164ec9c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/probe_retrieval_baseline.py",
+                        "bytes":  2533,
+                        "sha256":  "797e05a4e061d6c281a12fc3f51d9d275552e1548dd1f487156cdd1ad3577e7f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/probe_docker_wsl_readonly.py",
+                        "bytes":  1486,
+                        "sha256":  "62d4f7eadc567b5fb82da228d9471e54f8ca80fb436b5301043b50fd64ec0f13",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_compose_semantic_lab.py",
+                        "bytes":  8749,
+                        "sha256":  "88ce08024d84c24d40310f5c81be54f1eea2b9560cbe0586444d2c76eb1375e1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_compose_core_lab.py",
+                        "bytes":  5148,
+                        "sha256":  "188b6936bbd2c510b67bcaca49677583b61444c6bafe251c9124cb56a106bb13",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_compose_browser_lab.py",
+                        "bytes":  4745,
+                        "sha256":  "b618ee408465e2b051bdf4840faae4aaf215d81147731c4692bb5a8724a8d073",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_index_worker.py",
+                        "bytes":  6510,
+                        "sha256":  "6e90920094b9a9649dd1d812599941ed4b40829f3076735e3b4a436e63cf2854",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_native_postgres_sync.py",
+                        "bytes":  7464,
+                        "sha256":  "15b5772f59becf29f5027d6070448330e80c812fcd64b4bb10c7ce3616b9bf3a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/audit_workspace.py",
+                        "bytes":  4108,
+                        "sha256":  "dd19df292797ba2dd7f163f13ed64c0f52bf82e0694cf3c15f6b9307a5088668",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/audit_original_database_copy.py",
+                        "bytes":  8647,
+                        "sha256":  "aff0ab854fbb96f85434f3ecf790ddf9538593df1c0a6953acb80c17cf508e08",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/activate_docker_storage_on_d.py",
+                        "bytes":  4643,
+                        "sha256":  "042321aeb4aa37e47f9068c18ca4608d4ea3be9d0796df8ee9ea2b5d0dff33af",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_qdrant_server_worker_lab.py",
+                        "bytes":  6043,
+                        "sha256":  "3a5e4855b074b75112209998b93291eac6838adf5488fa825935d14dbd48fb7e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/backup_docker_vhd_offline.py",
+                        "bytes":  6282,
+                        "sha256":  "5b10fd7b756067dc09cc9221dd30b63b9fc445d935e01118b9edac7df3f7220d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/bootstrap_demo_catalog.py",
+                        "bytes":  7470,
+                        "sha256":  "a147f55424d0ec77cfbc2026a5406a7a040baeba617a4312b4bd2e017c82be65",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/smoke_monitoring.py",
+                        "bytes":  2580,
+                        "sha256":  "361de6a5ddaeec56f17f8730562c11bdc6d3dc5d65e9e879f37f046ca4829207",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/smoke_compose_sku.py",
+                        "bytes":  3765,
+                        "sha256":  "6c4c2e612daa3223018ad8d88b11ddce4398d0e1794c83ea95f7ee3ff8133922",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/seed_compose_acceptance_fixture.py",
+                        "bytes":  5071,
+                        "sha256":  "c0f384818e0b6c7671a67f92299712317197d772393f646cdc17c51c79f1fefa",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/seed_additional_browser_fixtures.py",
+                        "bytes":  3972,
+                        "sha256":  "d7279c7be45575ff0d7a57db91e3288eba1593347a1b2c6db0c91ea482663cbe",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/run_retrieval_ablation.py",
+                        "bytes":  8413,
+                        "sha256":  "d2f88cdd387fc5fb20a3fa3e27f06b161c7b512929285e5f0894d403cbc72cd4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/summarize_browser_report.py",
+                        "bytes":  810,
+                        "sha256":  "5ea464f068965b671c9469fe17a6b8356f7f50f5dd5e65e6dbf9c0e338934fea",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/smoke_retrieval_local.py",
+                        "bytes":  4925,
+                        "sha256":  "b1fe4c20ba68f369602c97a97269fbfb02b4d03376be2b140467769615bb6901",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/summarize_verified_progress.py",
+                        "bytes":  12590,
+                        "sha256":  "3961425fafbb2e624ff97f69b041b317499d23fb65f44b1dc5c4257cc310d614",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/__init__.py",
+                        "bytes":  80,
+                        "sha256":  "21293f6a4b39a3dbb86decb2880bbf7d63a343f2237804d4b47d6a64eff8dd03",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/worker_metrics.py",
+                        "bytes":  4560,
+                        "sha256":  "501d41b71fcca7cbf184a3c09db54bf90776c26eb1d664137abe28c26ad0650d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/verified_attributes.py",
+                        "bytes":  647,
+                        "sha256":  "68d33ce70ed887cad59c3ba8b7ae5857c5b0d307f428eb6ee5a001015bfdacf1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/retrieval_limits.py",
+                        "bytes":  2403,
+                        "sha256":  "dd83124e00533ec682d307e3e6c25cb354b31871cd32c281d8b4374975637416",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/recovery.py",
+                        "bytes":  1652,
+                        "sha256":  "efe54552bf418e00fa38b4a7030c68d09168a16625249fe502cd4de8ec3bc8ac",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/observability.py",
+                        "bytes":  5861,
+                        "sha256":  "fed71238789738ba8a58338df2145d8ae8d7b09541b67d741534575b26408281",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/local_dialogue.py",
+                        "bytes":  3303,
+                        "sha256":  "b7c1f6278dadbb51051ead129b7c64ae377c112cdbb1498d944ead1091bb1060",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "shared/conversation.py",
+                        "bytes":  6686,
+                        "sha256":  "f3eeeb1cbca64b47408bd808e884413a1a9e17136891024bbb22cd374ba7288c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/API_CONTRACT.json",
+                        "bytes":  1146,
+                        "sha256":  "471305ca52c6c70a911a4588d88e3bb5912fa7fddf888be8d9e3fb6e93283d4c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/tests/test_audit_workspace.py",
+                        "bytes":  1794,
+                        "sha256":  "e69b9b2ed07d812951c8b0a4310e609415219e97af4bd262d3733d30953e21c2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "infra/runtime-config.js",
+                        "bytes":  182,
+                        "sha256":  "8dd6f9826db2c672f292bf29fc284cfe08bb9eae43e6bc9a2a385907ba46657b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/vector_index.py",
+                        "bytes":  3399,
+                        "sha256":  "daf2d32d9b1af439c22ab73ab2265c0c6b7c4551931561f0c550179ffec518ea",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/test_qdrant.py",
+                        "bytes":  142,
+                        "sha256":  "7ea1c37cdc0432d00718b6b57ec2ca615ef9143fe74b7b40e7ee9b5f5561513d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/test_hybrid_v2.py",
+                        "bytes":  178,
+                        "sha256":  "bae38c754909371217e53bd0fbedec5a541a296e4a014155898f3710f0d95980",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/tests/e2e/lumiere.spec.js",
+                        "bytes":  10760,
+                        "sha256":  "99245e041ba69ef5d0faa73fd115b5cec5b555733eb7f6e2fe2dc964154d7f08",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/playwright.config.js",
+                        "bytes":  472,
+                        "sha256":  "ba62880069aa9db05ef33969be0484841846c5b81d28acf16e1aa6377ca2795a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "infra/grafana/provisioning/datasources/prometheus.yml",
+                        "bytes":  187,
+                        "sha256":  "ab11cbcefdddedf47061085f5050aaeea51f26181bf781e2d694c2383709cd66",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-coupons.js",
+                        "bytes":  11689,
+                        "sha256":  "a3cf696e10575522360f011de8d662e613a8ab01b9afc92b9654076c420fa018",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-analytics.js",
+                        "bytes":  8259,
+                        "sha256":  "a027d4bb2dd4ede1c8c97093c88e84a272a1fe3590ae58a8c8f7c71bb68104e3",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "infra/prometheus/prometheus.yml",
+                        "bytes":  675,
+                        "sha256":  "35cd979188f818f4de10b4ff1e23f4387f992ca4639538f6338535fbee8bf06d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "infra/grafana/provisioning/dashboards/lumiere.yml",
+                        "bytes":  137,
+                        "sha256":  "8a139e9e1992a575ae2efcee89097d009a8f81e2c6a5187dfd18b3b66b7f7f5d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_topk_ranking.py",
+                        "bytes":  1885,
+                        "sha256":  "01e794573c82e284e558fa555b8e19f1694210cf39e0914954acf3625126ce2c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_search_service.py",
+                        "bytes":  8776,
+                        "sha256":  "623a05fdd9139bfacc8155cc0df3200891c4d5a06682a9119da3431fd4572cb4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_retrieval_limits.py",
+                        "bytes":  2296,
+                        "sha256":  "40c7af45945aea507ff2d8ee223efff3316e574c6b18571cd874cdb50ec01cea",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_related_product_search.py",
+                        "bytes":  3468,
+                        "sha256":  "c36811bbd901362f11e7d1fb9c67651c1eb585902cf26630b0a35c4402bddd36",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_recommendation_contract.py",
+                        "bytes":  3137,
+                        "sha256":  "e6542e65c8b8bdb47e18b2c0701115a3788e643b1a5d138dbbbac4965f39306b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_qdrant_versioned.py",
+                        "bytes":  3723,
+                        "sha256":  "1fef3d861ec8a28beee80755bb617c6055b7426a0c52bc529388ed20c1f5c1c7",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_public_recommendation.py",
+                        "bytes":  3134,
+                        "sha256":  "fa04913d8545ae0fdb4333905997bb4260446e5c78c3640decd3ad0fb96f33a8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_public_intent_routing.py",
+                        "bytes":  2385,
+                        "sha256":  "91bac7ce34dc3027d3b916ebea13f75cbd7720a9a6b6444872b36d0d0fe48a20",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_product_projection.py",
+                        "bytes":  2450,
+                        "sha256":  "9ef5fba6ccfa1477fe22e8845d20564e45c30135d07df5ed3aa791fb54c0ae65",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_price_intent.py",
+                        "bytes":  774,
+                        "sha256":  "5a2fdcf6521c33cfd7de21b93f1e6c3c4712fa56da35cdc94a7eec22245168f2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_observed_chat.py",
+                        "bytes":  1895,
+                        "sha256":  "336751289408fbebaaa507c371e696212711efd9da44fb7ad009dc75174120ea",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_local_dialogue.py",
+                        "bytes":  2344,
+                        "sha256":  "d0ce4ab6926b7dfa9cf26951b404c522ed2975646ea827923371d216348c7507",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_internal_diagnostics.py",
+                        "bytes":  2164,
+                        "sha256":  "ac3e8f86a29c72e4dc39766018ed3df1009b5265d68187a0fa389a7f127afa4c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_graph_writer.py",
+                        "bytes":  2059,
+                        "sha256":  "65927521e7a37357b8240418ceefe2a1274a8ef79d6fe1da200419e2e13ecb9c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_graph_integration.py",
+                        "bytes":  5167,
+                        "sha256":  "a9bc552c1c64f1c179f9f73b0b689a84b7df9f046ca8a81364a5358f4333c75c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_entity_linking.py",
+                        "bytes":  3000,
+                        "sha256":  "6cd3ccd8d1575bfa45f71f48f37746750ac4743f3c743150cb797d148083b923",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_dense_cold_fallback.py",
+                        "bytes":  857,
+                        "sha256":  "b886d7accb75e4b96948bedb87245829061a0aff134bb819a16894bd9b3f339a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_csv_validation.py",
+                        "bytes":  6962,
+                        "sha256":  "b425b44ef75f2af88cd26034f2c596a37ee1bddd197e167e3f90189505d23734",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_conversation.py",
+                        "bytes":  3378,
+                        "sha256":  "80de6437e19e9c53d15e56b824a3f5730b802f9fa31ffb8f0bfbd8075c97f21f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_chat_pipeline.py",
+                        "bytes":  3783,
+                        "sha256":  "d0a7cdbba856c6325d187739e8116280be9b54fc16ddac037d09939a6750d98a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_business_catalog.py",
+                        "bytes":  1651,
+                        "sha256":  "a47134efeea9acc7a5c7e7266705d210d4df29992755133cb26470e2bf1248d7",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_advice_rag_contract.py",
+                        "bytes":  2260,
+                        "sha256":  "b91713627235a681271fd456452d12fcd41613093956f48032dc8bc43c2ec69b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_advice_planner.py",
+                        "bytes":  1723,
+                        "sha256":  "d887bd81dae1295b005f1f55f427f206a0f6e601bdf2b38706d7402208412d05",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/tests/test_ablation_reranking.py",
+                        "bytes":  3235,
+                        "sha256":  "506f03f2e852825ffa6b76ea57ce9650759a41293fdf7a0c2bf04be89420062e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/css/style.css",
+                        "bytes":  16035,
+                        "sha256":  "acc8ab9d66b5b8c55f327b713775fa50016cecabb5c10c233df0b42dea6c2aaa",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/css/site.css",
+                        "bytes":  43987,
+                        "sha256":  "d4c2e2b565bbb95d4eece94fac620f43126b0e867f1d82e4059ca70df8474af5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/css/management-ai-polish.css",
+                        "bytes":  3225,
+                        "sha256":  "8a6e0c71eb1aa36008ab06bb58a1e24773436e4ed2961c23c5765952263055fe",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/css/customer-ai.css",
+                        "bytes":  2904,
+                        "sha256":  "21ee810245320dc88dec06c88c0470c8d068dcaa2d05a66f47f8548c75c00983",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-dashboard.js",
+                        "bytes":  7713,
+                        "sha256":  "85bc0ab329eac7c0a521eea9cfa4f91dc0915b7c0afd1787067f60d22a11c07f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-customers.js",
+                        "bytes":  9514,
+                        "sha256":  "25aa3ac2a8ec96dcf937fa6caa82a84c4abf6d2d2ba535544977af6404b1e452",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-inventory.js",
+                        "bytes":  10640,
+                        "sha256":  "b0c2029941ea6c82570f577fd09068619801a7a013c84867c536cc56fcc5bc97",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-orders.js",
+                        "bytes":  11624,
+                        "sha256":  "775af04d75e32b0b21ecd122f61002402adeb0d189872aaf2fdf54203dcf93c0",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "infra/grafana/dashboards/lumiere.json",
+                        "bytes":  2022,
+                        "sha256":  "4790b1c64d16d9c2e08076d945b491cdae30d700a65babeb20dd628ee6010773",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/config.py",
+                        "bytes":  342,
+                        "sha256":  "f4a2ab029fd98cbd4849b21469c7dcf0d73adc1c7475aee4661d99ff98ce601f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/search_products.py",
+                        "bytes":  531,
+                        "sha256":  "3a2b0ff6b61af7d4e802336ed526fcbc772f07e0f79258a9f96919c1747ca308",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/requirements.txt",
+                        "bytes":  3181,
+                        "sha256":  "99dec60cb77e1476b648f1fce2a8d8aa07b58c6722ac8ae6f909de6dbb1ecdbb",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/requirements-test.txt",
+                        "bytes":  302,
+                        "sha256":  "f669f371f750f45c3d2c415f4f4c4106d0ff0c6b5b00c1e8e69e5bfdb5197e27",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/requirements-runtime.txt",
+                        "bytes":  70,
+                        "sha256":  "0717ab2c6e9cca9711d0de41d7015fbb6bab5a40deda981c233f986231a737fe",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/recommendation_qdrant.py",
+                        "bytes":  5259,
+                        "sha256":  "46f31ca2fbb7819f4b79223cf7d4780a27e2b853cba1c95a655b4c9ba5201830",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/recommendation_dataset.json",
+                        "bytes":  554963,
+                        "sha256":  "fd072af9905c879203db3dd2c2a9f47147ae809a6755f705ae7bd4550cbea945",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/recommendation.py",
+                        "bytes":  16178,
+                        "sha256":  "a1c51079ee85165acd7f2931ce1b6ec99ccebfbb78e5cd8a2ba4121bb67ac5cf",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/read_products.py",
+                        "bytes":  479,
+                        "sha256":  "db21cfdd49b68bb544b0e5491021182e8ecb29deb6f08e6601c7c2dade286740",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/rag.py",
+                        "bytes":  1,
+                        "sha256":  "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/wishlist.html",
+                        "bytes":  1053,
+                        "sha256":  "3cbe4a6adc8d96f38180b1e2bdbc81b472612ea487859aefdb22b2666fbe03f1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/staff-orders.js",
+                        "bytes":  10342,
+                        "sha256":  "da0f203d63c07245ad9f44b77f1366a7a92fc24c636d9781bc411edf141fae9b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/staff-inventory.js",
+                        "bytes":  10591,
+                        "sha256":  "7b29c3cebd51b2d4c566bb6c5ef03ec6d846cdd53fb251f843f05d7ef432ed69",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/site.js",
+                        "bytes":  65831,
+                        "sha256":  "6b0d6cb97d55898ffb47e220dd2916f81609c7e2a7de71f861fd50347566a217",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/products.js",
+                        "bytes":  3163,
+                        "sha256":  "419d28ee17b76a6854626892ee0054ce10e235cb46e5e8da2b02a77fe5d6d2a5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/product-image-map.js",
+                        "bytes":  29532,
+                        "sha256":  "45baa80dc002d260cade7ccbd8a158adf8d47129a05bad0f4f67aa8e8927f491",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/management-ai.js",
+                        "bytes":  8959,
+                        "sha256":  "94812fa801862db851412d7a5dd4a9d6148e556287d3ab7da8a8fb900773d73f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/home-auth.js",
+                        "bytes":  335,
+                        "sha256":  "bfaf195413e8005b9640b69ad7cf1fa2b9884b5e42dfa98975d78eb06c22f396",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/forgot-password-flow.js",
+                        "bytes":  3266,
+                        "sha256":  "8831c1bde55f689246d4c864f3515c5a76ec7f89061e3a867e71658d558dea0a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/customer-ai.js",
+                        "bytes":  7217,
+                        "sha256":  "2ee35a1fe21ab5f3341328bd99dbc874dd8dbee8b9944065e1c9532ff0716750",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/backend-console.js",
+                        "bytes":  49014,
+                        "sha256":  "09e9d226b5ef8a97d0628a941dc88eb35ec1892bf766cbf68def5a66eef58c7a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/app.js",
+                        "bytes":  18922,
+                        "sha256":  "854abe4bdd9d87be36b1e599d19d02a43e2f36d89f3c587efdd00c977f704141",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/api.js",
+                        "bytes":  8599,
+                        "sha256":  "53c430cc798d6b121737a6d2170d02053933141f43a6f2aa2fe746d78f9197b9",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/ai-diagnostics.js",
+                        "bytes":  1708,
+                        "sha256":  "5a15d41511b0152c7c358c2249851947600d9d6264870bf46d0c250d49396a35",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-taxonomy.js",
+                        "bytes":  9483,
+                        "sha256":  "e1a7c000891097b99f4873e5e9088e02a08584fd569fba2740f590f76820e32e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-staff.js",
+                        "bytes":  13199,
+                        "sha256":  "df7c2a7ee511bafb447ef4936de9b1c991eaa6ca4163be067118895739415b46",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/assets/js/admin-products.js",
+                        "bytes":  12528,
+                        "sha256":  "1227b83522ad29da30eb395858dc3d7a79e90e6be6824c32b1e3534d8821324c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/prepare_products.py",
+                        "bytes":  1731,
+                        "sha256":  "c79aaf7ccb86e2dcf0d64c5ebd3f784b1443e94e1881008e773fa9c989eeb61d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_semantic_shopping_advice.py",
+                        "bytes":  3426,
+                        "sha256":  "dcf2b79b678ebdae3878f818913914d40882c023b110afc1b422e48a500f3c96",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_original_project_data.py",
+                        "bytes":  9469,
+                        "sha256":  "7e0e6144d9edb4462011b6c35164eed00ecf849c06670b73fac0550ee7078ac1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_hosting_preflight.py",
+                        "bytes":  3989,
+                        "sha256":  "e3853379518eba2badd523b866af689d061ad6d9d63b8a612081884c40754095",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_docker_storage_on_d.py",
+                        "bytes":  3483,
+                        "sha256":  "866c23527ea7b2d2aeadbecbcfaf4fa4d24fb02837e5cc5ad5794f59eea29d37",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_compose_semantic_lab.py",
+                        "bytes":  2944,
+                        "sha256":  "4dff914d26b715e4f590e4f67f2218341379a12a3929eb8f942f406fc632b628",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/verify_compose_demo_operations.py",
+                        "bytes":  3400,
+                        "sha256":  "0c0cec9204dc69a07389d753bcca1ae0d398bc5e68f2a3596157a15afc96146e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/validate_release_artifacts.py",
+                        "bytes":  1573,
+                        "sha256":  "8455fa80e0eef06f279407a9f7fc8776aed0ac8bca89f927762bd27e9d6daef9",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/validate_deployment.py",
+                        "bytes":  2364,
+                        "sha256":  "a684b5a0505917ba93d7fe28942947a00f603919ae7a2c6703fbedad68bbbc23",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_sql_keyword_baseline.py",
+                        "bytes":  5616,
+                        "sha256":  "cade46abced0ea9491015648d0aaf37c2cdd5b888eb753c25e720092a4b2b984",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_projection_integration.py",
+                        "bytes":  9196,
+                        "sha256":  "9cc8a8dde16c03a36bc261a5637045214548ba7fa9e467375467b7a887657c69",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_postgres_sync.py",
+                        "bytes":  6806,
+                        "sha256":  "93c5a8524f8c3437f7d09284f73bc49790100dc30d0088596c9166804a86deb7",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_live_catalog_retrieval.py",
+                        "bytes":  9284,
+                        "sha256":  "9bcf48aa22086515e71db317f97136866cae0b64f3e3fa3c5cbb83ca2adfe444",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_browser_integration.py",
+                        "bytes":  14607,
+                        "sha256":  "ed6d74c6705bbd41a00db6f8ede5d082c25930a2676f26cd5bf84e4a107c7331",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "scripts/test_backup_restore.py",
+                        "bytes":  5771,
+                        "sha256":  "4cff68cb8b541a66db6ea7e0a2e7839400dc45e0aac0565cd0f520bea7d05a2d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/staff/orders.html",
+                        "bytes":  1377,
+                        "sha256":  "1809208fd17701509591c4c3182809e6dca3eec09ea320bb2e3694eb771ad5ea",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/staff/inventory.html",
+                        "bytes":  1117,
+                        "sha256":  "c25a018adbf27f9efb4ea65de9682b881790505ee6246908263993acfe8d5303",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/search.html",
+                        "bytes":  1050,
+                        "sha256":  "8802e3c193fffb0665ea3fd59bb51bc2f9f612f0e21e4a0b724f8250cc5050e4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/reviews.html",
+                        "bytes":  1050,
+                        "sha256":  "3bba4bd16e93e167d8c044baf0435f983753e2a4c15e41e6a48ebb3017f1865c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/reset-password.html",
+                        "bytes":  2630,
+                        "sha256":  "52c80e24fea25fb9cc90dc9308df1dee81c9af2c458da846714896931c145a19",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/register.html",
+                        "bytes":  1055,
+                        "sha256":  "5767abb2f7a82972a489c32beef57e036295422d24142427578928ab67002281",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/products.html",
+                        "bytes":  1237,
+                        "sha256":  "5253c630ca2235e50654ac3ace8c93422522a142a7cb511c9ea2010f09c31055",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/product-detail.html",
+                        "bytes":  1200,
+                        "sha256":  "b5ec693f96c5f51e9c18e4602d4021df0770de4f10574ae5acc20a83ee88f1f8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/orders.html",
+                        "bytes":  1049,
+                        "sha256":  "88536b4809ba249743a24038af30594cce5b53b690b4cfcfeba73332923443b4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/order-detail.html",
+                        "bytes":  1059,
+                        "sha256":  "e73b71192e2472715d39920b6f113e834bc560806621d530c08d9220706d2ebe",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/login.html",
+                        "bytes":  1057,
+                        "sha256":  "28799f7eccaf68cd298addc0994ba6b2f3a09d737452821ba4a54835e6592859",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/forgot-password.html",
+                        "bytes":  1134,
+                        "sha256":  "c136e19867c2b6a0c66f8d60fcbd753cdea4e5664489f7601255a88e04fb303e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/contact.html",
+                        "bytes":  1053,
+                        "sha256":  "ad30bf80f54d86c9e93e254d8d81a977132b58546d4e58e80a562ccdf772be42",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/collections.html",
+                        "bytes":  1063,
+                        "sha256":  "c819e1cac8a68932c27d4a6ec0fb2bd6e555da94294712d97139c26b1311b26c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/checkout.html",
+                        "bytes":  1051,
+                        "sha256":  "6e75b7b733316e1e269f21618a91f2999304f339fe35513666985e2b7546c181",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/cart.html",
+                        "bytes":  1048,
+                        "sha256":  "852cde18637cd94501d9cabac2b91761a59336819022dbb652bdf3b1066393d2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/test_graph.py",
+                        "bytes":  1691,
+                        "sha256":  "b8eda27588a023bb26322009587576a71680d98284dbb686e55eda5d4a69fc26",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/schema.cypher",
+                        "bytes":  815,
+                        "sha256":  "7c2c484c8ddf01cc7467f642dfe84f3d6ecc8514683940371b7b15aa9ba470ad",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/import_data.py",
+                        "bytes":  4527,
+                        "sha256":  "9516f036bd4d4b5898a3472fdc95f8124b3210647962324401c0f9755e942bc9",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/graph_writer.py",
+                        "bytes":  7370,
+                        "sha256":  "ec9befc573f2817b08d612966e195df2e1874e94e3213271df23e304713105d0",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/graph_recommendation.py",
+                        "bytes":  2105,
+                        "sha256":  "edf9067040d0c63fb1ef75c03d6b5a541fd34422f67d7731c4902f4aac7d6c24",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/graph_queries.py",
+                        "bytes":  6996,
+                        "sha256":  "752a7dc40393c36dddabe559a602cee44abafa4ae60e1961eaa9bcdd194c6aaa",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/csv_validation.py",
+                        "bytes":  8250,
+                        "sha256":  "0ef4af18f255f29cbb1d7446adba889ba9da78520d9e9336fb0132563901d80b",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/connection.py",
+                        "bytes":  1427,
+                        "sha256":  "b09203fd7ca33b61d989153410d0dcbc5ac22bfac0c507691c2fd8c76908b606",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/knowledge_graph/check_data.py",
+                        "bytes":  2757,
+                        "sha256":  "d545edf648a3cd7d69a1d891c0bc40e673efe3458d914b24854cde487ee60666",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/main.py",
+                        "bytes":  4630,
+                        "sha256":  "74e814c68d37f409f4cb4f32ff349818ff25be067b77069ab9534514a5734885",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/init_db.py",
+                        "bytes":  584,
+                        "sha256":  "d823778677f56a99e4b6550c64dc8f998eee3872038eaab5c2054d41f73c6881",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/import_catalog.py",
+                        "bytes":  13032,
+                        "sha256":  "eb182fafca75747658e9e96e18711a401e12dcb5dae973d64c21db975dc9dbff",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/core/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/core/security.py",
+                        "bytes":  289,
+                        "sha256":  "0ca43fa4cb38e09f6df1a1d7eb12a379d8622dc60b5cfd9dc0af17e22f82d4c6",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/core/database.py",
+                        "bytes":  1216,
+                        "sha256":  "0a0ba8db07ecb2728e32e4cbda0778e025ccb186c915396f69dd90e48b51c820",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/tools.py",
+                        "bytes":  7287,
+                        "sha256":  "7832482ee148b302c84924aefc73f218d55b4e5c7d723d8332147f6f9881a054",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/test_qdrant_tool_only.py",
+                        "bytes":  404,
+                        "sha256":  "344a689875c263f07efd834423ca08ecf8f2082d16b4e03c917d961bcb700c43",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/test_qdrant_agent.py",
+                        "bytes":  2336,
+                        "sha256":  "5f8a7765e47f99e1eef563ed29791bdf19a5fad94119bf1cbc35b4e1236b9eec",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/test_ollama_tool.py",
+                        "bytes":  2310,
+                        "sha256":  "a0a2c1779b4b62a1a6adf19da8c21ff6129b9491f5b8cc5a64978196d1a5e876",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/test_crewai.py",
+                        "bytes":  806,
+                        "sha256":  "a5624f808408908ebba6171eff3c9f410067ae9133eda03018620cf6341bbf45",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/test_agent.py",
+                        "bytes":  1091,
+                        "sha256":  "451d344f91163b6fd9e0437244051c6501ea5d88b14b4687976bace5424a7cd9",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/tasks.py",
+                        "bytes":  2929,
+                        "sha256":  "eea95db0970775641b5f16c61394c2f828d6188e546beb42b1ee0f2849972355",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/search_service.py",
+                        "bytes":  17457,
+                        "sha256":  "a2c80b828d49ba24e96316c31b54597bf23c3576b83c28777f320592a48b6371",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/retrieval.py",
+                        "bytes":  28760,
+                        "sha256":  "4c64cc5dc54eabe91d020b95e09f4d5f52eb2a6333c58f1e294bcf7e51b96f26",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/reranking.py",
+                        "bytes":  1686,
+                        "sha256":  "cae86bc699d27878882f7f09bb0fc9f3c59f8b6701acc350c78620641d19484a",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/ranking.py",
+                        "bytes":  2561,
+                        "sha256":  "2867cf6992f710f7e910c916b2c3a9087ea2294ba53ef94997bd5b0165975262",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/query_reference.py",
+                        "bytes":  1933,
+                        "sha256":  "fb63ede61ad174638e5d35f18fdf4263b150ff3490613cedbf71e6225853d579",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/public_recommendation.py",
+                        "bytes":  3469,
+                        "sha256":  "db23dda4683af399f3b78c97b0ec3bc8b96986e6120aa7bcfbd2c7d8e34d39da",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/main.py",
+                        "bytes":  3636,
+                        "sha256":  "4dadad3537c058889fca00063c3eea9553d9196cc9c358bbc8487086bcc2021c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/intent_router.py",
+                        "bytes":  1737,
+                        "sha256":  "69f90eb9f57889b977d3c7af0fab9794ee8f347ce2d310f55c63990ac5da309c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/hybrid_retrieval.py",
+                        "bytes":  17819,
+                        "sha256":  "85f8b96e868c1cdd918f946cc355ce953c0bb14c7d8527ddbf86ff14162c0949",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/entity_linking.py",
+                        "bytes":  4722,
+                        "sha256":  "f19bee66d487231a2c5b9d50e6ea63630018ba50d23534b35f1c55682c01608d",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/crew.py",
+                        "bytes":  968,
+                        "sha256":  "0134c0fc95343677345c3ac5fcfdd2e18babb8a6f2cd6efc13e7f7962e318b6a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/business_catalog.py",
+                        "bytes":  3034,
+                        "sha256":  "998b4d352dbc0b53925401cdaaacba2488e09f5b7701140879820b1a95c0447a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/agents.py",
+                        "bytes":  1077,
+                        "sha256":  "b6a8b0dea78f85e79cc1a5452a21b8e51350a12074b9ed960a53c89bd970c457",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/jewelry_agents/advice_planner.py",
+                        "bytes":  3112,
+                        "sha256":  "f855fc7d52b91ac619d0dc460e5437994febd870b7728d5aea9b4965d0377353",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/import_qdrant.py",
+                        "bytes":  3512,
+                        "sha256":  "fce37e5681b7230cc16b4dca90ca866ec0a37afbc6bfd74385d7c02fdcf4475c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/hybrid_retrieval.py",
+                        "bytes":  6709,
+                        "sha256":  "31f20c648e31ce445df3d7001c63fa980041f85c158e91c700d0f06a76b5b451",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/hybrid_recommendation_v2.py",
+                        "bytes":  4775,
+                        "sha256":  "b1dce22115c06b1c8c04222755c6db4251597a070f720419273983da48899563",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/hybrid_recommendation.py",
+                        "bytes":  13276,
+                        "sha256":  "c94efa549b6a69e61ac29b8668f08cbfcf0c46b3b14c95c772753335b05ac2b4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/generate_recommendation_dataset.py",
+                        "bytes":  1490,
+                        "sha256":  "9febfb59ae1526f15f29a066bc69c023cb270725eba209346a818cac0c9a0ffd",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/embedding.py",
+                        "bytes":  777,
+                        "sha256":  "75e0ec84f4ebfef9fa9893e778969aef449aebdae32f3db47009aa4c536eb03a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/admin_customers.py",
+                        "bytes":  4049,
+                        "sha256":  "21009d60cbabb1f386c2130c56320d199751b44e85bf5a7cae72c13df6a4e650",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/staff.py",
+                        "bytes":  3579,
+                        "sha256":  "0324bdb6578c97924b07070f0c9a8de34d4eb96eb7154aa6a6b1cd8aa3a95764",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/shipping.py",
+                        "bytes":  1248,
+                        "sha256":  "fb1350e14a1b7c019428b72f1cf81b382790532004ea5231a6a4eef98ffa05bb",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/purchase_behavior.py",
+                        "bytes":  3026,
+                        "sha256":  "f69256fd45afc746705af75623ec527b46a907824d26778cd5d110c7dfa738b6",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/product_index_worker.py",
+                        "bytes":  2657,
+                        "sha256":  "ebbaa1636ec0a00ce38272ddfec8fbb3ddf3ae285ef85df946f7a6dd4945e7a7",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/product_index_jobs.py",
+                        "bytes":  6587,
+                        "sha256":  "c3d533505391d38b955904881c46328f8e270b50cc6666f979c963057f1787e0",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/payment_providers.py",
+                        "bytes":  5381,
+                        "sha256":  "5345c2a49d91f4b925db30ea2b45d4152f49a56d3fcb5daedd80dab6cc7d53e8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/payments.py",
+                        "bytes":  10254,
+                        "sha256":  "e34108db07175d6fb7bd8bb44dd25dfbe1f8d38a5b47dd38c25ff6f34bba1593",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/orders.py",
+                        "bytes":  7771,
+                        "sha256":  "d308f203787f91f4953fbe5efd64ff972be37ed0f363c5d0dd956c4cd3332222",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/dashboard.py",
+                        "bytes":  7553,
+                        "sha256":  "da28560a8e8b21b39511461c3abd897d29a826d02317e1a44049a1fd5ccf8966",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/customer_content.py",
+                        "bytes":  6867,
+                        "sha256":  "76f7fb3694c13da801d5a1e3e9a556f13c48f4020fb29a3f4d8a6a85ab17ee4f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/coupons.py",
+                        "bytes":  8726,
+                        "sha256":  "4f92e9537759154727864f6838d7746a493d0303d282d11df172a5cc8c77f0fa",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_staff_orchestrator.py",
+                        "bytes":  3863,
+                        "sha256":  "3dfc30abf8d06ab65fa36b2e9a428f5a0fc64febe18e9da3199417b4750ce824",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_staff_llm.py",
+                        "bytes":  5072,
+                        "sha256":  "d481d794a51ba9256dd4efb15d29ec39f62103abd92db6aecd233e5e0e712d53",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_staff_intent.py",
+                        "bytes":  2128,
+                        "sha256":  "ac405638881190a51b928de5ead5b1c78742bd9885a5513ff8f8329ad2340254",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_retrieval_diagnostics.py",
+                        "bytes":  1850,
+                        "sha256":  "bc968ca2cde7e5ee434b9c915896d2387528a766b4160490da19aca3cb2bc7ec",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_product_lookup.py",
+                        "bytes":  5081,
+                        "sha256":  "3f7fd26707a35e1e332f06a94508dc07fb8bf9834de52b0e601239da9863ab01",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_order_tools.py",
+                        "bytes":  1614,
+                        "sha256":  "35226c6d5efcd561601d5f0aae43c10859f5533bd7bd6215664addde30c07d08",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_order_time_tools.py",
+                        "bytes":  2081,
+                        "sha256":  "f0eeda46e4ed91a9e6da5a5a13494ca223bbadcc54c70f01de4b61a839f72cd6",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_order_time_intent.py",
+                        "bytes":  3199,
+                        "sha256":  "ba1786bb3144776bb6ff846db157ce06421048f07c43a6339215fda9a3632b22",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_multi_intent.py",
+                        "bytes":  2752,
+                        "sha256":  "b889b579982a738e71b2b578967eddda476c020086e48e7321662771874ba7fc",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_inventory_tools.py",
+                        "bytes":  2655,
+                        "sha256":  "bd5f648efefcc11f10a0ce1fe5e42dcf54a4a38469ff3f7633ad71b9d652a008",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_inventory_chat.py",
+                        "bytes":  3285,
+                        "sha256":  "a29a7d58120cfca2990854f252d7cb2ea0b96e369805e9a450a7523272b05b6b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_revenue_intent.py",
+                        "bytes":  2819,
+                        "sha256":  "21375a606583d0e5ab53213a33ba032cbe450421c36b298600c18f1d63446c0e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_orchestrator.py",
+                        "bytes":  9143,
+                        "sha256":  "0664105d226e9b36bf3e76c2e38b6c16f5dbb5aed879120f43332b8da7eba78c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_llm.py",
+                        "bytes":  3282,
+                        "sha256":  "0163472dae77901659759b8da5a2c9a447caec61bee4e32aad526dd4cb3394db",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_intent.py",
+                        "bytes":  2517,
+                        "sha256":  "b80272b3228a976ce0fb43e43ada595d8e1503fe801f633ba6b0d22a97a29410",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_business.py",
+                        "bytes":  2092,
+                        "sha256":  "39b405614d84b0d7352bbf3d596ce886333c84b1836b317b039e8f86ee2ad70d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/services/ai_admin_analytics.py",
+                        "bytes":  3149,
+                        "sha256":  "88fc7fdc155f2270471e975bf48a41444b8b293115dfdb21f4a009f024ff9562",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/product_projection.py",
+                        "bytes":  2943,
+                        "sha256":  "f67f3e5c061858388730204ececda522432ef6ad34a08624d3dcdead9e91352f",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/package-lock.json",
+                        "bytes":  1715,
+                        "sha256":  "814878f2672931b93e9cfee76e4d311f7dfb9e8c4b21a3df7f0b9c34128a9ce0",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/index.html",
+                        "bytes":  13309,
+                        "sha256":  "ab5eee9ee9873bb88ea14b49327375dbfe2e7506392ccadb31641c541ed3b5db",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/about.html",
+                        "bytes":  1051,
+                        "sha256":  "7fc5fce670c0cc25e86e35f5ea31afd7041bb71ccb3704ff914c7ca16a6cf320",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/package.json",
+                        "bytes":  182,
+                        "sha256":  "72df23c390606a198380702674c0f01c569b9e9c11f06d2f669096fe2dd87e43",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/account.html",
+                        "bytes":  1049,
+                        "sha256":  "26437dd704d86684370cb718e9cff7e51ebfee234c79b8241ce1fa878f27ce5c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/ai-diagnostics.html",
+                        "bytes":  1816,
+                        "sha256":  "acf174c51fcdd21f16a57e56280156d358da69ab06999b043f0ace70e10c1969",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/product_attributes.py",
+                        "bytes":  1191,
+                        "sha256":  "834e8a5afd09298eb38beb852e2a4c7d814ce00ac20aad07e45cb10e595f6e1e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/payment.py",
+                        "bytes":  1166,
+                        "sha256":  "043c132cd41bce2e14123ae3769fb97b47e6cc749bd838c397d10e4aa3df526c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/order.py",
+                        "bytes":  2883,
+                        "sha256":  "d74b7a7317f5a3fbf3fdc3c4e5e65abb78864866d57affa8475f79c76958a1f1",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/dashboard.py",
+                        "bytes":  1448,
+                        "sha256":  "dce7d76c1310424a6882b39c12ca6d2345f96a9b66d7d45c32ca14c8dfc52277",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/customer_content.py",
+                        "bytes":  2157,
+                        "sha256":  "e6bdf6b06d2d5c63c49a07e88ea47ea7334eddac6f563873befa2fd51c5ba7da",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/coupon.py",
+                        "bytes":  4336,
+                        "sha256":  "f8f3245c7ccbf6595c85c3dd7ca804b1e21ee5d655ecfb384cd7659b4039fda2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/catalog.py",
+                        "bytes":  3682,
+                        "sha256":  "f5d0d9c2efe05893ac6471915c6261269798b548895da22063b0e27ea45dd7d7",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/cart.py",
+                        "bytes":  869,
+                        "sha256":  "a5d0f8fb11f023d1f0267955b5cec8c65de3bcb9c76aac1b2ae743615d70b4f5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/auth.py",
+                        "bytes":  3726,
+                        "sha256":  "fdfa599345aede24a5afbb4d8fad625de3591c509e761a71e1c8d739533c356f",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/schemas/admin_customer.py",
+                        "bytes":  607,
+                        "sha256":  "c24617bf46f7675cb6dc352d230fb657f91831ab824d29984617330fd8cdc5b4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/collection.py",
+                        "bytes":  768,
+                        "sha256":  "a9f7f18da28faa44c7242bfd0d0dfc43a5073ac2f975db110da335fa01b2db1c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/category.py",
+                        "bytes":  761,
+                        "sha256":  "3cc96ab34eeec57d6fa02959d560e94ddabab127c673d740ac8c0b30b164f6a8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/cart_item.py",
+                        "bytes":  1056,
+                        "sha256":  "6d359fa3921caa597a9a378e48c9c1460793ca474bb982c17ac8d797c97151c3",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/cart.py",
+                        "bytes":  705,
+                        "sha256":  "ecbace9a8f9414c94e5f92547ba84427ad97be1d69fd87d9babf440244ab4715",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/brand.py",
+                        "bytes":  743,
+                        "sha256":  "f4ab35a7d7dd3f2c7dfe5f7f87895d1c8895f98dcfca79faa5c12d3b5605471a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/customer_content.py",
+                        "bytes":  2087,
+                        "sha256":  "603b1a4c33e690651f0b09f187ea174f038959a212f8cfd35e52bd889d6df366",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/coupon.py",
+                        "bytes":  3419,
+                        "sha256":  "39fe9eff50346cb33ef183c585be3778b702d8a29d1343fd5f9401d405d663c2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/contact_message.py",
+                        "bytes":  1093,
+                        "sha256":  "f713d1a58c868caaad2b0e2b8d9a0803e7e87001921778b3025f01334a345301",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/material.py",
+                        "bytes":  758,
+                        "sha256":  "a1d05bbce312cd8e7319779d66de3fd2c485fe1895b657ee56c43061dbe77ddc",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/gemstone.py",
+                        "bytes":  758,
+                        "sha256":  "2d2326fc8111549f2c4806a8a0150287f4622bdba1e47f7a4edcb83578831790",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/order.py",
+                        "bytes":  2950,
+                        "sha256":  "62020606b1f3024a0e75cd8f2fccc1a794ff57283a1d5a151849328718a761fa",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/api.py",
+                        "bytes":  10542,
+                        "sha256":  "59e233f2510ab5dd95ab33fdfac86e9cd398bcb1d88730118c0d8736c525bdc4",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/check_qdrant.py",
+                        "bytes":  159,
+                        "sha256":  "bbd2cf4db5ba5345aa71d0bbd300e82e697dd2b7ded45a4435468e86e88ba152",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/__init__.py",
+                        "bytes":  854,
+                        "sha256":  "2ddaf51dc045120f402d55dd3307dca6e26c6f4256744e3ed93e3c295ce309ca",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/user_session.py",
+                        "bytes":  709,
+                        "sha256":  "118e5495469d6cad3c8cca2783d0ba887e569860948b66ac29a69668c534cb09",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/user.py",
+                        "bytes":  1182,
+                        "sha256":  "bca9c603c0412201a02983d5d0029c0a8f867ecdc1e9b06dd162e495bb77b9b2",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/role.py",
+                        "bytes":  435,
+                        "sha256":  "6a24b45c403dfcf00563baf7d14fa066ca3d960ed70916f784dc42dcaf25305a",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/product_index_job.py",
+                        "bytes":  1846,
+                        "sha256":  "d9a02a9271970922433b61702d52d60da0c1789551d47b8b7e9e51e8e348431c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/product_attribute_review.py",
+                        "bytes":  2147,
+                        "sha256":  "0468e4d3d33c6c11ab58987706586008537718a856273731f987927fbb2ebaa5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/product.py",
+                        "bytes":  3293,
+                        "sha256":  "72ad49a9a82a8df9bc00e81305cb9d29f9382150aa50a6611f969afb03a8b664",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/payment_transaction.py",
+                        "bytes":  2300,
+                        "sha256":  "4327c2ef4eb9fbdbf8f452fb7b99296a3c7f8c3a7f146f85a9e71c1c77cb2b40",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/models/order_item.py",
+                        "bytes":  1514,
+                        "sha256":  "16c12041b8ba64caf60a5c9028055136ed53ed24dc03ea351c5d0e9dd2a77732",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/config/aliases_vi.json",
+                        "bytes":  1769,
+                        "sha256":  "5f99480299d423acf8af50de06bcbccf2b29c64d460232d2fd4844d38d66dda4",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/staff.html",
+                        "bytes":  1189,
+                        "sha256":  "ccafc660c5d8d90a6d930cbb3cdaea2c9fbb23e6c72b54472a02e83a6df8ea84",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/products.html",
+                        "bytes":  1155,
+                        "sha256":  "c658d5ff0ecc50175ce4fd0cd2d15d0d63f497f31b5ddb9c3838615e90b79501",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/orders.html",
+                        "bytes":  1097,
+                        "sha256":  "2c3bb08edf0ca1c7d7a74702903fb6a8f4f29770b7879c03b4338fcd4ef55f61",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/inventory.html",
+                        "bytes":  1011,
+                        "sha256":  "6c70b761f6962af234044fdc5a8056797a01be25c972b29aa879215e287f7f05",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/dashboard.html",
+                        "bytes":  1253,
+                        "sha256":  "af3fb164abf9b0cf57040bfaf15f548bc99f9f3a53f0d90d22e7992852e0963d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/customers.html",
+                        "bytes":  1106,
+                        "sha256":  "1082cd79a9f00762ff7d66f26a3a7a61a76f69326a645515f5a90446c635797d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/coupons.html",
+                        "bytes":  1033,
+                        "sha256":  "a366a9555bca98ac28eb91263af238b5f56b62ae58566f096259e74bc8101389",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/contacts.html",
+                        "bytes":  1049,
+                        "sha256":  "239ecbae039a14d08272f3ee7d5c243225d9f31fb4472e2575688899322a7800",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/categories.html",
+                        "bytes":  1131,
+                        "sha256":  "edbcfb4ac0dfb9126ba001245d7db5629257b9163f91236ba76c191835782d59",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/brands.html",
+                        "bytes":  1137,
+                        "sha256":  "6e4c8e6a67e33d1f7e2b7cafd3ed4c40aba7b6b6756f585fbca30ad5dba82295",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "frontend/pages/admin/analytics.html",
+                        "bytes":  1011,
+                        "sha256":  "9567f2f87986b9979033222a4e78bdfd7bd6ddff5a76f164c169c702014d6685",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/rag/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/rag/retriever.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/rag/rag_service.py",
+                        "bytes":  10142,
+                        "sha256":  "33f3b879f9784083526061b12a38309ce2e6b3d6c3f97c45a29f4f6446c5c2a9",
+                        "review_status":  "runtime_sections_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/rag/context_builder.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/admin_staff.py",
+                        "bytes":  2401,
+                        "sha256":  "770415b2b08d90c7287b45ede3934dea379720cfbb40129eb8ba477e56675b23",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/admin_customers.py",
+                        "bytes":  1766,
+                        "sha256":  "ed60d6aafb5723406815e8dd048b2567dbc53f470ecf727e207a72de80322f9c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/ai_admin.py",
+                        "bytes":  10059,
+                        "sha256":  "4775d8510c8523d56ac95745d3a3fe6f794bfbff25c4ba0f71f80d06e6660760",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/ai_staff.py",
+                        "bytes":  8405,
+                        "sha256":  "fd3d0d44bc471850e439f5873a377cef725e6710ff1437dfc35a260e9443b50e",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/backup/task_backup.py",
+                        "bytes":  2506,
+                        "sha256":  "6691541a8527fdd9ca8f2941660410ccf477e1d851e80e87f68eb5ae868d1f10",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/backup/retrieval_backup.py",
+                        "bytes":  7958,
+                        "sha256":  "8dd14e564618f45c5efe8b6ccc69d030620ff04fd7a62b17d6144e5b65c1a681",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "AI/backup/main_backup.py",
+                        "bytes":  3634,
+                        "sha256":  "83bba0af5909a65990ff58c9fbd28bd53d68647cbb39abb34a8e591ee79305f8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/__init__.py",
+                        "bytes":  0,
+                        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/taxonomy.py",
+                        "bytes":  4844,
+                        "sha256":  "7da9c7e987b4fee57908506a53801112c595556b30d6de703092dadf0454eb8b",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/product_attributes.py",
+                        "bytes":  4380,
+                        "sha256":  "e1310b807d26662b62e887dab018ab8f7c2ddc00919c11da34ea104e34c042d5",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/payments.py",
+                        "bytes":  4348,
+                        "sha256":  "35d8895687d03a55d10bb9ae93dcbba6704589e2e1b6b228dadc2ce82c810eee",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/password_reset.py",
+                        "bytes":  5233,
+                        "sha256":  "219077b2fab1b2fd7d44bdadfdaa50afd1f627ebf0ef40869cd4aa757255ab39",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/orders.py",
+                        "bytes":  4162,
+                        "sha256":  "5c0284ede1f770ff80bcc5c24e86478acd217187d81078a14c6bed7b4fbe1f34",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/dashboard.py",
+                        "bytes":  1504,
+                        "sha256":  "de643d7bde84e3b8b3f483f3d270f68e18d0136ba8d571762fa318d111b547f8",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/customer_content.py",
+                        "bytes":  3050,
+                        "sha256":  "f2c60285b0b08944ba4869c8630f7c4a46ec326128dd0e4b24993def69871832",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/coupons.py",
+                        "bytes":  2191,
+                        "sha256":  "5647251f67ef6f676ea374377e7d9604a950d28bec6e56f911dee9570c45d0ca",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/contact.py",
+                        "bytes":  3421,
+                        "sha256":  "0cc0a792ea0e88744345e167fa03b3ab5b33cd2ca693bd67886508cd7eed8d4c",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/catalog.py",
+                        "bytes":  10431,
+                        "sha256":  "ad98478fde7aecbcad9ce37900c692d64c19327dbe3ae4d8bc9b7edcd04078cf",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/cart.py",
+                        "bytes":  6029,
+                        "sha256":  "4271dae0cf616f7a60d249bf685f71b02891d688144b47717b663d35596c7c33",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    },
+                    {
+                        "path":  "backend/app/routers/auth.py",
+                        "bytes":  7137,
+                        "sha256":  "300323dca660feb5f84b773906f0f5ee6b7d5c699110b7dd2af9bc7a3f3e694d",
+                        "review_status":  "not_fully_reviewed_this_audit"
+                    }
+                ]
+}

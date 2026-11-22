@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-11-22T08:08:49.115227+00:00",
+  "updated_utc": "2026-11-22T13:35:48.153945+00:00",
   "branch": "rebuild/lumiere-demo-20261122",
   "complete_project": false,
   "source_state": "Demo branch; exact source/CI commits recorded separately; no production activation",
@@ -15,7 +15,7 @@
     "unique_scenarios_not_claimed": true
   },
   "offline_ai_tests": {
-    "tests_run": 101,
+    "tests_run": 111,
     "failures": 0,
     "errors": 0,
     "skipped": 1,
@@ -23,8 +23,8 @@
     "graph_integration": "not_run_requires_isolated_server",
     "qdrant": "actual_in_memory_engine_with_synthetic_vectors",
     "real_model_quality": "not_evaluated",
-    "passed": 100,
-    "report": "conversation-context-model-tests-20261122.json"
+    "passed": 110,
+    "report": "dense-anchor-worker-tests-20261122.json"
   },
   "docker_browser_integration": {
     "successful": true,
@@ -303,7 +303,7 @@
     "report": "compose-release-full-browser-20261122.json",
     "scope_note": "Supersedes failed earlier subsets; full dependency/cold-start/load matrix still pending"
   },
-  "runtime_open_issue": "Original project data activated; full role/write regression on original-data copy and hosting acceptance pending",
+  "runtime_open_issue": "Dense-anchor smoke recorded; cold/concurrent load, full role/write regression, real Qwen dialogue and approved hosting acceptance remain open",
   "runtime_resources": {
     "report": "runtime-memory-pressure-20261122.json",
     "native_graph_lab_running": false,
@@ -681,5 +681,218 @@
       "server and model provisioning",
       "actual Qwen quality, latency and privacy acceptance"
     ]
+  },
+  "dense_anchor_runtime": {
+    "read_only": true,
+    "dataset": "original_full_project_copy",
+    "attempts": [
+      {
+        "attempt": 1,
+        "ready": false,
+        "source_errors": [
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "cooldown"
+            }
+          }
+        ]
+      },
+      {
+        "attempt": 2,
+        "ready": false,
+        "source_errors": [
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          }
+        ]
+      },
+      {
+        "attempt": 3,
+        "ready": false,
+        "source_errors": [
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          },
+          {
+            "dense": {
+              "error_type": "SourceUnavailable",
+              "reason": "in_flight"
+            }
+          }
+        ]
+      },
+      {
+        "attempt": 4,
+        "ready": true,
+        "source_errors": [
+          {},
+          {},
+          {}
+        ]
+      }
+    ],
+    "queries": [
+      {
+        "query": "sinh nhật tặng gì",
+        "status": "ok",
+        "requested_k": 3,
+        "product_ids": [
+          22,
+          80,
+          102
+        ],
+        "dense_candidates": 35,
+        "graph_candidates": 35,
+        "anchor_paths": 8,
+        "live_values_verified": true,
+        "budget_category_verified": null,
+        "source_errors": {},
+        "timings_seconds": {
+          "parse": 0.0019343819999448897,
+          "catalog": 0.21712659100012388,
+          "dense": 0.574176216000069,
+          "graph": 0.6360070430000633,
+          "fusion": 0.0005164989997865632,
+          "verification": 0.2417769489998136
+        }
+      },
+      {
+        "query": "Top 3 nhẫn dưới 8 triệu",
+        "status": "ok",
+        "requested_k": 3,
+        "product_ids": [
+          2,
+          79,
+          114
+        ],
+        "dense_candidates": 19,
+        "graph_candidates": 19,
+        "anchor_paths": 3,
+        "live_values_verified": true,
+        "budget_category_verified": true,
+        "source_errors": {},
+        "timings_seconds": {
+          "parse": 0.0006852510000499024,
+          "catalog": 0.14910950500006948,
+          "dense": 0.22862328600012916,
+          "graph": 0.3683050790004927,
+          "fusion": 0.0004090600000381528,
+          "verification": 0.20161204099986207
+        }
+      },
+      {
+        "query": "Top 5 bông tai",
+        "status": "ok",
+        "requested_k": 5,
+        "product_ids": [
+          1,
+          22,
+          31,
+          21,
+          36
+        ],
+        "dense_candidates": 35,
+        "graph_candidates": 35,
+        "anchor_paths": 4,
+        "live_values_verified": true,
+        "budget_category_verified": null,
+        "source_errors": {},
+        "timings_seconds": {
+          "parse": 0.0005319849997249548,
+          "catalog": 0.3142997030004153,
+          "dense": 1.7735683119999521,
+          "graph": 0.9621015860002444,
+          "fusion": 0.0009118069997384737,
+          "verification": 0.852461897000012
+        }
+      }
+    ],
+    "worker": {
+      "enabled": true,
+      "states": {
+        "done": 500
+      },
+      "last_success": "2026-11-22T13:28:06.858434+00:00",
+      "oldest_pending_seconds": null
+    },
+    "checks": {
+      "all_dense_graph_sources_healthy": true,
+      "birthday_has_anchor_paths": true,
+      "top_k_count_unique": true,
+      "live_values_and_budget_verified": true,
+      "public_birthday_has_products": true,
+      "explanation_keeps_previous_ids": true,
+      "correction_does_not_search_products": true,
+      "original_catalog_sync_queue_drained": true
+    },
+    "successful": true,
+    "natural_llm_live_verified": false,
+    "quality_benchmark": "not_evaluated",
+    "report": "dense-anchor-runtime-final-20261122.json",
+    "failed_cold_probe_report": "dense-anchor-runtime-20261122.json"
+  },
+  "original_data_roles_browser": {
+    "successful": true,
+    "browser": "actual installed Chrome",
+    "base_url": "http://127.0.0.1:18081",
+    "scope": "QA copy of 500 original products and 12 original orders; three synthetic QA accounts",
+    "injected_runtime_config": false,
+    "mocked_api_responses": false,
+    "serving_original_accounts_modified": false,
+    "cases": [
+      "guest denied admin AI",
+      "guest denied staff AI",
+      "admin browser login on original-data QA",
+      "admin chatbot correct /api route, SQL aggregate and visible answer",
+      "staff browser login on original-data QA",
+      "staff denied admin AI",
+      "staff chatbot correct /api route, SQL aggregate and visible answer",
+      "customer browser login on original-data QA",
+      "customer denied admin AI",
+      "customer denied staff AI",
+      "homepage customer AI actual three products and budget/stock",
+      "product widget displays all Top 10 with actual SKU photos, links and stock",
+      "chat network failure gives shopping-safe message and catalog remains visible"
+    ],
+    "passed": 13,
+    "qa_login_session_writes": true,
+    "production_accessed": false
   }
 }

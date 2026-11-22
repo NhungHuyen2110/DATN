@@ -1,0 +1,151 @@
+{
+  "read_only": true,
+  "dataset": "original_full_project_copy",
+  "attempts": [
+    {
+      "attempt": 1,
+      "ready": false,
+      "source_errors": [
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "timeout"
+          }
+        },
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        },
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "ready": false,
+      "source_errors": [
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        },
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        },
+        {
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "ready": true,
+      "source_errors": [
+        {},
+        {},
+        {}
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "query": "sinh nhật tặng gì",
+      "status": "ok",
+      "requested_k": 3,
+      "product_ids": [
+        22,
+        80,
+        102
+      ],
+      "dense_candidates": 35,
+      "graph_candidates": 35,
+      "anchor_paths": 8,
+      "live_values_verified": true,
+      "budget_category_verified": null,
+      "source_errors": {},
+      "timings_seconds": {
+        "parse": 0.0003054850001262821,
+        "catalog": 0.11161230399989108,
+        "dense": 0.09848519199999828,
+        "graph": 0.23004712900001323,
+        "fusion": 0.00016096800004561373,
+        "verification": 0.10187887899996895
+      }
+    },
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "status": "ok",
+      "requested_k": 3,
+      "product_ids": [
+        2,
+        79,
+        114
+      ],
+      "dense_candidates": 19,
+      "graph_candidates": 19,
+      "anchor_paths": 3,
+      "live_values_verified": true,
+      "budget_category_verified": true,
+      "source_errors": {},
+      "timings_seconds": {
+        "parse": 0.0003315480000765092,
+        "catalog": 0.11599958600004356,
+        "dense": 0.08104176200004076,
+        "graph": 0.15564368899981673,
+        "fusion": 0.00011166400008733035,
+        "verification": 0.12386515100001816
+      }
+    },
+    {
+      "query": "Top 5 bông tai",
+      "status": "ok",
+      "requested_k": 5,
+      "product_ids": [
+        1,
+        22,
+        31,
+        21,
+        36
+      ],
+      "dense_candidates": 35,
+      "graph_candidates": 35,
+      "anchor_paths": 4,
+      "live_values_verified": true,
+      "budget_category_verified": null,
+      "source_errors": {},
+      "timings_seconds": {
+        "parse": 0.0005111189998387999,
+        "catalog": 0.15613890400004493,
+        "dense": 0.0756459280000854,
+        "graph": 0.2888014079999266,
+        "fusion": 0.0002712049999900046,
+        "verification": 0.23887131399987993
+      }
+    }
+  ],
+  "checks": {
+    "all_dense_graph_sources_healthy": true,
+    "birthday_has_anchor_paths": true,
+    "top_k_count_unique": true,
+    "live_values_and_budget_verified": true,
+    "public_birthday_has_products": true,
+    "explanation_keeps_previous_ids": true,
+    "correction_does_not_search_products": true
+  },
+  "successful": true,
+  "natural_llm_live_verified": false,
+  "quality_benchmark": "not_evaluated"
+}

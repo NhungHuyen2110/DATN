@@ -11,7 +11,7 @@ from jewelry_agents.business_catalog import fetch_catalog, fetch_shipping_policy
 from jewelry_agents.intent_router import classify_query
 from shared.observability import record_intent
 from jewelry_agents.search_service import search, RetrievalUnavailable
-from jewelry_agents.retrieval import search_qdrant, extract_price_filter, graph_search_candidates
+from jewelry_agents.retrieval import search_qdrant, extract_price_filter, graph_search_candidates, graph_expand_candidates
 from jewelry_agents.advice_planner import GIFT_INTRO
 
 
@@ -95,7 +95,8 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                 pass  # Advice is optional; authoritative retrieval still executes.
         try:
             result = search(query, top_k, dense=search_qdrant, catalog=fetch_catalog,
-                            parse_price=extract_price_filter, graph=graph_search_candidates)
+                            parse_price=extract_price_filter, graph=graph_search_candidates,
+                            graph_expander=graph_expand_candidates)
         except RetrievalUnavailable:
             return {"success": False, "status": "catalog_unavailable", "products": [],
                     "message": "Tạm thời chưa xác minh được giá và tồn kho. Bạn vui lòng thử lại sau.",

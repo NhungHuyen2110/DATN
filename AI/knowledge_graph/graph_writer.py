@@ -5,6 +5,7 @@ types follow the existing application contract. Input values are parameters.
 """
 from decimal import Decimal
 from pathlib import Path
+import re
 
 try:
     from .csv_validation import LOOKUPS
@@ -123,6 +124,26 @@ def verify_projection(session, rows):
     return report
 
 
+def ensure_constraints(session, statements):
+    """Check schema once per import; avoid six schema transactions per replay."""
+    expected = {'lumiere_' + label.lower() + '_id': (label, label.lower() + '_id')
+                for label in ['Product', *LOOKUPS]}
+    existing = {row['name']: row for row in session.run(
+        'SHOW CONSTRAINTS YIELD name, type, labelsOrTypes, properties RETURN name, type, labelsOrTypes, properties')}
+    for name, (label, field) in expected.items():
+        if name in existing:
+            row = existing[name]
+            if row['type'] != 'UNIQUENESS' or row['labelsOrTypes'] != [label] or row['properties'] != [field]:
+                raise ProjectionConflict('Managed constraint differs from required uniqueness schema')
+    for statement in statements.split(';'):
+        if statement.strip():
+            name = re.search(r'CREATE\s+CONSTRAINT\s+(\w+)', statement, flags=re.I)
+            if name is None or name.group(1) not in expected:
+                raise ValueError('Unrecognized managed constraint statement')
+            if name.group(1) not in existing:
+                session.run(statement).consume()
+
+
 def import_projection(driver, database, records, source_file, source_sha256, batch_size=100, progress=None):
     if not records or not 1 <= batch_size <= 10000:
         raise ValueError("Nonempty validated records and batch-size 1..10000 required")
@@ -139,9 +160,7 @@ def import_projection(driver, database, records, source_file, source_sha256, bat
         """, allowed_labels=['Product', *LOOKUPS], owner=OWNER).single()['conflicts']
         if conflicts:
             raise ProjectionConflict("Target contains unmanaged products or non-catalog data; refusing all writes")
-        for statement in statements.split(";"):
-            if statement.strip():
-                session.run(statement).consume()
+        ensure_constraints(session, statements)
         for start in range(0, len(rows), batch_size):
             # Neo4j execute_write retries retryable failures within driver retry budget.
             session.execute_write(write_batch, rows[start:start + batch_size])

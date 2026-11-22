@@ -293,6 +293,7 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
         encoder = retrieval.get_dense_services()[1] if request.semantic_entities else None
         return search(request.query, request.top_k, dense=retrieval.search_qdrant, catalog=fetch_catalog,
                       parse_price=retrieval.extract_price_filter, graph=retrieval.graph_search_candidates,
+                      graph_expander=retrieval.graph_expand_candidates,
                       reranker=GraphFeatureReranker() if request.rerank else None,
                       entity_encoder=encoder, diagnostics=True)
     except RetrievalUnavailable:

@@ -25,6 +25,12 @@ class SourceGate:
         self._caller_finished = True
 
     def call(self, function, *args, **kwargs):
+        return self.call_with_timeout(self.timeout, function, *args, **kwargs)
+
+    def call_with_timeout(self, timeout, function, *args, **kwargs):
+        """Use a distinct startup budget without bypassing single-flight isolation."""
+        if timeout <= 0:
+            raise ValueError('Positive timeout required')
         with self._lock:
             if self._closed or self.clock() < self._open_until:
                 raise SourceUnavailable('Source is cooling down')
@@ -35,7 +41,7 @@ class SourceGate:
             self._future = future
             self._caller_finished = False
         try:
-            result = future.result(timeout=self.timeout)
+            result = future.result(timeout=timeout)
         except FutureTimeout:
             with self._lock:
                 self._open_until = self.clock() + self.cooldown

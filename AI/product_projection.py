@@ -26,7 +26,7 @@ class ProductProjection:
         if not result['pass']:
             raise RuntimeError('GraphVerificationFailed')
         result = index_products(self.qdrant, self.encoder, [snapshot], self.model_name,
-                                self.model_revision, digest)
+                                self.model_revision, digest, reuse_existing=True)
         if not result['pass']:
             raise RuntimeError('VectorVerificationFailed')
 

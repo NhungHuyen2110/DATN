@@ -1,0 +1,256 @@
+{
+  "read_only": true,
+  "dataset": "original_full_project_copy",
+  "attempts": [
+    {
+      "attempt": 1,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          },
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "timeout"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          },
+          "graph": {
+            "error_type": "SourceUnavailable",
+            "reason": "cooldown"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 4,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 5,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": 6,
+      "ready": false,
+      "source_errors": [
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        },
+        {
+          "dense": {
+            "error_type": "SourceUnavailable",
+            "reason": "in_flight"
+          }
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "query": "sinh nhật tặng gì",
+      "status": "degraded",
+      "requested_k": 3,
+      "product_ids": [],
+      "dense_candidates": 0,
+      "graph_candidates": 0,
+      "anchor_paths": 0,
+      "live_values_verified": true,
+      "budget_category_verified": null,
+      "source_errors": {
+        "dense": {
+          "error_type": "SourceUnavailable",
+          "reason": "in_flight"
+        }
+      },
+      "timings_seconds": {
+        "parse": 0.00751582399993822,
+        "catalog": 1.373017880999896,
+        "dense": 0.09219382300011603,
+        "graph": 0.007625098999824331,
+        "fusion": 0.00040620499999022286
+      }
+    },
+    {
+      "query": "Top 3 nhẫn dưới 8 triệu",
+      "status": "degraded",
+      "requested_k": 3,
+      "product_ids": [
+        2,
+        79,
+        87
+      ],
+      "dense_candidates": 0,
+      "graph_candidates": 19,
+      "anchor_paths": 0,
+      "live_values_verified": true,
+      "budget_category_verified": true,
+      "source_errors": {
+        "dense": {
+          "error_type": "SourceUnavailable",
+          "reason": "in_flight"
+        }
+      },
+      "timings_seconds": {
+        "parse": 0.0008084379999218072,
+        "catalog": 0.35469043700004477,
+        "dense": 0.00021976700008963235,
+        "graph": 0.7863961680000102,
+        "fusion": 0.0005085760001293238,
+        "verification": 0.8188324430000193
+      }
+    },
+    {
+      "query": "Top 5 bông tai",
+      "status": "degraded",
+      "requested_k": 5,
+      "product_ids": [
+        1,
+        3,
+        7,
+        21,
+        22
+      ],
+      "dense_candidates": 0,
+      "graph_candidates": 35,
+      "anchor_paths": 0,
+      "live_values_verified": true,
+      "budget_category_verified": null,
+      "source_errors": {
+        "dense": {
+          "error_type": "SourceUnavailable",
+          "reason": "in_flight"
+        }
+      },
+      "timings_seconds": {
+        "parse": 0.0006225899999208195,
+        "catalog": 0.4456205009998939,
+        "dense": 0.00018799600002239458,
+        "graph": 0.15328468600000633,
+        "fusion": 0.0006263729999318457,
+        "verification": 0.377855092000118
+      }
+    }
+  ],
+  "checks": {
+    "all_dense_graph_sources_healthy": false,
+    "birthday_has_anchor_paths": false,
+    "top_k_count_unique": true,
+    "live_values_and_budget_verified": true,
+    "public_birthday_has_products": false,
+    "explanation_keeps_previous_ids": true,
+    "correction_does_not_search_products": true
+  },
+  "successful": false,
+  "natural_llm_live_verified": false,
+  "quality_benchmark": "not_evaluated"
+}
