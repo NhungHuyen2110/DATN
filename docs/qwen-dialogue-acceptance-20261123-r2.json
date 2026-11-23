@@ -1,0 +1,26 @@
+{
+  "successful": false,
+  "suite": "dialogue",
+  "paused_services": [
+    "ai-api",
+    "grafana",
+    "index-worker",
+    "neo4j",
+    "prometheus",
+    "qdrant"
+  ],
+  "stage": "dialogue_normal",
+  "model_cache_preparation": {
+    "successful": true,
+    "model": "qwen2.5:3b",
+    "blobs_copied": 5,
+    "blobs_reused": 0,
+    "bytes_verified": 1929912432,
+    "manifest_sha256": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "source_modified": false,
+    "downloaded": false
+  },
+  "failure_type": "RuntimeError",
+  "paused_services_restored_running": true,
+  "docker_engine_retries": []
+}

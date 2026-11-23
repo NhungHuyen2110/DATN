@@ -1,0 +1,10 @@
+{
+  "passed": 683,
+  "subtests_passed": 833,
+  "warnings": 19,
+  "duration_seconds": 528.55,
+  "log": ".local-tmp\\knowledge-routing-backend-tests.log",
+  "log_sha256": "6bd1f3e9e7e83a8463dbae2df80e6e1ee3ae114991ef5057eae6f740632246d4",
+  "scope": "guarded offline runner: SQLite memory only, external network blocked",
+  "unique_scenarios_not_claimed": true
+}

@@ -33,7 +33,7 @@ Canonical nodes `Audience`/`Style` có unique constraints, owner riêng `lumiere
 ## Kiểm thử và trạng thái
 
 - Backend mới: **683 passed, 833 subtests**, 19 deprecation warnings, `.local-tmp/knowledge-routing-backend-tests.log` (528,55 giây trên máy thiếu RAM).
-- AI/tools: **132 run, 131 passed/1 skip** server graph, `knowledge-routing-tests-20261123.json`. Gồm test kết thúc child process đang giữ pipe khi CLI timeout, tái sử dụng vector đúng query/model trong một request, và câu hỏi kiến thức không tự chuyển thành tìm sản phẩm. Đây không phải benchmark chất lượng.
+- AI/tools: **136 run, 135 passed/1 skip** server graph, `model-cache-safety-tests-20261123.json`. Gồm test kết thúc child process đang giữ pipe khi CLI timeout, tái sử dụng vector đúng query/model trong một request, câu hỏi kiến thức không tự chuyển thành tìm sản phẩm, và bốn test checksum/idempotency/chống ghi đè/path traversal của QA model cache. Đây không phải benchmark chất lượng.
 - Migration QA: `review-schema-qa-20261123.json`; backup custom-format có checksum, 21 bảng có sẵn giữ nguyên trước/sau. Migration chỉ thêm bảng/index/constraints.
 - Integration riêng đạt **8/8**: `reviewed-attributes-integration-20261123-r3.json`, graph/vector volumes `review_qa_*`, database `lumiere_test_ai_acceptance`, encoder pinned thật. Import/replay 4 sản phẩm QA giữ 18 node/26 cạnh, 6 nhãn ban đầu đúng evidence; thu hồi Style loại sản phẩm khỏi query. Đây không phải graph phục vụ 500 sản phẩm, không phải benchmark chất lượng.
 - Chrome riêng đạt **7/7** trên `127.0.0.1:18082`, QA-only accounts: `reviewed-attributes-browser-20261123-r2.json`.
@@ -64,7 +64,9 @@ node scripts/browser/verify-product-attributes.cjs .local-tmp/original-db-202611
 
 Runner kiểm tra target/volume, tạm dừng những dịch vụ AI/monitoring đang chạy để tiết kiệm RAM, luôn thử khôi phục chúng trong `finally`. Website/Business/PostgreSQL không bị dừng. Không chạy hai bài retrieval cùng lúc. Runner để UI QA lại cho test trình duyệt; graph/vector QA dừng sau bài thử, không xóa volume.
 
-Suite Qwen riêng được chuẩn bị trong `compose.dialogue-acceptance.yaml` và `scripts/verify_dialogue_acceptance.py`. Chạy bằng `run_review_acceptance.py --suite dialogue --model-cache <cache-model-có-sẵn> --report <file-mới.json>`. Cache model mount read-only; suite không tải model hoặc thay cấu hình LLM của bản phục vụ. Nó kiểm tra model thật cho ba role, ngữ cảnh tiếp nối, tắt/bật provider và số đơn SQL. Chỉ report `successful: true` mới là bằng chứng đạt. Đây là QA cô lập, không phải full hybrid + LLM cùng chạy hoặc đánh giá chất lượng của con người.
+Suite Qwen riêng được chuẩn bị trong `compose.dialogue-acceptance.yaml` và `scripts/verify_dialogue_acceptance.py`. Chạy bằng `run_review_acceptance.py --suite dialogue --model-cache <cache-model-có-sẵn> --report <file-mới.json>`. Source cache mount read-only; job không có network sao chép riêng 3B vào volume `dialogue_qa_ollama`, xác minh SHA-256 từng blob theo manifest. Ollama chỉ đọc bản sao này; không tải model hoặc thay cấu hình LLM của bản phục vụ. Job từ chối thay blob/manifest khác, giữ bản sao dở khi bị ngắt. Suite dự kiến kiểm tra model thật cho ba role, ngữ cảnh tiếp nối, tắt/bật provider và số đơn SQL. Chỉ report `successful: true` mới là bằng chứng đạt. Đây là QA cô lập, không phải full hybrid + LLM cùng chạy hoặc đánh giá chất lượng của con người.
+
+Lần đầu Qwen chưa đạt: `qwen-dialogue-acceptance-20261123.json`, container/API healthy nhưng generate khởi động vượt 180 s, chưa có chứng cứ câu trả lời thật cho ba role. Các service tạm dừng đã phục hồi running. Bài outbox mở rộng cũng chưa đạt trong giới hạn 480 s (`reviewed-attributes-integration-20261123-r5.json`); không dùng nó để tăng số ca 8/8 đã đạt trước đó. Giới hạn 900 s mới chỉ dành cho toàn bộ process nghiệm thu có import encoder, không thay thời hạn API. Cần kết quả chạy riêng trước khi đóng gate.
 
 ## Bật trên bản sao local và rollback
 

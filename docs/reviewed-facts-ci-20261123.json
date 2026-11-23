@@ -1,0 +1,39 @@
+{
+    "successful":  true,
+    "commit":  "c8faea9e18ea7027b9f246f000cab206c3551024",
+    "branch":  "rebuild/lumiere-demo-20261122",
+    "runs":  [
+                 {
+                     "name":  "Isolated PostgreSQL synchronization",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964904"
+                 },
+                 {
+                     "name":  "Graph and retrieval tests",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964896"
+                 },
+                 {
+                     "name":  "Independent service builds",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45114965002"
+                 },
+                 {
+                     "name":  "Backend regression",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964910"
+                 },
+                 {
+                     "name":  "Frontend browser and source API integration",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "html_url":  "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964918"
+                 }
+             ],
+    "source":  "GitHub Actions public API",
+    "full_llm_or_hosting_acceptance":  false
+}

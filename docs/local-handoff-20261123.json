@@ -1,0 +1,74 @@
+{
+  "successful": true,
+  "verified_utc": "2026-11-23T05:17:32.282509+00:00",
+  "complete_project": false,
+  "semantic_readiness_accepted": false,
+  "natural_llm_accepted": false,
+  "no_generation_or_retrieval_probe_performed": true,
+  "source_database_modified": false,
+  "qa_stopped_services": [
+    "business-qa",
+    "frontend-review-qa",
+    "proxy-qa",
+    "proxy-review-qa"
+  ],
+  "main_services": {
+    "ai-api": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:f49ada17606f692d26fe9bbccdf3c1f4b3179b1b2cf6fd97878132b5234bd78d",
+      "dialogue_llm_enabled": false
+    },
+    "business-api": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:5fef291f1b918b66934ff5dc3e87017bf57e5462601eb10c87cbb91e7d01ff78",
+      "dialogue_llm_enabled": false
+    },
+    "neo4j": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:51d0314ef86074f519003da8dd4daaa9fff72b8479672b742d7cab7f3064e3ed"
+    },
+    "index-worker": {
+      "running": true,
+      "health": null,
+      "image_id": "sha256:c27b2dd7d4b4b71c954fe89fd2427f40255c68517569ed9ae95755235305eabc"
+    },
+    "frontend": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:5599bc76f8e9ab0007865b3fa1c0985147c229ac9688db8651563fda4bd39983"
+    },
+    "qdrant": {
+      "running": true,
+      "health": null,
+      "image_id": "sha256:0bd98fa7977f1e75694779359ca4e212822e5a71334e28421182f72f209d5286"
+    },
+    "prometheus": {
+      "running": true,
+      "health": null,
+      "image_id": "sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038"
+    },
+    "grafana": {
+      "running": true,
+      "health": null,
+      "image_id": "sha256:35c41e0fd0295f5d0ee5db7e780cf33506abfaf47686196f825364889dee878b"
+    },
+    "postgres": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3"
+    },
+    "reverse-proxy": {
+      "running": true,
+      "health": "healthy",
+      "image_id": "sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236"
+    }
+  },
+  "all_main_services_running": true,
+  "original_source_and_audit_clone_stopped": true,
+  "website_http_status": 200,
+  "catalog_http_status": 200,
+  "catalog_total": 500
+}

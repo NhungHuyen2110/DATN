@@ -33,7 +33,9 @@ def main():
     def report(name):
         return json.loads((ROOT / 'docs' / name).read_text(encoding='utf-8-sig'))
 
-    ai_name = ('knowledge-routing-tests-20261123.json'
+    ai_name = ('model-cache-safety-tests-20261123.json'
+               if (ROOT / 'docs/model-cache-safety-tests-20261123.json').exists() else
+               'knowledge-routing-tests-20261123.json'
                if (ROOT / 'docs/knowledge-routing-tests-20261123.json').exists() else
                'review-request-embedding-tests-20261123.json'
                if (ROOT / 'docs/review-request-embedding-tests-20261123.json').exists() else
@@ -73,7 +75,8 @@ def main():
     worker_build = report('docker-worker-bootstrap-image-20261122.json')
     semantic = report('compose-semantic-verified-r2-20261122.json')
     operations = report('compose-demo-operations-20261122.json')
-    ci = report('dense-anchor-ci-20261122.json' if (ROOT / 'docs/dense-anchor-ci-20261122.json').exists()
+    ci = report('reviewed-facts-ci-20261123.json' if (ROOT / 'docs/reviewed-facts-ci-20261123.json').exists() else
+                'dense-anchor-ci-20261122.json' if (ROOT / 'docs/dense-anchor-ci-20261122.json').exists()
                 else 'github-ci-baseline-20261122.json')
     hosting_seed = report('hosting-catalog-bootstrap-rehearsal-20261122.json')
     caption = report('compose-public-copy-browser-20261122.json')
@@ -233,13 +236,29 @@ def main():
     if activated.get('successful') and all(activated.get('feature_flags', {}).get(service) is True
             for service in ('business-api', 'ai-api', 'index-worker')):
         current['reviewed_product_facts']['serving_feature_activation'] = 'verified_local_copy'
-    dialogue_path = ROOT / 'docs/qwen-dialogue-acceptance-20261123.json'
+    dialogue_path = ROOT / 'docs/qwen-dialogue-acceptance-20261123-r2.json'
+    if not dialogue_path.exists():
+        dialogue_path = ROOT / 'docs/qwen-dialogue-acceptance-20261123.json'
     if dialogue_path.exists():
         dialogue = report(dialogue_path.name)
         current['natural_dialogue_llm'] = {'isolated_qa': dialogue, 'report': dialogue_path.name,
             'live_verified': dialogue.get('successful') is True, 'local_enabled': False,
             'full_hybrid_llm_stack_tested': False,
-            'needs': ['simultaneous stack resource acceptance', 'human dialogue and product grounding evaluation']}
+            'needs': ['actual normal generation across all roles', 'simultaneous stack resource acceptance',
+                      'human dialogue and product grounding evaluation']}
+    knowledge_api = ROOT / 'docs/knowledge-routing-api-20261123-r2.json'
+    if knowledge_api.exists():
+        current['knowledge_routing_api'] = {**report(knowledge_api.name), 'report': knowledge_api.name}
+    latest_browser = ROOT / 'docs/knowledge-routing-conversation-browser-20261123.json'
+    if latest_browser.exists():
+        current['latest_conversation_browser_attempt'] = {**report(latest_browser.name), 'report': latest_browser.name}
+        if not current['latest_conversation_browser_attempt'].get('successful'):
+            current['runtime_open_issue'] = ('Latest browser semantic-readiness precondition failed; '
+                'knowledge routing API passed separately; Qwen generation and hosting acceptance remain open')
+    current['handoff_policy'] = 'No further model retries or long test suites without a new request; preserve partial results'
+    handoff_path = ROOT / 'docs/local-handoff-20261123.json'
+    if handoff_path.exists():
+        current['local_handoff'] = {**report(handoff_path.name), 'report': handoff_path.name}
     for filename, data in [('backend-reviewed-facts-20261123.json', backend), ('current-implementation.json', current)]:
         (ROOT / 'docs' / filename).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'backend_passed': backend['passed'], 'backend_subtests': backend['subtests_passed'],

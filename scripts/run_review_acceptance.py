@@ -79,9 +79,23 @@ def main():
         if mount['type'] != 'volume' or not mount['source'].startswith('review_qa_'):
             raise ValueError('QA graph/vector must use distinct managed QA volumes')
     if dialogue_output:
-        mount = next(item for item in config['services']['ollama']['volumes'] if item['target'] == '/cached-models')
+        mount = next(item for item in config['services']['dialogue-model-cache']['volumes'] if item['target'] == '/cached-models')
         if mount['type'] != 'bind' or mount.get('read_only') is not True:
             raise ValueError('Existing model cache must be mounted read-only')
+        mount = next(item for item in config['services']['ollama']['volumes'] if item['target'] == '/qa-models')
+        if mount['type'] != 'volume' or mount['source'] != 'dialogue_qa_ollama' or mount.get('read_only') is not True:
+            raise ValueError('Ollama QA must read its own dedicated model volume')
+        volume_name = config['volumes']['dialogue_qa_ollama']['name']
+        if volume_name != 'lumiere-rebuild-test_dialogue_qa_ollama':
+            raise ValueError('Unexpected model QA volume name')
+        existing_volume = run_bounded(['docker', 'volume', 'inspect', volume_name], cwd=ROOT, timeout=30)
+        if existing_volume.returncode == 0:
+            labels = json.loads(existing_volume.stdout)[0].get('Labels') or {}
+            if (labels.get('com.docker.compose.project') != 'lumiere-rebuild-test'
+                    or labels.get('com.docker.compose.volume') != 'dialogue_qa_ollama'):
+                raise ValueError('Refuse to write an unmanaged model cache volume')
+        elif b'no such volume' not in (existing_volume.stdout + existing_volume.stderr).lower():
+            raise RuntimeError('Unable to establish QA model volume ownership')
     # Config includes example runtime credentials; do not retain its raw dump.
     # Only later tool output is useful to diagnose acceptance.
     log.write_bytes(b'QA target/volume validation passed\n')
@@ -110,12 +124,15 @@ def main():
             report['stage'] = 'pause_main_ai_services'
             run(BASE + ['stop', '-t', '20', *paused], timeout=150)
         if dialogue_output:
+            report['stage'] = 'copy_hash_verified_qa_model_cache'
+            output = run(qa + ['run', '--rm', '--no-deps', '-T', 'dialogue-model-cache'], timeout=480)
+            report['model_cache_preparation'] = json.loads(output.strip().splitlines()[-1])
             report['stage'] = 'start_dialogue_qa'
             run(qa + ['up', '-d', '--no-deps', '--wait', '--wait-timeout', '180',
                       'business-qa', 'ai-dialogue-qa', 'proxy-dialogue-qa', 'ollama'], timeout=220, retry_engine_502=True)
             actual_mounts = json.loads(run(['docker', 'inspect', run(qa + ['ps', '-q', 'ollama']).strip()],
                                           retain_output=False))[0]['Mounts']
-            assert any(m['Destination'] == '/cached-models' and m['RW'] is False for m in actual_mounts)
+            assert any(m['Destination'] == '/qa-models' and m['RW'] is False for m in actual_mounts)
             phases = []
             for phase in ('normal', 'outage', 'recovery'):
                 report['stage'] = 'dialogue_' + phase

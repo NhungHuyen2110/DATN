@@ -1,0 +1,38 @@
+{
+  "successful": true,
+  "cases": [
+    {
+      "role": "customer",
+      "question": "Đá Ruby là gì?",
+      "http_status": 200,
+      "intent": "general_question",
+      "products": 0,
+      "fallback_not_model_answer": true,
+      "seconds": 0.156
+    },
+    {
+      "role": "staff",
+      "question": "Đá Ruby là gì?",
+      "http_status": 200,
+      "intent": "general_question",
+      "products": 0,
+      "fallback_not_model_answer": true,
+      "seconds": 0.188
+    },
+    {
+      "role": "admin",
+      "question": "Đá Ruby là gì?",
+      "http_status": 200,
+      "intent": "general_question",
+      "products": 0,
+      "fallback_not_model_answer": true,
+      "seconds": 0.016
+    }
+  ],
+  "main_accounts_modified": false,
+  "qa_login_sessions_written": true,
+  "natural_llm_live_verified": false,
+  "scope": "Actual local API routing with dialogue disabled; not answer quality or full hybrid acceptance",
+  "authoritative_staff_order_count_verified": true,
+  "passed": 4
+}

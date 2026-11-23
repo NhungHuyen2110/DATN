@@ -2,9 +2,11 @@
 
 **Toàn dự án chưa hoàn thành.** Website local `http://127.0.0.1:18080` đã dùng bản sao đầy đủ database cũ và AI mới. Chưa có Qwen hội thoại chạy thật hoặc hosting công khai. Smoke tests không phải benchmark chất lượng.
 
+Đọc bảng trạng thái và lý do chưa đạt tại [Trạng thái AI](29-ai-status-and-blockers.md). Hai lần nghiệm thu Qwen local chưa đạt; giữ model tắt trên bản phục vụ. Checkpoint `c8faea9` đã có 5 workflow CI thành công (`reviewed-facts-ci-20261123.json`).
+
 ## Trạng thái mới thay thế các gate lịch sử phía dưới
 
-- Luồng nhãn được xác nhận: backend mới 683 tests/833 subtests đạt; AI/tools 132 run, 131 đạt/1 skip; Chrome QA 7/7; graph/vector/encoder thật QA 8/8, gồm replay và thu hồi. Flag đã bật trên bản sao local, 500 sản phẩm PG/graph/vector, outbox 500 done, review store 0. Chưa có ground truth người duyệt cho catalog. Xem `28-reviewed-product-facts.md`; lỗi readiness sau rollout và kiểm tra hội thoại được giữ bằng report riêng.
+- Luồng nhãn được xác nhận: backend mới 683 tests/833 subtests đạt; AI/tools 136 run, 135 đạt/1 skip; Chrome QA 7/7; graph/vector/encoder thật QA 8/8, gồm replay và thu hồi. Flag đã bật trên bản sao local, 500 sản phẩm PG/graph/vector, outbox 500 done, review store 0. Chưa có ground truth người duyệt cho catalog. Xem `28-reviewed-product-facts.md`; lỗi readiness sau rollout và kiểm tra hội thoại được giữ bằng report riêng.
 - Người dùng chưa thuê VPS và chọn tiếp tục hoàn thiện local; chưa có public staging/HTTPS.
 - Đã push checkpoint `f4a7a6a` lên `rebuild/lumiere-demo-20261122`; năm workflow của mốc `a7a5c46` đạt, không merge nhánh cũ. Thay đổi mới chỉ tính đã push/CI sau khi có commit và kết quả riêng.
 - Bản sao dữ liệu cũ có đủ 500 sản phẩm/ảnh, 11 tài khoản, 12 đơn, 15 dòng đơn và 9 giao dịch; nguồn và backup được giữ nguyên.

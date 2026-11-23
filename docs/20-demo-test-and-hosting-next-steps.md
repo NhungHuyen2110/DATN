@@ -1,5 +1,7 @@
 # Test demo và bước triển khai tiếp theo — 22/11/2026
 
+**Cập nhật 23/11:** xem [Bản bàn giao local và giới hạn](30-local-handoff.md) trước khi kiểm thử. Qwen chưa nghiệm thu được, lượt Chrome mới chưa qua semantic readiness; không dùng các mốc thành công lịch sử bên dưới để tuyên bố full AI đã ổn định. Các báo giá/cấu hình hosting bên dưới là đề xuất tại mốc cũ, chưa có VPS hoặc public deployment.
+
 ## Bản bạn có thể test ngay
 
 Mở http://127.0.0.1:18080 trên máy này. Website đã chuyển sang **bản sao đầy đủ database cũ `lumiere_backend_test`**, tên bản sao chạy local là `lumiere_test_original_data`. Có **500 sản phẩm/500 ảnh đúng SKU, 11 tài khoản, 12 đơn, 15 dòng đơn và 9 giao dịch**; giữ cả giỏ hàng, yêu thích, đánh giá, coupon và liên hệ. Dùng tài khoản/mật khẩu cũ của bạn; không reset hoặc thay bằng tài khoản giả. Xóa cookie cũ hoặc mở cửa sổ riêng tư nếu trình duyệt vẫn giữ phiên thử nghiệm trước.

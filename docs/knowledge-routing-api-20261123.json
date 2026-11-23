@@ -1,0 +1,9 @@
+{
+  "successful": false,
+  "cases": [],
+  "scope": "Actual local API routing with dialogue LLM disabled; not answer quality or full hybrid acceptance",
+  "main_accounts_modified": false,
+  "qa_login_sessions_written": true,
+  "failure_type": "KeyError",
+  "private_detail_retained": true
+}

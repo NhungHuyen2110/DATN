@@ -1,21 +1,21 @@
 {
-  "updated_utc": "2026-11-22T14:44:52.543393+00:00",
+  "updated_utc": "2026-11-23T05:18:20.905198+00:00",
   "branch": "rebuild/lumiere-demo-20261122",
   "complete_project": false,
   "source_state": "Demo branch; exact source/CI commits recorded separately; no production activation",
   "acceptance_checklist": "12-acceptance-status.md",
   "backend_regression": {
-    "passed": 680,
-    "subtests_passed": 829,
-    "warnings": 13,
-    "duration_seconds": 186.94,
-    "log": ".local-tmp\\database-fault-backend-full.log",
-    "log_sha256": "32825dd3eecf16c21421a7321c1d385e00a1b5b53bb05fb432a9cb7bc46e6b1c",
+    "passed": 683,
+    "subtests_passed": 833,
+    "warnings": 19,
+    "duration_seconds": 528.55,
+    "log": ".local-tmp\\knowledge-routing-backend-tests.log",
+    "log_sha256": "6bd1f3e9e7e83a8463dbae2df80e6e1ee3ae114991ef5057eae6f740632246d4",
     "scope": "guarded offline runner: SQLite memory only, external network blocked",
     "unique_scenarios_not_claimed": true
   },
   "offline_ai_tests": {
-    "tests_run": 118,
+    "tests_run": 136,
     "failures": 0,
     "errors": 0,
     "skipped": 1,
@@ -23,8 +23,8 @@
     "graph_integration": "not_run_requires_isolated_server",
     "qdrant": "actual_in_memory_engine_with_synthetic_vectors",
     "real_model_quality": "not_evaluated",
-    "passed": 117,
-    "report": "original-review-kit-tests-20261122.json"
+    "passed": 135,
+    "report": "model-cache-safety-tests-20261123.json"
   },
   "docker_browser_integration": {
     "successful": true,
@@ -147,45 +147,42 @@
   },
   "github_ci_baseline": {
     "successful": true,
-    "tested_commit": "a7a5c46efc907cd5b493e031890ac025361c2b3c",
-    "workflows": [
+    "commit": "c8faea9e18ea7027b9f246f000cab206c3551024",
+    "branch": "rebuild/lumiere-demo-20261122",
+    "runs": [
       {
         "name": "Isolated PostgreSQL synchronization",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416772",
-        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964904"
       },
       {
         "name": "Graph and retrieval tests",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416846",
-        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964896"
       },
       {
         "name": "Independent service builds",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416877",
-        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45114965002"
       },
       {
         "name": "Backend regression",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416830",
-        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964910"
       },
       {
         "name": "Frontend browser and source API integration",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45028416867",
-        "head_sha": "a7a5c46efc907cd5b493e031890ac025361c2b3c"
+        "html_url": "https://github.com/NhungHuyen2110/DATN/actions/runs/45114964918"
       }
     ],
-    "scope": "Five public CI workflows; no public deployment or Qwen live acceptance"
+    "source": "GitHub Actions public API",
+    "full_llm_or_hosting_acceptance": false
   },
   "hosting_catalog_bootstrap_rehearsal": {
     "successful": true,
@@ -303,7 +300,7 @@
     "report": "compose-release-full-browser-20261122.json",
     "scope_note": "Supersedes failed earlier subsets; full dependency/cold-start/load matrix still pending"
   },
-  "runtime_open_issue": "Dense-anchor smoke recorded; cold/concurrent load, full role/write regression, real Qwen dialogue and approved hosting acceptance remain open",
+  "runtime_open_issue": "Latest browser semantic-readiness precondition failed; knowledge routing API passed separately; Qwen generation and hosting acceptance remain open",
   "runtime_resources": {
     "report": "runtime-memory-pressure-20261122.json",
     "native_graph_lab_running": false,
@@ -472,7 +469,7 @@
   ],
   "active_dataset": {
     "successful": true,
-    "verified_utc": "2026-11-22T14:15:10.977267+00:00",
+    "verified_utc": "2026-11-22T20:14:35.243644+00:00",
     "scope": "read-only original-project copy; not full role/browser acceptance or relevance benchmark",
     "source_database": "lumiere_backend_test",
     "active_database": "lumiere_test_original_data",
@@ -517,7 +514,7 @@
     "accounts_reset": false,
     "public_deployment": false,
     "private_rows_exported": false,
-    "report": "original-project-after-faults-20261122.json",
+    "report": "original-project-reviewed-facts-20261123-r3.json",
     "browser": {
       "successful": true,
       "browser": "actual installed Chrome",
@@ -679,17 +676,46 @@
     "serving_original_accounts_modified": false,
     "natural_llm_live_verified": false,
     "scope": "context regression; does not claim ChatGPT-like general dialogue",
-    "real_model_readiness_attempts": 1,
-    "qa_readiness_attempts": 1
+    "real_model_readiness_attempts": 14,
+    "qa_readiness_attempts": 1,
+    "real_model_readiness_timeouts": 0,
+    "readiness_budget_seconds": 180
   },
   "natural_dialogue_llm": {
+    "isolated_qa": {
+      "successful": false,
+      "suite": "dialogue",
+      "paused_services": [
+        "ai-api",
+        "grafana",
+        "index-worker",
+        "neo4j",
+        "prometheus",
+        "qdrant"
+      ],
+      "stage": "dialogue_normal",
+      "model_cache_preparation": {
+        "successful": true,
+        "model": "qwen2.5:3b",
+        "blobs_copied": 5,
+        "blobs_reused": 0,
+        "bytes_verified": 1929912432,
+        "manifest_sha256": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "source_modified": false,
+        "downloaded": false
+      },
+      "failure_type": "RuntimeError",
+      "paused_services_restored_running": true,
+      "docker_engine_retries": []
+    },
+    "report": "qwen-dialogue-acceptance-20261123-r2.json",
     "live_verified": false,
     "local_enabled": false,
-    "prepared_override": "compose.dialogue.yaml",
-    "target": "approved VPS; monthly budget <=300000 VND",
+    "full_hybrid_llm_stack_tested": false,
     "needs": [
-      "server and model provisioning",
-      "actual Qwen quality, latency and privacy acceptance"
+      "actual normal generation across all roles",
+      "simultaneous stack resource acceptance",
+      "human dialogue and product grounding evaluation"
     ]
   },
   "dense_anchor_runtime": {
@@ -1258,5 +1284,303 @@
     "cost_fields_exported": false,
     "database_writes": false,
     "directory": ".local-tmp\\human-review-original-20261122"
+  },
+  "hosting_user_decision": {
+    "status": "VPS not rented; continue local development",
+    "budget_vnd_per_month": 300000,
+    "public_deployment": false
+  },
+  "reviewed_product_facts": {
+    "human_ground_truth_available": false,
+    "serving_feature_activation": "verified_local_copy",
+    "documentation": "28-reviewed-product-facts.md",
+    "qa_schema": {
+      "successful": true,
+      "database": "lumiere_test_ai_acceptance",
+      "revision_before": "20261121_0009",
+      "revision_after": "20261122_0010",
+      "preexisting_tables_preserved": 21,
+      "backup_sha256": "16c70d9df4f9bbf49d1dc4a40e09a103ee5766519d0fbd2ec17e2cfd00172e4d",
+      "private_backup_directory": ".local-tmp\\original-db-20261122-014434\\review-schema-qa-20261122",
+      "private_dump_created": true,
+      "private_rows_published": false,
+      "verified_utc": "2026-11-22T17:24:59.020481+00:00",
+      "report": "review-schema-qa-20261123.json"
+    },
+    "qa_real_integration": {
+      "successful": true,
+      "paused_services": [
+        "ai-api",
+        "grafana",
+        "index-worker",
+        "neo4j",
+        "prometheus",
+        "qdrant"
+      ],
+      "verified_utc": "2026-11-22T17:52:42.321940+00:00",
+      "cases": [
+        "authenticated Admin confirmations persisted only in QA review store",
+        "public catalog exposes canonical facts and evidence hashes without reviewer or raw notes",
+        "real Neo4j batch MERGE replay preserves node/edge counts and exact reviewed evidence",
+        "real 384-dimensional encoder indexes only canonical QA facts into separate Qdrant volume",
+        "real dense-anchor graph fusion returns exactly the three approved female elegant rings below 8m",
+        "same-style traversal verifies evidence hashes on both reference and recommended products",
+        "revocation updates public filters, vector payload and inactive graph edge while retaining audited history",
+        "Top-3 returns two eligible products without padding with unlabelled or revoked products"
+      ],
+      "passed": 8,
+      "real_encoder": "paraphrase-multilingual-MiniLM-L12-v2",
+      "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+      "graph_initial_validation": {
+        "requested_products": 4,
+        "products": 4,
+        "duplicate_products": 0,
+        "unmanaged_products": 0,
+        "relationships": {
+          "BELONGS_TO": {
+            "count": 4,
+            "violations": 0
+          },
+          "HAS_BRAND": {
+            "count": 4,
+            "violations": 0
+          },
+          "MADE_OF": {
+            "count": 4,
+            "violations": 0
+          },
+          "HAS_GEMSTONE": {
+            "count": 4,
+            "violations": 0
+          },
+          "IN_COLLECTION": {
+            "count": 4,
+            "violations": 0
+          }
+        },
+        "pass": true,
+        "reviewed_attributes": {
+          "expected": 6,
+          "active": 6,
+          "violations": 0
+        }
+      },
+      "idempotent_graph_counts": {
+        "nodes": 18,
+        "edges": 26
+      },
+      "catalog_products": 500,
+      "indexed_qa_products": 4,
+      "labels": "synthetic QA fixture only; not human labels or real product claims",
+      "serving_graph_vector_written": false,
+      "original_database_written": false,
+      "real_model_quality": "not_evaluated",
+      "llm": "not_run",
+      "paused_services_restored_running": true,
+      "report": "reviewed-attributes-integration-20261123-r3.json"
+    },
+    "qa_browser": {
+      "successful": true,
+      "passed": 7,
+      "cases": [
+        "guest is denied by the API and cannot use the editor",
+        "staff is denied by the API and cannot use the editor",
+        "customer is denied by the API and cannot use the editor",
+        "Admin reviews a real catalog product and confirms a label with explicit unchecked-by-default consent",
+        "raw evidence is rendered as text and creates no executable image element",
+        "public API exposes canonical label and evidence hash without private review note",
+        "Admin revocation keeps visible history and immediately removes public active label"
+      ],
+      "base_url": "http://127.0.0.1:18082",
+      "browser": "installed Chrome",
+      "response_mocks": false,
+      "injected_runtime_config": false,
+      "qa_fixture_only": true,
+      "original_accounts_changed": false,
+      "serving_database_written": false,
+      "report": "reviewed-attributes-browser-20261123-r2.json"
+    },
+    "serving_schema": {
+      "successful": true,
+      "database": "lumiere_test_original_data",
+      "revision_before": "20261121_0009",
+      "revision_after": "20261122_0010",
+      "preexisting_tables_preserved": 21,
+      "backup_sha256": "6ea93f2799e722dbe22925aee561fdd1cb141bedb10d7e3724e27a309d004f76",
+      "private_backup_directory": ".local-tmp\\original-db-20261122-014434\\review-schema-serving-copy-20261122",
+      "private_dump_created": true,
+      "private_rows_published": false,
+      "verified_utc": "2026-11-22T18:19:09.902987+00:00",
+      "report": "review-schema-serving-copy-20261123.json"
+    },
+    "serving_runtime": {
+      "successful": true,
+      "verified_utc": "2026-11-22T18:31:36.617416+00:00",
+      "base_url": "http://127.0.0.1:18080",
+      "feature_flags": {
+        "business-api": true,
+        "ai-api": true,
+        "index-worker": true
+      },
+      "schema_revision": "20261122_0010",
+      "catalog_products": 500,
+      "review_store": {
+        "total": 0,
+        "active": 0,
+        "qa": 0
+      },
+      "outbox_states": {
+        "done": 500
+      },
+      "managed_graph_products": 500,
+      "graph_review_nodes": 0,
+      "graph_constraints": [
+        "lumiere_brand_id",
+        "lumiere_category_id",
+        "lumiere_collection_id",
+        "lumiere_gemstone_id",
+        "lumiere_material_id",
+        "lumiere_product_id",
+        "lumiere_review_audience_canonical_id",
+        "lumiere_review_style_canonical_id"
+      ],
+      "qdrant_products": 500,
+      "qdrant_collection": "jewelry_products_v_c0efd814ee4f",
+      "qdrant_dimension": 384,
+      "qdrant_metric": "Cosine",
+      "new_labels_created": false,
+      "graph_schema_only_added_constraints": true,
+      "admin_page_served": true,
+      "anonymous_admin_options_status": 401,
+      "original_source_still_stopped": true,
+      "original_source_written": false,
+      "full_retrieval_validation": "separate browser acceptance required",
+      "llm_live_verified": false,
+      "report": "reviewed-attributes-serving-20261123.json"
+    }
+  },
+  "knowledge_routing_api": {
+    "successful": true,
+    "cases": [
+      {
+        "role": "customer",
+        "question": "Đá Ruby là gì?",
+        "http_status": 200,
+        "intent": "general_question",
+        "products": 0,
+        "fallback_not_model_answer": true,
+        "seconds": 0.156
+      },
+      {
+        "role": "staff",
+        "question": "Đá Ruby là gì?",
+        "http_status": 200,
+        "intent": "general_question",
+        "products": 0,
+        "fallback_not_model_answer": true,
+        "seconds": 0.188
+      },
+      {
+        "role": "admin",
+        "question": "Đá Ruby là gì?",
+        "http_status": 200,
+        "intent": "general_question",
+        "products": 0,
+        "fallback_not_model_answer": true,
+        "seconds": 0.016
+      }
+    ],
+    "main_accounts_modified": false,
+    "qa_login_sessions_written": true,
+    "natural_llm_live_verified": false,
+    "scope": "Actual local API routing with dialogue disabled; not answer quality or full hybrid acceptance",
+    "authoritative_staff_order_count_verified": true,
+    "passed": 4,
+    "report": "knowledge-routing-api-20261123-r2.json"
+  },
+  "latest_conversation_browser_attempt": {
+    "successful": false,
+    "phase": "model_readiness",
+    "error_type": "AssertionError",
+    "private_failure_log_retained": true,
+    "credentials_published": false,
+    "acceptance_not_claimed": true,
+    "report": "knowledge-routing-conversation-browser-20261123.json"
+  },
+  "handoff_policy": "No further model retries or long test suites without a new request; preserve partial results",
+  "local_handoff": {
+    "successful": true,
+    "verified_utc": "2026-11-23T05:17:32.282509+00:00",
+    "complete_project": false,
+    "semantic_readiness_accepted": false,
+    "natural_llm_accepted": false,
+    "no_generation_or_retrieval_probe_performed": true,
+    "source_database_modified": false,
+    "qa_stopped_services": [
+      "business-qa",
+      "frontend-review-qa",
+      "proxy-qa",
+      "proxy-review-qa"
+    ],
+    "main_services": {
+      "ai-api": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:f49ada17606f692d26fe9bbccdf3c1f4b3179b1b2cf6fd97878132b5234bd78d",
+        "dialogue_llm_enabled": false
+      },
+      "business-api": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:5fef291f1b918b66934ff5dc3e87017bf57e5462601eb10c87cbb91e7d01ff78",
+        "dialogue_llm_enabled": false
+      },
+      "neo4j": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:51d0314ef86074f519003da8dd4daaa9fff72b8479672b742d7cab7f3064e3ed"
+      },
+      "index-worker": {
+        "running": true,
+        "health": null,
+        "image_id": "sha256:c27b2dd7d4b4b71c954fe89fd2427f40255c68517569ed9ae95755235305eabc"
+      },
+      "frontend": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:5599bc76f8e9ab0007865b3fa1c0985147c229ac9688db8651563fda4bd39983"
+      },
+      "qdrant": {
+        "running": true,
+        "health": null,
+        "image_id": "sha256:0bd98fa7977f1e75694779359ca4e212822e5a71334e28421182f72f209d5286"
+      },
+      "prometheus": {
+        "running": true,
+        "health": null,
+        "image_id": "sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038"
+      },
+      "grafana": {
+        "running": true,
+        "health": null,
+        "image_id": "sha256:35c41e0fd0295f5d0ee5db7e780cf33506abfaf47686196f825364889dee878b"
+      },
+      "postgres": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3"
+      },
+      "reverse-proxy": {
+        "running": true,
+        "health": "healthy",
+        "image_id": "sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236"
+      }
+    },
+    "all_main_services_running": true,
+    "original_source_and_audit_clone_stopped": true,
+    "website_http_status": 200,
+    "catalog_http_status": 200,
+    "catalog_total": 500,
+    "report": "local-handoff-20261123.json"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "successful": false,
+  "suite": "dialogue",
+  "paused_services": [
+    "ai-api",
+    "grafana",
+    "index-worker",
+    "neo4j",
+    "prometheus",
+    "qdrant"
+  ],
+  "stage": "dialogue_normal",
+  "failure_type": "RuntimeError",
+  "paused_services_restored_running": true,
+  "docker_engine_retries": []
+}
