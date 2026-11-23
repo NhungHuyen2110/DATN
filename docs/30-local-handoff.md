@@ -1,5 +1,7 @@
 # Bàn giao local có giới hạn — 23/11/2026
 
+**Cập nhật nghiệp vụ:** [Sửa mã giảm giá, khôi phục VNPAY và thêm ảnh sản phẩm](31-checkout-vnpay-product-images.md). Cấu hình VNPAY cũ đã được chọn riêng vào file local bỏ qua Git; không mất cấu hình gốc.
+
 Không tiếp tục vòng thử model hoặc full test suite theo yêu cầu của người dùng. Đây là bản demo để kiểm thử nghiệp vụ và các công cụ AI đã triển khai; chưa phải nghiệm thu toàn bộ AI/hosting.
 
 ## Kiểm thử ngay
@@ -27,10 +29,12 @@ Chi tiết: [Trạng thái AI và lý do chưa đạt](29-ai-status-and-blockers
 Tại thư mục dự án, khi Docker Engine sẵn sàng:
 
 ```powershell
-docker compose --env-file .env.example -p lumiere-rebuild-test -f compose.yaml -f compose.original-data.yaml -f compose.verified-attributes.yaml --profile sync --profile monitoring up -d
+docker compose --env-file .env.example -p lumiere-rebuild-test -f compose.yaml -f compose.original-data.yaml -f compose.verified-attributes.yaml -f compose.payments-local.yaml --profile sync --profile monitoring up -d
 ```
 
 Lệnh dùng cấu hình demo local và volumes hiện có, không tạo lại dữ liệu nguồn. Không dùng mật khẩu mẫu cho hosting công khai. Không chạy lại migrate/import/seed để sửa sự cố khởi động. Không xóa `.local-tmp`, Docker VHD, volumes hay backup; không dùng `down -v`.
+
+Overlay `compose.payments-local.yaml` cần file riêng tư đã chuẩn bị trong workspace này. Khi clone mới chưa có merchant/file đó, bỏ overlay để chạy COD, hoặc chuẩn bị bằng script hướng dẫn trong tài liệu nghiệp vụ.
 
 ## Trước hosting
 

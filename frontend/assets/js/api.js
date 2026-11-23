@@ -44,6 +44,12 @@ window.LUMIERE_API = {
     return body;
   },
 
+  uploadProductImage(id, file) {
+    return this.request(`/admin/products/${encodeURIComponent(id)}/image`, {
+      method: 'POST', body: file, headers: {'Content-Type': file.type}
+    });
+  },
+
   register(data) {
     return this.request("/auth/register", { method: "POST", body: JSON.stringify(data) });
   },

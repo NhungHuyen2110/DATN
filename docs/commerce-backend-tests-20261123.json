@@ -1,0 +1,13 @@
+{
+  "successful": true,
+  "passed": 233,
+  "deselected": 457,
+  "warnings": 1,
+  "subtests_passed": 361,
+  "seconds": 107.31,
+  "scope": "Guarded in-memory SQLite, external network blocked; image/coupon/payment/catalog regression only",
+  "selection": "ProductImageTests or CallbackConfigTests or CouponTests or PaymentTests or AdminProductTests or CatalogAPITests",
+  "unique_scenarios_not_claimed": true,
+  "log_sha256": "df5aca5e7d3149630615dcdbb11314d6c73a86565af4680abe189672911c1375",
+  "real_payment_sent": false
+}

@@ -1,0 +1,13 @@
+# Synthetic gateway settings, separate QA database/images. Never use a real merchant here.
+services:
+  business-qa:
+    environment:
+      POSTGRES_DB: lumiere_test_commerce_acceptance
+      PRODUCT_INDEX_SYNC_ENABLED: 'false'
+      VNPAY_ENABLED: 'true'
+      VNPAY_TMN_CODE: TESTONLY
+      VNPAY_HASH_SECRET: synthetic-only-commerce-test-secret
+      VNPAY_RETURN_URL: https://example.invalid/payments/vnpay/return
+    volumes: [commerce_acceptance_product_images:/srv/product-uploads]
+volumes:
+  commerce_acceptance_product_images: {}

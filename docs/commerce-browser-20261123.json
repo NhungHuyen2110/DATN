@@ -1,0 +1,20 @@
+{
+  "successful": true,
+  "passed": 7,
+  "cases": [
+    "Admin creates a real product, rejected image retains product, retry uploads successfully without duplicate creation",
+    "Admin saves an active coupon with timezone-aware validity through the real form",
+    "Unknown coupon shows a Vietnamese error without creating an order",
+    "Applying/removing a coupon updates discount and server-confirmed total in the summary",
+    "Checkout automatically validates a typed coupon without pressing Apply and creates a discounted COD order",
+    "VNPAY Sandbox selection creates a correctly signed gateway URL; external navigation is blocked and no real payment is sent",
+    "Customer cannot upload or replace a product image"
+  ],
+  "product_id": 501,
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "main_database_written": false,
+  "original_images_modified": false,
+  "synthetic_customer_only": true,
+  "gateway_contacted": false,
+  "real_merchant_credentials_used": false
+}

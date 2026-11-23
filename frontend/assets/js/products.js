@@ -58,8 +58,8 @@ window.LUMIERE_LOAD_PRODUCTS = async function () {
     collection: String(row.collection?.name || ""),
     price: Number(row.price_vnd),
     stock: Number(row.stock),
-    image: actualImage,
-    imageDemo: actualImage === fallbackImage,
+    image: row.image_url ? window.LUMIERE_API.base + row.image_url : actualImage,
+    imageDemo: !row.image_url && actualImage === fallbackImage,
     tag: ""
   };
 });

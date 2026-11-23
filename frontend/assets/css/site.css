@@ -261,3 +261,6 @@
 @media(max-width:1050px){.lm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.lm-data-grid{grid-template-columns:1fr}}
 @media(max-width:760px){.story-grid,.contact-grid{grid-template-columns:1fr}.story-hero{padding:40px 22px}.story-grid .panel,.contact-grid .panel{padding:24px}}
 @media(max-width:540px){.lm-kpis{grid-template-columns:1fr}.lm-stat-bar{grid-template-columns:105px 1fr 26px;gap:6px}.lm-data-grid>.panel{padding:18px}.story-end{padding:40px 10px}}
+
+/* Checkout coupon state and authoritative totals. */
+.coupon-actions{display:flex;gap:10px;flex-wrap:wrap}.checkout-total{font-size:18px;border-top:1px solid #ddcfbb;margin-top:12px;padding-top:18px}#checkout-discount-row[hidden],#coupon-remove[hidden]{display:none!important}

@@ -3,7 +3,9 @@
 from decimal import Decimal
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request
+from fastapi.responses import FileResponse
+from starlette.concurrency import run_in_threadpool
 from sqlalchemy import func, or_, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, joinedload, load_only
@@ -13,7 +15,7 @@ from app.models import Brand, Category, Collection, Gemstone, Material, Product,
 from app.routers.orders import admin, staff_or_admin
 from app.schemas.catalog import (
     LookupResponse, ProductPage, ProductResponse, StockUpdateRequest, StockResponse,
-    ProductUpdateRequest, ProductCreateRequest,
+    ProductUpdateRequest, ProductCreateRequest, ProductImageResponse,
 )
 from app.services import orders as order_service
 from app.services.product_attributes import public_products
@@ -26,6 +28,38 @@ Price = Annotated[
     Decimal | None,
     Query(ge=0, max_digits=18, decimal_places=2, allow_inf_nan=False),
 ]
+
+
+@router.get('/products/{id}/image', response_class=FileResponse,
+            responses={200: {'content': {'image/webp': {}}}})
+def product_image(id: Annotated[int, Path(ge=1, le=2147483647)], db: Database):
+    from app.services.product_images import cover_path
+    if db.get(Product, id) is None or not cover_path(id).is_file():
+        raise HTTPException(404, 'Sản phẩm chưa có ảnh tải lên.')
+    return FileResponse(cover_path(id), media_type='image/webp', headers={'Cache-Control': 'no-cache'})
+
+
+@router.post('/admin/products/{id}/image', tags=['Admin Products'], response_model=ProductImageResponse,
+    openapi_extra={'requestBody': {'required': True, 'content': {
+        mime: {'schema': {'type': 'string', 'format': 'binary'}}
+        for mime in ('image/jpeg', 'image/png', 'image/webp')}}})
+async def upload_product_image(id: Annotated[int, Path(ge=1, le=2147483647)],
+        request: Request, user: Annotated[User, Depends(admin)], db: Database):
+    from app.services.product_images import MAX_IMAGE_BYTES, save_cover
+    if db.get(Product, id) is None:
+        raise HTTPException(404, 'Không tìm thấy sản phẩm.')
+    if request.headers.get('content-type', '').split(';')[0].lower() not in {
+            'image/jpeg', 'image/png', 'image/webp'}:
+        raise HTTPException(415, 'Chỉ nhận ảnh JPEG, PNG hoặc WebP.')
+    data = bytearray()
+    async for chunk in request.stream():
+        if len(data) + len(chunk) > MAX_IMAGE_BYTES:
+            raise HTTPException(413, 'Ảnh không được vượt quá 5 MB.')
+        data.extend(chunk)
+    try:
+        return await run_in_threadpool(save_cover, id, bytes(data))
+    except OSError:
+        raise HTTPException(503, 'Chưa lưu được ảnh. Sản phẩm vẫn được giữ; vui lòng thử tải ảnh lại.') from None
 
 
 def public_product_query():

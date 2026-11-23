@@ -1,0 +1,19 @@
+{
+  "successful": true,
+  "verified_utc": "2026-11-23T06:21:10.629978+00:00",
+  "website": "http://127.0.0.1:18080",
+  "main_catalog_products": 500,
+  "vnpay_enabled": true,
+  "image_api_schema_verified": true,
+  "final_dialog_css_matches_serving_image": true,
+  "qa_containers_stopped": true,
+  "qa_database_and_images_retained": true,
+  "main_database_written_by_tests": false,
+  "real_payment_or_external_ipn_roundtrip_verified": false,
+  "reports": [
+    "commerce-backend-tests-20261123.json",
+    "commerce-browser-20261123.json",
+    "commerce-layout-20261123.json",
+    "commerce-main-verification-20261123.json"
+  ]
+}

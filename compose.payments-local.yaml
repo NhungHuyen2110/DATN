@@ -1,0 +1,7 @@
+# Optional local overlay. Only selected original VNPAY values, never database/AI secrets.
+# Prepare the ignored file with scripts/restore_local_vnpay.py first.
+services:
+  business-api:
+    env_file:
+      - path: ./.local-tmp/local-commerce/vnpay.env
+        format: raw

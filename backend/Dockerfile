@@ -3,7 +3,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 LUMIERE_LOAD_DOTENV=false
 WORKDIR /srv/backend
 COPY backend/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt requests==2.34.2 \
-    && useradd --uid 10001 --create-home app && mkdir /srv/frontend
+    && useradd --uid 10001 --create-home app && mkdir /srv/frontend /srv/product-uploads \
+    && chown app:app /srv/product-uploads
 COPY backend/ /srv/backend/
 COPY shared/ /srv/shared/
 USER 10001

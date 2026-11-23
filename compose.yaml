@@ -38,7 +38,9 @@ services:
       LUMIERE_AI_DIAGNOSTICS_TOKEN: ${LUMIERE_AI_DIAGNOSTICS_TOKEN:?Set diagnostics token}
       LUMIERE_AI_DIAGNOSTICS_TIMEOUT_SECONDS: ${LUMIERE_AI_DIAGNOSTICS_TIMEOUT_SECONDS:-30}
       LUMIERE_AI_INTERNAL_URL: http://ai-api:8000
+      LUMIERE_PRODUCT_IMAGE_DIR: /srv/product-uploads
       CORS_ORIGINS: http://localhost:${PUBLIC_PORT:-18080},http://127.0.0.1:${PUBLIC_PORT:-18080}
+    volumes: [rebuild_product_images:/srv/product-uploads]
     networks: [edge, business-data, monitoring]
     mem_limit: 768m
     healthcheck:
@@ -172,6 +174,7 @@ networks:
   ai-data: {internal: true}
   monitoring: {internal: true}
 volumes:
+  rebuild_product_images: {}
   rebuild_postgres: {}
   rebuild_qdrant: {}
   rebuild_neo4j: {}

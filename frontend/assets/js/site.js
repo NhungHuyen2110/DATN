@@ -491,14 +491,45 @@ function checkout(){
     ${formField('address','Địa chỉ nhận hàng','text','required minlength="5"')}
     ${formField('province','Tỉnh / thành phố','text','required')}
     ${formField('coupon-code','Mã giảm giá','text','maxlength="24" autocomplete="off"')}
-    <button id="coupon-validate" class="button button-outline" type="button">Kiểm tra mã giảm giá</button><p id="coupon-result" role="status"></p>
+    <div class="coupon-actions"><button id="coupon-validate" class="button button-outline" type="button">Áp dụng mã</button><button id="coupon-remove" class="button button-outline" type="button" hidden>Bỏ mã</button></div><p id="coupon-result" role="status" aria-live="polite"></p>
     <div class="field"><label for="payment-method">Phương thức thanh toán</label><select id="payment-method"><option value="cod">Thanh toán khi nhận hàng (COD)</option><option value="vnpay" disabled>VNPay Sandbox · Chưa cấu hình</option></select><small id="vnpay-status" class="mini-note">Đang kiểm tra khả năng thanh toán VNPay...</small></div>
     <button class="button button-dark button-wide" type="submit">ĐẶT HÀNG</button></form></section>
     <aside class="summary-card"><h2>Đơn hàng</h2>${cartLines().map(({p,qty,lineTotal})=>`<div class="summary-line"><span>${esc(p.name)} × ${qty}</span><strong>${money(lineTotal)}</strong></div>`).join('')}
-    <div class="summary-line"><span>Tạm tính theo Business API</span><strong>${money(subtotal())}</strong></div><div class="summary-line"><span>Phí vận chuyển dự kiến</span><strong id="checkout-shipping">Đang tính...</strong></div><p id="checkout-shipping-note" class="mini-note">Mức phí chính xác được Business API xác nhận khi đặt hàng.</p></aside></div>`;
+    <div class="summary-line"><span>Tạm tính</span><strong id="checkout-subtotal">${money(subtotal())}</strong></div><div class="summary-line" id="checkout-discount-row" hidden><span>Giảm giá <small id="checkout-coupon-label"></small></span><strong id="checkout-discount"></strong></div><div class="summary-line"><span>Phí vận chuyển dự kiến</span><strong id="checkout-shipping">Đang tính...</strong></div><div class="summary-line checkout-total"><span>Tổng thanh toán dự kiến</span><strong id="checkout-total">${money(subtotal())}</strong></div><p id="checkout-shipping-note" class="mini-note">Mức phí chính xác được Business API xác nhận khi đặt hàng.</p></aside></div>`;
   let couponCode=null;
   let vnpayReady=false;
+  let couponAmounts=null, shippingCost=0, couponRevision=0, validating=0;
+  const couponReasons={not_found:'Mã giảm giá không tồn tại.',inactive:'Mã này đang tạm dừng.',not_started:'Mã chưa đến thời gian sử dụng.',expired:'Mã đã hết hạn.',exhausted:'Mã đã hết lượt sử dụng.',already_used:'Bạn đã dùng mã này.',min_order:'Đơn hàng chưa đạt giá trị tối thiểu của mã.',invalid_discount:'Mức giảm không phù hợp với đơn hàng này.',counter_capacity:'Mã đã đạt giới hạn sử dụng.'};
+  function syncSummary(){
+    if(!$('#checkout-form'))return;
+    const discount=Number(couponAmounts?.discount_vnd||0);
+    $('#checkout-subtotal').textContent=money(couponAmounts?.subtotal_vnd??subtotal());
+    $('#checkout-discount-row').hidden=!couponCode;
+    $('#checkout-coupon-label').textContent=couponCode||'';
+    $('#checkout-discount').textContent='−'+money(discount);
+    const fee=couponAmounts?Number(couponAmounts.total_vnd)-Number(couponAmounts.subtotal_vnd)+discount:shippingCost;
+    $('#checkout-shipping').textContent=money(fee);
+    $('#checkout-total').textContent=money(couponAmounts?.total_vnd??(subtotal()+shippingCost));
+    $('#coupon-remove').hidden=!couponCode;
+  }
+  function resetCoupon(){couponCode=null;couponAmounts=null;syncSummary()}
+  async function applyCoupon(){
+    const code=get('coupon-code').toUpperCase(), revision=++couponRevision;
+    const output=$('#coupon-result');
+    if(!code){resetCoupon();output.textContent='Nhập mã giảm giá để áp dụng.';return false}
+    validating++;$('#coupon-validate').disabled=true;output.textContent='Đang kiểm tra mã…';
+    try{
+      const result=await LUMIERE_API.validateCoupon(code);
+      if(revision!==couponRevision||get('coupon-code').toUpperCase()!==code)return false;
+      if(!result.valid)throw Error(couponReasons[result.reason]||'Mã giảm giá không hợp lệ.');
+      couponCode=result.coupon_code;couponAmounts=result;$('#coupon-code').value=couponCode;
+      syncSummary();output.textContent=`Đã áp dụng ${couponCode}: giảm ${money(result.discount_vnd)}.`;
+      return true;
+    }catch(error){if(revision===couponRevision){resetCoupon();output.textContent=error.message}return false}
+    finally{validating--;$('#coupon-validate').disabled=validating>0}
+  }
   LUMIERE_API.paymentMethods().then(methods=>{
+    if(!$('#checkout-form'))return;
     const vnpay=$('#payment-method option[value="vnpay"]');
     vnpayReady=methods.vnpay?.enabled===true;
     vnpay.disabled=!vnpayReady;
@@ -506,21 +537,24 @@ function checkout(){
     $('#vnpay-status').textContent=methods.vnpay?.message||'Chưa có cấu hình VNPay';
     const fee=Number(methods.shipping?.flat_fee_vnd||0);
     const freeFrom=Number(methods.shipping?.free_from_vnd||0);
-    const shippingCost=subtotal()>=freeFrom?0:fee;
-    $('#checkout-shipping').textContent=money(shippingCost);
+    shippingCost=subtotal()>=freeFrom?0:fee;
+    syncSummary();
     $('#checkout-shipping-note').textContent=shippingCost===0?'Miễn phí vận chuyển theo cấu hình hiện tại.':('Phí vận chuyển '+money(shippingCost)+' · miễn phí từ '+money(freeFrom)+'.');
   }).catch(error=>{
+    if(!$('#checkout-form'))return;
     $('#vnpay-status').textContent='Không xác định được trạng thái VNPay: '+error.message;
     $('#checkout-shipping').textContent='Tính khi đặt hàng';
   });
-  $('#coupon-code').addEventListener('input',()=>{couponCode=null;$('#coupon-result').textContent='Mã đã thay đổi; vui lòng kiểm tra lại.'});
-
-  $('#coupon-validate').onclick=async()=>{const output=$('#coupon-result');output.textContent='Đang kiểm tra…';if(!get('coupon-code')){couponCode=null;output.textContent='Nhập mã giảm giá trước khi kiểm tra.';return}try{const result=await LUMIERE_API.validateCoupon(get('coupon-code'));if(!result.valid)throw new Error(result.reason||'Mã giảm giá không hợp lệ');couponCode=result.coupon_code;output.textContent=`Giảm ${money(result.discount_vnd)} · Tổng sau giảm ${money(result.total_vnd)}`}catch(error){couponCode=null;output.textContent=error.message}};
-  $('#checkout-form').onsubmit=async event=>{event.preventDefault();if(!user||user.role!=='customer'){alert('Đăng nhập bằng tài khoản khách hàng để đặt hàng.');return}if(get('coupon-code') && (!couponCode || get('coupon-code').toUpperCase()!==couponCode)){alert('Vui lòng kiểm tra mã giảm giá trước khi đặt hàng.');return}
-    const method=get('payment-method');
-    if(method==='vnpay'&&!vnpayReady){alert('VNPay Sandbox chưa được cấu hình hợp lệ. Hãy chọn COD.');return}
+  $('#coupon-code').addEventListener('input',()=>{couponRevision++;resetCoupon();$('#coupon-result').textContent='Mã sẽ được kiểm tra khi áp dụng hoặc đặt hàng.'});
+  $('#coupon-validate').onclick=applyCoupon;
+  $('#coupon-remove').onclick=()=>{couponRevision++;$('#coupon-code').value='';resetCoupon();$('#coupon-result').textContent='Đã bỏ mã giảm giá.'};
+  $('#checkout-form').onsubmit=async event=>{event.preventDefault();if(!user||user.role!=='customer'){alert('Đăng nhập bằng tài khoản khách hàng để đặt hàng.');return}
     const button=event.currentTarget.querySelector('button[type="submit"]');button.disabled=true;
-    try{const order=await LUMIERE_API.createOrder({recipient_name:get('recipient'),phone:get('phone'),address:get('address')+', '+get('province'),payment_method:method,...(couponCode?{coupon_code:couponCode}:{})});
+    try{
+      if(get('coupon-code')){if(!await applyCoupon()){alert($('#coupon-result').textContent);button.disabled=false;return}}else resetCoupon();
+      const method=get('payment-method');
+      if(method==='vnpay'&&!vnpayReady)throw Error('VNPay Sandbox chưa được cấu hình hợp lệ. Hãy chọn COD.');
+      const order=await LUMIERE_API.createOrder({recipient_name:get('recipient'),phone:get('phone'),address:get('address')+', '+get('province'),payment_method:method,...(couponCode?{coupon_code:couponCode}:{})});
       cartData={items:[],total_quantity:0,subtotal_vnd:'0.00'};
       if(method==='vnpay'){
         try{

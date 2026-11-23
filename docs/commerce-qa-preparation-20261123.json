@@ -1,0 +1,7 @@
+{
+  "successful": true,
+  "database_created": "lumiere_test_commerce_acceptance",
+  "template": "lumiere_test_ai_acceptance",
+  "existing_databases_modified": false,
+  "connections_terminated": false
+}

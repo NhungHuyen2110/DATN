@@ -49,7 +49,7 @@ class VNPaySandbox:
                 or not re.fullmatch(r"[A-Za-z0-9]{8}", merchant) or not secret
                 or parsed.scheme != "https" or not parsed.hostname or parsed.username
                 or parsed.password or parsed.query or parsed.fragment or len(return_url) > 255
-                or parsed.path != "/payments/vnpay/return"):
+                or parsed.path not in {"/payments/vnpay/return", "/api/payments/vnpay/return"}):
             raise HTTPException(status_code=503, detail="VNPay Sandbox chưa được cấu hình hợp lệ")
         return cls(merchant, secret, return_url)
 

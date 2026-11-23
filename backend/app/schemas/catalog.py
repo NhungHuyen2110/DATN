@@ -30,11 +30,18 @@ class ProductResponse(BaseModel):
     weight: Decimal
     price_vnd: Decimal = Field(validation_alias="sale_price")
     stock: int
+    image_url: str | None = None
     verified_attributes: list[PublicVerifiedAttribute] = Field(default_factory=list)
 
     @model_serializer(mode='wrap')
     def serialize_review_metadata(self, handler):
         values = handler(self)
+        from app.services.product_images import public_cover_url
+        image_url = public_cover_url(self.id)
+        if image_url:
+            values['image_url'] = image_url
+        else:
+            values.pop('image_url', None)
         if not reviews_enabled() or 'verified_attributes' not in self.model_fields_set:
             values.pop('verified_attributes', None)
         return values
@@ -64,6 +71,11 @@ class StockResponse(BaseModel):
 
 CatalogID = Annotated[int, Field(strict=True, ge=1, le=2147483647)]
 CatalogMoney = Annotated[Decimal, Field(ge=0, max_digits=18, decimal_places=2, allow_inf_nan=False)]
+
+
+class ProductImageResponse(BaseModel):
+    product_id: CatalogID
+    image_url: str = Field(pattern=r'^/products/[0-9]+/image\?v=[0-9]+$')
 
 
 class ProductUpdateRequest(BaseModel):

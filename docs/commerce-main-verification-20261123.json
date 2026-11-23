@@ -1,0 +1,20 @@
+{
+  "successful": true,
+  "verified_utc": "2026-11-23T06:10:10.935701+00:00",
+  "website_http": 200,
+  "catalog_products": 500,
+  "main_database": "lumiere_test_original_data",
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "vnpay_enabled": true,
+  "original_vnpay_values_preserved": true,
+  "credentials_printed": false,
+  "main_image_volume": "lumiere-rebuild-test_rebuild_product_images",
+  "qa_image_volume": "lumiere-rebuild-test_commerce_acceptance_product_images",
+  "qa_and_main_images_isolated": true,
+  "original_database_container_stopped": true,
+  "legacy_callback_route_rejects_unsigned_request": true,
+  "serving_checkout_script_matches_source": true,
+  "original_sample_image_bytes_preserved": true,
+  "real_payment_sent": false,
+  "public_callback_and_real_gateway_roundtrip_verified": false
+}

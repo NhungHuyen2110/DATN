@@ -268,7 +268,8 @@
 
   async function renderProducts(target, section, role) {
     const rows = await loadAllProducts(role === "admin");
-    target.innerHTML = `<div class="panel"><p>Giá và tồn kho là dữ liệu Business API. Backend hiện không hỗ trợ tạo/xóa sản phẩm; chỉ sửa trường được API cho phép.</p>
+    const imageFor=item=>item.image_url?api.base+item.image_url:window.LUMIERE_PRODUCTS?.find(row=>row.id===item.id)?.image;
+    target.innerHTML = `<div class="panel"><p>Giá và tồn kho là dữ liệu Business API. Có thể thêm sản phẩm, tải ảnh và sửa thông tin theo quyền được cấp.</p>
       <div class="toolbar" style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">
   <input
     id="product-search"
@@ -288,10 +289,10 @@
 </div>
 <p id="product-search-count"></p>
 <div class="table-wrap"><table class="data-table"><thead><tr><th>ID / SKU</th><th>Sản phẩm</th><th>Danh mục</th><th>Giá</th><th>Tồn kho</th>${section === "inventory" ? "<th>Điều chỉnh</th>" : "<th>Thông tin</th>"}</tr></thead><tbody>
-      ${rows.map(item => `<tr><td>${item.id} / ${esc(item.sku)}</td><td>${esc(item.name)}</td><td>${esc(item.category.name)}</td>
+      ${rows.map(item => `<tr><td>${item.id} / ${esc(item.sku)}</td><td>${imageFor(item)?`<img class="product-table-image" width="52" height="52" loading="lazy" src="${esc(imageFor(item))}" alt="">`:""}${esc(item.name)}</td><td>${esc(item.category.name)}</td>
       <td>${money(item.price_vnd)}</td><td>${item.stock}</td><td>${section === "inventory"
         ? `<button class="button-sm" data-stock="${item.id}" data-value="${item.stock}">Cập nhật tồn</button>`
-        : `<button class="button-sm" data-edit="${item.id}" data-name="${esc(item.name)}" data-price="${item.price_vnd}">Sửa tên / giá</button>`}</td></tr>`).join("")}
+        : `<button class="button-sm" data-edit="${item.id}" data-name="${esc(item.name)}" data-price="${item.price_vnd}">Sửa tên / giá</button> <button class="button-sm" data-image="${item.id}">Ảnh</button>`}</td></tr>`).join("")}
       </tbody></table></div></div>`;
     const productSearch = target.querySelector("#product-search");
     const categoryFilter = target.querySelector("#product-category");
@@ -333,153 +334,23 @@
     categoryFilter.addEventListener("change", filterProducts);
     filterProducts();
     if (section === "products" && role === "admin") {
-      const addButton = document.createElement("button");
-      addButton.type = "button";
-      addButton.className = "button button-dark";
-      addButton.textContent = "+ Thêm sản phẩm";
-      addButton.style.margin = "16px 0";
-      target.querySelector(".panel > p")
-        .insertAdjacentElement("afterend", addButton);
-      const dialog = document.createElement("dialog");
-      dialog.style.width = "min(680px, 94vw)";
-      dialog.style.maxHeight = "85vh";
-      dialog.style.overflowY = "auto";
-      dialog.style.padding = "24px";
-      const lookupOptions = key => {
-        const unique = new Map();
-        rows.forEach(item => {
-          const value = item[key];
-          if (value && !unique.has(value.id)) {
-            unique.set(value.id, value.name);
-          }
-        });
-        return [...unique.entries()]
-          .sort((a, b) => a[1].localeCompare(b[1], "vi"))
-          .map(([id, name]) =>
-            `<option value="${id}">${esc(name)}</option>`
-          ).join("");
+      const addButton=document.createElement("button");
+      addButton.type="button";addButton.id="product-create";addButton.className="button button-dark";
+      addButton.textContent="+ Thêm sản phẩm";addButton.style.margin="16px 0";
+      target.querySelector(".panel > p").insertAdjacentElement("afterend",addButton);
+      const openEditor=async(product=null)=>{
+        const {openProductEditor}=await import(new URL(root+"assets/js/product-editor.js",document.baseURI).href);
+        await openProductEditor({api,rows,product,onSaved:async()=>{
+          await renderProducts(target,section,role);
+          target.insertAdjacentHTML("afterbegin",'<p class="form-alert success" role="status">Đã lưu sản phẩm và ảnh đã chọn.</p>');
+        }});
       };
-      const nextId = Math.max(0, ...rows.map(p => p.id)) + 1;
-      dialog.innerHTML = `
-        <h2>Thêm sản phẩm mới</h2>
-        <p>Thông tin sẽ được lưu vào PostgreSQL.</p>
-        <form id="product-create-form">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-            <label>ID sản phẩm
-              <input name="id" type="number" min="1"
-                value="${nextId}" required>
-            </label>
-            <label>SKU
-              <input name="sku" maxlength="50" required>
-            </label>
-            <label>Barcode
-              <input name="barcode" maxlength="50" required>
-            </label>
-            <label>Tên sản phẩm
-              <input name="name" maxlength="255" required>
-            </label>
-            <label>Danh mục
-              <select name="category_id" required>
-                ${lookupOptions("category")}
-              </select>
-            </label>
-            <label>Thương hiệu
-              <select name="brand_id" required>
-                ${lookupOptions("brand")}
-              </select>
-            </label>
-            <label>Chất liệu
-              <select name="material_id" required>
-                ${lookupOptions("material")}
-              </select>
-            </label>
-            <label>Đá
-              <select name="gemstone_id" required>
-                ${lookupOptions("gemstone")}
-              </select>
-            </label>
-            <label>Bộ sưu tập
-              <select name="collection_id" required>
-                ${lookupOptions("collection")}
-              </select>
-            </label>
-            <label>Trọng lượng
-              <input name="weight" type="number"
-                min="0.01" step="0.01" required>
-            </label>
-            <label>Giá bán (VNĐ)
-              <input name="sale_price" type="number"
-                min="0" step="0.01" required>
-            </label>
-            <label>Giá sỉ (VNĐ)
-              <input name="wholesale_price" type="number"
-                min="0" step="0.01" required>
-            </label>
-            <label>Giá vốn (VNĐ)
-              <input name="cost_price" type="number"
-                min="0" step="0.01" required>
-            </label>
-            <label>Số lượng tồn
-              <input name="stock" type="number"
-                min="0" step="1" required>
-            </label>
-          </div>
-          <p id="create-product-error"
-            role="alert"
-            style="color:#b42318;margin-top:12px"></p>
-          <div style="display:flex;gap:12px;margin-top:20px">
-            <button type="submit" class="button button-dark">
-              Lưu sản phẩm
-            </button>
-            <button type="button" id="cancel-create-product"
-              class="button button-outline">
-              Hủy
-            </button>
-          </div>
-        </form>
-      `;
-      target.appendChild(dialog);
-      addButton.addEventListener("click", () => {
-        dialog.showModal();
-      });
-      dialog.querySelector("#cancel-create-product")
-        .addEventListener("click", () => dialog.close());
-      const form = dialog.querySelector("#product-create-form");
-      form.addEventListener("submit", async event => {
-        event.preventDefault();
-        const data = new FormData(form);
-        const numericIds = [
-          "id", "category_id", "brand_id",
-          "material_id", "gemstone_id", "collection_id", "stock"
-        ];
-        const prices = [
-          "weight", "sale_price", "wholesale_price", "cost_price"
-        ];
-        const payload = {};
-        for (const [key, value] of data.entries()) {
-          payload[key] = numericIds.includes(key)
-            ? Number(value)
-            : prices.includes(key)
-              ? String(value)
-              : String(value).trim();
-        }
-        const errorBox = dialog.querySelector("#create-product-error");
-        const submit = form.querySelector('[type="submit"]');
-        errorBox.textContent = "";
-        submit.disabled = true;
-        try {
-          await api.createProduct(payload);
-          dialog.close();
-          await renderProducts(target, section, role);
-          window.alert("Đã thêm sản phẩm thành công!");
-        } catch (error) {
-          errorBox.textContent =
-            error.message || "Không thể thêm sản phẩm.";
-        } finally {
-          submit.disabled = false;
-        }
-      });
-    }    target.querySelectorAll("[data-edit]").forEach(button => button.addEventListener("click", async () => {
+      const failure=error=>target.insertAdjacentHTML("afterbegin",`<p class="form-alert" role="alert">${esc(error.message)}</p>`);
+      addButton.onclick=()=>openEditor().catch(failure);
+      target.querySelectorAll("[data-image]").forEach(button=>button.onclick=()=>
+        openEditor(rows.find(row=>row.id===Number(button.dataset.image))).catch(failure));
+    }
+    target.querySelectorAll("[data-edit]").forEach(button => button.addEventListener("click", async () => {
       const name = window.prompt("Tên sản phẩm:", button.dataset.name);
       if (name === null) return;
       const price = window.prompt("Giá mới (VNĐ):", button.dataset.price);
@@ -506,53 +377,24 @@
 
   async function renderCoupons(target) {
     const result = await api.adminCoupons(1, 100);
+    const couponStatus=c=>!c.is_active?'Tạm dừng':Date.now()<new Date(c.starts_at).getTime()?'Chưa đến ngày':Date.now()>=new Date(c.ends_at).getTime()?'Hết hạn':c.usage_limit!==null&&c.used_count>=c.usage_limit?'Hết lượt':'Đang áp dụng';
     target.innerHTML = `<div class="panel"><p>Mã giảm giá được đọc từ Backend. Không có xóa; có thể bật/tắt hoặc tạo mới.</p>
       <button class="button button-dark" id="coupon-create">+ Tạo mã</button>
       <div class="table-wrap"><table class="data-table"><thead><tr><th>Mã</th><th>Loại</th><th>Giá trị</th><th>Đơn tối thiểu</th><th>Đã dùng</th><th>Trạng thái</th><th></th></tr></thead><tbody>
       ${result.items.map(coupon => `<tr><td>${esc(coupon.code)}</td><td>${coupon.discount_type === "percent" ? "Phần trăm" : "Số tiền"}</td>
       <td>${coupon.discount_type === "percent" ? `${coupon.discount_value}%` : money(coupon.discount_value)}</td>
       <td>${money(coupon.min_order_vnd)}</td><td>${coupon.used_count}${coupon.usage_limit ? ` / ${coupon.usage_limit}` : ""}</td>
-      <td>${coupon.is_active ? "Đang bật" : "Đã tắt"}</td><td><button class="button-sm" data-edit="${coupon.id}" data-code="${esc(coupon.code)}" data-type="${coupon.discount_type}" data-value="${coupon.discount_value}" data-min="${coupon.min_order_vnd}">Sửa</button>
+      <td>${couponStatus(coupon)}<br><small>Đến ${new Date(coupon.ends_at).toLocaleString("vi-VN")}</small></td><td><button class="button-sm" data-edit="${coupon.id}" data-code="${esc(coupon.code)}" data-type="${coupon.discount_type}" data-value="${coupon.discount_value}" data-min="${coupon.min_order_vnd}">Sửa</button>
       <button class="button-sm" data-toggle="${coupon.id}" data-active="${coupon.is_active}">${coupon.is_active ? "Tắt" : "Bật"}</button></td></tr>`).join("")}
       </tbody></table></div></div>`;
-    target.querySelector("#coupon-create").addEventListener("click", async () => {
-      const code = window.prompt("Mã (3–24 ký tự A-Z, số, _ hoặc -):");
-      if (code === null) return;
-      const discount_type = window.prompt("Loại giảm: fixed hoặc percent", "percent");
-      if (discount_type === null) return;
-      const discount_value = window.prompt("Giá trị giảm:");
-      if (discount_value === null) return;
-      const min_order_vnd = window.prompt("Đơn tối thiểu (VNĐ):", "0");
-      if (min_order_vnd === null) return;
-      const starts_at = window.prompt("Thời điểm bắt đầu (ISO kèm timezone):", new Date().toISOString());
-      if (starts_at === null) return;
-      const ends_at = window.prompt("Thời điểm kết thúc (ISO kèm timezone):");
-      if (ends_at === null) return;
-      let max_discount_vnd = null;
-      if (discount_type === "percent") {
-        max_discount_vnd = window.prompt("Giảm tối đa (VNĐ):");
-        if (max_discount_vnd === null) return;
-      }
-      try {
-        await api.createCoupon({
-          code, discount_type, discount_value, min_order_vnd,
-          max_discount_vnd, starts_at, ends_at, is_active: true
-        });
-        await renderCoupons(target);
-      } catch (error) { showError(target, error); }
-    });
-    target.querySelectorAll("[data-edit]").forEach(button => button.addEventListener("click", async () => {
-      const code = window.prompt("Mã giảm giá:", button.dataset.code);
-      if (code === null) return;
-      const discount_value = window.prompt("Giá trị giảm:", button.dataset.value);
-      if (discount_value === null) return;
-      const min_order_vnd = window.prompt("Đơn tối thiểu (VNĐ):", button.dataset.min);
-      if (min_order_vnd === null) return;
-      try {
-        await api.updateCoupon(button.dataset.edit, { code, discount_value, min_order_vnd });
-        await renderCoupons(target);
-      } catch (error) { showError(target, error); }
-    }));
+    const openEditor=async(coupon=null)=>{
+      const {openCouponEditor}=await import(new URL(root+"assets/js/coupon-editor.js",document.baseURI).href);
+      openCouponEditor({api,coupon,onSaved:()=>renderCoupons(target)});
+    };
+    const failure=error=>target.insertAdjacentHTML("afterbegin",`<p class="form-alert" role="alert">${esc(error.message)}</p>`);
+    target.querySelector("#coupon-create").onclick=()=>openEditor().catch(failure);
+    target.querySelectorAll("[data-edit]").forEach(button=>button.onclick=()=>
+      openEditor(result.items.find(row=>row.id===Number(button.dataset.edit))).catch(failure));
     target.querySelectorAll("[data-toggle]").forEach(button => button.addEventListener("click", async () => {
       try {
         await api.setCouponStatus(button.dataset.toggle, button.dataset.active !== "true");

@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: lumiere_test_ai_acceptance
       PRODUCT_INDEX_SYNC_ENABLED: 'false'
       CORS_ORIGINS: http://127.0.0.1:18081
+    volumes: [acceptance_product_images:/srv/product-uploads]
   proxy-qa:
     image: nginx:1.28-alpine
     profiles: [acceptance]
@@ -17,3 +18,5 @@ services:
     volumes: ['./infra/proxy/nginx-ai-acceptance.conf:/etc/nginx/nginx.conf:ro']
     networks: [edge]
     mem_limit: 64m
+volumes:
+  acceptance_product_images: {}
