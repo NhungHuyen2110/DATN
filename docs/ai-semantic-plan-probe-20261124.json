@@ -1,0 +1,19 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "plan": null,
+      "seconds": 12.015,
+      "passed": false
+    },
+    {
+      "query": "Nói về cách gieo hạt cà chua ở ban công.",
+      "plan": null,
+      "seconds": 0.016,
+      "passed": false
+    }
+  ],
+  "retries": 0,
+  "scope": "Two unseen wording cases, not general semantic accuracy"
+}

@@ -24,16 +24,17 @@ _anchor_lock=threading.Lock()
 
 PROTOTYPES = {
     'gift_advice': [
-        'Lễ tình nhân nên tặng món trang sức gì cho người yêu?',
-        'Tôi muốn chọn quà trang sức cho một dịp đặc biệt, hãy tư vấn giúp tôi.',
-        'Mua quà sinh nhật hoặc kỷ niệm cho người thương nên chọn thế nào?',
+        'Nhu cầu chọn quà trang sức cho người nhận theo dịp và sở thích.',
+        'Tư vấn quà tặng để bày tỏ tình cảm với người thân hoặc người yêu.',
+        'Quà sinh nhật, kỷ niệm hoặc lễ tình nhân bằng đồ trang sức.',
     ],
     'product_search': [
-        'Tìm nhẫn kim cương theo mức giá và tồn kho.',
-        'Cho tôi top sản phẩm cùng loại đá hoặc cùng chất liệu.',
-        'Tra cứu sản phẩm theo mã SKU và tên.',
+        'Nhu cầu tìm mua đồ trang sức đang bán theo ngân sách, chất liệu hoặc loại đá.',
+        'Đồ trang sức đeo quanh ngón tay, cổ tay, cổ hoặc gắn trên tai; lựa chọn mẫu phù hợp.',
+        'Sản phẩm cùng thuộc tính, mẫu liên quan hoặc tra cứu mã và tên hàng.',
     ],
-    'other': ['Xin chào, cảm ơn bạn.', 'Tra cứu đơn hàng, doanh thu và thanh toán.'],
+    'other': ['Giao tiếp xã giao hoặc câu hỏi tổng quát ngoài lĩnh vực trang sức.',
+              'Nghiệp vụ tài khoản, đơn hàng, doanh thu và thanh toán.'],
 }
 
 GIFT_INTRO = (

@@ -1,0 +1,13 @@
+{
+  "runtime": {
+    "exit": 0,
+    "output": "sha256:46c7ecd4a74547ecd75b95630db650ad44517946bc7d5a0358bcb97579c357d5 running healthy"
+  },
+  "reload": {
+    "exit": 0,
+    "output": ""
+  },
+  "website": 200,
+  "business": 200,
+  "ai": 200
+}

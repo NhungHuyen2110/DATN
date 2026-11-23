@@ -1,0 +1,28 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "plan": {
+        "intent": "shop",
+        "entities": [
+          {
+            "label": "Gemstone",
+            "canonical_id": "moissanite",
+            "quote": "Một món ôm quanh ngón tay, đừng quá 3 triệu."
+          }
+        ]
+      },
+      "seconds": 10.36,
+      "passed": false
+    },
+    {
+      "query": "Nói về cách gieo hạt cà chua ở ban công.",
+      "plan": null,
+      "seconds": 6.687,
+      "passed": false
+    }
+  ],
+  "retries": 0,
+  "scope": "Two unseen wording cases, not general semantic accuracy"
+}

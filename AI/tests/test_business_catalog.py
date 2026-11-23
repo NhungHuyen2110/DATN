@@ -8,6 +8,11 @@ from jewelry_agents.business_catalog import fetch_catalog, CatalogUnavailable
 
 
 class BusinessCatalogTests(unittest.TestCase):
+    def test_runtime_catalog_deadline_never_returns_partial_data(self):
+        with patch.dict('os.environ',{'LUMIERE_RETRIEVAL_LIMITS_ENABLED':'true'}), \
+             patch('jewelry_agents.business_catalog._catalog_gate.call',side_effect=TimeoutError) as gate:
+            with self.assertRaises(CatalogUnavailable):fetch_catalog()
+        self.assertEqual(gate.call_count,1)
     def test_maps_only_authoritative_public_fields(self):
         item = {'id': 1, 'name': 'Live product', 'sku': 'TEST1', 'price_vnd': '123.45', 'stock': 2,
                 'category': {'id': 1, 'name': 'Nhẫn'}, 'brand': {'id': 1, 'name': 'Brand'},

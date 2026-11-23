@@ -1,0 +1,17 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "seconds": 10.032,
+      "answer": "Tạm thời chưa xác minh được giá và tồn kho. Bạn vui lòng thử lại sau.",
+      "status": "catalog_unavailable",
+      "response_mode": null,
+      "retrieval_sources_used": [],
+      "products": []
+    }
+  ],
+  "retries": 0,
+  "database_written": false,
+  "failure_type": "AssertionError"
+}

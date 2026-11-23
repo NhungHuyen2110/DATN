@@ -33,6 +33,10 @@ async def lifespan(app):
     dialogue_gate.close()
     from rag.product_dialogue import _gate as discussion_gate
     discussion_gate.close()
+    from jewelry_agents.semantic_planner import _gate as planner_gate
+    planner_gate.close()
+    from jewelry_agents.business_catalog import _catalog_gate
+    _catalog_gate.close()
     from jewelry_agents import retrieval
     retrieval.close_retrieval_limits()
     for client in (retrieval.qdrant_client, retrieval.neo4j_driver):
@@ -315,9 +319,10 @@ def chat(request: ChatRequest):
     from jewelry_agents.shopping_advice import followup_query
     scope = ('customer-public',)
     token, row = STORE.resolve(request.conversation_id, scope)
-    def answer(query):
+    def answer(query, semantic_plan=None):
         effective = followup_query(query, row.get('shopping_context'))
-        result = answer_jewelry_question(query=effective, top_k=request.top_k)
+        options={'semantic_plan':semantic_plan} if semantic_plan is not None else {}
+        result = answer_jewelry_question(query=effective, top_k=request.top_k,**options)
         if result.get('advice_intent') == 'style_advice':
             row['shopping_context'] = effective if effective.startswith('Tư vấn ') else 'Tư vấn '+effective
         elif result.get('products'):

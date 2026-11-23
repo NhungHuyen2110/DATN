@@ -57,6 +57,12 @@ class NaturalDialogueTests(unittest.TestCase):
             self.assertIsNone(answer_natural('question'))
             self.assertEqual(gate.call_count,1)
 
+    def test_product_tool_data_is_not_added_to_the_system_instructions(self):
+        _,opener=self.generate({'done':True,'message':{'content':'Tư vấn ngắn.'}},evidence={'Material':'UNTRUSTED_VALUE'})
+        payload=json.loads(opener.open.call_args.args[0].data)
+        self.assertNotIn('UNTRUSTED_VALUE',payload['messages'][0]['content'])
+        self.assertEqual(payload['messages'][1]['role'],'user')
+
     def test_llm_answer_overrides_reviewed_text_without_attaching_its_sources(self):
         import api
         from shared.conversation import ConversationStore

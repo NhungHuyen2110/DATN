@@ -1,5 +1,7 @@
 # Trạng thái AI — 23/11/2026
 
+Lượt semantic RAG 24/11 mới nhất: đã sửa nhánh bỏ qua intent `product_search` của bộ phân loại embedding và thêm bằng chứng graph/source deadline vào code. **Kiểm tra câu hỏi lạ qua website chưa đạt vì không lấy được catalog; runtime đưa về checkpoint trước lượt thử.** Không dùng số unit tests để khẳng định semantic accuracy. Xem [báo cáo 37](37-semantic-routing-and-graph-evidence.md); JSON planner suy sai và narrative thử nghiệm đều giữ tắt.
+
 Cập nhật 24/11: Customer đã thêm so sánh/tham chiếu đúng mẫu vừa trả, đối chiếu lại giá và giữ điều kiện khi hỏi kiến thức xen giữa rồi đổi danh mục/ngân sách. Kiểm tra local 5/5 đạt; bộ offline 171 đạt/1 skip. Xem [báo cáo ngữ cảnh mới](36-contextual-product-discussion.md). Chưa coi đây là nghiệm thu chất lượng toàn bộ AI hoặc hosting.
 
 Cập nhật Customer mới nhất: đã bật Qwen3 0.6B local và có câu trả lời model thật qua website, 3/3 kiểm tra kỹ thuật đạt. Xem [báo cáo model nhỏ](35-small-local-natural-dialogue.md) và `ai-small-dialogue-live-20261123.json`. Văn phong/làm theo hướng dẫn còn hạn chế; Staff/Admin LLM, benchmark chất lượng và hosting chưa nghiệm thu. Các kết quả Qwen 3B thất bại bên dưới được giữ làm lịch sử, không phải trạng thái của profile Customer mới.

@@ -82,7 +82,7 @@ def verified_paths(paths, product, reference=None, anchors=None):
 
 def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=None,
            candidate_k=None, reranker=None, entity_encoder=None, diagnostics=False, lexical_retriever=None,
-           graph_expander=None, preference_mode='strict'):
+           graph_expander=None, preference_mode='strict', semantic_plan=None, semantic_source_query=None):
     started, timings = time.perf_counter(), {}
     def call(stage, function, *args, **kwargs):
         stage_start = time.perf_counter()
@@ -106,6 +106,9 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     if type(pool_size) is not int or not top_k <= pool_size <= 1000:
         raise ValueError('candidate_k must be requested K..1000')
     understanding = call('parse', link_query, query, encoder=entity_encoder)
+    if semantic_plan is not None:
+        from .semantic_planner import merge_understanding
+        understanding=merge_understanding(understanding,semantic_plan,semantic_source_query or query)
     related = reference_request(query)
     if related['unsupported_style']:
         return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
@@ -377,6 +380,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     result = {"products": products, "status": "degraded" if degraded else "ok",
             "degraded": degraded, "requested_k": top_k, "returned_k": len(products),
             "understanding": understanding}
+    result['retrieval_sources_used']=sorted(name for name,ids in rankings.items() if ids)
     if diagnostics:
         result['diagnostics'] = {'source_ranks': rankings, 'source_errors': source_errors, 'candidate_k': pool_size,
                                  'eligible_products': len(eligible), 'candidate_union': len(fused),

@@ -14,7 +14,7 @@ from shared.observability import record_intent
 from jewelry_agents.search_service import search, RetrievalUnavailable
 from jewelry_agents.retrieval import search_qdrant, extract_price_filter, graph_search_candidates, graph_expand_candidates
 from jewelry_agents.advice_planner import GIFT_INTRO
-from jewelry_agents.shopping_advice import advisory_request, advice_intro, next_question, budget_text
+from jewelry_agents.shopping_advice import advisory_request, advice_intro, next_question, budget_text, strict_preference_request
 from jewelry_agents.entity_linking import link_query
 
 
@@ -42,7 +42,8 @@ def build_safe_answer(products):
     return "\n".join(lines)
 
 
-def answer_jewelry_question(query: str, top_k: int = 3):
+def answer_jewelry_question(query: str, top_k: int = 3, semantic_plan=None):
+    original_query=query.strip()
     query = budget_text(query.strip())
 
     if not query:
@@ -56,12 +57,17 @@ def answer_jewelry_question(query: str, top_k: int = 3):
     if os.getenv("LUMIERE_RETRIEVAL_V2_ENABLED", "true").lower() == "true":
         advice=None
         intent = classify_query(query)
+        if semantic_plan is not None and semantic_plan.intent in {'shop','consult'} and intent not in {
+                'restricted_request','shipping_policy','unverified_policy','customer_order_guidance'}:
+            intent='product_search'
         advisory = intent == 'product_search' and advisory_request(query)
-        if intent=='general_question' and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
+        if semantic_plan is not None and semantic_plan.intent=='consult' and not strict_preference_request(query):
+            advisory=True
+        if semantic_plan is None and intent=='general_question' and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
             try:
                 from jewelry_agents.retrieval import plan_shopping_advice
                 advice=plan_shopping_advice(query)
-                if advice.get('accepted') and advice['intent']=='gift_advice':
+                if advice.get('accepted') and advice['intent'] in {'gift_advice','product_search'}:
                     intent='product_search'
             except Exception:
                 pass
@@ -94,7 +100,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
         # A style consultation already has an intent. Do not encode it a second
         # time just to run the optional gift prototype classifier.
         has_preferences = any(e['label'] in {'Audience','Style'} for e in link_query(query)['entities'])
-        if (not advisory and not has_preferences and advice is None and
+        if (semantic_plan is None and not advisory and not has_preferences and advice is None and
                 os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true'):
             try:
                 from jewelry_agents.retrieval import plan_shopping_advice
@@ -105,6 +111,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             dense = (partial(search_qdrant, request_embedding=advice['_request_embedding'])
                      if advice and advice.get('_request_embedding') is not None else search_qdrant)
             options = {'preference_mode': 'advisory'} if advisory else {}
+            if semantic_plan is not None:options.update(semantic_plan=semantic_plan,semantic_source_query=original_query)
             result = search(query, top_k, dense=dense, catalog=fetch_catalog,
                             parse_price=extract_price_filter, graph=graph_search_candidates,
                             graph_expander=graph_expand_candidates, **options)
@@ -139,6 +146,13 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             return {"success": True, "status": result["status"], "products": [],
                     "answer": message}
         products = result["products"]
+        for product in products:
+            if product.get('graph_paths'):
+                product['matched_relationships']=[{key:value for key,value in path.items() if key in
+                    {'relationship','target_id','target_name','source_product_id'}} for path in product['graph_paths']]
+        retrieval_metadata={'retrieval_sources_used':result.get('retrieval_sources_used',[]),
+            'resolved_entities':result.get('understanding',{}).get('entities',[]),
+            'query_planning_method':'local_llm_semantic' if semantic_plan is not None else 'existing_query_understanding'}
         if advisory:
             unverified = result.get('understanding', {}).get('unverified_preferences', [])
             answer = advice_intro(query)
@@ -153,7 +167,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             answer += '\n\n'+next_question(query)
             public_products = [{key:value for key,value in p.items() if key not in
                 {'score','score_type','rrf_score','rerank_features','graph_paths','retrieval_sources'}} for p in products]
-            return {'success':True,'intent':'shopping_advice','advice_intent':'style_advice',
+            return {'success':True,'intent':'shopping_advice','advice_intent':'style_advice',**retrieval_metadata,
                 'answer':answer,'products':public_products,'status':result['status'],
                 'requested_k':result['requested_k'],'returned_k':len(products),
                 'recommendation_scope':'advisory_unverified_preferences' if unverified else 'verified_recommendations',
@@ -171,7 +185,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
         public_products = [{key: value for key, value in p.items()
                             if key not in {"score", "score_type", "rrf_score", "rerank_features", "graph_paths", "retrieval_sources"}}
                            for p in products]
-        return {"success": True, "answer": answer, "products": public_products,
+        return {"success": True, "answer": answer, "products": public_products,**retrieval_metadata,
                 "advice_intent":advice['intent'] if advice else None,
                 "status": result["status"], "requested_k": result["requested_k"],
                 "returned_k": len(products)}

@@ -4,6 +4,9 @@ import requests
 from decimal import Decimal
 from shared.observability import correlation_headers
 from shared.verified_attributes import PublicAttribute
+from shared.retrieval_limits import SourceGate
+
+_catalog_gate=SourceGate('business-catalog',timeout=4,cooldown=10)
 
 
 class CatalogUnavailable(RuntimeError):
@@ -25,10 +28,18 @@ def fetch_shipping_policy():
 
 
 def fetch_catalog():
+    if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED','false').lower()=='true':
+        try:return _catalog_gate.call(_fetch_catalog)
+        except Exception:raise CatalogUnavailable('Current catalog source unavailable within deadline') from None
+    return _fetch_catalog()
+
+
+def _fetch_catalog():
     base = os.getenv("BUSINESS_API_URL", "http://127.0.0.1:8001").rstrip("/")
     products = {}
     try:
         with requests.Session() as client:
+            client.trust_env=False
             for page in range(1, 51):
                 response = client.get(base + "/products", params={"page": page, "page_size": 100}, timeout=3,
                                       headers=correlation_headers())

@@ -15,6 +15,7 @@ def budget_text(query):
     text = unicodedata.normalize('NFC', query)
     if re.search(r'\b(?:sku|ma san pham|ma hang|ma sp)\b', normalize(text)):
         return text
+    text=re.sub(r'\b(?:đừng|dung)(?:\s+vượt)?\s+quá(?=\s+\d)', 'không quá',text,flags=re.I)
     cues={'duoi':'dưới','tren':'trên','tam':'tầm','khoang':'khoảng'}
     text=re.sub(r'\b(duoi|tren|tam|khoang|dưới|trên|tầm|khoảng)(?=\d)',
                 lambda match:cues.get(match.group(1).lower(),match.group(1))+' ',text,flags=re.I)
@@ -27,15 +28,17 @@ def budget_text(query):
     return text
 
 
+def strict_preference_request(query):
+    text = normalize(query)
+    return bool(re.search(r'\b(?:top\s*\d+|bat buoc|chinh xac|phai co|da xac nhan|loc|cung|giong|tuong tu)\b', text)
+            or re.search(r'\bchi\s+(?:lay|chon|tim|nhung|san pham|mau|goi y|cac)\b', text))
+
+
 def advisory_request(query):
     understanding = link_query(query)
-    if understanding['needs_clarification']:
+    if understanding['needs_clarification'] or strict_preference_request(query):
         return False
-    text = normalize(query)
-    # Exact filters and reference traversal keep their original evidence rules.
-    if (re.search(r'\b(?:top\s*\d+|bat buoc|chinh xac|phai co|da xac nhan|loc|cung|giong|tuong tu)\b', text)
-            or re.search(r'\bchi\s+(?:lay|chon|tim|nhung|san pham|mau|goi y|cac)\b', text)):
-        return False
+    text=normalize(query)
     preferences = [e for e in understanding['entities'] if e['label'] in {'Audience', 'Style'}]
     cues = ('chon gi', 'nen chon', 'tu van', 'goi y', 'nen mua', 'hop voi', 'thich gi')
     return bool(preferences and (any(cue in text for cue in cues) or

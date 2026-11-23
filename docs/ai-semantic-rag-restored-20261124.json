@@ -1,0 +1,8 @@
+{
+  "runtime": "lumiere-ai-before-semantic-rag:20261124 healthy",
+  "website": 200,
+  "business": 200,
+  "ai": 200,
+  "greeting_success": true,
+  "successful": true
+}
