@@ -1,0 +1,8 @@
+# Existing Windows Ollama model; Customer AI only. No Business/Frontend changes.
+# Start AI/start-local-dialogue.ps1 before applying this optional overlay.
+services:
+  ai-api:
+    environment:
+      LUMIERE_CUSTOMER_DIALOGUE_ENABLED: 'true'
+      LUMIERE_CUSTOMER_DIALOGUE_URL: http://host.docker.internal:11435/api/chat
+      LUMIERE_CUSTOMER_DIALOGUE_MODEL: qwen2.5:3b

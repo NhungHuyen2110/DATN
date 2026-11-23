@@ -1,0 +1,8 @@
+{
+  "successful": false,
+  "cases": [],
+  "retries": 0,
+  "downloaded": false,
+  "model": "qwen2.5:3b",
+  "failure_type": "ReadTimeout"
+}

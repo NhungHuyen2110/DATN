@@ -19,6 +19,9 @@ def converse(message, conversation_id, scope, tool):
                 effective=standalone_budget(message) or message
             # Knowledge/writing requests never become product searches.
             knowledge=shared.knowledge_request(message)
+            if row['history'] and shared.normalized(message).startswith((
+                    'viet lai ', 'doi sang giong ', 'noi theo cach ', 'rut gon ', 'than mat hon')):
+                knowledge=True
             natural=domain_answer(message,row['history']) if knowledge or classify_query(effective)=='general_question' else None
             if natural:
                 response={'success':True,'intent':'general_question','status':'general_question','products':[],**natural}
@@ -26,18 +29,22 @@ def converse(message, conversation_id, scope, tool):
                 response={'success':True,'intent':'general_question','status':'general_question','products':[]}
             else:
                 response=tool(effective)
-            if (response.get('intent') in {'unsupported','general_question','out_of_scope'}
-                    and response.get('response_mode')!='reviewed_domain_answer'):
+            if response.get('intent') in {'unsupported','general_question','out_of_scope'}:
+                from .natural_dialogue import answer_natural
+                generated=answer_natural(message,row['history'])
                 natural=domain_answer(message,row['history'])
-                if natural:
+                if generated:
+                    response={**response,'success':True,'answer':generated,'products':[],
+                              'response_mode':'local_llm_dialogue'}
+                    response.pop('sources',None)
+                    response.pop('summary',None)
+                elif natural:
                     response={**response,**natural,'success':True,'products':[]}
                 else:
-                    from shared.local_dialogue import answer_general
-                    generated=answer_general(message,row['history'],str(scope[0]))
-                    response={**response,'answer':generated or (
+                    response={**response,'answer':(
                         'Mình chưa có thông tin đáng tin cậy để trả lời phần này. '
                         'Bạn muốn tìm hiểu cách chọn quà, phân biệt loại đá hay cách bảo quản trang sức?'),
-                        'products':[],'response_mode':'local_llm_dialogue' if generated else 'clarification'}
+                        'products':[],'response_mode':'clarification'}
             if response.get('success') is not False and response.get('intent') not in {
                     'unsupported','general_question','out_of_scope'}:
                 row['last_result']=response

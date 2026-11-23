@@ -29,6 +29,8 @@ async def lifespan(app):
                 logging.getLogger('uvicorn.error').info('Optional model warmup: %s',type(exc).__name__)
         threading.Thread(target=warm_model,name='lumiere-model-warmup',daemon=True).start()
     yield
+    from rag.natural_dialogue import _gate as dialogue_gate
+    dialogue_gate.close()
     from jewelry_agents import retrieval
     retrieval.close_retrieval_limits()
     for client in (retrieval.qdrant_client, retrieval.neo4j_driver):
