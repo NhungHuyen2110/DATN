@@ -1,0 +1,92 @@
+"""Advice is a preference, not an assertion that a product has a graph fact."""
+import re
+import unicodedata
+from .entity_linking import link_query, normalize
+
+STYLE_GUIDES = {
+    'elegant': 'Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.',
+    'minimalist': 'Nếu thích tối giản, bạn có thể cân nhắc một món làm điểm nhấn, kiểu dáng gọn và ít chi tiết thay vì phối nhiều món cùng lúc.',
+    'refined': 'Nếu muốn vẻ tinh tế, hãy cân nhắc tỷ lệ món trang sức với trang phục và sở thích người đeo; không nhất thiết phải chọn món đắt nhất.',
+}
+_MONEY = re.compile(r'(?:(?:dưới|duoi|trên|tren|từ|tu|đến|den|ngân\s+sách|ngan\s+sach|tầm|tam|khoảng|khoang|budget)\s*)?\d+(?:[.,]\d+)*\s*(?:triệu|trieu|tr|nghìn|nghin|ngàn|ngan|vnd|đồng|dong|₫)(?=\s|$|[,.!?])', re.I)
+
+
+def budget_text(query):
+    text = unicodedata.normalize('NFC', query)
+    if re.search(r'\b(?:sku|ma san pham|ma hang|ma sp)\b', normalize(text)):
+        return text
+    cues={'duoi':'dưới','tren':'trên','tam':'tầm','khoang':'khoảng'}
+    text=re.sub(r'\b(duoi|tren|tam|khoang|dưới|trên|tầm|khoảng)(?=\d)',
+                lambda match:cues.get(match.group(1).lower(),match.group(1))+' ',text,flags=re.I)
+    text = re.sub(r'(?<!\w)(\d+(?:[.,]\d+)?)\s*tr\b', r'\1 triệu', text, flags=re.I)
+    # “18K” remains a material unless it occurs in an explicit price phrase.
+    text = re.sub(r'((?:dưới|duoi|trên|tren|tầm|tam|khoảng|khoang|ngân sách|ngan sach|budget)\s*)(\d+(?:[.,]\d+)?)\s*k\b',
+                  r'\1\2 nghìn', text, flags=re.I)
+    if re.fullmatch(r'\s*\d+(?:[.,]\d+)?\s*k\s*', text, flags=re.I):
+        text = re.sub(r'k\s*$', ' nghìn', text, flags=re.I)
+    return text
+
+
+def advisory_request(query):
+    understanding = link_query(query)
+    if understanding['needs_clarification']:
+        return False
+    text = normalize(query)
+    # Exact filters and reference traversal keep their original evidence rules.
+    if (re.search(r'\b(?:top\s*\d+|bat buoc|chinh xac|phai co|da xac nhan|loc|cung|giong|tuong tu)\b', text)
+            or re.search(r'\bchi\s+(?:lay|chon|tim|nhung|san pham|mau|goi y|cac)\b', text)):
+        return False
+    preferences = [e for e in understanding['entities'] if e['label'] in {'Audience', 'Style'}]
+    cues = ('chon gi', 'nen chon', 'tu van', 'goi y', 'nen mua', 'hop voi', 'thich gi')
+    return bool(preferences and any(cue in text for cue in cues))
+
+
+def advice_intro(query):
+    entities = link_query(query)['entities']
+    styles = [e['canonical_id'] for e in entities if e['label'] == 'Style']
+    if styles:
+        return STYLE_GUIDES.get(styles[0], '')
+    return 'Mình sẽ chọn theo sở thích, dịp sử dụng và ngân sách, thay vì chỉ dựa vào giới tính người nhận.'
+
+
+def next_question(query):
+    if _MONEY.search(query) and any(e['label']=='Category' for e in link_query(query)['entities']):
+        return 'Mình vẫn giữ giới hạn giá này nếu bạn muốn đổi loại trang sức để so sánh.'
+    return ('Bạn muốn chi khoảng bao nhiêu?' if not _MONEY.search(query)
+            else 'Bạn thích nhẫn, dây chuyền hay bông tai hơn?')
+
+
+def followup_query(message, previous):
+    """Carry a short budget refinement forward; never inherit an unrelated topic."""
+    if previous and len(message)<=100:
+        entities=link_query(message)['entities']
+        if len(entities)==1 and entities[0]['label'] in {'Category','Gemstone'}:
+            selected=entities[0]
+            leftover=normalize(message).replace(normalize(selected['alias']),' ').split()
+            if set(leftover).issubset({'toi','minh','em','thich','chon','loai','lay','muon','cho','xin','thoi','nhe','a'}):
+                base=previous
+                for old in link_query(previous)['entities']:
+                    if old['label']==selected['label'] and old.get('alias'):
+                        for alias in {old['alias'],normalize(old['alias'])}:
+                            base=re.sub(r'(?<!\w)'+re.escape(alias)+r'(?!\w)',' ',base,flags=re.I)
+                merged=' '.join((base+' '+message).split())
+                return merged if len(merged)<=1000 else message
+    normalized_message = budget_text(message)
+    if not previous or len(message) > 100 or not _MONEY.search(normalized_message):
+        return message
+    text = normalize(message)
+    remaining = normalize(_MONEY.sub(' ', normalized_message)).split()
+    fillers = {'toi','minh','em','co','chi','tam','khoang','ngan','sach','duoi','tren','tu','den',
+               'thoi','nhe','a','la','va','len','tang','giam','xuong','vay','muc','gia','max',
+               'budget','duoc','khong','qua','da'}
+    if any(token not in fillers and not token.isdigit() for token in remaining):
+        return message
+    if link_query(message)['entities'] or any(word in text for word in
+            ('don hang', 'doanh thu', 'mat khau', 'phi ship', 'tai sao', 'top', 'san pham', 'sku')):
+        return message
+    if (not any(token.isdigit() for token in remaining)
+            and not re.search(r'\b(?:duoi|tren|tu|den|khong qua|toi da|ngan sach|budget|tam|khoang|gia)\b', normalize(normalized_message))):
+        normalized_message=_MONEY.sub(lambda match:'ngân sách '+match.group(0),normalized_message)
+    base = _MONEY.sub(' ', budget_text(previous))
+    merged = ' '.join((base + ' ' + normalized_message).split())
+    return merged if len(merged) <= 1000 else message

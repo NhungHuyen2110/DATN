@@ -1,0 +1,56 @@
+{
+  "successful": true,
+  "scope": "Single local consultation flow, not a relevance benchmark or LLM evaluation",
+  "cases": [
+    {
+      "query": "nữ thanh lịch chọn gì",
+      "seconds": 7.921,
+      "status": "degraded",
+      "intent": "shopping_advice",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn muốn chi khoảng bao nhiêu?",
+      "product_ids": [
+        36,
+        22,
+        104
+      ]
+    },
+    {
+      "query": "tại sao lại gợi ý sản phẩm đó",
+      "seconds": 0.016,
+      "status": "conversation_explanation",
+      "intent": "conversation_explanation",
+      "answer": "Mình giữ nguyên các mẫu vừa gợi ý. Lý do có thể kiểm tra được là:\n• Bông tai Sweet Heart: là Bông tai để bắt đầu tham khảo kiểu dáng; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n• Bông tai Angel: là Bông tai để bắt đầu tham khảo kiểu dáng; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n• Bông tai Elegant: là Bông tai để bắt đầu tham khảo kiểu dáng; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\nGu bạn nêu là định hướng tư vấn; mình chưa khẳng định từng mẫu có đầy đủ nhãn phong cách hay đối tượng sử dụng đã xác nhận.",
+      "product_ids": []
+    },
+    {
+      "query": "duoi3tr",
+      "seconds": 5.781,
+      "status": "degraded",
+      "intent": "shopping_advice",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "product_ids": [
+        75,
+        195,
+        110
+      ]
+    },
+    {
+      "query": "mình thích bông tai",
+      "seconds": 0.89,
+      "status": "degraded",
+      "intent": "shopping_advice",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nMình vẫn giữ giới hạn giá này nếu bạn muốn đổi loại trang sức để so sánh.",
+      "product_ids": [
+        275,
+        195,
+        96
+      ]
+    }
+  ],
+  "database_written": false,
+  "warmup_or_retry_loops": false,
+  "passed": 4,
+  "catalog_total": 500,
+  "frontend_checkout_vnpay_and_non_ai_containers_unchanged": true,
+  "verified_utc": "2026-11-23T07:24:04.136740+00:00"
+}

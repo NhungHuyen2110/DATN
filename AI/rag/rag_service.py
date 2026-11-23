@@ -14,6 +14,8 @@ from shared.observability import record_intent
 from jewelry_agents.search_service import search, RetrievalUnavailable
 from jewelry_agents.retrieval import search_qdrant, extract_price_filter, graph_search_candidates, graph_expand_candidates
 from jewelry_agents.advice_planner import GIFT_INTRO
+from jewelry_agents.shopping_advice import advisory_request, advice_intro, next_question, budget_text
+from jewelry_agents.entity_linking import link_query
 
 
 def build_safe_answer(products):
@@ -41,7 +43,7 @@ def build_safe_answer(products):
 
 
 def answer_jewelry_question(query: str, top_k: int = 3):
-    query = query.strip()
+    query = budget_text(query.strip())
 
     if not query:
         return {
@@ -54,6 +56,7 @@ def answer_jewelry_question(query: str, top_k: int = 3):
     if os.getenv("LUMIERE_RETRIEVAL_V2_ENABLED", "true").lower() == "true":
         advice=None
         intent = classify_query(query)
+        advisory = intent == 'product_search' and advisory_request(query)
         if intent=='general_question' and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
             try:
                 from jewelry_agents.retrieval import plan_shopping_advice
@@ -88,7 +91,11 @@ def answer_jewelry_question(query: str, top_k: int = 3):
                       f"Phí vận chuyển hiện tại là {format_price(fee)}; miễn phí với giá trị hàng từ {format_price(threshold)}.")
             return {'success': True, 'status': 'shipping_policy', 'intent': intent,
                     'products': [], 'answer': answer, 'verified_source': 'business_shipping_policy'}
-        if advice is None and os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true':
+        # A style consultation already has an intent. Do not encode it a second
+        # time just to run the optional gift prototype classifier.
+        has_preferences = any(e['label'] in {'Audience','Style'} for e in link_query(query)['entities'])
+        if (not advisory and not has_preferences and advice is None and
+                os.getenv('LUMIERE_SHOPPING_ADVICE_ENABLED','false').lower()=='true'):
             try:
                 from jewelry_agents.retrieval import plan_shopping_advice
                 advice=plan_shopping_advice(query)
@@ -97,10 +104,15 @@ def answer_jewelry_question(query: str, top_k: int = 3):
         try:
             dense = (partial(search_qdrant, request_embedding=advice['_request_embedding'])
                      if advice and advice.get('_request_embedding') is not None else search_qdrant)
+            options = {'preference_mode': 'advisory'} if advisory else {}
             result = search(query, top_k, dense=dense, catalog=fetch_catalog,
                             parse_price=extract_price_filter, graph=graph_search_candidates,
-                            graph_expander=graph_expand_candidates)
+                            graph_expander=graph_expand_candidates, **options)
         except RetrievalUnavailable:
+            if advisory:
+                return {'success':True, 'intent':'shopping_advice', 'advice_intent':'style_advice',
+                    'status':'catalog_unavailable', 'products':[],
+                    'answer':advice_intro(query)+'\n\nMình chưa kiểm tra được giá và tồn kho lúc này, nên chưa đưa tên mẫu cụ thể. '+next_question(query)}
             return {"success": False, "status": "catalog_unavailable", "products": [],
                     "message": "Tạm thời chưa xác minh được giá và tồn kho. Bạn vui lòng thử lại sau.",
                     "answer": "Tạm thời chưa xác minh được giá và tồn kho. Bạn vui lòng thử lại sau."}
@@ -118,11 +130,34 @@ def answer_jewelry_question(query: str, top_k: int = 3):
             return {'success': True, 'status': result['status'], 'products': [],
                     'answer': 'Bạn vui lòng cho biết một mã sản phẩm tham chiếu và thuộc tính cần giống nhau; các điều kiện hiện tại chưa rõ hoặc đang mâu thuẫn.'}
         if result["status"] in {"clarification_required", "missing_verified_attributes"}:
+            understanding = result.get('understanding') or link_query(query)
+            if 'child_catalog_not_verified' in understanding.get('ambiguities', []):
+                message = 'Bạn đang chọn cho bé bao nhiêu tuổi? Mình cần biết độ tuổi và kích cỡ trước, không dùng mẫu người lớn để suy ra là phù hợp cho bé.'
+            else:
+                message = (advice_intro(query)+'\n\nMình chưa xác nhận được mẫu nào đáp ứng chính xác nhãn bạn yêu cầu. '
+                    'Bạn có thể chọn theo loại trang sức, chất liệu và ngân sách trước. '+next_question(query))
             return {"success": True, "status": result["status"], "products": [],
-                    "answer": ("Yêu cầu đã được nhận diện, nhưng danh mục hiện chưa có thuộc tính đã xác minh "
-                               "để lọc theo độ tuổi, đối tượng hoặc phong cách này. "
-                               "Bạn có thể chọn loại trang sức, chất liệu, loại đá và ngân sách để tìm trước.")}
+                    "answer": message}
         products = result["products"]
+        if advisory:
+            unverified = result.get('understanding', {}).get('unverified_preferences', [])
+            answer = advice_intro(query)
+            if products:
+                answer += '\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá.'
+                if unverified:
+                    answer += ' Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.'
+            elif result['status'] == 'degraded':
+                answer += '\n\nHiện mình chưa kiểm tra được danh sách mẫu cụ thể; phần tư vấn cách chọn vẫn có thể giúp bạn thu hẹp lựa chọn.'
+            else:
+                answer += '\n\nChưa có mẫu còn hàng đáp ứng những điều kiện kiểm tra được trong yêu cầu này.'
+            answer += '\n\n'+next_question(query)
+            public_products = [{key:value for key,value in p.items() if key not in
+                {'score','score_type','rrf_score','rerank_features','graph_paths','retrieval_sources'}} for p in products]
+            return {'success':True,'intent':'shopping_advice','advice_intent':'style_advice',
+                'answer':answer,'products':public_products,'status':result['status'],
+                'requested_k':result['requested_k'],'returned_k':len(products),
+                'recommendation_scope':'advisory_unverified_preferences' if unverified else 'verified_recommendations',
+                'unverified_preferences':unverified}
         answer = build_safe_answer(products) if products else "Không tìm thấy sản phẩm phù hợp với điều kiện hiện tại."
         if not products and result['status']=='degraded':
             answer=('Một nguồn tìm kiếm chưa sẵn sàng, nên tôi chưa thể xác nhận danh sách phù hợp. '

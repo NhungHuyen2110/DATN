@@ -20,6 +20,10 @@ def approved_facts(product):
 
 def reviewed_constraints_valid(product, constraints):
     facts = approved_facts(product)
+    for label, canonical in constraints.get('advisory_preferences', {}).items():
+        known = {key[1] for key in facts if key[0] == label}
+        if known and canonical not in known:
+            return False
     if any((label, canonical) not in facts for label, canonical in constraints.get('reviewed_attributes', {}).items()):
         return False
     shared_styles = constraints.get('shared_reference_styles')

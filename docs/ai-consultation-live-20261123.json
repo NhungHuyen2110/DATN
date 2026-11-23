@@ -1,0 +1,18 @@
+{
+  "successful": false,
+  "scope": "Single local consultation flow, not a relevance benchmark or LLM evaluation",
+  "cases": [
+    {
+      "query": "nữ thanh lịch chọn gì",
+      "seconds": 19.907,
+      "status": "catalog_unavailable",
+      "intent": "shopping_advice",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nMình chưa kiểm tra được giá và tồn kho lúc này, nên chưa đưa tên mẫu cụ thể. Bạn muốn chi khoảng bao nhiêu?",
+      "product_ids": []
+    }
+  ],
+  "database_written": false,
+  "warmup_or_retry_loops": false,
+  "failure_type": "AssertionError",
+  "verified_utc": "2026-11-23T07:18:49.407650+00:00"
+}

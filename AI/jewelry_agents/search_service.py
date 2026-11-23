@@ -82,7 +82,7 @@ def verified_paths(paths, product, reference=None, anchors=None):
 
 def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=None,
            candidate_k=None, reranker=None, entity_encoder=None, diagnostics=False, lexical_retriever=None,
-           graph_expander=None):
+           graph_expander=None, preference_mode='strict'):
     started, timings = time.perf_counter(), {}
     def call(stage, function, *args, **kwargs):
         stage_start = time.perf_counter()
@@ -90,6 +90,8 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             return measured_call(stage, function, *args, **kwargs)
         finally:
             timings[stage] = timings.get(stage, 0) + time.perf_counter() - stage_start
+    if preference_mode not in {'strict', 'advisory'}:
+        raise ValueError('Unknown preference mode')
     if type(top_k) is not int or not 1 <= top_k <= 10:
         raise ValueError("top_k must be 1..10")
     count = re.search(r"\btop\s*(\d+)\b", normalize(query))
@@ -112,7 +114,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     unsupported = [e for e in understanding["entities"] if e["label"] in {"Audience", "Style"}]
     # Current catalog has no verified Audience/Style fields. Never pretend these
     # constraints were satisfied using gender stereotypes or collection names.
-    if unsupported and not related['active'] and not reviews_enabled():
+    if unsupported and not related['active'] and not reviews_enabled() and preference_mode == 'strict':
         return {"products": [], "status": "missing_verified_attributes", "understanding": understanding}
     try:
         live = call('catalog', catalog)
@@ -161,9 +163,18 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     constraints["attributes"] = {}
     constraints['reviewed_attributes'] = {entity['label']: entity['canonical_id'] for entity in understanding['entities']
                                          if entity['label'] in {'Audience', 'Style'}}
-    for label in constraints['reviewed_attributes']:
-        if not any(any(key[0] == label for key in approved_facts(product)) for product in live.values()):
+    advisory_preferences = {}
+    for label, canonical in list(constraints['reviewed_attributes'].items()):
+        available = reviews_enabled() and any((label, canonical) in approved_facts(product) for product in live.values())
+        if not available and preference_mode == 'advisory' and reference is None:
+            advisory_preferences[label] = canonical
+            del constraints['reviewed_attributes'][label]
+        elif not any(any(key[0] == label for key in approved_facts(product)) for product in live.values()):
             return {'products': [], 'status': 'missing_verified_attributes', 'understanding': understanding}
+    constraints['advisory_preferences'] = advisory_preferences
+    if advisory_preferences:
+        understanding['unverified_preferences'] = [
+            {'label': label, 'canonical_id': canonical} for label, canonical in advisory_preferences.items()]
     for entity in understanding["entities"]:
         if entity["label"] in {"Category", "Gemstone"}:
             constraints["attributes"][entity["label"] + "ID"] = entity["graph_id"]
@@ -225,6 +236,9 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         retrieval_query += ' ' + ' '.join(str(reference.get(key, '')) for key in
                                         ('ProductName', 'Category', 'Material', 'Gemstone'))
     tokens = set(normalize(retrieval_query).split()) - {"top", "tim", "cho", "toi", "san", "pham", "duoi", "trieu", "nghin"}
+    # A starting-point consultation may suggest actual product types even if
+    # the style vector source is down. This is not a style/gender fact.
+    category_reference = bool(advisory_preferences and 'CategoryID' not in constraints['attributes'])
     lexical = []
     for pid, product in (eligible.items() if 'lexical' in selected and lexical_retriever is None else []):
         representation = normalize(" ".join(str(product.get(field, "")) for field in
@@ -232,6 +246,8 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         if reviews_enabled():
             representation += ' ' + normalize(' '.join(fact['name'] for fact in approved_facts(product).values()))
         hits = len(tokens.intersection(representation.split()))
+        if category_reference and product.get('CategoryID') in {2, 3}:
+            hits += 1
         if hits:
             lexical.append((hits, pid))
     lexical.sort(key=lambda pair: (-pair[0], pair[1]))
@@ -334,13 +350,16 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             fused = reranked
     products = finalize_topk(fused, top_k, constraints, latest)
     for product in products:
-        matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone', 'Audience', 'Style'}]
+        matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone', 'Audience', 'Style'}
+                   and e['label'] not in advisory_preferences]
         product['matched_entities'] = [{'label': e['label'], 'canonical_id': e['canonical_id']} for e in matched]
         reasons = []
         if 'CategoryID' in constraints['attributes']:
             reasons.append('đúng loại ' + product['Category'])
         if 'GemstoneID' in constraints['attributes']:
             reasons.append('đúng loại đá ' + product['Gemstone'])
+        if category_reference and product.get('CategoryID') in {2, 3}:
+            reasons.append('là ' + product['Category'] + ' để bắt đầu tham khảo kiểu dáng')
         if constraints.get('max_price') is not None or constraints.get('min_price') is not None:
             reasons.append('trong khoảng giá yêu cầu')
         for label, canonical in constraints['reviewed_attributes'].items():

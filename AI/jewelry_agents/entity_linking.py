@@ -54,6 +54,13 @@ def link_query(query, encoder=None, threshold=0.80, margin=0.08):
             matches.append({"label": entity["label"], "canonical_id": entity["canonical_id"],
                             "graph_id": entity.get("graph_id"), "method": "normalized_alias",
                             "alias": alias, "similarity": None})
+    # A leading subject “nữ …” is different from the generic “nữ trang”
+    # or product names such as “Nữ hoàng”. This resolves query intent only.
+    if (re.match(r'^(?:cho )?nu(?:\s|$)', text)
+            and not re.match(r'^(?:cho )?nu (?:trang|hoang|than)\b', text)
+            and not any(item['label'] == 'Audience' for item in matches)):
+        matches.append({'label': 'Audience', 'canonical_id': 'female', 'graph_id': None,
+                        'method': 'subject_context', 'alias': 'nữ', 'similarity': None})
     age = re.search(r"\b(\d{1,2})\s*tuoi\b", text)
     female = any(item["label"] == "Audience" and item["canonical_id"] in {"female", "child_female"} for item in matches)
     child = " be gai " in padded or (female and age is not None and int(age.group(1)) < 18)

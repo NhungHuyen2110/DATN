@@ -1,0 +1,7 @@
+{
+  "successful": true,
+  "tests_run": 15,
+  "failures": 0,
+  "errors": 0,
+  "scope": "Final consultation flow only; budget, category refinement, strict filters, grounding and context; no models loaded"
+}

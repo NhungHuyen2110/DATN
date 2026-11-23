@@ -306,6 +306,28 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
 
 @app.post("/chat", tags=["Chatbot RAG"])
 def chat(request: ChatRequest):
-    from shared.conversation import converse
-    return converse(request.query,request.conversation_id,('customer-public',),
-                    lambda query:answer_jewelry_question(query=query,top_k=request.top_k))
+    from shared.conversation import STORE, converse
+    from jewelry_agents.shopping_advice import followup_query
+    scope = ('customer-public',)
+    token, row = STORE.resolve(request.conversation_id, scope)
+    def answer(query):
+        effective = followup_query(query, row.get('shopping_context'))
+        result = answer_jewelry_question(query=effective, top_k=request.top_k)
+        if result.get('advice_intent') == 'style_advice':
+            row['shopping_context'] = effective
+        else:
+            row.pop('shopping_context', None)
+        return result
+    result = converse(request.query, token, scope, answer)
+    if result.get('intent') in {'conversation_correction','general_question','out_of_scope'}:
+        row.pop('shopping_context', None)
+    previous = row.get('last_result') or {}
+    if (result.get('intent') == 'conversation_explanation'
+            and previous.get('recommendation_scope') == 'advisory_unverified_preferences'
+            and previous.get('products')):
+        reasons = ['• '+str(p.get('ProductName',''))+': '+str(p.get('reason',''))
+                   for p in previous.get('products', [])]
+        result['answer'] = ('Mình giữ nguyên các mẫu vừa gợi ý. Lý do có thể kiểm tra được là:\n'
+            +'\n'.join(reasons)+'\n\nGu bạn nêu là định hướng tư vấn; '
+            'mình chưa khẳng định từng mẫu có đầy đủ nhãn phong cách hay đối tượng sử dụng đã xác nhận.')
+    return result
