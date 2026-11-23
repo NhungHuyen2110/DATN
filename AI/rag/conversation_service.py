@@ -19,6 +19,9 @@ def converse(message, conversation_id, scope, tool):
                 effective=standalone_budget(message) or message
             # Knowledge/writing requests never become product searches.
             knowledge=shared.knowledge_request(message)
+            if ('khong can tim san pham' in shared.normalized(message) and
+                    classify_query(message) not in {'restricted_request','unverified_policy','shipping_policy','customer_order_guidance'}):
+                knowledge=True
             if row['history'] and shared.normalized(message).startswith((
                     'viet lai ', 'doi sang giong ', 'noi theo cach ', 'rut gon ', 'than mat hon')):
                 knowledge=True
@@ -31,8 +34,8 @@ def converse(message, conversation_id, scope, tool):
                 response=tool(effective)
             if response.get('intent') in {'unsupported','general_question','out_of_scope'}:
                 from .natural_dialogue import answer_natural
-                generated=answer_natural(message,row['history'])
                 natural=domain_answer(message,row['history'])
+                generated=answer_natural(message,row['history'],evidence=natural['answer'] if natural else None)
                 if generated:
                     response={**response,'success':True,'answer':generated,'products':[],
                               'response_mode':'local_llm_dialogue'}

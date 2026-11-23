@@ -1,0 +1,39 @@
+{
+  "successful": true,
+  "cases": [
+    {
+      "query": "Viết lời chúc tốt nghiệp ngắn cho bạn thân, xưng mình và cậu.",
+      "answer": "Chúc mừng bạn tốt nghiệp! Mình xin chúc sức khỏe, hạnh phúc và thành công luôn! 🌟",
+      "response_mode": "local_llm_dialogue",
+      "status": "general_question",
+      "seconds": 8.313,
+      "product_ids": []
+    },
+    {
+      "query": "Viết lại trang trọng hơn, chỉ một câu.",
+      "answer": "Chúc mừng tốt nghiệp! Mình xin chúc sức khỏe, hạnh phúc và thành công luôn! 🌟",
+      "response_mode": "local_llm_dialogue",
+      "status": "general_question",
+      "seconds": 3.718,
+      "product_ids": []
+    },
+    {
+      "query": "nữ thanh lịch chọn gì dưới 3 triệu",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "response_mode": null,
+      "status": "degraded",
+      "seconds": 4.907,
+      "product_ids": [
+        24,
+        75,
+        96
+      ]
+    }
+  ],
+  "retries": 0,
+  "downloaded_during_chat": false,
+  "model": "qwen3:0.6b-q4_K_M",
+  "resident_model_bytes": 665174669,
+  "passed": 3,
+  "scope": "Real Customer model generation and contextual rewrite, not a general quality benchmark"
+}

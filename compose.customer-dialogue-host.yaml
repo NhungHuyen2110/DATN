@@ -5,4 +5,4 @@ services:
     environment:
       LUMIERE_CUSTOMER_DIALOGUE_ENABLED: 'true'
       LUMIERE_CUSTOMER_DIALOGUE_URL: http://host.docker.internal:11435/api/chat
-      LUMIERE_CUSTOMER_DIALOGUE_MODEL: qwen2.5:3b
+      LUMIERE_CUSTOMER_DIALOGUE_MODEL: qwen3:0.6b-q4_K_M

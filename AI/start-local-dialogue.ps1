@@ -1,10 +1,13 @@
+param([string]$Model='qwen3:0.6b-q4_K_M', [string]$ModelDirectory='')
 $ErrorActionPreference='Stop'
 $projectRoot=Split-Path $PSScriptRoot -Parent
 $stateDir=Join-Path $projectRoot '.local-tmp'
 $binary=(Get-Command ollama -ErrorAction Stop).Source
-$modelDir=Join-Path $env:USERPROFILE '.ollama\models'
-$manifest=Join-Path $modelDir 'manifests\registry.ollama.ai\library\qwen2.5\3b'
-if (!(Test-Path -LiteralPath $manifest)) { throw 'Existing qwen2.5:3b model required; no automatic download.' }
+if ($Model -notmatch '^[a-zA-Z0-9_.-]+:[a-zA-Z0-9_.-]+$') { throw 'Explicit model name:tag required.' }
+$modelDir=if ($ModelDirectory) { $ModelDirectory } else { Join-Path $stateDir 'dialogue-small-models' }
+$modelParts=$Model.Split(':')
+$manifest=Join-Path $modelDir ('manifests\registry.ollama.ai\library\'+$modelParts[0]+'\'+$modelParts[1])
+if (!(Test-Path -LiteralPath $manifest)) { throw 'Prepared local model required; no automatic download.' }
 $listener=Get-NetTCPConnection -LocalPort 11435 -State Listen -ErrorAction SilentlyContinue
 if ($listener) {
     $owner=Get-Process -Id $listener[0].OwningProcess

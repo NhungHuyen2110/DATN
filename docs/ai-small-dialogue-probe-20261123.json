@@ -1,0 +1,32 @@
+{
+  "model": "qwen3:0.6b-q4_K_M",
+  "successful": true,
+  "cases": [
+    {
+      "query": "Viết một lời chúc sinh nhật ngắn dành cho bạn thân, xưng mình và cậu.",
+      "answer": "Chúc bạn thân luôn khỏe mạnh, tràn đầy năng lượng và hạnh phúc!",
+      "seconds": 6.015,
+      "done": true,
+      "done_reason": "stop",
+      "eval_count": 18
+    },
+    {
+      "query": "Viết lại gần gũi hơn, chỉ một câu.",
+      "answer": "Chúc bạn thân luôn khỏe mạnh và hạnh phúc!",
+      "seconds": 2.297,
+      "done": true,
+      "done_reason": "stop",
+      "eval_count": 12
+    },
+    {
+      "query": "Tôi đi dự tiệc với váy đơn sắc, nên phối trang sức thế nào? Không cần tìm sản phẩm.",
+      "answer": "Chọn trang sức màu sắc để kết hợp với váy đơn sắc.",
+      "seconds": 2.594,
+      "done": true,
+      "done_reason": "stop",
+      "eval_count": 17
+    }
+  ],
+  "scope": "Small live feasibility sample; not a Vietnamese quality benchmark",
+  "retries": 0
+}

@@ -1,5 +1,7 @@
 # Trạng thái AI — 23/11/2026
 
+Cập nhật Customer mới nhất: đã bật Qwen3 0.6B local và có câu trả lời model thật qua website, 3/3 kiểm tra kỹ thuật đạt. Xem [báo cáo model nhỏ](35-small-local-natural-dialogue.md) và `ai-small-dialogue-live-20261123.json`. Văn phong/làm theo hướng dẫn còn hạn chế; Staff/Admin LLM, benchmark chất lượng và hosting chưa nghiệm thu. Các kết quả Qwen 3B thất bại bên dưới được giữ làm lịch sử, không phải trạng thái của profile Customer mới.
+
 **Chưa hoàn thành toàn bộ AI. Chưa nghiệm thu khả năng hội thoại tự nhiên như yêu cầu của người dùng.** Không dùng tổng số unit tests để khẳng định chất lượng tư vấn hoặc mức độ thông minh.
 
 | Hạng mục | Đã kiểm chứng | Còn thiếu / lý do |

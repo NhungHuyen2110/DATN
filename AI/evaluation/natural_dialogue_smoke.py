@@ -5,6 +5,7 @@ from decimal import Decimal
 from pathlib import Path
 import time
 import requests
+import urllib.request
 
 
 def main():
@@ -12,7 +13,7 @@ def main():
     parser.add_argument('--report',type=Path,required=True)
     args=parser.parse_args()
     assert not args.report.exists(),'Preserve reports'
-    report={'successful':False,'cases':[],'retries':0,'downloaded':False,'model':'qwen2.5:3b'}
+    report={'successful':False,'cases':[],'retries':0,'downloaded_during_chat':False,'model':'qwen3:0.6b-q4_K_M'}
     with requests.Session() as client:
         client.trust_env=False
         def turn(query,token=None):
@@ -32,6 +33,11 @@ def main():
             third=turn('nữ thanh lịch chọn gì dưới 3 triệu')
             assert third.get('intent')=='shopping_advice' and third['products']
             assert all(Decimal(str(p['Price']))<3_000_000 and p['Stock']>0 for p in third['products'])
+            opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+            with opener.open('http://127.0.0.1:11435/api/ps',timeout=5) as response:
+                loaded=json.load(response)['models']
+            assert any(model['name']==report['model'] for model in loaded)
+            report['resident_model_bytes']=next(model['size'] for model in loaded if model['name']==report['model'])
             report.update(successful=True,passed=3,
                           scope='Real Customer model generation and contextual rewrite, not a general quality benchmark')
         except Exception as error:
