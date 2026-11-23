@@ -1,0 +1,7 @@
+{
+  "successful": false,
+  "cases": [],
+  "retries": 0,
+  "database_written": false,
+  "failure_type": "ReadTimeout"
+}

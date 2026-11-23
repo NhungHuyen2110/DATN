@@ -1,4 +1,6 @@
-# Trạng thái AI — 23/11/2026
+# Trạng thái AI — cập nhật 24/11/2026
+
+Mốc ontology/context mới nhất: code liên kết Category bằng embedding định nghĩa, làm rõ loại sản phẩm và lọc ID hợp điều kiện trước LIMIT graph đã có; 196 test chạy, 195 đạt/1 skip. Read-only graph A/B đạt 35/35 ứng viên hợp điều kiện so với 0/35 trước sửa. **Website chưa đạt: ReadTimeout ở câu đầu, warmup chưa sẵn sàng. Runtime phục hồi image checkpoint trước nâng cấp; không bật narrative mới.** Xem [báo cáo 38](38-ontology-linking-and-context-release.md) và các JSON bằng chứng kèm theo. Không đánh dấu hoàn thành hội thoại tự nhiên hoặc toàn bộ đặc tả.
 
 Lượt semantic RAG 24/11 mới nhất: đã sửa nhánh bỏ qua intent `product_search` của bộ phân loại embedding và thêm bằng chứng graph/source deadline vào code. **Kiểm tra câu hỏi lạ qua website chưa đạt vì không lấy được catalog; runtime đưa về checkpoint trước lượt thử.** Không dùng số unit tests để khẳng định semantic accuracy. Xem [báo cáo 37](37-semantic-routing-and-graph-evidence.md); JSON planner suy sai và narrative thử nghiệm đều giữ tắt.
 

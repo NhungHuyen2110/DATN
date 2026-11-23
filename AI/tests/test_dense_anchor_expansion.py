@@ -16,7 +16,8 @@ class DenseAnchorExpansionTests(unittest.TestCase):
 
     def test_dense_ids_anchor_expansion_and_real_paths_survive(self):
         calls = []
-        def expand(ids, top_k):
+        def expand(ids, top_k,eligible_ids):
+            self.assertEqual(set(eligible_ids),{1,2,3,4})
             calls.append((ids, top_k))
             return [{'ProductID': 3, 'paths': [self.path()]}]
         result = self.run_search(expand)

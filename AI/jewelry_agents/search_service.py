@@ -82,7 +82,7 @@ def verified_paths(paths, product, reference=None, anchors=None):
 
 def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=None,
            candidate_k=None, reranker=None, entity_encoder=None, diagnostics=False, lexical_retriever=None,
-           graph_expander=None, preference_mode='strict', semantic_plan=None, semantic_source_query=None):
+           graph_expander=None, preference_mode='strict', semantic_plan=None, semantic_source_query=None,entity_context=None):
     started, timings = time.perf_counter(), {}
     def call(stage, function, *args, **kwargs):
         stage_start = time.perf_counter()
@@ -106,6 +106,9 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
     if type(pool_size) is not int or not top_k <= pool_size <= 1000:
         raise ValueError('candidate_k must be requested K..1000')
     understanding = call('parse', link_query, query, encoder=entity_encoder)
+    if entity_context is not None and not reference_request(query)['active']:
+        from .semantic_category import merge_category_links
+        understanding=merge_category_links(understanding,entity_context,query)
     if semantic_plan is not None:
         from .semantic_planner import merge_understanding
         understanding=merge_understanding(understanding,semantic_plan,semantic_source_query or query)
@@ -259,6 +262,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         rankings['lexical'] = [pid for pid in call('lexical', lexical_retriever, query,
                               eligible_ids=list(eligible), top_k=pool_size) if pid in eligible][:pool_size]
     degraded, source_errors = [], {}
+    semantic_scores={}
     def source_failure(name, error):
         # Internal diagnostics expose controlled codes, never raw exception text/URLs/queries.
         source_errors[name] = {'error_type': type(error).__name__}
@@ -269,8 +273,14 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             source_errors[name]['reason'] = reasons.get(str(error), 'unavailable')
     if 'dense' in selected:
         try:
-            rankings["dense"] = [int(p["ProductID"]) for p in call('dense', dense, retrieval_query, top_k=pool_size,
-                                                                   eligible_ids=list(eligible))
+            dense_products=call('dense',dense,retrieval_query,top_k=pool_size,eligible_ids=list(eligible))
+            for item in dense_products:
+                try:
+                    score=float(item['score'])
+                    if math.isfinite(score) and -1.000001<=score<=1.000001:
+                        semantic_scores[int(item['ProductID'])]=score
+                except (KeyError,ValueError,TypeError):pass
+            rankings["dense"] = [int(p["ProductID"]) for p in dense_products
                                  if p.get("ProductID") is not None and int(p['ProductID']) in eligible]
         except Exception as error:
             degraded.append("dense_unavailable")
@@ -293,7 +303,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         anchor_ids = list(dict.fromkeys(rankings.get('dense', [])))[:pool_size]
         if graph_expander is not None and anchor_ids and reference is None:
             try:
-                expanded = call('graph', graph_expander, anchor_ids, top_k=pool_size)
+                expanded = call('graph', graph_expander, anchor_ids, top_k=pool_size,eligible_ids=list(eligible))
                 anchor_products = {pid: eligible[pid] for pid in anchor_ids}
                 accepted = []
                 for item in expanded:
@@ -353,6 +363,13 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             fused = reranked
     products = finalize_topk(fused, top_k, constraints, latest)
     for product in products:
+        pid=product['ProductID']
+        if pid in semantic_scores:product['semantic_score']=semantic_scores[pid]
+        graph_ranks=rankings.get('graph',[])
+        product['graph_score']=(1/(60+graph_ranks.index(pid)+1) if pid in graph_ranks else
+                                0.0 if 'graph' in selected and 'graph_unavailable' not in degraded else None)
+        product['final_score']=product['score']
+        product['ranking_method']=getattr(reranker,'name','reciprocal_rank_fusion')
         matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone', 'Audience', 'Style'}
                    and e['label'] not in advisory_preferences]
         product['matched_entities'] = [{'label': e['label'], 'canonical_id': e['canonical_id']} for e in matched]

@@ -108,9 +108,16 @@ def answer_jewelry_question(query: str, top_k: int = 3, semantic_plan=None):
             except Exception:
                 pass  # Advice is optional; authoritative retrieval still executes.
         try:
+            from jewelry_agents.query_reference import reference_request
+            if advice and advice.get('accepted') and advice.get('semantic_category_scores') and not reference_request(query)['active']:
+                from .category_clarification import category_question
+                clarification=category_question(query,advice['semantic_category_scores'])
+                if clarification:return clarification
             dense = (partial(search_qdrant, request_embedding=advice['_request_embedding'])
                      if advice and advice.get('_request_embedding') is not None else search_qdrant)
             options = {'preference_mode': 'advisory'} if advisory else {}
+            if advice and getattr(advice.get('_request_embedding'),'entity_links',()):
+                options['entity_context']=advice['_request_embedding']
             if semantic_plan is not None:options.update(semantic_plan=semantic_plan,semantic_source_query=original_query)
             result = search(query, top_k, dense=dense, catalog=fetch_catalog,
                             parse_price=extract_price_filter, graph=graph_search_candidates,

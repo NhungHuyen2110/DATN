@@ -22,6 +22,7 @@ if not 1 <= _dense_timeout <= 10:
     raise ValueError('Dense timeout must be between 1 and 10 seconds')
 _dense_gate = SourceGate('dense', timeout=_dense_timeout)
 _graph_gate = SourceGate('graph')
+_semantic_intent_ready=threading.Event()
 
 
 def _bounded_source(gate, function, *args, **kwargs):
@@ -119,7 +120,9 @@ def plan_shopping_advice(query):
     # unlimited intent work or delay ordinary lexical/graph fallback.
     def operation():
         from .advice_planner import plan_advice
-        return plan_advice(query,get_dense_services()[1],include_embedding=True)
+        result=plan_advice(query,get_dense_services()[1],include_embedding=True)
+        _semantic_intent_ready.set()
+        return result
     if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
         return _dense_gate.call_with_timeout(10, operation)
     return operation()
@@ -130,7 +133,12 @@ def warm_shopping_model():
     # Readiness must not become true between weight load and prototype encoding.
     def operation():
         from .advice_planner import plan_advice
-        return plan_advice('tư vấn quà trang sức',get_dense_services()[1])
+        from .semantic_category import warm_category_definitions
+        model=get_dense_services()[1]
+        result=plan_advice('tư vấn quà trang sức',model,include_embedding=True)
+        warm_category_definitions(model)
+        _semantic_intent_ready.set()
+        return result
     if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
         # Startup includes weight loading and eight prototype embeddings. Keep
         # the normal request budget unchanged and never queue concurrent work.
@@ -138,20 +146,23 @@ def warm_shopping_model():
     return operation()
 
 
-def graph_expand_candidates(anchor_ids, top_k=35):
-    return _bounded_source(_graph_gate, _graph_expand_candidates, anchor_ids, top_k)
+def graph_expand_candidates(anchor_ids, top_k=35,eligible_ids=None):
+    return _bounded_source(_graph_gate, _graph_expand_candidates, anchor_ids, top_k,eligible_ids=eligible_ids)
 
 
-def _graph_expand_candidates(anchor_ids, top_k, *, driver=None):
+def _graph_expand_candidates(anchor_ids, top_k, *, driver=None,eligible_ids=None):
     if not anchor_ids:
         return []
     if (not 1 <= top_k <= 1000 or len(anchor_ids) > 1000
             or any(type(pid) is not int or pid <= 0 for pid in anchor_ids)):
         raise ValueError('Invalid graph anchors or candidate limit')
+    if eligible_ids is not None and (len(eligible_ids)>10000 or any(type(i) is not int or i<=0 for i in eligible_ids)):
+        raise ValueError('Invalid graph eligibility IDs')
     cypher = """
         UNWIND range(0, size($anchors)-1) AS anchor_rank
         MATCH (source:Product {product_id:$anchors[anchor_rank]})-[left]->(entity)<-[right]-(p:Product)
         WHERE p.product_id <> source.product_id AND type(left)=type(right)
+          AND ($eligible_ids IS NULL OR p.product_id IN $eligible_ids)
           AND p.projection_owner=$catalog_owner AND source.projection_owner=$catalog_owner
           AND (((type(left)='BELONGS_TO' AND entity:Category
                  OR type(left)='MADE_OF' AND entity:Material
@@ -176,7 +187,8 @@ def _graph_expand_candidates(anchor_ids, top_k, *, driver=None):
     with (driver or get_graph_driver()).session() as session:
         return [record.data() for record in session.run(
             cypher, anchors=list(dict.fromkeys(anchor_ids)), limit=top_k,
-            review_enabled=reviews_enabled(), catalog_owner=CATALOG_OWNER, review_owner=REVIEW_OWNER)]
+            review_enabled=reviews_enabled(), catalog_owner=CATALOG_OWNER, review_owner=REVIEW_OWNER,
+            eligible_ids=eligible_ids)]
 
 
 def graph_search_candidates(query, understanding):

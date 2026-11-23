@@ -112,7 +112,7 @@ class SemanticPlannerTests(unittest.TestCase):
             result=api.chat(api.ChatRequest(query=QUERY))
         self.assertEqual([p['ProductID'] for p in result['products']],[3,1])
         self.assertEqual(result['response_mode'],'grounded_llm_rag')
-        self.assertLessEqual(generator.call_args.kwargs['time_budget'],8)
+        self.assertLessEqual(generator.call_args.kwargs['time_budget'],16)
         self.assertNotIn('Price',generator.call_args.kwargs['evidence']['verified_product_attributes'][0])
 
     def test_semantic_product_intent_is_not_discarded_when_query_has_no_alias(self):

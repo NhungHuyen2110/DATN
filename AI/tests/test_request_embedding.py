@@ -20,7 +20,7 @@ class Encoder:
     def get_sentence_embedding_dimension(self):
         return 2
 
-    def encode(self, texts):
+    def encode(self, texts,**kwargs):
         self.calls.append(texts)
         if isinstance(texts, str):
             return Vector([0., 1.])
@@ -48,7 +48,7 @@ class RequestEmbeddingTests(unittest.TestCase):
         with closing(QdrantClient(location=':memory:')) as client:
             result = self.query(client, model, query, context)
         self.assertEqual(result[0]['ProductID'], 1)
-        self.assertEqual([len(call) for call in model.calls], [8, 1])
+        self.assertEqual([len(call) for call in model.calls], [8, 1,6])
         self.assertNotIn(query, repr(context))
 
     def test_rewritten_query_or_replaced_model_must_encode_again(self):

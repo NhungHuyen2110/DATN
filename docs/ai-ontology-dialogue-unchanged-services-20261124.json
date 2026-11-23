@@ -1,0 +1,24 @@
+{
+  "unchanged_services": true,
+  "services": {
+    "/lumiere-rebuild-test-business-api-1": {
+      "id": "2fe7d610c4224796f851fa632b0dc41c2fa911e1b79c5b9c0cc10854a5b89e3f",
+      "started_at": "2026-11-23T06:14:52.11872124Z"
+    },
+    "/lumiere-rebuild-test-frontend-1": {
+      "id": "86a86f62fe924506bbff40a951139d2fb7b2e13557c3e12be8f5dcde9ced7767",
+      "started_at": "2026-11-23T06:07:10.047880664Z"
+    },
+    "/lumiere-rebuild-test-postgres-1": {
+      "id": "a0c5747c6998cc4c6b5042b2a7a586e638a74bbe8eabd46d3526c69ef473fae5",
+      "started_at": "2026-11-22T14:05:24.40495673Z"
+    },
+    "/lumiere-rebuild-test-index-worker-1": {
+      "id": "00cf7f05381cefaeed240651f11780d8fb9567fdd2c1d6ec836cce4e5adc72a7",
+      "started_at": "2026-11-23T09:44:02.043915923Z"
+    }
+  },
+  "catalog_count": 500,
+  "frontend_status": 200,
+  "database_written": false
+}

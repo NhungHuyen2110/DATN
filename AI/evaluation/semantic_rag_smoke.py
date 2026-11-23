@@ -16,12 +16,15 @@ def main():
     with requests.Session() as client:
         client.trust_env=False
         base='http://127.0.0.1:18080'
-        def turn(query):
+        def turn(query,token=None):
             start=time.monotonic()
-            r=client.post(base+'/ai/chat',json={'query':query},timeout=(3,42))
+            r=client.post(base+'/ai/chat',json={'query':query,'conversation_id':token},timeout=(3,42))
             r.raise_for_status();value=r.json()
             report['cases'].append({'query':query,'seconds':round(time.monotonic()-start,3),'answer':value.get('answer'),
                 'status':value.get('status'),'response_mode':value.get('response_mode'),
+                'resolved_entities':value.get('resolved_entities',[]),
+                'clarification_options':value.get('clarification_options',[]),
+                'clarification_resolution':value.get('clarification_resolution'),
                 'retrieval_sources_used':value.get('retrieval_sources_used',[]),'products':value.get('products',[])})
             assert value.get('success') is True
             return value
@@ -29,6 +32,10 @@ def main():
             r=client.get(base+'/api/products/'+str(pid),timeout=(3,8));r.raise_for_status();return r.json()
         try:
             first=turn('Một món ôm quanh ngón tay, đừng quá 3 triệu.')
+            if first.get('status')=='clarification_required':
+                assert first['clarification_options'][0]['canonical_id']=='ring'
+                report['clarification_used']=True
+                first=turn('Loại đầu tiên',first['conversation_id'])
             assert first.get('products'),'Semantic shopping was not routed to retrieval'
             report['dense_and_graph_verified']={'dense','graph'}.issubset(first.get('retrieval_sources_used',[]))
             assert report['dense_and_graph_verified']
@@ -45,7 +52,7 @@ def main():
             outside=turn('Nói về cách gieo hạt cà chua ở ban công.')
             assert not outside.get('products')
             assert 'Bạn đang chọn cho dịp nào' in outside['answer']
-            report.update(successful=True,passed=3,
+            report.update(successful=True,passed=len(report['cases']),
                           scope='Held-out paraphrase, graph relationship and off-topic bridge; not general AI accuracy')
         except Exception as error:report['failure_type']=type(error).__name__
     args.report.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

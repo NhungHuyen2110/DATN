@@ -138,11 +138,13 @@ def liveness():
 @app.get("/health/ready")
 def readiness():
     from jewelry_agents.business_catalog import fetch_catalog
+    from jewelry_agents import retrieval
     try:
         fetch_catalog()
     except Exception:
         raise HTTPException(status_code=503, detail="Business catalog unavailable") from None
-    return {"status": "ready", "optional_sources": ["qdrant", "neo4j", "ollama"]}
+    return {"status": "ready", "optional_sources": ["qdrant", "neo4j", "ollama"],
+            'semantic_intent_ready':retrieval._semantic_intent_ready.is_set()}
 
 
 # ============================================================
@@ -286,6 +288,7 @@ class ChatRequest(BaseModel):
 class DiagnosticsRequest(ChatRequest):
     rerank: bool = False
     semantic_entities: bool = False
+    intent_plan: bool = False
 
 
 @app.post('/internal/retrieval-diagnostics', include_in_schema=False)
@@ -299,13 +302,21 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
     from jewelry_agents.reranking import GraphFeatureReranker
     try:
         encoder = retrieval.get_dense_services()[1] if request.semantic_entities else None
-        return search(request.query, request.top_k, dense=retrieval.search_qdrant, catalog=fetch_catalog,
+        advice=retrieval.plan_shopping_advice(request.query) if request.intent_plan else None
+        from functools import partial
+        context=advice.get('_request_embedding') if advice else None
+        dense=partial(retrieval.search_qdrant,request_embedding=context) if context else retrieval.search_qdrant
+        result=search(request.query, request.top_k, dense=dense, catalog=fetch_catalog,
                       parse_price=retrieval.extract_price_filter, graph=retrieval.graph_search_candidates,
                       graph_expander=retrieval.graph_expand_candidates,
                       reranker=GraphFeatureReranker() if request.rerank else None,
-                      entity_encoder=encoder, diagnostics=True)
+                      entity_encoder=encoder,entity_context=context if context and context.entity_links else None, diagnostics=True)
+        if advice:
+            result['diagnostics']['intent_plan']={k:v for k,v in advice.items() if k!='_request_embedding'}
+        return result
     except RetrievalUnavailable:
-        raise HTTPException(status_code=503, detail='Authoritative catalog unavailable') from None
+        from jewelry_agents.business_catalog import catalog_source_status
+        raise HTTPException(status_code=503, detail={'code':'catalog_unavailable',**catalog_source_status()}) from None
     except ValueError:
         raise HTTPException(status_code=422, detail='Invalid diagnostic query or ranking contract') from None
     except Exception:
@@ -323,7 +334,10 @@ def chat(request: ChatRequest):
         effective = followup_query(query, row.get('shopping_context'))
         options={'semantic_plan':semantic_plan} if semantic_plan is not None else {}
         result = answer_jewelry_question(query=effective, top_k=request.top_k,**options)
-        if result.get('advice_intent') == 'style_advice':
+        if result.get('clarification_options'):
+            row['shopping_context']=effective
+            row['pending_category']={'query':effective,'options':result['clarification_options']}
+        elif result.get('advice_intent') == 'style_advice':
             row['shopping_context'] = effective if effective.startswith('Tư vấn ') else 'Tư vấn '+effective
         elif result.get('products'):
             row['shopping_context'] = effective

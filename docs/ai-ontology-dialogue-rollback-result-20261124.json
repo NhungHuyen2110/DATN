@@ -1,0 +1,10 @@
+{
+  "image": "lumiere-ai-before-ontology:20261124",
+  "running": true,
+  "health": "healthy",
+  "checks": {
+    "frontend": 200,
+    "business": 200,
+    "ai": 200
+  }
+}

@@ -6,7 +6,9 @@ services:
       LUMIERE_CUSTOMER_DIALOGUE_ENABLED: 'true'
       LUMIERE_CUSTOMER_DIALOGUE_URL: http://host.docker.internal:11435/api/chat
       LUMIERE_CUSTOMER_DIALOGUE_MODEL: qwen3:0.6b-q4_K_M
+      # Release the Windows LLM after each answer so vector/graph work retains RAM.
+      LUMIERE_CUSTOMER_DIALOGUE_KEEP_ALIVE: '0'
       # The 0.6B JSON planner failed semantic validation; never use its guesses as filters.
       LUMIERE_SEMANTIC_PLANNER_ENABLED: 'false'
-      # Enable only after held-out end-to-end acceptance passes on staging.
+      # New combined narrative has not passed live acceptance on this host.
       LUMIERE_GROUNDED_NARRATIVE_ENABLED: 'false'

@@ -1,0 +1,12 @@
+{
+  "status_code": 200,
+  "readiness": {
+    "status": "ready",
+    "optional_sources": [
+      "qdrant",
+      "neo4j",
+      "ollama"
+    ],
+    "semantic_intent_ready": false
+  }
+}

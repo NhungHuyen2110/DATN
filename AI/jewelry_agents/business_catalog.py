@@ -7,6 +7,11 @@ from shared.verified_attributes import PublicAttribute
 from shared.retrieval_limits import SourceGate
 
 _catalog_gate=SourceGate('business-catalog',timeout=4,cooldown=10)
+_last_catalog_failure=None
+
+
+def catalog_source_status():
+    return {'last_failure':_last_catalog_failure}
 
 
 class CatalogUnavailable(RuntimeError):
@@ -28,9 +33,21 @@ def fetch_shipping_policy():
 
 
 def fetch_catalog():
+    global _last_catalog_failure
     if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED','false').lower()=='true':
-        try:return _catalog_gate.call(_fetch_catalog)
-        except Exception:raise CatalogUnavailable('Current catalog source unavailable within deadline') from None
+        try:
+            value=_catalog_gate.call(_fetch_catalog)
+            _last_catalog_failure=None
+            return value
+        except Exception as error:
+            cause=error.__context__ if isinstance(error,CatalogUnavailable) else error
+            _last_catalog_failure={'type':type(cause).__name__}
+            from shared.retrieval_limits import SourceUnavailable
+            if isinstance(error,SourceUnavailable):
+                reasons={'Source is cooling down':'cooldown','Source already has a retrieval in flight':'busy',
+                         'Retrieval exceeded its source time budget':'timeout'}
+                _last_catalog_failure['reason']=reasons.get(str(error),'unavailable')
+            raise CatalogUnavailable('Current catalog source unavailable within deadline') from None
     return _fetch_catalog()
 
 

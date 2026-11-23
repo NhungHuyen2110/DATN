@@ -15,6 +15,7 @@ class RequestEmbedding:
     query: str = field(repr=False)
     encoder: object = field(repr=False)
     vector: tuple = field(repr=False)
+    entity_links:tuple=field(default_factory=tuple,repr=False)
 
     def matches(self, query, encoder):
         return self.query == query and self.encoder is encoder
@@ -54,13 +55,13 @@ def plan_advice(query, encoder, threshold=.45, margin=.04, *, include_embedding=
     with _anchor_lock:
         cached=_anchors.get(encoder)
         if cached is None or cached[0]!=tuple(texts):
-            anchors=encoder.encode(texts)
+            anchors=encoder.encode(texts,batch_size=1)
             if len(anchors)!=len(texts):
                 raise ValueError('Invalid prototype encoder output')
             _anchors[encoder]=(tuple(texts),anchors)
         else:
             anchors=cached[1]
-    query_vectors=encoder.encode([query])
+    query_vectors=encoder.encode([query],batch_size=1)
     if len(query_vectors)!=1:
         raise ValueError('Invalid query encoder output')
     vectors=[query_vectors[0],*anchors]
@@ -75,5 +76,9 @@ def plan_advice(query, encoder, threshold=.45, margin=.04, *, include_embedding=
     result = {'intent':winner if accepted else 'product_search',
               'method':'local_embedding_prototypes','accepted':accepted,'scores':scores}
     if include_embedding:
-        result['_request_embedding'] = RequestEmbedding(query, encoder, tuple(float(x) for x in vectors[0]))
+        from .semantic_category import category_links
+        category_scores={}
+        links=category_links(query,encoder,vectors[0],evidence_scores=category_scores) if accepted and winner in {'gift_advice','product_search'} else ()
+        result['semantic_category_scores']=category_scores
+        result['_request_embedding'] = RequestEmbedding(query, encoder, tuple(float(x) for x in vectors[0]),links)
     return result

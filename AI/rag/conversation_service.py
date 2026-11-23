@@ -16,9 +16,12 @@ def converse(message, conversation_id, scope, tool):
                 'conversation_id':token}
     try:
         started=time.monotonic()
+        from .category_clarification import pending_category_reply
         from .product_dialogue import discussion_reply
-        response=(shared.followup_reply(message,row) if shared.followup_kind(message)=='correction'
-                  else discussion_reply(message,row.get('last_result')))
+        response=pending_category_reply(message,row,tool)
+        if response is None:
+            response=(shared.followup_reply(message,row) if shared.followup_kind(message)=='correction'
+                      else discussion_reply(message,row.get('last_result')))
         if response is None:
             response=shared.followup_reply(message,row)
         if response is None:
@@ -75,22 +78,29 @@ def converse(message, conversation_id, scope, tool):
                 if bridge and not row.get('domain_bridge_offered'):
                     response['answer']+='\n\nNếu bạn đang chuẩn bị một dịp đặc biệt, mình có thể giúp chọn trang sức hoặc quà tặng. Bạn đang chọn cho dịp nào?'
                     row['domain_bridge_offered']=True
-            if (response.get('products') and {'dense','graph'}.issubset(response.get('retrieval_sources_used',[]))
-                    and os.getenv('LUMIERE_GROUNDED_NARRATIVE_ENABLED','false').lower()=='true'):
-                from .natural_dialogue import answer_natural
-                facts=[{key:p[key] for key in ('Category','Material','Gemstone','matched_relationships') if key in p}
-                       for p in response['products'][:3]]
-                remaining=min(8,35-(time.monotonic()-started))
-                paragraph=answer_natural(message,evidence={'verified_product_attributes':facts},time_budget=remaining) if remaining>=2 else None
-                if paragraph:
-                    response['answer']=paragraph+'\n\n'+response.get('answer','')
-                    response['response_mode']='grounded_llm_rag'
-            if response.get('success') is not False and response.get('intent') not in {
-                    'unsupported','general_question','out_of_scope'}:
-                row['last_result']=response
+        if (0<len(response.get('products',[]))<=3 and {'dense','graph'}.issubset(response.get('retrieval_sources_used',[]))
+                and os.getenv('LUMIERE_GROUNDED_NARRATIVE_ENABLED','false').lower()=='true'):
+            from .natural_dialogue import answer_natural
+            facts=[]
+            for p in response['products']:
+                item={key:p[key] for key in ('Category','Material','Gemstone') if key in p}
+                item['relationships']=[{'type':path['relationship'],'value':path.get('target_name')}
+                                       for path in p.get('matched_relationships',[])[:3]]
+                facts.append(item)
+            remaining=min(16,35-(time.monotonic()-started))
+            narrative_question=row.get('shopping_context',message) if response.get('clarification_resolution') else message
+            paragraph=answer_natural(narrative_question,evidence={'verified_product_attributes':facts},time_budget=remaining) if remaining>=2 else None
+            if paragraph:
+                response['answer']=paragraph+'\n\n'+response.get('answer','')
+                response['response_mode']='grounded_llm_rag'
+        if response.get('success') is not False and response.get('intent') not in {
+                'unsupported','general_question','out_of_scope','product_discussion','conversation_explanation','conversation_correction'}:
+            row['last_result']=response
         if (response.get('intent') in {'conversation_correction','out_of_scope'} or
-                (response.get('intent')=='general_question' and not domain_answer(message,row['history']))):
+                (response.get('intent')=='general_question' and not domain_answer(message,row['history']) and
+                 not (shared.knowledge_request(message) and link_query(message)['entities']))):
             row.pop('shopping_context',None)
+            row.pop('pending_category',None)
         row['history']=[*row['history'],{'user':message,'answer':response.get('answer','')}][-6:]
         return {**response,'conversation_id':token}
     finally:
