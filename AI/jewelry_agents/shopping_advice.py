@@ -38,7 +38,23 @@ def advisory_request(query):
         return False
     preferences = [e for e in understanding['entities'] if e['label'] in {'Audience', 'Style'}]
     cues = ('chon gi', 'nen chon', 'tu van', 'goi y', 'nen mua', 'hop voi', 'thich gi')
-    return bool(preferences and any(cue in text for cue in cues))
+    return bool(preferences and (any(cue in text for cue in cues) or
+                text in {'thanh lich','toi gian','tinh te','nu thanh lich','cho nu','nu'}))
+
+
+def standalone_budget(message):
+    """A price-only message is a shopping constraint, even after session expiry."""
+    text = budget_text(message)
+    if len(text) > 100 or not _MONEY.search(text):
+        return None
+    remainder = normalize(_MONEY.sub(' ', text)).split()
+    allowed = {'toi','minh','em','co','chi','tam','khoang','ngan','sach','duoi','tren',
+               'tu','den','thoi','nhe','a','la','va','muc','gia','budget','duoc','khong','qua','da'}
+    if any(word not in allowed for word in remainder):
+        return None
+    if not re.search(r'\b(?:duoi|tren|tu|den|khong qua|toi da|ngan sach|budget|tam|khoang|gia)\b',normalize(text)):
+        text='ngân sách '+text
+    return 'Tìm trang sức '+text
 
 
 def advice_intro(query):

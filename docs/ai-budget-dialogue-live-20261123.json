@@ -1,0 +1,93 @@
+{
+  "successful": true,
+  "cases": [
+    {
+      "query": "thanh lịch",
+      "seconds": 7.312,
+      "intent": "shopping_advice",
+      "status": "degraded",
+      "response_mode": null,
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn muốn chi khoảng bao nhiêu?",
+      "product_ids": [
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "query": "dưới 3tr",
+      "seconds": 2.454,
+      "intent": "shopping_advice",
+      "status": "degraded",
+      "response_mode": null,
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "product_ids": [
+        24,
+        75,
+        96
+      ]
+    },
+    {
+      "query": "dưới 3 triệu",
+      "seconds": 5.578,
+      "intent": "shopping_advice",
+      "status": "degraded",
+      "response_mode": null,
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "product_ids": [
+        24,
+        75,
+        96
+      ]
+    },
+    {
+      "query": "3 triệu",
+      "seconds": 1.781,
+      "intent": "shopping_advice",
+      "status": "degraded",
+      "response_mode": null,
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "product_ids": [
+        24,
+        75,
+        96
+      ]
+    },
+    {
+      "query": "Moissanite là gì?",
+      "seconds": 0.015,
+      "intent": "general_question",
+      "status": "general_question",
+      "response_mode": "reviewed_domain_answer",
+      "answer": "Moissanite là một loại đá khác kim cương, dù có thể có vẻ ngoài tương tự. Moissanite không phải kim cương nuôi cấy. Khi so sánh, nên xem tên loại đá, thông tin kiểm định và sở thích về vẻ ngoài, thay vì chỉ dựa vào tên gọi “giống kim cương”.",
+      "product_ids": []
+    },
+    {
+      "query": "nói ngắn gọn hơn",
+      "seconds": 0.016,
+      "intent": "general_question",
+      "status": "general_question",
+      "response_mode": "reviewed_domain_answer",
+      "answer": "CZ và Moissanite có thể giống kim cương về vẻ ngoài nhưng là vật liệu khác; chúng không phải kim cương nuôi cấy.",
+      "product_ids": []
+    },
+    {
+      "query": "dưới 3 triệu",
+      "seconds": 1.641,
+      "intent": null,
+      "status": "degraded",
+      "response_mode": null,
+      "answer": "Đây là các sản phẩm phù hợp với yêu cầu của bạn:\n\n• Lắc tay Rose Gold\n  Mã sản phẩm: 16\n  Chất liệu: Vàng trắng 18K\n  Đá quý: Diamond\n  Giá bán: 1.902.478 VNĐ\n  Lý do: trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Lắc tay Royal\n  Mã sản phẩm: 47\n  Chất liệu: Vàng trắng 18K\n  Đá quý: Emerald\n  Giá bán: 2.363.748 VNĐ\n  Lý do: trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Dây chuyền Luxury\n  Mã sản phẩm: 75\n  Chất liệu: Vàng trắng 18K\n  Đá quý: CZ\n  Giá bán: 1.572.912 VNĐ\n  Lý do: trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\nMột nguồn tìm kiếm tạm gián đoạn; kết quả chỉ dùng các nguồn đang hoạt động.",
+      "product_ids": [
+        16,
+        47,
+        75
+      ]
+    }
+  ],
+  "database_written": false,
+  "retry_or_warmup": false,
+  "passed": 7,
+  "catalog_total": 500,
+  "frontend_vnpay_unchanged": true
+}

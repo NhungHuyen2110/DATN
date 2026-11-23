@@ -306,7 +306,8 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
 
 @app.post("/chat", tags=["Chatbot RAG"])
 def chat(request: ChatRequest):
-    from shared.conversation import STORE, converse
+    from shared.conversation import STORE
+    from rag.conversation_service import converse
     from jewelry_agents.shopping_advice import followup_query
     scope = ('customer-public',)
     token, row = STORE.resolve(request.conversation_id, scope)
@@ -314,6 +315,8 @@ def chat(request: ChatRequest):
         effective = followup_query(query, row.get('shopping_context'))
         result = answer_jewelry_question(query=effective, top_k=request.top_k)
         if result.get('advice_intent') == 'style_advice':
+            row['shopping_context'] = effective if effective.startswith('Tư vấn ') else 'Tư vấn '+effective
+        elif result.get('products'):
             row['shopping_context'] = effective
         else:
             row.pop('shopping_context', None)

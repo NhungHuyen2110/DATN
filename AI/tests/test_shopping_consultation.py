@@ -21,6 +21,48 @@ def fact(label, canonical, name):
 
 
 class ConsultationTests(unittest.TestCase):
+    def test_short_style_budget_variants_and_fresh_session_route_to_search(self):
+        import api
+        from shared.conversation import ConversationStore
+        from jewelry_agents.shopping_advice import standalone_budget
+        for message in ('dưới 3tr','dưới 3 triệu','3 triệu'):
+            self.assertEqual(parse_price(standalone_budget(message))['max_price'],3_000_000)
+            queries=[]
+            def answer(query,top_k):
+                queries.append(query)
+                return {'success':True,'intent':'shopping_advice','advice_intent':'style_advice',
+                        'products':[],'answer':'Tư vấn'}
+            with patch('shared.conversation.STORE',ConversationStore()),patch('api.answer_jewelry_question',side_effect=answer):
+                first=api.chat(api.ChatRequest(query='thanh lịch'))
+                api.chat(api.ChatRequest(query=message,conversation_id=first['conversation_id']))
+                api.chat(api.ChatRequest(query=message))
+            self.assertTrue(advisory_request(queries[1]),queries[1])
+            self.assertEqual(parse_price(queries[1])['max_price'],3_000_000)
+            self.assertTrue(queries[2].startswith('Tìm trang sức'))
+
+    def test_domain_answers_use_no_catalog_and_keep_knowledge_history(self):
+        import api
+        from shared.conversation import ConversationStore
+        with patch('shared.conversation.STORE',ConversationStore()),patch('api.answer_jewelry_question') as search:
+            first=api.chat(api.ChatRequest(query='Moissanite là gì?'))
+            second=api.chat(api.ChatRequest(query='nói ngắn gọn hơn',conversation_id=first['conversation_id']))
+            search.assert_not_called()
+        self.assertEqual(first['response_mode'],'reviewed_domain_answer')
+        self.assertIn('không phải kim cương nuôi cấy',first['answer'])
+        self.assertEqual(first['products'],[])
+        self.assertLess(len(second['answer']),len(first['answer']))
+
+    def test_domain_topics_and_limits(self):
+        from rag.domain_dialogue import domain_answer
+        for query in ('CZ là gì?','Cách bảo quản ngọc trai','Thanh lịch là gì?',
+                      'Cỡ nhẫn đo sao?','Viết lời chúc sinh nhật'):
+            self.assertTrue(domain_answer(query),query)
+        self.assertIsNone(domain_answer('Đơn hàng hôm nay bao nhiêu?'))
+        self.assertIsNone(domain_answer('Giá kim cương bảo hành thế nào?'))
+        self.assertIsNone(domain_answer('Ai thắng bóng đá hôm nay?'))
+        previous={'user':'Moissanite là gì?','answer':'old'}
+        self.assertLess(len(domain_answer('nói ngắn gọn hơn',[previous])['answer']),len(domain_answer(previous['user'])['answer']))
+
     def test_category_refinement_retains_budget_and_replaces_old_category(self):
         from jewelry_agents.shopping_advice import next_question
         merged=followup_query('mình thích bông tai','nữ thanh lịch chọn gì nhẫn dưới 3 triệu')
