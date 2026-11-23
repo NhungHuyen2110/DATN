@@ -31,6 +31,8 @@ async def lifespan(app):
     yield
     from rag.natural_dialogue import _gate as dialogue_gate
     dialogue_gate.close()
+    from rag.product_dialogue import _gate as discussion_gate
+    discussion_gate.close()
     from jewelry_agents import retrieval
     retrieval.close_retrieval_limits()
     for client in (retrieval.qdrant_client, retrieval.neo4j_driver):
@@ -324,7 +326,7 @@ def chat(request: ChatRequest):
             row.pop('shopping_context', None)
         return result
     result = converse(request.query, token, scope, answer)
-    if result.get('intent') in {'conversation_correction','general_question','out_of_scope'}:
+    if result.get('intent') in {'conversation_correction','out_of_scope'}:
         row.pop('shopping_context', None)
     previous = row.get('last_result') or {}
     if (result.get('intent') == 'conversation_explanation'

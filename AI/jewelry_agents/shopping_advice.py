@@ -78,14 +78,20 @@ def followup_query(message, previous):
         entities=link_query(message)['entities']
         if len(entities)==1 and entities[0]['label'] in {'Category','Gemstone'}:
             selected=entities[0]
-            leftover=normalize(message).replace(normalize(selected['alias']),' ').split()
-            if set(leftover).issubset({'toi','minh','em','thich','chon','loai','lay','muon','cho','xin','thoi','nhe','a'}):
+            fragment=budget_text(message)
+            leftover=normalize(_MONEY.sub(' ',fragment)).replace(normalize(selected['alias']),' ').split()
+            if set(leftover).issubset({'toi','minh','em','thich','chon','loai','lay','muon','cho','xin','thoi','nhe','a',
+                                      'doi','sang','ngan','sach','chi','co','duoi','tam','khoang','gia','qua','da'}):
                 base=previous
                 for old in link_query(previous)['entities']:
                     if old['label']==selected['label'] and old.get('alias'):
                         for alias in {old['alias'],normalize(old['alias'])}:
                             base=re.sub(r'(?<!\w)'+re.escape(alias)+r'(?!\w)',' ',base,flags=re.I)
-                merged=' '.join((base+' '+message).split())
+                if _MONEY.search(fragment):
+                    base=_MONEY.sub(' ',budget_text(base))
+                    if not re.search(r'\b(?:duoi|tren|tu|den|ngan sach|tam|khoang|gia|khong qua|toi da)\b',normalize(fragment)):
+                        fragment=_MONEY.sub(lambda match:'ngân sách '+match.group(0),fragment)
+                merged=' '.join((base+' '+fragment).split())
                 return merged if len(merged)<=1000 else message
     normalized_message = budget_text(message)
     if not previous or len(message) > 100 or not _MONEY.search(normalized_message):

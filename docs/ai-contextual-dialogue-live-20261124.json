@@ -1,0 +1,73 @@
+{
+  "successful": true,
+  "cases": [
+    {
+      "query": "nữ thanh lịch chọn gì dưới 3 triệu",
+      "seconds": 17.062,
+      "intent": "shopping_advice",
+      "response_mode": null,
+      "status": "degraded",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nBạn thích nhẫn, dây chuyền hay bông tai hơn?",
+      "product_ids": [
+        24,
+        75,
+        96
+      ],
+      "referenced_product_ids": []
+    },
+    {
+      "query": "So sánh 2 mẫu đầu",
+      "seconds": 0.766,
+      "intent": "product_discussion",
+      "response_mode": "grounded_product_discussion",
+      "status": "ok",
+      "answer": "Mình so sánh đúng các mẫu bạn chọn, với giá và tồn kho vừa kiểm tra:\n• Dây chuyền Aurora (mã 24): Vàng 10K; đá CZ; 1.688.485 ₫; tồn kho 58.\n• Dây chuyền Luxury (mã 75): Vàng trắng 18K; đá CZ; 1.572.912 ₫; tồn kho 93.\nChênh lệch giữa giá cao nhất và thấp nhất là 115.573 ₫.",
+      "product_ids": [],
+      "referenced_product_ids": [
+        24,
+        75
+      ]
+    },
+    {
+      "query": "Mẫu thứ hai có chất liệu gì?",
+      "seconds": 0.563,
+      "intent": "product_discussion",
+      "response_mode": "grounded_product_discussion",
+      "status": "ok",
+      "answer": "Đây là thông tin hiện tại của mẫu bạn đang hỏi:\n• Dây chuyền Luxury (mã 75): Vàng trắng 18K; đá CZ; 1.572.912 ₫; tồn kho 93.",
+      "product_ids": [],
+      "referenced_product_ids": [
+        75
+      ]
+    },
+    {
+      "query": "Moissanite là gì?",
+      "seconds": 18.187,
+      "intent": "general_question",
+      "response_mode": "local_llm_dialogue",
+      "status": "general_question",
+      "answer": "Moissanite là một loại đá khác kim cương, có thể có vẻ ngoài tương tự. Moissanite không phải kim cương nuôi cấy.",
+      "product_ids": [],
+      "referenced_product_ids": []
+    },
+    {
+      "query": "đổi sang bông tai dưới 2tr",
+      "seconds": 6.735,
+      "intent": "shopping_advice",
+      "response_mode": null,
+      "status": "degraded",
+      "answer": "Với gu thanh lịch, bạn có thể bắt đầu từ dây chuyền, bông tai hoặc nhẫn rồi ưu tiên kiểu dáng gọn, ít chi tiết để dễ phối đồ.\n\nBạn có thể xem các mẫu còn hàng bên dưới để so sánh kiểu dáng và giá. Đây là các lựa chọn tham khảo; mình chưa khẳng định từng mẫu đã được phân loại đúng gu bạn nêu.\n\nMình vẫn giữ giới hạn giá này nếu bạn muốn đổi loại trang sức để so sánh.",
+      "product_ids": [
+        275,
+        448
+      ],
+      "referenced_product_ids": []
+    }
+  ],
+  "retries": 0,
+  "database_written": false,
+  "passed": 5,
+  "catalog_total": 500,
+  "frontend_vnpay_unchanged": true,
+  "scope": "Fixed contextual flow, not an overall model quality benchmark"
+}

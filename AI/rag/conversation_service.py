@@ -12,7 +12,11 @@ def converse(message, conversation_id, scope, tool):
                 'answer':'Mình đang xử lý câu trước, bạn đợi câu trả lời rồi gửi tiếp nhé.',
                 'conversation_id':token}
     try:
-        response=shared.followup_reply(message,row)
+        from .product_dialogue import discussion_reply
+        response=(shared.followup_reply(message,row) if shared.followup_kind(message)=='correction'
+                  else discussion_reply(message,row.get('last_result')))
+        if response is None:
+            response=shared.followup_reply(message,row)
         if response is None:
             effective=followup_query(message,row.get('shopping_context'))
             if effective==message:
@@ -51,7 +55,8 @@ def converse(message, conversation_id, scope, tool):
             if response.get('success') is not False and response.get('intent') not in {
                     'unsupported','general_question','out_of_scope'}:
                 row['last_result']=response
-        if response.get('intent') in {'conversation_correction','general_question','out_of_scope'}:
+        if (response.get('intent') in {'conversation_correction','out_of_scope'} or
+                (response.get('intent')=='general_question' and not domain_answer(message,row['history']))):
             row.pop('shopping_context',None)
         row['history']=[*row['history'],{'user':message,'answer':response.get('answer','')}][-6:]
         return {**response,'conversation_id':token}
