@@ -1,5 +1,7 @@
 # Bàn giao local có giới hạn — 23/11/2026
 
+**Trạng thái vận hành mới nhất24/11:** AI container tạm dừng có chủ đích khi máy thiếu RAM, để phục hồi website/catalog. Catalog sau phục hồi đủ500 sản phẩm, VNPAY vẫn bật. Chưa nghiệm thu AI tự nhiên/graph-reference bản mới; không dùng lệnh bật lại toàn stack để thử lặp. Xem [báo cáo39](39-semantic-startup-isolation.md) trước khi start AI tiếp.
+
 **Cập nhật nghiệp vụ:** [Sửa mã giảm giá, khôi phục VNPAY và thêm ảnh sản phẩm](31-checkout-vnpay-product-images.md). Cấu hình VNPAY cũ đã được chọn riêng vào file local bỏ qua Git; không mất cấu hình gốc.
 
 Không tiếp tục vòng thử model hoặc full test suite theo yêu cầu của người dùng. Đây là bản demo để kiểm thử nghiệp vụ và các công cụ AI đã triển khai; chưa phải nghiệm thu toàn bộ AI/hosting.

@@ -1,0 +1,37 @@
+{
+  "/lumiere-rebuild-test-ai-api-1": {
+    "id": "d0c110236be64393b38600544082156b6a617e06213817bf7fb97541f55de8a6",
+    "started_at": "2026-11-24T03:03:20.611593425Z",
+    "status": "running",
+    "oom_killed": false,
+    "restarts": 0
+  },
+  "/lumiere-rebuild-test-business-api-1": {
+    "id": "2fe7d610c4224796f851fa632b0dc41c2fa911e1b79c5b9c0cc10854a5b89e3f",
+    "started_at": "2026-11-23T06:14:52.11872124Z",
+    "status": "running",
+    "oom_killed": false,
+    "restarts": 0
+  },
+  "/lumiere-rebuild-test-frontend-1": {
+    "id": "86a86f62fe924506bbff40a951139d2fb7b2e13557c3e12be8f5dcde9ced7767",
+    "started_at": "2026-11-23T06:07:10.047880664Z",
+    "status": "running",
+    "oom_killed": false,
+    "restarts": 0
+  },
+  "/lumiere-rebuild-test-postgres-1": {
+    "id": "a0c5747c6998cc4c6b5042b2a7a586e638a74bbe8eabd46d3526c69ef473fae5",
+    "started_at": "2026-11-22T14:05:24.40495673Z",
+    "status": "running",
+    "oom_killed": false,
+    "restarts": 0
+  },
+  "/lumiere-rebuild-test-index-worker-1": {
+    "id": "00cf7f05381cefaeed240651f11780d8fb9567fdd2c1d6ec836cce4e5adc72a7",
+    "started_at": "2026-11-24T03:08:17.993180971Z",
+    "status": "running",
+    "oom_killed": false,
+    "restarts": 3
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ai_intentionally_stopped": true,
+  "checks": {
+    "frontend": 200,
+    "catalog": 200,
+    "payment_methods": 200
+  },
+  "catalog_count": 500,
+  "vnpay_enabled": true,
+  "successful": true
+}

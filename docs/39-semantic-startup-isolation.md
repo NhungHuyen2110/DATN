@@ -1,5 +1,7 @@
 # Cô lập startup và nghiệm thu lại AI — 24/11/2026
 
+**Trạng thái bàn giao lượt này: code checkpoint `698bd33`, 204/205 test đạt, 1 skip. Chưa đạt nghiệm thu tổng thể. AI container đang cố ý dừng để bảo vệ nghiệp vụ trong lúc thiếu RAM; không phải bản AI mới đã được bật thành công.** Website/catalog/VNPAY đã phục hồi sau khi dừng riêng AI; xem báo cáo recovery bên dưới. Chờ người dùng xác nhận xử lý dịch vụ Windows ngoài dự án trước khi thử inference tiếp; không chạy lại cold-start liên tục.
+
 ## Vấn đề và phạm vi sửa
 
 Bản ontology/context trước đạt unit tests nhưng bị ReadTimeout khi gọi chat, trong khi semantic_intent_ready vẫn false. Snapshot đầu lượt này: Windows còn 867.760 KiB RAM trống, Docker khoảng 4 GB, AI khoảng 740 MB; Ollama không có model đang giữ. Đây là snapshot tài nguyên, chưa chứng minh mọi timeout đều do RAM.
@@ -43,6 +45,20 @@ Build Dockerfile bình thường của lượt catalog bị Docker Hub TLS hands
 Lượt `ai-startup-final-live-20261124.json` chứng minh readiness không báo sớm dù worker xong sau120 giây: chờ nguồn ra cooldown rồi mới chat. Câu lạ được làm rõ trong1,375 giây; sau lựa chọn, trả đúng 3 nhẫn dưới3 triệu có dense/graph/lexical và quan hệ thật trong18,547 giây (gồm thử narrative nhưng fallback). Phần graph-reference chưa đạt vì `product_dialogue` nhận nhầm ID catalog là số thứ tự thẻ. Không tính smoke tổng thể này là thành công.
 
 Đã sửa lỗi định tuyến đó bằng `reference_request()` hiện có, trước xử lý hội thoại về thẻ; truy vấn “cùng loại đá/chất liệu/danh mục” phải đi tới graph kể cả chưa có lịch sử chat. Kiểm thử lịch sử có/không có thẻ, cùng các guard riêng tư vẫn đạt. Rút phần bằng chứng gửi model xuống1 path thật/mẫu (không đổi metadata trả cho ứng dụng); giảm microbatch prefill xuống32. Narrative dùng cùng trần24 giây như hội thoại, vẫn trong ngân sách tổng35 giây, không đổi HTTP timeout hay retry. `ai-graph-reference-release-tests-20261124.json`: **205 chạy, 204 đạt/1 skip**. Kết quả lượt nghiệm thu sau sửa được giữ riêng ở `ai-graph-reference-release-live-20261124.json`.
+
+Lượt `ai-graph-reference-release-live-20261124.json` dừng đúng180 giây chờ startup, không gửi turn chat nào: nguồn chưa ready, không giả vờ semantic hoạt động. Một lần đọc sau đó ở `ai-graph-reference-serving-state-20261124.json` ghi nhận load_encoder mất357,841 giây trước khi vào intent_vectors. Đây là thất bại nghiệm thu resource/startup, không phải bằng chứng câu trả lời graph/natural đã đạt.
+
+Đo Windows lúc điều tra tiếp: RAM tổng8.077.608 KiB, RAM trống152.784 KiB (~149 MiB); Memory Compression resident khoảng3.580 MiB. Dịch vụ ngoài dự án DtsApo4Service giữ private khoảng1.585 MiB, hai SQL Server tổng khoảng944 MiB và MongoDB365 MiB. Private memory không đồng nghĩa toàn bộ là RAM vật lý có thể thu hồi ngay. Chưa tự dừng những dịch vụ này. Đã yêu cầu người dùng xác nhận riêng nếu muốn khởi động lại DTS vì ngoài phạm vi ứng dụng. Không tự tăng giới hạn kiểm thử, không restart AI thêm để lặp cold start trong lúc thiếu tài nguyên.
+
+## Bảo toàn nghiệp vụ khi thiếu tài nguyên
+
+`ai-startup-business-compatibility-20261124.json` chưa đạt: catalog HTTP503; VNPAY và frontend200, Admin/Staff vẫn từ chối ẩn danh. Không khẳng định không có ảnh hưởng runtime chỉ vì không sửa code nghiệp vụ.
+
+`ai-resource-pressure-containers-20261124.json`: Frontend/Business/PostgreSQL giữ nguyên ID, thời điểm khởi động, restart_count0. Worker đồng bộ cùng ID nhưng tự restart3 lần; không có bằng chứng OOMKilled trong snapshot này, không tự quy toàn bộ sự cố cho OOM. Chưa chứng minh nguyên nhân chi tiết từng lần worker thoát.
+
+Đã tạm dừng đúng `lumiere-rebuild-test-ai-api-1`, không dừng hay xóa database/volume. `ai-resource-isolation-recovery-20261124.json` đạt: frontend200, catalog200/500 sản phẩm, payment-methods200/VNPAY enabled. Đây là smoke read-only, không thay full checkout/payment UAT. Không stop dịch vụ SQL Server/MongoDB/DTS ngoài dự án khi chưa được người dùng cho phép.
+
+Sau khi đủ tài nguyên, có thể start lại chính container AI hiện có (source đã kiểm thử), không rebuild toàn stack. Reload proxy nếu cần, kiểm tra `/ai/health/semantic` rồi chạy một smoke mới với đường dẫn report chưa tồn tại. Không đổi các báo cáo thất bại thành đạt; giữ narrative mặc định trong source tắt cho đến khi có live acceptance. Profile candidate local hiện có narrative bật để nghiệm thu, nhưng container đang dừng.
 
 ## Giới hạn nghiệm thu
 

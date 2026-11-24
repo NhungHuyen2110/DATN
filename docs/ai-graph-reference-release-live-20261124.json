@@ -1,0 +1,358 @@
+{
+  "successful": false,
+  "cases": [],
+  "retries": 0,
+  "database_written": false,
+  "startup_states": [
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 11.371
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 6.757
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 2.252
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.007
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    }
+  ],
+  "failure_type": "TimeoutError"
+}

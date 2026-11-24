@@ -1,0 +1,19 @@
+{
+  "http_status": 503,
+  "state": {
+    "ready": false,
+    "warming": true,
+    "dense_admission": {
+      "available": false,
+      "busy": true,
+      "cooldown_seconds": 0.0
+    },
+    "graph_admission": {
+      "available": true,
+      "busy": false,
+      "cooldown_seconds": 0.0
+    },
+    "stage": "intent_vectors",
+    "seconds": 357.841
+  }
+}

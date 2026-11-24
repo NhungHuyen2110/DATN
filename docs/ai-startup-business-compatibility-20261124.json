@@ -1,0 +1,13 @@
+{
+  "unchanged_services": false,
+  "database_written_by_acceptance": false,
+  "checks": {
+    "frontend": 200,
+    "catalog": 503,
+    "payment_methods": 200,
+    "admin_rejects_anonymous": true,
+    "staff_rejects_anonymous": true
+  },
+  "vnpay_enabled": true,
+  "successful": false
+}
