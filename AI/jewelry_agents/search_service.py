@@ -287,10 +287,15 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             source_failure('dense', error)
     evidence = {}
     if 'graph' in selected:
+        anchor_ids = list(dict.fromkeys(rankings.get('dense', [])))[:pool_size]
+        use_expansion=graph_expander is not None and anchor_ids and reference is None
         try:
-            if graph is None:
+            if graph is None and not use_expansion:
                 raise RetrievalUnavailable('Graph adapter not configured')
-            graph_products = call('graph', graph, query, understanding)
+            # Semantic-first: use Qdrant anchors directly. Running an unrelated
+            # taxonomy query first costs a second graph request and can open the
+            # same source circuit before expansion even starts.
+            graph_products = [] if use_expansion else call('graph', graph, query, understanding)
             evidence = {int(p['ProductID']): verified_paths(p.get('paths', []), eligible[int(p['ProductID'])], reference)
                         for p in graph_products if int(p['ProductID']) in eligible}
             rankings["graph"] = [int(p['ProductID']) for p in graph_products
@@ -300,8 +305,7 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
             source_failure('graph', error)
         # Dense candidates are real anchors, before fusion or final Top-K.
         # Explicit reference requests retain their stricter reference traversal.
-        anchor_ids = list(dict.fromkeys(rankings.get('dense', [])))[:pool_size]
-        if graph_expander is not None and anchor_ids and reference is None:
+        if use_expansion:
             try:
                 expanded = call('graph', graph_expander, anchor_ids, top_k=pool_size,eligible_ids=list(eligible))
                 anchor_products = {pid: eligible[pid] for pid in anchor_ids}

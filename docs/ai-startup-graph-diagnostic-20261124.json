@@ -1,0 +1,211 @@
+{
+  "http_status": 200,
+  "result": {
+    "products": [
+      {
+        "ProductID": 2,
+        "score": 0.04841188524590165,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nh\u1eabn"
+          }
+        ],
+        "ProductName": "Nh\u1eabn Golden Dream",
+        "SKU": "SP000002",
+        "Price": "2619639.00",
+        "Stock": 60,
+        "Category": "Nh\u1eabn",
+        "CategoryID": 1,
+        "Brand": "SJC",
+        "Material": "B\u1ea1c 925",
+        "MaterialID": 1,
+        "Gemstone": "Diamond",
+        "GemstoneID": 1,
+        "Collection": "Office",
+        "verified_source": "business_api",
+        "verified_attributes": [],
+        "rank": 1,
+        "semantic_score": 0.36603263,
+        "graph_score": 0.01639344262295082,
+        "final_score": 0.04841188524590165,
+        "ranking_method": "reciprocal_rank_fusion",
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "\u0111\u00fang lo\u1ea1i Nh\u1eabn; trong kho\u1ea3ng gi\u00e1 y\u00eau c\u1ea7u; gi\u00e1 v\u00e0 t\u1ed3n kho \u0111\u01b0\u1ee3c ki\u1ec3m tra t\u1eeb d\u1eef li\u1ec7u b\u00e1n h\u00e0ng hi\u1ec7n t\u1ea1i"
+      },
+      {
+        "ProductID": 87,
+        "score": 0.04838709677419355,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nh\u1eabn"
+          }
+        ],
+        "ProductName": "Nh\u1eabn Sunshine",
+        "SKU": "SP000087",
+        "Price": "1388487.00",
+        "Stock": 75,
+        "Category": "Nh\u1eabn",
+        "CategoryID": 1,
+        "Brand": "DOJI",
+        "Material": "V\u00e0ng 18K",
+        "MaterialID": 4,
+        "Gemstone": "Emerald",
+        "GemstoneID": 4,
+        "Collection": "Luxury",
+        "verified_source": "business_api",
+        "verified_attributes": [],
+        "rank": 2,
+        "semantic_score": 0.39519712,
+        "graph_score": 0.016129032258064516,
+        "final_score": 0.04838709677419355,
+        "ranking_method": "reciprocal_rank_fusion",
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "\u0111\u00fang lo\u1ea1i Nh\u1eabn; trong kho\u1ea3ng gi\u00e1 y\u00eau c\u1ea7u; gi\u00e1 v\u00e0 t\u1ed3n kho \u0111\u01b0\u1ee3c ki\u1ec3m tra t\u1eeb d\u1eef li\u1ec7u b\u00e1n h\u00e0ng hi\u1ec7n t\u1ea1i"
+      },
+      {
+        "ProductID": 203,
+        "score": 0.047619047619047616,
+        "retrieval_sources": [
+          "lexical",
+          "dense",
+          "graph"
+        ],
+        "score_type": "rrf",
+        "graph_paths": [
+          {
+            "relationship": "BELONGS_TO",
+            "target_id": 1,
+            "target_name": "Nh\u1eabn"
+          }
+        ],
+        "ProductName": "Nh\u1eabn Eternal Love",
+        "SKU": "SP000203",
+        "Price": "2141244.00",
+        "Stock": 12,
+        "Category": "Nh\u1eabn",
+        "CategoryID": 1,
+        "Brand": "KAT Jewelry",
+        "Material": "V\u00e0ng 18K",
+        "MaterialID": 4,
+        "Gemstone": "Moissanite",
+        "GemstoneID": 5,
+        "Collection": "Valentine",
+        "verified_source": "business_api",
+        "verified_attributes": [],
+        "rank": 3,
+        "semantic_score": 0.38027388,
+        "graph_score": 0.015873015873015872,
+        "final_score": 0.047619047619047616,
+        "ranking_method": "reciprocal_rank_fusion",
+        "matched_entities": [
+          {
+            "label": "Category",
+            "canonical_id": "ring"
+          }
+        ],
+        "reason": "\u0111\u00fang lo\u1ea1i Nh\u1eabn; trong kho\u1ea3ng gi\u00e1 y\u00eau c\u1ea7u; gi\u00e1 v\u00e0 t\u1ed3n kho \u0111\u01b0\u1ee3c ki\u1ec3m tra t\u1eeb d\u1eef li\u1ec7u b\u00e1n h\u00e0ng hi\u1ec7n t\u1ea1i"
+      }
+    ],
+    "status": "degraded",
+    "degraded": [
+      "graph_unavailable"
+    ],
+    "requested_k": 3,
+    "returned_k": 3,
+    "understanding": {
+      "normalized": "nhan duoi 3 trieu",
+      "entities": [
+        {
+          "label": "Category",
+          "canonical_id": "ring",
+          "graph_id": 1,
+          "method": "normalized_alias",
+          "alias": "nh\u1eabn",
+          "similarity": null
+        }
+      ],
+      "ambiguities": [],
+      "needs_clarification": false,
+      "semantic_attempted": false,
+      "alias_version": 3
+    },
+    "retrieval_sources_used": [
+      "dense",
+      "graph",
+      "lexical"
+    ],
+    "diagnostics": {
+      "source_ranks": {
+        "lexical": [
+          2,
+          87,
+          203,
+          302,
+          340,
+          433
+        ],
+        "dense": [
+          433,
+          87,
+          203,
+          2,
+          340,
+          302
+        ],
+        "graph": [
+          2,
+          87,
+          203,
+          302,
+          340,
+          433
+        ]
+      },
+      "source_errors": {
+        "graph": {
+          "error_type": "SourceUnavailable",
+          "reason": "timeout"
+        }
+      },
+      "candidate_k": 35,
+      "eligible_products": 6,
+      "candidate_union": 6,
+      "timings_seconds": {
+        "parse": 0.00688180499128066,
+        "catalog": 1.0198008059960557,
+        "dense": 1.864148489999934,
+        "graph": 4.262084682995919,
+        "fusion": 0.007205415997304954,
+        "verification": 1.8911318809987279
+      },
+      "total_seconds": 9.092749602001277,
+      "reranker": null
+    }
+  }
+}

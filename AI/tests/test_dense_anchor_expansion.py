@@ -4,6 +4,15 @@ from jewelry_agents.search_service import search
 
 
 class DenseAnchorExpansionTests(unittest.TestCase):
+    def test_dense_anchors_use_one_traversal_not_an_extra_taxonomy_lookup(self):
+        live={i:product(i) for i in range(1,5)}
+        def unexpected_lookup(*args):self.fail('Dense anchors must go straight to expansion')
+        result=search('jewelry',3,dense=lambda *a,**k:[{'ProductID':2}],catalog=lambda:live,
+                      parse_price=parse_price,graph=unexpected_lookup,
+                      graph_expander=lambda *a,**k:[{'ProductID':3,'paths':[self.path()]}],diagnostics=True)
+        self.assertEqual(result['status'],'ok')
+        self.assertEqual(result['diagnostics']['source_ranks']['graph'],[3])
+
     def run_search(self, expander, catalog=None, dense=None):
         live = {i: product(i) for i in range(1, 5)}
         return search('jewelry', 3, dense=dense or (lambda *a, **k: [{'ProductID': 2}]),

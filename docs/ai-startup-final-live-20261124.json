@@ -1,0 +1,569 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "seconds": 1.375,
+      "answer": "Mô tả của bạn gần với hai loại trang sức: 1. nhẫn; 2. vòng tay. Bạn muốn chọn loại nào? Mình sẽ giữ các điều kiện bạn đã nêu.",
+      "status": "clarification_required",
+      "response_mode": null,
+      "resolved_entities": [],
+      "clarification_options": [
+        {
+          "canonical_id": "ring",
+          "name": "nhẫn",
+          "similarity": 0.600869727786495
+        },
+        {
+          "canonical_id": "bracelet",
+          "name": "vòng tay",
+          "similarity": 0.5058115742274738
+        }
+      ],
+      "clarification_resolution": null,
+      "retrieval_sources_used": [],
+      "products": []
+    },
+    {
+      "query": "Loại đầu tiên",
+      "seconds": 18.547,
+      "answer": "Đây là các sản phẩm phù hợp với yêu cầu của bạn:\n\n• Nhẫn Sunshine\n  Mã sản phẩm: 87\n  Chất liệu: Vàng 18K\n  Đá quý: Emerald\n  Giá bán: 1.388.487 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng loại đá Emerald với sản phẩm #340; cùng danh mục Nhẫn với sản phẩm #340; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Nhẫn Eternal Love\n  Mã sản phẩm: 203\n  Chất liệu: Vàng 18K\n  Đá quý: Moissanite\n  Giá bán: 2.141.244 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng danh mục Nhẫn với sản phẩm #340; cùng loại đá Moissanite với sản phẩm #433; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Nhẫn Infinity\n  Mã sản phẩm: 433\n  Chất liệu: Vàng 14K\n  Đá quý: Moissanite\n  Giá bán: 2.223.429 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng chất liệu Vàng 14K với sản phẩm #340; cùng danh mục Nhẫn với sản phẩm #340; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại",
+      "status": "ok",
+      "response_mode": null,
+      "resolved_entities": [
+        {
+          "label": "Category",
+          "canonical_id": "ring",
+          "graph_id": 1,
+          "method": "normalized_alias",
+          "alias": "nhẫn",
+          "similarity": null
+        }
+      ],
+      "clarification_options": [],
+      "clarification_resolution": {
+        "canonical_id": "ring",
+        "method": "option_selection"
+      },
+      "retrieval_sources_used": [
+        "dense",
+        "graph",
+        "lexical"
+      ],
+      "products": [
+        {
+          "ProductID": 87,
+          "ProductName": "Nhẫn Sunshine",
+          "SKU": "SP000087",
+          "Price": "1388487.00",
+          "Stock": 75,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Emerald",
+          "GemstoneID": 4,
+          "Collection": "Luxury",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 1,
+          "semantic_score": 0.4680056,
+          "graph_score": 0.01639344262295082,
+          "final_score": 0.04839549075403121,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng loại đá Emerald với sản phẩm #340; cùng danh mục Nhẫn với sản phẩm #340; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại",
+          "matched_relationships": [
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 4,
+              "target_name": "Emerald",
+              "source_product_id": 340
+            },
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn",
+              "source_product_id": 340
+            },
+            {
+              "relationship": "MADE_OF",
+              "target_id": 4,
+              "target_name": "Vàng 18K",
+              "source_product_id": 203
+            }
+          ]
+        },
+        {
+          "ProductID": 203,
+          "ProductName": "Nhẫn Eternal Love",
+          "SKU": "SP000203",
+          "Price": "2141244.00",
+          "Stock": 12,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "KAT Jewelry",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Moissanite",
+          "GemstoneID": 5,
+          "Collection": "Valentine",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 2,
+          "semantic_score": 0.45055735,
+          "graph_score": 0.016129032258064516,
+          "final_score": 0.04762704813108039,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng danh mục Nhẫn với sản phẩm #340; cùng loại đá Moissanite với sản phẩm #433; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại",
+          "matched_relationships": [
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn",
+              "source_product_id": 340
+            },
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 433
+            },
+            {
+              "relationship": "MADE_OF",
+              "target_id": 4,
+              "target_name": "Vàng 18K",
+              "source_product_id": 87
+            }
+          ]
+        },
+        {
+          "ProductID": 433,
+          "ProductName": "Nhẫn Infinity",
+          "SKU": "SP000433",
+          "Price": "2223429.00",
+          "Stock": 47,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 14K",
+          "MaterialID": 3,
+          "Gemstone": "Moissanite",
+          "GemstoneID": 5,
+          "Collection": "Office",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 3,
+          "semantic_score": 0.4693492,
+          "graph_score": 0.015873015873015872,
+          "final_score": 0.04715356328259554,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; cùng chất liệu Vàng 14K với sản phẩm #340; cùng danh mục Nhẫn với sản phẩm #340; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại",
+          "matched_relationships": [
+            {
+              "relationship": "MADE_OF",
+              "target_id": 3,
+              "target_name": "Vàng 14K",
+              "source_product_id": 340
+            },
+            {
+              "relationship": "BELONGS_TO",
+              "target_id": 1,
+              "target_name": "Nhẫn",
+              "source_product_id": 340
+            },
+            {
+              "relationship": "HAS_GEMSTONE",
+              "target_id": 5,
+              "target_name": "Moissanite",
+              "source_product_id": 203
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Tìm mẫu cùng loại đá với sản phẩm 87",
+      "seconds": 0.141,
+      "answer": "Mình chưa có danh sách mẫu trong cuộc trò chuyện này. Bạn gửi mã sản phẩm hoặc yêu cầu tìm mẫu trước nhé.",
+      "status": "clarification_required",
+      "response_mode": "grounded_product_discussion",
+      "resolved_entities": [],
+      "clarification_options": [],
+      "clarification_resolution": null,
+      "retrieval_sources_used": [],
+      "products": []
+    }
+  ],
+  "retries": 0,
+  "database_written": false,
+  "startup_states": [
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "error": "ReadTimeout"
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "dense_admission": {
+        "available": false,
+        "busy": true,
+        "cooldown_seconds": 11.074
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "intent_vectors",
+      "seconds": 90.907
+    },
+    {
+      "ready": false,
+      "warming": false,
+      "dense_admission": {
+        "available": false,
+        "busy": false,
+        "cooldown_seconds": 6.903
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "ready",
+      "seconds": 126.095
+    },
+    {
+      "ready": false,
+      "warming": false,
+      "dense_admission": {
+        "available": false,
+        "busy": false,
+        "cooldown_seconds": 2.685
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "ready",
+      "seconds": 126.095
+    },
+    {
+      "ready": true,
+      "warming": false,
+      "dense_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "graph_admission": {
+        "available": true,
+        "busy": false,
+        "cooldown_seconds": 0.0
+      },
+      "stage": "ready",
+      "seconds": 126.095
+    }
+  ],
+  "clarification_used": true,
+  "dense_and_graph_verified": true,
+  "ring_relevance_passed": true,
+  "failure_type": "AssertionError"
+}

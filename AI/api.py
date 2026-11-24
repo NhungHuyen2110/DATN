@@ -144,7 +144,17 @@ def readiness():
     except Exception:
         raise HTTPException(status_code=503, detail="Business catalog unavailable") from None
     return {"status": "ready", "optional_sources": ["qdrant", "neo4j", "ollama"],
-            'semantic_intent_ready':retrieval._semantic_intent_ready.is_set()}
+            'semantic_intent_ready':retrieval.semantic_model_status()['ready']}
+
+
+@app.get('/health/semantic')
+def semantic_readiness():
+    # Cheap, no catalog probe/model load. Startup checks must not compete with
+    # model initialization or mistake ordinary API readiness for semantic ready.
+    from jewelry_agents.retrieval import semantic_model_status
+    from fastapi.responses import JSONResponse
+    status=semantic_model_status()
+    return JSONResponse(status_code=200 if status['ready'] else 503,content=status)
 
 
 # ============================================================

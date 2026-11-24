@@ -9,6 +9,8 @@ import requests
 import re
 import threading
 import math
+import time
+import logging
 from decimal import Decimal, InvalidOperation
 
 from qdrant_client import QdrantClient
@@ -23,6 +25,14 @@ if not 1 <= _dense_timeout <= 10:
 _dense_gate = SourceGate('dense', timeout=_dense_timeout)
 _graph_gate = SourceGate('graph')
 _semantic_intent_ready=threading.Event()
+_model_warming=threading.Event()
+_warm_state={'stage':'not_started','seconds':None}
+
+
+def semantic_model_status():
+    dense,graph=_dense_gate.availability(),_graph_gate.availability()
+    return {'ready':_semantic_intent_ready.is_set() and not _model_warming.is_set() and dense['available'],
+            'warming':_model_warming.is_set(),'dense_admission':dense,'graph_admission':graph,**_warm_state}
 
 
 def _bounded_source(gate, function, *args, **kwargs):
@@ -134,16 +144,51 @@ def warm_shopping_model():
     def operation():
         from .advice_planner import plan_advice
         from .semantic_category import warm_category_definitions
-        model=get_dense_services()[1]
-        result=plan_advice('tư vấn quà trang sức',model,include_embedding=True)
-        warm_category_definitions(model)
-        _semantic_intent_ready.set()
-        return result
+        started=time.monotonic()
+        _model_warming.set()
+        def phase(stage):
+            _warm_state.update(stage=stage,seconds=round(time.monotonic()-started,3))
+            logging.getLogger('uvicorn.error').info('Semantic startup stage=%s elapsed=%.3f',stage,time.monotonic()-started)
+        try:
+            phase('load_encoder')
+            model=get_dense_services()[1]
+            phase('intent_vectors')
+            result=plan_advice('tư vấn quà trang sức',model,include_embedding=True)
+            phase('ontology_vectors')
+            warm_category_definitions(model)
+            phase('graph_connection')
+            try:
+                _graph_gate.call_with_timeout(15,_warm_graph_expansion)
+            except Exception as error:
+                logging.getLogger('uvicorn.error').info('Optional graph startup: %s',type(error).__name__)
+            _semantic_intent_ready.set()
+            phase('ready')
+            return result
+        except Exception:
+            phase('failed')
+            raise
+        finally:
+            # A caller timeout does not stop the underlying SourceGate worker.
+            # Keep this true until model work actually exits, not just 60 s.
+            _model_warming.clear()
     if os.getenv('LUMIERE_RETRIEVAL_LIMITS_ENABLED', 'false').lower() == 'true':
         # Startup includes weight loading and eight prototype embeddings. Keep
         # the normal request budget unchanged and never queue concurrent work.
-        return _dense_gate.call_with_timeout(60, operation)
+        # Measured cold starts include 46-97 s on the 8 GB Windows host. This
+        # background-only budget is distinct from the unchanged chat budgets.
+        return _dense_gate.call_with_timeout(120, operation)
     return operation()
+
+
+def _warm_graph_expansion():
+    # One read-only warmup of the exact parameterized traversal, not user data
+    # retrieval for an answer. Pay connection/plan cold-start cost before chat.
+    driver=get_graph_driver()
+    with driver.session() as session:
+        record=session.run('MATCH (p:Product) WHERE p.projection_owner=$owner RETURN p.product_id AS id LIMIT 1',owner=CATALOG_OWNER).single()
+    if record:
+        pid=record['id']
+        _graph_expand_candidates([pid],35,driver=driver,eligible_ids=[pid])
 
 
 def graph_expand_candidates(anchor_ids, top_k=35,eligible_ids=None):

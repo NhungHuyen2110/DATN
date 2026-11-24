@@ -10,6 +10,8 @@ import requests
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report',type=Path,required=True)
+    parser.add_argument('--startup-wait-seconds',type=int,default=0,choices=range(181),metavar='0..180')
+    parser.add_argument('--require-natural',action='store_true')
     args=parser.parse_args()
     assert not args.report.exists(),'Preserve reports'
     report={'successful':False,'cases':[],'retries':0,'database_written':False}
@@ -31,6 +33,20 @@ def main():
         def current(pid):
             r=client.get(base+'/api/products/'+str(pid),timeout=(3,8));r.raise_for_status();return r.json()
         try:
+            # Read only cheap model state, never provoke competing model work.
+            # Polling is bounded; chat turns themselves are never retried.
+            deadline=time.monotonic()+args.startup_wait_seconds
+            report['startup_states']=[]
+            while True:
+                try:
+                    ready=client.get(base+'/ai/health/semantic',timeout=(2,3))
+                    state=ready.json() if ready.headers.get('content-type','').startswith('application/json') else {'http_status':ready.status_code}
+                except (requests.RequestException,ValueError) as error:
+                    state={'error':type(error).__name__}
+                report['startup_states'].append(state)
+                if state.get('ready') and state.get('graph_admission',{}).get('available'):break
+                if time.monotonic()>=deadline:raise TimeoutError('Semantic startup not ready')
+                time.sleep(min(4,max(0,deadline-time.monotonic())))
             first=turn('Một món ôm quanh ngón tay, đừng quá 3 triệu.')
             if first.get('status')=='clarification_required':
                 assert first['clarification_options'][0]['canonical_id']=='ring'
@@ -52,6 +68,10 @@ def main():
             outside=turn('Nói về cách gieo hạt cà chua ở ban công.')
             assert not outside.get('products')
             assert 'Bạn đang chọn cho dịp nào' in outside['answer']
+            if args.require_natural:
+                natural=turn('Viết lời chúc sinh nhật một câu cho bạn thân, xưng mình và cậu.')
+                assert not natural.get('products')
+                assert natural.get('response_mode')=='local_llm_dialogue','Actual model dialogue required; fallback is not acceptance'
             report.update(successful=True,passed=len(report['cases']),
                           scope='Held-out paraphrase, graph relationship and off-topic bridge; not general AI accuracy')
         except Exception as error:report['failure_type']=type(error).__name__

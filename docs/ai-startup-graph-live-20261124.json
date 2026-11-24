@@ -1,0 +1,184 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "seconds": 4.797,
+      "answer": "Mô tả của bạn gần với hai loại trang sức: 1. nhẫn; 2. vòng tay. Bạn muốn chọn loại nào? Mình sẽ giữ các điều kiện bạn đã nêu.",
+      "status": "clarification_required",
+      "response_mode": null,
+      "resolved_entities": [],
+      "clarification_options": [
+        {
+          "canonical_id": "ring",
+          "name": "nhẫn",
+          "similarity": 0.600869727786495
+        },
+        {
+          "canonical_id": "bracelet",
+          "name": "vòng tay",
+          "similarity": 0.5058115742274738
+        }
+      ],
+      "clarification_resolution": null,
+      "retrieval_sources_used": [],
+      "products": []
+    },
+    {
+      "query": "Loại đầu tiên",
+      "seconds": 5.11,
+      "answer": "Tạm thời chưa xác minh được giá và tồn kho. Bạn vui lòng thử lại sau.",
+      "status": "catalog_unavailable",
+      "response_mode": null,
+      "resolved_entities": [],
+      "clarification_options": [],
+      "clarification_resolution": {
+        "canonical_id": "ring",
+        "method": "option_selection"
+      },
+      "retrieval_sources_used": [],
+      "products": []
+    }
+  ],
+  "retries": 0,
+  "database_written": false,
+  "startup_states": [
+    {
+      "http_status": 502
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 64.265
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 64.265
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 64.265
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 64.265
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "graph_connection",
+      "seconds": 81.518
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "graph_connection",
+      "seconds": 81.518
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "graph_connection",
+      "seconds": 81.518
+    },
+    {
+      "ready": true,
+      "warming": false,
+      "stage": "ready",
+      "seconds": 96.544
+    }
+  ],
+  "clarification_used": true,
+  "failure_type": "AssertionError"
+}

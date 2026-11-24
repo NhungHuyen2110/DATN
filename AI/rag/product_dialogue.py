@@ -15,6 +15,11 @@ def discussion_reply(message,previous):
     text=normalize(message)
     if classify_query(message) in {'restricted_request','shipping_policy','unverified_policy','customer_order_guidance'}:
         return None
+    from jewelry_agents.query_reference import reference_request
+    if reference_request(message)['active']:
+        # A catalog product ID is not an ordinal card position. Related-product
+        # requests must reach graph retrieval even without earlier chat cards.
+        return None
     # Never reinterpret shopping, account or policy operations as card discussion.
     if any(word in text for word in ('mat khau','doanh thu','don hang','bao hanh','doi tra',
                                      'mua ngay','dat hang','giong','tuong tu','tim them','goi y them')):

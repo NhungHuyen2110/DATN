@@ -48,15 +48,18 @@ class SemanticPlannerTests(unittest.TestCase):
         self.assertTrue(merge_understanding(link_query(QUERY),plan,QUERY)['needs_clarification'])
 
     def test_original_query_goes_to_dense_then_graph_uses_resolved_entity(self):
-        live={1:product(1,price=1_000_000),2:product(2,price=1_000_000,category=2)}
+        live={1:product(1,price=1_000_000),2:product(2,price=1_000_000,category=2),3:product(3,price=1_000_000)}
         dense=MagicMock(return_value=[{'ProductID':1,'score':0.7},{'ProductID':2,'score':0.8}])
         graph=MagicMock(return_value=[{'ProductID':1,'paths':[{'relationship':'BELONGS_TO','target_id':1}]}])
-        expansion=MagicMock(return_value=[])
+        expansion=MagicMock(return_value=[{'ProductID':3,'paths':[{'relationship':'HAS_GEMSTONE','target_id':6,
+                                             'source_product_id':1,'candidate_product_id':3}]}])
         result=search(QUERY,3,dense,lambda:live,parse_price,graph,graph_expander=expansion,semantic_plan=ring_plan())
         self.assertEqual(dense.call_args.args[0],QUERY)
-        self.assertEqual(graph.call_args.args[1]['entities'][0]['canonical_id'],'ring')
+        graph.assert_not_called()
+        self.assertEqual(result['understanding']['entities'][0]['canonical_id'],'ring')
         self.assertEqual(expansion.call_args.args[0],[1])
-        self.assertEqual([p['ProductID'] for p in result['products']],[1])
+        self.assertEqual(expansion.call_args.kwargs['eligible_ids'],[1,3])
+        self.assertEqual([p['ProductID'] for p in result['products']],[3,1])
         self.assertIn('graph',result['retrieval_sources_used'])
         self.assertTrue(result['products'][0]['graph_paths'])
 
@@ -112,7 +115,7 @@ class SemanticPlannerTests(unittest.TestCase):
             result=api.chat(api.ChatRequest(query=QUERY))
         self.assertEqual([p['ProductID'] for p in result['products']],[3,1])
         self.assertEqual(result['response_mode'],'grounded_llm_rag')
-        self.assertLessEqual(generator.call_args.kwargs['time_budget'],16)
+        self.assertLessEqual(generator.call_args.kwargs['time_budget'],24)
         self.assertNotIn('Price',generator.call_args.kwargs['evidence']['verified_product_attributes'][0])
 
     def test_semantic_product_intent_is_not_discarded_when_query_has_no_alias(self):

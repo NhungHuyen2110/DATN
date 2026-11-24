@@ -33,6 +33,7 @@ class NaturalDialogueTests(unittest.TestCase):
         self.assertEqual(len(payload['messages'][1]['content']),250)
         self.assertNotIn('tools',payload)
         self.assertEqual(payload['options']['num_ctx'],1024)
+        self.assertEqual(payload['options']['num_batch'],32)
         self.assertEqual(payload['keep_alive'],'5m')
         self.assertEqual(opener.open.call_count,1)
 

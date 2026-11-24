@@ -2,6 +2,7 @@
 import os
 import requests
 from decimal import Decimal
+from concurrent.futures import ThreadPoolExecutor
 from shared.observability import correlation_headers
 from shared.verified_attributes import PublicAttribute
 from shared.retrieval_limits import SourceGate
@@ -54,17 +55,27 @@ def fetch_catalog():
 def _fetch_catalog():
     base = os.getenv("BUSINESS_API_URL", "http://127.0.0.1:8001").rstrip("/")
     products = {}
-    try:
+    headers=correlation_headers()
+    def page(number):
+        # Separate short-lived sessions: requests.Session is not shared across
+        # threads. At most two public GETs in flight; no retries or stale cache.
         with requests.Session() as client:
             client.trust_env=False
-            for page in range(1, 51):
-                response = client.get(base + "/products", params={"page": page, "page_size": 100}, timeout=3,
-                                      headers=correlation_headers())
-                response.raise_for_status()
-                payload = response.json()
-                items, total = payload["items"], payload["total"]
-                if type(total) is not int or total < 0 or not isinstance(items, list):
-                    raise ValueError("invalid catalog page")
+            response=client.get(base+'/products',params={'page':number,'page_size':100},timeout=3,headers=headers)
+            response.raise_for_status()
+            payload=response.json()
+            items,total=payload['items'],payload['total']
+            if type(total) is not int or not 0<=total<=5000 or not isinstance(items,list):
+                raise ValueError('Invalid catalog page')
+            expected=min(100,max(0,total-(number-1)*100))
+            if len(items)!=expected:raise ValueError('Incomplete catalog page')
+            return items,total
+    try:
+        first,total=page(1)
+        with ThreadPoolExecutor(max_workers=2,thread_name_prefix='lumiere-catalog-page') as pool:
+            pages=[(first,total),*pool.map(page,range(2,(total+99)//100+1))]
+            for items,page_total in pages:
+                if page_total!=total:raise ValueError('Catalog changed during pagination')
                 for item in items:
                     pid = item["id"]
                     if type(pid) is not int or pid in products:
@@ -82,10 +93,7 @@ def _fetch_catalog():
                     if 'verified_attributes' in item:
                         products[pid]['verified_attributes'] = [PublicAttribute.model_validate(fact).model_dump()
                                                                for fact in item['verified_attributes']]
-                if len(products) == total:
-                    return products
-                if not items or len(products) > total:
-                    raise ValueError("catalog pagination changed; retry query")
-        raise ValueError("catalog exceeds bounded page limit")
+        if len(products)!=total:raise ValueError('Catalog identity count changed')
+        return products
     except (requests.RequestException, ValueError, TypeError, KeyError) as exc:
         raise CatalogUnavailable("Cannot verify current product price and stock") from None

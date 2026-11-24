@@ -85,9 +85,9 @@ def converse(message, conversation_id, scope, tool):
             for p in response['products']:
                 item={key:p[key] for key in ('Category','Material','Gemstone') if key in p}
                 item['relationships']=[{'type':path['relationship'],'value':path.get('target_name')}
-                                       for path in p.get('matched_relationships',[])[:3]]
+                                       for path in p.get('matched_relationships',[])[:1]]
                 facts.append(item)
-            remaining=min(16,35-(time.monotonic()-started))
+            remaining=min(24,35-(time.monotonic()-started))
             narrative_question=row.get('shopping_context',message) if response.get('clarification_resolution') else message
             paragraph=answer_natural(narrative_question,evidence={'verified_product_attributes':facts},time_budget=remaining) if remaining>=2 else None
             if paragraph:

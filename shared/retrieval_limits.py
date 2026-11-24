@@ -27,6 +27,14 @@ class SourceGate:
     def call(self, function, *args, **kwargs):
         return self.call_with_timeout(self.timeout, function, *args, **kwargs)
 
+    def availability(self):
+        """Admission state only, not a claim that the remote dependency is up."""
+        with self._lock:
+            busy=self._future is not None and (not self._caller_finished or not self._future.done())
+            remaining=max(0.,self._open_until-self.clock())
+            return {'available':not self._closed and not busy and remaining==0,
+                    'busy':busy,'cooldown_seconds':round(remaining,3)}
+
     def call_with_timeout(self, timeout, function, *args, **kwargs):
         """Use a distinct startup budget without bypassing single-flight isolation."""
         if timeout <= 0:

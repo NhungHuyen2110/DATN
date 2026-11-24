@@ -57,6 +57,11 @@ def answer_jewelry_question(query: str, top_k: int = 3, semantic_plan=None):
     if os.getenv("LUMIERE_RETRIEVAL_V2_ENABLED", "true").lower() == "true":
         advice=None
         intent = classify_query(query)
+        from jewelry_agents.retrieval import _model_warming
+        if (_model_warming.is_set() and intent in {'general_question','product_search'}
+                and not link_query(query)['entities']):
+            return {'success':True,'intent':'model_warming','status':'model_warming','products':[],
+                    'answer':'AI đang nạp bộ hiểu ngữ nghĩa. Bạn chờ trạng thái sẵn sàng rồi gửi lại nhé; mình chưa chọn sản phẩm khi chưa hiểu chắc yêu cầu.'}
         if semantic_plan is not None and semantic_plan.intent in {'shop','consult'} and intent not in {
                 'restricted_request','shipping_policy','unverified_policy','customer_order_guidance'}:
             intent='product_search'

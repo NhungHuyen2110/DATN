@@ -5,6 +5,22 @@ from shared.retrieval_limits import SourceGate, SourceUnavailable
 
 
 class RetrievalLimitTests(unittest.TestCase):
+    def test_availability_distinguishes_busy_cooldown_and_actual_admission(self):
+        now=[100.]
+        release,entered=threading.Event(),threading.Event()
+        gate=SourceGate('admission-test',timeout=.02,cooldown=10,clock=lambda:now[0])
+        def slow():entered.set();release.wait(2)
+        try:
+            self.assertTrue(gate.availability()['available'])
+            with self.assertRaises(SourceUnavailable):gate.call(slow)
+            self.assertTrue(entered.is_set())
+            self.assertTrue(gate.availability()['busy'])
+            release.set();gate._future.result(timeout=2)
+            self.assertFalse(gate.availability()['busy'])
+            self.assertFalse(gate.availability()['available'])
+            now[0]=111.
+            self.assertTrue(gate.availability()['available'])
+        finally:release.set();gate.close()
     def test_startup_budget_does_not_change_request_budget_or_allow_queueing(self):
         release, entered = threading.Event(), threading.Event()
         gate = SourceGate('test-startup', timeout=.01, cooldown=0)

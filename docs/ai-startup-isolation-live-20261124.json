@@ -1,0 +1,210 @@
+{
+  "successful": false,
+  "cases": [
+    {
+      "query": "Một món ôm quanh ngón tay, đừng quá 3 triệu.",
+      "seconds": 0.375,
+      "answer": "Mô tả của bạn gần với hai loại trang sức: 1. nhẫn; 2. vòng tay. Bạn muốn chọn loại nào? Mình sẽ giữ các điều kiện bạn đã nêu.",
+      "status": "clarification_required",
+      "response_mode": null,
+      "resolved_entities": [],
+      "clarification_options": [
+        {
+          "canonical_id": "ring",
+          "name": "nhẫn",
+          "similarity": 0.600869727786495
+        },
+        {
+          "canonical_id": "bracelet",
+          "name": "vòng tay",
+          "similarity": 0.5058115742274738
+        }
+      ],
+      "clarification_resolution": null,
+      "retrieval_sources_used": [],
+      "products": []
+    },
+    {
+      "query": "Loại đầu tiên",
+      "seconds": 6.86,
+      "answer": "Đây là các sản phẩm phù hợp với yêu cầu của bạn:\n\n• Nhẫn Sunshine\n  Mã sản phẩm: 87\n  Chất liệu: Vàng 18K\n  Đá quý: Emerald\n  Giá bán: 1.388.487 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Nhẫn Sunshine\n  Mã sản phẩm: 340\n  Chất liệu: Vàng 14K\n  Đá quý: Emerald\n  Giá bán: 2.512.853 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\n\n• Nhẫn Golden Dream\n  Mã sản phẩm: 2\n  Chất liệu: Bạc 925\n  Đá quý: Diamond\n  Giá bán: 2.619.639 VNĐ\n  Lý do: đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại\nMột nguồn tìm kiếm tạm gián đoạn; kết quả chỉ dùng các nguồn đang hoạt động.",
+      "status": "degraded",
+      "response_mode": null,
+      "resolved_entities": [
+        {
+          "label": "Category",
+          "canonical_id": "ring",
+          "graph_id": 1,
+          "method": "normalized_alias",
+          "alias": "nhẫn",
+          "similarity": null
+        }
+      ],
+      "clarification_options": [],
+      "clarification_resolution": {
+        "canonical_id": "ring",
+        "method": "option_selection"
+      },
+      "retrieval_sources_used": [
+        "dense",
+        "lexical"
+      ],
+      "products": [
+        {
+          "ProductID": 87,
+          "ProductName": "Nhẫn Sunshine",
+          "SKU": "SP000087",
+          "Price": "1388487.00",
+          "Stock": 75,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "DOJI",
+          "Material": "Vàng 18K",
+          "MaterialID": 4,
+          "Gemstone": "Emerald",
+          "GemstoneID": 4,
+          "Collection": "Luxury",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 1,
+          "semantic_score": 0.4680056,
+          "graph_score": null,
+          "final_score": 0.03200204813108039,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 340,
+          "ProductName": "Nhẫn Sunshine",
+          "SKU": "SP000340",
+          "Price": "2512853.00",
+          "Stock": 81,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "PNJ",
+          "Material": "Vàng 14K",
+          "MaterialID": 3,
+          "Gemstone": "Emerald",
+          "GemstoneID": 4,
+          "Collection": "Minimal",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 2,
+          "semantic_score": 0.50207436,
+          "graph_score": null,
+          "final_score": 0.03177805800756621,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        },
+        {
+          "ProductID": 2,
+          "ProductName": "Nhẫn Golden Dream",
+          "SKU": "SP000002",
+          "Price": "2619639.00",
+          "Stock": 60,
+          "Category": "Nhẫn",
+          "CategoryID": 1,
+          "Brand": "SJC",
+          "Material": "Bạc 925",
+          "MaterialID": 1,
+          "Gemstone": "Diamond",
+          "GemstoneID": 1,
+          "Collection": "Office",
+          "verified_source": "business_api",
+          "verified_attributes": [],
+          "rank": 3,
+          "semantic_score": 0.39478114,
+          "graph_score": null,
+          "final_score": 0.031544957774465976,
+          "ranking_method": "reciprocal_rank_fusion",
+          "matched_entities": [
+            {
+              "label": "Category",
+              "canonical_id": "ring"
+            }
+          ],
+          "reason": "đúng loại Nhẫn; trong khoảng giá yêu cầu; giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại"
+        }
+      ]
+    }
+  ],
+  "retries": 0,
+  "database_written": false,
+  "startup_states": [
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "load_encoder",
+      "seconds": 0.0
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 37.845
+    },
+    {
+      "ready": false,
+      "warming": true,
+      "stage": "intent_vectors",
+      "seconds": 37.845
+    },
+    {
+      "ready": true,
+      "warming": false,
+      "stage": "ready",
+      "seconds": 46.315
+    }
+  ],
+  "clarification_used": true,
+  "dense_and_graph_verified": false,
+  "failure_type": "AssertionError"
+}

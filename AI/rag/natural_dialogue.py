@@ -13,6 +13,11 @@ _gate=SourceGate('customer-dialogue',timeout=24,cooldown=15)
 def answer_natural(question,history=(),evidence=None,time_budget=None):
     if os.getenv('LUMIERE_CUSTOMER_DIALOGUE_ENABLED','false').lower()!='true':
         return None
+    from jewelry_agents.retrieval import _model_warming
+    if _model_warming.is_set():
+        # Do not start a second model while the embedding worker is still cold,
+        # including after its caller has timed out. This is not an LLM outage.
+        return None
     endpoint=os.getenv('LUMIERE_CUSTOMER_DIALOGUE_URL','http://host.docker.internal:11435/api/chat')
     address=urlparse(endpoint)
     if (address.scheme!='http' or address.hostname not in {'127.0.0.1','localhost','host.docker.internal','ollama'}
@@ -38,7 +43,7 @@ def answer_natural(question,history=(),evidence=None,time_budget=None):
     messages.append({'role':'user','content':question[:1000]})
     payload={'model':os.getenv('LUMIERE_CUSTOMER_DIALOGUE_MODEL','qwen3:0.6b-q4_K_M'),
              'messages':messages,'stream':False,'keep_alive':os.getenv('LUMIERE_CUSTOMER_DIALOGUE_KEEP_ALIVE','5m'),
-             'options':{'num_ctx':1024,'num_predict':96,'num_thread':2,'temperature':0.5}}
+             'options':{'num_ctx':1024,'num_predict':96,'num_thread':2,'num_batch':32,'temperature':0.5}}
     if payload['model'].startswith('qwen3:'):
         payload['think']=False
     def generate():

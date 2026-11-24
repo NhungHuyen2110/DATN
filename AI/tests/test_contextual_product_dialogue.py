@@ -53,6 +53,12 @@ class ContextualProductDialogueTests(unittest.TestCase):
                       'Tìm thêm mẫu giống mẫu thứ hai','mẫu thứ hai doanh thu bao nhiêu?'):
             self.assertIsNone(discussion_reply(query,self.previous),query)
 
+    def test_related_catalog_id_is_not_an_ordinal_card_with_or_without_history(self):
+        for previous in ({},self.previous):
+            for query in ('Tìm mẫu cùng loại đá với sản phẩm 87','Tìm cùng chất liệu với sản phẩm 51',
+                          'Cùng danh mục với sản phẩm 98'):
+                self.assertIsNone(discussion_reply(query,previous),query)
+
     def test_category_and_budget_change_keep_style(self):
         result=followup_query('đổi sang bông tai dưới 2tr','Tư vấn nhẫn cho nữ thanh lịch dưới 3 triệu')
         self.assertIn('thanh lịch',result)
