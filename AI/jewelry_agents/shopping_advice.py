@@ -41,7 +41,18 @@ def advisory_request(query):
     text=normalize(query)
     preferences = [e for e in understanding['entities'] if e['label'] in {'Audience', 'Style'}]
     cues = ('chon gi', 'nen chon', 'tu van', 'goi y', 'nen mua', 'hop voi', 'thich gi')
-    return bool(preferences and (any(cue in text for cue in cues) or
+    # A broad request such as "Tìm trang sức dành cho phái nữ" is advice,
+    # not proof of a verified gender label on every product. Explicit strict
+    # requests and specific product types still retain their original rules.
+    padded = ' ' + text + ' '
+    broad_jewelry = ' trang suc ' in padded
+    specific_type = any(e['label'] in {'Category', 'Gemstone'}
+                        for e in understanding['entities'])
+    broad_advice = (broad_jewelry and not specific_type and
+                    any(phrase in padded for phrase in
+                        (' tim ', ' co mau ', ' co san pham ', ' co trang suc ', ' muon ', ' can ',
+                         ' cho ', ' danh cho ')))
+    return bool(preferences and (any(cue in text for cue in cues) or broad_advice or
                 text in {'thanh lich','toi gian','tinh te','nu thanh lich','cho nu','nu'}))
 
 

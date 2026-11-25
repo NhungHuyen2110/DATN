@@ -94,6 +94,37 @@ class ConsultationTests(unittest.TestCase):
         for query in ('nữ trang thanh lịch','nữ hoàng thanh lịch','nữ thần'):
             self.assertFalse(any(e['label']=='Audience' for e in link_query(query)['entities']))
 
+    def test_broad_audience_search_is_advice_without_fake_verified_gender(self):
+        for query in ('Tìm trang sức dành cho phái nữ.',
+                      'Có mẫu trang sức nào dành cho con gái không?',
+                      'Bên mình có trang sức cho phái nữ không?',
+                      'Tôi muốn mua trang sức cho phụ nữ.',
+                      'Tìm trang sức dành cho nữ giới.'):
+            with self.subTest(query=query):
+                self.assertTrue(advisory_request(query))
+                result=self.run_search(query, {1:item(1), 2:item(2,category=3)})
+                self.assertEqual(result['status'],'ok')
+                self.assertEqual(len(result['products']),2)
+                self.assertEqual(result['understanding']['unverified_preferences'],
+                                 [{'label':'Audience','canonical_id':'female'}])
+                self.assertTrue(all('Audience' not in
+                                    [e['label'] for e in p['matched_entities']]
+                                    for p in result['products']))
+
+    def test_explicit_or_specific_audience_filters_are_not_silently_relaxed(self):
+        for query in ('Top 3 trang sức dành cho phái nữ',
+                      'chỉ tìm trang sức dành cho phái nữ',
+                      'Tìm nhẫn dành cho phái nữ',
+                      'Có mẫu trang sức nào cho bé gái 8 tuổi không?'):
+            with self.subTest(query=query):
+                self.assertFalse(advisory_request(query))
+        self.assertEqual(self.run_search('Top 3 trang sức dành cho phái nữ',
+                                        {1:item(1)},mode='strict')['status'],
+                         'missing_verified_attributes')
+        self.assertEqual(self.run_search('Có mẫu trang sức nào cho bé gái 8 tuổi không?',
+                                        {1:item(1)},mode='strict')['status'],
+                         'clarification_required')
+
     def test_consultation_is_distinct_from_strict_filter_and_child_request(self):
         for query in ('nữ thanh lịch chọn gì','Tư vấn nhẫn cho nữ thanh lịch dưới 3 triệu',
                       'nữ thanh lịch chọn gì em chỉ có 2 triệu'):
