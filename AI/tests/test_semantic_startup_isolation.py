@@ -43,6 +43,37 @@ class SemanticStartupIsolationTests(unittest.TestCase):
                 release.set()
                 gate.close()
 
+    def test_warmup_records_individual_stage_durations_without_loading_real_models(self):
+        ready=threading.Event()
+        warming=threading.Event()
+        phases=[]
+        fake_model=object()
+        def fake_plan(query,model,include_embedding=False):
+            self.assertIs(model,fake_model)
+            phases.append('intent')
+            return {'accepted':True}
+        def fake_ontology(model):
+            self.assertIs(model,fake_model)
+            phases.append('ontology')
+        with patch.object(retrieval,'_semantic_intent_ready',ready), \
+             patch.object(retrieval,'_model_warming',warming), \
+             patch.object(retrieval,'_warm_state',{'stage':'not_started','seconds':None}), \
+             patch.object(retrieval,'get_dense_services',return_value=(None,fake_model)), \
+             patch('jewelry_agents.advice_planner.plan_advice',side_effect=fake_plan), \
+             patch('jewelry_agents.semantic_category.warm_category_definitions',side_effect=fake_ontology), \
+             patch.object(retrieval,'_warm_graph_expansion'), \
+             patch.dict('os.environ',{'LUMIERE_RETRIEVAL_LIMITS_ENABLED':'false'}):
+            result=retrieval.warm_shopping_model()
+            status=retrieval.semantic_model_status()
+        self.assertEqual(result,{'accepted':True})
+        self.assertEqual(phases,['intent','ontology'])
+        self.assertTrue(ready.is_set())
+        self.assertFalse(warming.is_set())
+        self.assertEqual(status['stage'],'ready')
+        durations=status['stage_durations_seconds']
+        self.assertEqual(set(durations),{'load_encoder','intent_vectors','ontology_vectors','graph_connection'})
+        self.assertTrue(all(isinstance(n,float) and n>=0 for n in durations.values()))
+
     def test_semantic_health_never_loads_model_or_fetches_catalog(self):
         import api
         with patch('jewelry_agents.business_catalog.fetch_catalog') as catalog, \
