@@ -97,6 +97,7 @@ class ConsultationTests(unittest.TestCase):
     def test_broad_audience_search_is_advice_without_fake_verified_gender(self):
         for query in ('Tìm trang sức dành cho phái nữ.',
                       'Có mẫu trang sức nào dành cho con gái không?',
+                      'Bên mình có trang sức cho phái nữ không?',
                       'Tôi muốn mua trang sức cho phụ nữ.',
                       'Tìm trang sức dành cho nữ giới.'):
             with self.subTest(query=query):
