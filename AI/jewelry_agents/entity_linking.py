@@ -73,6 +73,53 @@ def link_query(query, encoder=None, threshold=0.80, margin=0.08):
     for label in {item["label"] for item in matches}:
         if len({item["canonical_id"] for item in matches if item["label"] == label}) > 1:
             ambiguous.append("multiple_" + label.lower())
+    # mới thêm
+    # Resolve domain evidence before semantic candidate linking.
+    from .ontology_reasoner import reason_categories
+
+    evidence = reason_categories(query)
+
+    if evidence["status"] == "resolved":
+        category_id = evidence["eligible"][0]
+
+        explicit_categories = [
+            item for item in matches
+            if item["label"] == "Category"
+        ]
+
+        attachment_request = (
+            evidence["features"].get("usage") == "attachment"
+        )
+
+        if not explicit_categories or attachment_request:
+            entity = next(
+                (
+                    item for item in config["entities"]
+                    if item["label"] == "Category"
+                    and item["canonical_id"] == category_id
+                ),
+                None,
+            )
+
+            if entity is not None:
+                matches = [
+                    item for item in matches
+                    if item["label"] != "Category"
+                ]
+
+                matches.append({
+                    "label": "Category",
+                    "canonical_id": entity["canonical_id"],
+                    "graph_id": entity.get("graph_id"),
+                    "method": "ontology_constraint",
+                    "alias": None,
+                    "similarity": None,
+                })
+
+                ambiguous = [
+                    reason for reason in ambiguous
+                    if reason != "multiple_category"
+                ]
     attempted = False
     if encoder is not None and text:
         # Only unresolved labels, no automatic merging or overriding explicit aliases.

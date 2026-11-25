@@ -23,7 +23,7 @@ class CategoryClarificationTests(unittest.TestCase):
         with patch('shared.conversation.STORE',ConversationStore()), \
              patch('jewelry_agents.semantic_planner.plan_query',return_value=None), \
              patch('api.answer_jewelry_question',side_effect=answer):
-            first=api.chat(api.ChatRequest(query='Một món ôm quanh ngón tay, đừng quá 3 triệu.'))
+            first=api.chat(api.ChatRequest(query='Một món trang sức nhỏ gọn, đừng quá 3 triệu.'))
             second=api.chat(api.ChatRequest(query='Loại đầu tiên',conversation_id=first['conversation_id']))
             why=api.chat(api.ChatRequest(query='Tại sao lại gợi ý sản phẩm đó?',conversation_id=first['conversation_id']))
         from jewelry_agents.shopping_advice import budget_text
@@ -32,13 +32,45 @@ class CategoryClarificationTests(unittest.TestCase):
         self.assertEqual(second['clarification_resolution']['canonical_id'],'ring')
         self.assertEqual(why['referenced_product_ids'],[2])
 
+    # def test_semantic_reply_is_resolved_against_existing_options(self):
+    #     from jewelry_agents.semantic_category import CategoryLink
+    #     row={'pending_category':{'query':'dưới 3 triệu','options':[{'name':'nhẫn','canonical_id':'ring'}]}}
+    #     with patch('jewelry_agents.retrieval._dense_gate.call',return_value=((CategoryLink('ring',1,.8,.3),),True)):
+    #         result=pending_category_reply('Đeo trên một ngón tay',row,lambda query:{'answer':query,'products':[]})
+    #     self.assertEqual(result['clarification_resolution']['method'],'ontology_reply_embedding')
+    #     self.assertNotIn('pending_category',row)
+
+# mới thêm
     def test_semantic_reply_is_resolved_against_existing_options(self):
         from jewelry_agents.semantic_category import CategoryLink
-        row={'pending_category':{'query':'dưới 3 triệu','options':[{'name':'nhẫn','canonical_id':'ring'}]}}
-        with patch('jewelry_agents.retrieval._dense_gate.call',return_value=((CategoryLink('ring',1,.8,.3),),True)):
-            result=pending_category_reply('Đeo trên một ngón tay',row,lambda query:{'answer':query,'products':[]})
-        self.assertEqual(result['clarification_resolution']['method'],'ontology_reply_embedding')
-        self.assertNotIn('pending_category',row)
+
+        row = {
+            'pending_category': {
+                'query': 'dưới 3 triệu',
+                'options': [
+                    {'name': 'nhẫn', 'canonical_id': 'ring'}
+                ]
+            }
+        }
+
+        with patch(
+            'jewelry_agents.retrieval._dense_gate.call',
+            return_value=((CategoryLink('ring', 1, .8, .3),), True)
+        ) as dense_call:
+            result = pending_category_reply(
+                'Loại thường dùng để cầu hôn',
+                row,
+                lambda query: {'answer': query, 'products': []}
+            )
+
+        dense_call.assert_called_once()
+
+        self.assertEqual(
+            result['clarification_resolution']['method'],
+            'ontology_reply_embedding'
+        )
+
+        self.assertNotIn('pending_category', row)
 
     def test_price_can_change_while_type_is_still_being_clarified(self):
         row={'pending_category':{'query':'Món ôm quanh ngón tay dưới 3 triệu',
@@ -50,3 +82,77 @@ class CategoryClarificationTests(unittest.TestCase):
     def test_private_requests_are_never_treated_as_a_selection(self):
         row={'pending_category':{'query':'public','options':[]}}
         self.assertIsNone(pending_category_reply('Mật khẩu là gì?',row,lambda query:self.fail('No tool')))
+
+    # mới thêm
+    def test_ontology_reply_resolves_existing_options(self):
+        row = {
+            'pending_category': {
+                'query': 'dưới 3 triệu',
+                'options': [
+                    {'name': 'nhẫn', 'canonical_id': 'ring'},
+                    {'name': 'charm', 'canonical_id': 'charm'}
+                ]
+            }
+        }
+
+        result = pending_category_reply(
+            'Đeo trên một ngón tay',
+            row,
+            lambda query: {'answer': query, 'products': []}
+        )
+
+        self.assertEqual(
+            result['clarification_resolution']['canonical_id'],
+            'ring'
+        )
+
+        self.assertEqual(
+            result['clarification_resolution']['method'],
+            'ontology_reply_constraint'
+        )
+
+        self.assertNotIn('pending_category', row)
+
+    def test_finger_does_not_ask_about_charm(self):
+        result = category_question(
+            'Tôi muốn mua trang sức đeo quanh ngón tay',
+            {'ring': .6423, 'charm': .6205}
+        )
+
+        self.assertIsNone(result)
+
+    def test_neck_does_not_ask_about_charm(self):
+        result = category_question(
+            'Tôi muốn mua trang sức đeo quanh cổ',
+            {'necklace': .6135, 'charm': .5270}
+        )
+
+        self.assertIsNone(result)
+
+    def test_wrist_only_offers_compatible_categories(self):
+        result = category_question(
+            'Tôi muốn mua trang sức đeo quanh cổ tay',
+            {
+                'charm': .6233,
+                'necklace': .6169,
+                'ring': .5620,
+                'chain_bracelet': .5586,
+                'bracelet': .5355
+            }
+        )
+
+        actual = {
+            item['canonical_id']
+            for item in result['clarification_options']
+        }
+
+        self.assertEqual(
+            actual,
+            {'bracelet', 'chain_bracelet'}
+        )
+
+        self.assertEqual(
+            result['query_planning_method'],
+            'ontology_constraint_ambiguity'
+        )
+

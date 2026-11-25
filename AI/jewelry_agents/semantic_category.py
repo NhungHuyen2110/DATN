@@ -40,7 +40,16 @@ def warm_category_definitions(encoder):
 
 def category_links(query,encoder,vector,threshold=.60,margin=.10,evidence_scores=None):
     definitions,values=_definition_vectors(encoder)
-    if any(e['label']=='Category' for e in link_query(query)['entities']):return ()
+    # if any(e['label']=='Category' for e in link_query(query)['entities']):return ()
+    
+    # mới thêm
+    if any(
+        e["label"] == "Category"
+        and e["method"] != "ontology_constraint"
+        for e in link_query(query)["entities"]
+    ):
+        return ()
+    
     text=normalize(query)
     text=re.sub(r'\bkhong qua\s+[\d.,]+\s*(?:trieu|nghin|tr|dong|vnd)\b',' ',text)
     text=re.sub(r'\bkhong biet\b',' ',text)
