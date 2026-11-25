@@ -50,7 +50,7 @@ def advisory_request(query):
                         for e in understanding['entities'])
     broad_advice = (broad_jewelry and not specific_type and
                     any(phrase in padded for phrase in
-                        (' tim ', ' co mau ', ' co san pham ', ' muon ', ' can ',
+                        (' tim ', ' co mau ', ' co san pham ', ' co trang suc ', ' muon ', ' can ',
                          ' cho ', ' danh cho ')))
     return bool(preferences and (any(cue in text for cue in cues) or broad_advice or
                 text in {'thanh lich','toi gian','tinh te','nu thanh lich','cho nu','nu'}))
