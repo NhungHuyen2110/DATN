@@ -337,11 +337,14 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
 def chat(request: ChatRequest):
     from shared.conversation import STORE
     from rag.conversation_service import converse
-    from jewelry_agents.shopping_advice import followup_query
+    from jewelry_agents.dialogue_state_controller import prepare_state
+    from jewelry_agents.dialogue_state_query import render_shopping_query
+    from jewelry_agents.retrieval import extract_price_filter
+    from jewelry_agents.entity_linking import normalize
     scope = ('customer-public',)
     token, row = STORE.resolve(request.conversation_id, scope)
     def answer(query, semantic_plan=None):
-        effective = followup_query(query, row.get('shopping_context'))
+        effective = query
         options={'semantic_plan':semantic_plan} if semantic_plan is not None else {}
         result = answer_jewelry_question(query=effective, top_k=request.top_k,**options)
         if result.get('clarification_options'):
@@ -353,6 +356,48 @@ def chat(request: ChatRequest):
             row['shopping_context'] = effective
         else:
             row.pop('shopping_context', None)
+        row.pop('shopping_state', None)
+
+        if (
+            result.get('success') is not False
+            and result.get('products')
+            and not result.get('clarification_options')
+            and result.get('advice_intent') != 'style_advice'
+        ):
+            try:
+                candidate = prepare_state(
+                    effective,
+                    extract_price_filter,
+                    top_k=request.top_k
+                )
+
+                if candidate is not None:
+                    rendered = render_shopping_query(candidate)
+
+                    # Strict compatibility guard:
+                    # only keep states whose canonical query
+                    # preserves the supported request.
+                    text = normalize(effective)
+
+                    import re
+
+                    simple_request = bool(re.fullmatch(
+                        r"(?:tim|cho xem|goi y|top [0-9]+) "
+                        r"(?:nhan|day chuyen|bong tai|lac tay|vong tay|charm)"
+                        r"(?: bac(?: 925)?)?"
+                        r"(?: gia mem| re nhat| dat nhat)?"
+                        r"(?: (?:duoi|khong qua|ngan sach) "
+                        r"[0-9]+(?:[.,][0-9]+)? "
+                        r"(?:trieu|dong|nghin))?",
+                        text
+                    ))
+
+                    if simple_request:
+                        row['shopping_state'] = candidate
+
+            except (TypeError, ValueError):
+                pass
+
         return result
     result = converse(request.query, token, scope, answer)
     if result.get('intent') in {'conversation_correction','out_of_scope'}:

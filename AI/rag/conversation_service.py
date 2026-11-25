@@ -3,6 +3,8 @@ from shared import conversation as shared
 from jewelry_agents.shopping_advice import followup_query, standalone_budget
 from jewelry_agents.intent_router import classify_query
 from jewelry_agents.entity_linking import link_query
+from jewelry_agents.dialogue_state_controller import prepare_refinement
+from jewelry_agents.retrieval import extract_price_filter
 from .domain_dialogue import domain_answer
 import os
 import time
@@ -25,7 +27,19 @@ def converse(message, conversation_id, scope, tool):
         if response is None:
             response=shared.followup_reply(message,row)
         if response is None:
-            effective=followup_query(message,row.get('shopping_context'))
+            refinement = None
+
+            if not row.get('pending_category'):
+                refinement = prepare_refinement(
+                    message,
+                    row.get('shopping_state'),
+                    extract_price_filter
+                )
+
+            if refinement is not None:
+                effective = refinement[1]
+            else:
+                effective=followup_query(message,row.get('shopping_context'))
             if effective==message:
                 effective=standalone_budget(message) or message
             # Knowledge/writing requests never become product searches.
@@ -55,6 +69,14 @@ def converse(message, conversation_id, scope, tool):
                 response={'success':True,'intent':'general_question','status':'general_question','products':[]}
             else:
                 response=tool(effective,semantic_plan=plan) if plan is not None and plan.intent in {'shop','consult'} else tool(effective)
+            if (
+                refinement is not None
+                and response.get('success') is not False
+                and response.get('products')
+            ):
+                row['shopping_state'] = refinement[0]
+                row['shopping_context'] = refinement[1]
+
             if response.get('intent') in {'unsupported','general_question','out_of_scope'}:
                 from .natural_dialogue import answer_natural
                 natural=domain_answer(message,row['history'])
@@ -100,6 +122,7 @@ def converse(message, conversation_id, scope, tool):
                 (response.get('intent')=='general_question' and not domain_answer(message,row['history']) and
                  not (shared.knowledge_request(message) and link_query(message)['entities']))):
             row.pop('shopping_context',None)
+            row.pop('shopping_state',None)
             row.pop('pending_category',None)
         row['history']=[*row['history'],{'user':message,'answer':response.get('answer','')}][-6:]
         return {**response,'conversation_id':token}

@@ -85,3 +85,148 @@ def finalize_topk(candidates, top_k, constraints, live_products):
         if len(ordered) == top_k:
             break
     return ordered
+
+def rerank_price_preference(
+    candidates,
+    live_products,
+    preference='neutral',
+    weight=0.35
+):
+    """Combine relevance with a soft price preference."""
+
+    if preference not in {
+        'neutral', 'affordable', 'higher_price'
+    }:
+        raise ValueError('Unknown price preference')
+
+    if not 0 <= weight <= 1:
+        raise ValueError('Invalid preference weight')
+
+    if preference == 'neutral' or not candidates:
+        return candidates
+
+    prices = {}
+
+    for pid, product in live_products.items():
+        try:
+            price = Decimal(str(product.get('Price')))
+
+            if price.is_finite() and price >= 0:
+                prices[pid] = price
+
+        except (InvalidOperation, ValueError, TypeError):
+            continue
+
+    valid = [
+        item for item in candidates
+        if item.get('ProductID') in prices
+        and math.isfinite(float(item.get('score', 0)))
+    ]
+
+    if not valid:
+        return candidates
+
+    min_price = min(prices.values())
+    max_price = max(prices.values())
+
+    scores = [
+        float(item.get('score', 0))
+        for item in valid
+    ]
+
+    min_score = min(scores)
+    max_score = max(scores)
+
+    ranked = []
+
+    for item in valid:
+        pid = item['ProductID']
+        original_score = float(item.get('score', 0))
+
+        if min_score >= 0:
+            relevance = (
+                original_score / max_score
+                if max_score > 0
+                else 1.0
+            )
+        else:
+            relevance = (
+                (original_score - min_score)
+                / (max_score - min_score)
+                if max_score > min_score
+                else 1.0
+            )
+
+        price_score = (
+            float(
+                (max_price - prices[pid])
+                / (max_price - min_price)
+            )
+            if max_price > min_price
+            else 1.0
+        )
+
+        if preference == 'higher_price':
+            if max_price > min_price:
+                price_score = 1.0 - price_score
+
+        final_score = (
+            (1.0 - weight) * relevance
+            + weight * price_score
+        )
+
+        ranked.append({
+            **item,
+            'base_relevance_score': original_score,
+            'normalized_relevance': relevance,
+            'price_preference_score': price_score,
+            'price_preference': preference,
+            'score': final_score,
+        })
+
+    return sorted(
+        ranked,
+        key=lambda item: (
+            -item['score'],
+            str(item['ProductID'])
+        )
+    )
+
+
+def exact_price_ranking(live_products, constraints, preference):
+    """Rank the complete eligible catalog by authoritative price."""
+
+    if preference not in {"lowest_price", "highest_price"}:
+        raise ValueError("Unknown exact price preference")
+
+    eligible = [
+        (pid, product)
+        for pid, product in live_products.items()
+        if price_and_stock_valid(product, constraints)
+        and reviewed_constraints_valid(product, constraints)
+        and all(
+            product.get(field) == value
+            for field, value in constraints.get("attributes", {}).items()
+        )
+    ]
+
+    direction = 1 if preference == "lowest_price" else -1
+
+    eligible.sort(
+        key=lambda item: (
+            direction * Decimal(str(item[1]["Price"])),
+            item[0]
+        )
+    )
+
+    return [
+        {
+            "ProductID": pid,
+            "score": 1.0 / (rank + 1),
+            "score_type": "exact_price_rank",
+            "price_preference": preference,
+            "retrieval_sources": ["catalog"],
+            "graph_paths": [],
+        }
+        for rank, (pid, product) in enumerate(eligible)
+    ]

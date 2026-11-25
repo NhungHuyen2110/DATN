@@ -10,7 +10,9 @@ from .entity_linking import link_query, normalize
 from .ranking import reciprocal_rank_fusion, finalize_topk, price_and_stock_valid, approved_facts, reviewed_constraints_valid
 from shared.verified_attributes import reviews_enabled
 from .query_reference import reference_request, resolve_reference
-
+from .price_intent_router import resolve_price_preference
+from .ranking import rerank_price_preference
+from .ranking import exact_price_ranking
 
 class RetrievalUnavailable(RuntimeError):
     pass
@@ -365,7 +367,87 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
                     or any(not math.isfinite(float(item.get('score', float('nan')))) for item in reranked)):
                 raise ValueError('Reranker changed identities or returned invalid scores')
             fused = reranked
-    products = finalize_topk(fused, top_k, constraints, latest)
+    price_preference = resolve_price_preference(
+        query,
+        constraints=constraints,
+        allow_semantic=True
+    )
+
+    latest_eligible = {
+        pid: p for pid, p in latest.items()
+        if price_and_stock_valid(p, constraints)
+        and reviewed_constraints_valid(p, constraints)
+        and all(
+            p.get(field) == value
+            for field, value in constraints['attributes'].items()
+        )
+        and (
+            reference is None
+            or pid != reference['ProductID']
+        )
+    }
+
+    if price_preference == 'affordable':
+        fused = rerank_price_preference(
+            fused,
+            latest_eligible,
+            preference='affordable',
+            weight=0.35
+        )
+
+    if price_preference in {'lowest_price', 'highest_price'}:
+        if not fused:
+            try:
+                latest = call('verification', catalog)
+            except Exception:
+                raise RetrievalUnavailable(
+                    'Cannot revalidate catalog before returning results'
+                ) from None
+
+            if required_material:
+                latest = {
+                    pid: p for pid, p in latest.items()
+                    if ' ' + required_material + ' '
+                    in ' ' + normalize(p['Material']) + ' '
+                }
+
+        if reference is not None:
+            current_reference = latest.get(reference['ProductID'])
+            if current_reference is None:
+                current_reference = latest_reference
+
+            if current_reference is None:
+                return {
+                    'products': [],
+                    'status': 'reference_unavailable',
+                    'understanding': understanding
+                }
+
+            # Preserve the existing reference retrieval contract.
+            # Exact catalog-wide ordering is for ordinary searches.
+        else:
+            latest_eligible = {
+                pid: p for pid, p in latest.items()
+                if price_and_stock_valid(p, constraints)
+                and reviewed_constraints_valid(p, constraints)
+                and all(
+                    p.get(field) == value
+                    for field, value in constraints['attributes'].items()
+                )
+            }
+
+            fused = exact_price_ranking(
+                latest_eligible,
+                constraints,
+                price_preference
+            )
+
+    understanding['price_preference'] = price_preference
+
+    products = finalize_topk(
+        fused, top_k, constraints, latest
+    )
+
     for product in products:
         pid=product['ProductID']
         if pid in semantic_scores:product['semantic_score']=semantic_scores[pid]
@@ -374,12 +456,25 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
                                 0.0 if 'graph' in selected and 'graph_unavailable' not in degraded else None)
         product['final_score']=product['score']
         product['ranking_method']=getattr(reranker,'name','reciprocal_rank_fusion')
+        if product.get('price_preference') == 'affordable':
+            product['ranking_method'] += '+price_preference'
+
+        if product.get('score_type') == 'exact_price_rank':
+            product['ranking_method'] = 'exact_catalog_price_ranking'
         matched = [e for e in understanding['entities'] if e['label'] in {'Category', 'Gemstone', 'Audience', 'Style'}
                    and e['label'] not in advisory_preferences]
         product['matched_entities'] = [{'label': e['label'], 'canonical_id': e['canonical_id']} for e in matched]
+        # reasons = []
+        # if 'CategoryID' in constraints['attributes']:
+        #     reasons.append('đúng loại ' + product['Category'])
         reasons = []
+
+        if required_material:
+            reasons.append('đúng chất liệu ' + product['Material'])
+
         if 'CategoryID' in constraints['attributes']:
             reasons.append('đúng loại ' + product['Category'])
+
         if 'GemstoneID' in constraints['attributes']:
             reasons.append('đúng loại đá ' + product['Gemstone'])
         if category_reference and product.get('CategoryID') in {2, 3}:
@@ -393,10 +488,18 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
         relation_names = {'BELONGS_TO': 'cùng danh mục', 'MADE_OF': 'cùng chất liệu',
                           'HAS_GEMSTONE': 'cùng loại đá', 'HAS_STYLE': 'cùng phong cách',
                           'SUITABLE_FOR': 'cùng đối tượng sử dụng'}
-        for path in product.get('graph_paths', [])[:2]:
-            if path.get('source_product_id') is not None:
-                reasons.append(relation_names[path['relationship']] + ' ' + path['target_name']
-                               + ' với sản phẩm #' + str(path['source_product_id']))
+        # for path in product.get('graph_paths', [])[:2]:
+        #     if path.get('source_product_id') is not None:
+        #         reasons.append(relation_names[path['relationship']] + ' ' + path['target_name']
+        #                        + ' với sản phẩm #' + str(path['source_product_id']))
+        if reference is not None:
+            for path in product.get('graph_paths', [])[:2]:
+                if path.get('source_product_id') == reference['ProductID']:
+                    reasons.append(
+                        relation_names[path['relationship']]
+                        + ' ' + path['target_name']
+                        + ' với sản phẩm #' + str(path['source_product_id'])
+                    )
         product['reason'] = '; '.join(reasons + ['giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại'])
     result = {"products": products, "status": "degraded" if degraded else "ok",
             "degraded": degraded, "requested_k": top_k, "returned_k": len(products),

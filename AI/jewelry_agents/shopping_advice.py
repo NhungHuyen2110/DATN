@@ -75,6 +75,30 @@ def next_question(query):
             else 'Bạn thích nhẫn, dây chuyền hay bông tai hơn?')
 
 
+
+def remove_ontology_location(query):
+    """Remove supported old wearing-location descriptions."""
+
+    locations = (
+        r"(?:ngón tay|ngón áp út|ngón trỏ|ngón cái|"
+        r"ngón út|ngón giữa|cổ tay|vùng cổ|cổ|"
+        r"vành tai|dái tai|tai)"
+    )
+
+    pattern = (
+        r"(?<!\w)(?:đeo|ôm|trang trí)\s+"
+        r"(?:(?:quanh|trên|ở|vào)\s+)?"
+        + locations +
+        r"(?!\w)"
+    )
+
+    result = re.sub(
+        pattern, " ", query, flags=re.I
+    )
+
+    return " ".join(result.split())
+
+
 def followup_query(message, previous):
     """Carry a short budget refinement forward; never inherit an unrelated topic."""
     if previous and len(message)<=100:
@@ -82,13 +106,43 @@ def followup_query(message, previous):
         if len(entities)==1 and entities[0]['label'] in {'Category','Gemstone'}:
             selected=entities[0]
             fragment=budget_text(message)
-            leftover=normalize(_MONEY.sub(' ',fragment)).replace(normalize(selected['alias']),' ').split()
+            # leftover=normalize(_MONEY.sub(' ',fragment)).replace(normalize(selected['alias']),' ').split()
+            alias = selected.get('alias')
+
+            normalized_fragment = normalize(
+                _MONEY.sub(' ', fragment)
+            )
+
+            if alias:
+                normalized_fragment = normalized_fragment.replace(
+                    normalize(alias), ' '
+                )
+
+            leftover = normalized_fragment.split()
             if set(leftover).issubset({'toi','minh','em','thich','chon','loai','lay','muon','cho','xin','thoi','nhe','a',
-                                      'doi','sang','ngan','sach','chi','co','duoi','tam','khoang','gia','qua','da'}):
+                                      'doi','sang','ngan','sach','chi','co','duoi','tam','khoang','gia','qua','da','di','chuyen','thay'}):
                 base=previous
-                for old in link_query(previous)['entities']:
+
+                if selected['label'] == 'Category':
+                    old_categories = [
+                        entity
+                        for entity in link_query(previous)['entities']
+                        if entity['label'] == 'Category'
+                    ]
+
+                    if any(
+                        entity.get('method') == 'ontology_constraint'
+                        for entity in old_categories
+                    ):
+                        base = remove_ontology_location(base)
+
+                for old in link_query(base)['entities']:
                     if old['label']==selected['label'] and old.get('alias'):
-                        for alias in {old['alias'],normalize(old['alias'])}:
+                        # for alias in {old['alias'],normalize(old['alias'])}:
+                        for alias in (
+                            {old['alias'], normalize(old['alias'])}
+                            if old.get('alias') else set()
+):
                             base=re.sub(r'(?<!\w)'+re.escape(alias)+r'(?!\w)',' ',base,flags=re.I)
                 if _MONEY.search(fragment):
                     base=_MONEY.sub(' ',budget_text(base))
