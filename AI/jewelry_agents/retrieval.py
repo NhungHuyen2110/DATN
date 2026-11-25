@@ -26,7 +26,7 @@ _dense_gate = SourceGate('dense', timeout=_dense_timeout)
 _graph_gate = SourceGate('graph')
 _semantic_intent_ready=threading.Event()
 _model_warming=threading.Event()
-_warm_state={'stage':'not_started','seconds':None}
+_warm_state={'stage':'not_started','seconds':None,'stage_durations_seconds':{}}
 
 
 def semantic_model_status():
@@ -145,10 +145,24 @@ def warm_shopping_model():
         from .advice_planner import plan_advice
         from .semantic_category import warm_category_definitions
         started=time.monotonic()
+        last_stage_started=started
+        previous_stage=None
         _model_warming.set()
+        _semantic_intent_ready.clear()
+        _warm_state.update(stage='not_started',seconds=0,stage_durations_seconds={})
         def phase(stage):
-            _warm_state.update(stage=stage,seconds=round(time.monotonic()-started,3))
-            logging.getLogger('uvicorn.error').info('Semantic startup stage=%s elapsed=%.3f',stage,time.monotonic()-started)
+            nonlocal previous_stage,last_stage_started
+            now=time.monotonic()
+            if previous_stage is not None:
+                # Measure each completed startup phase separately, without
+                # logging query text, model paths or environment secrets.
+                _warm_state['stage_durations_seconds'][previous_stage]=round(now-last_stage_started,3)
+            _warm_state.update(stage=stage,seconds=round(now-started,3))
+            logging.getLogger('uvicorn.error').info(
+                'Semantic startup stage=%s elapsed=%.3f phase_seconds=%.3f',
+                stage,now-started,now-last_stage_started)
+            previous_stage=stage
+            last_stage_started=now
         try:
             phase('load_encoder')
             model=get_dense_services()[1]
