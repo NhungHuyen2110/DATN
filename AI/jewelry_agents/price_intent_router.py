@@ -10,9 +10,25 @@ from .semantic_price_intent import infer_price_preference
 def resolve_price_preference(
     query,
     constraints=None,
-    allow_semantic=False
+    allow_semantic=False,
+    semantic_infer=None
 ):
     constraints = constraints or {}
+
+
+    # Check negation before accepting explicit price preferences.
+    text = normalize(query)
+
+    if re.search(
+        r"\b(?:khong|chang|dung)\s+"
+        r"(?:(?:can|muon|thich|mua|tim|chon|lay|"
+        r"cac|nhung|san|pham|trang|suc|mon|do|"
+        r"loai|mau|qua)\s+){0,12}"
+        r"(?:gia re|gia mem|gia thap|re nhat|"
+        r"binh dan|tiet kiem|vua tui tien)\b",
+        text
+    ):
+        return "neutral"
 
     explicit = detect_price_preference(query)
 
@@ -48,7 +64,9 @@ def resolve_price_preference(
     ):
         return "neutral"
 
-    proposed = infer_price_preference(query)
+    proposed = (
+        semantic_infer or infer_price_preference
+    )(query)
 
     # Semantic inference may only introduce a soft preference.
     if proposed == "affordable":

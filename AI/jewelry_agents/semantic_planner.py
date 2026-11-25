@@ -96,8 +96,27 @@ def merge_understanding(understanding,plan,query):
             'ambiguities':list(understanding.get('ambiguities',[]))}
     mentions=resolve_mentions(plan,query)
     for label in {item['label'] for item in mentions}:
-        if not any(item['label']==label for item in understanding['entities']) and len({item['canonical_id'] for item in mentions if item['label']==label})>1:
-            result['ambiguities'].append('multiple_'+label.lower())
+        existing = [
+            item for item in understanding['entities']
+            if item['label'] == label
+        ]
+
+        authoritative = [
+            item for item in existing
+            if item.get('method') != 'ontology_constraint'
+        ]
+
+        inferred_ids = {
+            item['canonical_id']
+            for item in mentions
+            if item['label'] == label
+        }
+
+        if not authoritative and len(inferred_ids) > 1:
+            reason = 'multiple_' + label.lower()
+
+            if reason not in result['ambiguities']:
+                result['ambiguities'].append(reason)
     for entity in mentions:
         explicit=[e for e in result['entities'] if e['label']==entity['label']]
         if explicit:

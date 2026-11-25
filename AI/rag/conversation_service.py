@@ -6,6 +6,10 @@ from jewelry_agents.entity_linking import link_query
 from jewelry_agents.dialogue_state_controller import prepare_refinement
 from jewelry_agents.retrieval import extract_price_filter
 from .domain_dialogue import domain_answer
+from .contextual_response import (
+    compact_shopping_answer,
+    explain_previous_products
+)
 import os
 import time
 
@@ -18,6 +22,7 @@ def converse(message, conversation_id, scope, tool):
                 'conversation_id':token}
     try:
         started=time.monotonic()
+        previous_shopping_state = row.get('shopping_state')
         from .category_clarification import pending_category_reply
         from .product_dialogue import discussion_reply
         response=pending_category_reply(message,row,tool)
@@ -25,7 +30,11 @@ def converse(message, conversation_id, scope, tool):
             response=(shared.followup_reply(message,row) if shared.followup_kind(message)=='correction'
                       else discussion_reply(message,row.get('last_result')))
         if response is None:
-            response=shared.followup_reply(message,row)
+            if shared.followup_kind(message) == 'explanation':
+                response = explain_previous_products(row)
+
+            if response is None:
+                response=shared.followup_reply(message,row)
         if response is None:
             refinement = None
 
@@ -54,7 +63,10 @@ def converse(message, conversation_id, scope, tool):
             plan=None
             if (not knowledge and natural is None and effective==message and
                     classify_query(effective) in {'general_question','product_search'} and
-                    not link_query(effective)['entities'] and 'sku' not in shared.normalized(message).split()):
+                    all(
+                        entity.get('method') == 'ontology_constraint'
+                        for entity in link_query(effective)['entities']
+                    ) and 'sku' not in shared.normalized(message).split()):
                 from jewelry_agents.semantic_planner import plan_query
                 plan=plan_query(message)
             if plan is not None and plan.intent=='off_topic':
@@ -100,6 +112,22 @@ def converse(message, conversation_id, scope, tool):
                 if bridge and not row.get('domain_bridge_offered'):
                     response['answer']+='\n\nNếu bạn đang chuẩn bị một dịp đặc biệt, mình có thể giúp chọn trang sức hoặc quà tặng. Bạn đang chọn cho dịp nào?'
                     row['domain_bridge_offered']=True
+        if response.get('products') and response.get('intent') not in {
+                'product_discussion', 'shopping_advice'}:
+            if os.getenv(
+                'LUMIERE_COMPACT_SHOPPING_RESPONSE_ENABLED', 'false'
+            ).lower() == 'true':
+
+                compact = compact_shopping_answer(
+                    row.get('shopping_state'),
+                    response,
+                    previous_shopping_state
+                )
+
+                if compact:
+                    response['answer'] = compact
+                    response['response_mode'] = 'contextual_grounded_response'
+
         if (0<len(response.get('products',[]))<=3 and {'dense','graph'}.issubset(response.get('retrieval_sources_used',[]))
                 and os.getenv('LUMIERE_GROUNDED_NARRATIVE_ENABLED','false').lower()=='true'):
             from .natural_dialogue import answer_natural
@@ -111,7 +139,19 @@ def converse(message, conversation_id, scope, tool):
                 facts.append(item)
             remaining=min(24,35-(time.monotonic()-started))
             narrative_question=row.get('shopping_context',message) if response.get('clarification_resolution') else message
-            paragraph=answer_natural(narrative_question,evidence={'verified_product_attributes':facts},time_budget=remaining) if remaining>=2 else None
+            state = row.get('shopping_state')
+            evidence = {
+                'verified_product_attributes': facts
+            }
+
+            if state is not None and hasattr(state, 'to_dict'):
+                evidence['shopping_state'] = state.to_dict()
+
+            paragraph=answer_natural(
+                narrative_question,
+                evidence=evidence,
+                time_budget=remaining
+            ) if remaining>=2 else None
             if paragraph:
                 response['answer']=paragraph+'\n\n'+response.get('answer','')
                 response['response_mode']='grounded_llm_rag'

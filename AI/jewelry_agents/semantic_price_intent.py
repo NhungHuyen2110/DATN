@@ -73,11 +73,17 @@ Ví dụ:
 """
 
 
-def infer_price_preference(query):
+def infer_price_preference(query, *, enabled=None, time_budget=None):
 
-    if os.getenv(
-        "LUMIERE_SEMANTIC_PRICE_ENABLED", "false"
-    ).lower() != "true":
+    if enabled is None:
+        enabled = os.getenv(
+            "LUMIERE_SEMANTIC_PRICE_ENABLED", "false"
+        ).lower() == "true"
+
+    if not enabled:
+        return "neutral"
+
+    if time_budget is not None and not 2 <= time_budget <= 24:
         return "neutral"
 
     if not isinstance(query, str):
@@ -154,7 +160,7 @@ def infer_price_preference(query):
         )
 
         with opener.open(
-            request, timeout=35
+            request, timeout=35 if time_budget is None else time_budget + 1
         ) as response:
 
             result = json.loads(
@@ -177,6 +183,9 @@ def infer_price_preference(query):
         return validated
 
     try:
+        if time_budget is not None:
+            return _GATE.call_with_timeout(time_budget, generate)
+
         return _GATE.call(generate)
 
     except (

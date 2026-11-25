@@ -2,11 +2,14 @@
 """Prepare structured shopping refinements without mutating sessions."""
 
 import re
+import os
 
-from .dialogue_state import ShoppingState
+from .dialogue_state import ShoppingState, update_state
 from .dialogue_state_extractor import apply_shopping_message
 from .dialogue_state_query import render_shopping_query
-from .entity_linking import normalize
+from .entity_linking import normalize, link_query
+from .price_intent_router import resolve_price_preference
+from .semantic_price_intent import infer_price_preference
 
 
 def prepare_state(query, parse_price, top_k=3):
@@ -58,13 +61,84 @@ def is_supported_refinement(message):
     )
 
 
+
+def prepare_semantic_refinement(message, previous_state):
+    """Allow only a supported soft price preference."""
+
+    from shared.conversation import knowledge_request, followup_kind
+    from .intent_router import classify_query
+    from .query_reference import reference_request
+
+    if previous_state.category is None:
+        return None
+
+    if not isinstance(message, str) or not 1 <= len(message) <= 250:
+        return None
+
+    if knowledge_request(message) or followup_kind(message):
+        return None
+
+    if classify_query(message) not in {
+        "general_question", "product_search"
+    }:
+        return None
+
+    if reference_request(message).get("active"):
+        return None
+
+    if link_query(message).get("entities"):
+        return None
+
+    if re.search(r"\d", message):
+        return None
+
+    enabled = os.getenv(
+        "LUMIERE_SEMANTIC_DST_ENABLED", "false"
+    ).lower() == "true"
+
+    def semantic_infer(query):
+
+        from .retrieval import _model_warming
+
+        if _model_warming.is_set():
+            return "neutral"
+
+        return infer_price_preference(
+            query,
+            enabled=True,
+            time_budget=18
+        )
+
+    preference = resolve_price_preference(
+        message,
+        constraints={},
+        allow_semantic=enabled,
+        semantic_infer=semantic_infer
+    )
+
+    if preference != "affordable":
+        return None
+
+    state = update_state(
+        previous_state,
+        updates={"price_preference": "affordable"}
+    )
+
+    return state, render_shopping_query(state)
+
+
 def prepare_refinement(message, previous_state, parse_price):
 
     if not isinstance(previous_state, ShoppingState):
         return None
 
     if not is_supported_refinement(message):
-        return None
+        try:
+            return prepare_semantic_refinement(
+                message, previous_state
+            )
+        except (TypeError, ValueError):
+            return None
 
     try:
 
