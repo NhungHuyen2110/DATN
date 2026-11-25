@@ -4,6 +4,8 @@ from jewelry_agents.shopping_advice import followup_query, standalone_budget
 from jewelry_agents.intent_router import classify_query
 from jewelry_agents.entity_linking import link_query
 from jewelry_agents.dialogue_state_controller import prepare_refinement
+from jewelry_agents.dialogue_state import ShoppingState
+from jewelry_agents.query_reference import reference_request
 from jewelry_agents.retrieval import extract_price_filter
 from .domain_dialogue import domain_answer
 from .contextual_response import (
@@ -23,6 +25,17 @@ def converse(message, conversation_id, scope, tool):
     try:
         started=time.monotonic()
         previous_shopping_state = row.get('shopping_state')
+
+        state_snapshot = {
+            key: row[key]
+            for key in (
+                'shopping_state',
+                'shopping_context',
+                'pending_category',
+                'last_result'
+            )
+            if key in row
+        }
         from .category_clarification import pending_category_reply
         from .product_dialogue import discussion_reply
         response=pending_category_reply(message,row,tool)
@@ -44,6 +57,45 @@ def converse(message, conversation_id, scope, tool):
                     row.get('shopping_state'),
                     extract_price_filter
                 )
+
+            # Fail-safe: an unresolved follow-up must not
+            # silently become an unrestricted product search.
+            if (
+                refinement is None
+                and isinstance(previous_shopping_state, ShoppingState)
+                and not row.get('pending_category')
+                and classify_query(message) in {
+                    'general_question', 'product_search'
+                }
+                and not shared.knowledge_request(message)
+                and 'khong can tim san pham' not in shared.normalized(message)
+                and not shared.followup_kind(message)
+                and not reference_request(message).get('active')
+                and not link_query(message)['entities']
+                and domain_answer(message, row['history']) is None
+            ):
+                answer = (
+                    'Mình chưa chắc bạn muốn thay đổi điều kiện nào. '
+                    'Mình vẫn giữ loại trang sức, ngân sách, '
+                    'chất liệu và số lượng đã chọn trước đó. '
+                    'Bạn muốn ưu tiên mẫu giá thấp hơn, '
+                    'đổi ngân sách hay thay đổi nhu cầu khác?'
+                )
+
+                row['history'] = [
+                    *row['history'],
+                    {'user': message, 'answer': answer}
+                ][-6:]
+
+                return {
+                    'success': True,
+                    'intent': 'clarification',
+                    'status': 'clarification_required',
+                    'response_mode': 'state_preserving_clarification',
+                    'answer': answer,
+                    'products': [],
+                    'conversation_id': token
+                }
 
             if refinement is not None:
                 effective = refinement[1]
@@ -81,6 +133,46 @@ def converse(message, conversation_id, scope, tool):
                 response={'success':True,'intent':'general_question','status':'general_question','products':[]}
             else:
                 response=tool(effective,semantic_plan=plan) if plan is not None and plan.intent in {'shop','consult'} else tool(effective)
+            # The API callback may clear state before we know
+            # whether a refinement has succeeded.
+            if refinement is not None and (
+                response.get('success') is False
+                or not response.get('products')
+            ):
+                for key in (
+                    'shopping_state',
+                    'shopping_context',
+                    'pending_category',
+                    'last_result'
+                ):
+                    if key in state_snapshot:
+                        row[key] = state_snapshot[key]
+                    else:
+                        row.pop(key, None)
+
+                answer = (
+                    response.get('answer')
+                    or 'Mình chưa tìm được kết quả phù hợp.'
+                )
+
+                answer += (
+                    ' Mình vẫn giữ yêu cầu mua sắm trước đó; '
+                    'điều chỉnh vừa rồi chưa được áp dụng.'
+                )
+
+                row['history'] = [
+                    *row['history'],
+                    {'user': message, 'answer': answer}
+                ][-6:]
+
+                return {
+                    **response,
+                    'answer': answer,
+                    'products': [],
+                    'response_mode': 'state_preserved',
+                    'conversation_id': token
+                }
+
             if (
                 refinement is not None
                 and response.get('success') is not False
