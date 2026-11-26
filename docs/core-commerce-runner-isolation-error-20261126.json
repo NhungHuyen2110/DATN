@@ -1,0 +1,13 @@
+{
+  "successful": false,
+  "date": "2026-11-26",
+  "scope": "Joined Customer COD -> Staff fulfillment/collection -> Admin orders/revenue, live HTTP and actual RBAC",
+  "reused_evidence": [
+    "commerce-browser-20261123.json",
+    "compose-release-full-browser-20261122.json"
+  ],
+  "current_browser_retested": false,
+  "checks": [],
+  "phase": "isolation",
+  "failure_type": "CalledProcessError"
+}

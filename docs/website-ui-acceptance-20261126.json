@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-26",
+  "browser": "Installed Google Chrome, headless, real UI and HTTP",
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "ai_requests_sent": 0,
+  "external_payment_sent": false,
+  "reused_evidence": [
+    "core-commerce-acceptance-20261126.json",
+    "commerce-browser-20261123.json",
+    "commerce-layout-20261123.json",
+    "commerce-backend-tests-20261123.json"
+  ],
+  "cases": [
+    {
+      "name": "customer_registration_login_logout",
+      "status": "PASS",
+      "evidence": "Registered through form, UI login/account and logout clear actual server session"
+    },
+    {
+      "name": "customer_catalog_filters_detail",
+      "status": "PASS",
+      "evidence": {
+        "catalog_count_label": "Tìm thấy 501 / 501 sản phẩm",
+        "search_empty_category_price_sort_detail_image": true
+      }
+    },
+    {
+      "name": "customer_order_history_detail",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error": "Locator expected to be visible\nActual value: None\nError: element(s) not found \nCall log:\n  - Expect \"to_be_visible\" locator(\"#page-content a[href*=\\\"order-detail.html?id=\\\"]\").first with timeout 5000ms\n  - waiting for locator(\"#page-content a[href*=\\\"order-detail.html?id=\\\"]\").first\n\nAria snapshot:\n- text: LUMIÈRE — TINH HOA TRANG SỨC · FRONTEND KHÔNG DÙNG FRAMEWORK\n- banner:\n  - link \"LUMIÈRE FINE JEWELRY\":\n    - /url: ../index.html\n  - navigation:\n    - link \"Trang chủ\":\n      - /url: ../index.html\n    - link \"Sản phẩm\":\n      - /url: ../pages/products.html\n    - link \"Bộ sưu tập\":\n      - /url: ../pages/collections.html\n    - link \"Giới thiệu\":\n      - /url: ../pages/about.html\n    - link \"Liên hệ\":\n      - /url: ../pages/contact.html\n  - link \"♡ Yêu thích\":\n    - /url: ../pages/wishlist.html\n  - link \"Giỏ hàng\":\n    - /url: ../pages/cart.html\n  - link \"Tài khoản\":\n    - /url: ../pages/account.html\n    - text: QA AI customer\n  - button \"Đăng xuất\"\n- main:\n  - text: LUMIÈRE FINE JEWELRY\n  - heading \"Đơn hàng của tôi\" [level=1]\n  - heading \"Đơn hàng của tôi\" [level=2]\n  - paragraph: \"Tổng số đơn hàng: 0\"\n  - text: Chưa có đơn hàng.\n  - paragraph: Trang 1 / 1\n- contentinfo:\n  - str"
+    },
+    {
+      "name": "staff_orders_inventory",
+      "status": "PASS",
+      "evidence": {
+        "order_id": 14,
+        "status_persists_reload": true,
+        "inventory_increment_and_restore": true,
+        "no_product_price_or_creation_controls": true
+      }
+    },
+    {
+      "name": "admin_products_orders_statistics",
+      "status": "PASS",
+      "evidence": "Admin dashboard matches API, product name/price edit saved and restored, real order detail, analytics 30/7 days"
+    },
+    {
+      "name": "admin_accounts",
+      "status": "PASS",
+      "evidence": "Customer search/detail/lock/unlock; Staff create/edit/lock/unlock and actual UI login, all synthetic QA accounts"
+    },
+    {
+      "name": "ui_role_guards",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error": "Page URL expected to be 'http://127.0.0.1:18082/pages/login.html'\nActual value: http://127.0.0.1:18082/pages/orders.html \nCall log:\n  - Expect \"to_have_url\" with timeout 5000ms\n    13 × locator resolved to <html lang=\"vi\">…</html>\n       - unexpected value \"http://127.0.0.1:18082/pages/orders.html\"\n\nAria snapshot:\n- text: LUMIÈRE — TINH HOA TRANG SỨC · FRONTEND KHÔNG DÙNG FRAMEWORK\n- banner:\n  - link \"LUMIÈRE FINE JEWELRY\":\n    - /url: ../index.html\n  - navigation:\n    - link \"Trang chủ\":\n      - /url: ../index.html\n    - link \"Sản phẩm\":\n      - /url: ../pages/products.html\n    - link \"Bộ sưu tập\":\n      - /url: ../pages/collections.html\n    - link \"Giới thiệu\":\n      - /url: ../pages/about.html\n    - link \"Liên hệ\":\n      - /url: ../pages/contact.html\n  - link \"♡ Yêu thích\":\n    - /url: ../pages/wishlist.html\n  - link \"Giỏ hàng\":\n    - /url: ../pages/cart.html\n  - link \"Tài khoản\":\n    - /url: ../pages/login.html\n    - img\n    - text: Đăng nhập\n- main:\n  - text: LUMIÈRE FINE JEWELRY\n  - heading \"Đơn hàng của tôi\" [level=1]\n  - text: Vui lòng đăng nhập để xem đơn hàng.\n  - link \"Đăng nhập\":\n    - /url: login.html\n- contentinfo:\n  - strong: LUMIÈRE\n  - paragraph: Vẻ đẹp vượt thời g"
+    },
+    {
+      "name": "responsive_images_links",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error": "Horizontal viewport overflow: [{\"page\": \"admin/customers.html\", \"width\": 390, \"viewport\": 390, \"body\": 407}]"
+    },
+    {
+      "name": "vnpay_simulated_callbacks",
+      "status": "FAIL",
+      "error_type": "Error",
+      "error": "Response.json: Protocol error (Network.getResponseBody): No resource with given identifier found\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation."
+    }
+  ],
+  "page_errors": [],
+  "http_errors": [],
+  "blocked_external_requests": 61,
+  "blocked_ai_requests": 2,
+  "main_relevant_tables_unchanged": true,
+  "successful": false,
+  "real_vnpay_sandbox": "BLOCKED; simulated merchant only, no bank/user interaction performed"
+}

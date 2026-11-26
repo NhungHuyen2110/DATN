@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-26",
+  "browser": "Installed Google Chrome, headless, real UI and HTTP",
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "ai_requests_sent": 0,
+  "external_payment_sent": false,
+  "reused_evidence": [
+    "core-commerce-acceptance-20261126.json",
+    "commerce-browser-20261123.json",
+    "commerce-layout-20261123.json",
+    "commerce-backend-tests-20261123.json"
+  ],
+  "cases": [
+    {
+      "name": "customer_orders_mobile",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error": "order-detail.html?id=16 viewport overflow"
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: net::ERR_FAILED"
+  ],
+  "http_errors": [],
+  "blocked_external_requests": 5,
+  "blocked_ai_requests": 0,
+  "main_relevant_tables_unchanged": true,
+  "successful": false,
+  "real_vnpay_sandbox": "BLOCKED; simulated merchant only, no bank/user interaction performed"
+}

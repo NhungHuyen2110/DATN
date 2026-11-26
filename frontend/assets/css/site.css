@@ -264,3 +264,11 @@
 
 /* Checkout coupon state and authoritative totals. */
 .coupon-actions{display:flex;gap:10px;flex-wrap:wrap}.checkout-total{font-size:18px;border-top:1px solid #ddcfbb;margin-top:12px;padding-top:18px}#checkout-discount-row[hidden],#coupon-remove[hidden]{display:none!important}
+
+/* Keep customer search and status controls inside narrow admin viewports. */
+.backend-console .customer-toolbar{flex-wrap:wrap}
+.backend-console .customer-toolbar input{flex:1 1 180px;min-width:0;max-width:100%}
+.backend-console .customer-toolbar select{max-width:100%}
+
+/* Preserve full order references without pushing small screens sideways. */
+body[data-page="order-detail"] #page-content>.panel>p{overflow-wrap:anywhere}

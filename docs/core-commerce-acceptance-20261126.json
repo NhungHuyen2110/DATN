@@ -1,0 +1,81 @@
+{
+  "successful": true,
+  "date": "2026-11-26",
+  "scope": "Joined Customer COD -> Staff fulfillment/collection -> Admin orders/revenue, live HTTP and actual RBAC",
+  "reused_evidence": [
+    "commerce-browser-20261123.json",
+    "compose-release-full-browser-20261122.json"
+  ],
+  "current_browser_retested": false,
+  "checks": [
+    "Runtime QA database, separate images, sync disabled, mail disabled verified before writes",
+    "Three roles authenticate with actual sessions; fresh synthetic Customer used",
+    "Customer selects in-stock product, cart persists, COD pending/unpaid, cart cleared, stock deducted once, own history/detail correct",
+    "Guest 401; Customer denied operational reads/writes and other Customer detail 404; Staff denied Admin orders/revenue/status; Staff/Admin cannot checkout",
+    "Staff sees same order/detail, rejects early COD collection and skipped transitions, fulfills all four legal transitions; delivered unpaid excluded from revenue",
+    "Staff COD receipt succeeds and repeated receipt is idempotent; Admin sees same delivered/paid order, dashboard +1 and verified revenue increases exactly by order total; stock not deducted twice"
+  ],
+  "phase": "complete",
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "qa_order_id": 15,
+  "order_total_vnd": "5597327.00",
+  "main_relevant_tables_unchanged": true,
+  "main_snapshot": {
+    "database": "lumiere_test_original_data",
+    "tables": {
+      "users": {
+        "rows": 12,
+        "digest": "2d6d205b31a3ed53c11f00de25425e45"
+      },
+      "products": {
+        "rows": 500,
+        "digest": "a19331aa4b0a5097929ac400c6382754"
+      },
+      "carts": {
+        "rows": 5,
+        "digest": "69452ba56ac65390333a7bef9f74e21a"
+      },
+      "cart_items": {
+        "rows": 2,
+        "digest": "2ef59f30fb24530a17f051d7343bbb3f"
+      },
+      "orders": {
+        "rows": 14,
+        "digest": "80c107798bccd0f82cb749328b462b5a"
+      },
+      "order_items": {
+        "rows": 17,
+        "digest": "6691559f622597faf1641c266951af7b"
+      },
+      "payment_transactions": {
+        "rows": 10,
+        "digest": "880c9e2b3ff88889bff37e12177836a7"
+      }
+    }
+  },
+  "preflight": {
+    "docker_core_services_running": true,
+    "postgres_ready": true,
+    "main_health_database": "connected",
+    "main_catalog_products": 500
+  },
+  "cleanup": {
+    "three_started_qa_containers_stopped": true,
+    "original_seven_running_containers_preserved": true,
+    "databases_and_volumes_retained": true,
+    "main_health_after": "healthy",
+    "main_catalog_after": 500
+  },
+  "application_defects_found": [],
+  "application_files_changed": [],
+  "runner_correction": {
+    "initial_attempt": "core-commerce-runner-isolation-error-20261126.json",
+    "cause": "Incorrect Python quoting in read-only SQL digest query",
+    "fixed": true,
+    "initial_attempt_business_writes": false
+  },
+  "not_retested": [
+    "Browser UI: reuse existing Chrome evidence; current joined workflow verified through live API only",
+    "VNPAY/bank integration, AI algorithms, full regression, hosting: outside requested COD scope"
+  ]
+}

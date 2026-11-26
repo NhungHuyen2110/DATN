@@ -1,0 +1,431 @@
+{
+  "date": "2026-11-26",
+  "overall": "PARTIAL ACCEPTANCE; website UI accepted for checked scope, real VNPAY/hosting remain BLOCKED or UNVERIFIED",
+  "browser": "Real installed Chrome, headless; no mocked application API responses",
+  "qa_database": "lumiere_test_commerce_acceptance",
+  "cases": {
+    "customer_registration_login_logout": {
+      "status": "PASS",
+      "evidence_file": "website-ui-acceptance-20261126.json",
+      "evidence": "Registered through form, UI login/account and logout clear actual server session"
+    },
+    "customer_catalog_filters_detail": {
+      "status": "PASS",
+      "evidence_file": "website-ui-acceptance-20261126.json",
+      "evidence": {
+        "catalog_count_label": "Tìm thấy 501 / 501 sản phẩm",
+        "search_empty_category_price_sort_detail_image": true
+      }
+    },
+    "staff_orders_inventory": {
+      "status": "PASS",
+      "evidence_file": "website-ui-acceptance-20261126.json",
+      "evidence": {
+        "order_id": 14,
+        "status_persists_reload": true,
+        "inventory_increment_and_restore": true,
+        "no_product_price_or_creation_controls": true
+      }
+    },
+    "admin_products_orders_statistics": {
+      "status": "PASS",
+      "evidence_file": "website-ui-acceptance-20261126.json",
+      "evidence": "Admin dashboard matches API, product name/price edit saved and restored, real order detail, analytics 30/7 days"
+    },
+    "admin_accounts": {
+      "status": "PASS",
+      "evidence_file": "website-ui-acceptance-20261126.json",
+      "evidence": "Customer search/detail/lock/unlock; Staff create/edit/lock/unlock and actual UI login, all synthetic QA accounts"
+    },
+    "ui_role_guards": {
+      "status": "PASS",
+      "evidence_file": "website-ui-focused-20261126.json",
+      "evidence": [
+        {
+          "role": "guest",
+          "denied": "/pages/admin/dashboard.html",
+          "redirect": "/pages/login.html"
+        },
+        {
+          "role": "guest",
+          "denied": "/pages/staff/orders.html",
+          "redirect": "/pages/login.html"
+        },
+        {
+          "role": "guest",
+          "denied": "/pages/orders.html",
+          "login_prompt_without_private_data": true
+        },
+        {
+          "role": "customer",
+          "denied": "/pages/admin/products.html",
+          "redirect": "/pages/products.html"
+        },
+        {
+          "role": "customer",
+          "denied": "/pages/staff/inventory.html",
+          "redirect": "/pages/products.html"
+        },
+        {
+          "role": "staff",
+          "denied": "/pages/admin/dashboard.html",
+          "redirect": "/pages/staff/orders.html"
+        },
+        {
+          "role": "staff",
+          "denied": "/pages/admin/staff.html",
+          "redirect": "/pages/staff/orders.html"
+        },
+        {
+          "role": "admin",
+          "denied": "/pages/staff/orders.html",
+          "redirect": "/pages/admin/dashboard.html"
+        }
+      ]
+    },
+    "vnpay_simulated_callbacks": {
+      "status": "PASS",
+      "evidence_file": "website-ui-focused-20261126.json",
+      "evidence": {
+        "mode": "SIMULATED callback signed with synthetic QA secret, no gateway contacted",
+        "order_id": 16,
+        "url_signature_amount_return_config": true,
+        "invalid_signature_97": true,
+        "wrong_amount_04": true,
+        "return_read_only_and_html": true,
+        "ipn_success_00_duplicate_02": true,
+        "order_ui_paid": true,
+        "real_sandbox_transaction": "BLOCKED: requires valid merchant, public HTTPS Return/IPN and user payment"
+      }
+    },
+    "customer_order_history_detail": {
+      "status": "PASS",
+      "evidence_file": "website-ui-repair-20261126.json",
+      "evidence": {
+        "history_detail_order_id": 16,
+        "code_and_recipient_match_server": true
+      }
+    },
+    "customer_toolbar_responsive_fix": {
+      "status": "PASS",
+      "evidence_file": "website-ui-repair-20261126.json",
+      "evidence": {
+        "toolbar_and_viewport": [
+          {
+            "viewport": 1440,
+            "body": 1440
+          },
+          {
+            "viewport": 390,
+            "body": 390
+          },
+          {
+            "viewport": 320,
+            "body": 320
+          }
+        ],
+        "table_actions_reachable_by_horizontal_scroll": true
+      }
+    },
+    "customer_orders_mobile": {
+      "status": "PASS",
+      "evidence_file": "website-customer-mobile-fixed-20261126.json",
+      "evidence": [
+        {
+          "page": "orders.html",
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "orders.html",
+          "viewport": 320,
+          "body": 320
+        },
+        {
+          "page": "order-detail.html",
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "order-detail.html",
+          "viewport": 320,
+          "body": 320
+        }
+      ]
+    },
+    "responsive_images_links": {
+      "status": "PASS after focused fixes",
+      "evidence_file": [
+        "website-ui-acceptance-20261126.json",
+        "website-ui-repair-20261126.json",
+        "website-customer-mobile-fixed-20261126.json"
+      ],
+      "original_measurements": [
+        {
+          "page": "products.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "products.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "product-detail.html?id=1",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "product-detail.html?id=1",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "login.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "login.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "staff/orders.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "staff/orders.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "staff/inventory.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "staff/inventory.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "admin/dashboard.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/dashboard.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "admin/products.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/products.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "admin/customers.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/customers.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 407
+        },
+        {
+          "page": "admin/staff.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/staff.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "admin/orders.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/orders.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        },
+        {
+          "page": "admin/analytics.html",
+          "width": 1440,
+          "viewport": 1440,
+          "body": 1440
+        },
+        {
+          "page": "admin/analytics.html",
+          "width": 390,
+          "viewport": 390,
+          "body": 390
+        }
+      ],
+      "note": "Initial 390px Admin customer toolbar overflow fixed and retested at 1440/390/320px; Customer order-code overflow at 320px fixed and retested. No full repeat."
+    }
+  },
+  "vnpay_live": {
+    "status": "BLOCKED",
+    "reason": "Serving container lacks all four VNPAY environment variables; public HTTPS Return/IPN and merchant portal registration not verified; bank payment/user interaction not performed",
+    "evidence_file": "vnpay-live-config-20261126.json"
+  },
+  "vnpay_simulation": {
+    "status": "PASS",
+    "gateway_contacted": false,
+    "merchant": "Synthetic TESTONLY, QA secret only",
+    "url_and_callback_evidence": "website-ui-focused-20261126.json",
+    "independent_postgres_ledger": "vnpay-qa-ledger-20261126.json",
+    "prior_failed_cancelled_late_conflicting_callback_tests": "Reused commerce-backend-tests-20261123.json; not newly exercised against a bank"
+  },
+  "defects_fixed": [
+    {
+      "problem": "Admin customer search/status toolbar pushed 390px viewport to 407px",
+      "cause": "Non-wrapping flex toolbar and input intrinsic width",
+      "fix": "Scoped wrapping/shrinking controls; independent table scroll preserved",
+      "files": [
+        "frontend/assets/js/backend-console.js",
+        "frontend/assets/css/site.css"
+      ],
+      "retested_widths": [
+        1440,
+        390,
+        320
+      ]
+    },
+    {
+      "problem": "Customer detail page with full 34-character order reference pushed 320px viewport to 368px",
+      "cause": "Unbreakable order reference within narrow panel paragraph",
+      "fix": "Scoped overflow-wrap:anywhere for order detail paragraphs; full reference preserved",
+      "files": [
+        "frontend/assets/css/site.css"
+      ],
+      "retested_widths": [
+        390,
+        320
+      ]
+    }
+  ],
+  "unresolved_application_failures_in_checked_scope": [],
+  "historical_runner_failures": {
+    "preserved_reports": [
+      "website-ui-acceptance-20261126.json",
+      "website-customer-mobile-20261126.json"
+    ],
+    "distinction": [
+      "Initial customer fixture had zero orders; used new synthetic customer with UI-created VNPAY order for history/detail",
+      "Guest orders page intentionally shows login prompt rather than redirect; no private information exposed",
+      "Chrome navigation detached payment URL response body; resumed persisted pending transaction through idempotent URL endpoint without second checkout"
+    ],
+    "application_failures": [
+      "Admin customer toolbar overflow",
+      "Customer detail long-reference overflow"
+    ],
+    "all_above_resolved_or_reclassified": true
+  },
+  "console_and_network": {
+    "uncaught_javascript_errors": 0,
+    "initial_console_listener": false,
+    "focused_console_messages": [
+      "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "expected_console_causes": [
+      "401 auth/me on logged-out sessions",
+      "AI and external resources explicitly aborted by QA browser route"
+    ],
+    "unexpected_http_errors": [],
+    "ai_requests_sent": 0,
+    "ai_gemini_ollama_model_graph_vector_changes": false
+  },
+  "reused_evidence": [
+    "core-commerce-acceptance-20261126.json",
+    "commerce-browser-20261123.json",
+    "commerce-layout-20261123.json",
+    "commerce-backend-tests-20261123.json"
+  ],
+  "application_files_changed": [
+    "frontend/assets/css/site.css",
+    "frontend/assets/js/backend-console.js"
+  ],
+  "added_runner": "scripts/verify_website_ui_acceptance.py",
+  "artifact_location": ".local-tmp/website-ui-qa (private synthetic credentials/state and local screenshots; not for publication)",
+  "release_verification": {
+    "main_business_tables_match_core_acceptance_snapshot": true,
+    "served_frontend_files_match_fixed_source": {
+      "frontend/assets/css/site.css": true,
+      "frontend/assets/js/backend-console.js": true
+    },
+    "main_readiness": {
+      "status": "healthy",
+      "database": "connected"
+    },
+    "main_catalog_total": 500
+  },
+  "not_verified": [
+    "Real VNPAY sandbox bank authorization, real merchant callback delivery/registration and settlement",
+    "Public hosting DNS/TLS/reverse proxy environment, secure cookies/CORS on final domain",
+    "Backup restore and restart smoke on actual hosting server",
+    "Exhaustive CRUD/validation combinations, all viewport/browser combinations, accessibility/load/security audit; no full regression requested"
+  ],
+  "required_before_hosting": [
+    "Supply and validate final hosting domain/HTTPS and deployment secrets/environment",
+    "Load approved VNPAY merchant configuration into serving deployment if online payment is required; configure public Return/IPN at merchant portal",
+    "Perform a real sandbox payment with user/bank flow; verify actual signed IPN, order status, duplicate notification and report totals",
+    "Verify backup/restore, persistent product images/database and focused smoke on target host"
+  ],
+  "git_pushed": false,
+  "cleanup": {
+    "qa_containers_stopped": [
+      "proxy-review-qa",
+      "frontend-review-qa",
+      "business-qa"
+    ],
+    "databases_and_volumes_preserved": true,
+    "serving_frontend_updated": true,
+    "other_original_six_running_containers_preserved": true
+  },
+  "added_reports": [
+    "docs/vnpay-live-config-20261126.json",
+    "docs/vnpay-qa-ledger-20261126.json",
+    "docs/website-customer-mobile-20261126.json",
+    "docs/website-customer-mobile-fixed-20261126.json",
+    "docs/website-prehosting-acceptance-20261126.json",
+    "docs/website-release-verification-20261126.json",
+    "docs/website-ui-acceptance-20261126.json",
+    "docs/website-ui-focused-20261126.json",
+    "docs/website-ui-repair-20261126.json"
+  ]
+}

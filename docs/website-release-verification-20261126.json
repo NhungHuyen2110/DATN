@@ -1,0 +1,12 @@
+{
+  "main_business_tables_match_core_acceptance_snapshot": true,
+  "served_frontend_files_match_fixed_source": {
+    "frontend/assets/css/site.css": true,
+    "frontend/assets/js/backend-console.js": true
+  },
+  "main_readiness": {
+    "status": "healthy",
+    "database": "connected"
+  },
+  "main_catalog_total": 500
+}

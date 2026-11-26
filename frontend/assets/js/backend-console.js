@@ -188,7 +188,7 @@
       const filters = { search, ...(active === "" ? {} : { is_active: active === "active" }) };
       const result = await api.adminCustomers(page, 20, filters);
       target.innerHTML = `<div class="panel">
-        <div class="toolbar"><input id="customer-search" type="search" value="${esc(search)}" placeholder="Tên, email, điện thoại">
+        <div class="toolbar customer-toolbar"><input id="customer-search" type="search" value="${esc(search)}" placeholder="Tên, email, điện thoại">
           <select id="customer-active"><option value="">Mọi trạng thái</option><option value="active" ${active === "active" ? "selected" : ""}>Hoạt động</option><option value="locked" ${active === "locked" ? "selected" : ""}>Đã khóa</option></select>
         </div><div class="table-wrap"><table class="data-table"><thead><tr><th>Khách hàng</th><th>Liên hệ</th><th>Ngày tạo</th><th>Số đơn</th><th>Chi tiêu</th><th>Trạng thái</th><th></th></tr></thead><tbody>
         ${result.items.map(customer => `<tr><td>${esc(customer.full_name)}</td><td>${esc(customer.email)}<br>${esc(customer.phone || "—")}</td>

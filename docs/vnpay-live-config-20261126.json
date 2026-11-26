@@ -1,0 +1,12 @@
+{
+  "syntax_valid": false,
+  "failure_type": "HTTPException",
+  "ipn_registered_with_merchant": "UNVERIFIED: no merchant portal access",
+  "real_payment": "NOT PERFORMED",
+  "container_variables_missing": [
+    "VNPAY_ENABLED",
+    "VNPAY_TMN_CODE",
+    "VNPAY_HASH_SECRET",
+    "VNPAY_RETURN_URL"
+  ]
+}
