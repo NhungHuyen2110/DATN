@@ -335,80 +335,8 @@ def retrieval_diagnostics(request: DiagnosticsRequest, authorization: str | None
 
 @app.post("/chat", tags=["Chatbot RAG"])
 def chat(request: ChatRequest):
-    from shared.conversation import STORE
     from rag.conversation_service import converse
-    from jewelry_agents.dialogue_state_controller import prepare_state
-    from jewelry_agents.dialogue_state_query import render_shopping_query
-    from jewelry_agents.retrieval import extract_price_filter
-    from jewelry_agents.entity_linking import normalize
-    scope = ('customer-public',)
-    token, row = STORE.resolve(request.conversation_id, scope)
     def answer(query, semantic_plan=None):
-        effective = query
-        options={'semantic_plan':semantic_plan} if semantic_plan is not None else {}
-        result = answer_jewelry_question(query=effective, top_k=request.top_k,**options)
-        if result.get('clarification_options'):
-            row['shopping_context']=effective
-            row['pending_category']={'query':effective,'options':result['clarification_options']}
-        elif result.get('advice_intent') == 'style_advice':
-            row['shopping_context'] = effective if effective.startswith('Tư vấn ') else 'Tư vấn '+effective
-        elif result.get('products'):
-            row['shopping_context'] = effective
-        else:
-            row.pop('shopping_context', None)
-        row.pop('shopping_state', None)
-
-        if (
-            result.get('success') is not False
-            and result.get('products')
-            and not result.get('clarification_options')
-            and result.get('advice_intent') != 'style_advice'
-        ):
-            try:
-                candidate = prepare_state(
-                    effective,
-                    extract_price_filter,
-                    top_k=request.top_k
-                )
-
-                if candidate is not None:
-                    rendered = render_shopping_query(candidate)
-
-                    # Strict compatibility guard:
-                    # only keep states whose canonical query
-                    # preserves the supported request.
-                    text = normalize(effective)
-
-                    import re
-
-                    simple_request = bool(re.fullmatch(
-                        r"(?:tim|cho xem|goi y|top [0-9]+) "
-                        r"(?:nhan|day chuyen|bong tai|lac tay|vong tay|charm)"
-                        r"(?: bac(?: 925)?)?"
-                        r"(?: gia mem| re nhat| dat nhat)?"
-                        r"(?: (?:duoi|khong qua|ngan sach) "
-                        r"[0-9]+(?:[.,][0-9]+)? "
-                        r"(?:trieu|dong|nghin))?",
-                        text
-                    ))
-
-                    if simple_request:
-                        row['shopping_state'] = candidate
-
-            except (TypeError, ValueError):
-                pass
-
-        return result
-    result = converse(request.query, token, scope, answer)
-    if result.get('intent') in {'conversation_correction','out_of_scope'}:
-        row.pop('shopping_context', None)
-    previous = row.get('last_result') or {}
-    if (result.get('intent') == 'conversation_explanation'
-            and previous.get('recommendation_scope') == 'advisory_unverified_preferences'
-            and previous.get('products')):
-        reasons = ['• '+str(p.get('ProductName',''))+': '+str(p.get('reason',''))
-                   for p in previous.get('products', [])]
-        result['answer'] = ('Mình giữ nguyên các mẫu vừa gợi ý. Lý do có thể kiểm tra được là:\n'
-            +'\n'.join(reasons)+'\n\nGu bạn nêu là định hướng tư vấn; '
-            'mình chưa khẳng định từng mẫu có đầy đủ nhãn phong cách hay đối tượng sử dụng đã xác nhận.')
-    return result
+        options = {'semantic_plan': semantic_plan} if semantic_plan is not None else {}
+        return answer_jewelry_question(query=query, top_k=request.top_k, **options)
+    return converse(request.query, request.conversation_id, ('customer-public',), answer, top_k=request.top_k)

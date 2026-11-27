@@ -34,9 +34,8 @@
 
     if (note) {
       note.textContent =
-        "Nhập email đã đăng ký để yêu cầu đặt lại mật khẩu. " +
-        "Trong môi trường demo, liên kết khôi phục " +
-        "được hiển thị tại Terminal backend.";
+        "Dịch vụ gửi email khôi phục hiện chưa được kích hoạt. " +
+        "Vui lòng liên hệ bộ phận hỗ trợ nếu bạn cần đặt lại mật khẩu.";
     }
 
     const feedback = document.createElement("p");
@@ -78,10 +77,8 @@
         }
 
         feedback.textContent =
-          "Yêu cầu đã được tiếp nhận. " +
-          "Nếu email đã đăng ký, bạn có thể " +
-          "sử dụng liên kết khôi phục. " +
-          "Trong chế độ demo, kiểm tra Terminal backend.";
+          "Yêu cầu khôi phục đã được tiếp nhận. " +
+          "Vui lòng liên hệ bộ phận hỗ trợ để được hướng dẫn tiếp theo.";
 
         feedback.style.color = "#437447";
 

@@ -9,9 +9,11 @@
   root.innerHTML = `
     <button type="button" class="lai-launch" aria-label="Mở trợ lý tư vấn trang sức" aria-expanded="false" aria-controls="lai-dialog"><span aria-hidden="true">✧</span> Tư vấn AI</button>
     <section id="lai-dialog" class="lai-dialog" role="dialog" aria-modal="false" aria-label="Trợ lý tư vấn LUMIÈRE" hidden>
-      <header class="lai-head"><div><strong>✧ LUMIÈRE AI</strong><small>Gợi ý trang sức theo nhu cầu</small></div><button class="lai-close" type="button" aria-label="Đóng trò chuyện">×</button></header>
-      <div class="lai-messages" role="log" aria-live="polite" aria-relevant="additions text"><div class="lai-msg lai-bot">Xin chào! Bạn cần tìm nhẫn, dây chuyền, bông tai hay trang sức theo ngân sách nào?</div></div>
-      <form class="lai-form"><label class="lai-sr" for="lai-query">Nhập câu hỏi</label><input id="lai-query" type="text" maxlength="500" required autocomplete="off" placeholder="Ví dụ: Tìm nhẫn kim cương dưới 20 triệu"/><button type="submit" aria-label="Gửi câu hỏi">➤</button></form>
+      <header class="lai-head"><div><strong>✧ Trợ lý LUMIÈRE</strong><small>Tư vấn trang sức cá nhân hóa</small></div><button class="lai-close" type="button" aria-label="Đóng trò chuyện">×</button></header>
+      <div class="lai-messages" role="log" aria-live="polite" aria-relevant="additions text"><div class="lai-msg lai-bot">Xin chào! Rất vui được đồng hành cùng bạn.
+
+Bạn đang tìm một món trang sức cho bản thân hay một món quà dành tặng người đặc biệt?</div></div>
+      <form class="lai-form"><label class="lai-sr" for="lai-query">Nhập câu hỏi</label><input id="lai-query" type="text" maxlength="500" required autocomplete="off" placeholder="Nhập câu hỏi của bạn..."/><button type="submit" aria-label="Gửi câu hỏi">➤</button></form>
       <p class="lai-foot">Thông tin do AI hỗ trợ, vui lòng kiểm tra giá và tồn kho trước khi mua.</p>
     </section>`;
   document.body.append(root);

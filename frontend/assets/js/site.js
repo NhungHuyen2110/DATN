@@ -1,146 +1,559 @@
 "use strict";
 (() => {
-const root=document.body.dataset.root||'../',page=document.body.dataset.page,area=document.body.dataset.area;
-const P=window.LUMIERE_PRODUCTS||[];const $=(s)=>document.querySelector(s), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const money=n=>Number(n||0).toLocaleString('vi-VN')+' ₫';
-const read=(key,fallback)=>{try{const v=JSON.parse(localStorage.getItem(key));return v??fallback}catch{return fallback}};
-const FAV='lumiere_favorites';
-let user=null;
-let cartData={items:[],total_quantity:0,subtotal_vnd:"0.00"};
-let cartBusy=false;
-const favorites=()=>read(FAV,[]);
-const save=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
-const product=id=>P.find(p=>p.id===Number(id));
-const notify=(text,error=false)=>{const el=$('#site-toast');el.textContent=text;el.style.background=error?'#9d4232':'#292824';clearTimeout(notify.timer);notify.timer=setTimeout(()=>el.textContent='',4200)};
-const demo=msg=>notify(msg||'Đây là giao diện DEMO. Backend chưa cung cấp API cho chức năng này.');
-const nav=(text,url)=>`<a href="${root+url}">${text}</a>`;
-const shell=$('#site-shell');shell.innerHTML=`<div class="site-bar">LUMIÈRE — TINH HOA TRANG SỨC · FRONTEND KHÔNG DÙNG FRAMEWORK</div><header class="site-nav"><div class="container site-nav-inner"><a class="logo" href="${root}index.html">LUMIÈRE<span>FINE JEWELRY</span></a><nav class="site-nav-links">${nav('Trang chủ','index.html')}${nav('Sản phẩm','pages/products.html')}${nav('Bộ sưu tập','pages/collections.html')}${nav('Giới thiệu','pages/about.html')}${nav('Liên hệ','pages/contact.html')}</nav><div class="account-links">${nav('♡ Yêu thích','pages/wishlist.html')}${nav('Giỏ hàng','pages/cart.html')}<a id="account-nav" href="${root}pages/login.html" aria-label="Tài khoản"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Đăng nhập</a><button id="nav-logout" type="button" hidden>Đăng xuất</button></div></div></header>`;
-$('#site-footer').innerHTML=`<footer class="site-bottom"><strong>LUMIÈRE</strong><p>Vẻ đẹp vượt thời gian · Đồ án tốt nghiệp · Frontend HTML/CSS/JS thuần</p><p>${nav('Sản phẩm','pages/products.html')} · ${nav('Đơn hàng','pages/orders.html')} · ${nav('Chính sách liên hệ','pages/contact.html')}</p></footer>`;
-const content=$('#page-content');
+  const root = document.body.dataset.root || "../",
+    page = document.body.dataset.page,
+    area = document.body.dataset.area;
+  const P = window.LUMIERE_PRODUCTS || [];
+  const $ = (s) => document.querySelector(s),
+    esc = (x) =>
+      String(x ?? "").replace(
+        /[&<>"']/g,
+        (c) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[c],
+      );
+  const money = (n) => Number(n || 0).toLocaleString("vi-VN") + " ₫";
+  const read = (key, fallback) => {
+    try {
+      const v = JSON.parse(localStorage.getItem(key));
+      return v ?? fallback;
+    } catch {
+      return fallback;
+    }
+  };
+  const FAV = "lumiere_favorites";
+  let user = null;
+  let cartData = { items: [], total_quantity: 0, subtotal_vnd: "0.00" };
+  let cartBusy = false;
+  const favorites = () => read(FAV, []);
+  const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+  const product = (id) => P.find((p) => p.id === Number(id));
+  const notify = (text, error = false) => {
+    const el = $("#site-toast");
+    el.textContent = text;
+    el.style.background = error ? "#9d4232" : "#292824";
+    clearTimeout(notify.timer);
+    notify.timer = setTimeout(() => (el.textContent = ""), 4200);
+  };
+  const demo = (msg) =>
+    notify(
+      msg ||
+        "Đây là giao diện DEMO. Backend chưa cung cấp API cho chức năng này.",
+    );
+  const nav = (text, url) => `<a href="${root + url}">${text}</a>`;
 
-function applyRoleNavigation() {
-  const role = user?.role || "guest";
-  const menu = document.querySelector(".site-nav-links");
-  const account = document.querySelector("#account-nav");
-  const accountLinks = document.querySelector(".account-links");
-  const footerLinks = document.querySelector("#site-footer .site-bottom p:last-child");
-  if (!menu || !account || !accountLinks) return;
-  const link = (label, path) =>
-    `<a href="${root + path}">${label}</a>`;
-  if (role === "admin") {
-    menu.innerHTML = [
-      link("Dashboard", "pages/admin/dashboard.html"),
-      link("S&#7843;n ph&#7849;m", "pages/admin/products.html"),
-      link("&#272;&#417;n h&#224;ng", "pages/admin/orders.html"),
-      link("Kh&#225;ch h&#224;ng", "pages/admin/customers.html"),
-      link("Nh&#226;n vi&#234;n", "pages/admin/staff.html"),
-      link("M&#227; gi&#7843;m gi&#225;", "pages/admin/coupons.html"),
-      link("Liên hệ", "pages/admin/contacts.html")
-    ].join("");
-    account.href = root + "pages/admin/dashboard.html";
-    account.textContent = user.full_name + " (Admin)";
-    if (footerLinks) {
-      footerLinks.innerHTML =
-        link("B&#7843;ng &#273;i&#7873;u khi&#7875;n", "pages/admin/dashboard.html");
+  const shell = $("#site-shell");
+
+  const managementArea = area === "admin" || area === "staff";
+
+  /* ========================================
+   SHARED CHATBOT LOADER
+   ======================================== */
+
+  function mountSharedChatbot() {
+    const isManagement = area === "admin" || area === "staff";
+
+    const scriptName = isManagement ? "management-ai.js" : "customer-ai.js";
+
+    const cssName = isManagement
+      ? "management-ai-polish.css"
+      : "customer-ai.css";
+
+    const widgetId = isManagement ? "lumiere-mgmt-ai" : "lumiere-ai-widget";
+
+    // Không tạo chatbot nếu trang đã có.
+
+    if (document.getElementById(widgetId)) return;
+
+    // Kiểm tra stylesheet hiện có.
+
+    const hasCSS = Array.from(
+      document.querySelectorAll('link[rel="stylesheet"]'),
+    ).some((link) => {
+      return link.href.endsWith("/" + cssName);
+    });
+
+    if (!hasCSS) {
+      const stylesheet = document.createElement("link");
+
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = root + "assets/css/" + cssName;
+
+      document.head.appendChild(stylesheet);
     }
-  } else if (role === "staff") {
-    menu.innerHTML = [
-      link("X&#7917; l&#253; &#273;&#417;n h&#224;ng", "pages/staff/orders.html"),
-      link("Qu&#7843;n l&#253; t&#7891;n kho", "pages/staff/inventory.html")
-    ].join("");
-    account.href = root + "pages/staff/orders.html";
-    account.textContent = user.full_name + " (Staff)";
-    if (footerLinks) {
-      footerLinks.innerHTML =
-        link("X&#7917; l&#253; &#273;&#417;n h&#224;ng", "pages/staff/orders.html");
+
+    // Kiểm tra script hiện có.
+
+    const hasScript = Array.from(document.querySelectorAll("script[src]")).some(
+      (script) => {
+        return script.src.endsWith("/" + scriptName);
+      },
+    );
+
+    if (hasScript) return;
+
+    const chatbotScript = document.createElement("script");
+
+    chatbotScript.src = root + "assets/js/" + scriptName;
+
+    if (isManagement) {
+      chatbotScript.dataset.aiRole = area;
     }
-  } else {
-    return;
+
+    chatbotScript.onerror = () => {
+      console.warn("Không thể tải trợ lý LUMIÈRE.");
+    };
+
+    document.body.appendChild(chatbotScript);
   }
-  accountLinks.querySelectorAll("a").forEach(a => {
-    if (a.id === "account-nav") return;
-    const url = a.getAttribute("href") || "";
-    if (
-      url.endsWith("pages/wishlist.html") ||
-      url.endsWith("pages/cart.html")
-    ) {
-      a.hidden = true;
-      a.style.display = "none";
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountSharedChatbot, {
+      once: true,
+    });
+  } else {
+    mountSharedChatbot();
+  }
+
+  const roleTitle = area === "admin" ? "Bảng điều khiển" : "Quản lý cửa hàng";
+
+  const rolePath =
+    area === "admin" ? "pages/admin/dashboard.html" : "pages/staff/orders.html";
+
+  const accountIcon = `
+<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <circle cx="12" cy="7.6" r="3.4"/>
+  <path d="M4.7 21c.4-5.1 3-7.5 7.3-7.5s7 2.4 7.3 7.5"/>
+</svg>`;
+
+  const shopLinks = `
+  ${nav("Trang chủ", "index.html")}
+  ${nav("Sản phẩm", "pages/products.html")}
+  ${nav("Bộ sưu tập", "pages/collections.html")}
+  ${nav("Về chúng tôi", "pages/about.html")}
+  ${nav("Liên hệ", "pages/contact.html")}
+`;
+
+  const shopActions = `
+  <a class="icon-btn"
+     href="${root}pages/search.html"
+     title="Tìm kiếm"
+     aria-label="Tìm kiếm">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="10.7" cy="10.7" r="6.6"/>
+      <path d="m16 16 5 5"/>
+    </svg>
+  </a>
+
+  <a class="icon-btn"
+     href="${root}pages/wishlist.html"
+     title="Yêu thích"
+     aria-label="Yêu thích">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20.7 8.4c0 5-8.7 11-8.7 11s-8.7-6-8.7-11A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.7 2.1Z"/>
+    </svg>
+  </a>
+
+  <a class="icon-btn"
+     href="${root}pages/cart.html"
+     title="Giỏ hàng"
+     aria-label="Giỏ hàng">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 8h16l-1.3 12H5.3L4 8Z"/>
+      <path d="M8 9V6a4 4 0 0 1 8 0v3"/>
+    </svg>
+  </a>
+`;
+
+  shell.innerHTML = `
+<header class="site-header lumiere-shell-header ${managementArea ? "management-header" : ""}" id="site-header">
+
+  
+
+  <div class="container header-inner">
+
+    <button class="icon-btn mobile-only shell-menu-toggle"
+            type="button"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="shell-main-nav"
+            ${managementArea ? "hidden" : ""}>
+      ☰
+    </button>
+
+    <a class="logo"
+       href="${root}index.html"
+       aria-label="LUMIÈRE trang chủ">
+      LUMIÈRE
+      <span>FINE JEWELRY</span>
+    </a>
+
+    <nav class="main-nav"
+         id="shell-main-nav"
+         aria-label="Điều hướng chính">
+      ${
+        managementArea
+          ? `
+          <a class="management-store-link" href="${root}index.html">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 9l2-5h14l2 5v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0Z"/>
+              <path d="M5 14v7h14v-7M9 21v-6h6v6"/>
+            </svg>
+            <span>Xem cửa hàng</span>
+          </a>
+        `
+          : shopLinks
+      }
+    </nav>
+
+    <div class="header-actions shell-account-links">
+
+      ${managementArea ? "" : shopActions}
+
+      <a class="icon-btn"
+         id="account-nav"
+         href="${root}pages/login.html"
+         title="Tài khoản"
+         aria-label="Tài khoản">
+        ${accountIcon}
+      </a>
+
+      <details class="shell-account-menu" hidden>
+
+        <summary class="icon-btn ${managementArea ? "management-account-trigger" : ""}"
+         aria-label="Menu tài khoản">
+
+  ${
+    managementArea
+      ? `
+    <span class="management-avatar">
+      ${accountIcon}
+    </span>
+
+    <span class="management-identity">
+      <strong id="management-user-name">Tài khoản</strong>
+      <small id="management-user-role"></small>
+    </span>
+
+    <svg class="management-chevron"
+         viewBox="0 0 24 24"
+         fill="none"
+         aria-hidden="true">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+
+  `
+      : accountIcon
+  }
+
+</summary>
+
+        <div class="shell-account-panel">
+          <span class="shell-account-name"></span>
+          <div class="shell-account-options"></div>
+
+          <button id="nav-logout" type="button">
+            Đăng xuất
+          </button>
+        </div>
+
+      </details>
+
+    </div>
+
+  </div>
+</header>
+`;
+
+  const footer = $("#site-footer");
+
+  footer.innerHTML = `
+    <footer class="footer">
+
+      <div class="container footer-grid">
+
+        <div>
+          <a class="logo footer-logo" href="${root}index.html">
+            LUMIÈRE
+            <span>FINE JEWELRY</span>
+          </a>
+
+          <p>
+            Vẻ đẹp vượt thời gian.<br>
+            Chạm vào dấu ấn riêng của bạn.
+          </p>
+        </div>
+
+        <div>
+          <h3>KHÁM PHÁ</h3>
+
+          ${nav("Tất cả sản phẩm", "pages/products.html")}
+          ${nav("Bộ sưu tập", "pages/collections.html")}
+          ${nav("Câu chuyện thương hiệu", "pages/about.html")}
+        </div>
+
+        <div>
+          <h3>HỖ TRỢ</h3>
+
+          ${nav("Theo dõi đơn hàng", "pages/orders.html")}
+          ${nav("Liên hệ", "pages/contact.html")}
+        </div>
+
+        <div>
+          <h3>TÀI KHOẢN</h3>
+
+          ${nav("My LUMIÈRE", "pages/account.html")}
+          ${nav("Sản phẩm yêu thích", "pages/wishlist.html")}
+          ${nav("Đơn hàng của tôi", "pages/orders.html")}
+        </div>
+
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© 2026 LUMIÈRE</span>
+      </div>
+
+    </footer>
+  `;
+
+  const menuToggle = $(".shell-menu-toggle");
+
+  menuToggle.addEventListener("click", () => {
+    const opened = $("#shell-main-nav").classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(opened));
+  });
+
+  const accountMenu = $(".shell-account-menu");
+
+  document.addEventListener("click", (event) => {
+    if (!accountMenu.contains(event.target)) {
+      accountMenu.open = false;
     }
   });
-  const roleHome = role === "admin"
-    ? "pages/admin/dashboard.html"
-    : "pages/staff/orders.html";
-  const allowed = role === "admin"
-    ? page.startsWith("admin-")
-    : page.startsWith("staff-");
-  if (!allowed) {
-    location.replace(root + roleHome);
-    return true;
-  }
-  return false;
-}
 
-const card=p=>`<article class="catalog-card"><a href="${root}pages/product-detail.html?id=${encodeURIComponent(p.id)}"><img loading="lazy" src="${esc(p.image)}" alt="${esc(p.name)}"></a><div class="meta"><small>${esc(p.category)} · ${esc(p.material)}</small><h3><a href="${root}pages/product-detail.html?id=${encodeURIComponent(p.id)}">${esc(p.name)}</a></h3><strong>${money(p.price)}</strong><div class="small-actions"><button class="button-sm" data-add="${p.id}" ${p.stock<=0?'disabled':''}>+ Giỏ hàng</button><button class="button-sm" data-favorite="${p.id}">♡ Yêu thích</button></div></div></article>`;
-const formField=(id,label,type='text',extra='')=>`<div class="field"><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" ${extra}></div>`;
-const errorBox='<div id="form-alert" class="form-alert" role="status" aria-live="polite" hidden></div>';
-const alert=(message,kind='error')=>{const el=$('#form-alert');if(!el)return;el.hidden=false;el.className='form-alert '+kind;el.textContent=message};
-const get=(id)=>document.getElementById(id)?.value?.trim()||'';
-async function add(id, amount=1) {
-  if (!user) {
-    notify("Vui l?ng ??ng nh?p ?? th?m v?o gi? h?ng", true);
-    return;
-  }
-  if (cartBusy) return;
-  const productId=Number(id);
-  if (!Number.isInteger(productId) || !Number.isInteger(amount) || amount<1) {
-    notify("S? l??ng s?n ph?m kh?ng h?p l?", true);
-    return;
-  }
-  cartBusy=true;
-  try {
-    cartData=await LUMIERE_API.addCartItem(productId,amount);
-    notify("\u0110\u00e3 th\u00eam s\u1ea3n ph\u1ea9m v\u00e0o gi\u1ecf h\u00e0ng");
-    if(page==="cart" || page==="checkout") render();
-  } catch(error) {
-    notify(error.message,true);
-  } finally {
-    cartBusy=false;
-  }
-}
-async function changeCartItem(productId, delta, remove=false) {
-  if(cartBusy || !user) return;
-  const item=cartData.items.find(
-    row=>row.product.id===Number(productId)
-  );
-  if(!item) return;
-  cartBusy=true;
-  try {
-    const next=item.quantity+delta;
-    if(remove || next<=0) {
-      cartData=await LUMIERE_API.removeCartItem(item.id);
-    } else {
-      cartData=await LUMIERE_API.updateCartItem(item.id,next);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      accountMenu.open = false;
+
+      $("#shell-main-nav").classList.remove("open");
+
+      menuToggle.setAttribute("aria-expanded", "false");
     }
-    render();
-    notify("\u0110\u00e3 c\u1eadp nh\u1eadt gi\u1ecf h\u00e0ng");
-  } catch(error) {
-    notify(error.message,true);
-  } finally {
-    cartBusy=false;
+  });
+
+  function showSignedInMenu() {
+    const account = $("#account-nav");
+
+    account.hidden = true;
+    accountMenu.hidden = false;
+
+    accountMenu.querySelector(".shell-account-name").textContent =
+      user.full_name || "Tài khoản";
+
+    const options = accountMenu.querySelector(".shell-account-options");
+
+    if (user.role === "admin" || user.role === "staff") {
+      const isAdmin = user.role === "admin";
+
+      if (managementArea) {
+        $("#management-user-name").textContent = user.full_name || "Tài khoản";
+
+        $("#management-user-role").textContent = isAdmin
+          ? "Quản trị viên"
+          : "Nhân viên";
+      }
+
+      options.innerHTML = nav(
+        isAdmin ? "Bảng điều khiển" : "Xử lý đơn hàng",
+        isAdmin ? "pages/admin/dashboard.html" : "pages/staff/orders.html",
+      );
+
+      accountMenu.querySelector(".shell-account-name").textContent += isAdmin
+        ? " · Quản trị viên"
+        : " · Nhân viên";
+    } else {
+      options.innerHTML =
+        nav("Thông tin cá nhân", "pages/account.html") +
+        nav("Đơn hàng của tôi", "pages/orders.html") +
+        nav("Đánh giá của tôi", "pages/reviews.html");
+    }
   }
-}
-function favorite(id){id=Number(id);const f=favorites();const next=f.includes(id)?f.filter(n=>n!==id):[...f,id];save(FAV,next);notify(f.includes(id)?'Đã bỏ yêu thích':'Đã thêm vào yêu thích');if(page==='wishlist')render()}
-const cartLines=()=>cartData.items.map(item=>({
-  p:product(item.product.id),
-  qty:Number(item.quantity),
-  itemId:item.id,
-  unitPrice:Number(item.unit_price_vnd),
-  lineTotal:Number(item.line_total_vnd)
-})).filter(x=>x.p && Number.isInteger(x.qty) && x.qty>0);
-const subtotal=()=>Number(cartData.subtotal_vnd||0);
-const shipping=()=>subtotal()>0&&subtotal()<2000000?30000:0;
-const itemsHtml=()=>cartLines().map(({p,qty,unitPrice,lineTotal})=>`
+
+  const content = $("#page-content");
+
+  function applyRoleNavigation() {
+    const role = user?.role || "guest";
+
+    if (role !== "admin" && role !== "staff") {
+      return false;
+    }
+
+    const roleHome =
+      role === "admin"
+        ? "pages/admin/dashboard.html"
+        : "pages/staff/orders.html";
+
+    const publicPages = [
+      "products",
+      "product-detail",
+      "collections",
+      "search",
+      "about",
+    ];
+
+    if (publicPages.includes(page)) {
+      document.body.classList.add("management-preview");
+      return false;
+    }
+
+    const allowed =
+      role === "admin" ? page.startsWith("admin-") : page.startsWith("staff-");
+
+    if (!allowed) {
+      location.replace(root + roleHome);
+      return true;
+    }
+
+    return false;
+  }
+
+  const card = (p) => {
+    const saved = wishlistIds.has(Number(p.id));
+    const url = `${root}pages/product-detail.html?id=${encodeURIComponent(p.id)}`;
+
+    return `
+    <article class="catalog-card">
+
+      <div class="catalog-picture">
+        <a href="${url}">
+          <img loading="lazy"
+               src="${esc(p.image)}"
+               alt="${esc(p.name)}">
+        </a>
+
+        <button type="button"
+                class="catalog-wish ${saved ? "is-active" : ""}"
+                data-favorite="${p.id}"
+                aria-pressed="${saved}"
+                aria-label="${saved ? "Bỏ yêu thích" : "Thêm vào yêu thích"}"
+                title="${saved ? "Bỏ yêu thích" : "Thêm vào yêu thích"}">
+
+          <svg viewBox="0 0 24 24"
+               aria-hidden="true">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>
+          </svg>
+
+        </button>
+      </div>
+
+      <div class="meta">
+        <small>${esc(p.category)} · ${esc(p.material)}</small>
+
+        <h3>
+          <a href="${url}">${esc(p.name)}</a>
+        </h3>
+
+        <strong>${money(p.price)}</strong>
+      </div>
+
+    </article>`;
+  };
+  const formField = (id, label, type = "text", extra = "") =>
+    `<div class="field"><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" ${extra}></div>`;
+  const errorBox =
+    '<div id="form-alert" class="form-alert" role="status" aria-live="polite" hidden></div>';
+  const alert = (message, kind = "error") => {
+    const el = $("#form-alert");
+    if (!el) return;
+    el.hidden = false;
+    el.className = "form-alert " + kind;
+    el.textContent = message;
+  };
+  const get = (id) => document.getElementById(id)?.value?.trim() || "";
+  async function add(id, amount = 1) {
+    if (user && user.role !== "customer") {
+      notify("Tài khoản quản lý chỉ có thể xem sản phẩm.", true);
+      return;
+    }
+    if (!user) {
+      notify("Vui l?ng ??ng nh?p ?? th?m v?o gi? h?ng", true);
+      return;
+    }
+    if (cartBusy) return;
+    const productId = Number(id);
+    if (
+      !Number.isInteger(productId) ||
+      !Number.isInteger(amount) ||
+      amount < 1
+    ) {
+      notify("S? l??ng s?n ph?m kh?ng h?p l?", true);
+      return;
+    }
+    cartBusy = true;
+    try {
+      cartData = await LUMIERE_API.addCartItem(productId, amount);
+      notify(
+        "\u0110\u00e3 th\u00eam s\u1ea3n ph\u1ea9m v\u00e0o gi\u1ecf h\u00e0ng",
+      );
+      if (page === "cart" || page === "checkout") render();
+    } catch (error) {
+      notify(error.message, true);
+    } finally {
+      cartBusy = false;
+    }
+  }
+  async function changeCartItem(productId, delta, remove = false) {
+    if (cartBusy || !user) return;
+    const item = cartData.items.find(
+      (row) => row.product.id === Number(productId),
+    );
+    if (!item) return;
+    cartBusy = true;
+    try {
+      const next = item.quantity + delta;
+      if (remove || next <= 0) {
+        cartData = await LUMIERE_API.removeCartItem(item.id);
+      } else {
+        cartData = await LUMIERE_API.updateCartItem(item.id, next);
+      }
+      render();
+      notify("\u0110\u00e3 c\u1eadp nh\u1eadt gi\u1ecf h\u00e0ng");
+    } catch (error) {
+      notify(error.message, true);
+    } finally {
+      cartBusy = false;
+    }
+  }
+  function favorite(id) {
+    id = Number(id);
+    const f = favorites();
+    const next = f.includes(id) ? f.filter((n) => n !== id) : [...f, id];
+    save(FAV, next);
+    notify(f.includes(id) ? "Đã bỏ yêu thích" : "Đã thêm vào yêu thích");
+    if (page === "wishlist") render();
+  }
+  const cartLines = () =>
+    cartData.items
+      .map((item) => ({
+        p: product(item.product.id),
+        qty: Number(item.quantity),
+        itemId: item.id,
+        unitPrice: Number(item.unit_price_vnd),
+        lineTotal: Number(item.line_total_vnd),
+      }))
+      .filter((x) => x.p && Number.isInteger(x.qty) && x.qty > 0);
+  const subtotal = () => Number(cartData.subtotal_vnd || 0);
+  const shipping = () => (subtotal() > 0 && subtotal() < 2000000 ? 30000 : 0);
+  const itemsHtml = () =>
+    cartLines()
+      .map(
+        ({ p, qty, unitPrice, lineTotal }) => `
 <div class="list-row">
   <a href="${root}pages/product-detail.html?id=${p.id}">
     <img src="${esc(p.image)}" alt="${esc(p.name)}">
@@ -158,91 +571,615 @@ const itemsHtml=()=>cartLines().map(({p,qty,unitPrice,lineTotal})=>`
     </div>
     <strong class="price">${money(lineTotal)}</strong>
   </div>
-</div>`).join('');
-function requireAuthMessage(){return '<p class="demo-note">Bạn cần đăng nhập để tiếp tục. Thông tin đơn hàng chưa được ghi vào PostgreSQL trong bản frontend-first.</p>'}
-function catalog(){
-  if(window.LUMIERE_PRODUCTS_ERROR){content.innerHTML=`<div class="empty-panel">Không tải được dữ liệu sản phẩm từ Business API: ${esc(window.LUMIERE_PRODUCTS_ERROR)}</div>`;return}
-  content.innerHTML=`<div class="content-grid"><aside class="filter-panel"><h2>Bộ lọc sản phẩm</h2>${formField('keyword','Tìm tên / chất liệu / đá quý','search','placeholder="Tìm trang sức..."')}<div class="field"><label for="category">Danh mục</label><select id="category"><option value="">Tất cả</option>${[...new Set(P.map(x=>x.category))].sort().map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select></div><div class="field"><label for="max-price">Giá tối đa</label><select id="max-price"><option value="">Không giới hạn</option><option value="5000000">Dưới 5 triệu</option><option value="10000000">Dưới 10 triệu</option><option value="20000000">Dưới 20 triệu</option><option value="30000000">Dưới 30 triệu</option></select></div><button id="reset-filter" class="button button-outline" type="button">XÓA BỘ LỌC</button><p class="mini-note">Danh mục sản phẩm được tải từ Business API và PostgreSQL. Hình ảnh minh họa theo nhóm sản phẩm.</p></aside><section><div class="toolbar"><span id="result-count"></span><label>Sắp xếp <select id="sort"><option value="default">Theo ID</option><option value="asc">Giá tăng dần</option><option value="desc">Giá giảm dần</option><option value="name">Tên A–Z</option></select></label></div><div id="catalog-results" class="catalog-grid"></div><div class="ap-pager"><span id="catalog-page-info"></span><div class="ap-page-actions"><button id="catalog-prev" type="button">← Trước</button><button id="catalog-next" type="button">Sau →</button></div></div></section></div>`;
-  const params=new URLSearchParams(location.search);
-  $('#keyword').value=params.get('q')||'';$('#category').value=params.get('category')||'';
-  let currentPage=1;const pageSize=12;
-  function draw(){let matches=P.filter(p=>`${p.name} ${p.category} ${p.material} ${p.gem} ${p.brand}`.toLocaleLowerCase('vi').includes(get('keyword').toLocaleLowerCase('vi'))&&(!get('category')||p.category===get('category'))&&(!get('max-price')||p.price<=Number(get('max-price'))));
-    if(get('sort')==='asc')matches.sort((a,b)=>a.price-b.price);
-    if(get('sort')==='desc')matches.sort((a,b)=>b.price-a.price);
-    if(get('sort')==='name')matches.sort((a,b)=>a.name.localeCompare(b.name,'vi'));
-    const totalPages=Math.max(1,Math.ceil(matches.length/pageSize));currentPage=Math.min(currentPage,totalPages);
-    const slice=matches.slice((currentPage-1)*pageSize,currentPage*pageSize);
-    $('#result-count').textContent=`Tìm thấy ${matches.length} / ${P.length} sản phẩm`;
-    $('#catalog-results').innerHTML=slice.length?slice.map(card).join(''):'<div class="empty-panel">Không có sản phẩm phù hợp.</div>';
-    $('#catalog-page-info').textContent=`Trang ${currentPage} / ${totalPages}`;
-    $('#catalog-prev').disabled=currentPage===1;$('#catalog-next').disabled=currentPage>=totalPages;
+</div>`,
+      )
+      .join("");
+  function requireAuthMessage() {
+    return '<p class="demo-note">Bạn cần đăng nhập để tiếp tục. Thông tin đơn hàng chưa được ghi vào PostgreSQL trong bản frontend-first.</p>';
   }
-  ['keyword','category','max-price','sort'].forEach(id=>$('#'+id).addEventListener('input',()=>{currentPage=1;draw()}));
-  $('#catalog-prev').onclick=()=>{currentPage--;draw();window.scrollTo({top:0,behavior:'smooth'})};
-  $('#catalog-next').onclick=()=>{currentPage++;draw();window.scrollTo({top:0,behavior:'smooth'})};
-  $('#reset-filter').onclick=()=>{['keyword','category','max-price'].forEach(id=>$('#'+id).value='');$('#sort').value='default';currentPage=1;draw()};draw();
-}
-async function detail(){
-  const p=product(new URLSearchParams(location.search).get('id'));
-  if(!p){content.innerHTML='<div class="empty-panel">Không tìm thấy ProductID trong danh mục AI. <a class="inline-link" href="products.html">Quay lại danh sách</a></div>';return}
-  document.title=p.name+' | LUMIÈRE';
-  content.innerHTML=`<div class="two-col"><div><img class="detail-photo" src="${esc(p.image)}" alt="Ảnh minh họa ${esc(p.category)}"><p class="mini-note">Hình ảnh sản phẩm được liên kết theo mã SKU.</p></div><section><div class="eyebrow">${esc(p.category)}</div><h2 class="product-title">${esc(p.name)}</h2><div class="price" style="font-size:28px">${money(p.price)}</div><p class="page-subtitle">Thông tin sản phẩm được tải từ Business API. Giá bán và tồn kho được kiểm tra khi đặt hàng.</p><dl class="specs"><div><dt>ProductID (AI)</dt><dd>${p.id}</dd></div><div><dt>Thương hiệu</dt><dd>${esc(p.brand)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(p.material)}</dd></div><div><dt>Đá quý</dt><dd>${esc(p.gem)}</dd></div><div><dt>Bộ sưu tập</dt><dd>${esc(p.collection)}</dd></div><div><dt>Tồn kho theo AI dataset</dt><dd>${p.stock}</dd></div></dl><label for="qty">Số lượng</label><div class="qty-line"><button id="qty-minus">−</button><input id="qty" type="number" min="1" max="${p.stock}" value="1"><button id="qty-plus">+</button></div><button id="detail-add" class="button button-dark button-wide" ${p.stock===0?'disabled':''}>THÊM VÀO GIỎ HÀNG ↗</button><button id="detail-fav" class="button button-outline button-wide">♡ YÊU THÍCH</button><div class="demo-note">Giỏ hàng được đồng bộ với PostgreSQL. Đơn hàng được tạo khi xác nhận thanh toán.</div></section></div><hr class="section-divider"><h2 class="reco-title">Gợi ý dành cho bạn · Hybrid V2</h2><p class="mini-note">Gợi ý các sản phẩm có đặc điểm tương tự. Giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại.</p><div id="ai-reco-status" class="mini-note">Đang tải đề xuất AI…</div><div id="ai-reco-grid" class="catalog-grid"></div>`;
-  $('#qty-minus').onclick=()=>$('#qty').value=Math.max(1,Number($('#qty').value||1)-1);
-  $('#qty-plus').onclick=()=>$('#qty').value=Math.min(p.stock,Number($('#qty').value||1)+1);
-  $('#detail-add').onclick=()=>{const q=Number($('#qty').value);if(!Number.isInteger(q)||q<1||q>p.stock)return notify('Số lượng không hợp lệ',true);add(p.id,q)};
-  $('#detail-fav').onclick=()=>favorite(p.id);
-  const status=$('#ai-reco-status');const grid=$('#ai-reco-grid');
-  const customerId=user?.customer_id || 'GUEST';
-  if(!window.LUMIERE_AI_BASE){status.textContent='AI Service chưa được cấu hình; bạn vẫn có thể mua sắm.';return}
-  const url=new URL(window.LUMIERE_AI_BASE.replace(/\/$/,'')+'/recommendations/v2');url.searchParams.set('customer_id',customerId);url.searchParams.set('product_id',String(p.id));url.searchParams.set('number','4');
-  try{
-    const response=await fetch(url,{signal:AbortSignal.timeout(45000)});
-    if(!response.ok)throw Error('HTTP '+response.status);
-    const payload=await response.json();if(!payload.success||!Array.isArray(payload.data))throw Error('Phản hồi không hợp lệ');
-    const recommended=payload.data.map(x=>product(x.ProductID)).filter(x=>x&&x.id!==p.id);
-    status.textContent=recommended.length?`Đã tìm thấy ${recommended.length} sản phẩm phù hợp từ Hybrid V2.`:'AI chưa trả về sản phẩm có trong danh mục.';
-    grid.innerHTML=recommended.map(card).join('');
-  }catch(error){status.textContent='Chưa tải được đề xuất Hybrid V2 ('+error.message+'). Bạn vẫn có thể xem và mua sắm danh mục.';}
-}
-function cartPage(){const count=cartLines().length;content.innerHTML=`<div class="content-grid cart-layout"><div>${count?itemsHtml():'<div class="empty-panel">Giỏ hàng của bạn đang trống.</div>'}<p><a class="inline-link" href="products.html">← Tiếp tục mua sắm</a></p></div><aside class="summary-card"><h2>Tóm tắt đơn hàng</h2><div class="summary-line"><span>Tạm tính</span><strong>${money(subtotal())}</strong></div><div class="summary-line"><span>Phí vận chuyển dự kiến</span><strong>${money(shipping())}</strong></div><div class="summary-line total"><span>Tổng cộng</span><strong class="price">${money(subtotal()+shipping())}</strong></div><p class="mini-note">Tạm tính theo dữ liệu giỏ hàng từ Backend. Tổng tiền được xác nhận khi tạo đơn.</p><a class="button button-dark button-wide" href="checkout.html">TIẾN HÀNH ĐẶT HÀNG ↗</a></aside></div>`}
-function checkout(){if(!cartLines().length){content.innerHTML='<div class="empty-panel">Giỏ hàng trống. <a class="inline-link" href="products.html">Mua sắm ngay</a></div>';return}content.innerHTML=`<div class="two-col"><div class="panel"><h2>Thông tin người nhận</h2>${errorBox}<form id="checkout-form">${formField('recipient','Họ và tên','text','required autocomplete="name"')}${formField('phone','Số điện thoại','tel','required pattern="0[0-9]{9}"')}${formField('address','Địa chỉ nhận hàng','text','required')}${formField('province','Tỉnh / thành phố','text','required')}<div class="field"><label for="payment">Phương thức thanh toán</label><select id="payment"><option value="cod">Thanh toán khi nhận hàng (COD)</option><option value="bank">Chuyển khoản (mô phỏng, chưa xử lý)</option></select></div><div class="field"><label for="note">Ghi chú</label><textarea id="note" maxlength="500"></textarea></div>${requireAuthMessage()}<button class="button button-dark button-wide">KIỂM TRA ĐƠN HÀNG</button></form></div><aside class="summary-card"><h2>Đơn hàng tạm tính</h2>${cartLines().map(({p,qty})=>`<div class="summary-line"><span>${esc(p.name)} × ${qty}</span><strong>${money(p.price*qty)}</strong></div>`).join('')}<div class="summary-line"><span>Vận chuyển</span><span>${money(shipping())}</span></div><div class="summary-line total"><span>Tổng</span><strong>${money(subtotal()+shipping())}</strong></div><p class="mini-note">Bản frontend-first không tạo đơn giả. Khi có API POST /orders, backend phải đọc giá/tồn kho từ PostgreSQL và tạo đơn trong transaction.</p></aside></div>`
-  const bankOption = document.querySelector('#payment option[value="bank"]');
-  if (bankOption) bankOption.remove();
-  const noteField = document.querySelector('#note');
-  if (noteField) noteField.closest('.field')?.remove();
-  content.querySelectorAll('.demo-note,.mini-note').forEach(el => {
-    if (el.textContent.includes('frontend-first')) {
-      el.textContent = user
-        ? 'Don hang se duoc ghi nhan vao PostgreSQL khi xac nhan.'
-        : 'Vui long dang nhap truoc khi dat hang.';
-    }
-  });
-  $('#checkout-form').onsubmit = async e => {
-    e.preventDefault();
-    if (!user) {
-      alert("Vui l\u00f2ng \u0111\u0103ng nh\u1eadp \u0111\u1ec3 \u0111\u1eb7t h\u00e0ng");
-      return;
-    }
-    if (get('payment') !== 'cod') {
-      alert("Ph\u01b0\u01a1ng th\u1ee9c thanh to\u00e1n ch\u01b0a \u0111\u01b0\u1ee3c h\u1ed7 tr\u1ee3");
-      return;
-    }
-    const button = $('#checkout-form button[type="submit"], #checkout-form button');
-    if (button.disabled) return;
-    button.disabled = true;
-    try {
-      const order = await LUMIERE_API.createOrder({
-        recipient_name: get('recipient'),
-        phone: get('phone'),
-        address: get('address') + ', ' + get('province'),
-        payment_method: 'cod'
-      });
-      cartData = {
-        items: [],
-        total_quantity: 0,
-        subtotal_vnd: "0.00"
-      };
+  function searchPage() {
+    const suggestions = [
+      "Nhẫn",
+      "Kim cương",
+      "Vàng 18K",
+      "Dây chuyền",
+      "Bạc 925",
+    ];
+
+    content.innerHTML = `
+    <section class="search-landing">
+
+      <form class="search-main-form"
+            action="products.html"
+            method="get">
+
+        <div class="search-main-input">
+
+          <svg viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5"
+               aria-hidden="true">
+            <circle cx="10.7" cy="10.7" r="6.6"/>
+            <path d="m16 16 5 5"/>
+          </svg>
+
+          <input type="search"
+                 name="q"
+                 aria-label="Tìm kiếm trang sức"
+                 placeholder="Tìm tên trang sức, chất liệu, đá quý..."
+                 maxlength="100"
+                 required>
+
+          <button type="submit"
+                  class="button button-dark">
+            TÌM KIẾM
+          </button>
+
+        </div>
+
+      </form>
+
+      <div class="search-suggestions">
+
+        <p>Gợi ý tìm kiếm</p>
+
+        <div class="search-suggestion-list">
+          ${suggestions
+            .map(
+              (word) => `
+            <a href="products.html?q=${encodeURIComponent(word)}">
+              ${esc(word)}
+            </a>
+          `,
+            )
+            .join("")}
+        </div>
+
+      </div>
+
+      <section class="search-featured">
+
+        <h2>Có thể bạn quan tâm</h2>
+
+        <div id="search-featured-grid"
+             class="catalog-grid">
+
+          ${
+            window.LUMIERE_PRODUCTS_ERROR
+              ? '<div class="empty-panel">Chưa tải được sản phẩm.</div>'
+              : P.slice(0, 4).map(card).join("") ||
+                '<div class="empty-panel">Chưa có sản phẩm.</div>'
+          }
+
+        </div>
+
+        <div class="search-view-all">
+          <a class="button button-outline"
+             href="products.html">
+            XEM TẤT CẢ SẢN PHẨM →
+          </a>
+        </div>
+
+      </section>
+
+    </section>`;
+
+    refreshCatalogFavorites();
+  }
+  function catalog() {
+    if (window.LUMIERE_PRODUCTS_ERROR) {
       content.innerHTML = `
+      <div class="empty-panel">
+        Không thể tải sản phẩm. Vui lòng thử lại sau.
+      </div>`;
+      return;
+    }
+
+    function filterOptions(field) {
+      return [...new Set(P.map((p) => p[field]).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, "vi"))
+        .map(
+          (value) => `
+        <option value="${esc(value)}">${esc(value)}</option>
+      `,
+        )
+        .join("");
+    }
+
+    content.innerHTML = `
+    <div class="content-grid">
+
+      <aside class="filter-panel">
+        <h2>Bộ lọc sản phẩm</h2>
+
+        ${formField(
+          "keyword",
+          "Tìm kiếm",
+          "search",
+          'placeholder="Tên trang sức, chất liệu..."',
+        )}
+
+        <div class="field">
+          <label for="category">Danh mục</label>
+          <select id="category">
+            <option value="">Tất cả danh mục</option>
+            ${filterOptions("category")}
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="material">Chất liệu</label>
+          <select id="material">
+            <option value="">Tất cả chất liệu</option>
+            ${filterOptions("material")}
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="collection">Bộ sưu tập</label>
+          <select id="collection">
+            <option value="">Tất cả bộ sưu tập</option>
+            ${filterOptions("collection")}
+          </select>
+        </div>
+        <div class="field">
+          <label for="gem">Đá quý</label>
+          <select id="gem">
+            <option value="">Tất cả đá quý</option>
+            ${filterOptions("gem")}
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="min-price">Giá từ (₫)</label>
+          <input id="min-price" type="number"
+                 min="0" step="1" placeholder="Không giới hạn">
+        </div>
+
+        <div class="field">
+          <label for="max-price">Giá đến (₫)</label>
+          <input id="max-price" type="number"
+                 min="0" step="1" placeholder="Không giới hạn">
+        </div>
+
+        <p id="filter-error" class="mini-note"
+           role="status" hidden></p>
+
+        <button id="reset-filter"
+                class="button button-outline button-wide"
+                type="button">
+          XÓA BỘ LỌC
+        </button>
+
+        <p class="mini-note">
+          Hình ảnh sản phẩm mang tính minh họa.
+        </p>
+      </aside>
+
+      <section>
+        <div class="toolbar">
+          <span id="result-count"></span>
+
+          <label>
+            Sắp xếp
+            <select id="sort">
+              <option value="default">Mặc định</option>
+              <option value="asc">Giá thấp đến cao</option>
+              <option value="desc">Giá cao đến thấp</option>
+              <option value="name">Tên A–Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="catalog-results" class="catalog-grid"></div>
+
+        <div class="ap-pager">
+          <span id="catalog-page-info"></span>
+
+          <div class="ap-page-actions">
+            <button id="catalog-prev" type="button">
+              ← Trước
+            </button>
+
+            <button id="catalog-next" type="button">
+              Sau →
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>`;
+
+    const params = new URLSearchParams(location.search);
+
+    $("#keyword").value = params.get("q") || "";
+    $("#category").value = params.get("category") || "";
+    $("#collection").value = params.get("collection") || "";
+
+    let currentPage = 1;
+    const pageSize = 12;
+
+    function normalize(value) {
+      return String(value ?? "")
+        .toLocaleLowerCase("vi")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .trim();
+    }
+
+    function draw() {
+      const keyword = normalize(get("keyword"));
+      const min = get("min-price");
+      const max = get("max-price");
+      const error = $("#filter-error");
+
+      const invalidPrice =
+        !$("#min-price").validity.valid ||
+        !$("#max-price").validity.valid ||
+        (min !== "" && max !== "" && Number(min) > Number(max));
+
+      error.hidden = !invalidPrice;
+
+      if (invalidPrice) {
+        error.textContent = "Khoảng giá không hợp lệ.";
+        $("#result-count").textContent = "";
+        $("#catalog-results").innerHTML =
+          '<div class="empty-panel">Vui lòng kiểm tra lại khoảng giá.</div>';
+        $("#catalog-page-info").textContent = "";
+        $("#catalog-prev").disabled = true;
+        $("#catalog-next").disabled = true;
+        return;
+      }
+
+      let matches = P.filter((p) => {
+        const searchable = normalize(
+          `${p.name} ${p.category} ${p.material} ` +
+            `${p.gem} ${p.brand} ${p.collection || ""} ${p.sku || ""}`,
+        );
+
+        return (
+          searchable.includes(keyword) &&
+          (!get("category") || p.category === get("category")) &&
+          (!get("material") || p.material === get("material")) &&
+          (!get("gem") || p.gem === get("gem")) &&
+          (!get("collection") || p.collection === get("collection")) &&
+          (min === "" || p.price >= Number(min)) &&
+          (max === "" || p.price <= Number(max))
+        );
+      });
+
+      if (get("sort") === "asc") {
+        matches.sort((a, b) => a.price - b.price);
+      }
+
+      if (get("sort") === "desc") {
+        matches.sort((a, b) => b.price - a.price);
+      }
+
+      if (get("sort") === "name") {
+        matches.sort((a, b) => a.name.localeCompare(b.name, "vi"));
+      }
+
+      const totalPages = Math.max(1, Math.ceil(matches.length / pageSize));
+
+      currentPage = Math.min(currentPage, totalPages);
+
+      const start = (currentPage - 1) * pageSize;
+      const slice = matches.slice(start, start + pageSize);
+
+      $("#result-count").textContent = `${matches.length} sản phẩm`;
+
+      $("#catalog-results").innerHTML = slice.length
+        ? slice.map(card).join("")
+        : '<div class="empty-panel">Không có sản phẩm phù hợp.</div>';
+
+      $("#catalog-page-info").textContent = matches.length
+        ? `Hiển thị ${start + 1}–${start + slice.length} / ${matches.length} · Trang ${currentPage}/${totalPages}`
+        : "0 sản phẩm";
+
+      $("#catalog-prev").disabled = currentPage === 1;
+      $("#catalog-next").disabled = currentPage >= totalPages;
+    }
+
+    const fields = [
+      "keyword",
+      "category",
+      "material",
+      "collection",
+      "gem",
+      "min-price",
+      "max-price",
+    ];
+
+    [...fields, "sort"].forEach((id) => {
+      $("#" + id).addEventListener("input", () => {
+        currentPage = 1;
+        draw();
+      });
+    });
+
+    $("#catalog-prev").onclick = () => {
+      currentPage--;
+      draw();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    $("#catalog-next").onclick = () => {
+      currentPage++;
+      draw();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    $("#reset-filter").onclick = () => {
+      fields.forEach((id) => ($("#" + id).value = ""));
+      $("#sort").value = "default";
+      currentPage = 1;
+      draw();
+    };
+
+    draw();
+    refreshCatalogFavorites();
+  }
+
+  async function detail() {
+    const p = product(new URLSearchParams(location.search).get("id"));
+    if (!p) {
+      content.innerHTML =
+        '<div class="empty-panel">Không tìm thấy sản phẩm. <a class="inline-link" href="products.html">Quay lại danh sách</a></div>';
+      return;
+    }
+    document.title = p.name + " | LUMIÈRE";
+    content.innerHTML = `<div class="two-col"><div><img class="detail-photo" src="${esc(p.image)}" alt="Ảnh minh họa ${esc(p.category)}"><p class="mini-note">Hình ảnh mang tính chất minh họa.</p></div><section><div class="eyebrow">${esc(p.category)}</div><h2 class="product-title">${esc(p.name)}</h2><div class="price" style="font-size:28px">${money(p.price)}</div><p class="page-subtitle">Khám phá vẻ đẹp tinh tế trong từng chi tiết.</p><dl class="specs"><div><dt>Mã sản phẩm</dt><dd>${p.id}</dd></div><div><dt>Thương hiệu</dt><dd>${esc(p.brand)}</dd></div><div><dt>Chất liệu</dt><dd>${esc(p.material)}</dd></div><div><dt>Đá quý</dt><dd>${esc(p.gem)}</dd></div><div><dt>Bộ sưu tập</dt><dd>${esc(p.collection)}</dd></div><div><dt>Số lượng còn lại</dt><dd>${p.stock}</dd></div></dl><label for="qty">Số lượng</label><div class="qty-line"><button id="qty-minus">−</button><input id="qty" type="number" min="1" max="${p.stock}" value="1"><button id="qty-plus">+</button></div><div class="detail-purchase-actions">
+
+  <button id="detail-buy"
+          type="button"
+          class="button button-dark"
+          ${p.stock <= 0 ? "disabled" : ""}>
+    MUA NGAY
+  </button>
+
+  <div class="detail-secondary-actions">
+
+    <button id="detail-add"
+            type="button"
+            class="button button-outline"
+            ${p.stock <= 0 ? "disabled" : ""}>
+      THÊM VÀO GIỎ HÀNG
+    </button>
+
+    <button id="detail-fav"
+            type="button"
+            class="button button-outline"
+            title="Thêm vào yêu thích"
+            aria-label="Thêm vào yêu thích">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>
+      </svg>
+
+    </button>
+
+  </div>
+</div></section></div><hr class="section-divider"><h2 class="reco-title">Có thể bạn sẽ thích</h2><p class="mini-note">Gợi ý các sản phẩm có đặc điểm tương tự. Giá và tồn kho được kiểm tra từ dữ liệu bán hàng hiện tại.</p><div id="ai-reco-status" class="mini-note">Đang tải sản phẩm gợi ý…</div><div id="ai-reco-grid" class="catalog-grid"></div>`;
+    $("#qty-minus").onclick = () =>
+      ($("#qty").value = Math.max(1, Number($("#qty").value || 1) - 1));
+    $("#qty-plus").onclick = () =>
+      ($("#qty").value = Math.min(p.stock, Number($("#qty").value || 1) + 1));
+    $("#detail-add").onclick = () => {
+      const q = Number($("#qty").value);
+      if (!Number.isInteger(q) || q < 1 || q > p.stock)
+        return notify("Số lượng không hợp lệ", true);
+      add(p.id, q);
+    };
+    $("#detail-fav").onclick = () => favorite(p.id);
+    $("#detail-buy").onclick = async () => {
+      if (!user) {
+        notify("Vui lòng đăng nhập để mua hàng.", true);
+        location.href = root + "pages/login.html";
+        return;
+      }
+
+      if (user.role !== "customer") {
+        notify("Vui lòng sử dụng tài khoản khách hàng.", true);
+        return;
+      }
+
+      if (cartBusy) return;
+
+      const quantity = Number($("#qty").value);
+
+      if (!Number.isInteger(quantity) || quantity < 1 || quantity > p.stock) {
+        notify("Số lượng không hợp lệ.", true);
+        return;
+      }
+
+      const buyButton = $("#detail-buy");
+      const addButton = $("#detail-add");
+
+      cartBusy = true;
+      buyButton.disabled = true;
+      addButton.disabled = true;
+      buyButton.textContent = "ĐANG XỬ LÝ...";
+
+      try {
+        cartData = await LUMIERE_API.addCartItem(Number(p.id), quantity);
+
+        location.href = root + "pages/checkout.html";
+      } catch (error) {
+        notify(error.message || "Không thể thêm sản phẩm.", true);
+      } finally {
+        cartBusy = false;
+        buyButton.disabled = p.stock <= 0;
+        addButton.disabled = p.stock <= 0;
+        buyButton.textContent = "MUA NGAY";
+      }
+    };
+    const status = $("#ai-reco-status");
+    const grid = $("#ai-reco-grid");
+    const customerId = user?.customer_id || "GUEST";
+    if (!window.LUMIERE_AI_BASE) {
+      status.textContent =
+        "AI Service chưa được cấu hình; bạn vẫn có thể mua sắm.";
+      return;
+    }
+    const url = new URL(
+      window.LUMIERE_AI_BASE.replace(/\/$/, "") + "/recommendations/v2",
+    );
+    url.searchParams.set("customer_id", customerId);
+    url.searchParams.set("product_id", String(p.id));
+    url.searchParams.set("number", "4");
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(45000) });
+      if (!response.ok) throw Error("HTTP " + response.status);
+      const payload = await response.json();
+      if (!payload.success || !Array.isArray(payload.data))
+        throw Error("Phản hồi không hợp lệ");
+      const recommended = payload.data
+        .map((x) => product(x.ProductID))
+        .filter((x) => x && x.id !== p.id);
+      status.textContent = recommended.length
+        ? ""
+        : "Hiện chưa có sản phẩm gợi ý phù hợp.";
+      grid.innerHTML = recommended.map(card).join("");
+    } catch (error) {
+      status.textContent =
+        "Chưa tải được sản phẩm gợi ý. Vui lòng thử lại sau. (" +
+        error.message +
+        "). Bạn vẫn có thể xem và mua sắm danh mục.";
+    }
+  }
+
+  function cartPage() {
+    const count = cartLines().length;
+
+    content.innerHTML = `
+    <div class="content-grid cart-layout">
+      <section class="cart-items-panel">
+        <div class="cart-heading">
+          <h2>Sản phẩm trong giỏ</h2>
+          <span>${count} mẫu trang sức</span>
+        </div>
+
+        ${
+          count
+            ? itemsHtml()
+            : `
+          <div class="empty-panel">
+            Giỏ hàng của bạn đang trống.
+          </div>
+        `
+        }
+
+        <a class="button button-outline cart-continue"
+           href="products.html">
+          ← Tiếp tục mua sắm
+        </a>
+      </section>
+
+      <aside class="summary-card">
+        <h2>Tóm tắt đơn hàng</h2>
+
+        <div class="summary-line">
+          <span>Tạm tính</span>
+          <strong>${money(subtotal())}</strong>
+        </div>
+
+        <div class="summary-line">
+          <span>Phí vận chuyển dự kiến</span>
+          <strong>${money(shipping())}</strong>
+        </div>
+
+        <div class="summary-line total">
+          <span>Tổng cộng</span>
+          <strong class="price">
+            ${money(subtotal() + shipping())}
+          </strong>
+        </div>
+
+        <p class="mini-note">
+          Tổng tiền chính thức được xác nhận khi đặt hàng.
+        </p>
+
+        ${
+          count
+            ? `
+          <a class="button button-dark button-wide"
+             href="checkout.html">
+            TIẾN HÀNH THANH TOÁN →
+          </a>
+        `
+            : `
+          <button class="button button-dark button-wide"
+                  disabled>
+            TIẾN HÀNH THANH TOÁN
+          </button>
+        `
+        }
+      </aside>
+    </div>`;
+  }
+  function checkout() {
+    if (!cartLines().length) {
+      content.innerHTML =
+        '<div class="empty-panel">Giỏ hàng trống. <a class="inline-link" href="products.html">Mua sắm ngay</a></div>';
+      return;
+    }
+    content.innerHTML = `<div class="two-col"><div class="panel"><h2>Thông tin người nhận</h2>${errorBox}<form id="checkout-form">${formField("recipient", "Họ và tên", "text", 'required autocomplete="name"')}${formField("phone", "Số điện thoại", "tel", 'required pattern="0[0-9]{9}"')}${formField("address", "Địa chỉ nhận hàng", "text", "required")}${formField("province", "Tỉnh / thành phố", "text", "required")}<div class="field"><label for="payment">Phương thức thanh toán</label><select id="payment"><option value="cod">Thanh toán khi nhận hàng (COD)</option><option value="bank">Chuyển khoản (mô phỏng, chưa xử lý)</option></select></div><div class="field"><label for="note">Ghi chú</label><textarea id="note" maxlength="500"></textarea></div>${requireAuthMessage()}<button class="button button-dark button-wide">KIỂM TRA ĐƠN HÀNG</button></form></div><aside class="summary-card"><h2>Đơn hàng tạm tính</h2>${cartLines()
+      .map(
+        ({ p, qty }) =>
+          `<div class="summary-line"><span>${esc(p.name)} × ${qty}</span><strong>${money(p.price * qty)}</strong></div>`,
+      )
+      .join(
+        "",
+      )}<div class="summary-line"><span>Vận chuyển</span><span>${money(shipping())}</span></div><div class="summary-line total"><span>Tổng</span><strong>${money(subtotal() + shipping())}</strong></div><p class="mini-note">Bản frontend-first không tạo đơn giả. Khi có API POST /orders, backend phải đọc giá/tồn kho từ PostgreSQL và tạo đơn trong transaction.</p></aside></div>`;
+    const bankOption = document.querySelector('#payment option[value="bank"]');
+    if (bankOption) bankOption.remove();
+    const noteField = document.querySelector("#note");
+    if (noteField) noteField.closest(".field")?.remove();
+    content.querySelectorAll(".demo-note,.mini-note").forEach((el) => {
+      if (el.textContent.includes("frontend-first")) {
+        el.textContent = user
+          ? "Don hang se duoc ghi nhan vao PostgreSQL khi xac nhan."
+          : "Vui long dang nhap truoc khi dat hang.";
+      }
+    });
+    $("#checkout-form").onsubmit = async (e) => {
+      e.preventDefault();
+      if (!user) {
+        alert(
+          "Vui l\u00f2ng \u0111\u0103ng nh\u1eadp \u0111\u1ec3 \u0111\u1eb7t h\u00e0ng",
+        );
+        return;
+      }
+      if (get("payment") !== "cod") {
+        alert(
+          "Ph\u01b0\u01a1ng th\u1ee9c thanh to\u00e1n ch\u01b0a \u0111\u01b0\u1ee3c h\u1ed7 tr\u1ee3",
+        );
+        return;
+      }
+      const button = $(
+        '#checkout-form button[type="submit"], #checkout-form button',
+      );
+      if (button.disabled) return;
+      button.disabled = true;
+      try {
+        const order = await LUMIERE_API.createOrder({
+          recipient_name: get("recipient"),
+          phone: get("phone"),
+          address: get("address") + ", " + get("province"),
+          payment_method: "cod",
+        });
+        cartData = {
+          items: [],
+          total_quantity: 0,
+          subtotal_vnd: "0.00",
+        };
+        content.innerHTML = `
         <section class="panel">
           <h2>&#272;&#7863;t h&#224;ng th&#224;nh c&#244;ng!</h2>
           <p>M&#227; &#273;&#417;n h&#224;ng:
@@ -264,319 +1201,1439 @@ function checkout(){if(!cartLines().length){content.innerHTML='<div class="empty
           </a>
         </section>
       `;
-    } catch (error) {
-      alert(error.message);
-      button.disabled = false;
-      notify(
-        "Neu ket noi bi gian doan, hay kiem tra don hang truoc khi thu lai.",
-        true
-      );
-    }
-  };
-}
-
-function auth(which){const reg=which==='register',forgot=which==='forgot-password';content.innerHTML=`<section class="auth-page"><div class="auth-photo"><div><div class="eyebrow">THE ART OF FINE JEWELRY</div><h2>Vẻ đẹp mang<br>dấu ấn riêng</h2><p>Chào mừng đến với LUMIÈRE</p></div></div><div class="auth-form"><div class="eyebrow">MY LUMIÈRE</div><h2>${forgot?'Quên mật khẩu':reg?'Tạo tài khoản':'Đăng nhập'}</h2><p class="page-subtitle">${forgot?'Tính năng khôi phục cần dịch vụ gửi email an toàn.':reg?'Đăng ký để khám phá trang sức dành riêng cho bạn.':'Đăng nhập để quản lý tài khoản và đơn hàng của bạn.'}</p>${errorBox}${forgot?'<p class="demo-note">Chưa có API quên mật khẩu. Backend cần triển khai token một lần có thời hạn, gửi qua email. Không hiển thị thông tin tài khoản có tồn tại hay không.</p>'+formField('email','Email','email','required')+'<button class="button button-dark button-wide" id="forgot-demo">GỬI YÊU CẦU (CHƯA KÍCH HOẠT)</button>':`<form id="auth-form">${reg?formField('full_name','Họ tên','text','minlength="2" maxlength="150" required autocomplete="name"')+formField('phone','Số điện thoại','tel','pattern="0[0-9]{9}" autocomplete="tel"'):''}${formField('email','Email','email','required autocomplete="email"')}${formField('password','Mật khẩu','password',`${reg?'minlength="8" maxlength="128" autocomplete="new-password"':'autocomplete="current-password"'} required`)}${reg?formField('confirm','Nhập lại mật khẩu','password','minlength="8" required autocomplete="new-password"'):''}<label class="mini-note"><input id="show-password" type="checkbox"> Hiện mật khẩu</label><button id="auth-submit" class="button button-dark button-wide">${reg?'ĐĂNG KÝ':'ĐĂNG NHẬP'}</button></form>`}<p class="mini-note">${reg?'Đã có tài khoản? <a class="inline-link" href="login.html">Đăng nhập</a>':'Chưa có tài khoản? <a class="inline-link" href="register.html">Đăng ký</a>'}</p>${!reg&&!forgot?'<p><a class="inline-link" href="forgot-password.html">Quên mật khẩu?</a></p>':''}</div></section>`;if(forgot){$('#forgot-demo').onclick=()=>demo('Yêu cầu khôi phục chưa có backend.');return}$('#show-password').onchange=e=>['password','confirm'].forEach(id=>{const el=$('#'+id);if(el)el.type=e.target.checked?'text':'password'});$('#auth-form').onsubmit=async e=>{e.preventDefault();const btn=$('#auth-submit');btn.disabled=true;try{if(reg){if($('#password').value!==$('#confirm').value)throw Error('Mật khẩu xác nhận không khớp');await LUMIERE_API.register({full_name:get('full_name'),phone:get('phone')||null,email:get('email'),password:$('#password').value});alert('Đăng ký thành công! Đang chuyển sang đăng nhập.','success');setTimeout(()=>location.href='login.html',850)}else{await LUMIERE_API.login(get('email'),$('#password').value);alert('Đăng nhập thành công','success');const signedIn=await LUMIERE_API.me();location.href=signedIn.role==='admin'?'admin/dashboard.html':signedIn.role==='staff'?'staff/orders.html':'account.html'}}catch(err){alert(err.message)}finally{btn.disabled=false}}}
-function account(){if(!user){content.innerHTML='<div class="empty-panel">Bạn chưa đăng nhập. <a class="inline-link" href="login.html">Đăng nhập</a></div>';return}content.innerHTML=`<div class="two-col"><div class="panel"><h2>Thông tin tài khoản</h2><dl class="specs"><div><dt>Họ tên</dt><dd>${esc(user.full_name)}</dd></div><div><dt>Email</dt><dd>${esc(user.email)}</dd></div><div><dt>Vai trò</dt><dd>${esc(user.role)}</dd></div></dl><p class="demo-note">Chỉnh sửa hồ sơ, địa chỉ và đổi mật khẩu sẽ được kết nối API sau.</p></div><div class="panel"><h2>Truy cập nhanh</h2><p>${nav('Đơn hàng của tôi','pages/orders.html')}</p><p>${nav('Danh sách yêu thích','pages/wishlist.html')}</p><p>${nav('Đánh giá của tôi','pages/reviews.html')}</p><button class="button button-outline" id="logout-main">ĐĂNG XUẤT</button></div></div>`;$('#logout-main').onclick=logout}
-
-
-async function orders() {
-  if (!user) {
-    content.innerHTML = `
-      <div class="empty-panel">
-        Vui l&#242;ng &#273;&#259;ng nh&#7853;p
-        &#273;&#7875; xem &#273;&#417;n h&#224;ng.
-        <a href="login.html">&#272;&#259;ng nh&#7853;p</a>
-      </div>`;
-    return;
-  }
-  content.innerHTML =
-    '<div class="empty-panel">&#272;ang t&#7843;i &#273;&#417;n h&#224;ng...</div>';
-  try {
-    if (page === "order-detail") {
-      const id = Number(
-        new URLSearchParams(location.search).get("id")
-      );
-      if (!Number.isInteger(id) || id <= 0) {
-        throw new Error("Invalid order ID");
+      } catch (error) {
+        alert(error.message);
+        button.disabled = false;
+        notify(
+          "Neu ket noi bi gian doan, hay kiem tra don hang truoc khi thu lai.",
+          true,
+        );
       }
-      const order = await LUMIERE_API.request("/orders/" + id);
-      const rows = (order.items || []).map(item => `
+    };
+  }
+
+  function auth(which) {
+    const reg = which === "register",
+      forgot = which === "forgot-password";
+    content.innerHTML = `<section class="auth-page"><div class="auth-photo"><div><div class="eyebrow">LUMIÈRE FINE JEWELRY</div><h2>Vẻ đẹp mang<br>dấu ấn riêng</h2><p>Chào mừng đến với LUMIÈRE</p></div></div><div class="auth-form"><div class="eyebrow">MY LUMIÈRE</div><h2>${forgot ? "Quên mật khẩu" : reg ? "Tạo tài khoản" : "Đăng nhập"}</h2><p class="page-subtitle">${forgot ? "Nhập địa chỉ email đã đăng ký để khôi phục tài khoản." : reg ? "Đăng ký để khám phá trang sức dành riêng cho bạn." : "Chào mừng bạn quay trở lại LUMIÈRE."}</p>${errorBox}${forgot ? '<p class="demo-note">Chưa có API quên mật khẩu. Backend cần triển khai token một lần có thời hạn, gửi qua email. Không hiển thị thông tin tài khoản có tồn tại hay không.</p>' + formField("email", "Email", "email", "required") + '<button class="button button-dark button-wide" id="forgot-demo">GỬI YÊU CẦU (CHƯA KÍCH HOẠT)</button>' : `<form id="auth-form">${reg ? formField("full_name", "Họ tên", "text", 'minlength="2" maxlength="150" required autocomplete="name"') + formField("phone", "Số điện thoại", "tel", 'pattern="0[0-9]{9}" autocomplete="tel"') : ""}${formField("email", "Email", "email", 'required autocomplete="email"')}${formField("password", "Mật khẩu", "password", `${reg ? 'minlength="8" maxlength="128" autocomplete="new-password"' : 'autocomplete="current-password"'} required`)}${reg ? formField("confirm", "Nhập lại mật khẩu", "password", 'minlength="8" required autocomplete="new-password"') : ""}<label class="mini-note"><input id="show-password" type="checkbox"> Hiện mật khẩu</label><button id="auth-submit" class="button button-dark button-wide">${reg ? "ĐĂNG KÝ" : "ĐĂNG NHẬP"}</button></form>`}<p class="mini-note">${reg ? 'Đã có tài khoản? <a class="inline-link" href="login.html">Đăng nhập</a>' : 'Chưa có tài khoản? <a class="inline-link" href="register.html">Đăng ký</a>'}</p>${!reg && !forgot ? '<p><a class="inline-link" href="forgot-password.html">Quên mật khẩu?</a></p>' : ""}</div></section>`;
+    if (forgot) {
+      $("#forgot-demo").onclick = () =>
+        demo("Yêu cầu khôi phục chưa có backend.");
+      return;
+    }
+    $("#show-password").onchange = (e) =>
+      ["password", "confirm"].forEach((id) => {
+        const el = $("#" + id);
+        if (el) el.type = e.target.checked ? "text" : "password";
+      });
+    $("#auth-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const btn = $("#auth-submit");
+      btn.disabled = true;
+      try {
+        if (reg) {
+          if ($("#password").value !== $("#confirm").value)
+            throw Error("Mật khẩu xác nhận không khớp");
+          await LUMIERE_API.register({
+            full_name: get("full_name"),
+            phone: get("phone") || null,
+            email: get("email"),
+            password: $("#password").value,
+          });
+          alert("Đăng ký thành công! Đang chuyển sang đăng nhập.", "success");
+          setTimeout(() => (location.href = "login.html"), 850);
+        } else {
+          await LUMIERE_API.login(get("email"), $("#password").value);
+          alert("Đăng nhập thành công", "success");
+          const signedIn = await LUMIERE_API.me();
+          location.href =
+            signedIn.role === "admin"
+              ? "admin/dashboard.html"
+              : signedIn.role === "staff"
+                ? "staff/orders.html"
+                : "account.html";
+        }
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        btn.disabled = false;
+      }
+    };
+  }
+  function account() {
+    if (!user) {
+      content.innerHTML =
+        '<div class="empty-panel">Bạn chưa đăng nhập. <a class="inline-link" href="login.html">Đăng nhập</a></div>';
+      return;
+    }
+    content.innerHTML = `<div class="two-col"><div class="panel"><h2>Thông tin tài khoản</h2><dl class="specs"><div><dt>Họ tên</dt><dd>${esc(user.full_name)}</dd></div><div><dt>Email</dt><dd>${esc(user.email)}</dd></div><div><dt>Vai trò</dt><dd>${esc(user.role)}</dd></div></dl><p class="demo-note">Chỉnh sửa hồ sơ, địa chỉ và đổi mật khẩu sẽ được kết nối API sau.</p></div><div class="panel"><h2>Truy cập nhanh</h2><p>${nav("Đơn hàng của tôi", "pages/orders.html")}</p><p>${nav("Danh sách yêu thích", "pages/wishlist.html")}</p><p>${nav("Đánh giá của tôi", "pages/reviews.html")}</p><button class="button button-outline" id="logout-main">ĐĂNG XUẤT</button></div></div>`;
+    $("#logout-main").onclick = logout;
+  }
+
+  async function orders() {
+    const statusLabels = {
+      pending: "Chờ xác nhận",
+      confirmed: "Đã xác nhận",
+      packing: "Đang đóng gói",
+      shipping: "Đang giao",
+      delivered: "Đã giao",
+      cancelled: "Đã hủy",
+    };
+
+    const paymentLabels = {
+      unpaid: "Chưa thanh toán",
+      paid: "Đã thanh toán",
+      pending: "Chờ thanh toán",
+      failed: "Thanh toán thất bại",
+      refunded: "Đã hoàn tiền",
+    };
+
+    const methodLabels = {
+      cod: "COD",
+      vnpay: "VNPAY",
+    };
+
+    const steps = [
+      ["pending", "Chờ xác nhận"],
+      ["confirmed", "Xác nhận"],
+      ["packing", "Đóng gói"],
+      ["shipping", "Đang giao"],
+      ["delivered", "Đã giao"],
+    ];
+
+    const statusBadge = (status) => `
+    <span class="customer-order-status"
+          data-status="${esc(status)}">
+      ${esc(statusLabels[status] || status)}
+    </span>`;
+
+    const paymentText = (status) => esc(paymentLabels[status] || status);
+
+    const methodText = (method) => esc(methodLabels[method] || method);
+
+    const dateText = (value) => new Date(value).toLocaleString("vi-VN");
+
+    if (!user) {
+      content.innerHTML = `
+      <section class="customer-orders-empty">
+        <h2>Đơn hàng của bạn</h2>
+        <p>Đăng nhập để xem và theo dõi đơn hàng.</p>
+        <a class="button button-dark" href="login.html">
+          ĐĂNG NHẬP
+        </a>
+      </section>`;
+      return;
+    }
+
+    content.innerHTML = `
+    <div class="empty-panel">
+      Đang tải đơn hàng…
+    </div>`;
+
+    try {
+      /* CHI TIẾT ĐƠN HÀNG */
+
+      if (page === "order-detail") {
+        const id = Number(new URLSearchParams(location.search).get("id"));
+
+        if (!Number.isInteger(id) || id <= 0) {
+          throw new Error("Mã đơn hàng không hợp lệ.");
+        }
+
+        const order = await LUMIERE_API.request("/orders/" + id);
+
+        const activeStep = steps.findIndex(([key]) => key === order.status);
+
+        const timeline =
+          order.status === "cancelled"
+            ? `<div class="customer-order-cancelled">
+             Đơn hàng này đã được hủy.
+           </div>`
+            : activeStep >= 0
+              ? `<div class="customer-order-timeline">
+              ${steps
+                .map(
+                  ([key, label], index) => `
+                <div class="customer-order-step ${index <= activeStep ? "is-done" : ""} ${index === activeStep ? "is-current" : ""}">
+                  <span class="customer-step-dot">
+                    ${index < activeStep ? "✓" : index + 1}
+                  </span>
+                  <small>${label}</small>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>`
+              : "";
+
+        const rows = (order.items || [])
+          .map(
+            (item) => `
         <tr>
-          <td>${esc(item.product_name)}</td>
-          <td>${esc(item.sku)}</td>
+          <td>
+            <strong>${esc(item.product_name)}</strong>
+            <small class="customer-order-sku">
+              ${esc(item.sku)}
+            </small>
+          </td>
           <td>${Number(item.quantity)}</td>
           <td>${money(item.unit_price_vnd)}</td>
           <td>${money(item.line_total_vnd)}</td>
         </tr>
-      `).join("");
-      content.innerHTML = `
-        <div class="panel">
-          <h2>Chi ti&#7871;t &#273;&#417;n h&#224;ng</h2>
-          <p><strong>M&#227; &#273;&#417;n:</strong> ${esc(order.code)}</p>
-          <p><strong>Ng&#224;y &#273;&#7863;t:</strong>
-            ${new Date(order.created_at).toLocaleString("vi-VN")}
-          </p>
-          <p><strong>Tr&#7841;ng th&#225;i:</strong> ${esc(order.status)}</p>
-          <p><strong>Thanh to&#225;n:</strong> ${esc(order.payment_status)}</p>
-          <p><strong>Ph&#432;&#417;ng th&#7913;c:</strong>
-            ${esc(order.payment_method).toUpperCase()}
-          </p>
-          <p><strong>Ng&#432;&#7901;i nh&#7853;n:</strong>
-            ${esc(order.recipient_name)}
-          </p>
-          <p><strong>S&#7889; &#273;i&#7879;n tho&#7841;i:</strong>
-            ${esc(order.phone)}
-          </p>
-          <p><strong>&#272;&#7883;a ch&#7881;:</strong>
-            ${esc(order.address)}
-          </p>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>S&#7843;n ph&#7849;m</th>
-                  <th>SKU</th>
-                  <th>S&#7889; l&#432;&#7907;ng</th>
-                  <th>&#272;&#417;n gi&#225;</th>
-                  <th>Th&#224;nh ti&#7873;n</th>
-                </tr>
-              </thead>
-              <tbody>${rows}</tbody>
-            </table>
+      `,
+          )
+          .join("");
+
+        content.innerHTML = `
+        <div class="customer-order-detail">
+
+          <a class="inline-link customer-order-back"
+             href="orders.html">
+            ← Quay lại đơn hàng của tôi
+          </a>
+
+          <section class="panel customer-order-overview">
+            <div class="customer-order-head">
+              <div>
+                <h2>Đơn hàng ${esc(order.code)}</h2>
+                <p>Ngày đặt: ${dateText(order.created_at)}</p>
+              </div>
+
+              ${statusBadge(order.status)}
+            </div>
+
+            ${timeline}
+          </section>
+
+          <div class="customer-order-info-grid">
+
+            <section class="panel">
+              <h2>Thông tin nhận hàng</h2>
+
+              <div class="customer-order-field">
+                <span>Người nhận</span>
+                <strong>${esc(order.recipient_name)}</strong>
+              </div>
+
+              <div class="customer-order-field">
+                <span>Số điện thoại</span>
+                <strong>${esc(order.phone)}</strong>
+              </div>
+
+              <div class="customer-order-field">
+                <span>Địa chỉ giao hàng</span>
+                <strong>${esc(order.address)}</strong>
+              </div>
+            </section>
+
+            <section class="panel">
+              <h2>Thông tin thanh toán</h2>
+
+              <div class="customer-order-field">
+                <span>Phương thức thanh toán</span>
+                <strong>${methodText(order.payment_method)}</strong>
+              </div>
+
+              <div class="customer-order-field">
+                <span>Trạng thái thanh toán</span>
+                <strong>${paymentText(order.payment_status)}</strong>
+              </div>
+
+              <div class="customer-order-field">
+                <span>Tổng tiền</span>
+                <strong class="customer-order-price">
+                  ${money(order.total_vnd)}
+                </strong>
+              </div>
+            </section>
+
           </div>
-          <p>T&#7841;m t&#237;nh: ${money(order.subtotal_vnd)}</p>
-          <p>Ph&#237; v&#7853;n chuy&#7875;n: ${money(order.shipping_vnd)}</p>
-          <p>Gi&#7843;m gi&#225;: ${money(order.discount_vnd)}</p>
-          <h3>T&#7893;ng c&#7897;ng: ${money(order.total_vnd)}</h3>
-          <p>
-            <a class="inline-link" href="orders.html">
-              &larr; Tr&#7903; v&#7873; danh s&#225;ch &#273;&#417;n h&#224;ng
-            </a>
-          </p>
+
+          <section class="panel customer-order-items">
+
+            <h2>Sản phẩm đã đặt</h2>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody>${rows}</tbody>
+              </table>
+            </div>
+
+            <div class="customer-order-summary">
+
+              <div class="summary-line">
+                <span>Tạm tính</span>
+                <strong>${money(order.subtotal_vnd)}</strong>
+              </div>
+
+              <div class="summary-line">
+                <span>Phí vận chuyển</span>
+                <strong>${money(order.shipping_vnd)}</strong>
+              </div>
+
+              <div class="summary-line">
+                <span>Giảm giá</span>
+                <strong>−${money(order.discount_vnd)}</strong>
+              </div>
+
+              <div class="summary-line customer-order-grandtotal">
+                <span>Tổng thanh toán</span>
+                <strong>${money(order.total_vnd)}</strong>
+              </div>
+
+            </div>
+          </section>
+
+        </div>`;
+
+        return;
+      }
+
+      /* DANH SÁCH ĐƠN HÀNG */
+
+      const params = new URLSearchParams(location.search);
+      const requestedPage = Number(params.get("page") || 1);
+
+      const currentPage =
+        Number.isInteger(requestedPage) && requestedPage > 0
+          ? requestedPage
+          : 1;
+
+      const result = await LUMIERE_API.request(
+        "/orders/my?page=" + currentPage + "&page_size=20",
+      );
+
+      if (!Array.isArray(result.items)) {
+        throw new Error("Không tải được danh sách đơn hàng.");
+      }
+
+      const total = Number(result.total || 0);
+      const totalPages = Math.max(1, Math.ceil(total / 20));
+
+      const cards = result.items
+        .map(
+          (order) => `
+      <article class="panel customer-order-card">
+
+        <div class="customer-order-head">
+
+          <div>
+            <h3>${esc(order.code)}</h3>
+            <p>Ngày đặt: ${dateText(order.created_at)}</p>
+          </div>
+
+          ${statusBadge(order.status)}
+
         </div>
-      `;
+
+        <div class="customer-order-card-body">
+
+          <div class="customer-order-field">
+            <span>Thanh toán</span>
+            <strong>${paymentText(order.payment_status)}</strong>
+          </div>
+
+          <div class="customer-order-field">
+            <span>Phương thức</span>
+            <strong>${methodText(order.payment_method)}</strong>
+          </div>
+
+          <div class="customer-order-field">
+            <span>Tổng tiền</span>
+            <strong class="customer-order-price">
+              ${money(order.total_vnd)}
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="customer-order-card-actions">
+          <a class="button button-outline"
+             href="order-detail.html?id=${Number(order.id)}">
+            XEM CHI TIẾT →
+          </a>
+        </div>
+
+      </article>
+    `,
+        )
+        .join("");
+
+      content.innerHTML = `
+      <section class="customer-orders">
+
+        <div class="customer-orders-toolbar">
+          <span>${total} đơn hàng</span>
+
+          <a class="inline-link" href="products.html">
+            Tiếp tục mua sắm →
+          </a>
+        </div>
+
+        ${
+          result.items.length
+            ? `
+          <div class="customer-orders-list">
+            ${cards}
+          </div>
+        `
+            : `
+          <section class="customer-orders-empty">
+            <div class="customer-orders-empty-icon">♧</div>
+
+            <h2>${total === 0 ? "Bạn chưa có đơn hàng" : "Không có đơn hàng ở trang này"}</h2>
+
+            <p>
+              ${total === 0 ? "Khám phá những thiết kế trang sức dành riêng cho phong cách của bạn." : "Bạn có thể quay lại danh sách đơn hàng."}
+            </p>
+
+            <a class="button button-dark"
+               href="${total === 0 ? "products.html" : "orders.html"}">
+              ${total === 0 ? "KHÁM PHÁ SẢN PHẨM" : "QUAY LẠI DANH SÁCH"}
+            </a>
+          </section>
+        `
+        }
+
+        ${
+          totalPages > 1
+            ? `
+          <div class="customer-orders-pagination">
+
+            ${
+              currentPage > 1
+                ? `
+              <a class="button button-outline"
+                 href="orders.html?page=${currentPage - 1}">
+                ← Trước
+              </a>
+            `
+                : ""
+            }
+
+            <span>Trang ${currentPage} / ${totalPages}</span>
+
+            ${
+              currentPage < totalPages
+                ? `
+              <a class="button button-outline"
+                 href="orders.html?page=${currentPage + 1}">
+                Tiếp →
+              </a>
+            `
+                : ""
+            }
+
+          </div>
+        `
+            : ""
+        }
+
+      </section>`;
+    } catch (error) {
+      content.innerHTML = `
+      <section class="customer-orders-empty">
+        <h2>Chưa tải được đơn hàng</h2>
+        <p>${esc(error.message)}</p>
+        <button id="orders-retry"
+                class="button button-outline"
+                type="button">
+          Thử lại
+        </button>
+      </section>`;
+
+      $("#orders-retry").onclick = () => orders();
+      console.error("Orders API:", error);
+    }
+  }
+
+  function wishlist() {
+    const list = favorites().map(product).filter(Boolean);
+    content.innerHTML = `<p class="mini-note">Yêu thích đang lưu trên trình duyệt, chưa đồng bộ theo tài khoản.</p><div class="catalog-grid">${list.length ? list.map(card).join("") : '<div class="empty-panel">Chưa có sản phẩm yêu thích.</div>'}</div>`;
+  }
+  function staticPage() {
+    const copy = {
+      about:
+        "LUMIÈRE kết hợp thương mại điện tử trang sức với hệ thống gợi ý và tư vấn sử dụng trí tuệ nhân tạo. Giao diện là nguyên mẫu phục vụ khóa luận tốt nghiệp.",
+      contact:
+        "Liên hệ với đội ngũ LUMIÈRE để trao đổi thông tin mua sắm và hỗ trợ. Kênh liên lạc thực tế sẽ cấu hình khi triển khai.",
+      collections:
+        "Khám phá các thiết kế nhẫn, dây chuyền, bông tai và vòng tay theo phong cách riêng.",
+      reviews:
+        "Đánh giá chỉ được tạo sau khi đơn hàng hoàn tất. Backend phải xác nhận sản phẩm đã mua và chống đánh giá lặp.",
+    };
+    content.innerHTML = `<div class="panel"><h2>${page === "contact" ? "Liên hệ" : "LUMIÈRE Jewelry"}</h2><p class="page-subtitle">${copy[page] || ""}</p>${
+      page === "collections"
+        ? '<div class="catalog-grid">' +
+          P.filter((p, i) => i < 4)
+            .map(card)
+            .join("") +
+          "</div>"
+        : page === "contact"
+          ? errorBox +
+            '<form id="contact-form">' +
+            formField("name", "Họ tên", "text", "required") +
+            formField("email", "Email", "email", "required") +
+            '<div class="field"><label>Lời nhắn</label><textarea id="message" required maxlength="1500"></textarea></div><button class="button button-dark">GỬI LIÊN HỆ (DEMO)</button></form>'
+          : page === "reviews"
+            ? '<p class="demo-note">Chưa có API đánh giá. Yêu cầu backend: POST /products/{id}/reviews, GET /reviews/me.</p>'
+            : ""
+    }</div>`;
+    if (page === "contact")
+      $("#contact-form").onsubmit = (e) => {
+        e.preventDefault();
+        alert(
+          "Chưa kết nối API liên hệ. Không có thông tin nào được gửi.",
+          "success",
+        );
+      };
+  }
+  function adminPage() {
+    const section = page.slice(6),
+      names = {
+        dashboard: "Dashboard",
+        products: "Sản phẩm",
+        categories: "Danh mục",
+        brands: "Thương hiệu",
+        orders: "Đơn hàng",
+        customers: "Khách hàng",
+        coupons: "Mã giảm giá",
+        staff: "Nhân viên",
+        analytics: "Phân tích hành vi",
+        inventory: "Tồn kho",
+      };
+    const sidebar = `<nav class="admin-side">${Object.entries(names)
+      .map(
+        ([key, label]) =>
+          `<a class="${key === section ? "active" : ""}" href="${key}.html">${label}</a>`,
+      )
+      .join("")}<a href="../../index.html">← Trở về cửa hàng</a></nav>`;
+    if (
+      section === "dashboard" &&
+      typeof window.LUMIERE_ADMIN_DASHBOARD === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="dashboard-mount"></div></div>`;
+      window.LUMIERE_ADMIN_DASHBOARD({
+        mount: $("#dashboard-mount"),
+        products: P,
+        money,
+        esc,
+      });
       return;
     }
-    const params = new URLSearchParams(location.search);
-    const requestedPage = Number(params.get("page") || 1);
-    const currentPage = Number.isInteger(requestedPage)
-      && requestedPage > 0 ? requestedPage : 1;
-    const result = await LUMIERE_API.request(
-      "/orders/my?page=" + currentPage + "&page_size=20"
-    );
-    if (!Array.isArray(result.items)) {
-      throw new Error("Invalid orders response");
+    if (
+      (section === "categories" || section === "brands") &&
+      typeof window.LUMIERE_ADMIN_TAXONOMY === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="taxonomy-mount"></div></div>`;
+      window.LUMIERE_ADMIN_TAXONOMY({
+        mount: $("#taxonomy-mount"),
+        kind: section,
+        products: P,
+        esc,
+      });
+      return;
+    }
+    if (
+      section === "analytics" &&
+      typeof window.LUMIERE_ADMIN_ANALYTICS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="analytics-mount"></div></div>`;
+      window.LUMIERE_ADMIN_ANALYTICS({
+        mount: $("#analytics-mount"),
+        products: P,
+      });
+      return;
+    }
+    if (
+      section === "inventory" &&
+      typeof window.LUMIERE_ADMIN_INVENTORY === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="inventory-mount"></div></div>`;
+      window.LUMIERE_ADMIN_INVENTORY({
+        mount: $("#inventory-mount"),
+        products: P,
+      });
+      return;
+    }
+    if (
+      section === "coupons" &&
+      typeof window.LUMIERE_ADMIN_COUPONS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="coupons-mount"></div></div>`;
+      window.LUMIERE_ADMIN_COUPONS({ mount: $("#coupons-mount") });
+      return;
+    }
+    if (
+      section === "staff" &&
+      typeof window.LUMIERE_ADMIN_STAFF === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="staff-admin-mount"></div></div>`;
+      window.LUMIERE_ADMIN_STAFF({ mount: $("#staff-admin-mount") });
+      return;
+    }
+    if (
+      section === "customers" &&
+      typeof window.LUMIERE_ADMIN_CUSTOMERS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="customers-mount"></div></div>`;
+      window.LUMIERE_ADMIN_CUSTOMERS({ mount: $("#customers-mount") });
+      return;
+    }
+    if (
+      section === "orders" &&
+      typeof window.LUMIERE_ADMIN_ORDERS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="orders-mount"></div></div>`;
+      window.LUMIERE_ADMIN_ORDERS({ mount: $("#orders-mount") });
+      return;
+    }
+    if (
+      section === "products" &&
+      typeof window.LUMIERE_ADMIN_PRODUCTS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout">${sidebar}<div id="ap-mount"></div></div>`;
+      window.LUMIERE_ADMIN_PRODUCTS({
+        mount: $("#ap-mount"),
+        products: P,
+        money,
+        esc,
+        authorized: !!(user && user.role === "admin"),
+      });
+      return;
+    }
+    let body = "";
+    if (section === "dashboard" || section === "analytics") {
+      body = `<div class="dashboard-grid"><div class="stat"><span>Sản phẩm demo</span><strong>${P.length}</strong></div><div class="stat"><span>Danh mục</span><strong>${new Set(P.map((p) => p.category)).size}</strong></div><div class="stat"><span>Đơn hàng (chưa API)</span><strong>—</strong></div><div class="stat"><span>Doanh thu (chưa API)</span><strong>—</strong></div></div><div class="panel"><h2>${section === "analytics" ? "Phân tích hành vi khách hàng" : "Tổng quan"}</h2><p class="page-subtitle">Các biểu đồ và số liệu doanh thu phải lấy từ backend, không được tự tạo số liệu giao dịch giả. Backend cần hỗ trợ event: product_view, search, add_to_cart, favorite, purchase và bảng tổng hợp theo ngày.</p></div>`;
+    } else if (section === "products" || section === "inventory") {
+      body = `<div class="panel"><div class="toolbar"><h2>${names[section]}</h2><button class="button button-outline" data-demo="create-product">+ Thêm mới (demo)</button></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Hình</th><th>ID</th><th>Tên</th><th>Danh mục</th><th>Giá</th><th>Tồn kho</th><th>Thao tác</th></tr></thead><tbody>${P.map((p) => `<tr><td><img src="${esc(p.image)}" alt=""></td><td>${p.id}</td><td>${esc(p.name)}</td><td>${esc(p.category)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><button class="button-sm" data-demo="edit">Sửa</button></td></tr>`).join("")}</tbody></table></div></div>`;
+    } else {
+      const data =
+        section === "categories"
+          ? [...new Set(P.map((p) => p.category))]
+          : section === "brands"
+            ? ["SJC", "PNJ", "LUMIÈRE (đề xuất)"]
+            : [];
+      body = `<div class="panel"><div class="toolbar"><h2>${names[section]}</h2><button class="button button-outline" data-demo="new">+ Thêm mới (demo)</button></div>${data.length ? '<div class="table-wrap"><table class="data-table"><thead><tr><th>STT</th><th>Tên</th><th>Thao tác</th></tr></thead><tbody>' + data.map((name, i) => `<tr><td>${i + 1}</td><td>${esc(name)}</td><td><button class="button-sm" data-demo="edit">Sửa</button></td></tr>`).join("") + "</tbody></table></div>" : '<div class="empty-panel">Chưa có dữ liệu nghiệp vụ từ PostgreSQL.</div>'}<p class="demo-note">Trang quản trị đã có giao diện, nhưng thêm/sửa/xóa và thống kê cần API có xác thực role admin.</p></div>`;
+    }
+    const gate =
+      user && user.role === "admin"
+        ? ""
+        : '<div class="demo-note">CHẾ ĐỘ XEM TRƯỚC GIAO DIỆN ADMIN. Chưa được cấp quyền quản trị; mọi thao tác quản trị bị vô hiệu. Backend phải chặn API bằng role admin.</div>';
+    content.innerHTML = `<div class="admin-layout">${sidebar}<div>${gate}${body}</div></div>`;
+  }
+  function staffPage() {
+    const kind = page.slice(6);
+    if (
+      kind === "inventory" &&
+      typeof window.LUMIERE_STAFF_INVENTORY === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout"><nav class="admin-side"><a href="orders.html">Xử lý đơn</a><a class="active" href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div id="staff-inventory-mount"></div></div>`;
+      window.LUMIERE_STAFF_INVENTORY({
+        mount: document.querySelector("#staff-inventory-mount"),
+        products: P,
+      });
+      return;
+    }
+    if (
+      kind === "orders" &&
+      typeof window.LUMIERE_STAFF_ORDERS === "function"
+    ) {
+      content.innerHTML = `<div class="admin-layout"><nav class="admin-side"><a class="active" href="orders.html">Xử lý đơn</a><a href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div id="staff-orders-mount"></div></div>`;
+      window.LUMIERE_STAFF_ORDERS({
+        mount: document.querySelector("#staff-orders-mount"),
+      });
+      return;
+    }
+    content.innerHTML = `<div class="admin-layout"><nav class="admin-side"><a href="orders.html">Xử lý đơn</a><a href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div class="panel"><h2>${kind === "orders" ? "Đơn hàng cần xử lý" : "Kiểm tra tồn kho"}</h2><p class="demo-note">GIAO DIỆN DEMO. Backend phải yêu cầu role staff hoặc admin trước khi truy xuất dữ liệu nghiệp vụ.</p>${kind === "inventory" ? '<div class="table-wrap"><table class="data-table"><thead><tr><th>Sản phẩm</th><th>Tồn kho demo</th></tr></thead><tbody>' + P.map((p) => `<tr><td>${esc(p.name)}</td><td>${p.stock}</td></tr>`).join("") + "</tbody></table></div>" : '<div class="empty-panel">Chưa có đơn hàng thực để xử lý.</div>'}</div></div>`;
+  }
+  function adminPage() {
+    window.LUMIERE_BACKEND_CONSOLE({
+      mount: content,
+      section: page.slice(6),
+      role: "admin",
+    });
+  }
+  function staffPage() {
+    window.LUMIERE_BACKEND_CONSOLE({
+      mount: content,
+      section: page.slice(6),
+      role: "staff",
+    });
+  }
+  function favorite(id) {
+    if (!user || user.role !== "customer") {
+      notify(
+        "Đăng nhập bằng tài khoản khách hàng để dùng danh sách yêu thích.",
+        true,
+      );
+      return;
+    }
+    const productId = Number(id);
+    LUMIERE_API.wishlist()
+      .then(async (result) => {
+        const saved = result.items.some(
+          (item) => item.product.id === productId,
+        );
+        if (saved) {
+          await LUMIERE_API.removeWishlist(productId);
+          wishlistIds.delete(productId);
+        } else {
+          await LUMIERE_API.addWishlist(productId);
+          wishlistIds.add(productId);
+        }
+        document
+          .querySelectorAll(`.catalog-wish[data-favorite="${productId}"]`)
+          .forEach((button) => {
+            button.classList.toggle("is-active", !saved);
+            button.setAttribute("aria-pressed", String(!saved));
+            button.setAttribute(
+              "aria-label",
+              saved ? "Thêm vào yêu thích" : "Bỏ yêu thích",
+            );
+            button.title = saved ? "Thêm vào yêu thích" : "Bỏ yêu thích";
+          });
+
+        notify(saved ? "Đã bỏ yêu thích" : "Đã thêm vào yêu thích");
+
+        if (page === "wishlist") wishlist();
+      })
+      .catch((error) => notify(error.message, true));
+  }
+  let wishlistIds = new Set();
+  async function refreshCatalogFavorites() {
+    if (!user || user.role !== "customer") return;
+
+    try {
+      const result = await LUMIERE_API.wishlist(1, 100);
+      wishlistIds = new Set(
+        result.items.map((item) => Number(item.product.id)),
+      );
+
+      document.querySelectorAll(".catalog-wish").forEach((button) => {
+        const saved = wishlistIds.has(Number(button.dataset.favorite));
+
+        button.classList.toggle("is-active", saved);
+        button.setAttribute("aria-pressed", String(saved));
+        button.setAttribute(
+          "aria-label",
+          saved ? "Bỏ yêu thích" : "Thêm vào yêu thích",
+        );
+        button.title = saved ? "Bỏ yêu thích" : "Thêm vào yêu thích";
+      });
+    } catch (error) {
+      console.warn("Không tải được trạng thái yêu thích.", error);
+    }
+  }
+
+  function account() {
+    if (!user) {
+      content.innerHTML = `
+      <div class="empty-panel">
+        Bạn chưa đăng nhập.
+        <a class="inline-link" href="login.html">
+          Đăng nhập
+        </a>
+      </div>`;
+      return;
     }
 
-    const statusLabel = value => ({
-      pending: "Ch\u1edd x\u00e1c nh\u1eadn",
-      confirmed: "\u0110\u00e3 x\u00e1c nh\u1eadn",
-      packing: "\u0110ang \u0111\u00f3ng g\u00f3i",
-      shipping: "\u0110ang giao",
-      delivered: "\u0110\u00e3 giao",
-      cancelled: "\u0110\u00e3 h\u1ee7y"
-    }[value] || value);
-    const paymentLabel = value => ({
-      unpaid: "Ch\u01b0a thanh to\u00e1n",
-      paid: "\u0110\u00e3 thanh to\u00e1n",
-      refunded: "\u0110\u00e3 ho\u00e0n ti\u1ec1n"
-    }[value] || value);
-const rows = result.items.map(order => `
-      <tr>
-        <td><span class="customer-order-code" title="${esc(order.code)}">${esc(order.code.slice(0, 12))}&hellip;</span></td>
-        <td>${new Date(order.created_at).toLocaleDateString("vi-VN")}</td>
-        <td><span class="customer-order-status">${esc(statusLabel(order.status))}</span></td>
-        <td>${esc(paymentLabel(order.payment_status))}</td>
-        <td>${esc(order.payment_method).toUpperCase()}</td>
-        <td>${money(order.total_vnd)}</td>
-        <td>
-          <a class="inline-link"
-             href="order-detail.html?id=${Number(order.id)}">
-            Xem chi ti&#7871;t
-          </a>
-        </td>
-      </tr>
-    `).join("");
-    const totalPages = Math.max(
-      1, Math.ceil(Number(result.total || 0) / 20)
-    );
-    content.innerHTML = `
-      <div class="panel">
-        <h2>&#272;&#417;n h&#224;ng c&#7911;a t&#244;i</h2>
-        <p>T&#7893;ng s&#7889; &#273;&#417;n h&#224;ng:
-          ${Number(result.total || 0)}
-        </p>
-        ${result.items.length ? `
-          <div class="table-wrap">
-            <table class="data-table customer-orders-table">
-              <thead>
-                <tr>
-                  <th>M&#227; &#273;&#417;n</th>
-                  <th>Ng&#224;y &#273;&#7863;t</th>
-                  <th>Tr&#7841;ng th&#225;i</th>
-                  <th>Thanh to&#225;n</th>
-                  <th>Ph&#432;&#417;ng th&#7913;c</th>
-                  <th>T&#7893;ng ti&#7873;n</th>
-                  <th>Chi ti&#7871;t</th>
-                </tr>
-              </thead>
-              <tbody>${rows}</tbody>
-            </table>
-          </div>
-        ` : `
-          <div class="empty-panel">Ch&#432;a c&#243; &#273;&#417;n h&#224;ng.</div>
-        `}
-        <p>Trang ${currentPage} / ${totalPages}</p>
-        ${currentPage > 1
-          ? `<a href="orders.html?page=${currentPage-1}">&larr; Tr&#432;&#7899;c</a>`
-          : ""}
-        ${currentPage < totalPages
-          ? `<a href="orders.html?page=${currentPage+1}">Ti&#7871;p &rarr;</a>`
-          : ""}
-      </div>
-    `;
-  } catch (error) {
-    content.innerHTML = `
-      <div class="empty-panel">
-        Kh&#244;ng t&#7843;i &#273;&#432;&#7907;c &#273;&#417;n h&#224;ng:
-        ${esc(error.message)}
-      </div>`;
-    console.error("Orders API:", error);
-  }
-}
+    const initial = String(user.full_name || "L")
+      .trim()
+      .charAt(0)
+      .toUpperCase();
 
-function wishlist(){const list=favorites().map(product).filter(Boolean);content.innerHTML=`<p class="mini-note">Yêu thích đang lưu trên trình duyệt, chưa đồng bộ theo tài khoản.</p><div class="catalog-grid">${list.length?list.map(card).join(''):'<div class="empty-panel">Chưa có sản phẩm yêu thích.</div>'}</div>`}
-function staticPage(){const copy={about:'LUMIÈRE kết hợp thương mại điện tử trang sức với hệ thống gợi ý và tư vấn sử dụng trí tuệ nhân tạo. Giao diện là nguyên mẫu phục vụ khóa luận tốt nghiệp.',contact:'Liên hệ với đội ngũ LUMIÈRE để trao đổi thông tin mua sắm và hỗ trợ. Kênh liên lạc thực tế sẽ cấu hình khi triển khai.',collections:'Khám phá các thiết kế nhẫn, dây chuyền, bông tai và vòng tay theo phong cách riêng.',reviews:'Đánh giá chỉ được tạo sau khi đơn hàng hoàn tất. Backend phải xác nhận sản phẩm đã mua và chống đánh giá lặp.'};content.innerHTML=`<div class="panel"><h2>${page==='contact'?'Liên hệ':'LUMIÈRE Jewelry'}</h2><p class="page-subtitle">${copy[page]||''}</p>${page==='collections'?'<div class="catalog-grid">'+P.filter((p,i)=>i<4).map(card).join('')+'</div>':page==='contact'?errorBox+'<form id="contact-form">'+formField('name','Họ tên','text','required')+formField('email','Email','email','required')+'<div class="field"><label>Lời nhắn</label><textarea id="message" required maxlength="1500"></textarea></div><button class="button button-dark">GỬI LIÊN HỆ (DEMO)</button></form>':page==='reviews'?'<p class="demo-note">Chưa có API đánh giá. Yêu cầu backend: POST /products/{id}/reviews, GET /reviews/me.</p>':''}</div>`;if(page==='contact')$('#contact-form').onsubmit=e=>{e.preventDefault();alert('Chưa kết nối API liên hệ. Không có thông tin nào được gửi.','success')}}
-function adminPage(){const section=page.slice(6),names={'dashboard':'Dashboard','products':'Sản phẩm','categories':'Danh mục','brands':'Thương hiệu','orders':'Đơn hàng','customers':'Khách hàng','coupons':'Mã giảm giá','staff':'Nhân viên','analytics':'Phân tích hành vi','inventory':'Tồn kho'};const sidebar=`<nav class="admin-side">${Object.entries(names).map(([key,label])=>`<a class="${key===section?'active':''}" href="${key}.html">${label}</a>`).join('')}<a href="../../index.html">← Trở về cửa hàng</a></nav>`;if(section==='dashboard' && typeof window.LUMIERE_ADMIN_DASHBOARD==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="dashboard-mount"></div></div>`;window.LUMIERE_ADMIN_DASHBOARD({mount:$('#dashboard-mount'),products:P,money,esc});return}if((section==='categories'||section==='brands') && typeof window.LUMIERE_ADMIN_TAXONOMY==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="taxonomy-mount"></div></div>`;window.LUMIERE_ADMIN_TAXONOMY({mount:$('#taxonomy-mount'),kind:section,products:P,esc});return}if(section==='analytics' && typeof window.LUMIERE_ADMIN_ANALYTICS==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="analytics-mount"></div></div>`;window.LUMIERE_ADMIN_ANALYTICS({mount:$('#analytics-mount'),products:P});return}if(section==='inventory' && typeof window.LUMIERE_ADMIN_INVENTORY==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="inventory-mount"></div></div>`;window.LUMIERE_ADMIN_INVENTORY({mount:$('#inventory-mount'),products:P});return}if(section==='coupons' && typeof window.LUMIERE_ADMIN_COUPONS==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="coupons-mount"></div></div>`;window.LUMIERE_ADMIN_COUPONS({mount:$('#coupons-mount')});return}if(section==='staff' && typeof window.LUMIERE_ADMIN_STAFF==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="staff-admin-mount"></div></div>`;window.LUMIERE_ADMIN_STAFF({mount:$('#staff-admin-mount')});return}if(section==='customers' && typeof window.LUMIERE_ADMIN_CUSTOMERS==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="customers-mount"></div></div>`;window.LUMIERE_ADMIN_CUSTOMERS({mount:$('#customers-mount')});return}if(section==='orders' && typeof window.LUMIERE_ADMIN_ORDERS==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="orders-mount"></div></div>`;window.LUMIERE_ADMIN_ORDERS({mount:$('#orders-mount')});return}if(section==='products' && typeof window.LUMIERE_ADMIN_PRODUCTS==='function'){content.innerHTML=`<div class="admin-layout">${sidebar}<div id="ap-mount"></div></div>`;window.LUMIERE_ADMIN_PRODUCTS({mount:$('#ap-mount'), products:P, money, esc, authorized:!!(user&&user.role==='admin')});return}let body='';if(section==='dashboard'||section==='analytics'){body=`<div class="dashboard-grid"><div class="stat"><span>Sản phẩm demo</span><strong>${P.length}</strong></div><div class="stat"><span>Danh mục</span><strong>${new Set(P.map(p=>p.category)).size}</strong></div><div class="stat"><span>Đơn hàng (chưa API)</span><strong>—</strong></div><div class="stat"><span>Doanh thu (chưa API)</span><strong>—</strong></div></div><div class="panel"><h2>${section==='analytics'?'Phân tích hành vi khách hàng':'Tổng quan'}</h2><p class="page-subtitle">Các biểu đồ và số liệu doanh thu phải lấy từ backend, không được tự tạo số liệu giao dịch giả. Backend cần hỗ trợ event: product_view, search, add_to_cart, favorite, purchase và bảng tổng hợp theo ngày.</p></div>`}else if(section==='products'||section==='inventory'){body=`<div class="panel"><div class="toolbar"><h2>${names[section]}</h2><button class="button button-outline" data-demo="create-product">+ Thêm mới (demo)</button></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Hình</th><th>ID</th><th>Tên</th><th>Danh mục</th><th>Giá</th><th>Tồn kho</th><th>Thao tác</th></tr></thead><tbody>${P.map(p=>`<tr><td><img src="${esc(p.image)}" alt=""></td><td>${p.id}</td><td>${esc(p.name)}</td><td>${esc(p.category)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><button class="button-sm" data-demo="edit">Sửa</button></td></tr>`).join('')}</tbody></table></div></div>`}else{const data=section==='categories'?[...new Set(P.map(p=>p.category))]:section==='brands'?['SJC','PNJ','LUMIÈRE (đề xuất)']:[];body=`<div class="panel"><div class="toolbar"><h2>${names[section]}</h2><button class="button button-outline" data-demo="new">+ Thêm mới (demo)</button></div>${data.length?'<div class="table-wrap"><table class="data-table"><thead><tr><th>STT</th><th>Tên</th><th>Thao tác</th></tr></thead><tbody>'+data.map((name,i)=>`<tr><td>${i+1}</td><td>${esc(name)}</td><td><button class="button-sm" data-demo="edit">Sửa</button></td></tr>`).join('')+'</tbody></table></div>':'<div class="empty-panel">Chưa có dữ liệu nghiệp vụ từ PostgreSQL.</div>'}<p class="demo-note">Trang quản trị đã có giao diện, nhưng thêm/sửa/xóa và thống kê cần API có xác thực role admin.</p></div>`}const gate=user&&user.role==='admin'?'':'<div class="demo-note">CHẾ ĐỘ XEM TRƯỚC GIAO DIỆN ADMIN. Chưa được cấp quyền quản trị; mọi thao tác quản trị bị vô hiệu. Backend phải chặn API bằng role admin.</div>';content.innerHTML=`<div class="admin-layout">${sidebar}<div>${gate}${body}</div></div>`}
-function staffPage(){const kind=page.slice(6);if(kind==='inventory' && typeof window.LUMIERE_STAFF_INVENTORY==='function'){content.innerHTML=`<div class="admin-layout"><nav class="admin-side"><a href="orders.html">Xử lý đơn</a><a class="active" href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div id="staff-inventory-mount"></div></div>`;window.LUMIERE_STAFF_INVENTORY({mount:document.querySelector('#staff-inventory-mount'),products:P});return;}if(kind==='orders' && typeof window.LUMIERE_STAFF_ORDERS==='function'){content.innerHTML=`<div class="admin-layout"><nav class="admin-side"><a class="active" href="orders.html">Xử lý đơn</a><a href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div id="staff-orders-mount"></div></div>`;window.LUMIERE_STAFF_ORDERS({mount:document.querySelector('#staff-orders-mount')});return;}content.innerHTML=`<div class="admin-layout"><nav class="admin-side"><a href="orders.html">Xử lý đơn</a><a href="inventory.html">Tồn kho</a><a href="../../index.html">Về cửa hàng</a></nav><div class="panel"><h2>${kind==='orders'?'Đơn hàng cần xử lý':'Kiểm tra tồn kho'}</h2><p class="demo-note">GIAO DIỆN DEMO. Backend phải yêu cầu role staff hoặc admin trước khi truy xuất dữ liệu nghiệp vụ.</p>${kind==='inventory'?'<div class="table-wrap"><table class="data-table"><thead><tr><th>Sản phẩm</th><th>Tồn kho demo</th></tr></thead><tbody>'+P.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.stock}</td></tr>`).join('')+'</tbody></table></div>':'<div class="empty-panel">Chưa có đơn hàng thực để xử lý.</div>'}</div></div>`}
-function adminPage(){window.LUMIERE_BACKEND_CONSOLE({mount:content,section:page.slice(6),role:'admin'})}
-function staffPage(){window.LUMIERE_BACKEND_CONSOLE({mount:content,section:page.slice(6),role:'staff'})}
-function favorite(id){
-  if(!user||user.role!=='customer'){notify('Đăng nhập bằng tài khoản khách hàng để dùng danh sách yêu thích.',true);return}
-  const productId=Number(id);
-  LUMIERE_API.wishlist().then(async result=>{
-    const saved=result.items.some(item=>item.product.id===productId);
-    if(saved){await LUMIERE_API.removeWishlist(productId);wishlistIds.delete(productId)}
-    else{await LUMIERE_API.addWishlist(productId);wishlistIds.add(productId)}
-    notify(saved?'Đã bỏ yêu thích':'Đã thêm vào yêu thích');if(page==='wishlist')wishlist();
-  }).catch(error=>notify(error.message,true));
-}
-let wishlistIds=new Set();
-function account(){
-  if(!user){content.innerHTML='<div class="empty-panel">Bạn chưa đăng nhập. <a class="inline-link" href="login.html">Đăng nhập</a></div>';return}
-  content.innerHTML=`<div class="two-col"><section class="panel"><h2>Thông tin tài khoản</h2>${errorBox}
-    <form id="profile-form">${formField('profile-name','Họ tên','text',`value="${esc(user.full_name)}" minlength="2" maxlength="150" required`)}
-    ${formField('profile-phone','Số điện thoại','tel',`value="${esc(user.phone||'')}" maxlength="20"`)}
-    ${formField('profile-email','Email','email',`value="${esc(user.email)}" disabled`)}
-    <p>Vai trò: ${esc(user.role)}</p><button class="button button-dark">Cập nhật hồ sơ</button></form></section>
-    <section class="panel"><h2>Tài khoản</h2><p><a href="orders.html">Đơn hàng của tôi</a></p><p><a href="wishlist.html">Danh sách yêu thích</a></p><p><a href="reviews.html">Đánh giá của tôi</a></p><button class="button button-outline" id="logout-main">Đăng xuất</button></section></div>`;
-  $('#profile-form').onsubmit=async event=>{event.preventDefault();const button=event.currentTarget.querySelector('button');button.disabled=true;try{user=await LUMIERE_API.updateProfile({full_name:get('profile-name'),phone:get('profile-phone')||null});notify('Đã cập nhật hồ sơ');account()}catch(error){alert(error.message)}finally{button.disabled=false}};
-  $('#logout-main').onclick=logout;
-}
-async function wishlist(){
-  if(!user||user.role!=='customer'){content.innerHTML='<div class="empty-panel">Đăng nhập bằng tài khoản khách hàng để xem yêu thích. <a href="login.html">Đăng nhập</a></div>';return}
-  content.innerHTML='<div class="empty-panel">Đang tải danh sách yêu thích…</div>';
-  try{
-    const result=await LUMIERE_API.wishlist();wishlistIds=new Set(result.items.map(item=>item.product.id));
-    const rows=result.items.map(item=>{const p=item.product;const fallback=LUMIERE_CATEGORY_IMAGES[p.category?.name]||LUMIERE_CATEGORY_IMAGES.Charm;return {...p,category:p.category?.name||'',material:p.material?.name||'',brand:p.brand?.name||'',gem:p.gemstone?.name||'',collection:p.collection?.name||'',price:Number(p.price_vnd),image:window.LUMIERE_PRODUCT_IMAGE?window.LUMIERE_PRODUCT_IMAGE(p.sku,fallback):fallback}}).map(p=>`<article class="catalog-card"><a href="${root}pages/product-detail.html?id=${p.id}"><img src="${esc(p.image)}" alt="${esc(p.name)}"></a><div class="meta"><h3>${esc(p.name)}</h3><strong>${money(p.price)}</strong><button class="button-sm" data-favorite="${p.id}">Bỏ yêu thích</button></div></article>`).join('');
-    content.innerHTML=`<div class="catalog-grid">${rows||'<div class="empty-panel">Chưa có sản phẩm yêu thích.</div>'}</div>`;
-  }catch(error){content.innerHTML=`<div class="empty-panel">${esc(error.message)}</div>`}
-}
-function checkout(){
-  if(!cartLines().length){content.innerHTML='<div class="empty-panel">Giỏ hàng trống. <a href="products.html">Mua sắm ngay</a></div>';return}
-  const statusLabels={pending:'Chờ xác nhận',confirmed:'Đã xác nhận',packing:'Đang đóng gói',shipping:'Đang giao',delivered:'Đã giao',cancelled:'Đã hủy'};
-  content.innerHTML=`<div class="two-col"><section class="panel"><h2>Thông tin người nhận</h2>${errorBox}<form id="checkout-form">
-    ${formField('recipient','Họ và tên','text','required autocomplete="name"')}
-    ${formField('phone','Số điện thoại','tel','required pattern="0[0-9]{9}"')}
-    ${formField('address','Địa chỉ nhận hàng','text','required minlength="5"')}
-    ${formField('province','Tỉnh / thành phố','text','required')}
-    ${formField('coupon-code','Mã giảm giá','text','maxlength="24" autocomplete="off"')}
-    <div class="coupon-actions"><button id="coupon-validate" class="button button-outline" type="button">Áp dụng mã</button><button id="coupon-remove" class="button button-outline" type="button" hidden>Bỏ mã</button></div><p id="coupon-result" role="status" aria-live="polite"></p>
-    <div class="field"><label for="payment-method">Phương thức thanh toán</label><select id="payment-method"><option value="cod">Thanh toán khi nhận hàng (COD)</option><option value="vnpay" disabled>VNPay Sandbox · Chưa cấu hình</option></select><small id="vnpay-status" class="mini-note">Đang kiểm tra khả năng thanh toán VNPay...</small></div>
-    <button class="button button-dark button-wide" type="submit">ĐẶT HÀNG</button></form></section>
-    <aside class="summary-card"><h2>Đơn hàng</h2>${cartLines().map(({p,qty,lineTotal})=>`<div class="summary-line"><span>${esc(p.name)} × ${qty}</span><strong>${money(lineTotal)}</strong></div>`).join('')}
-    <div class="summary-line"><span>Tạm tính</span><strong id="checkout-subtotal">${money(subtotal())}</strong></div><div class="summary-line" id="checkout-discount-row" hidden><span>Giảm giá <small id="checkout-coupon-label"></small></span><strong id="checkout-discount"></strong></div><div class="summary-line"><span>Phí vận chuyển dự kiến</span><strong id="checkout-shipping">Đang tính...</strong></div><div class="summary-line checkout-total"><span>Tổng thanh toán dự kiến</span><strong id="checkout-total">${money(subtotal())}</strong></div><p id="checkout-shipping-note" class="mini-note">Mức phí chính xác được Business API xác nhận khi đặt hàng.</p></aside></div>`;
-  let couponCode=null;
-  let vnpayReady=false;
-  let couponAmounts=null, shippingCost=0, couponRevision=0, validating=0;
-  const couponReasons={not_found:'Mã giảm giá không tồn tại.',inactive:'Mã này đang tạm dừng.',not_started:'Mã chưa đến thời gian sử dụng.',expired:'Mã đã hết hạn.',exhausted:'Mã đã hết lượt sử dụng.',already_used:'Bạn đã dùng mã này.',min_order:'Đơn hàng chưa đạt giá trị tối thiểu của mã.',invalid_discount:'Mức giảm không phù hợp với đơn hàng này.',counter_capacity:'Mã đã đạt giới hạn sử dụng.'};
-  function syncSummary(){
-    if(!$('#checkout-form'))return;
-    const discount=Number(couponAmounts?.discount_vnd||0);
-    $('#checkout-subtotal').textContent=money(couponAmounts?.subtotal_vnd??subtotal());
-    $('#checkout-discount-row').hidden=!couponCode;
-    $('#checkout-coupon-label').textContent=couponCode||'';
-    $('#checkout-discount').textContent='−'+money(discount);
-    const fee=couponAmounts?Number(couponAmounts.total_vnd)-Number(couponAmounts.subtotal_vnd)+discount:shippingCost;
-    $('#checkout-shipping').textContent=money(fee);
-    $('#checkout-total').textContent=money(couponAmounts?.total_vnd??(subtotal()+shippingCost));
-    $('#coupon-remove').hidden=!couponCode;
-  }
-  function resetCoupon(){couponCode=null;couponAmounts=null;syncSummary()}
-  async function applyCoupon(){
-    const code=get('coupon-code').toUpperCase(), revision=++couponRevision;
-    const output=$('#coupon-result');
-    if(!code){resetCoupon();output.textContent='Nhập mã giảm giá để áp dụng.';return false}
-    validating++;$('#coupon-validate').disabled=true;output.textContent='Đang kiểm tra mã…';
-    try{
-      const result=await LUMIERE_API.validateCoupon(code);
-      if(revision!==couponRevision||get('coupon-code').toUpperCase()!==code)return false;
-      if(!result.valid)throw Error(couponReasons[result.reason]||'Mã giảm giá không hợp lệ.');
-      couponCode=result.coupon_code;couponAmounts=result;$('#coupon-code').value=couponCode;
-      syncSummary();output.textContent=`Đã áp dụng ${couponCode}: giảm ${money(result.discount_vnd)}.`;
-      return true;
-    }catch(error){if(revision===couponRevision){resetCoupon();output.textContent=error.message}return false}
-    finally{validating--;$('#coupon-validate').disabled=validating>0}
-  }
-  LUMIERE_API.paymentMethods().then(methods=>{
-    if(!$('#checkout-form'))return;
-    const vnpay=$('#payment-method option[value="vnpay"]');
-    vnpayReady=methods.vnpay?.enabled===true;
-    vnpay.disabled=!vnpayReady;
-    vnpay.textContent=vnpayReady?'VNPay Sandbox':'VNPay Sandbox · Chưa cấu hình';
-    $('#vnpay-status').textContent=methods.vnpay?.message||'Chưa có cấu hình VNPay';
-    const fee=Number(methods.shipping?.flat_fee_vnd||0);
-    const freeFrom=Number(methods.shipping?.free_from_vnd||0);
-    shippingCost=subtotal()>=freeFrom?0:fee;
-    syncSummary();
-    $('#checkout-shipping-note').textContent=shippingCost===0?'Miễn phí vận chuyển theo cấu hình hiện tại.':('Phí vận chuyển '+money(shippingCost)+' · miễn phí từ '+money(freeFrom)+'.');
-  }).catch(error=>{
-    if(!$('#checkout-form'))return;
-    $('#vnpay-status').textContent='Không xác định được trạng thái VNPay: '+error.message;
-    $('#checkout-shipping').textContent='Tính khi đặt hàng';
-  });
-  $('#coupon-code').addEventListener('input',()=>{couponRevision++;resetCoupon();$('#coupon-result').textContent='Mã sẽ được kiểm tra khi áp dụng hoặc đặt hàng.'});
-  $('#coupon-validate').onclick=applyCoupon;
-  $('#coupon-remove').onclick=()=>{couponRevision++;$('#coupon-code').value='';resetCoupon();$('#coupon-result').textContent='Đã bỏ mã giảm giá.'};
-  $('#checkout-form').onsubmit=async event=>{event.preventDefault();if(!user||user.role!=='customer'){alert('Đăng nhập bằng tài khoản khách hàng để đặt hàng.');return}
-    const button=event.currentTarget.querySelector('button[type="submit"]');button.disabled=true;
-    try{
-      if(get('coupon-code')){if(!await applyCoupon()){alert($('#coupon-result').textContent);button.disabled=false;return}}else resetCoupon();
-      const method=get('payment-method');
-      if(method==='vnpay'&&!vnpayReady)throw Error('VNPay Sandbox chưa được cấu hình hợp lệ. Hãy chọn COD.');
-      const order=await LUMIERE_API.createOrder({recipient_name:get('recipient'),phone:get('phone'),address:get('address')+', '+get('province'),payment_method:method,...(couponCode?{coupon_code:couponCode}:{})});
-      cartData={items:[],total_quantity:0,subtotal_vnd:'0.00'};
-      if(method==='vnpay'){
-        try{
-          const payment=await LUMIERE_API.startVnpayPayment(order.id);
-          const gateway=new URL(payment.payment_url);
-          if(gateway.protocol!=='https:'||gateway.hostname!=='sandbox.vnpayment.vn')throw Error('Địa chỉ cổng thanh toán không hợp lệ');
-          location.assign(gateway.href);
-          return;
-        }catch(paymentError){
-          content.innerHTML=`<section class="panel"><h2>Đã tạo đơn hàng, chưa chuyển được sang VNPay</h2><p>Mã đơn: <strong>${esc(order.code)}</strong></p><p class="form-alert error">${esc(paymentError.message)}</p><p>Không tạo lại đơn hàng. Bạn có thể kiểm tra trạng thái trong lịch sử đơn.</p><a class="button button-dark" href="orders.html">Xem đơn hàng</a></section>`;
-          return;
+    content.innerHTML = `
+    <div class="my-account-layout">
+
+      <aside class="panel my-account-sidebar">
+
+        <div class="my-account-user">
+          <div class="my-account-avatar">
+            ${esc(initial)}
+          </div>
+
+          <h3>${esc(user.full_name)}</h3>
+          <p>${esc(user.email)}</p>
+
+          <span class="my-account-member">
+            Thành viên LUMIÈRE
+          </span>
+        </div>
+
+        <nav class="my-account-nav"
+             aria-label="Điều hướng tài khoản">
+
+          <a href="account.html"
+             class="is-active"
+             aria-current="page">
+            <span>Thông tin cá nhân</span>
+            <span>›</span>
+          </a>
+
+          <a href="orders.html">
+            <span>Đơn hàng của tôi</span>
+            <span>›</span>
+          </a>
+
+          <a href="wishlist.html">
+            <span>Sản phẩm yêu thích</span>
+            <span>›</span>
+          </a>
+
+          <a href="reviews.html">
+            <span>Đánh giá của tôi</span>
+            <span>›</span>
+          </a>
+
+        </nav>
+
+        <button class="button button-outline"
+                id="logout-main"
+                type="button">
+          ĐĂNG XUẤT
+        </button>
+
+      </aside>
+
+      <section class="panel my-account-profile">
+
+        <div class="my-account-heading">
+          <div class="eyebrow">MY LUMIÈRE</div>
+
+          <h2>Hồ sơ cá nhân</h2>
+
+          <p>
+            Quản lý thông tin cá nhân và cập nhật
+            thông tin liên hệ của bạn.
+          </p>
+        </div>
+
+        ${errorBox}
+
+        <form id="profile-form">
+
+          ${formField("profile-name", "Họ và tên", "text", `value="${esc(user.full_name)}" minlength="2" maxlength="150" required`)}
+
+          ${formField("profile-phone", "Số điện thoại", "tel", `value="${esc(user.phone || "")}" maxlength="20"`)}
+
+          ${formField("profile-email", "Địa chỉ email", "email", `value="${esc(user.email)}" disabled`)}
+
+          <p class="my-account-hint">
+            Email đăng nhập hiện không thể thay đổi.
+          </p>
+
+          <div class="my-account-actions">
+            <button class="button button-dark"
+                    type="submit">
+              LƯU THAY ĐỔI
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+    </div>`;
+
+    $("#profile-form").onsubmit = async (event) => {
+      event.preventDefault();
+
+      const button = event.currentTarget.querySelector('button[type="submit"]');
+
+      button.disabled = true;
+      button.textContent = "ĐANG LƯU...";
+
+      try {
+        user = await LUMIERE_API.updateProfile({
+          full_name: get("profile-name"),
+          phone: get("profile-phone") || null,
+        });
+
+        notify("Đã cập nhật hồ sơ");
+
+        const headerName = document.querySelector(".shell-account-name");
+
+        if (headerName) {
+          headerName.textContent = user.full_name;
         }
+
+        account();
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        button.disabled = false;
+        button.textContent = "LƯU THAY ĐỔI";
       }
-      content.innerHTML=`<section class="panel"><h2>Đặt hàng thành công</h2><p>Mã đơn: <strong>${esc(order.code)}</strong></p><p>Tổng tiền: <strong>${money(order.total_vnd)}</strong></p><p>Trạng thái: ${esc(statusLabels[order.status]||order.status)}</p><p>Thanh toán: COD · ${esc(order.payment_status)}</p><a class="button button-dark" href="orders.html">Xem đơn hàng</a></section>`;
-    }catch(error){alert(error.message);button.disabled=false}
-  };
-}
-async function showProductReviews(){
-  const id=Number(new URLSearchParams(location.search).get('id'));if(!Number.isInteger(id)||id<1)return;
-  let section=content.querySelector('#product-reviews-panel');if(!section){section=document.createElement('section');section.id='product-reviews-panel';section.className='panel';content.append(section)}section.innerHTML='<h2>Đánh giá sản phẩm</h2><p>Đang tải đánh giá…</p>';
-  try{const result=await LUMIERE_API.reviews(id);section.innerHTML=`<h2>Đánh giá sản phẩm</h2>${result.items.map(review=>`<article><strong>${esc(review.author_display_name)}</strong> · ${review.rating}/5<p>${esc(review.comment)}</p></article>`).join('')||'<p>Chưa có đánh giá.</p>'}
-    ${user?.role==='customer'?`<form id="review-form" class="review-form">
+    };
+
+    $("#logout-main").onclick = logout;
+  }
+
+  async function wishlist() {
+    if (!user || user.role !== "customer") {
+      content.innerHTML = `
+      <section class="wishlist-empty">
+        <div class="wishlist-empty-icon">♡</div>
+
+        <h2>Danh sách yêu thích của bạn</h2>
+
+        <p>Đăng nhập để lưu giữ những món trang sức bạn yêu thích.</p>
+
+        <a class="button button-dark" href="login.html">
+          ĐĂNG NHẬP
+        </a>
+      </section>`;
+      return;
+    }
+
+    content.innerHTML = `
+    <div class="empty-panel">
+      Đang tải danh sách yêu thích…
+    </div>`;
+
+    try {
+      const result = await LUMIERE_API.wishlist();
+
+      wishlistIds = new Set(
+        result.items.map((item) => Number(item.product.id)),
+      );
+
+      const products = result.items.map((item) => {
+        const p = item.product;
+
+        const fallback =
+          LUMIERE_CATEGORY_IMAGES[p.category?.name] ||
+          LUMIERE_CATEGORY_IMAGES.Charm;
+
+        return {
+          ...p,
+          category: p.category?.name || "",
+          material: p.material?.name || "",
+          brand: p.brand?.name || "",
+          gem: p.gemstone?.name || "",
+          collection: p.collection?.name || "",
+          price: Number(p.price_vnd),
+          image: window.LUMIERE_PRODUCT_IMAGE
+            ? window.LUMIERE_PRODUCT_IMAGE(p.sku, fallback)
+            : fallback,
+        };
+      });
+
+      if (!products.length) {
+        content.innerHTML = `
+        <section class="wishlist-empty">
+
+          <div class="wishlist-empty-icon">♡</div>
+
+          <h2>Danh sách yêu thích đang trống</h2>
+
+          <p>
+            Khám phá bộ sưu tập và lưu lại những
+            món trang sức khiến bạn rung động.
+          </p>
+
+          <a class="button button-dark" href="products.html">
+            KHÁM PHÁ SẢN PHẨM →
+          </a>
+
+        </section>`;
+        return;
+      }
+
+      content.innerHTML = `
+      <section class="wishlist-section">
+
+        <p class="wishlist-intro">
+          Lưu giữ những thiết kế bạn yêu thích.
+        </p>
+
+        <div class="wishlist-toolbar">
+
+          <span>
+            ${Number(result.total ?? products.length)} sản phẩm đã lưu
+          </span>
+
+          <a href="products.html" class="inline-link">
+            Tiếp tục khám phá →
+          </a>
+
+        </div>
+
+        <div id="wishlist-grid" class="catalog-grid">
+          ${products.map(card).join("")}
+        </div>
+
+      </section>`;
+    } catch (error) {
+      content.innerHTML = `
+      <section class="wishlist-empty">
+
+        <h2>Chưa tải được danh sách yêu thích</h2>
+
+        <p>${esc(error.message)}</p>
+
+        <button id="wishlist-retry"
+                class="button button-outline"
+                type="button">
+          Thử lại
+        </button>
+
+      </section>`;
+
+      $("#wishlist-retry").onclick = () => wishlist();
+    }
+  }
+
+  function checkout() {
+    if (!cartLines().length) {
+      content.innerHTML =
+        '<div class="empty-panel">Giỏ hàng của bạn đang trống. <a href="products.html">Tiếp tục mua sắm</a></div>';
+      return;
+    }
+
+    const statusLabels = {
+      pending: "Chờ xác nhận",
+      confirmed: "Đã xác nhận",
+      packing: "Đang đóng gói",
+      shipping: "Đang giao",
+      delivered: "Đã giao",
+      cancelled: "Đã hủy",
+    };
+
+    const paymentLabels = {
+      unpaid: "Chưa thanh toán",
+      paid: "Đã thanh toán",
+      pending: "Đang chờ thanh toán",
+      failed: "Thanh toán thất bại",
+      refunded: "Đã hoàn tiền",
+    };
+
+    content.innerHTML = `
+    <div class="two-col">
+      <section class="panel">
+        <h2>01 — Thông tin người nhận</h2>
+        ${errorBox}
+
+        <form id="checkout-form">
+          ${formField("recipient", "Họ và tên", "text", 'required autocomplete="name"')}
+          ${formField("phone", "Số điện thoại", "tel", 'required pattern="0[0-9]{9}"')}
+          ${formField("address", "Địa chỉ nhận hàng", "text", 'required minlength="5"')}
+          ${formField("province", "Tỉnh / thành phố", "text", "required")}
+
+          <h3 class="checkout-section-title">02 — Ưu đãi</h3>
+
+          ${formField("coupon-code", "Mã giảm giá", "text", 'maxlength="24" autocomplete="off"')}
+
+          <div class="coupon-actions">
+            <button id="coupon-validate" class="button button-outline" type="button">
+              Áp dụng mã
+            </button>
+            <button id="coupon-remove" class="button button-outline" type="button" hidden>
+              Bỏ mã
+            </button>
+          </div>
+
+          <p id="coupon-result" role="status" aria-live="polite"></p>
+
+          <h3 class="checkout-section-title">03 — Thanh toán</h3>
+
+          <div class="field">
+            <label for="payment-method">Phương thức thanh toán</label>
+
+            <select id="payment-method">
+              <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+              <option value="vnpay" disabled>VNPAY · Chưa khả dụng</option>
+            </select>
+
+            <small id="vnpay-status" class="mini-note">
+              Đang kiểm tra phương thức thanh toán...
+            </small>
+          </div>
+
+          <button class="button button-dark button-wide" type="submit">
+            XÁC NHẬN ĐẶT HÀNG
+          </button>
+        </form>
+      </section>
+
+      <aside class="summary-card">
+        <h2>Tóm tắt đơn hàng</h2>
+
+        ${cartLines()
+          .map(
+            ({ p, qty, lineTotal }) => `
+          <div class="checkout-item">
+            ${
+              p.image
+                ? `
+              <img src="${esc(p.image)}" alt="${esc(p.name)}">
+            `
+                : ""
+            }
+
+            <div class="checkout-item-info">
+              <strong>${esc(p.name)}</strong>
+              <small>${esc(p.material || "")}</small>
+              <small>Số lượng: ${qty}</small>
+              <strong class="price">${money(lineTotal)}</strong>
+            </div>
+          </div>
+        `,
+          )
+          .join("")}
+
+        <div class="summary-line">
+          <span>Tạm tính</span>
+          <strong id="checkout-subtotal">${money(subtotal())}</strong>
+        </div>
+
+        <div class="summary-line" id="checkout-discount-row" hidden>
+          <span>
+            Giảm giá
+            <small id="checkout-coupon-label"></small>
+          </span>
+          <strong id="checkout-discount"></strong>
+        </div>
+
+        <div class="summary-line">
+          <span>Phí vận chuyển dự kiến</span>
+          <strong id="checkout-shipping">Đang tính...</strong>
+        </div>
+
+        <div class="summary-line checkout-total">
+          <span>Tổng thanh toán dự kiến</span>
+          <strong id="checkout-total">${money(subtotal())}</strong>
+        </div>
+
+        <p id="checkout-shipping-note" class="mini-note">
+          Phí vận chuyển chính xác được xác nhận khi đặt hàng.
+        </p>
+      </aside>
+    </div>`;
+
+    let couponCode = null;
+    let vnpayReady = false;
+    let couponAmounts = null,
+      shippingCost = 0,
+      couponRevision = 0,
+      validating = 0;
+
+    const couponReasons = {
+      not_found: "Mã giảm giá không tồn tại.",
+      inactive: "Mã này đang tạm dừng.",
+      not_started: "Mã chưa đến thời gian sử dụng.",
+      expired: "Mã đã hết hạn.",
+      exhausted: "Mã đã hết lượt sử dụng.",
+      already_used: "Bạn đã dùng mã này.",
+      min_order: "Đơn hàng chưa đạt giá trị tối thiểu của mã.",
+      invalid_discount: "Mức giảm không phù hợp với đơn hàng này.",
+      counter_capacity: "Mã đã đạt giới hạn sử dụng.",
+    };
+
+    function syncSummary() {
+      if (!$("#checkout-form")) return;
+
+      const discount = Number(couponAmounts?.discount_vnd || 0);
+
+      $("#checkout-subtotal").textContent = money(
+        couponAmounts?.subtotal_vnd ?? subtotal(),
+      );
+
+      $("#checkout-discount-row").hidden = !couponCode;
+      $("#checkout-coupon-label").textContent = couponCode || "";
+      $("#checkout-discount").textContent = "−" + money(discount);
+
+      const fee = couponAmounts
+        ? Number(couponAmounts.total_vnd) -
+          Number(couponAmounts.subtotal_vnd) +
+          discount
+        : shippingCost;
+
+      $("#checkout-shipping").textContent = money(fee);
+
+      $("#checkout-total").textContent = money(
+        couponAmounts?.total_vnd ?? subtotal() + shippingCost,
+      );
+
+      $("#coupon-remove").hidden = !couponCode;
+    }
+
+    function resetCoupon() {
+      couponCode = null;
+      couponAmounts = null;
+      syncSummary();
+    }
+
+    async function applyCoupon() {
+      const code = get("coupon-code").toUpperCase();
+      const revision = ++couponRevision;
+      const output = $("#coupon-result");
+
+      if (!code) {
+        resetCoupon();
+        output.textContent = "Nhập mã giảm giá để áp dụng.";
+        return false;
+      }
+
+      validating++;
+      $("#coupon-validate").disabled = true;
+      output.textContent = "Đang kiểm tra mã…";
+
+      try {
+        const result = await LUMIERE_API.validateCoupon(code);
+
+        if (
+          revision !== couponRevision ||
+          get("coupon-code").toUpperCase() !== code
+        )
+          return false;
+
+        if (!result.valid)
+          throw Error(
+            couponReasons[result.reason] || "Mã giảm giá không hợp lệ.",
+          );
+
+        couponCode = result.coupon_code;
+        couponAmounts = result;
+        $("#coupon-code").value = couponCode;
+
+        syncSummary();
+
+        output.textContent = `Đã áp dụng ${couponCode}: giảm ${money(result.discount_vnd)}.`;
+
+        return true;
+      } catch (error) {
+        if (revision === couponRevision) {
+          resetCoupon();
+          output.textContent = error.message;
+        }
+
+        return false;
+      } finally {
+        validating--;
+        $("#coupon-validate").disabled = validating > 0;
+      }
+    }
+
+    LUMIERE_API.paymentMethods()
+      .then((methods) => {
+        if (!$("#checkout-form")) return;
+
+        const vnpay = $('#payment-method option[value="vnpay"]');
+
+        vnpayReady = methods.vnpay?.enabled === true;
+        vnpay.disabled = !vnpayReady;
+
+        vnpay.textContent = vnpayReady
+          ? "VNPAY Sandbox"
+          : "VNPAY · Chưa khả dụng";
+
+        $("#vnpay-status").textContent =
+          methods.vnpay?.message || "Thanh toán VNPAY chưa khả dụng.";
+
+        const fee = Number(methods.shipping?.flat_fee_vnd || 0);
+        const freeFrom = Number(methods.shipping?.free_from_vnd || 0);
+
+        shippingCost = subtotal() >= freeFrom ? 0 : fee;
+
+        syncSummary();
+
+        $("#checkout-shipping-note").textContent =
+          shippingCost === 0
+            ? "Miễn phí vận chuyển theo cấu hình hiện tại."
+            : "Phí vận chuyển " +
+              money(shippingCost) +
+              " · miễn phí từ " +
+              money(freeFrom) +
+              ".";
+      })
+      .catch((error) => {
+        if (!$("#checkout-form")) return;
+
+        $("#vnpay-status").textContent =
+          "Không xác định được trạng thái VNPAY: " + error.message;
+
+        $("#checkout-shipping").textContent = "Tính khi đặt hàng";
+      });
+
+    $("#coupon-code").addEventListener("input", () => {
+      couponRevision++;
+      resetCoupon();
+
+      $("#coupon-result").textContent =
+        "Mã sẽ được kiểm tra khi áp dụng hoặc đặt hàng.";
+    });
+
+    $("#coupon-validate").onclick = applyCoupon;
+
+    $("#coupon-remove").onclick = () => {
+      couponRevision++;
+      $("#coupon-code").value = "";
+      resetCoupon();
+      $("#coupon-result").textContent = "Đã bỏ mã giảm giá.";
+    };
+
+    $("#checkout-form").onsubmit = async (event) => {
+      event.preventDefault();
+
+      if (!user || user.role !== "customer") {
+        alert("Đăng nhập bằng tài khoản khách hàng để đặt hàng.");
+        return;
+      }
+
+      const button = event.currentTarget.querySelector('button[type="submit"]');
+      button.disabled = true;
+
+      try {
+        if (get("coupon-code")) {
+          if (!(await applyCoupon())) {
+            alert($("#coupon-result").textContent);
+            button.disabled = false;
+            return;
+          }
+        } else {
+          resetCoupon();
+        }
+
+        const method = get("payment-method");
+
+        if (method === "vnpay" && !vnpayReady)
+          throw Error("VNPay Sandbox chưa được cấu hình hợp lệ. Hãy chọn COD.");
+
+        const order = await LUMIERE_API.createOrder({
+          recipient_name: get("recipient"),
+          phone: get("phone"),
+          address: get("address") + ", " + get("province"),
+          payment_method: method,
+          ...(couponCode ? { coupon_code: couponCode } : {}),
+        });
+
+        cartData = {
+          items: [],
+          total_quantity: 0,
+          subtotal_vnd: "0.00",
+        };
+
+        if (method === "vnpay") {
+          try {
+            const payment = await LUMIERE_API.startVnpayPayment(order.id);
+            const gateway = new URL(payment.payment_url);
+
+            if (
+              gateway.protocol !== "https:" ||
+              gateway.hostname !== "sandbox.vnpayment.vn"
+            )
+              throw Error("Địa chỉ cổng thanh toán không hợp lệ");
+
+            location.assign(gateway.href);
+            return;
+          } catch (paymentError) {
+            content.innerHTML = `
+            <section class="panel">
+              <h2>Đã tạo đơn hàng, chưa chuyển được sang VNPAY</h2>
+              <p>Mã đơn: <strong>${esc(order.code)}</strong></p>
+              <p class="form-alert error">${esc(paymentError.message)}</p>
+              <p>Không tạo lại đơn hàng. Bạn có thể kiểm tra trạng thái trong lịch sử đơn.</p>
+              <a class="button button-dark" href="orders.html">Xem đơn hàng</a>
+            </section>`;
+            return;
+          }
+        }
+
+        const heading = document.querySelector(".page-heading h1");
+
+        if (heading) {
+          heading.textContent = "Xác nhận đơn hàng";
+        }
+
+        content.innerHTML = `
+        <section class="panel order-success">
+
+          <div class="order-success-icon">✓</div>
+
+          <h2>Đặt hàng thành công!</h2>
+
+          <p class="order-success-description">
+            Cảm ơn bạn đã lựa chọn LUMIÈRE.
+            Đơn hàng của bạn đã được ghi nhận.
+          </p>
+
+          <div class="order-success-info">
+
+            <div class="summary-line">
+              <span>Mã đơn hàng</span>
+              <strong>${esc(order.code)}</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Trạng thái</span>
+              <strong>
+                ${esc(statusLabels[order.status] || order.status)}
+              </strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Phương thức thanh toán</span>
+              <strong>COD</strong>
+            </div>
+
+            <div class="summary-line">
+              <span>Thanh toán</span>
+              <strong>
+                ${esc(paymentLabels[order.payment_status] || order.payment_status)}
+              </strong>
+            </div>
+
+            <div class="summary-line total">
+              <span>Tổng tiền</span>
+              <strong class="price">${money(order.total_vnd)}</strong>
+            </div>
+
+          </div>
+
+          <div class="order-success-actions">
+            <a class="button button-dark" href="orders.html">
+              XEM ĐƠN HÀNG
+            </a>
+
+            <a class="button button-outline" href="products.html">
+              TIẾP TỤC MUA SẮM
+            </a>
+          </div>
+
+        </section>`;
+      } catch (error) {
+        alert(error.message);
+        button.disabled = false;
+      }
+    };
+  }
+
+  async function showProductReviews() {
+    const id = Number(new URLSearchParams(location.search).get("id"));
+    if (!Number.isInteger(id) || id < 1) return;
+    let section = content.querySelector("#product-reviews-panel");
+    if (!section) {
+      section = document.createElement("section");
+      section.id = "product-reviews-panel";
+      section.className = "panel";
+      content.append(section);
+    }
+    section.innerHTML = "<h2>Đánh giá sản phẩm</h2><p>Đang tải đánh giá…</p>";
+    try {
+      const result = await LUMIERE_API.reviews(id);
+      section.innerHTML = `<h2>Đánh giá sản phẩm</h2>${result.items.map((review) => `<article><strong>${esc(review.author_display_name)}</strong> · ${review.rating}/5<p>${esc(review.comment)}</p></article>`).join("") || "<p>Chưa có đánh giá.</p>"}
+    ${
+      user?.role === "customer"
+        ? `<form id="review-form" class="review-form">
   <div class="review-field">
     <label for="review-rating">Điểm đánh giá</label>
     <select id="review-rating" name="rating">
@@ -605,130 +2662,457 @@ async function showProductReviews(){
   </div>
 
   <p id="review-error" role="alert"></p>
-</form>`:'<p>Đăng nhập bằng tài khoản khách hàng để đánh giá sản phẩm đã mua.</p>'}`;
-    section.querySelector('#review-form')?.addEventListener('submit',async event=>{event.preventDefault();const button=event.currentTarget.querySelector('button');button.disabled=true;try{await LUMIERE_API.createReview(id,{rating:Number(event.currentTarget.elements.rating.value),comment:section.querySelector('#review-comment').value});await showProductReviews()}catch(error){section.querySelector('#review-error').textContent=error.message;button.disabled=false}});
-  }catch(error){section.innerHTML=`<h2>Đánh giá sản phẩm</h2><p>${esc(error.message)}</p>`}
-}
-async function showMyReviews(){
-  if(!user||user.role!=='customer'){content.innerHTML='<div class="empty-panel">Đăng nhập bằng tài khoản khách hàng để xem đánh giá của bạn. <a href="login.html">Đăng nhập</a></div>';return}
-  try{const result=await LUMIERE_API.reviews();content.innerHTML=`<section class="panel"><h2>Đánh giá của tôi</h2>${result.items.map(review=>`<article><h3>${esc(review.author_display_name)} · ${review.rating}/5</h3><p>${esc(review.comment)}</p><a href="product-detail.html?id=${review.product_id}">Xem sản phẩm</a> <button class="button-sm" data-review-edit="${review.id}" data-rating="${review.rating}">Sửa</button> <button class="button-sm" data-review-delete="${review.id}">Xóa</button></article>`).join('')||'<p>Bạn chưa có đánh giá.</p>'}</section>`;
-    content.querySelectorAll('[data-review-edit]').forEach(button=>button.onclick=async()=>{const rating=Number(window.prompt('Điểm từ 1 đến 5:',button.dataset.rating));if(!Number.isInteger(rating)||rating<1||rating>5)return;const comment=window.prompt('Nội dung đánh giá:');if(comment===null)return;try{await LUMIERE_API.updateReview(button.dataset.reviewEdit,{rating,comment});await showMyReviews()}catch(error){notify(error.message,true)}});
-    content.querySelectorAll('[data-review-delete]').forEach(button=>button.onclick=async()=>{if(!window.confirm('Xóa đánh giá này?'))return;try{await LUMIERE_API.deleteReview(button.dataset.reviewDelete);await showMyReviews()}catch(error){notify(error.message,true)}});
-  }catch(error){content.innerHTML=`<div class="empty-panel">${esc(error.message)}</div>`}
-}
-function staticPage(){
-  if(page==='reviews'){showMyReviews();return}
-  if(page==='about'){
-    content.innerHTML=`<div class="story-hero"><span class="eyebrow">CÂU CHUYỆN THƯƠNG HIỆU</span><h2>Vẻ đẹp lưu giữ những khoảnh khắc</h2><p>LUMIÈRE là ý tưởng cửa hàng trang sức trong khuôn khổ đồ án tốt nghiệp, kết hợp trải nghiệm mua sắm trực tuyến và công nghệ tư vấn thông minh.</p></div>
-    <div class="story-grid"><section class="panel"><span class="eyebrow">01 · KHỞI NGUỒN</span><h2>Mỗi món trang sức là một câu chuyện</h2><p>Một chiếc nhẫn có thể đánh dấu lời hứa, một đôi bông tai gợi nhớ ngày đặc biệt, một sợi dây chuyền trở thành món quà mang theo kỷ niệm. Từ cảm hứng ấy, LUMIÈRE được xây dựng để việc tìm kiếm trang sức trở nên gần gũi và có ý nghĩa hơn.</p></section>
-    <section class="panel"><span class="eyebrow">02 · TRẢI NGHIỆM</span><h2>Tinh tế trong từng lựa chọn</h2><p>Khách hàng có thể khám phá danh mục theo loại trang sức, chất liệu, đá quý và ngân sách, sau đó theo dõi giỏ hàng, đơn hàng, đánh giá và sản phẩm yêu thích trong cùng một hệ thống.</p></section>
-    <section class="panel"><span class="eyebrow">03 · CÔNG NGHỆ</span><h2>Cá nhân hóa bằng AI</h2><p>Chatbot RAG hỗ trợ tư vấn theo câu hỏi tự nhiên. Hybrid Recommendation V2 kết hợp nội dung sản phẩm, tìm kiếm vector, lịch sử tương tác khi có dữ liệu và đồ thị tri thức để đưa ra gợi ý phù hợp.</p></section>
-    <section class="panel"><span class="eyebrow">04 · CAM KẾT CỦA ĐỒ ÁN</span><h2>Minh bạch và thực tiễn</h2><p>LUMIÈRE hiện là hệ thống nghiên cứu và trình diễn. Thông tin tồn kho, giá, đơn hàng lấy từ Business API; hình ảnh sản phẩm có thể là ảnh minh họa theo danh mục, không phải ảnh chụp sản phẩm thực tế.</p></section></div>
-    <div class="story-end"><h2>Tìm món trang sức dành riêng cho bạn</h2><p>Khám phá bộ sưu tập hoặc trò chuyện với trợ lý AI để bắt đầu hành trình lựa chọn.</p><a class="button button-dark" href="products.html">KHÁM PHÁ SẢN PHẨM</a></div>`;
-    return;
-  }
-  if(page==='contact'){
-    content.innerHTML=`<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Bạn cần được tư vấn về kiểu dáng, ngân sách, đơn hàng hoặc cách sử dụng tính năng AI? Hãy chuẩn bị nội dung liên hệ bên dưới.</p><div class="contact-facts"><div><strong>Hỗ trợ mua sắm</strong><span>Tư vấn sản phẩm, giỏ hàng và thanh toán COD</span></div><div><strong>Theo dõi đơn hàng</strong><span>Đăng nhập rồi mở mục Đơn hàng của tôi</span></div><div><strong>Trợ lý trang sức AI</strong><span>Sử dụng nút Tư vấn AI trên trang mua sắm</span></div></div><p class="mini-note">LUMIÈRE là đồ án minh họa; không công bố số điện thoại hay địa chỉ cửa hàng chưa được xác thực.</p></section>
-    <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">Yêu cầu sẽ được lưu trực tiếp trên hệ thống và Admin có thể xem trong hộp thư liên hệ.</p><form id="contact-form">${formField('contact-name','Họ và tên','text','required minlength="2" maxlength="150"')}${formField('contact-email','Email liên hệ','email','required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">GỬI YÊU CẦU LIÊN HỆ</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
-    $('#contact-form').onsubmit=async event=>{
-      event.preventDefault();
-      const form = event.currentTarget;
-      const button=event.currentTarget.querySelector('button[type="submit"]');
-      const result=$('#contact-result');
-      button.disabled=true;
-      result.textContent='Đang gửi yêu cầu...';
-      try {
-        const response=await LUMIERE_API.request('/contact',{
-          method:'POST',
-          body:JSON.stringify({
-            full_name:get('contact-name'),
-            email:get('contact-email'),
-            topic:get('contact-topic'),
-            message:get('contact-message')
-          })
+</form>`
+        : "<p>Đăng nhập bằng tài khoản khách hàng để đánh giá sản phẩm đã mua.</p>"
+    }`;
+      section
+        .querySelector("#review-form")
+        ?.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const button = event.currentTarget.querySelector("button");
+          button.disabled = true;
+          try {
+            await LUMIERE_API.createReview(id, {
+              rating: Number(event.currentTarget.elements.rating.value),
+              comment: section.querySelector("#review-comment").value,
+            });
+            await showProductReviews();
+          } catch (error) {
+            section.querySelector("#review-error").textContent = error.message;
+            button.disabled = false;
+          }
         });
-        result.textContent='Đã tiếp nhận yêu cầu #'+response.id+'. Bộ phận quản trị có thể xem và xử lý yêu cầu này.';
-        form.reset();
-      } catch(error) {
-        result.textContent='Không gửi được liên hệ: '+error.message;
-      } finally { button.disabled=false; }
-    };
-    return;
+    } catch (error) {
+      section.innerHTML = `<h2>Đánh giá sản phẩm</h2><p>${esc(error.message)}</p>`;
+    }
   }
-  content.innerHTML=`<div class="panel"><h2>Bộ sưu tập LUMIÈRE</h2><p>Khám phá các thiết kế trang sức theo phong cách riêng.</p><div class="catalog-grid">${P.slice(0,4).map(card).join('')}</div></div>`;
-}
-async function logout(){try{await LUMIERE_API.logout();user=null;location.href=root+'pages/login.html'}catch(e){notify(e.message,true)}}
-function render(){if(page==='products'||page==='search')catalog();else if(page==='product-detail')detail();else if(page==='cart')cartPage();else if(page==='checkout')checkout();else if(['login','register','forgot-password'].includes(page))auth(page);else if(page==='account')account();else if(['orders','order-detail'].includes(page))orders();else if(page==='wishlist')wishlist();else if(page.startsWith('admin-'))adminPage();else if(page.startsWith('staff-'))staffPage();else staticPage()}
-document.addEventListener('click', e=>{
-  const button=e.target.closest('button');
-  if(!button) return;
-  if(button.dataset.add) {
-    add(button.dataset.add);
-  } else if(button.dataset.favorite) {
-    favorite(button.dataset.favorite);
-  } else if(button.dataset.remove) {
-    changeCartItem(button.dataset.remove,0,true);
-  } else if(button.dataset.inc) {
-    changeCartItem(button.dataset.inc,1);
-  } else if(button.dataset.dec) {
-    changeCartItem(button.dataset.dec,-1);
-  } else if(button.dataset.demo) {
-    demo();
-  }
-});
-$('#nav-logout').onclick=logout;
-(async()=>{
-  content.innerHTML='<div class="empty-panel">Đang tải danh mục từ Business API…</div>';
-  const [productsResult,authResult]=await Promise.allSettled([
-    window.LUMIERE_LOAD_PRODUCTS ? window.LUMIERE_LOAD_PRODUCTS() : Promise.reject(Error('Thiếu products.js')),
-    window.LUMIERE_API ? LUMIERE_API.me() : Promise.reject(Error('Thiếu api.js'))
-  ]);
-  if(authResult.status==='fulfilled'){
-    user=authResult.value;
-    $('#account-nav').textContent=user.full_name;
-    $('#account-nav').href=root+'pages/account.html';
-    $('#nav-logout').hidden=false;
-  }
-  if(productsResult.status==='rejected'){
-    window.LUMIERE_PRODUCTS_ERROR=productsResult.reason?.message||'Không tải được dữ liệu sản phẩm.';
-    console.error('LUMIERE products load failed:',productsResult.reason);
-  }
-  if(user && (page==="cart" || page==="checkout")) {
-    try {
-      cartData=await LUMIERE_API.getCart();
-    } catch(error) {
-      console.error("Không tải được giỏ hàng:",error);
-      content.innerHTML=`<div class="empty-panel">${esc(error.message)}</div>`;
+  async function showMyReviews() {
+    if (!user || user.role !== "customer") {
+      content.innerHTML =
+        '<div class="empty-panel">Đăng nhập để xem đánh giá của bạn. <a href="login.html">Đăng nhập</a></div>';
       return;
+    }
+
+    try {
+      const result = await LUMIERE_API.reviews();
+      const reviews = result.items;
+
+      content.innerHTML = `
+      <section class="my-reviews-section">
+        <div class="my-reviews-toolbar">
+          <span>${reviews.length} đánh giá</span>
+          <a class="inline-link" href="orders.html">
+            Đơn hàng của tôi →
+          </a>
+        </div>
+
+        <div class="my-reviews-list">
+          ${
+            reviews
+              .map((r) => {
+                const p = P.find((p) => Number(p.id) === Number(r.product_id));
+                const rating = Math.max(
+                  0,
+                  Math.min(5, Math.trunc(Number(r.rating) || 0)),
+                );
+
+                return `
+              <article class="panel my-review-card">
+                <div class="my-review-product">
+                  ${
+                    p?.image
+                      ? `
+                    <a href="product-detail.html?id=${Number(r.product_id)}">
+                      <img src="${esc(p.image)}" alt="${esc(p.name)}">
+                    </a>`
+                      : ""
+                  }
+
+                  <div class="my-review-product-info">
+                    <h3>${esc(p?.name || "Sản phẩm đã đánh giá")}</h3>
+
+                    <div class="my-review-rating" aria-label="${rating} trên 5 sao">
+                      <span>${"★".repeat(rating)}${"☆".repeat(5 - rating)}</span>
+                      <small>${rating}/5</small>
+                    </div>
+
+                    <a class="inline-link" href="product-detail.html?id=${Number(r.product_id)}">
+                      Xem sản phẩm →
+                    </a>
+                  </div>
+                </div>
+
+                <p class="my-review-comment">${esc(r.comment)}</p>
+
+                <div class="my-review-actions">
+                  <button type="button" class="button button-outline" data-review-edit="${esc(r.id)}">
+                    Chỉnh sửa
+                  </button>
+                  <button type="button" class="button button-outline my-review-delete" data-review-delete="${esc(r.id)}">
+                    Xóa đánh giá
+                  </button>
+                </div>
+              </article>`;
+              })
+              .join("") ||
+            `
+            <div class="panel my-reviews-empty">
+              <div class="my-reviews-empty-icon">☆</div>
+              <h2>Bạn chưa có đánh giá</h2>
+              <p>Chia sẻ trải nghiệm về trang sức bạn đã mua.</p>
+              <a class="button button-dark" href="orders.html">XEM ĐƠN HÀNG</a>
+            </div>`
+          }
+        </div>
+      </section>
+
+      <dialog id="my-review-dialog" class="my-review-dialog" aria-labelledby="my-review-dialog-title">
+        <form id="my-review-edit-form">
+          <div class="my-review-dialog-head">
+            <h2 id="my-review-dialog-title">Chỉnh sửa đánh giá</h2>
+            <button type="button" data-close-review aria-label="Đóng">×</button>
+          </div>
+
+          <div class="field">
+            <label for="my-review-rating">Điểm đánh giá</label>
+            <select id="my-review-rating" required>
+              ${[5, 4, 3, 2, 1]
+                .map(
+                  (n) => `
+                <option value="${n}">${"★".repeat(n)}${"☆".repeat(5 - n)} – ${n} sao</option>
+              `,
+                )
+                .join("")}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="my-review-comment">Nội dung đánh giá</label>
+            <textarea id="my-review-comment" maxlength="2000" required></textarea>
+          </div>
+
+          <p class="my-review-error" role="alert"></p>
+
+          <div class="my-review-modal-actions">
+            <button class="button button-outline" type="button" data-close-review>Hủy</button>
+            <button class="button button-dark" type="submit">LƯU THAY ĐỔI</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog id="my-review-delete-dialog" class="my-review-dialog" aria-labelledby="my-review-delete-title">
+        <form id="my-review-delete-form">
+          <div class="my-review-dialog-head">
+            <h2 id="my-review-delete-title">Xóa đánh giá?</h2>
+            <button type="button" data-close-review aria-label="Đóng">×</button>
+          </div>
+
+          <p class="page-subtitle">Bạn có chắc chắn muốn xóa đánh giá này?</p>
+          <p class="my-review-error" role="alert"></p>
+
+          <div class="my-review-modal-actions">
+            <button type="button" class="button button-outline" data-close-review>Hủy</button>
+            <button type="submit" class="button my-review-danger">XÓA ĐÁNH GIÁ</button>
+          </div>
+        </form>
+      </dialog>`;
+
+      const edit = $("#my-review-dialog");
+      const del = $("#my-review-delete-dialog");
+
+      let editingId = null;
+      let deletingId = null;
+
+      content.querySelectorAll("[data-review-edit]").forEach((button) => {
+        button.onclick = () => {
+          const r = reviews.find(
+            (r) => String(r.id) === button.dataset.reviewEdit,
+          );
+          if (!r) return;
+
+          editingId = button.dataset.reviewEdit;
+          $("#my-review-rating").value = r.rating;
+          $("#my-review-comment").value = r.comment || "";
+          edit.querySelector(".my-review-error").textContent = "";
+          edit.showModal();
+        };
+      });
+
+      content.querySelectorAll("[data-review-delete]").forEach((button) => {
+        button.onclick = () => {
+          deletingId = button.dataset.reviewDelete;
+          del.querySelector(".my-review-error").textContent = "";
+          del.showModal();
+        };
+      });
+
+      for (const dialog of [edit, del]) {
+        dialog.querySelectorAll("[data-close-review]").forEach((button) => {
+          button.onclick = () => dialog.close();
+        });
+
+        dialog.addEventListener("cancel", (event) => {
+          if (dialog.querySelector('button[type="submit"]').disabled) {
+            event.preventDefault();
+          }
+        });
+      }
+
+      async function submitReview(event, dialog, action, message) {
+        event.preventDefault();
+
+        const buttons = [...dialog.querySelectorAll("button")];
+
+        if (dialog.querySelector('button[type="submit"]').disabled) return;
+
+        buttons.forEach((button) => (button.disabled = true));
+
+        const error = dialog.querySelector(".my-review-error");
+        error.textContent = "";
+
+        try {
+          await action();
+          dialog.close();
+          notify(message);
+          await showMyReviews();
+        } catch (e) {
+          error.textContent = e.message;
+        } finally {
+          buttons.forEach((button) => (button.disabled = false));
+        }
+      }
+
+      $("#my-review-edit-form").onsubmit = (event) =>
+        submitReview(
+          event,
+          edit,
+          () =>
+            LUMIERE_API.updateReview(editingId, {
+              rating: Number(get("my-review-rating")),
+              comment: get("my-review-comment"),
+            }),
+          "Đã cập nhật đánh giá",
+        );
+
+      $("#my-review-delete-form").onsubmit = (event) =>
+        submitReview(
+          event,
+          del,
+          () => LUMIERE_API.deleteReview(deletingId),
+          "Đã xóa đánh giá",
+        );
+    } catch (error) {
+      content.innerHTML = `<div class="empty-panel">Không tải được đánh giá: ${esc(error.message)}</div>`;
     }
   }
 
-  if (user && ["admin", "staff"].includes(user.role)) {
-    if (applyRoleNavigation()) return;
-  }
-  if (page.startsWith("admin-") && user?.role !== "admin") {
-    location.replace(
-      root + (user?.role === "staff"
-        ? "pages/staff/orders.html"
-        : user ? "pages/products.html" : "pages/login.html")
-    );
-    return;
-  }
-  if (page.startsWith("staff-") && user?.role !== "staff") {
-    location.replace(
-      root + (user?.role === "admin"
-        ? "pages/admin/dashboard.html"
-        : user ? "pages/products.html" : "pages/login.html")
-    );
-    return;
-  }
+  function staticPage() {
+    if (page === "reviews") {
+      showMyReviews();
+      return;
+    }
+    if (page === "about") {
+      content.innerHTML = `<div class="story-hero"><span class="eyebrow">CÂU CHUYỆN THƯƠNG HIỆU</span><h2>Vẻ đẹp lưu giữ những khoảnh khắc</h2><p>LUMIÈRE mang đến những thiết kế trang sức tinh tế, tôn vinh vẻ đẹp riêng và lưu giữ những khoảnh khắc đáng nhớ trong cuộc sống.</p></div>
+    <div class="story-grid"><section class="panel"><span class="eyebrow">01 · KHỞI NGUỒN</span><h2>Mỗi món trang sức là một câu chuyện</h2><p>Một chiếc nhẫn có thể đánh dấu lời hứa, một đôi bông tai gợi nhớ ngày đặc biệt, một sợi dây chuyền trở thành món quà mang theo kỷ niệm. Từ cảm hứng ấy, LUMIÈRE được xây dựng để việc tìm kiếm trang sức trở nên gần gũi và có ý nghĩa hơn.</p></section>
+    <section class="panel"><span class="eyebrow">02 · TRẢI NGHIỆM</span><h2>Tinh tế trong từng lựa chọn</h2><p>Khách hàng có thể khám phá danh mục theo loại trang sức, chất liệu, đá quý và ngân sách, sau đó theo dõi giỏ hàng, đơn hàng, đánh giá và sản phẩm yêu thích trong cùng một hệ thống.</p></section>
+    <section class="panel"><span class="eyebrow">03 · DẤU ẤN CÁ NHÂN</span><h2>Vẻ đẹp dành riêng cho bạn</h2><p>Trợ lý trang sức thông minh giúp bạn khám phá những thiết kế phù hợp với sở thích, phong cách và ngân sách của mình..</p></section>
+    <section class="panel"><span class="eyebrow">04 · GIÁ TRỊ THƯƠNG HIỆU</span><h2>Sự tinh tế và minh bạch</h2><p>LUMIÈRE hướng đến trải nghiệm mua sắm rõ ràng và thuận tiện, với thông tin sản phẩm, chất liệu và giá cả được trình bày minh bạch. Hình ảnh sản phẩm mang tính minh họa.</p></section></div>
+    <div class="story-end"><h2>Tìm món trang sức dành riêng cho bạn</h2><p>Khám phá bộ sưu tập hoặc trò chuyện với trợ lý AI để bắt đầu hành trình lựa chọn.</p><a class="button button-dark" href="products.html">KHÁM PHÁ SẢN PHẨM</a></div>`;
+      return;
+    }
+    if (page === "contact") {
+      content.innerHTML = `<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Đội ngũ LUMIÈRE luôn sẵn sàng lắng nghe và hỗ trợ bạn trong hành trình lựa chọn trang sức.</p><div class="contact-facts"><div><strong>Hỗ trợ mua sắm</strong><span>Tư vấn sản phẩm, mua sắm và thanh toán</span></div><div><strong>Theo dõi đơn hàng</strong><span>Đăng nhập rồi mở mục Đơn hàng của tôi</span></div><div><strong>Trợ lý trang sức AI</strong><span>Sử dụng nút Tư vấn AI trên trang mua sắm</span></div></div><p class="mini-note">Vui lòng sử dụng biểu mẫu liên hệ để gửi yêu cầu hỗ trợ đến LUMIÈRE.</p></section>
+    <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">Hãy để lại thông tin liên hệ và nội dung bạn cần hỗ trợ.</p><form id="contact-form">${formField("contact-name", "Họ và tên", "text", 'required minlength="2" maxlength="150"')}${formField("contact-email", "Email liên hệ", "email", 'required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">GỬI YÊU CẦU LIÊN HỆ</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
+      $("#contact-form").onsubmit = async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const button = event.currentTarget.querySelector(
+          'button[type="submit"]',
+        );
+        const result = $("#contact-result");
+        button.disabled = true;
+        result.textContent = "Đang gửi yêu cầu...";
+        try {
+          const response = await LUMIERE_API.request("/contact", {
+            method: "POST",
+            body: JSON.stringify({
+              full_name: get("contact-name"),
+              email: get("contact-email"),
+              topic: get("contact-topic"),
+              message: get("contact-message"),
+            }),
+          });
+          result.textContent =
+            "Cảm ơn bạn đã liên hệ LUMIÈRE. Yêu cầu của bạn đã được tiếp nhận. Mã yêu cầu: #" +
+            response.id;
+          form.reset();
+        } catch (error) {
+          result.textContent = "Không gửi được liên hệ: " + error.message;
+        } finally {
+          button.disabled = false;
+        }
+      };
+      return;
+    }
+    if (window.LUMIERE_PRODUCTS_ERROR) {
+      content.innerHTML =
+        '<div class="empty-panel">Chưa tải được bộ sưu tập.</div>';
+      return;
+    }
 
-  if(page.startsWith("admin-")||page.startsWith("staff-")){
-    try{await import(new URL(root+"assets/js/backend-console.js",document.baseURI).href)}catch(error){content.innerHTML=`<div class="empty-panel">Không tải được giao diện nghiệp vụ: ${esc(error.message)}</div>`;console.error(error);return}
+    const groups = new Map();
+
+    P.forEach((p) => {
+      const name = String(p.collection || "");
+      if (!name.trim()) return;
+      if (!groups.has(name)) groups.set(name, []);
+      groups.get(name).push(p);
+    });
+
+    content.innerHTML = `
+    <section class="collection-section">
+      <p class="collection-intro">
+        Mỗi thiết kế, một câu chuyện.
+        Mỗi bộ sưu tập, một dấu ấn riêng.
+      </p>
+      <div class="collection-grid">
+        ${
+          [...groups.entries()]
+            .sort(([a], [b]) => a.localeCompare(b, "vi"))
+            .map(([name, products]) => {
+              const cover = products.find((p) => p.image);
+              return `
+              <a class="collection-card"
+                 href="products.html?collection=${encodeURIComponent(name)}">
+                <div class="collection-cover">
+                  ${cover ? `<img src="${esc(cover.image)}" alt="${esc(name)}" loading="lazy">` : ""}
+                </div>
+                <div class="collection-info">
+                  <h2>${esc(name)}</h2>
+                  <p>${products.length} sản phẩm</p>
+                  <span>Khám phá bộ sưu tập →</span>
+                </div>
+              </a>`;
+            })
+            .join("") || '<div class="empty-panel">Chưa có bộ sưu tập.</div>'
+        }
+      </div>
+    </section>`;
   }
-  render();
-  if(page==="product-detail")showProductReviews();
-})();
+  async function logout() {
+    try {
+      await LUMIERE_API.logout();
+      user = null;
+      location.href = root + "pages/login.html";
+    } catch (e) {
+      notify(e.message, true);
+    }
+  }
+  function render() {
+    if (page === "products") catalog();
+    else if (page === "search") searchPage();
+    else if (page === "product-detail") detail();
+    else if (page === "cart") cartPage();
+    else if (page === "checkout") checkout();
+    else if (["login", "register", "forgot-password"].includes(page))
+      auth(page);
+    else if (page === "account") account();
+    else if (["orders", "order-detail"].includes(page)) orders();
+    else if (page === "wishlist") wishlist();
+    else if (page.startsWith("admin-")) adminPage();
+    else if (page.startsWith("staff-")) staffPage();
+    else staticPage();
+  }
+  document.addEventListener("click", (e) => {
+    const button = e.target.closest("button");
+    if (!button) return;
+    if (button.dataset.add) {
+      add(button.dataset.add);
+    } else if (button.dataset.favorite) {
+      favorite(button.dataset.favorite);
+    } else if (button.dataset.remove) {
+      changeCartItem(button.dataset.remove, 0, true);
+    } else if (button.dataset.inc) {
+      changeCartItem(button.dataset.inc, 1);
+    } else if (button.dataset.dec) {
+      changeCartItem(button.dataset.dec, -1);
+    } else if (button.dataset.demo) {
+      demo();
+    }
+  });
+  $("#nav-logout").onclick = logout;
+  (async () => {
+    content.innerHTML =
+      '<div class="empty-panel">Đang tải danh mục từ Business API…</div>';
+    const [productsResult, authResult] = await Promise.allSettled([
+      window.LUMIERE_LOAD_PRODUCTS
+        ? window.LUMIERE_LOAD_PRODUCTS()
+        : Promise.reject(Error("Thiếu products.js")),
+      window.LUMIERE_API
+        ? LUMIERE_API.me()
+        : Promise.reject(Error("Thiếu api.js")),
+    ]);
+
+    if (authResult.status === "fulfilled") {
+      user = authResult.value;
+      showSignedInMenu();
+    }
+
+    if (productsResult.status === "rejected") {
+      window.LUMIERE_PRODUCTS_ERROR =
+        productsResult.reason?.message || "Không tải được dữ liệu sản phẩm.";
+      console.error("LUMIERE products load failed:", productsResult.reason);
+    }
+    if (user && (page === "cart" || page === "checkout")) {
+      try {
+        cartData = await LUMIERE_API.getCart();
+      } catch (error) {
+        console.error("Không tải được giỏ hàng:", error);
+        content.innerHTML = `<div class="empty-panel">${esc(error.message)}</div>`;
+        return;
+      }
+    }
+
+    if (user && ["admin", "staff"].includes(user.role)) {
+      if (applyRoleNavigation()) return;
+    }
+    if (page.startsWith("admin-") && user?.role !== "admin") {
+      location.replace(
+        root +
+          (user?.role === "staff"
+            ? "pages/staff/orders.html"
+            : user
+              ? "pages/products.html"
+              : "pages/login.html"),
+      );
+      return;
+    }
+    if (page.startsWith("staff-") && user?.role !== "staff") {
+      location.replace(
+        root +
+          (user?.role === "admin"
+            ? "pages/admin/dashboard.html"
+            : user
+              ? "pages/products.html"
+              : "pages/login.html"),
+      );
+      return;
+    }
+
+    if (page.startsWith("admin-") || page.startsWith("staff-")) {
+      try {
+        await import(
+          new URL(root + "assets/js/backend-console.js", document.baseURI).href
+        );
+      } catch (error) {
+        content.innerHTML = `<div class="empty-panel">Không tải được giao diện nghiệp vụ: ${esc(error.message)}</div>`;
+        console.error(error);
+        return;
+      }
+    }
+    render();
+    if (page === "product-detail") showProductReviews();
+  })();
 })();
 const reviewStyles = document.createElement('style');
 reviewStyles.textContent = `

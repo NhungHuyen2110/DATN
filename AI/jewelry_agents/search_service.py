@@ -237,6 +237,17 @@ def search(query, top_k, dense, catalog, parse_price, graph=None, *, sources=Non
                 and reviewed_constraints_valid(p, constraints)
                 and (reference is None or pid != reference['ProductID'])
                 and all(p.get(field) == value for field, value in constraints['attributes'].items())}
+    # The authoritative catalog has already proved that no product can satisfy
+    # the mandatory constraints. Optional source outages cannot change that fact.
+    if not eligible:
+        result = {'products': [], 'status': 'ok', 'degraded': [], 'requested_k': top_k,
+                  'returned_k': 0, 'understanding': understanding, 'retrieval_sources_used': []}
+        if diagnostics:
+            result['diagnostics'] = {'source_ranks': {}, 'source_errors': {}, 'candidate_k': pool_size,
+                                     'eligible_products': 0, 'candidate_union': 0,
+                                     'timings_seconds': timings, 'total_seconds': time.perf_counter() - started,
+                                     'reranker': getattr(reranker, 'name', None)}
+        return result
     # Requested result count is a planner control, not a product-name token.
     # Explicit SKU wording is retained because a legitimate code may be TOP3.
     retrieval_query = query if reference is None and explicit_sku else content_query

@@ -3,6 +3,8 @@
 
 from dataclasses import dataclass, replace, asdict
 from typing import Optional
+from decimal import Decimal
+import re
 
 
 @dataclass(frozen=True)
@@ -12,8 +14,8 @@ class ShoppingState:
     material: Optional[str] = None
     gemstone: Optional[str] = None
 
-    min_price: Optional[int] = None
-    max_price: Optional[int] = None
+    min_price: Optional[int | str] = None
+    max_price: Optional[int | str] = None
 
     min_exclusive: bool = False
     max_exclusive: bool = False
@@ -40,20 +42,21 @@ class ShoppingState:
         for field in ("min_price", "max_price"):
             value = getattr(self, field)
 
-            if value is not None and (
-                type(value) is not int or value < 0
-            ):
-                raise ValueError("Invalid budget")
+            if value is not None:
+                if type(value) is not int and not (isinstance(value, str) and re.fullmatch(r'\d+(?:\.\d+)?', value)):
+                    raise ValueError("Invalid budget")
+                if Decimal(str(value)) < 0:
+                    raise ValueError("Invalid budget")
 
         if (
             self.min_price is not None
             and self.max_price is not None
         ):
-            if self.min_price > self.max_price:
+            if Decimal(str(self.min_price)) > Decimal(str(self.max_price)):
                 raise ValueError("Invalid budget range")
 
             if (
-                self.min_price == self.max_price
+                Decimal(str(self.min_price)) == Decimal(str(self.max_price))
                 and (self.min_exclusive or self.max_exclusive)
             ):
                 raise ValueError("Empty budget range")
@@ -107,3 +110,19 @@ def update_state(state, updates=None, clear=None):
 def reset_state(top_k=3):
     """Start a new shopping task without inheriting old constraints."""
     return ShoppingState(top_k=top_k)
+
+
+@dataclass(frozen=True)
+class StatePatch:
+    """Omitted slots KEEP their values; UNKNOWN never clears a slot."""
+    updates: dict
+    clear: frozenset = frozenset()
+    reset: bool = False
+
+    def operations(self):
+        return {field: ('SET' if field in self.updates else 'CLEAR' if field in self.clear else 'KEEP')
+                for field in FIELDS}
+
+    def apply(self, previous):
+        base = reset_state() if self.reset else previous
+        return update_state(base, self.updates, self.clear)

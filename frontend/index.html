@@ -25,10 +25,9 @@
 <body>
   <div class="announcement">
     MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 2.000.000₫
-    <span>• BẢN DEMO KHÓA LUẬN</span>
   </div>
 
-  <header class="site-header" id="site-header">
+  <header class="site-header lumiere-shell-header" id="site-header">
     <div class="container header-inner">
       <button
         class="icon-btn mobile-only"
@@ -44,8 +43,9 @@
       <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
         <a href="#home" data-nav="home">Trang chủ</a>
         <a href="./pages/products.html">Sản phẩm</a>
-        <a href="#collections" data-nav="collections">Bộ sưu tập</a>
+        <a href="./pages/collections.html">Bộ sưu tập</a>
         <a href="#about" data-nav="about">Về chúng tôi</a>
+        <a href="./pages/contact.html">Liên hệ</a>
       </nav>
 
       <div class="header-actions">
@@ -73,6 +73,19 @@
             <path d="M4.7 21c.4-5.1 3-7.5 7.3-7.5s7 2.4 7.3 7.5"/>
           </svg>
         </a>
+        <details class="shell-account-menu" id="home-account-menu" hidden>
+          <summary class="icon-btn" aria-label="Menu tài khoản"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.7 21c.4-5.1 3-7.5 7.3-7.5s7 2.4 7.3 7.5"/></svg></summary>
+          <div class="shell-account-panel">
+            <span class="shell-account-name" id="home-account-name"></span>
+            <div class="shell-account-options">
+              <a href="./pages/account.html">Thông tin cá nhân</a>
+              <a href="./pages/orders.html">Đơn hàng của tôi</a>
+              <a href="./pages/reviews.html">Đánh giá của tôi</a>
+            </div>
+            <button type="button" id="home-logout">Đăng xuất</button>
+            <span id="home-logout-error" role="status"></span>
+          </div>
+        </details>
 
         <button
           class="icon-btn hide-sm"
@@ -120,7 +133,6 @@
         </a>
       </div>
 
-      <div class="hero-note">LUMIÈRE COLLECTION • 2026</div>
     </section>
 
     <!-- CAM KẾT -->
@@ -136,10 +148,11 @@
     <!-- BỘ SƯU TẬP -->
     <section id="collections" class="section container">
       <div class="section-head">
-        <div class="eyebrow">OUR COLLECTION</div>
-        <h2>Khám phá bộ sưu tập</h2>
-        <p>Chọn món trang sức dành cho khoảnh khắc đặc biệt.</p>
+        <div class="eyebrow">DISCOVER YOUR STYLE</div>
+        <h2>Khám phá trang sức</h2>
+        <p>Tìm kiếm thiết kế phù hợp với phong cách của riêng bạn.</p>
       </div>
+      
 
       <div class="collection-grid">
         <a href="#shop" class="collection-card" data-category="Nhẫn">
@@ -198,6 +211,8 @@
             <button class="filter-chip" data-filter="Dây chuyền">Dây chuyền</button>
             <button class="filter-chip" data-filter="Bông tai">Bông tai</button>
             <button class="filter-chip" data-filter="Vòng tay">Vòng tay</button>
+            <button class="filter-chip" data-filter="Lắc tay">Lắc tay</button>
+            <button class="filter-chip" data-filter="Charm">Charm</button>
           </div>
 
           <div class="shop-sort">
@@ -242,9 +257,9 @@
           đánh dấu những hành trình và thể hiện cá tính riêng.
         </p>
         <p>
-          LUMIÈRE là giao diện trình diễn trong khóa luận,
-          kết hợp trải nghiệm mua sắm trực tuyến cùng
-          công nghệ gợi ý thông minh.
+          LUMIÈRE mang đến không gian khám phá trang sức
+          đầy cảm hứng, nơi vẻ đẹp tinh tế kết hợp cùng
+          phong cách và dấu ấn riêng của mỗi người.
         </p>
         <a href="#shop" class="text-link">
           KHÁM PHÁ BỘ SƯU TẬP <span>↗</span>
@@ -268,10 +283,7 @@
         >
           TRÒ CHUYỆN VỚI AI <span>↗</span>
         </button>
-        <div class="api-note">
-          Có thể kết nối với AI Service hiện tại qua API
-          <code>POST /chat</code>.
-        </div>
+
       </div>
     </section>
   </main>
@@ -292,29 +304,27 @@
       <div>
         <h3>KHÁM PHÁ</h3>
         <a href="./pages/products.html">Tất cả sản phẩm</a>
-        <a href="#collections">Bộ sưu tập</a>
+        <a href="./pages/collections.html">Bộ sưu tập</a>
         <a href="#about">Câu chuyện thương hiệu</a>
       </div>
 
       <div>
         <h3>HỖ TRỢ</h3>
-        <a href="#shop">Hướng dẫn mua hàng</a>
+        <a href="./pages/orders.html">Theo dõi đơn hàng</a>
         <button id="footer-chat">Tư vấn trực tuyến</button>
-        <a href="#about">Liên hệ</a>
+        <a href="./pages/contact.html">Liên hệ</a>
       </div>
 
       <div>
-        <h3>ĐỒ ÁN TỐT NGHIỆP</h3>
-        <p>
-          Mẫu frontend HTML, CSS, JavaScript thuần.<br>
-          Dữ liệu hiển thị là dữ liệu demo.
-        </p>
+        <h3>TÀI KHOẢN</h3>
+        <a href="./pages/account.html">My LUMIÈRE</a>
+        <a href="./pages/wishlist.html">Sản phẩm yêu thích</a>
+        <a href="./pages/orders.html">Đơn hàng của tôi</a>
       </div>
     </div>
 
     <div class="container footer-bottom">
-      <span>© 2026 LUMIÈRE — Academic Prototype</span>
-      <span>DESIGNED WITH CARE ✧</span>
+      <span>© 2026 LUMIÈRE</span>
     </div>
   </footer>
 
@@ -379,7 +389,7 @@
     <div class="chat-head">
       <div>
         <strong>✧ Trợ lý LUMIÈRE</strong>
-        <small>Kết nối AI Service • Demo</small>
+        <small>Tư vấn trang sức cá nhân hóa</small>
       </div>
       <button id="chat-close" aria-label="Đóng chatbot">×</button>
     </div>
@@ -389,11 +399,8 @@
       id="chat-messages"
       aria-live="polite"
     >
-      <div class="message bot">
-        Xin chào! Tôi có thể giúp bạn tìm nhẫn,
-        vòng tay, dây chuyền hoặc tư vấn theo ngân sách.
-        Hãy nhập câu hỏi nhé.
-      </div>
+      <div class="message bot">Xin chào! Rất vui được đồng hành cùng bạn.
+        Bạn đang tìm một món trang sức cho bản thân hay một món quà dành tặng người đặc biệt?</div>
     </div>
 
     <form id="chat-form" class="chat-form">
@@ -403,11 +410,14 @@
         name="query"
         autocomplete="off"
         maxlength="500"
-        placeholder="Ví dụ: Tìm nhẫn kim cương..."
+        placeholder="Nhập câu hỏi của bạn..."
         required
       />
       <button type="submit" aria-label="Gửi">➤</button>
     </form>
+    <p class="chat-foot">
+      Thông tin tư vấn được hỗ trợ bởi AI.
+    </p>
   </div>
 
   <!-- THÔNG BÁO -->

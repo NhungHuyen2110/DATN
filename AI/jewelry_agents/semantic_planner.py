@@ -17,6 +17,15 @@ from .entity_linking import load_entities
 _gate=SourceGate('semantic-planner',timeout=12,cooldown=15)
 
 
+def plan_dialogue(message, state=None, **context):
+    """Full-context, evidence-bearing planner; separate opt-in acceptance gate.
+
+    Legacy QueryPlan remains supported for existing consultation integrations.
+    """
+    from .dialogue_plan import request_plan
+    return request_plan(message, state, **context)
+
+
 class Mention(BaseModel):
     model_config=ConfigDict(extra='forbid')
     label:Literal['Category','Gemstone','Audience','Style']

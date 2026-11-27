@@ -2,6 +2,7 @@
 """Extract supported shopping-state changes from Vietnamese messages."""
 
 import re
+from decimal import Decimal
 
 from .entity_linking import link_query, normalize
 from .shopping_advice import budget_text
@@ -18,13 +19,20 @@ ENTITY_FIELDS = {
 
 
 MATERIALS = {
+    "vang trang 18k": "white_gold_18k",
+    "vang trang 14k": "white_gold_14k",
+    "vang trang 10k": "white_gold_10k",
     "vang trang": "white_gold",
     "vang hong": "rose_gold",
     "vang 18k": "gold_18k",
+    "vang 24k": "gold_24k",
+    "vang 14k": "gold_14k",
+    "vang 10k": "gold_10k",
     "bac 925": "silver",
     "bach kim": "platinum",
     "platinum": "platinum",
     "bac": "silver",
+    "vang": "gold",
 }
 
 
@@ -37,27 +45,34 @@ def extract_state_changes(message, parse_price):
     updates = {}
     clear = set()
 
-    clear_material = bool(re.search(
+    material_negation = re.compile(
         r"\b(?:khong can|khong bat buoc|bo yeu cau)"
         r"\s+(?:bang |chat lieu )?"
         r"(?:bac(?: 925)?|vang(?: trang| hong| 18k)?|"
         r"bach kim|platinum|chat lieu)"
-        r"(?: nua)?\b",
-        text
-    ))
+        r"(?: nua)?\b")
+    clear_material = bool(material_negation.search(text))
 
     if clear_material:
         clear.add("material")
-    else:
-        for alias, canonical in MATERIALS.items():
-            if re.search(
-                r"(?<!\w)" + re.escape(alias) + r"(?!\w)",
-                text
-            ):
-                updates["material"] = canonical
-                break
+    material_text = material_negation.sub(' ', text)
+    for alias, canonical in MATERIALS.items():
+        if re.search(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", material_text):
+            updates["material"] = canonical
+            clear.discard('material')
+            break
 
-    understanding = link_query(message)
+    entity_text = re.split(r"\b(?:thay vi|chu khong phai)\b", text)[0]
+    from .entity_linking import load_entities
+    for entity in load_entities()['entities']:
+        if entity['label'] != 'Gemstone':
+            continue
+        for alias in entity['aliases']:
+            pattern = r'\b(?:khong can|bo yeu cau)\s+(?:da\s+)?' + re.escape(normalize(alias)) + r'(?: nua)?\b'
+            if re.search(pattern, entity_text):
+                clear.add('gemstone')
+                entity_text = re.sub(pattern, ' ', entity_text)
+    understanding = link_query(entity_text)
 
     if not understanding.get("needs_clarification"):
         grouped = {}
@@ -73,8 +88,14 @@ def extract_state_changes(message, parse_price):
         for field, values in grouped.items():
             if len(values) == 1:
                 updates[field] = next(iter(values))
+                clear.discard(field)
 
     price_query = budget_text(message)
+
+    price_query = re.sub(
+        r"\b(?:ngân sách|ngan sach)\s+(?:(?:của tôi|cua toi|của mình|cua minh)\s+)?"
+        r"(?:(?:là|la)\s+)?(?:lên|len|còn|con|xuống|xuong)\s+",
+        "ngân sách ", price_query, flags=re.I)
 
     price_query = re.sub(
         r"\b(?:tăng|giảm)\s+(?:ngân sách\s+)?"
@@ -120,10 +141,10 @@ def extract_state_changes(message, parse_price):
         value = prices.get(field)
 
         if value is not None:
-            if int(value) != value:
-                raise ValueError("Non-integer budget")
-
-            updates[field] = int(value)
+            amount = Decimal(str(value))
+            if not amount.is_finite() or amount < 0:
+                raise ValueError("Invalid budget")
+            updates[field] = int(amount) if amount == int(amount) else format(amount, 'f')
 
             exclusive = field.replace(
                 "_price", "_exclusive"
@@ -153,6 +174,8 @@ def extract_state_changes(message, parse_price):
 
     elif re.search(
         r"\b(?:khong quan tam gia|"
+        r"khong can uu tien (?:gia re|gia thap|gia mem)|"
+        r"bo (?:uu tien gia|so thich gia)|"
         r"gia nao cung duoc|"
         r"khong quan trong gia|"
         r"tien bac khong thanh van de)\b",
@@ -160,15 +183,29 @@ def extract_state_changes(message, parse_price):
     ):
         clear.add("price_preference")
 
-    count = re.search(
-        r"\b(?:top\s*|"
-        r"(?:cho xem|goi y|chon|lay)\s+)"
-        r"(\d{1,2})\b",
-        text
-    )
+    numbers = {'mot': 1, 'hai': 2, 'ba': 3, 'bon': 4, 'nam': 5,
+               'sau': 6, 'bay': 7, 'tam': 8, 'chin': 9, 'muoi': 10}
+    number_pattern = r"\d{1,2}|" + '|'.join(numbers)
+    count = re.search(r"\btop\s*(\d{1,2})\b", text) or re.search(
+        r"\b(" + number_pattern + r")\s+(?:mau|mon|san pham|ket qua)\b", text)
 
     if count:
-        updates["top_k"] = int(count.group(1))
+        value = count.group(1)
+        updates["top_k"] = int(value) if value.isdigit() else numbers[value]
+
+    if re.search(r'\b(?:khong|chang|dung)\s+(?:can\s+)?uu tien\s+(?:gia re|gia thap|gia mem)\b', text):
+        updates.pop('price_preference', None)
+        clear.add('price_preference')
+
+    for field, phrase in (("gemstone", r"(?:da|da quy|loai da)"),
+                          ("material", r"(?:chat lieu)")):
+        if re.search(r"\b(?:khong can|bo|khong gioi han)\s+(?:yeu cau\s+)?" + phrase + r"\b", text):
+            clear.add(field)
+            updates.pop(field, None)
+    if re.search(r"\b(?:bo|khong gioi han|khong can gioi han)\s+(?:ngan sach|gia)\b", text):
+        clear.update(('min_price', 'max_price'))
+        for field in ('min_price', 'max_price', 'min_exclusive', 'max_exclusive'):
+            updates.pop(field, None)
 
     return updates, clear
 

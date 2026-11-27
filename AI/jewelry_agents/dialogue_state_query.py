@@ -15,6 +15,13 @@ CATEGORY_NAMES = {
 
 
 MATERIAL_NAMES = {
+    "white_gold_18k": "vàng trắng 18K",
+    "white_gold_14k": "vàng trắng 14K",
+    "white_gold_10k": "vàng trắng 10K",
+    "gold_24k": "vàng 24K",
+    "gold_14k": "vàng 14K",
+    "gold_10k": "vàng 10K",
+    "gold": "vàng",
     "silver": "bạc",
     "white_gold": "vàng trắng",
     "rose_gold": "vàng hồng",
@@ -37,10 +44,6 @@ def render_shopping_query(state):
     if not isinstance(state, ShoppingState):
         raise TypeError("Expected ShoppingState")
 
-    # Do not silently discard unsupported constraints.
-    if any((state.gemstone, state.audience, state.style)):
-        raise ValueError("Unsupported state fields for query rendering")
-
     parts = [f"Top {state.top_k}"]
 
     if state.category is not None:
@@ -57,6 +60,16 @@ def render_shopping_query(state):
             raise ValueError("Unknown material")
 
         parts.append(MATERIAL_NAMES[state.material])
+
+    from .entity_linking import load_entities
+    for field, label in (("gemstone", "Gemstone"), ("audience", "Audience"), ("style", "Style")):
+        value = getattr(state, field)
+        if value is not None:
+            entity = next((e for e in load_entities()['entities']
+                           if e['label'] == label and e['canonical_id'] == value), None)
+            if entity is None:
+                raise ValueError("Unknown " + field)
+            parts.append(entity['aliases'][0])
 
     preference = PRICE_PREFERENCE_NAMES[state.price_preference]
 

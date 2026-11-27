@@ -3,7 +3,8 @@ from shared import conversation as shared
 from jewelry_agents.shopping_advice import followup_query, standalone_budget
 from jewelry_agents.intent_router import classify_query
 from jewelry_agents.entity_linking import link_query
-from jewelry_agents.dialogue_state_controller import prepare_refinement
+from jewelry_agents.dialogue_state_controller import prepare_refinement, missing_refinement_field, cheaper_request, prepare_state, identity_request
+from jewelry_agents.dialogue_state_query import render_shopping_query
 from jewelry_agents.dialogue_state import ShoppingState
 from jewelry_agents.query_reference import reference_request
 from jewelry_agents.retrieval import extract_price_filter
@@ -16,13 +17,43 @@ import os
 import time
 
 
-def converse(message, conversation_id, scope, tool):
+def _remember_legacy_result(row, effective, result, top_k):
+    """Compatibility path state writes also belong to this coordinator."""
+    if result.get('clarification_options'):
+        row['shopping_context']=effective
+        row['pending_category']={'query':effective,'options':result['clarification_options']}
+    elif result.get('advice_intent')=='style_advice':
+        row['shopping_context']=effective if effective.startswith('Tư vấn ') else 'Tư vấn '+effective
+    elif result.get('products'):
+        row['shopping_context']=effective
+    if (result.get('success') is not False and result.get('status') in {'ok','degraded'}
+            and not result.get('clarification_options') and result.get('advice_intent')!='style_advice'):
+        try:
+            candidate=prepare_state(effective,extract_price_filter,top_k=top_k)
+            if candidate is not None:
+                row['shopping_state']=candidate
+                row['shopping_context']=render_shopping_query(candidate)
+        except (TypeError,ValueError):
+            pass
+
+
+def converse(message, conversation_id, scope, tool, top_k=3):
     token,row=shared.STORE.resolve(conversation_id,scope)
     if not row['lock'].acquire(blocking=False):
         return {'success':False,'status':'conversation_busy','products':[],
                 'answer':'Mình đang xử lý câu trước, bạn đợi câu trả lời rồi gửi tiếp nhé.',
                 'conversation_id':token}
     try:
+        if os.getenv('LUMIERE_HYBRID_NLU_ENABLED','false').lower()=='true':
+            from .semantic_conversation import semantic_turn
+            response=semantic_turn(message,row,tool,top_k=top_k)
+            return {**response,'conversation_id':token}
+        raw_tool=tool
+        def legacy_tool(query, **options):
+            result=raw_tool(query,**options)
+            _remember_legacy_result(row,query,result,top_k)
+            return result
+        tool=legacy_tool
         started=time.monotonic()
         previous_shopping_state = row.get('shopping_state')
 
@@ -55,8 +86,17 @@ def converse(message, conversation_id, scope, tool):
                 refinement = prepare_refinement(
                     message,
                     row.get('shopping_state'),
-                    extract_price_filter
+                    extract_price_filter,
+                    (row.get('last_result') or {}).get('products', [])
                 )
+
+            missing = missing_refinement_field(message) if previous_shopping_state and refinement is None else None
+            if missing:
+                row['pending_slot'] = missing[0]
+                answer = missing[1]
+                row['history'] = [*row['history'], {'user': message, 'answer': answer}][-6:]
+                return {'success': True, 'intent': 'clarification', 'status': 'clarification_required',
+                        'answer': answer, 'products': [], 'conversation_id': token}
 
             # Fail-safe: an unresolved follow-up must not
             # silently become an unrestricted product search.
@@ -71,7 +111,7 @@ def converse(message, conversation_id, scope, tool):
                 and 'khong can tim san pham' not in shared.normalized(message)
                 and not shared.followup_kind(message)
                 and not reference_request(message).get('active')
-                and not link_query(message)['entities']
+                and not identity_request(message)
                 and domain_answer(message, row['history']) is None
             ):
                 answer = (
@@ -103,6 +143,26 @@ def converse(message, conversation_id, scope, tool):
                 effective=followup_query(message,row.get('shopping_context'))
             if effective==message:
                 effective=standalone_budget(message) or message
+            # Canonicalize only supported product constraints; advice, product
+            # identities and knowledge keep their established routing.
+            if (refinement is None and not previous_shopping_state
+                    and classify_query(effective) == 'product_search'
+                    and not shared.knowledge_request(message)
+                    and not reference_request(message).get('active')):
+                from jewelry_agents.shopping_advice import advisory_request
+                import re
+                explicit_category = any(e['label'] == 'Category' and e.get('method') != 'ontology_constraint'
+                                        for e in link_query(effective)['entities'])
+                if (explicit_category and not advisory_request(effective)
+                        and not row.get('shopping_context', '').startswith('Tư vấn ')
+                        and not re.search(r'\b(?:sku|ma|sp\d+)\b|#\d+', shared.normalized(message))):
+                    try:
+                        initial = prepare_state(effective, extract_price_filter, top_k=top_k)
+                        if initial is not None:
+                            # Preserve descriptive terms used by lexical/dense ranking.
+                            effective = render_shopping_query(initial) + ' ' + effective
+                    except (ValueError, TypeError):
+                        pass
             # Knowledge/writing requests never become product searches.
             knowledge=shared.knowledge_request(message)
             if ('khong can tim san pham' in shared.normalized(message) and
@@ -135,10 +195,8 @@ def converse(message, conversation_id, scope, tool):
                 response=tool(effective,semantic_plan=plan) if plan is not None and plan.intent in {'shop','consult'} else tool(effective)
             # The API callback may clear state before we know
             # whether a refinement has succeeded.
-            if refinement is not None and (
-                response.get('success') is False
-                or not response.get('products')
-            ):
+            if refinement is not None and (response.get('success') is False
+                    or response.get('status') not in {'ok', 'degraded'}):
                 for key in (
                     'shopping_state',
                     'shopping_context',
@@ -176,10 +234,13 @@ def converse(message, conversation_id, scope, tool):
             if (
                 refinement is not None
                 and response.get('success') is not False
-                and response.get('products')
+                and response.get('status') in {'ok', 'degraded'}
             ):
                 row['shopping_state'] = refinement[0]
                 row['shopping_context'] = refinement[1]
+                row.pop('pending_slot', None)
+                if cheaper_request(message) and not response.get('products') and response.get('status') == 'ok':
+                    response['answer'] = 'Không có mẫu rẻ hơn phù hợp với các điều kiện hiện tại. Mình đã giữ giới hạn giá mới.'
 
             if response.get('intent') in {'unsupported','general_question','out_of_scope'}:
                 from .natural_dialogue import answer_natural
@@ -247,15 +308,26 @@ def converse(message, conversation_id, scope, tool):
             if paragraph:
                 response['answer']=paragraph+'\n\n'+response.get('answer','')
                 response['response_mode']='grounded_llm_rag'
-        if response.get('success') is not False and response.get('intent') not in {
+        if response.get('products') and response.get('success') is not False and response.get('intent') not in {
                 'unsupported','general_question','out_of_scope','product_discussion','conversation_explanation','conversation_correction'}:
             row['last_result']=response
-        if (response.get('intent') in {'conversation_correction','out_of_scope'} or
-                (response.get('intent')=='general_question' and not domain_answer(message,row['history']) and
-                 not (shared.knowledge_request(message) and link_query(message)['entities']))):
+            row['last_result_state'] = row.get('shopping_state')
+        if (response.get('intent') == 'conversation_correction' or
+                (not row.get('shopping_state') and response.get('intent') == 'general_question'
+                 and not domain_answer(message, row['history'])
+                 and not (shared.knowledge_request(message) and link_query(message)['entities']))):
             row.pop('shopping_context',None)
             row.pop('shopping_state',None)
             row.pop('pending_category',None)
+        previous=row.get('last_result') or {}
+        if (response.get('intent')=='conversation_explanation'
+                and previous.get('recommendation_scope')=='advisory_unverified_preferences'
+                and previous.get('products')):
+            reasons=['• '+str(p.get('ProductName',''))+': '+str(p.get('reason',''))
+                     for p in previous.get('products',[])]
+            response['answer']=('Mình giữ nguyên các mẫu vừa gợi ý. Lý do có thể kiểm tra được là:\n'
+                +'\n'.join(reasons)+'\n\nGu bạn nêu là định hướng tư vấn; '
+                'mình chưa khẳng định từng mẫu có đầy đủ nhãn phong cách hay đối tượng sử dụng đã xác nhận.')
         row['history']=[*row['history'],{'user':message,'answer':response.get('answer','')}][-6:]
         return {**response,'conversation_id':token}
     finally:

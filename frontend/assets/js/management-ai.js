@@ -190,7 +190,7 @@
   root.innerHTML = `
     <section class="ai-panel" aria-label="Trợ lý AI">
       <header class="ai-header">
-        <span>✦ LUMIÈRE AI ${isAdmin ? "Admin" : "Staff"}</span>
+        <span>✧ Trợ lý ${isAdmin ? "quản trị" : "nhân viên"}</span>
         <button class="ai-close" type="button"
           aria-label="Đóng chatbot">×</button>
       </header>

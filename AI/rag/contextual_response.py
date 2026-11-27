@@ -1,10 +1,11 @@
 """Customer-only responses grounded in verified shopping context."""
 
 from jewelry_agents.dialogue_state import ShoppingState
+from decimal import Decimal
 
 
 def money(value):
-    return f"{value:,}".replace(",", ".") + " đồng"
+    return format(Decimal(str(value)), ',f').replace(',', '_').replace('.', ',').replace('_', '.') + " đồng"
 
 
 def describe_budget(state):
@@ -139,7 +140,7 @@ def explain_previous_products(row):
     if not products:
         return None
 
-    state = row.get("shopping_state")
+    state = row.get("last_result_state", row.get("shopping_state"))
 
     names = [
         product_label(p)
