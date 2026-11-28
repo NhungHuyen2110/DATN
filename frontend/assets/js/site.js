@@ -51,6 +51,237 @@
 
   const managementArea = area === "admin" || area === "staff";
 
+  const footer = $("#site-footer");
+
+  footer.innerHTML = managementArea
+    ? `
+    <footer class="footer shell-management-footer">
+      <div class="container footer-bottom">
+        <span>© 2026 LUMIÈRE</span>
+      </div>
+    </footer>
+  `
+    : `
+    <footer class="footer premium-footer">
+
+      <div class="footer-benefits">
+        <div class="container footer-benefits-grid">
+
+          <div class="footer-benefit">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 3h12l4 6-10 12L2 9Z"/>
+              <path d="M2 9h20M6 3l6 18L18 3"/>
+            </svg>
+
+            <strong>Thiết kế tinh tế</strong>
+            <span>Dấu ấn riêng của bạn</span>
+          </div>
+
+          <div class="footer-benefit">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+
+            <strong>Chất lượng chọn lọc</strong>
+            <span>Thông tin sản phẩm rõ ràng</span>
+          </div>
+
+          <div class="footer-benefit">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M1 4h14v13H1ZM15 9h4l4 4v4h-8"/>
+              <circle cx="5.5" cy="18" r="2.5"/>
+              <circle cx="18.5" cy="18" r="2.5"/>
+            </svg>
+
+            <strong>Giao hàng thuận tiện</strong>
+            <span>Theo dõi đơn hàng dễ dàng</span>
+          </div>
+
+          <div class="footer-benefit">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 14v-3a9 9 0 0 1 18 0v3M21 16v2a4 4 0 0 1-4 4h-3"/>
+              <rect x="2" y="11" width="5" height="7" rx="2"/>
+              <rect x="17" y="11" width="5" height="7" rx="2"/>
+            </svg>
+
+            <strong>Tận tâm hỗ trợ</strong>
+            <span>Đồng hành cùng khách hàng</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+          <a class="logo footer-logo"
+             href="${root}index.html">
+            LUMIÈRE
+            <span>FINE JEWELRY</span>
+          </a>
+
+          <p class="footer-description">
+            Vẻ đẹp vượt thời gian.<br>
+            Chạm vào dấu ấn riêng của bạn.
+          </p>
+
+          <div class="footer-contact">
+
+            <div class="footer-contact-row">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 3H4a1 1 0 0 0-1 1
+                c0 9.4 7.6 17 17 17
+                a1 1 0 0 0 1-1v-3l-5-2-2 2
+                a14 14 0 0 1-7-7l2-2Z"/>
+              </svg>
+
+              <span>09 2210 2110</span>
+            </div>
+
+            <div class="footer-contact-row">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18"
+                      height="14" rx="2"/>
+                <path d="m3 7 9 6 9-6"/>
+              </svg>
+
+              <span>contact@lumiere.vn</span>
+            </div>
+
+            <div class="footer-contact-row footer-address">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 10c0 6-8 11-8 11S4 16 4 10
+                        a8 8 0 1 1 16 0Z"/>
+                <circle cx="12" cy="10" r="2.5"/>
+              </svg>
+
+              <span>
+                12 Nguyễn Văn Bảo, phường Hạnh Thông,
+                TP. Hồ Chí Minh
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <h3>KHÁM PHÁ</h3>
+
+          ${nav("Tất cả sản phẩm", "pages/products.html")}
+
+          ${["Nhẫn", "Dây chuyền", "Bông tai", "Lắc tay", "Vòng tay"]
+            .map(
+              (category) => `
+              <a href="${root}pages/products.html?category=${encodeURIComponent(category)}">
+                ${esc(category)}
+              </a>
+            `,
+            )
+            .join("")}
+
+          ${nav("Câu chuyện thương hiệu", "pages/about.html")}
+
+        </div>
+
+        <div class="footer-support">
+
+          <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+
+          ${nav("Liên hệ hỗ trợ", "pages/contact.html")}
+
+          <a href="${root}pages/policies.html#shopping">
+            Hướng dẫn mua hàng
+          </a>
+
+          <a href="${root}pages/policies.html#payment">
+            Hướng dẫn thanh toán
+          </a>
+
+          <a href="${root}pages/policies.html#warranty">
+            Chính sách bảo hành
+          </a>
+
+          <a href="${root}pages/policies.html#returns">
+            Chính sách đổi trả
+          </a>
+
+          <a href="${root}pages/policies.html#shipping">
+            Chính sách giao hàng
+          </a>
+
+          <a href="${root}pages/policies.html#privacy">
+            Chính sách bảo mật
+          </a>
+
+          <a href="${root}pages/policies.html#care">
+            Hướng dẫn bảo quản
+          </a>
+
+          <button id="footer-chat" hidden>
+            Tư vấn trực tuyến
+          </button>
+
+        </div>
+
+        <div>
+
+          <h3>MY LUMIÈRE</h3>
+
+          ${nav("Thông tin tài khoản", "pages/account.html")}
+
+          ${nav("Sản phẩm yêu thích", "pages/wishlist.html")}
+
+          ${nav("Đơn hàng của tôi", "pages/orders.html")}
+
+          ${nav("Đánh giá của tôi", "pages/reviews.html")}
+          ${nav("Giỏ hàng của bạn", "pages/cart.html")}
+
+          <div class="footer-payment">
+
+            <h3>PHƯƠNG THỨC THANH TOÁN</h3>
+
+            <div class="footer-payment-methods">
+
+              <div class="payment-vnpay">
+                VN<span>PAY</span>
+              </div>
+
+              <div class="payment-cod">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="5" width="20"
+                        height="14" rx="2"/>
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M6 12h.01M18 12h.01"/>
+                </svg>
+
+                COD
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="container footer-bottom footer-bottom-center">
+
+        <div class="footer-copyright">
+          © 2026 LUMIÈRE Fine Jewelry. All rights reserved.
+        </div>
+
+      </div>
+
+    </footer>
+  `;
+  // Trang chủ chỉ sử dụng footer chung,
+  // giữ nguyên header và logic riêng.
+  if (!shell) return;
   /* ========================================
    SHARED CHATBOT LOADER
    ======================================== */
@@ -138,22 +369,17 @@
 
   const shopLinks = `
   ${nav("Trang chủ", "index.html")}
-  ${nav("Sản phẩm", "pages/products.html")}
-  ${nav("Bộ sưu tập", "pages/collections.html")}
+
+  <a href="${root}pages/products.html" data-mega-products>
+    Sản phẩm
+  </a>
+
   ${nav("Về chúng tôi", "pages/about.html")}
   ${nav("Liên hệ", "pages/contact.html")}
 `;
 
   const shopActions = `
-  <a class="icon-btn"
-     href="${root}pages/search.html"
-     title="Tìm kiếm"
-     aria-label="Tìm kiếm">
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="10.7" cy="10.7" r="6.6"/>
-      <path d="m16 16 5 5"/>
-    </svg>
-  </a>
+  <div class="header-search-mount"></div>
 
   <a class="icon-btn"
      href="${root}pages/wishlist.html"
@@ -197,6 +423,49 @@
       LUMIÈRE
       <span>FINE JEWELRY</span>
     </a>
+
+
+    ${
+      managementArea
+        ? ""
+        : `
+        <div class="header-contact">
+
+            <div class="header-contact-item">
+                <svg viewBox="0 0 24 24" fill="none"
+                    aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                            19.79 19.79 0 0 1-8.63-3.07
+                            19.5 19.5 0 0 1-6-6
+                            19.79 19.79 0 0 1-3.07-8.67
+                            A2 2 0 0 1 4.11 2h3
+                            a2 2 0 0 1 2 1.72
+                            c.13.96.36 1.9.69 2.81
+                            a2 2 0 0 1-.45 2.11L8.09 9.91
+                            a16 16 0 0 0 6 6l1.27-1.27
+                            a2 2 0 0 1 2.11-.45
+                            c.91.33 1.85.56 2.81.69
+                            A2 2 0 0 1 22 16.92z"/>
+                </svg>
+
+                <span>09 2210 2110</span>
+            </div>
+
+            <div class="header-contact-item">
+                <svg viewBox="0 0 24 24" fill="none"
+                    aria-hidden="true">
+                    <rect x="3" y="5" width="18"
+                          height="14" rx="2"/>
+                    <path d="m3 7 9 6 9-6"/>
+                </svg>
+
+                <span>contact@lumiere.vn</span>
+            </div>
+
+        </div>
+    `
+    }
+
 
     <nav class="main-nav"
          id="shell-main-nav"
@@ -275,56 +544,14 @@
 </header>
 `;
 
-  const footer = $("#site-footer");
+  // Shared header search
+  if (!managementArea) {
+    const searchScript = document.createElement("script");
 
-  footer.innerHTML = `
-    <footer class="footer">
+    searchScript.src = root + "assets/js/header-search.js";
 
-      <div class="container footer-grid">
-
-        <div>
-          <a class="logo footer-logo" href="${root}index.html">
-            LUMIÈRE
-            <span>FINE JEWELRY</span>
-          </a>
-
-          <p>
-            Vẻ đẹp vượt thời gian.<br>
-            Chạm vào dấu ấn riêng của bạn.
-          </p>
-        </div>
-
-        <div>
-          <h3>KHÁM PHÁ</h3>
-
-          ${nav("Tất cả sản phẩm", "pages/products.html")}
-          ${nav("Bộ sưu tập", "pages/collections.html")}
-          ${nav("Câu chuyện thương hiệu", "pages/about.html")}
-        </div>
-
-        <div>
-          <h3>HỖ TRỢ</h3>
-
-          ${nav("Theo dõi đơn hàng", "pages/orders.html")}
-          ${nav("Liên hệ", "pages/contact.html")}
-        </div>
-
-        <div>
-          <h3>TÀI KHOẢN</h3>
-
-          ${nav("My LUMIÈRE", "pages/account.html")}
-          ${nav("Sản phẩm yêu thích", "pages/wishlist.html")}
-          ${nav("Đơn hàng của tôi", "pages/orders.html")}
-        </div>
-
-      </div>
-
-      <div class="container footer-bottom">
-        <span>© 2026 LUMIÈRE</span>
-      </div>
-
-    </footer>
-  `;
+    document.head.appendChild(searchScript);
+  }
 
   const menuToggle = $(".shell-menu-toggle");
 
@@ -391,6 +618,77 @@
   }
 
   const content = $("#page-content");
+
+  /* ========================================
+   SHARED CUSTOMER BREADCRUMB
+   ======================================== */
+
+  function mountBreadcrumb() {
+    if (area !== "shop") return;
+
+    const main = $("#page-root");
+
+    if (!main) return;
+
+    // Không tạo trùng breadcrumb trang sản phẩm.
+    if (main.querySelector(".catalog-breadcrumb")) return;
+
+    const labels = {
+      products: "Sản phẩm",
+      "product-detail": "Chi tiết sản phẩm",
+      collections: "Bộ sưu tập",
+      search: "Kết quả tìm kiếm",
+      wishlist: "Yêu thích",
+      cart: "Giỏ hàng",
+      checkout: "Thanh toán",
+      account: "Tài khoản",
+      orders: "Đơn hàng của tôi",
+      reviews: "Đánh giá của tôi",
+      about: "Về chúng tôi",
+      contact: "Liên hệ",
+      login: "Đăng nhập",
+      register: "Đăng ký",
+      "forgot-password": "Quên mật khẩu",
+      "reset-password": "Đặt lại mật khẩu",
+    };
+
+    if (!labels[page]) return;
+
+    const parents = {
+      "product-detail": [["Sản phẩm", "pages/products.html"]],
+      checkout: [["Giỏ hàng", "pages/cart.html"]],
+      orders: [["Tài khoản", "pages/account.html"]],
+      reviews: [["Tài khoản", "pages/account.html"]],
+      "forgot-password": [["Đăng nhập", "pages/login.html"]],
+      "reset-password": [["Đăng nhập", "pages/login.html"]],
+    };
+
+    const links = [["Trang chủ", "index.html"], ...(parents[page] || [])];
+
+    const breadcrumb = document.createElement("nav");
+
+    breadcrumb.className = "catalog-breadcrumb";
+    breadcrumb.setAttribute("aria-label", "Đường dẫn");
+
+    breadcrumb.innerHTML = `
+    ${links
+      .map(
+        ([label, url]) => `
+      <a href="${root + url}">${esc(label)}</a>
+      <span aria-hidden="true">/</span>
+    `,
+      )
+      .join("")}
+
+    <span aria-current="page">
+      ${esc(labels[page])}
+    </span>
+  `;
+
+    main.prepend(breadcrumb);
+  }
+
+  mountBreadcrumb();
 
   function applyRoleNavigation() {
     const role = user?.role || "guest";
@@ -673,6 +971,7 @@
 
     refreshCatalogFavorites();
   }
+
   function catalog() {
     if (window.LUMIERE_PRODUCTS_ERROR) {
       content.innerHTML = `
@@ -682,118 +981,257 @@
       return;
     }
 
+    function filterValues(field) {
+      return [...new Set(P.map((p) => p[field]).filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b, "vi"),
+      );
+    }
+
     function filterOptions(field) {
-      return [...new Set(P.map((p) => p[field]).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b, "vi"))
+      return filterValues(field)
         .map(
           (value) => `
-        <option value="${esc(value)}">${esc(value)}</option>
+        <option value="${esc(value)}">
+          ${esc(value)}
+        </option>
       `,
         )
         .join("");
     }
 
     content.innerHTML = `
-    <div class="content-grid">
+    <div class="content-grid catalog-layout">
 
-      <aside class="filter-panel">
-        <h2>Bộ lọc sản phẩm</h2>
+      <aside class="filter-panel catalog-filter">
 
-        ${formField(
-          "keyword",
-          "Tìm kiếm",
-          "search",
-          'placeholder="Tên trang sức, chất liệu..."',
-        )}
+        <div class="catalog-filter-head">
+          <h2>Bộ lọc</h2>
 
-        <div class="field">
-          <label for="category">Danh mục</label>
-          <select id="category">
-            <option value="">Tất cả danh mục</option>
-            ${filterOptions("category")}
-          </select>
+          <button id="reset-filter"
+                  class="catalog-reset"
+                  type="button">
+            Xóa tất cả
+          </button>
         </div>
 
-        <div class="field">
-          <label for="material">Chất liệu</label>
-          <select id="material">
-            <option value="">Tất cả chất liệu</option>
-            ${filterOptions("material")}
-          </select>
-        </div>
+        <input id="keyword" type="hidden">
 
-        <div class="field">
-          <label for="collection">Bộ sưu tập</label>
-          <select id="collection">
-            <option value="">Tất cả bộ sưu tập</option>
+
+        <!-- DANH MỤC -->
+
+        <details class="catalog-filter-group" open>
+
+          <summary>Danh mục</summary>
+
+          <div class="catalog-filter-body">
+
+            <select id="category" hidden
+                    aria-label="Danh mục">
+              <option value="">Tất cả</option>
+              ${filterOptions("category")}
+            </select>
+
+            <div class="catalog-category-list">
+
+              ${["", ...filterValues("category")]
+                .map(
+                  (value) => `
+                  <label class="catalog-category-option">
+
+                    <input type="radio"
+                           name="catalog-category"
+                           value="${esc(value)}"
+                           ${value === "" ? "checked" : ""}>
+
+                    <span>
+                      ${esc(value || "Tất cả")}
+                    </span>
+
+                  </label>
+                `,
+                )
+                .join("")}
+
+            </div>
+
+          </div>
+
+        </details>
+
+        <!-- CHẤT LIỆU -->
+
+        <details class="catalog-filter-group">
+
+          <summary>Chất liệu</summary>
+
+          <div class="catalog-filter-body">
+
+            <select id="material"
+                    aria-label="Chất liệu">
+              <option value="">Tất cả chất liệu</option>
+              ${filterOptions("material")}
+            </select>
+
+          </div>
+
+        </details>
+
+        <!-- ĐÁ QUÝ -->
+
+        <details class="catalog-filter-group">
+
+          <summary>Đá quý</summary>
+
+          <div class="catalog-filter-body">
+
+            <select id="gem"
+                    aria-label="Đá quý">
+              <option value="">Tất cả đá quý</option>
+              ${filterOptions("gem")}
+            </select>
+
+          </div>
+
+        </details>
+
+        <!-- BỘ SƯU TẬP -->
+
+      <details class="catalog-filter-group">
+
+        <summary>Bộ sưu tập</summary>
+
+        <div class="catalog-filter-body">
+
+          <select id="collection"
+                  hidden
+                  aria-label="Bộ sưu tập">
+
+            <option value="">Tất cả</option>
+
             ${filterOptions("collection")}
+
           </select>
+
+          <div class="catalog-category-list">
+
+            ${["", ...filterValues("collection")]
+              .map(
+                (value) => `
+                <label class="catalog-category-option">
+
+                  <input type="radio"
+                        name="catalog-collection"
+                        value="${esc(value)}"
+                        ${value === "" ? "checked" : ""}>
+
+                  <span>
+                    ${esc(value || "Tất cả")}
+                  </span>
+
+                </label>
+              `,
+              )
+              .join("")}
+
+          </div>
+
         </div>
-        <div class="field">
-          <label for="gem">Đá quý</label>
-          <select id="gem">
-            <option value="">Tất cả đá quý</option>
-            ${filterOptions("gem")}
-          </select>
-        </div>
 
-        <div class="field">
-          <label for="min-price">Giá từ (₫)</label>
-          <input id="min-price" type="number"
-                 min="0" step="1" placeholder="Không giới hạn">
-        </div>
+      </details>
 
-        <div class="field">
-          <label for="max-price">Giá đến (₫)</label>
-          <input id="max-price" type="number"
-                 min="0" step="1" placeholder="Không giới hạn">
-        </div>
+        <!-- KHOẢNG GIÁ -->
 
-        <p id="filter-error" class="mini-note"
-           role="status" hidden></p>
+        <details class="catalog-filter-group">
 
-        <button id="reset-filter"
-                class="button button-outline button-wide"
-                type="button">
-          XÓA BỘ LỌC
-        </button>
+          <summary>Khoảng giá</summary>
 
-        <p class="mini-note">
+          <div class="catalog-filter-body">
+
+            <div class="field">
+              <label for="min-price">Từ (₫)</label>
+              <input id="min-price"
+                     type="number"
+                     min="0"
+                     step="1"
+                     placeholder="Không giới hạn">
+            </div>
+
+            <div class="field">
+              <label for="max-price">Đến (₫)</label>
+              <input id="max-price"
+                     type="number"
+                     min="0"
+                     step="1"
+                     placeholder="Không giới hạn">
+            </div>
+
+          </div>
+
+        </details>
+
+        <p id="filter-error"
+           class="mini-note"
+           role="status"
+           hidden></p>
+
+        <p class="catalog-filter-note">
           Hình ảnh sản phẩm mang tính minh họa.
         </p>
+
       </aside>
 
-      <section>
-        <div class="toolbar">
-          <span id="result-count"></span>
+      <!-- DANH SÁCH SẢN PHẨM -->
 
-          <label>
-            Sắp xếp
+      <section class="catalog-listing">
+
+        <div class="toolbar catalog-toolbar">
+
+          <span id="result-count"
+                aria-live="polite"></span>
+
+          <label class="catalog-sort">
+            <span>Sắp xếp:</span>
+
             <select id="sort">
               <option value="default">Mặc định</option>
               <option value="asc">Giá thấp đến cao</option>
               <option value="desc">Giá cao đến thấp</option>
               <option value="name">Tên A–Z</option>
             </select>
+
           </label>
+
         </div>
 
-        <div id="catalog-results" class="catalog-grid"></div>
+        <div id="catalog-active-filters"
+             class="catalog-active-filters"
+             hidden></div>
 
-        <div class="ap-pager">
+        <div id="catalog-results"
+             class="catalog-grid"></div>
+
+        <div class="ap-pager catalog-pagination">
+
           <span id="catalog-page-info"></span>
 
           <div class="ap-page-actions">
-            <button id="catalog-prev" type="button">
+
+            <button id="catalog-prev"
+                    type="button">
               ← Trước
             </button>
 
-            <button id="catalog-next" type="button">
+            <button id="catalog-next"
+                    type="button">
               Sau →
             </button>
+
           </div>
+
         </div>
+
       </section>
+
     </div>`;
 
     const params = new URLSearchParams(location.search);
@@ -801,9 +1239,38 @@
     $("#keyword").value = params.get("q") || "";
     $("#category").value = params.get("category") || "";
     $("#collection").value = params.get("collection") || "";
+    $("#material").value = params.get("material") || "";
+
+    if (get("material")) {
+      $("#material").closest("details").open = true;
+    }
+
+    if (get("collection")) {
+      $("#collection").closest("details").open = true;
+    }
 
     let currentPage = 1;
     const pageSize = 12;
+
+    const fields = [
+      "keyword",
+      "category",
+      "material",
+      "collection",
+      "gem",
+      "min-price",
+      "max-price",
+    ];
+
+    const fieldLabels = {
+      keyword: "Tìm kiếm",
+      category: "Danh mục",
+      material: "Chất liệu",
+      collection: "Bộ sưu tập",
+      gem: "Đá quý",
+      "min-price": "Giá từ",
+      "max-price": "Giá đến",
+    };
 
     function normalize(value) {
       return String(value ?? "")
@@ -814,7 +1281,135 @@
         .trim();
     }
 
+    function syncCategory() {
+      ["category", "collection"].forEach((field) => {
+        document
+          .querySelectorAll(`input[name="catalog-${field}"]`)
+          .forEach((input) => {
+            input.checked = input.value === get(field);
+          });
+      });
+    }
+
+    function drawActiveFilters() {
+      const active = fields.filter((id) => get(id) !== "");
+      const container = $("#catalog-active-filters");
+
+      container.hidden = active.length === 0;
+
+      container.innerHTML = active
+        .map((id) => {
+          const value = get(id);
+
+          const label = id.endsWith("-price") ? money(Number(value)) : value;
+
+          return `
+        <button type="button"
+                class="catalog-filter-chip"
+                data-clear-filter="${id}"
+                aria-label="Xóa bộ lọc ${esc(fieldLabels[id])}">
+          <span>
+            ${esc(fieldLabels[id])}: ${esc(label)}
+          </span>
+          <span aria-hidden="true">×</span>
+        </button>
+      `;
+        })
+        .join("");
+    }
+
     function draw() {
+      const searchTerm = get("keyword");
+      const selectedCollection = get("collection");
+      const selectedCategory = get("category");
+      const selectedMaterial = get("material");
+
+      const heading = document.querySelector(".catalog-heading h1");
+
+      const subtitle = document.querySelector(
+        ".catalog-heading .page-subtitle",
+      );
+
+      const breadcrumb = document.querySelector(".catalog-breadcrumb");
+
+      const headerSearch = document.querySelector(".header-search-input");
+
+      let pageTitle = "Khám phá trang sức";
+      let pageSubtitle = "Vẻ đẹp tinh tế, dấu ấn riêng của bạn.";
+      let breadcrumbTitle = "";
+
+      if (searchTerm) {
+        pageTitle = `Kết quả cho “${searchTerm}”`;
+        pageSubtitle = "Khám phá những thiết kế phù hợp với bạn.";
+        breadcrumbTitle = "Kết quả tìm kiếm";
+      } else if (selectedCollection) {
+        pageTitle = `Bộ sưu tập ${selectedCollection}`;
+        pageSubtitle = "Mỗi thiết kế, một dấu ấn riêng.";
+        breadcrumbTitle = selectedCollection;
+      } else if (selectedCategory) {
+        pageTitle = selectedCategory;
+        breadcrumbTitle = selectedCategory;
+      } else if (selectedMaterial) {
+        pageTitle = `Trang sức ${selectedMaterial}`;
+        breadcrumbTitle = selectedMaterial;
+      }
+
+      if (heading) {
+        heading.textContent = pageTitle;
+      }
+
+      if (subtitle) {
+        subtitle.textContent = pageSubtitle;
+      }
+
+      if (breadcrumb) {
+        breadcrumb.innerHTML = `
+      <a href="${root}index.html">Trang chủ</a>
+      <span aria-hidden="true">/</span>
+
+      ${
+        breadcrumbTitle
+          ? `
+        <a href="${root}pages/products.html">Sản phẩm</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">
+          ${esc(breadcrumbTitle)}
+        </span>
+      `
+          : `
+        <span aria-current="page">Sản phẩm</span>
+      `
+      }
+    `;
+      }
+
+      if (headerSearch && document.activeElement !== headerSearch) {
+        headerSearch.value = searchTerm;
+      }
+
+      // Đồng bộ URL với bộ lọc hiện tại.
+      const catalogUrl = new URL(location.href);
+
+      [
+        ["q", searchTerm],
+        ["category", selectedCategory],
+        ["collection", selectedCollection],
+        ["material", selectedMaterial],
+      ].forEach(([key, value]) => {
+        if (value) {
+          catalogUrl.searchParams.set(key, value);
+        } else {
+          catalogUrl.searchParams.delete(key);
+        }
+      });
+
+      if (catalogUrl.href !== location.href) {
+        history.replaceState(history.state, "", catalogUrl.href);
+      }
+
+      syncCategory();
+      drawActiveFilters();
+
       const keyword = normalize(get("keyword"));
       const min = get("min-price");
       const max = get("max-price");
@@ -829,12 +1424,18 @@
 
       if (invalidPrice) {
         error.textContent = "Khoảng giá không hợp lệ.";
+
         $("#result-count").textContent = "";
-        $("#catalog-results").innerHTML =
-          '<div class="empty-panel">Vui lòng kiểm tra lại khoảng giá.</div>';
+
+        $("#catalog-results").innerHTML = `
+        <div class="empty-panel">
+          Vui lòng kiểm tra lại khoảng giá.
+        </div>`;
+
         $("#catalog-page-info").textContent = "";
         $("#catalog-prev").disabled = true;
         $("#catalog-next").disabled = true;
+
         return;
       }
 
@@ -878,31 +1479,60 @@
 
       $("#catalog-results").innerHTML = slice.length
         ? slice.map(card).join("")
-        : '<div class="empty-panel">Không có sản phẩm phù hợp.</div>';
+        : `
+        <div class="empty-panel">
+          Không tìm thấy sản phẩm phù hợp.
+        </div>`;
 
       $("#catalog-page-info").textContent = matches.length
         ? `Hiển thị ${start + 1}–${start + slice.length} / ${matches.length} · Trang ${currentPage}/${totalPages}`
         : "0 sản phẩm";
 
       $("#catalog-prev").disabled = currentPage === 1;
+
       $("#catalog-next").disabled = currentPage >= totalPages;
     }
-
-    const fields = [
-      "keyword",
-      "category",
-      "material",
-      "collection",
-      "gem",
-      "min-price",
-      "max-price",
-    ];
 
     [...fields, "sort"].forEach((id) => {
       $("#" + id).addEventListener("input", () => {
         currentPage = 1;
         draw();
       });
+    });
+
+    document
+      .querySelectorAll('input[name="catalog-category"]')
+      .forEach((input) => {
+        input.addEventListener("change", () => {
+          $("#category").value = input.value;
+          currentPage = 1;
+          draw();
+        });
+      });
+
+    document
+      .querySelectorAll('input[name="catalog-collection"]')
+      .forEach((input) => {
+        input.addEventListener("change", () => {
+          $("#collection").value = input.value;
+          currentPage = 1;
+          draw();
+        });
+      });
+
+    $("#catalog-active-filters").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-clear-filter]");
+
+      if (!button) return;
+
+      const id = button.dataset.clearFilter;
+
+      if (!fields.includes(id)) return;
+
+      $("#" + id).value = "";
+
+      currentPage = 1;
+      draw();
     });
 
     $("#catalog-prev").onclick = () => {
@@ -919,7 +1549,9 @@
 
     $("#reset-filter").onclick = () => {
       fields.forEach((id) => ($("#" + id).value = ""));
+
       $("#sort").value = "default";
+
       currentPage = 1;
       draw();
     };
@@ -2932,7 +3564,99 @@
       return;
     }
     if (page === "contact") {
-      content.innerHTML = `<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Đội ngũ LUMIÈRE luôn sẵn sàng lắng nghe và hỗ trợ bạn trong hành trình lựa chọn trang sức.</p><div class="contact-facts"><div><strong>Hỗ trợ mua sắm</strong><span>Tư vấn sản phẩm, mua sắm và thanh toán</span></div><div><strong>Theo dõi đơn hàng</strong><span>Đăng nhập rồi mở mục Đơn hàng của tôi</span></div><div><strong>Trợ lý trang sức AI</strong><span>Sử dụng nút Tư vấn AI trên trang mua sắm</span></div></div><p class="mini-note">Vui lòng sử dụng biểu mẫu liên hệ để gửi yêu cầu hỗ trợ đến LUMIÈRE.</p></section>
+      content.innerHTML = `<div class="contact-grid"><section class="panel"><span class="eyebrow">LUMIÈRE SUPPORT</span><h2>Chúng tôi có thể giúp gì cho bạn?</h2><p class="page-subtitle">Đội ngũ LUMIÈRE luôn sẵn sàng lắng nghe và hỗ trợ bạn trong hành trình lựa chọn trang sức.</p>
+<div class="contact-store-info">
+
+  <div class="contact-info-heading">
+    THÔNG TIN LIÊN HỆ
+  </div>
+
+  <div class="contact-info-item">
+    <div class="contact-info-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/>
+        <circle cx="12" cy="10" r="2.5"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Địa chỉ cửa hàng</strong>
+      <span>12 Nguyễn Văn Bảo, phường Hạnh Thông, TP. Hồ Chí Minh</span>
+    </div>
+  </div>
+
+  <div class="contact-info-item">
+    <div class="contact-info-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7l.7 3a2 2 0 0 1-.5 2.1l-1.3 1.3a16 16 0 0 0 5.9 5.9l1.3-1.3a2 2 0 0 1 2.1-.5l3 .7a2 2 0 0 1 .7 1Z"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Hotline hỗ trợ</strong>
+      <a href="tel:0922102110">09 2210 2110</a>
+    </div>
+  </div>
+
+  <div class="contact-info-item">
+    <div class="contact-info-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="m3 6 9 7 9-7"/>
+      </svg>
+    </div>
+    <div>
+      <strong>Email liên hệ</strong>
+      <a href="mailto:contact@lumiere.vn">
+        contact@lumiere.vn
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="contact-quick-support">
+
+  <div class="contact-info-heading">
+    HỖ TRỢ NHANH
+  </div>
+
+  <a href="policies.html#shopping" class="contact-support-link">
+    <div>
+      <strong>Hướng dẫn mua hàng</strong>
+      <span>Khám phá quy trình mua sắm tại LUMIÈRE</span>
+    </div>
+    <span class="contact-link-arrow">›</span>
+  </a>
+
+  <a href="policies.html#warranty" class="contact-support-link">
+    <div>
+      <strong>Chính sách &amp; Hướng dẫn</strong>
+      <span>Tra cứu bảo hành, đổi trả và thanh toán</span>
+    </div>
+    <span class="contact-link-arrow">›</span>
+  </a>
+
+  <div class="contact-support-link">
+    <div>
+      <strong>Theo dõi đơn hàng</strong>
+      <span>Đăng nhập và truy cập mục Đơn hàng của tôi</span>
+    </div>
+  </div>
+
+  <div class="contact-support-link">
+    <div>
+      <strong>Trợ lý trang sức AI</strong>
+      <span>Sử dụng nút Tư vấn AI trên trang mua sắm</span>
+    </div>
+  </div>
+
+</div>
+<p class="mini-note">Vui lòng sử dụng biểu mẫu liên hệ để gửi yêu cầu hỗ trợ đến LUMIÈRE.</p></section>
     <section class="panel"><h2>Gửi yêu cầu hỗ trợ</h2><p class="mini-note" id="contact-method">Hãy để lại thông tin liên hệ và nội dung bạn cần hỗ trợ.</p><form id="contact-form">${formField("contact-name", "Họ và tên", "text", 'required minlength="2" maxlength="150"')}${formField("contact-email", "Email liên hệ", "email", 'required maxlength="254"')}<div class="field"><label for="contact-topic">Chủ đề</label><select id="contact-topic"><option>Tư vấn sản phẩm</option><option>Hỗ trợ đơn hàng</option><option>Góp ý trải nghiệm</option><option>Hỗ trợ khác</option></select></div><div class="field"><label for="contact-message">Nội dung</label><textarea id="contact-message" required minlength="10" maxlength="1500" placeholder="Mô tả yêu cầu của bạn..."></textarea></div><button class="button button-dark button-wide" type="submit">GỬI YÊU CẦU LIÊN HỆ</button><p id="contact-result" class="mini-note" role="status"></p></form></section></div>`;
       $("#contact-form").onsubmit = async (event) => {
         event.preventDefault();
@@ -3127,7 +3851,7 @@
     if (page === "product-detail") showProductReviews();
   })();
 })();
-const reviewStyles = document.createElement('style');
+const reviewStyles = document.createElement("style");
 reviewStyles.textContent = `
 /* LUMIERE - Product reviews */
 #review-form.review-form {
@@ -3210,3 +3934,280 @@ reviewStyles.textContent = `
 }
 `;
 document.head.appendChild(reviewStyles);
+
+(() => {
+  "use strict";
+
+  const policies = {
+    shopping: {
+      title: "Hướng dẫn mua hàng",
+      content: `
+                <p>Khám phá và lựa chọn những thiết kế trang sức
+                phù hợp với phong cách riêng của bạn tại LUMIÈRE.</p>
+
+                <h3>Quy trình đặt hàng</h3>
+                <ol>
+                    <li>Truy cập danh mục sản phẩm và lựa chọn
+                    trang sức yêu thích.</li>
+                    <li>Xem thông tin sản phẩm, lựa chọn thuộc tính
+                    phù hợp nếu có và số lượng.</li>
+                    <li>Thêm sản phẩm vào giỏ hàng.</li>
+                    <li>Kiểm tra giỏ hàng và tiến hành đặt hàng.</li>
+                    <li>Cung cấp thông tin nhận hàng và lựa chọn
+                    phương thức thanh toán khả dụng.</li>
+                    <li>Xác nhận đơn hàng và theo dõi trạng thái
+                    tại mục Đơn hàng của tôi.</li>
+                </ol>
+
+                <div class="policy-note">
+                    <p>Nếu cần tư vấn trong quá trình mua sắm,
+                    bạn có thể sử dụng trợ lý trang sức AI
+                    hoặc liên hệ đội ngũ LUMIÈRE.</p>
+                </div>
+            `,
+    },
+
+    payment: {
+      title: "Hướng dẫn thanh toán",
+      content: `
+                <p>LUMIÈRE giới thiệu các phương thức thanh toán
+                nhằm mang đến trải nghiệm mua sắm thuận tiện.</p>
+
+                <h3>1. Thanh toán khi nhận hàng (COD)</h3>
+                <p>Khách hàng lựa chọn COD khi đặt hàng và
+                thanh toán số tiền cần trả khi nhận sản phẩm.</p>
+
+                <h3>2. Thanh toán qua VNPAY</h3>
+                <p>Khi tính năng VNPAY khả dụng, khách hàng
+                lựa chọn phương thức này tại bước thanh toán
+                và thực hiện theo hướng dẫn của cổng thanh toán.</p>
+
+                <h3>3. Lưu ý khi thanh toán</h3>
+                <ul>
+                    <li>Kiểm tra tổng giá trị đơn hàng.</li>
+                    <li>Không cung cấp mật khẩu hoặc mã OTP
+                    cho người khác.</li>
+                    <li>Kiểm tra trạng thái đơn hàng sau khi
+                    hoàn tất thanh toán.</li>
+                </ul>
+
+                <div class="policy-note">
+                    <p>Liên hệ LUMIÈRE nếu gặp khó khăn
+                    trong quá trình thanh toán.</p>
+                </div>
+            `,
+    },
+
+    warranty: {
+      title: "Chính sách bảo hành",
+      content: `
+                <p>LUMIÈRE tiếp nhận yêu cầu hỗ trợ liên quan
+                đến chất lượng và tình trạng sản phẩm.</p>
+
+                <h3>1. Điều kiện xem xét bảo hành</h3>
+                <ul>
+                    <li>Có thông tin đơn hàng để đối chiếu.</li>
+                    <li>Sản phẩm có dấu hiệu lỗi cần kiểm tra.</li>
+                    <li>Cung cấp thông tin và hình ảnh sản phẩm
+                    khi được yêu cầu.</li>
+                </ul>
+
+                <h3>2. Các trường hợp cần đánh giá riêng</h3>
+                <ul>
+                    <li>Hư hỏng do va đập hoặc tác động bên ngoài.</li>
+                    <li>Ảnh hưởng do hóa chất hoặc bảo quản
+                    không phù hợp.</li>
+                    <li>Sản phẩm đã được sửa chữa tại nơi khác.</li>
+                </ul>
+
+                <h3>3. Quy trình hỗ trợ</h3>
+                <ol>
+                    <li>Gửi yêu cầu qua trang Liên hệ.</li>
+                    <li>Cung cấp thông tin đơn hàng.</li>
+                    <li>Chờ kiểm tra và phản hồi phương án hỗ trợ.</li>
+                </ol>
+
+                <div class="policy-note">
+                    <p>Thời hạn và phạm vi bảo hành cụ thể cần
+                    được xác nhận theo từng sản phẩm.</p>
+                </div>
+            `,
+    },
+
+    returns: {
+      title: "Chính sách đổi trả",
+      content: `
+                <p>LUMIÈRE tiếp nhận yêu cầu đổi trả và xem xét
+                dựa trên thông tin đơn hàng, tình trạng sản phẩm
+                và điều kiện áp dụng.</p>
+
+                <h3>1. Các trường hợp tiếp nhận</h3>
+                <ul>
+                    <li>Sản phẩm giao không đúng đơn hàng.</li>
+                    <li>Sản phẩm có dấu hiệu lỗi hoặc hư hỏng
+                    khi nhận hàng.</li>
+                    <li>Các trường hợp khác cần được xem xét.</li>
+                </ul>
+
+                <h3>2. Quy trình đổi trả</h3>
+                <ol>
+                    <li>Liên hệ đội ngũ hỗ trợ LUMIÈRE.</li>
+                    <li>Cung cấp mã đơn hàng và lý do đổi trả.</li>
+                    <li>Cung cấp hình ảnh sản phẩm nếu cần.</li>
+                    <li>Chờ xác nhận phương án xử lý.</li>
+                </ol>
+
+                <div class="policy-note">
+                    <p>Khách hàng nên giữ lại bao bì, phụ kiện
+                    và thông tin mua hàng. Thời hạn và chi phí
+                    đổi trả cần được xác nhận trước khi áp dụng.</p>
+                </div>
+            `,
+    },
+
+    shipping: {
+      title: "Chính sách giao hàng",
+      content: `
+                <p>LUMIÈRE hướng đến trải nghiệm nhận hàng
+                thuận tiện và dễ dàng theo dõi.</p>
+
+                <h3>1. Quy trình giao hàng</h3>
+                <ol>
+                    <li>Tiếp nhận và xác nhận đơn hàng.</li>
+                    <li>Chuẩn bị, kiểm tra và đóng gói sản phẩm.</li>
+                    <li>Bàn giao sản phẩm cho đơn vị vận chuyển.</li>
+                    <li>Giao hàng đến địa chỉ khách hàng cung cấp.</li>
+                </ol>
+
+                <h3>2. Thời gian và chi phí vận chuyển</h3>
+                <p>Phụ thuộc vào địa chỉ nhận hàng,
+                phương thức vận chuyển và tình trạng đơn hàng.
+                Khách hàng cần kiểm tra thông tin trước khi
+                xác nhận đặt hàng.</p>
+
+                <h3>3. Theo dõi đơn hàng</h3>
+                <p>Đăng nhập vào tài khoản và truy cập mục
+                Đơn hàng của tôi để kiểm tra trạng thái.</p>
+
+                <div class="policy-note">
+                    <p>Vui lòng kiểm tra thông tin người nhận,
+                    số điện thoại và địa chỉ trước khi đặt hàng.</p>
+                </div>
+            `,
+    },
+
+    privacy: {
+      title: "Chính sách bảo mật",
+      content: `
+                <p>Thông tin cá nhân của khách hàng cần được
+                quản lý phù hợp với mục đích sử dụng của hệ thống.</p>
+
+                <h3>1. Thông tin phục vụ mua sắm</h3>
+                <ul>
+                    <li>Họ tên và thông tin liên hệ.</li>
+                    <li>Địa chỉ nhận hàng.</li>
+                    <li>Thông tin tài khoản và đơn hàng.</li>
+                    <li>Nội dung yêu cầu hỗ trợ khách hàng.</li>
+                </ul>
+
+                <h3>2. Mục đích sử dụng</h3>
+                <ul>
+                    <li>Xử lý và theo dõi đơn hàng.</li>
+                    <li>Hỗ trợ khách hàng trong quá trình mua sắm.</li>
+                    <li>Quản lý tài khoản và hoạt động hệ thống.</li>
+                </ul>
+
+                <h3>3. Bảo vệ tài khoản</h3>
+                <p>Khách hàng nên giữ bí mật mật khẩu,
+                đăng xuất khi sử dụng thiết bị công cộng và
+                thông báo nếu phát hiện hoạt động bất thường.</p>
+
+                <h3>4. Yêu cầu hỗ trợ về thông tin cá nhân</h3>
+                <p>Khách hàng có thể gửi yêu cầu thông qua
+                <a href="contact.html">trang Liên hệ</a>.</p>
+            `,
+    },
+
+    care: {
+      title: "Hướng dẫn bảo quản trang sức",
+      content: `
+                <p>Chăm sóc đúng cách giúp duy trì vẻ đẹp
+                và độ bền của trang sức theo thời gian.</p>
+
+                <h3>1. Trang sức vàng</h3>
+                <ul>
+                    <li>Hạn chế tiếp xúc với hóa chất và mỹ phẩm.</li>
+                    <li>Lau nhẹ bằng khăn mềm sạch.</li>
+                    <li>Tránh va đập và ma sát mạnh.</li>
+                </ul>
+
+                <h3>2. Trang sức bạc</h3>
+                <ul>
+                    <li>Bảo quản ở nơi khô ráo.</li>
+                    <li>Sử dụng khăn vệ sinh bạc phù hợp.</li>
+                    <li>Hạn chế tiếp xúc với chất tẩy rửa
+                    và môi trường ẩm ướt.</li>
+                </ul>
+
+                <h3>3. Trang sức đính đá quý</h3>
+                <ul>
+                    <li>Tránh va đập trực tiếp vào mặt đá.</li>
+                    <li>Không sử dụng hóa chất mạnh.</li>
+                    <li>Lựa chọn phương pháp vệ sinh phù hợp
+                    với từng loại đá.</li>
+                </ul>
+
+                <h3>4. Lưu ý chung</h3>
+                <ul>
+                    <li>Tháo trang sức khi vận động mạnh.</li>
+                    <li>Hạn chế đeo khi tắm hoặc bơi.</li>
+                    <li>Bảo quản riêng từng món trong hộp đựng
+                    để hạn chế trầy xước.</li>
+                </ul>
+
+                <div class="policy-note">
+                    <p>LUMIÈRE — Vẻ đẹp vượt thời gian,
+                    bắt đầu từ sự chăm sóc mỗi ngày.</p>
+                </div>
+            `,
+    },
+  };
+
+  const content = document.getElementById("policy-content");
+  const links = document.querySelectorAll(".policy-menu a");
+
+  if (!content) return;
+
+  function renderPolicy() {
+    const requested = window.location.hash.slice(1);
+
+    const key = Object.prototype.hasOwnProperty.call(policies, requested)
+      ? requested
+      : "shopping";
+
+    const policy = policies[key];
+
+    content.innerHTML = `
+            <h2>${policy.title}</h2>
+            ${policy.content}
+        `;
+
+    links.forEach((link) => {
+      const active = link.getAttribute("href") === "#" + key;
+
+      link.classList.toggle("active", active);
+
+      if (active) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    document.title = policy.title + " | LUMIÈRE";
+  }
+
+  window.addEventListener("hashchange", renderPolicy);
+
+  renderPolicy();
+})();
