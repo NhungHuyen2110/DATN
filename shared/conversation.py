@@ -40,6 +40,93 @@ class ConversationStore:
 STORE=ConversationStore()
 
 
+def normalize_utterance(message):
+    """Fold accents, preserve dates/operators, repair only unique transpositions.
+
+    No fuzzy entity matching. Repairs require adjacent domain evidence; numbers
+    and operators stay untouched. This is lexical, not example-question lookup.
+    """
+    value = unicodedata.normalize('NFD', message.casefold()).replace('đ', 'd')
+    value = ''.join(c for c in value if unicodedata.category(c) != 'Mn')
+    vocabulary = {'doanh', 'thong', 'khong', 'hang', 'thang', 'nguong'}
+    evidence = {
+        'doanh': (r'$', r'^\s+thu\b'), 'thong': (r'$', r'^\s+ke\b'),
+        'thang': (r'$', r'^\s+(?:\d|nay\b|truoc\b)'),
+        'nguong': (r'$', r'^\s+\d'),
+        'hang': (r'\b(?:don|mua|het|con)\s+$', r'(?!)'),
+        'khong': (r'\bco\b.*\s+$', r'^\s*[?!.]*$'),
+    }
+    def repair(match):
+        token = match[0]
+        if token == 'ko':
+            return 'khong'
+        if token in vocabulary or len(token) < 4:
+            return token
+        candidates = {token[:i] + token[i+1] + token[i] + token[i+2:]
+                      for i in range(len(token)-1)} & vocabulary
+        if len(candidates) != 1:
+            return token
+        candidate = next(iter(candidates))
+        before, after = value[:match.start()], value[match.end():]
+        left, right = evidence[candidate]
+        if candidate == 'khong':
+            grounded = re.search(left, before) and re.search(right, after)
+        elif candidate == 'hang':
+            grounded = re.search(left, before)
+        else:
+            grounded = re.search(right, after)
+        return candidate if grounded else token
+    return re.sub(r'\b[a-z]+\b', repair, value).strip()
+
+
+def task_body(message):
+    """Remove greeting/politeness framing, retaining all task constraints."""
+    text = normalize_utterance(message)
+    text = re.sub(r'^\s*(?:(?:xin\s+)?chao|hello|hi)\b(?:\s+(?:ban(?!\s+(?:chay|nhieu|hang)\b)|shop|lumiere))?[\s!,.:;]*', '', text)
+    modal = re.match(r'^(?:(?:ban|shop)\s+)?co the\s+(?=(?:cho|thong ke|liet ke|dem|bao cao|phan tich|tim|tra cuu)\b)', text)
+    if modal:
+        text = re.sub(r'\s+khong\s*[?!.]*$', '', text[modal.end():])
+    text = re.sub(r'\b(?:xin vui long|vui long|cho (?:toi|minh) (?:hoi|biet|xem)|'
+                  r'(?:giup|ho) (?:toi|minh)|lam on)\b', ' ', text)
+    text = re.sub(r'\b(?:nhe|nha|a|voi|nhi)\s*[?!.]*$', '', text)
+    return ' '.join(text.strip(' ,;!?').split())
+
+
+def scope_remainder(message, patterns):
+    """Unexplained content after semantic spans and conversational framing.
+
+    Negations, quantities and unknown modifiers are evidence, never stopwords.
+    """
+    text = task_body(message)
+    # A terminal question operator is different from predicate negation.
+    if re.match(r'^(?:lieu\s+)?co\b', text):
+        text = re.sub(r'\s+khong\s*[?!.]*$', '', text)
+    for pattern in patterns:
+        text = re.sub(r'\b(?:' + pattern + r')\b', ' ', text)
+    text = re.sub(r'\b(?:nhung|cac|nhieu|nao|bao nhieu|may|co|la|gi|roi|'
+                  r'toi|minh|ban|xin|thoi|thi sao|hay|hien tai|trong he thong|lumiere)\b', ' ', text)
+    return ' '.join(text.strip(' ,;!?.').split())
+
+
+def conversational_act(message):
+    """Recognize controls without consuming a greeting plus a business task."""
+    text = normalized(message)
+    text = re.sub(r'^(?:(?:xin )?chao|hello|hi)\b(?:\s+(?:ban|shop|lumiere))?\s*', '', text)
+    text = re.sub(r'(?:^|\s+)(?:nhe|nha|a|nhi)$', '', text)
+    if not text and re.match(r'^(?:(?:xin )?chao|hello|hi)\b', normalized(message)):
+        return 'greeting'
+    if re.fullmatch(r'(?:(?:ban|shop|lumiere)\s+)?(?:co the\s+)?'
+                    r'(?:lam(?: duoc)?|giup(?: do)?|ho tro|tu van)'
+                    r'(?:\s+(?:cho\s+)?(?:toi|minh))?(?:\s+duoc)?\s+(?:nhung\s+)?gi', text):
+        return 'capability'
+    if text in {'huong dan', 'huong dan su dung'}:
+        return 'capability'
+    if text in {'reset', 'bat dau lai', 'lam lai', 'huy', 'bo qua', 'dung lai',
+                'doi tac vu', 'huy yeu cau', 'thoi bo qua'}:
+        return 'reset'
+    return None
+
+
 def followup_kind(message):
     text=normalized(message)
     if any(p in text for p in ('co hoi san pham dau','khong hoi san pham','dung goi y',
@@ -55,7 +142,7 @@ def followup_kind(message):
 
 def knowledge_request(message):
     """Explicit explanation/writing acts must not become product searches."""
-    text = normalized(message)
+    text = normalized(task_body(message))
     if any(term in text for term in ('mat khau', 'system prompt', 'reset token',
                                      'bo qua huong dan', 'ignore previous instructions')):
         return False  # Preserve the existing server/tool policy decisions.
@@ -114,7 +201,7 @@ def followup_reply(message,row):
     return None
 
 
-def converse(message,conversation_id,scope,tool):
+def converse(message,conversation_id,scope,tool,*,dialogue=None):
     token,row=STORE.resolve(conversation_id,scope)
     # One turn per conversation: no concurrent overwriting of the prior result.
     if not row['lock'].acquire(blocking=False):
@@ -122,6 +209,12 @@ def converse(message,conversation_id,scope,tool):
                 'answer':'Tôi đang xử lý câu trước trong cuộc trò chuyện này. Bạn vui lòng đợi câu trả lời rồi gửi tiếp.',
                 'conversation_id':token}
     try:
+        if dialogue is not None:
+            response=dialogue(message,row,tool)
+            if response.get('success') is not False and response.get('data') is not None:
+                row['last_result']=response
+            row['history']=[*row['history'],{'user':message,'answer':response.get('answer','')}][-6:]
+            return {**response,'conversation_id':token}
         response=followup_reply(message,row)
         if response is None:
             if knowledge_request(message):

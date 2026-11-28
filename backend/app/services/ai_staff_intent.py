@@ -33,60 +33,7 @@ def understand_staff_question(question: str):
             "message": "Vui lòng nhập câu hỏi."
         }
 
-    order_keywords = (
-        "don hang",
-        "don",
-    )
-
-    if not any(word in text for word in order_keywords):
-        return {
-            "intent": "unsupported",
-            "message": (
-                "Hiện tại tôi hỗ trợ thống kê "
-                "đơn hàng và trạng thái xử lý."
-            ),
-        }
-
-    if "chua thanh toan" in text:
-        return {
-            "intent": "order_statistics",
-            "field": "unpaid_orders",
-        }
-
-    if "da thanh toan" in text:
-        return {
-            "intent": "order_statistics",
-            "field": "paid_orders",
-        }
-
-    if any(
-        word in text
-        for word in ("cho xu ly", "dang cho", "pending")
-    ):
-        return {
-            "intent": "order_statistics",
-            "field": "pending_orders",
-        }
-
-    if any(
-        word in text
-        for word in ("da xac nhan", "confirmed")
-    ):
-        return {
-            "intent": "order_statistics",
-            "field": "confirmed_orders",
-        }
-
-    if any(
-        word in text
-        for word in ("da giao", "delivered")
-    ):
-        return {
-            "intent": "order_statistics",
-            "field": "delivered_orders",
-        }
-
-    return {
-        "intent": "order_statistics",
-        "field": "total_orders",
-    }
+    from .ai_order_scope import has_order_request, parse_order_scope
+    if not has_order_request(question):
+        return {'intent': 'unsupported', 'message': 'Hiện tại tôi hỗ trợ thống kê đơn hàng và trạng thái xử lý.'}
+    return parse_order_scope(question)

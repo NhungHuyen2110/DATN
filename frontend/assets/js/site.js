@@ -56,7 +56,20 @@
    ======================================== */
 
   function mountSharedChatbot() {
+    if (!user) return;
+
     const isManagement = area === "admin" || area === "staff";
+
+    // Chỉ hiển thị chatbot đúng vai trò đã đăng nhập.
+    if (isManagement && user.role !== area) return;
+    if (!isManagement && user.role !== "customer") return;
+
+    // Không hiển thị chatbot trên các trang xác thực.
+    if (
+      ["login", "register", "forgot-password", "reset-password"].includes(page)
+    ) {
+      return;
+    }
 
     const scriptName = isManagement ? "management-ai.js" : "customer-ai.js";
 
@@ -110,14 +123,6 @@
     };
 
     document.body.appendChild(chatbotScript);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountSharedChatbot, {
-      once: true,
-    });
-  } else {
-    mountSharedChatbot();
   }
 
   const roleTitle = area === "admin" ? "Bảng điều khiển" : "Quản lý cửa hàng";
@@ -405,6 +410,7 @@
       "collections",
       "search",
       "about",
+      "contact",
     ];
 
     if (publicPages.includes(page)) {
@@ -482,7 +488,7 @@
       return;
     }
     if (!user) {
-      notify("Vui l?ng ??ng nh?p ?? th?m v?o gi? h?ng", true);
+      notify("Vui lòng đăng nhập để thêm vào giỏ hàng.", true);
       return;
     }
     if (cartBusy) return;
@@ -492,7 +498,7 @@
       !Number.isInteger(amount) ||
       amount < 1
     ) {
-      notify("S? l??ng s?n ph?m kh?ng h?p l?", true);
+      notify("Số lượng sản phẩm không hợp lệ.", true);
       return;
     }
     cartBusy = true;
@@ -567,7 +573,7 @@
     <div class="qty-line">
       <button data-dec="${p.id}" aria-label="Gi&#7843;m">&minus;</button>
       <strong>${qty}</strong>
-      <button data-inc="${p.id}" aria-label="T?ng">+</button>
+      <button data-inc="${p.id}" aria-label="Tăng">+</button>
     </div>
     <strong class="price">${money(lineTotal)}</strong>
   </div>
@@ -1215,7 +1221,7 @@
   function auth(which) {
     const reg = which === "register",
       forgot = which === "forgot-password";
-    content.innerHTML = `<section class="auth-page"><div class="auth-photo"><div><div class="eyebrow">LUMIÈRE FINE JEWELRY</div><h2>Vẻ đẹp mang<br>dấu ấn riêng</h2><p>Chào mừng đến với LUMIÈRE</p></div></div><div class="auth-form"><div class="eyebrow">MY LUMIÈRE</div><h2>${forgot ? "Quên mật khẩu" : reg ? "Tạo tài khoản" : "Đăng nhập"}</h2><p class="page-subtitle">${forgot ? "Nhập địa chỉ email đã đăng ký để khôi phục tài khoản." : reg ? "Đăng ký để khám phá trang sức dành riêng cho bạn." : "Chào mừng bạn quay trở lại LUMIÈRE."}</p>${errorBox}${forgot ? '<p class="demo-note">Chưa có API quên mật khẩu. Backend cần triển khai token một lần có thời hạn, gửi qua email. Không hiển thị thông tin tài khoản có tồn tại hay không.</p>' + formField("email", "Email", "email", "required") + '<button class="button button-dark button-wide" id="forgot-demo">GỬI YÊU CẦU (CHƯA KÍCH HOẠT)</button>' : `<form id="auth-form">${reg ? formField("full_name", "Họ tên", "text", 'minlength="2" maxlength="150" required autocomplete="name"') + formField("phone", "Số điện thoại", "tel", 'pattern="0[0-9]{9}" autocomplete="tel"') : ""}${formField("email", "Email", "email", 'required autocomplete="email"')}${formField("password", "Mật khẩu", "password", `${reg ? 'minlength="8" maxlength="128" autocomplete="new-password"' : 'autocomplete="current-password"'} required`)}${reg ? formField("confirm", "Nhập lại mật khẩu", "password", 'minlength="8" required autocomplete="new-password"') : ""}<label class="mini-note"><input id="show-password" type="checkbox"> Hiện mật khẩu</label><button id="auth-submit" class="button button-dark button-wide">${reg ? "ĐĂNG KÝ" : "ĐĂNG NHẬP"}</button></form>`}<p class="mini-note">${reg ? 'Đã có tài khoản? <a class="inline-link" href="login.html">Đăng nhập</a>' : 'Chưa có tài khoản? <a class="inline-link" href="register.html">Đăng ký</a>'}</p>${!reg && !forgot ? '<p><a class="inline-link" href="forgot-password.html">Quên mật khẩu?</a></p>' : ""}</div></section>`;
+    content.innerHTML = `<section class="auth-page"><div class="auth-photo"><div><div class="eyebrow">LUMIÈRE FINE JEWELRY</div><h2>Vẻ đẹp mang<br>dấu ấn riêng</h2><p>Tinh tế trong từng khoảnh khắc</p></div></div><div class="auth-form"><div class="eyebrow">MY LUMIÈRE</div><h2>${forgot ? "Quên mật khẩu" : reg ? "Tạo tài khoản" : "Đăng nhập"}</h2><p class="page-subtitle">${forgot ? "Nhập địa chỉ email đã đăng ký để khôi phục tài khoản." : reg ? "Khám phá những đặc quyền dành riêng cho bạn" : "Chào mừng bạn trở lại."}</p>${errorBox}${forgot ? '<p class="demo-note">Chưa có API quên mật khẩu. Backend cần triển khai token một lần có thời hạn, gửi qua email. Không hiển thị thông tin tài khoản có tồn tại hay không.</p>' + formField("email", "Email", "email", "required") + '<button class="button button-dark button-wide" id="forgot-demo">GỬI YÊU CẦU (CHƯA KÍCH HOẠT)</button>' : `<form id="auth-form">${reg ? formField("full_name", "Họ tên", "text", 'minlength="2" maxlength="150" required autocomplete="name"') + formField("phone", "Số điện thoại", "tel", 'pattern="0[0-9]{9}" autocomplete="tel"') : ""}${formField("email", "Email", "email", 'required autocomplete="example@gmail.com"')}${formField("password", "Mật khẩu", "password", `${reg ? 'minlength="8" maxlength="128" autocomplete="new-password"' : 'autocomplete="current-password"'} required`)}${reg ? formField("confirm", "Nhập lại mật khẩu", "password", 'minlength="8" required autocomplete="new-password"') : ""}<label class="mini-note"><input id="show-password" type="checkbox"> Hiện mật khẩu</label><button id="auth-submit" class="button button-dark button-wide">${reg ? "ĐĂNG KÝ" : "ĐĂNG NHẬP"}</button></form>`}<p class="mini-note">${reg ? 'Đã có tài khoản? <a class="inline-link" href="login.html">Đăng nhập</a>' : 'Chưa có tài khoản? <a class="inline-link" href="register.html">Đăng ký</a>'}</p>${!reg && !forgot ? '<p><a class="inline-link" href="forgot-password.html">Quên mật khẩu?</a></p>' : ""}</div></section>`;
     if (forgot) {
       $("#forgot-demo").onclick = () =>
         demo("Yêu cầu khôi phục chưa có backend.");
@@ -1244,14 +1250,19 @@
           setTimeout(() => (location.href = "login.html"), 850);
         } else {
           await LUMIERE_API.login(get("email"), $("#password").value);
-          alert("Đăng nhập thành công", "success");
+          alert("Đăng nhập thành công!", "success");
+
           const signedIn = await LUMIERE_API.me();
-          location.href =
-            signedIn.role === "admin"
-              ? "admin/dashboard.html"
-              : signedIn.role === "staff"
-                ? "staff/orders.html"
-                : "account.html";
+
+          if (signedIn.role === "customer") {
+            sessionStorage.setItem("lumiere_login_success", "1");
+            location.href = "../index.html";
+          } else {
+            location.href =
+              signedIn.role === "admin"
+                ? "admin/dashboard.html"
+                : "staff/orders.html";
+          }
         }
       } catch (err) {
         alert(err.message);
@@ -3111,6 +3122,8 @@
       }
     }
     render();
+    mountSharedChatbot();
+
     if (page === "product-detail") showProductReviews();
   })();
 })();

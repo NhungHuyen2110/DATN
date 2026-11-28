@@ -55,7 +55,7 @@ def test_ollama_failure_keeps_fallback():
         side_effect=TimeoutError(),
     ):
         result = understand_admin_question_with_llm(
-            "Mặt hàng nào được mua nhiều nhất?"
+            "Phân tích xu hướng mới?"
         )
 
     assert result["intent"] == "unsupported"

@@ -15,5 +15,8 @@ COPY AI/ /srv/AI/
 COPY backend/ /srv/backend/
 COPY shared/ /srv/shared/
 COPY scripts/run_index_worker.py /srv/scripts/run_index_worker.py
+ARG LUMIERE_GIT_COMMIT=unknown
+ARG LUMIERE_SOURCE_SHA256=unknown
+LABEL org.opencontainers.image.revision=$LUMIERE_GIT_COMMIT io.lumiere.source.sha256=$LUMIERE_SOURCE_SHA256
 USER 10001
 CMD ["python", "-B", "scripts/run_index_worker.py", "--environment", "test", "--confirm-isolated", "--backup-reference", "/recovery/backup-reference.json", "--reconcile", "--watch"]

@@ -6,7 +6,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Annotated
 from app.services.ai_product_lookup import answer_product_lookup
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, Request
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
@@ -155,6 +155,10 @@ def _admin_ai_tools(
     Chỉ Admin được truy cập.
     """
 
+    from app.services.ai_admin_orchestrator import answer_purchase_behavior
+    purchase_response = answer_purchase_behavior(db, request.message)
+    if purchase_response is not None:
+        return purchase_response
     product_response = answer_product_lookup(
         db=db,
         message=request.message,
@@ -229,6 +233,14 @@ def _admin_ai_tools(
             "data": None,
         }
 
+    from app.services.ai_order_scope import has_order_request
+    if has_order_request(request.message):
+        from app.services.ai_order_chat import answer_order_question
+        from app.services.ai_order_tools import get_order_statistics
+        from app.services.ai_order_time_tools import get_orders_by_period
+        return answer_order_question(request.message, db, statistics=get_order_statistics,
+                                     period=get_orders_by_period)
+
     # Giữ nguyên luồng AI sản phẩm bán chạy.
     enable_llm = (
         os.getenv("ADMIN_AI_LLM_ENABLED", "false").lower()
@@ -236,9 +248,11 @@ def _admin_ai_tools(
     )
 
     if enable_llm:
-        intent = understand_admin_question_with_llm(
+        proposed = understand_admin_question_with_llm(
             request.message
         )
+        deterministic = understand_admin_question(request.message)
+        intent = deterministic if is_valid_top_selling_intent(deterministic) else proposed
     else:
         intent = understand_admin_question(
             request.message
@@ -320,7 +334,11 @@ def _admin_ai_tools(
 
 
 @router.post('/chat')
-def admin_ai_chat(request:AdminChatRequest,user:ActiveAdmin,db:Database):
+def admin_ai_chat(request:AdminChatRequest,user:ActiveAdmin,db:Database,http_request:Request):
     from shared.conversation import converse
-    return converse(request.message,request.conversation_id,('admin',user.id),
-                    lambda message:_admin_ai_tools(AdminChatRequest(message=message),user,db))
+    from app.services.ai_business_dialogue import business_turn
+    from app.routers.auth import COOKIE_NAME, hash_session_token
+    session_scope = hash_session_token(http_request.cookies.get(COOKIE_NAME, ''))
+    return converse(request.message,request.conversation_id,('admin',user.id,session_scope),
+                    lambda message:_admin_ai_tools(AdminChatRequest(message=message),user,db),
+                    dialogue=lambda message,row,tool:business_turn(message,row,tool,role='admin'))

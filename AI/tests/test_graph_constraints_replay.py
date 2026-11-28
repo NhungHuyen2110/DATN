@@ -38,3 +38,10 @@ class GraphConstraintsReplayTests(unittest.TestCase):
         with self.assertRaises(ProjectionConflict):
             ensure_constraints(session, self.statements())
         self.assertEqual(session.run.call_count, 1)
+
+    def test_incremental_mode_requires_existing_constraints_and_never_emits_ddl(self):
+        session = MagicMock()
+        session.run.return_value = self.constraints()[1:]
+        with self.assertRaisesRegex(ProjectionConflict, 'schema approval'):
+            ensure_constraints(session, self.statements(), allow_create=False)
+        self.assertEqual(session.run.call_count, 1)

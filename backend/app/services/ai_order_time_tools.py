@@ -7,15 +7,13 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models import Order
+from app.schemas.order import OrderStatus
+from typing import get_args
 
 
 VIETNAM = ZoneInfo("Asia/Ho_Chi_Minh")
 
-ALLOWED_STATUSES = {
-    "pending",
-    "confirmed",
-    "delivered",
-}
+ALLOWED_STATUSES = frozenset(get_args(OrderStatus))
 
 
 def get_orders_by_period(

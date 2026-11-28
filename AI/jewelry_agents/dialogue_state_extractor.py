@@ -5,7 +5,7 @@ import re
 from decimal import Decimal
 
 from .entity_linking import link_query, normalize
-from .shopping_advice import budget_text
+from .shopping_advice import budget_text, standalone_budget
 from .price_preference import detect_price_preference
 from .dialogue_state import ShoppingState, update_state
 
@@ -55,12 +55,17 @@ def extract_state_changes(message, parse_price):
 
     if clear_material:
         clear.add("material")
-    material_text = material_negation.sub(' ', text)
-    for alias, canonical in MATERIALS.items():
+    material_text = re.split(r'\b(?:thay vi|chu khong phai)\b', material_negation.sub(' ', text))[0]
+    found_materials = set()
+    for alias, canonical in sorted(MATERIALS.items(), key=lambda item: -len(item[0])):
         if re.search(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", material_text):
-            updates["material"] = canonical
-            clear.discard('material')
-            break
+            found_materials.add(canonical)
+            material_text = re.sub(r'(?<!\w)' + re.escape(alias) + r'(?!\w)', ' ', material_text)
+    if len(found_materials) > 1:
+        raise ValueError('Ambiguous material selection')
+    if found_materials:
+        updates['material'] = found_materials.pop()
+        clear.discard('material')
 
     entity_text = re.split(r"\b(?:thay vi|chu khong phai)\b", text)[0]
     from .entity_linking import load_entities
@@ -90,7 +95,7 @@ def extract_state_changes(message, parse_price):
                 updates[field] = next(iter(values))
                 clear.discard(field)
 
-    price_query = budget_text(message)
+    price_query = standalone_budget(message) or budget_text(message)
 
     price_query = re.sub(
         r"\b(?:ngân sách|ngan sach)\s+(?:(?:của tôi|cua toi|của mình|cua minh)\s+)?"
@@ -202,10 +207,17 @@ def extract_state_changes(message, parse_price):
         if re.search(r"\b(?:khong can|bo|khong gioi han)\s+(?:yeu cau\s+)?" + phrase + r"\b", text):
             clear.add(field)
             updates.pop(field, None)
-    if re.search(r"\b(?:bo|khong gioi han|khong can gioi han)\s+(?:ngan sach|gia)\b", text):
+    if re.search(r"\b(?:bo|khong gioi han|khong can gioi han)\s+(?:ngan sach|gia)\b(?!\s+(?:san|tran|toi thieu|toi da)\b)", text):
         clear.update(('min_price', 'max_price'))
         for field in ('min_price', 'max_price', 'min_exclusive', 'max_exclusive'):
             updates.pop(field, None)
+
+    for field, scope in (('min_price', r'(?:gia san|muc gia toi thieu|gia toi thieu)'),
+                         ('max_price', r'(?:gia tran|muc gia toi da|gia toi da)')):
+        if re.search(r'\b(?:bo|go|xoa|khong can)\s+' + scope + r'\b', text):
+            clear.add(field)
+            updates.pop(field, None)
+            updates.pop(field.replace('_price', '_exclusive'), None)
 
     return updates, clear
 

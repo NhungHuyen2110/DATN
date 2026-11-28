@@ -27,9 +27,13 @@ def main():
     parser.add_argument('--reconcile', action='store_true')
     parser.add_argument('--watch', action='store_true')
     parser.add_argument('--max-jobs', type=int, default=100)
+    parser.add_argument('--product-id', type=int, action='append', dest='product_ids',
+                        help='Restrict claims/reconciliation to these product IDs (repeatable)')
     args = parser.parse_args()
     if not args.confirm_isolated or not 1 <= args.max_jobs <= 10000:
         parser.error('Confirm an isolated dev/test environment and max-jobs 1..10000')
+    if args.product_ids and any(not 1 <= pid <= 2147483647 for pid in args.product_ids):
+        parser.error('product-id must be 1..2147483647')
     # Parse separate worker credentials; never infer a production target from .env.
     from sqlalchemy.engine import make_url
     try:
@@ -93,16 +97,18 @@ def main():
                     from sentence_transformers import SentenceTransformer
                     deliver.encoder = SentenceTransformer(str(model_path), device='cpu', local_files_only=True)
             if args.reconcile:
-                ensure_encoder()
-                projected = deliver.known_product_ids()
+                projected = ()
+                if args.product_ids is None:
+                    ensure_encoder()
+                    projected = deliver.known_product_ids()
                 with SessionLocal() as db, db.begin():
-                    print(json.dumps({'reconciled_jobs': reconcile(db, projected)}))
+                    print(json.dumps({'reconciled_jobs': reconcile(db, projected, product_ids=args.product_ids)}))
             processed = 0
             while args.watch or processed < args.max_jobs:
                 if observer:
                     observer.refresh(SessionLocal)
                 with SessionLocal() as db:
-                    states = sync_status(db)['states']
+                    states = sync_status(db, product_ids=args.product_ids)['states']
                 if not (states.get('pending', 0) or states.get('processing', 0)):
                     if deliver.encoder is not None:
                         deliver.encoder = None
@@ -114,12 +120,14 @@ def main():
                     break
                 ensure_encoder()
                 attempt_start = time.perf_counter()
-                result = run_one(SessionLocal, deliver)
+                result = run_one(SessionLocal, deliver, product_ids=args.product_ids)
                 if observer:
                     observer.record(result, time.perf_counter() - attempt_start)
                 if result['claimed']:
                     print(json.dumps(result), flush=True)
                     processed += 1
+                    if not args.watch and not result.get('completed', False):
+                        return 2  # Bounded maintenance stops on failure/supersession.
                 elif args.watch:
                     time.sleep(5)
                 else:

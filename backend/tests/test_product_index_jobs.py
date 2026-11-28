@@ -11,7 +11,8 @@ from sqlalchemy.pool import StaticPool
 from app.core.database import Base
 from app.models import Product, Category, Brand, Material, Gemstone, Collection, ProductIndexJob as Job
 from app.services.product_index_jobs import enqueue, claim_one, acknowledge, sync_status
-from app.services.product_index_worker import run_one, reconcile
+from app.services.product_index_worker import run_one, reconcile, current_product
+from app.services.product_index_worker import ProjectionBusy, projection_lock
 
 
 class ProductIndexJobTests(unittest.TestCase):
@@ -203,6 +204,148 @@ class ProductIndexJobTests(unittest.TestCase):
             self.assertEqual(response.status_code, status)
             if status == 200:
                 self.assertFalse(response.json()['enabled'])
+
+    def test_targeted_reconciliation_and_claim_leave_unselected_jobs_untouched(self):
+        with self.factory() as db, db.begin():
+            enqueue(db, 1, now=self.now)
+            reconcile(db, product_ids=[999, 999])
+        received = []
+        result = run_one(self.factory, lambda pid, row, gen: received.append((pid, row)),
+                         product_ids=[999])
+        self.assertTrue(result['completed'])
+        self.assertEqual(received, [(999, None)])
+        with self.factory() as db:
+            self.assertEqual(db.get(Job, 1).status, 'pending')
+            self.assertIsNone(claim_one(db, product_ids=[888]))
+        with self.factory() as db, db.begin():
+            with self.assertRaises(ValueError):
+                reconcile(db, product_ids=[0])
+
+    def test_old_event_and_replay_read_latest_business_state(self):
+        self.queue()
+        self.change(8)
+        self.change(3)
+        # A delayed notification carries an identity, never a stale payload.
+        with self.factory() as db, db.begin():
+            enqueue(db, 1, now=self.now)
+        received = []
+        result = run_one(self.factory, lambda pid, row, gen: received.append((row['Stock'], gen)))
+        self.assertEqual(received, [(3, 4)])
+        self.assertTrue(result['completed'])
+        self.assertFalse(run_one(self.factory, lambda *args: self.fail('Duplicate claim'))['claimed'])
+
+    def test_projection_busy_does_not_write_or_acknowledge_success(self):
+        self.queue()
+        deliver = unittest.mock.Mock()
+        with patch('app.services.product_index_worker.projection_lock', side_effect=ProjectionBusy):
+            result = run_one(self.factory, deliver, now=self.now)
+        deliver.assert_not_called()
+        self.assertFalse(result['completed'])
+        self.assertEqual(result['error_type'], 'ProjectionBusy')
+        self.assertIsNone(result['event_to_index_seconds'])
+        with self.factory() as db:
+            job = db.get(Job, 1)
+            self.assertEqual(job.status, 'pending')
+            self.assertEqual(job.delivered_generation, 0)
+
+    def test_lease_reclaimed_before_snapshot_blocks_old_delivery(self):
+        from contextlib import contextmanager
+        self.queue()
+        old_deliver = unittest.mock.Mock()
+        @contextmanager
+        def reclaim(*args):
+            with self.factory() as db, db.begin():
+                newer = claim_one(db, now=self.now + timedelta(seconds=121))
+                acknowledge(db, newer, now=self.now + timedelta(seconds=121))
+            yield
+        with patch('app.services.product_index_worker.projection_lock', reclaim):
+            result = run_one(self.factory, old_deliver, now=self.now)
+        old_deliver.assert_not_called()
+        self.assertEqual(result['error_type'], 'ClaimLost')
+        self.assertFalse(result['acknowledged'])
+        with self.factory() as db:
+            self.assertEqual(db.get(Job, 1).status, 'pending')
+
+    def test_coalesced_update_is_not_a_completed_sync_or_latency_sample(self):
+        self.queue()
+        result = run_one(self.factory, lambda *args: self.change(4), now=self.now)
+        self.assertTrue(result['acknowledged'])
+        self.assertFalse(result['completed'])
+        self.assertIsNone(result['event_to_index_seconds'])
+        final = run_one(self.factory, lambda *args: None, now=self.now + timedelta(seconds=5))
+        self.assertTrue(final['completed'])
+        self.assertEqual(final['event_to_index_seconds'], 5)
+
+    def test_savepoint_rollback_does_not_lose_later_outbox_change(self):
+        with patch.dict(os.environ, {'PRODUCT_INDEX_SYNC_ENABLED': 'true'}), self.factory() as db, db.begin():
+            nested = db.begin_nested()
+            db.get(Product, 1).stock = 2
+            db.flush()
+            nested.rollback()
+            db.get(Product, 1).stock = 7
+        received = []
+        result = run_one(self.factory, lambda pid, row, gen: received.append(row['Stock']))
+        self.assertTrue(result['completed'])
+        self.assertEqual(received, [7])
+
+    def test_advisory_lock_adapter_unlocks_on_error_and_invalidates_on_unlock_failure(self):
+        from unittest.mock import MagicMock
+        factory = MagicMock()
+        engine = factory.return_value.__enter__.return_value.get_bind.return_value
+        engine.dialect.name = 'postgresql'
+        conn = engine.connect.return_value.__enter__.return_value
+        conn.scalar.side_effect = [True, True]
+        with self.assertRaises(TimeoutError):
+            with projection_lock(factory, 1):
+                raise TimeoutError('projection failed')
+        self.assertEqual(conn.commit.call_count, 2)
+        self.assertIn('pg_advisory_unlock', str(conn.scalar.call_args.args[0]))
+        conn.scalar.side_effect = [True, False]
+        with self.assertRaises(RuntimeError):
+            with projection_lock(factory, 1):
+                pass
+        conn.invalidate.assert_called_once()
+
+    def test_worker_cli_rejects_unbounded_identity_and_remote_target_before_clients(self):
+        import importlib.util
+        from pathlib import Path
+        from contextlib import redirect_stderr
+        from io import StringIO
+        path = Path(__file__).resolve().parents[2] / 'scripts/run_index_worker.py'
+        spec = importlib.util.spec_from_file_location('phase2_worker_cli', path)
+        worker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(worker)
+        for extra in [['--product-id', '0'], ['--max-jobs', '0'], []]:
+            with patch('sys.argv', ['worker', '--environment', 'test', '--confirm-isolated', *extra]), \
+                    patch.dict(os.environ, {'LUMIERE_SYNC_DATABASE_URL': 'postgresql+psycopg://fixture@remote/lumiere_test_fixture'}), \
+                    redirect_stderr(StringIO()), self.assertRaises(SystemExit) as error:
+                worker.main()
+            self.assertEqual(error.exception.code, 2)
+
+    def test_all_mutable_projection_fields_emit_jobs_and_deliver_current_taxonomy(self):
+        from decimal import Decimal
+        with self.factory() as db, db.begin():
+            for model in (Category, Brand, Material, Gemstone, Collection):
+                db.add(model(id=2, name='Updated ' + model.__name__))
+        fields = [('name', 'Changed name', 'ProductName'), ('sku', 'NEW-SKU', 'SKU'),
+                  ('barcode', 'NEW-BARCODE', 'Barcode'), ('weight', Decimal('2.00'), 'Weight'),
+                  ('sale_price', Decimal('123.00'), 'SalePrice'), ('stock', 0, 'Stock')]
+        fields += [(prefix.lower() + '_id', 2, prefix + 'ID')
+                   for prefix in ('Category', 'Brand', 'Material', 'Gemstone', 'Collection')]
+        for generation, (field, value, key) in enumerate(fields, 1):
+            with self.subTest(field=field):
+                with patch.dict(os.environ, {'PRODUCT_INDEX_SYNC_ENABLED': 'true'}), self.factory() as db, db.begin():
+                    setattr(db.get(Product, 1), field, value)
+                received = []
+                result = run_one(self.factory, lambda pid, row, gen: received.append((row[key], gen)))
+                observed, actual_generation = received[0]
+                self.assertEqual(Decimal(observed) if isinstance(value, Decimal) else observed, value)
+                self.assertEqual(actual_generation, generation)
+                self.assertTrue(result['completed'])
+        with self.factory() as db:
+            row = current_product(db, 1)
+            for prefix in ('Category', 'Brand', 'Material', 'Gemstone', 'Collection'):
+                self.assertEqual(row[prefix+'Name'], 'Updated '+prefix)
 
 
 if __name__ == '__main__':

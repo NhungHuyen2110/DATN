@@ -23,9 +23,11 @@
 
   const examples = isAdmin
     ? [
-        "Doanh thu tháng 10/2026 là bao nhiêu?",
-        "Top 5 sản phẩm bán chạy tháng 10/2026",
-        "Những sản phẩm nào sắp hết hàng?",
+        "Doanh thu tháng này",
+        "Top 5 bán chạy",
+        "Đơn hàng đang giao",
+        "Hôm nay có bao nhiêu đơn hàng?",
+        "Sản phẩm sắp hết hàng",
       ]
     : [
         "Có bao nhiêu đơn chờ xử lý?",

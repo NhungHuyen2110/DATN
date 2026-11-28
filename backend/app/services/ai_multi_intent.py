@@ -1,11 +1,15 @@
 
 import re
 import unicodedata
+from shared.conversation import normalize_utterance
+
+INVENTORY_REQUEST = r'ton kho|hang ton|(?:hang )?sap het(?: hang)?|het hang|con hang|stock'
+PURCHASE_REQUEST = r'hanh vi mua(?: hang)?|chi so mua hang|thong ke khach hang'
 
 
 def normalize_question(message: str) -> str:
     """Chuẩn hóa tiếng Việt để nhận diện từ khóa."""
-    text = unicodedata.normalize("NFD", message.casefold())
+    text = unicodedata.normalize("NFD", normalize_utterance(message))
 
     text = "".join(
         char for char in text
@@ -35,6 +39,8 @@ def detect_requested_tools(message: str, role: str):
     tools = []
 
     if role == "admin":
+        if re.search(r'\b(?:' + PURCHASE_REQUEST + r')\b', text):
+            tools.append('purchase_behavior')
         if contains_phrase(text, (
             "doanh thu",
             "tong doanh thu",
@@ -42,7 +48,7 @@ def detect_requested_tools(message: str, role: str):
         )):
             tools.append("revenue")
 
-        if contains_phrase(text, (
+        if re.search(r'\btop\s*\d+\s+san pham\b', text) or contains_phrase(text, (
             "ban chay",
             "ban chay nhat",
             "san pham nao ban chay",
@@ -53,25 +59,14 @@ def detect_requested_tools(message: str, role: str):
             tools.append("top_selling_products")
 
     if role in ("staff", "admin"):
-        if contains_phrase(text, (
-            "ton kho",
-            "sap het hang",
-            "het hang",
-            "con hang",
-            "san pham nao sap het",
-        )):
+        if re.search(r'\b(?:' + INVENTORY_REQUEST + r')\b', text):
             tools.append("inventory")
 
     if role in ("staff", "admin"):
-        if contains_phrase(text, (
-            "don hang",
-            "don hang cho xu ly",
-            "don cho xu ly",
-            "don dang cho",
-            "don da giao",
-            "don da xac nhan",
-            "bao nhieu don",
-        )):
+        # The order parser validates status/filter coverage later. Tool routing
+        # must retain requests with unknown statuses instead of answering only
+        # the other business clause and silently discarding the order clause.
+        if re.search(r"\bdon\b", text):
             tools.append("order_statistics")
 
     return tools

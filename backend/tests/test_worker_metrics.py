@@ -9,6 +9,15 @@ from shared.worker_metrics import WorkerMetrics
 
 
 class WorkerMetricsTests(unittest.TestCase):
+    def test_event_latency_counts_only_completed_generations(self):
+        metrics = WorkerMetrics('synthetic')
+        for completed, lag in [(False, None), (False, 12), (True, 5)]:
+            metrics.record({'claimed': True, 'delivered': True, 'acknowledged': True,
+                            'completed': completed, 'event_to_index_seconds': lag}, .1)
+        text = generate_latest(metrics.registry).decode()
+        self.assertIn('lumiere_sync_event_to_index_seconds_count 1.0', text)
+        self.assertIn('lumiere_sync_event_to_index_seconds_sum 5.0', text)
+
     def test_queue_snapshot_and_acknowledged_outcomes_use_real_numbers_without_ids(self):
         metrics = WorkerMetrics('synthetic')
         metrics.update({'enabled': True, 'states': {'pending': 3, 'dead': 1},

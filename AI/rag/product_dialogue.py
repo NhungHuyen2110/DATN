@@ -11,6 +11,35 @@ _ORDINAL={'mot':1,'nhat':1,'hai':2,'ba':3,'tu':4,'bon':4,'nam':5}
 _REFERENCE=re.compile(r'\b(?:mau|san pham)\s+(?:thu\s+|so\s+)?(\d+|mot|nhat|hai|ba|tu|bon|nam)\b')
 
 
+def previous_reference_query(message, previous):
+    """Compile related-card references to the established product-ID contract."""
+    from jewelry_agents.query_reference import reference_request
+    from jewelry_agents.dialogue_state_controller import identity_request
+    if (not reference_request(message)['active'] or identity_request(message)
+            or classify_query(message) in {'restricted_request', 'unverified_policy', 'shipping_policy', 'customer_order_guidance'}):
+        return None
+    text = normalize(message)
+    products = (previous or {}).get('products', [])
+    matches = list(_REFERENCE.finditer(text))
+    positions = [int(m.group(1)) if m.group(1).isdigit() else _ORDINAL[m.group(1)] for m in matches]
+    if not matches and re.search(r'\bmau (?:dau|dau tien)\b', text):
+        positions = [1]
+    if not positions and len(products) == 1 and re.search(r'\bmau (?:nay|do|vua xem)\b', text):
+        positions = [1]
+    if not positions and not re.search(r'\bmau (?:nay|do|vua xem|thu|so)\b', text):
+        return None  # Explicit name/ID resolution remains owned by retrieval.
+    if len(positions) != 1 or not 1 <= positions[0] <= len(products):
+        return {'success': True, 'status': 'clarification_required', 'intent': 'clarification', 'products': [],
+                'answer': 'Bạn muốn tìm mẫu tương tự mẫu số mấy trong danh sách trước? Mình cần một mẫu tham chiếu xác định.'}
+    pid = products[positions[0]-1].get('ProductID')
+    if type(pid) is not int or pid <= 0:
+        return {'success': False, 'status': 'reference_unavailable', 'intent': 'clarification', 'products': [],
+                'answer': 'Mình chưa xác minh được mã của mẫu tham chiếu.'}
+    query = _REFERENCE.sub('', text)
+    query = re.sub(r'\bmau (?:dau tien|dau|nay|do|vua xem)\b', '', query)
+    return query + ' với sản phẩm ' + str(pid)
+
+
 def discussion_reply(message,previous):
     text=normalize(message)
     if classify_query(message) in {'restricted_request','shipping_policy','unverified_policy','customer_order_guidance'}:

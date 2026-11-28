@@ -57,6 +57,10 @@ def _entity_grounded(field, value, evidence, encoder=None):
 
 
 def _positive_entity(field,value,message):
+    def entity_text(text):
+        # Negation of a price boundary does not negate an ontology-inferred
+        # wearing location/entity elsewhere in the same utterance.
+        return re.sub(r'\b(?:khong|dung)\s+(?:vuot\s+)?(?:qua|duoi|tren)\s+(?=\d)', '', normalize(text))
     aliases=[]
     if field=='material':
         from .dialogue_state_extractor import MATERIALS
@@ -67,7 +71,7 @@ def _positive_entity(field,value,message):
                  if e['label'].lower()==field and e['canonical_id']==value for a in e['aliases']]
     found=False
     for clause in re.split(r'[,;.!?]',message):
-        text=normalize(clause)
+        text=entity_text(clause)
         for alias in aliases:
             for match in re.finditer(r'(?<!\w)'+re.escape(alias)+r'(?!\w)',text):
                 found=True
@@ -76,7 +80,7 @@ def _positive_entity(field,value,message):
                     return True
     # Semantically linked paraphrases are still accepted only through the
     # entity linker threshold, while explicit negative mentions are rejected.
-    return not found and not re.search(r'\b(?:khong|chang|dung|bo|go|xoa)\b',normalize(message))
+    return not found and not re.search(r'\b(?:khong|chang|dung|bo|go|xoa)\b',entity_text(message))
 
 
 def _complete_coverage(plan,message):

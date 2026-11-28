@@ -1,10 +1,11 @@
 
 import re
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 
 from app.models import Product
+from .ai_staff_intent import normalize_text
 
 
 def extract_product_query(message: str):
@@ -16,6 +17,7 @@ def extract_product_query(message: str):
         return None
 
     message = message.strip()
+    text = normalize_text(message)
 
     if not message or len(message) > 1000:
         return None
@@ -37,17 +39,38 @@ def extract_product_query(message: str):
         }
 
     if len(skus) == 1:
+        remaining = re.sub(re.escape(skus[0]), ' ', text, flags=re.I)
+        if set(re.findall(r'\w+', remaining)) - set('tim kiem san pham sku ma tra cuu ton kho con hang khong bao nhieu chiec cai thong tin cho toi biet'.split()):
+            return {'type': 'unsupported', 'value': message}
         return {
             "type": "sku",
             "value": skus[0],
         }
 
-    # Tìm theo tên: "Tìm sản phẩm Bông tai Angel"
+    explicit_sku = re.fullmatch(r'(?:.*?\b)?sku\s*[:=]?\s*([a-z0-9_-]{1,50})\s*\??', text)
+    if explicit_sku:
+        prefix = text[:explicit_sku.start(1)]
+        if set(re.findall(r'\w+', prefix)) <= set('tim kiem san pham sku ma tra cuu ton kho thong tin'.split()):
+            return {'type': 'sku', 'value': explicit_sku[1].upper()}
+        return {'type': 'unsupported', 'value': message}
+    attribute_labels = {'loai': 'category', 'chat lieu': 'material', 'da': 'gemstone',
+                        'thuong hieu': 'brand', 'bo suu tap': 'collection'}
+    if re.match(r'^(?:tim|tra cuu|liet ke)\s+(?:san pham)\s+', text):
+        body = re.sub(r'^(?:tim|tra cuu|liet ke)\s+san pham\s+', '', text).strip(' ?')
+        if any(body.startswith(label + ' ') for label in attribute_labels):
+            attributes = {}
+            for part in re.split(r'\s+va\s+|[,;]', body):
+                for label, key in attribute_labels.items():
+                    if part.startswith(label + ' ') and key not in attributes:
+                        attributes[key] = part[len(label):].strip(' :=?')
+                        break
+                else:
+                    return {'type': 'unsupported', 'value': message}
+            return {'type': 'attributes', 'value': body, 'attributes': attributes}
+    # Name grammar; normalize only for matching, never broaden unknown filters.
     match = re.fullmatch(
-        r"(?:tìm|tim)\s+"
-        r"(?:kiếm\s+)?"
-        r"sản\s+phẩm\s+(.+?)\s*\??",
-        message,
+        r"(?:tim|tra cuu)\s+(?:kiem\s+)?san\s+pham\s+(.+?)\s*\??",
+        text,
         flags=re.IGNORECASE,
     )
 
@@ -59,8 +82,8 @@ def extract_product_query(message: str):
 
     # "Nhẫn Golden Dream còn hàng không?"
     match = re.fullmatch(
-        r"(.+?)\s+còn\s+hàng\s+không\s*\??",
-        message,
+        r"(.+?)\s+con\s+hang\s+khong\s*\??",
+        text,
         flags=re.IGNORECASE,
     )
 
@@ -85,6 +108,9 @@ def answer_product_lookup(db: Session, message: str):
     if query is None:
         return None
 
+    if query['type'] == 'unsupported':
+        return {'intent': 'unsupported', 'data': None, 'answer': 'Chưa hiểu đầy đủ bộ lọc sản phẩm; vui lòng nêu tên, SKU hoặc thuộc tính được hỗ trợ.'}
+
     if query["type"] == "multiple_skus":
         return {
             "intent": "product_lookup",
@@ -107,26 +133,27 @@ def answer_product_lookup(db: Session, message: str):
     stmt = select(Product)
 
     if query["type"] == "sku":
-        stmt = stmt.where(Product.sku == value)
+        stmt = stmt.where(func.lower(Product.sku) == value.lower())
+
+    if query['type'] == 'sku':
+        products = db.scalars(stmt.order_by(Product.id.asc()).limit(6)).all()
     else:
-        # Escape ký tự LIKE để không mở rộng truy vấn
-        # khi tên có %, _ hoặc dấu gạch chéo ngược.
-        safe_name = (
-            value.replace("\\", "\\\\")
-            .replace("%", "\\%")
-            .replace("_", "\\_")
-        )
-
-        stmt = stmt.where(
-            Product.name.ilike(
-                f"%{safe_name}%",
-                escape="\\",
-            )
-        )
-
-    products = db.scalars(
-        stmt.order_by(Product.id.asc()).limit(6)
-    ).all()
+        # Stream the authoritative catalog, bounded memory; stop after six matches.
+        # No unaccent extension/schema changes required on PostgreSQL or offline SQLite.
+        from sqlalchemy.orm import selectinload
+        if query['type'] == 'attributes':
+            for key in query['attributes']:
+                stmt = stmt.options(selectinload(getattr(Product, key)))
+        products = []
+        with db.scalars(stmt.order_by(Product.id.asc()).execution_options(yield_per=128)) as rows:
+            for product in rows:
+                matches = (normalize_text(value) in normalize_text(product.name) if query['type'] == 'name'
+                           else all(normalize_text(v) == normalize_text(getattr(product, k).name)
+                                    for k, v in query['attributes'].items()))
+                if matches:
+                    products.append(product)
+                    if len(products) == 6:
+                        break
 
     if not products:
         return {

@@ -1,12 +1,8 @@
 
-import re
 from decimal import Decimal, InvalidOperation
 from app.services.ai_order_tools import get_order_statistics
 from app.services.ai_multi_intent import normalize_question
 from app.services.ai_multi_intent import analyze_multi_intent
-from app.services.ai_admin_revenue_intent import (
-    understand_revenue_question,
-)
 from app.services.ai_admin_business import (
     get_revenue_statistics,
 )
@@ -18,6 +14,28 @@ from app.services.ai_inventory_tools import (
 )
 
 
+def answer_purchase_behavior(db, message):
+    """Admin-only entrypoint, aggregate report only; no buyer identities."""
+    from .ai_multi_intent import detect_requested_tools
+    if 'purchase_behavior' not in detect_requested_tools(message, 'admin'):
+        return None
+    from .ai_business_dialogue import parse_plan, BusinessState, Clarify
+    from .purchase_behavior import analyze
+    try:
+        plan, _ = parse_plan(message, BusinessState(), 'admin')
+        if plan.metrics != ('purchase_behavior',):
+            raise Clarify('Hãy hỏi riêng chỉ số mua hàng hoặc phân tách từng nghiệp vụ.')
+    except Clarify as exc:
+        return {'intent': 'unsupported', 'data': None, 'answer': str(exc)}
+    data = analyze(db, plan.period.start, plan.period.end)
+    return {'intent': 'purchase_behavior', 'data': data,
+            'answer': f"Từ {data['start_date']} đến {data['end_date']}: {data['total_orders']} đơn tạo; "
+                      f"{data['unique_buyers']} người mua; {data['repeat_buyers']} người có hơn một đơn trong kỳ; "
+                      f"{data['total_units']} sản phẩm trong các đơn. "
+                      'Báo cáo gồm mọi trạng thái đơn theo ngày tạo, kể cả đơn hủy/chưa thanh toán; '
+                      'không phải doanh thu xác nhận, lượt xem/tìm kiếm hay ý định khách hàng.'}
+
+
 def format_vnd(value):
     try:
         amount = Decimal(str(value))
@@ -27,75 +45,13 @@ def format_vnd(value):
 
 
 def resolve_period(message):
-    """
-    Tách mốc thời gian dùng chung cho các công cụ.
-
-    Không truyền toàn bộ câu hỏi kết hợp vào
-    understand_revenue_question(), vì hàm đó
-    cố ý từ chối multi-intent.
-    """
-    text = message.lower()
-
-    months = re.findall(
-        r"tháng\s+(\d{1,2})"
-        r"(?:\s*(?:/|năm)\s*(\d{4}))?",
-        text,
-    )
-
-    relative = [
-        phrase
-        for phrase in (
-            "hôm nay",
-            "hôm qua",
-            "tháng trước",
-            "tháng này",
-        )
-        if phrase in text
-    ]
-
-    # Nhiều mốc thời gian: không tự đoán.
-    if len(months) + len(relative) > 1:
-        return {
-            "intent": "invalid",
-            "message": (
-                "Câu hỏi có nhiều mốc thời gian. "
-                "Vui lòng chọn một khoảng thời gian "
-                "chung cho doanh thu và sản phẩm bán chạy."
-            ),
-        }
-
-    if months:
-        month, year = months[0]
-        period = f"tháng {month}"
-        if year:
-            period += f"/{year}"
-
-    elif relative:
-        period = relative[0]
-
-    else:
-        # Không âm thầm hiểu các dạng ngày chưa hỗ trợ.
-        if re.search(
-            r"\b(?:ngày|tuần|quý|năm)\b", text
-        ):
-            return {
-                "intent": "invalid",
-                "message": (
-                    "Tôi chưa hỗ trợ mốc thời gian này "
-                    "trong câu hỏi kết hợp. "
-                    "Hãy dùng tháng 10/2026, "
-                    "tháng này, tháng trước, "
-                    "hôm nay hoặc hôm qua."
-                ),
-            }
-
-        period = "tháng này"
-
-    # Chỉ đưa câu hỏi một nghiệp vụ
-    # cho bộ phân tích doanh thu hiện có.
-    return understand_revenue_question(
-        f"Doanh thu {period} là bao nhiêu?"
-    )
+    from .ai_reporting_period import parse_reporting_period, reporting_scope_supported
+    result = parse_reporting_period(message)
+    if result['intent'] != 'period':
+        return result
+    if not reporting_scope_supported(result.pop('_remaining'), multi=True):
+        return {'intent': 'unsupported', 'message': 'Chưa hỗ trợ đầy đủ bộ lọc trong yêu cầu kết hợp.'}
+    return {**result, 'intent': 'revenue_statistics'}
 
 
 def answer_admin_multi_intent(db, message: str):
@@ -114,6 +70,23 @@ def answer_admin_multi_intent(db, message: str):
     tools = plan["tools"]
     sections = []
     data = {}
+    # Top-selling returns a single aggregate ranking, not a grouped series.
+    import re
+    if 'top_selling_products' in tools and re.search(r'\b(?:theo|moi|tung)\s+(?:ngay|thang)\b', normalize_question(message)):
+        return {'intent': 'unsupported', 'tools_used': [], 'data': None,
+                'answer': 'Báo cáo bán chạy chưa hỗ trợ chia nhóm theo ngày hoặc tháng.'}
+    from .ai_order_scope import parse_order_scope, order_clause, statistic_value
+    from .ai_reporting_period import has_period, reporting_scope_supported
+    order_intent = None
+    if 'order_statistics' in tools:
+        order_intent = parse_order_scope(order_clause(message))
+        if has_period(message) or order_intent['intent'] != 'order_statistics':
+            return {'intent': 'unsupported', 'tools_used': [], 'data': None,
+                    'answer': 'Chưa hỗ trợ đầy đủ bộ lọc đơn hàng trong câu hỏi kết hợp. Vui lòng hỏi riêng từng nghiệp vụ.'}
+    if not any(t in tools for t in ('revenue', 'top_selling_products')) and not reporting_scope_supported(normalize_question(message), multi=True):
+        return {'intent': 'unsupported', 'tools_used': [], 'data': None,
+                'answer': 'Chưa hỗ trợ đầy đủ bộ lọc trong yêu cầu kết hợp.'}
+
 
     # Thống kê hiện tại, không có bộ lọc thời gian.
     needs_period = any(
@@ -126,7 +99,7 @@ def answer_admin_multi_intent(db, message: str):
 
         if period_intent.get("intent") != "revenue_statistics":
             return {
-                "intent": "invalid",
+                "intent": period_intent["intent"],
                 "tools_used": [],
                 "answer": period_intent.get(
                     "message",
@@ -211,42 +184,8 @@ def answer_admin_multi_intent(db, message: str):
 
     # Công cụ thống kê đơn hàng dành cho Admin.
     if "order_statistics" in tools:
-        text = normalize_question(message)
-
-        # Không tự áp dụng mốc thời gian cho công cụ
-        # hiện chỉ thống kê toàn bộ lịch sử.
-        if re.search(
-            r"\b(hom nay|hom qua|thang|tuan|quy|ngay)\b",
-            text,
-        ):
-            return {
-                "intent": "unsupported",
-                "tools_used": [],
-                "answer": (
-                    "Tôi chưa hỗ trợ kết hợp thống kê "
-                    "đơn hàng theo thời gian với các "
-                    "nghiệp vụ khác trong cùng câu hỏi."
-                ),
-                "data": None,
-            }
-
         orders = get_order_statistics(db)
-
-        if "cho xu ly" in text or "dang cho" in text:
-            label = "Đơn hàng đang chờ xử lý"
-            value = orders["pending_orders"]
-
-        elif "da giao" in text:
-            label = "Đơn hàng đã giao"
-            value = orders["delivered_orders"]
-
-        elif "da xac nhan" in text:
-            label = "Đơn hàng đã xác nhận"
-            value = orders["confirmed_orders"]
-
-        else:
-            label = "Tổng số đơn hàng"
-            value = orders["total_orders"]
+        label, value = statistic_value(orders, order_intent['field'])
 
         sections.append(
             "THỐNG KÊ ĐƠN HÀNG (TOÀN BỘ LỊCH SỬ)\n"
@@ -265,6 +204,7 @@ def answer_admin_multi_intent(db, message: str):
             db=db,
             threshold=5,
             limit=20,
+            mode='low_stock',
         )
 
         low = inventory["low_stock_products"]

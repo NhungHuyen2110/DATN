@@ -37,6 +37,7 @@ def main():
     from app.services.product_index_worker import run_one
     from product_projection import ProductProjection
     from vector_index import index_identity
+    from knowledge_graph.graph_writer import ensure_constraints
     attempt = int(url.database.rsplit('_', 1)[-1])
     pid, taxonomy = 900020 + attempt, 990020 + attempt
     server_url = os.getenv('LUMIERE_SYNC_TEST_QDRANT_URL')
@@ -97,6 +98,16 @@ def main():
             collection, _ = index_identity(model_name, revision, encoder.get_sentence_embedding_dimension())
             if server_url and vectors.collection_exists(collection):
                 raise ValueError('The dedicated network Qdrant collection must not already exist')
+            # Bootstrap only the explicitly isolated fixture. Incremental delivery
+            # now refuses to create collections or add constraints implicitly.
+            if not vectors.collection_exists(collection):
+                from qdrant_client.models import Distance, VectorParams
+                vectors.create_collection(collection, vectors_config=VectorParams(
+                    size=encoder.get_sentence_embedding_dimension(), distance=Distance.COSINE))
+            schema = (ROOT / 'AI/knowledge_graph/schema.cypher').read_text(encoding='utf-8-sig')
+            statements = '\n'.join(line for line in schema.splitlines() if not line.strip().startswith('//'))
+            with driver.session() as graph:
+                ensure_constraints(graph, statements)
             projection = ProductProjection(driver, 'neo4j', vectors, encoder, model_name, revision)
             now = datetime.now(timezone.utc)
             first = run_one(factory, projection, now=now)

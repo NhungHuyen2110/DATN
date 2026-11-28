@@ -64,14 +64,15 @@ class SemanticDialoguePlanTests(unittest.TestCase):
         network.assert_not_called()
 
     def test_untrusted_remote_endpoint_is_not_called(self):
-        with patch.dict(os.environ,{'LUMIERE_SEMANTIC_PRICE_URL':'https://example.org/api/chat'}), \
+        with patch.dict(os.environ,{'LUMIERE_HYBRID_NLU_ENABLED':'true', 'LUMIERE_SEMANTIC_PRICE_URL':'https://example.org/api/chat'}), \
                 patch('jewelry_agents.dialogue_plan._gate.call_with_timeout') as gate:
             self.assertIsNone(request_plan('Tìm trang sức',enabled=True))
         gate.assert_not_called()
 
     def test_bad_json_and_timeout_abstain(self):
         for failure in (ValueError('invalid JSON'),TimeoutError('synthetic')):
-            with patch('jewelry_agents.dialogue_plan._gate.call_with_timeout',side_effect=failure):
+            with patch.dict(os.environ, {'LUMIERE_HYBRID_NLU_ENABLED': 'true'}), \
+                    patch('jewelry_agents.dialogue_plan._gate.call_with_timeout',side_effect=failure):
                 self.assertIsNone(request_plan('Tìm trang sức',enabled=True))
 
     def test_multiple_slots_are_applied_atomically(self):

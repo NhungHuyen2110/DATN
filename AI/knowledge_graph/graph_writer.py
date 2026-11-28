@@ -99,6 +99,11 @@ def mark_deleted(driver, database, product_id):
             raise ProjectionConflict('Cannot tombstone unmanaged product')
         tx.run('MATCH (p:Product {product_id:$id, projection_owner:$owner}) SET p.is_deleted=true, p.stock=0, p.indexed_at=datetime()',
                id=product_id, owner=OWNER).consume()
+        violations = tx.run('''MATCH (p:Product {product_id:$id})
+            WHERE p.is_deleted IS NULL OR p.is_deleted <> true OR p.stock IS NULL OR p.stock <> 0
+            RETURN count(p) AS violations''', id=product_id).single()['violations']
+        if violations:
+            raise ProjectionConflict('Tombstone verification failed')
     with driver.session(database=database) as session:
         session.execute_write(tombstone)
 
@@ -114,6 +119,12 @@ def verify_projection(session, rows):
     report = {"requested_products": len(ids), "products": products["count"],
               "duplicate_products": products["count"] - products["distinct_count"],
               "unmanaged_products": products["unmanaged"], "relationships": {}}
+    report['property_violations'] = session.run("""
+        UNWIND $rows AS row
+        OPTIONAL MATCH (p:Product {product_id:row.ProductID})
+        RETURN sum(CASE WHEN p IS NULL OR any(key IN keys(row.properties)
+                   WHERE p[key] IS NULL OR p[key] <> row.properties[key]) THEN 1 ELSE 0 END) AS violations
+    """, rows=rows).single()['violations']
     for label, (_, relationship) in LOOKUPS.items():
         key = label.lower() + "_id"
         result = session.run(f"""
@@ -127,7 +138,7 @@ def verify_projection(session, rows):
         """, rows=rows, owner=OWNER).single()
         report["relationships"][relationship] = dict(result)
     report["pass"] = (report["products"] == len(ids) and report["duplicate_products"] == 0
-                      and report["unmanaged_products"] == 0
+                      and report["unmanaged_products"] == 0 and report['property_violations'] == 0
                       and all(item["violations"] == 0 for item in report["relationships"].values()))
     if any(row.get('_reviewed_facts_present') for row in rows):
         report['reviewed_attributes'] = verify_reviewed_attributes(session, rows)
@@ -135,7 +146,7 @@ def verify_projection(session, rows):
     return report
 
 
-def ensure_constraints(session, statements):
+def ensure_constraints(session, statements, *, allow_create=True):
     """Check schema once per import; avoid six schema transactions per replay."""
     expected = {'lumiere_' + label.lower() + '_id': (label, label.lower() + '_id')
                 for label in ['Product', *LOOKUPS]}
@@ -154,10 +165,13 @@ def ensure_constraints(session, statements):
             if name is None or name.group(1) not in expected:
                 raise ValueError('Unrecognized managed constraint statement')
             if name.group(1) not in existing:
+                if not allow_create:
+                    raise ProjectionConflict('Missing uniqueness constraint; schema approval required')
                 session.run(statement).consume()
 
 
-def import_projection(driver, database, records, source_file, source_sha256, batch_size=100, progress=None):
+def import_projection(driver, database, records, source_file, source_sha256, batch_size=100, progress=None,
+                      *, allow_schema_changes=True):
     if not records or not 1 <= batch_size <= 10000:
         raise ValueError("Nonempty validated records and batch-size 1..10000 required")
     # Prepare ALL rows before any constraints or data writes.
@@ -176,7 +190,7 @@ def import_projection(driver, database, records, source_file, source_sha256, bat
              review_labels=list(ATTRIBUTE_NAMES), review_owner=REVIEW_OWNER).single()['conflicts']
         if conflicts:
             raise ProjectionConflict("Target contains unmanaged products or non-catalog data; refusing all writes")
-        ensure_constraints(session, statements)
+        ensure_constraints(session, statements, allow_create=allow_schema_changes)
         for start in range(0, len(rows), batch_size):
             # Neo4j execute_write retries retryable failures within driver retry budget.
             session.execute_write(write_batch, rows[start:start + batch_size])

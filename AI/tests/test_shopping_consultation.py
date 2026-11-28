@@ -191,6 +191,7 @@ class ConsultationTests(unittest.TestCase):
             second=api.chat(api.ChatRequest(query='dưới 3 triệu',conversation_id=first['conversation_id']))
             why=api.chat(api.ChatRequest(query='tại sao lại gợi ý sản phẩm đó',conversation_id=first['conversation_id']))
         self.assertEqual(len(queries),2)
-        self.assertIn('thanh lịch',queries[1]);self.assertIn('3 triệu',queries[1])
+        self.assertIn('thanh lịch', queries[1])
+        self.assertEqual(parse_price(budget_text(queries[1]))['max_price'], 3_000_000)
         self.assertEqual(why['referenced_product_ids'],[1]);self.assertEqual(why['products'],[])
         self.assertNotIn('shopping_context',second)

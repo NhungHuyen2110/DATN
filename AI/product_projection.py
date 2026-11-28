@@ -13,16 +13,30 @@ class ProductProjection:
         self.model_name, self.model_revision = model_name, model_revision
 
     def __call__(self, product_id, snapshot, generation):
+        if not isinstance(generation, int) or generation < 1:
+            raise ValueError('Positive outbox generation required')
+        if snapshot is not None and snapshot.get('ProductID') != product_id:
+            raise ValueError('Snapshot identity differs from claimed product')
+        # Incremental delivery must not create/switch collections or schema.
+        from qdrant_client.models import Distance
+        dimension = self.encoder.get_sentence_embedding_dimension()
+        collection, _ = index_identity(self.model_name, self.model_revision, dimension)
+        if not self.qdrant.collection_exists(collection):
+            raise ValueError('Expected existing vector collection; approval required')
+        config = self.qdrant.get_collection(collection).config.params.vectors
+        if isinstance(config, dict) or config.size != dimension or config.distance != Distance.COSINE:
+            raise ValueError('Existing collection schema differs')
         if snapshot is None:
             mark_deleted(self.graph_driver, self.graph_database, product_id)
-            collection, _ = index_identity(self.model_name, self.model_revision,
-                                            self.encoder.get_sentence_embedding_dimension())
             if self.qdrant.collection_exists(collection):
                 from qdrant_client.models import PointIdsList
                 self.qdrant.delete(collection, points_selector=PointIdsList(points=[product_id]), wait=True)
+                if self.qdrant.retrieve(collection, ids=[product_id]):
+                    raise RuntimeError('VectorDeletionVerificationFailed')
             return
         digest = hashlib.sha256(json.dumps(snapshot, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-        result = import_projection(self.graph_driver, self.graph_database, [snapshot], 'business-db.products', digest)
+        result = import_projection(self.graph_driver, self.graph_database, [snapshot], 'business-db.products', digest,
+                                   allow_schema_changes=False)
         if not result['pass']:
             raise RuntimeError('GraphVerificationFailed')
         result = index_products(self.qdrant, self.encoder, [snapshot], self.model_name,

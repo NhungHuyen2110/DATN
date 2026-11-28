@@ -5,6 +5,17 @@ from test_search_service import parse_price,product
 
 
 class CategoryClarificationTests(unittest.TestCase):
+    def test_unresolved_goal_has_one_reminder_and_no_model_load(self):
+        row = {'pending_category': {'query': 'dưới 3 triệu',
+                                   'options': [{'name': 'nhẫn', 'canonical_id': 'ring'}]}}
+        with patch('jewelry_agents.retrieval.embedding_model', None), \
+                patch('jewelry_agents.retrieval.get_dense_services') as loader:
+            first = pending_category_reply('chưa rõ', row, lambda q: self.fail('No retrieval'))
+            second = pending_category_reply('vẫn chưa hiểu', row, lambda q: self.fail('No retrieval'))
+        loader.assert_not_called()
+        self.assertNotEqual(first['answer'], second['answer'])
+        self.assertNotIn('pending_category', row)
+
     def test_close_scores_ask_dynamic_options_without_lowering_threshold(self):
         result=category_question('original',{'ring':.601,'bracelet':.506,'earring':.2})
         self.assertEqual(result['products'],[])
@@ -54,7 +65,7 @@ class CategoryClarificationTests(unittest.TestCase):
         }
 
         with patch(
-            'jewelry_agents.retrieval._dense_gate.call',
+            'jewelry_agents.retrieval._dense_gate.call_with_timeout',
             return_value=((CategoryLink('ring', 1, .8, .3),), True)
         ) as dense_call:
             result = pending_category_reply(

@@ -23,28 +23,12 @@ def answer_staff_multi_intent(db, message: str):
     tools = plan["tools"]
     text = normalize_question(message)
 
-    # Chưa kết hợp bộ lọc thời gian trong Orchestrator này.
-    time_words = (
-        "hom nay",
-        "hom qua",
-        "thang nay",
-        "thang truoc",
-        "tuan nay",
-        "thang ",
-        "ngay ",
-    )
-
-    if any(word in text for word in time_words):
-        return {
-            "intent": "unsupported",
-            "answer": (
-                "Tôi đã nhận diện được nhiều yêu cầu, "
-                "nhưng chưa hỗ trợ kết hợp bộ lọc thời gian. "
-                "Vui lòng hỏi riêng thống kê đơn hàng theo "
-                "thời gian và tình trạng tồn kho."
-            ),
-            "data": None,
-        }
+    from .ai_order_scope import parse_order_scope, order_clause, statistic_value
+    from .ai_reporting_period import has_period, reporting_scope_supported
+    order_intent = parse_order_scope(order_clause(message))
+    if has_period(message) or order_intent['intent'] != 'order_statistics' or not reporting_scope_supported(text, multi=True):
+        return {'intent': 'unsupported', 'data': None,
+                'answer': 'Chưa hỗ trợ đầy đủ bộ lọc trong câu hỏi kết hợp. Vui lòng hỏi riêng thống kê đơn và tồn kho.'}
 
     answers = []
     data = {}
@@ -53,18 +37,7 @@ def answer_staff_multi_intent(db, message: str):
     if "order_statistics" in tools:
         orders = get_order_statistics(db)
 
-        if "cho xu ly" in text or "dang cho" in text:
-            label = "Đơn hàng đang chờ xử lý"
-            value = orders["pending_orders"]
-        elif "da giao" in text:
-            label = "Đơn hàng đã giao"
-            value = orders["delivered_orders"]
-        elif "da xac nhan" in text:
-            label = "Đơn hàng đã xác nhận"
-            value = orders["confirmed_orders"]
-        else:
-            label = "Tổng số đơn hàng"
-            value = orders["total_orders"]
+        label, value = statistic_value(orders, order_intent['field'])
 
         answers.append(f"{label}: {value} đơn.")
 
@@ -80,6 +53,7 @@ def answer_staff_multi_intent(db, message: str):
             db=db,
             threshold=5,
             limit=20,
+            mode='out_of_stock' if 'het hang' in text and 'sap het hang' not in text else 'low_stock',
         )
 
         only_out_of_stock = (

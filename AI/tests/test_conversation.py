@@ -4,6 +4,32 @@ from shared.conversation import ConversationStore,converse
 
 
 class ConversationTests(unittest.TestCase):
+    def test_business_adapter_preserves_store_lock_and_session_isolation(self):
+        store = ConversationStore()
+        calls = []
+        def adapter(message, row, tool):
+            row['business_state'] = {'metric': message}
+            calls.append(message)
+            return {'intent': 'order_statistics', 'data': {'value': 0}, 'answer': '0 orders'}
+        with patch('shared.conversation.STORE', store), patch('shared.conversation.followup_reply') as generic:
+            first = converse('orders', None, ('staff', 1, 'session-a'), None, dialogue=adapter)
+            token = first['conversation_id']
+            row = store.rows[token]
+            self.assertEqual(row['business_state'], {'metric': 'orders'})
+            self.assertEqual(row['last_result']['data'], {'value': 0})
+            row['lock'].acquire()
+            try:
+                busy = converse('blocked', token, ('staff', 1, 'session-a'), None, dialogue=adapter)
+                self.assertEqual(busy['status'], 'conversation_busy')
+                self.assertEqual(calls, ['orders'])
+            finally:
+                row['lock'].release()
+            other = converse('new session', token, ('staff', 1, 'session-b'), None, dialogue=adapter)
+            self.assertNotEqual(other['conversation_id'], token)
+            self.assertEqual(row['business_state'], {'metric': 'orders'})
+            self.assertEqual(len(row['history']), 1)
+            generic.assert_not_called()
+
     def test_busy_conversation_does_not_queue_or_run_another_tool(self):
         store=ConversationStore()
         token,row=store.resolve(None,('customer-public',))

@@ -17,7 +17,7 @@ STAFF_QUESTION = (
 )
 
 
-def fake_inventory(db, threshold=5, limit=20):
+def fake_inventory(db, threshold=5, limit=20, mode=None):
     return {
         "total_products": 500,
         "out_of_stock_products": 0,

@@ -1,9 +1,7 @@
 from app.services.ai_product_lookup import answer_product_lookup
-from app.services.ai_staff_intent import normalize_text
 from app.services.ai_order_time_tools import get_orders_by_period
-from app.services.ai_order_time_intent import understand_time_order_question
 from app.services.ai_inventory_chat import answer_inventory_question
-from fastapi import Query
+from fastapi import Query, Request
 from app.services.ai_staff_orchestrator import answer_staff_multi_intent
 from app.services.ai_inventory_tools import (
     get_inventory_statistics,
@@ -109,160 +107,12 @@ def _staff_ai_tools(
     if inventory_response is not None:
         return inventory_response
 
-    time_intent = understand_time_order_question(
-        request.message
-    )
-
-    if time_intent is not None:
-        if time_intent.get("intent") != "orders_by_period":
-            return {
-                "answer": time_intent.get(
-                    "message", "Câu hỏi chưa được hỗ trợ."
-                ),
-                "intent": time_intent.get(
-                    "intent", "unsupported"
-                ),
-                "data": None,
-            }
-
-        result = get_orders_by_period(
-            db=db,
-            start_date=time_intent["start_date"],
-            end_date=time_intent["end_date"],
-            status=time_intent["status"],
-        )
-
-        status_names = {
-            None: "tổng cộng",
-            "pending": "đang chờ xử lý",
-            "confirmed": "đã xác nhận",
-            "delivered": "đã giao",
-        }
-
-        status_label = status_names[result["status"]]
-
-        answer = (
-            f"Từ {time_intent['start_date']:%d/%m/%Y} "
-            f"đến {time_intent['end_date']:%d/%m/%Y}, "
-            f"hệ thống có {result['total_orders']} "
-            f"đơn hàng {status_label} "
-            "(tính theo ngày tạo đơn)."
-        )
-
-        return {
-            "answer": answer,
-            "intent": "orders_by_period",
-            "data": result,
-        }
-
-    # Bước 1: Nhận diện câu hỏi
-    # Mặc định dùng bộ nhận diện cũ đã hoạt động ổn định.
-        # Chặn yêu cầu vượt phạm vi thống kê hiện tại,
-    # áp dụng cho cả chế độ bật và tắt Ollama.
-    text = normalize_text(request.message)
-
-    unsupported_patterns = (
-        "hom nay",
-        "hom qua",
-        "thang nay",
-        "thang truoc",
-        "tuan nay",
-        "ngay ",
-        "liet ke",
-        "danh sach",
-        "ma don",
-        "don nao",
-    )
-
-    if any(pattern in text for pattern in unsupported_patterns):
-        return {
-            "answer": (
-                "Hiện tại tôi chỉ hỗ trợ thống kê số lượng "
-                "đơn hàng trong toàn bộ lịch sử. "
-                "Chức năng lọc thời gian và liệt kê "
-                "đơn cụ thể chưa được hỗ trợ."
-            ),
-            "intent": "unsupported",
-            "data": None,
-        }
-    enable_llm = (
-        os.getenv("STAFF_AI_LLM_ENABLED", "false").lower()
-        == "true"
-    )
-
-    if enable_llm:
-        intent = understand_staff_question_with_llm(
-            request.message
-        )
-    else:
-        intent = understand_staff_question(
-            request.message
-        )
-
-    if intent.get("intent") != "order_statistics":
-        return {
-            "answer": intent.get(
-                "message",
-                "Tôi chưa hiểu yêu cầu của bạn."
-            ),
-            "intent": intent.get("intent", "unsupported"),
-            "data": None,
-        }
-
-    # Bước 2: Lấy dữ liệu thực từ PostgreSQL
-    result = get_order_statistics(db)
-
-    # Bước 3: Chọn số liệu được phép trả lời
-    field = intent.get("field")
-
-    field_config = {
-        "total_orders": (
-            "Tổng số đơn hàng trong hệ thống",
-            result["total_orders"],
-        ),
-        "pending_orders": (
-            "Số đơn hàng đang chờ xử lý",
-            result["pending_orders"],
-        ),
-        "confirmed_orders": (
-            "Số đơn hàng đã xác nhận",
-            result["confirmed_orders"],
-        ),
-        "delivered_orders": (
-            "Số đơn hàng đã giao",
-            result["delivered_orders"],
-        ),
-        "unpaid_orders": (
-            "Số đơn hàng chưa thanh toán",
-            result["payment_status"].get("unpaid", 0),
-        ),
-        "paid_orders": (
-            "Số đơn hàng có trạng thái đã thanh toán",
-            result["payment_status"].get("paid", 0),
-        ),
-    }
-
-    if field not in field_config:
-        return {
-            "answer": "Tôi chưa hỗ trợ loại thống kê này.",
-            "intent": "unsupported",
-            "data": None,
-        }
-
-    label, value = field_config[field]
-
-    # Bước 4: Trả câu trả lời tiếng Việt
-    answer = f"{label}: {value} đơn."
-
-    return {
-        "answer": answer,
-        "intent": "order_statistics",
-        "field": field,
-        "data": {
-            "value": value,
-            "scope": result["scope"],
-        },
-    }
+    from app.services.ai_order_chat import answer_order_question
+    classifier = (understand_staff_question_with_llm
+                  if os.getenv('STAFF_AI_LLM_ENABLED', 'false').lower() == 'true'
+                  else understand_staff_question)
+    return answer_order_question(request.message, db, statistics=get_order_statistics,
+                                 period=get_orders_by_period, classifier=classifier)
 
 
 @router.get("/inventory-statistics")
@@ -284,7 +134,11 @@ def staff_inventory_statistics(
 
 
 @router.post('/chat')
-def staff_ai_chat(request:StaffChatRequest,user:ActiveStaff,db:Database):
+def staff_ai_chat(request:StaffChatRequest,user:ActiveStaff,db:Database,http_request:Request):
     from shared.conversation import converse
-    return converse(request.message,request.conversation_id,('staff',user.id),
-                    lambda message:_staff_ai_tools(StaffChatRequest(message=message),user,db))
+    from app.services.ai_business_dialogue import business_turn
+    from app.routers.auth import COOKIE_NAME, hash_session_token
+    session_scope = hash_session_token(http_request.cookies.get(COOKIE_NAME, ''))
+    return converse(request.message,request.conversation_id,('staff',user.id,session_scope),
+                    lambda message:_staff_ai_tools(StaffChatRequest(message=message),user,db),
+                    dialogue=lambda message,row,tool:business_turn(message,row,tool,role='staff'))

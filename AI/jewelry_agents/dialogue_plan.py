@@ -160,9 +160,10 @@ def context_payload(message, state=None, history=(), products=(), pending=None):
 def request_plan(message, state=None, *, history=(), products=(), pending=None,
                  enabled=None, time_budget=28, observer=None):
     """One bounded local-model request; fail closed, no retry or model download."""
-    if enabled is None:
-        enabled = os.getenv('LUMIERE_HYBRID_NLU_ENABLED', 'false').lower() == 'true'
-    if not enabled or not isinstance(message, str) or not 1 <= len(message) <= 1000:
+    # Own gate, independent of the price-inference feature sharing this URL.
+    # An explicit argument may opt out, never bypass deployment configuration.
+    configured = os.getenv('LUMIERE_HYBRID_NLU_ENABLED', 'false').lower() == 'true'
+    if not configured or enabled is False or not isinstance(message, str) or not 1 <= len(message) <= 1000:
         return None
     if not 2 <= time_budget <= 40:
         return None

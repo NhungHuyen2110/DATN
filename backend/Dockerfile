@@ -7,6 +7,9 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt requests==2.34.2 \
     && chown app:app /srv/product-uploads
 COPY backend/ /srv/backend/
 COPY shared/ /srv/shared/
+ARG LUMIERE_GIT_COMMIT=unknown
+ARG LUMIERE_SOURCE_SHA256=unknown
+LABEL org.opencontainers.image.revision=$LUMIERE_GIT_COMMIT io.lumiere.source.sha256=$LUMIERE_SOURCE_SHA256
 USER 10001
 EXPOSE 8001
 HEALTHCHECK --interval=15s --timeout=5s --retries=3 CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health/live', timeout=3)"

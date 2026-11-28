@@ -33,7 +33,7 @@ def main():
     from app.core.database import Base
     from app.models import Product, Category, Material, Gemstone, Brand, Collection, ProductIndexJob as Job
     from app.services.product_index_jobs import enqueue, claim_one, acknowledge
-    from app.services.product_index_worker import run_one
+    from app.services.product_index_worker import run_one, projection_lock, ProjectionBusy
     engine = create_engine(url, connect_args={'connect_timeout': 3, 'options': '-c statement_timeout=5000 -c lock_timeout=3000'})
     checks = []
     try:
@@ -66,6 +66,17 @@ def main():
         with factory() as db:
             assert db.get(Job, 900010).generation == 12
         checks.append('concurrent_upsert_preserves_all_12_generations')
+        # Sequential distinct connections exercise actual PG session locks,
+        # without starting parallel heavyweight jobs or contacting any index.
+        with projection_lock(factory, 900010):
+            try:
+                with projection_lock(factory, 900010):
+                    raise AssertionError('Concurrent advisory lock unexpectedly acquired')
+            except ProjectionBusy:
+                pass
+        with projection_lock(factory, 900010):
+            pass
+        checks.append('advisory_lock_excludes_other_connection_and_releases_after_use')
         with factory() as db, db.begin():
             enqueue(db, 900011)
         now = datetime.now(timezone.utc)

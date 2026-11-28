@@ -32,7 +32,7 @@ FAKE_RESULT = {
     "enabled,expected_field",
     [
         (False, None),
-        (True, "pending_orders"),
+        (True, None),
     ],
 )
 
@@ -80,7 +80,7 @@ def test_staff_llm_feature_flag(enabled, expected_field):
 
         body = response.json()
 
-        if enabled:
+        if expected_field is not None:
             # Khi bật LLM, câu hỏi được nhận diện
             # là thống kê đơn đang chờ xử lý.
             assert body["intent"] == "order_statistics"
@@ -90,8 +90,8 @@ def test_staff_llm_feature_flag(enabled, expected_field):
             mock_data.assert_called_once()
 
         else:
-            # Khi tắt LLM, hệ thống dùng bộ nhận diện cũ.
-            # Câu hỏi này chưa được hỗ trợ.
+            # Phase 4: an unknown/general utterance must not force an order
+            # query, even when an optional classifier flag is enabled.
             assert body["intent"] == "unsupported"
             assert body["data"] is None
 

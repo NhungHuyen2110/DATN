@@ -118,11 +118,27 @@ class StatePatch:
     updates: dict
     clear: frozenset = frozenset()
     reset: bool = False
+    unknown: frozenset = frozenset()
+
+    def __post_init__(self):
+        groups = (set(self.updates), set(self.clear), set(self.unknown))
+        if set.union(*groups) - FIELDS or any(groups[i] & groups[j] for i in range(3) for j in range(i)):
+            raise ValueError('Invalid or conflicting slot operations')
 
     def operations(self):
-        return {field: ('SET' if field in self.updates else 'CLEAR' if field in self.clear else 'KEEP')
-                for field in FIELDS}
+        operations = {field: ('SET' if field in self.updates else 'CLEAR' if field in self.clear
+                             else 'UNKNOWN' if field in self.unknown else 'KEEP') for field in FIELDS}
+        if self.reset:
+            operations['task'] = 'RESET'
+        return operations
 
     def apply(self, previous):
         base = reset_state() if self.reset else previous
         return update_state(base, self.updates, self.clear)
+
+
+@dataclass(frozen=True)
+class PendingClarification:
+    """Server-owned goal; attempts bound repeated questions without losing slots."""
+    goal: str
+    attempts: int = 1

@@ -1,9 +1,11 @@
 """Conservative public-chat routing; a claimed role never grants privileges."""
 from .entity_linking import normalize
+import re
+from shared.conversation import task_body, conversational_act
 
 
 def classify_query(query):
-    text = normalize(query)
+    text = normalize(task_body(query))
     padded = ' ' + text + ' '
     def has(phrase):
         return ' ' + phrase + ' ' in padded
@@ -11,7 +13,7 @@ def classify_query(query):
                                       'system prompt', 'reset token', 'bo qua huong dan',
                                       'ignore previous instructions', 'don hang cua nguoi khac')):
         return 'restricted_request'
-    if text in {'xin chao', 'chao', 'chao ban', 'hello', 'hi', 'cam on', 'thank you'}:
+    if conversational_act(query) in {'greeting', 'capability'} or re.fullmatch(r'(?:cam on|thank you)(?: (?:ban|shop|lumiere))?', text):
         return 'greeting'
     if any(has(phrase) for phrase in ('phi van chuyen', 'phi ship', 'mien phi van chuyen',
                                       'chinh sach van chuyen', 'shipping fee')):

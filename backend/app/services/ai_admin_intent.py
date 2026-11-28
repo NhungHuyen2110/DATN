@@ -1,12 +1,5 @@
 
 import re
-from datetime import date, timedelta
-from calendar import monthrange
-from zoneinfo import ZoneInfo
-from datetime import datetime
-
-
-VIETNAM = ZoneInfo("Asia/Ho_Chi_Minh")
 
 
 def understand_admin_question(question: str):
@@ -15,7 +8,8 @@ def understand_admin_question(question: str):
     Đây là bộ phân tích quy tắc ban đầu,
     chưa phải mô hình LLM.
     """
-    text = question.strip().lower()
+    from .ai_staff_intent import normalize_text
+    text = normalize_text(question)
 
     if not text:
         return {
@@ -24,14 +18,11 @@ def understand_admin_question(question: str):
         }
 
     selling_keywords = [
-        "bán chạy",
-        "bán nhiều nhất",
-        "bán tốt nhất",
-        "top sản phẩm",
-        "sản phẩm bán nhiều",
+        'ban chay', 'ban nhieu nhat', 'ban tot nhat', 'top san pham',
+        'san pham ban nhieu', 'mua nhieu nhat',
     ]
 
-    if not any(word in text for word in selling_keywords):
+    if not any(word in text for word in selling_keywords) and not re.search(r'\btop\s*\d+\s+san pham\b', text):
         return {
             "intent": "unsupported",
             "message": (
@@ -41,36 +32,14 @@ def understand_admin_question(question: str):
             )
         }
 
-    today = datetime.now(VIETNAM).date()
-    year = today.year
-    month = today.month
-
-    # Nhận diện tháng cụ thể: tháng 10/2026
-    match = re.search(
-        r"tháng\s+(\d{1,2})(?:\s*/\s*(\d{4}))?",
-        text
-    )
-
-    if match:
-        month = int(match.group(1))
-        year = int(match.group(2) or today.year)
-
-        if not 1 <= month <= 12:
-            return {
-                "intent": "invalid",
-                "message": "Tháng phải từ 1 đến 12."
-            }
-
-        if year < 2000 or year > 2100:
-            return {
-                "intent": "invalid",
-                "message": "Năm không hợp lệ."
-            }
-
-    elif "tháng trước" in text:
-        previous = today.replace(day=1) - timedelta(days=1)
-        month = previous.month
-        year = previous.year
+    from .ai_reporting_period import parse_reporting_period, reporting_scope_supported
+    period = parse_reporting_period(question)
+    if period['intent'] != 'period':
+        return period
+    if re.search(r'\b(?:theo|moi|tung)\s+(?:ngay|thang)\b', text):
+        return {'intent': 'unsupported', 'message': 'Báo cáo bán chạy chưa hỗ trợ chia nhóm theo ngày hoặc tháng.'}
+    if not reporting_scope_supported(period.pop('_remaining'), selling=True):
+        return {'intent': 'unsupported', 'message': 'Chưa hỗ trợ đầy đủ bộ lọc trong yêu cầu bán chạy.'}
 
     # Nhận diện top 3, top 5, top 10...
     top_match = re.search(r"\btop\s+(\d+)", text)
@@ -82,11 +51,9 @@ def understand_admin_question(question: str):
             "message": "Số lượng top phải từ 1 đến 20."
         }
 
-    last_day = monthrange(year, month)[1]
-
     return {
-        "intent": "top_selling_products",
-        "start_date": date(year, month, 1),
-        "end_date": date(year, month, last_day),
-        "limit": limit,
+        'intent': 'top_selling_products',
+        'start_date': period['start_date'],
+        'end_date': period['end_date'],
+        'limit': limit,
     }

@@ -10,6 +10,7 @@ def get_inventory_statistics(
     db: Session,
     threshold: int = 5,
     limit: int = 20,
+    mode: str | None = None,
 ):
     """
     Thống kê tồn kho LUMIÈRE.
@@ -32,6 +33,8 @@ def get_inventory_statistics(
             detail="limit phải từ 1 đến 50",
         )
 
+    if mode not in {None, 'low_stock', 'out_of_stock', 'in_stock'}:
+        raise HTTPException(status_code=422, detail='Unsupported inventory mode')
     # 1. Thống kê tổng quan
     summary_query = select(
         func.count(Product.id),
@@ -71,7 +74,10 @@ def get_inventory_statistics(
             Product.name,
             Product.stock,
         )
-        .where(Product.stock <= threshold)
+        .where((Product.stock > 0) & (Product.stock <= threshold) if mode == 'low_stock'
+               else Product.stock == 0 if mode == 'out_of_stock'
+               else Product.stock > 0 if mode == 'in_stock'
+               else Product.stock <= threshold)
         .order_by(Product.stock.asc(), Product.id.asc())
         .limit(limit)
     )
@@ -88,7 +94,7 @@ def get_inventory_statistics(
             "stock": stock,
             "inventory_status": (
                 "out_of_stock" if stock == 0
-                else "low_stock"
+                else "low_stock" if stock <= threshold else "in_stock"
             ),
         })
 

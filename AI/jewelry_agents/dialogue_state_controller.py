@@ -13,7 +13,7 @@ from .price_intent_router import resolve_price_preference
 from .semantic_price_intent import infer_price_preference
 
 
-def prepare_state(query, parse_price, top_k=3):
+def prepare_state(query, parse_price, top_k=3, allow_partial=False):
     """Build a state for a supported shopping request."""
 
     if identity_request(query):
@@ -24,7 +24,7 @@ def prepare_state(query, parse_price, top_k=3):
         parse_price
     )
 
-    if state.category is None:
+    if state.category is None and not allow_partial:
         return None
 
     # Verify that all extracted fields can be rendered.
@@ -113,7 +113,6 @@ def prepare_semantic_refinement(message, previous_state):
 
         return infer_price_preference(
             query,
-            enabled=True,
             time_budget=18
         )
 
@@ -187,12 +186,42 @@ def identity_request(message):
 
 def missing_refinement_field(message):
     text = normalize(message)
+    try:
+        updates, clear = extract_state_changes(message, lambda _: {})
+    except (ValueError, TypeError):
+        updates, clear = {}, set()
     for field, phrase in (("material", "chất liệu"), ("gemstone", "loại đá")):
         normalized_phrase = normalize(phrase)
         if (normalized_phrase in text and
                 re.search(r"\b(?:doi|thay|thu|khac)\b", text) and
-                not extract_state_changes(message, lambda _: {})[0].get(field)):
+                field not in updates and field not in clear):
             return field, f"Bạn muốn đổi sang {phrase} nào?"
+    return None
+
+
+def task_transition(message, pending=None):
+    """Classify speech acts by task/slot scope, independently of providers.
+
+    A bare exchange needs clarification; purchased-item context means support.
+    Category/material changes stay refinements. Only explicit new-task scope resets.
+    """
+    text = normalize(message)
+    if re.search(r'\b(?:khong|dung|chua)\s+(?:(?:muon|can)\s+)?(?:doi|thay|bat dau|reset|nhu cau moi|nhu cau khac)\b', text):
+        return 'keep'
+    if re.search(r'\b(?:bat dau lai|lam lai|tim moi|bo het dieu kien|xoa het dieu kien|nhu cau moi|nhu cau khac)\b', text):
+        return 'reset'
+    exchange = bool(re.search(r'\b(?:doi|tra|hoan|thay)\b', text))
+    purchased = bool(re.search(r'\b(?:da mua|mua roi|mua truoc|da nhan|da dat|bi loi|sai size|doi tra|hoan tien)\b', text))
+    if purchased and (exchange or pending == 'exchange'):
+        return 'return'
+    if pending == 'exchange' and re.search(r'\b(?:chon|tim|tu van|goi y|chua mua|lua chon)\b', text):
+        return 'selection'
+    try:
+        slots, clear = extract_state_changes(message, lambda _: {})
+    except (ValueError, TypeError):
+        return None
+    if exchange and re.search(r'\b(?:san pham|mon|mau|lua chon)\b', text) and not slots and not clear:
+        return 'exchange'
     return None
 
 
@@ -215,7 +244,16 @@ def prepare_refinement(message, previous_state, parse_price, previous_products=(
         understanding = link_query(re.split(r'\b(?:thay vi|chu khong phai)\b', text)[0])
         if understanding.get('needs_clarification'):
             return None
+        if missing_refinement_field(message):
+            return None
         updates, clear = extract_state_changes(message, parse_price)
+        # Negative entity mentions are neither positive SET nor an implicit
+        # permission to drop the old hard constraint. Recognized CLEAR and
+        # positive replacements have already been removed by the extractor.
+        from .dialogue_plan_validator import _positive_entity
+        if any(field in updates and not _positive_entity(field, updates[field], message)
+               for field in ('category', 'material', 'gemstone', 'audience', 'style')):
+            return None
         if cheaper_request(message):
             from decimal import Decimal
             prices = [Decimal(str(p['Price'])) for p in previous_products if p.get('Price') is not None]

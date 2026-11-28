@@ -8,6 +8,7 @@
   <title>LUMIÈRE — Trang sức & dấu ấn riêng</title>
 
   <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="./assets/css/customer-ai.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
 
   <!-- Dữ liệu sản phẩm -->
@@ -18,15 +19,12 @@
 
   <!-- Giữ nguyên API và các chức năng hiện tại -->
   <script defer src="./assets/js/api.js"></script>
+  <script defer src="./assets/js/customer-ai.js"></script>
   <script defer src="./assets/js/app.js"></script>
   <script defer src="./assets/js/home-auth.js"></script>
 </head>
 
 <body>
-  <div class="announcement">
-    MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 2.000.000₫
-  </div>
-
   <header class="site-header lumiere-shell-header" id="site-header">
     <div class="container header-inner">
       <button
@@ -280,6 +278,7 @@
         <button
           class="button button-dark"
           id="open-chat-section"
+          hidden
         >
           TRÒ CHUYỆN VỚI AI <span>↗</span>
         </button>
@@ -311,7 +310,7 @@
       <div>
         <h3>HỖ TRỢ</h3>
         <a href="./pages/orders.html">Theo dõi đơn hàng</a>
-        <button id="footer-chat">Tư vấn trực tuyến</button>
+        <button id="footer-chat" hidden>Tư vấn trực tuyến</button>
         <a href="./pages/contact.html">Liên hệ</a>
       </div>
 
@@ -328,14 +327,7 @@
     </div>
   </footer>
 
-  <!-- NÚT MỞ AI CUSTOMER -->
-  <button
-    id="chat-fab"
-    class="chat-fab"
-    aria-label="Mở trợ lý AI"
-  >
-    <span>✧</span> Tư vấn AI
-  </button>
+  
 
   <!-- OVERLAY -->
   <div id="overlay" class="overlay" hidden></div>
@@ -377,48 +369,6 @@
     <div id="modal-content"></div>
   </div>
 
-  <!-- CHATBOT AI CUSTOMER -->
-  <div
-    class="chat-window"
-    id="chat-window"
-    role="dialog"
-    aria-modal="false"
-    aria-label="Trợ lý tư vấn AI"
-    hidden
-  >
-    <div class="chat-head">
-      <div>
-        <strong>✧ Trợ lý LUMIÈRE</strong>
-        <small>Tư vấn trang sức cá nhân hóa</small>
-      </div>
-      <button id="chat-close" aria-label="Đóng chatbot">×</button>
-    </div>
-
-    <div
-      class="chat-messages"
-      id="chat-messages"
-      aria-live="polite"
-    >
-      <div class="message bot">Xin chào! Rất vui được đồng hành cùng bạn.
-        Bạn đang tìm một món trang sức cho bản thân hay một món quà dành tặng người đặc biệt?</div>
-    </div>
-
-    <form id="chat-form" class="chat-form">
-      <label for="chat-query" class="sr-only">Câu hỏi</label>
-      <input
-        id="chat-query"
-        name="query"
-        autocomplete="off"
-        maxlength="500"
-        placeholder="Nhập câu hỏi của bạn..."
-        required
-      />
-      <button type="submit" aria-label="Gửi">➤</button>
-    </form>
-    <p class="chat-foot">
-      Thông tin tư vấn được hỗ trợ bởi AI.
-    </p>
-  </div>
 
   <!-- THÔNG BÁO -->
   <div

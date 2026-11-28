@@ -100,6 +100,16 @@ def category_question(query, scores):
 def pending_category_reply(message,row,tool):
     pending=row.get('pending_category')
     if not pending:return None
+    # A category goal has one reminder, then suspends instead of looping or
+    # repeatedly invoking semantic retrieval for an unresolved short reply.
+    if pending.get('attempts', 0) >= 1:
+        explicit = [e for e in link_query(message)['entities'] if e['label'] == 'Category']
+        selection = re.fullmatch(r'(?:(?:loai|mau|phuong an|cai)\s*)?(?:thu\s*)?(1|2|nhat|hai|dau tien)(?:\s+(?:nhe|a|di))?', normalize(message))
+        if not explicit and not selection:
+            row.pop('pending_category', None)
+            return {'success': True, 'intent': 'shopping_clarification', 'status': 'clarification_required', 'products': [],
+                    'answer': 'Mình tạm dừng chọn loại. Các điều kiện đã nêu vẫn được giữ; bạn có thể nêu tên loại trang sức, bắt đầu lại hoặc hủy.'}
+    pending['attempts'] = pending.get('attempts', 0) + 1
     from shared.conversation import knowledge_request,followup_kind
     if (knowledge_request(message) or followup_kind(message) or
             classify_query(message) in {'restricted_request','shipping_policy','unverified_policy','customer_order_guidance','out_of_scope'}):
@@ -154,16 +164,18 @@ def pending_category_reply(message,row,tool):
                 if index<len(options):selected=options[index];method='option_selection'
             elif len(message)<=120:
                 try:
-                    from jewelry_agents.retrieval import _dense_gate,get_dense_services
+                    from jewelry_agents.retrieval import _dense_gate, embedding_model
                     from jewelry_agents.semantic_category import category_links
                     def operation():
                         from jewelry_agents.advice_planner import plan_advice
-                        model=get_dense_services()[1]
+                        model=embedding_model
+                        if model is None:
+                            return (), False
                         advice=plan_advice(message,model,include_embedding=True)
                         context=advice['_request_embedding']
                         links=context.entity_links or category_links(message,model,context.vector)
                         return links,bool(advice['accepted'] and advice['intent'] in {'gift_advice','product_search'})
-                    links,related_reply=_dense_gate.call(operation)
+                    links,related_reply=_dense_gate.call_with_timeout(4, operation)
                     classified_reply=True
                     if links:
                         selected=next((o for o in options if o['canonical_id']==links[0].canonical_id),None)

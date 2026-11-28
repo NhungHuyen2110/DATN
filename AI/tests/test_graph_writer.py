@@ -6,6 +6,8 @@ from unittest.mock import MagicMock
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from knowledge_graph.csv_validation import validate_csv, ROOT
 from knowledge_graph.graph_writer import import_projection, prepare_rows, write_batch, ProjectionConflict
+from knowledge_graph.graph_writer import verify_projection, LOOKUPS
+from knowledge_graph.graph_writer import mark_deleted
 
 
 class GraphWriterTests(unittest.TestCase):
@@ -42,6 +44,24 @@ class GraphWriterTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             import_projection(driver, 'neo4j', self.records, 'synthetic.csv', 'abc')
         driver.session.assert_not_called()
+
+    def test_wrong_product_properties_fail_even_when_ids_and_relationships_match(self):
+        session = MagicMock()
+        results = [{'count': 2, 'distinct_count': 2, 'unmanaged': 0}, {'violations': 1}]
+        results += [{'count': 2, 'violations': 0} for _ in LOOKUPS]
+        session.run.return_value.single.side_effect = results
+        report = verify_projection(session, prepare_rows(self.records, 'fixture', 'sha'))
+        self.assertEqual(report['property_violations'], 1)
+        self.assertFalse(report['pass'])
+
+    def test_tombstone_requires_readback_before_transaction_success(self):
+        driver = MagicMock()
+        tx = MagicMock()
+        tx.run.return_value.single.side_effect = [{'count': 0}, {'violations': 1}]
+        session = driver.session.return_value.__enter__.return_value
+        session.execute_write.side_effect = lambda callback: callback(tx)
+        with self.assertRaisesRegex(ProjectionConflict, 'Tombstone verification failed'):
+            mark_deleted(driver, 'neo4j', 1)
 
 
 if __name__ == '__main__':

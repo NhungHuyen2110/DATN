@@ -2066,3 +2066,99 @@ body[data-page="collections"] .collection-intro{
     flex-basis:100%;
   }
 }
+
+/* =========================================
+   LUMIÈRE - AUTHENTICATION REFINEMENT
+   ========================================= */
+
+.auth-main {
+    padding-top: 40px;
+    padding-bottom: 48px;
+}
+
+.auth-main .auth-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e6ded3;
+    box-shadow: 0 8px 32px rgba(41, 40, 36, .05);
+}
+
+.auth-main .auth-form {
+    background: #fff;
+    padding: 48px 44px;
+}
+
+.auth-main .auth-form h2 {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 12px 0;
+}
+
+.auth-main .auth-form .page-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.auth-main .auth-form .field {
+    margin-bottom: 16px;
+}
+
+.auth-main .auth-form .field label {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.auth-main .auth-form .field input {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    background: #fffdfb;
+}
+
+.auth-main .auth-form .field input:focus {
+    border-color: var(--gold);
+    outline: 1px solid var(--gold);
+    outline-offset: 0;
+}
+
+.auth-main #auth-submit {
+    min-height: 48px;
+    margin-top: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.auth-main .auth-form .mini-note {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.auth-main .auth-form .inline-link {
+    color: #947344;
+    font-weight: 500;
+}
+
+@media (max-width: 760px) {
+    .auth-main {
+        padding-top: 24px;
+        padding-bottom: 32px;
+    }
+
+    .auth-main .auth-form {
+        padding: 30px 24px;
+    }
+
+    .auth-main .auth-form h2 {
+        font-size: 34px;
+    }
+}

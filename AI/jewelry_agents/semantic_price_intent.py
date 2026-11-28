@@ -73,14 +73,10 @@ Ví dụ:
 """
 
 
-def infer_price_preference(query, *, enabled=None, time_budget=None):
-
-    if enabled is None:
-        enabled = os.getenv(
-            "LUMIERE_SEMANTIC_PRICE_ENABLED", "false"
-        ).lower() == "true"
-
-    if not enabled:
+def infer_price_preference(query, *, time_budget=None):
+    # The price gate is authoritative even when a different semantic feature
+    # (DST or query planning) shares this provider. Callers cannot override it.
+    if os.getenv("LUMIERE_SEMANTIC_PRICE_ENABLED", "false").lower() != "true":
         return "neutral"
 
     if time_budget is not None and not 2 <= time_budget <= 24:

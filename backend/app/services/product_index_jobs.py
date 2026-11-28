@@ -84,17 +84,22 @@ class Claim:
     product_id: int
     generation: int
     token: str
+    dirty_since: datetime | None = None
 
 
-def claim_one(session, now=None, lease_seconds=120, max_attempts=5):
+def claim_one(session, now=None, lease_seconds=120, max_attempts=5, product_ids=None):
     if lease_seconds < 30 or max_attempts < 1:
         raise ValueError('Lease >=30 seconds and positive retry budget required')
     now = now or now_utc()
     while True:
-        job = session.scalar(select(Job).where(or_(
+        query = select(Job).where(or_(
             and_(Job.status == 'pending', Job.next_attempt_at <= now),
             and_(Job.status == 'processing', Job.lease_until <= now),
-        )).order_by(Job.next_attempt_at, Job.product_id).with_for_update(skip_locked=True).limit(1))
+        ))
+        if product_ids is not None:
+            query = query.where(Job.product_id.in_(product_ids))
+        job = session.scalar(query.order_by(Job.next_attempt_at, Job.product_id)
+                             .with_for_update(skip_locked=True).limit(1))
         if job is None:
             return None
         if job.attempts < max_attempts:
@@ -107,7 +112,7 @@ def claim_one(session, now=None, lease_seconds=120, max_attempts=5):
     job.status, job.lease_token = 'processing', uuid4().hex
     job.lease_until = now + timedelta(seconds=lease_seconds)
     job.attempts += 1
-    return Claim(job.product_id, job.generation, job.lease_token)
+    return Claim(job.product_id, job.generation, job.lease_token, job.dirty_since)
 
 
 def acknowledge(session, claim, error=None, now=None, max_attempts=5):
@@ -129,13 +134,14 @@ def acknowledge(session, claim, error=None, now=None, max_attempts=5):
     return True
 
 
-def sync_status(session, now=None):
+def sync_status(session, now=None, product_ids=None):
     if not enabled():
         return {'enabled': False, 'states': {}, 'last_success': None, 'oldest_pending_seconds': None}
     now = now or now_utc()
-    counts = dict(session.execute(select(Job.status, func.count()).group_by(Job.status)).all())
-    last = session.scalar(select(func.max(Job.completed_at)))
-    oldest = session.scalar(select(func.min(Job.dirty_since)).where(Job.delivered_generation < Job.generation))
+    scope = [] if product_ids is None else [Job.product_id.in_(product_ids)]
+    counts = dict(session.execute(select(Job.status, func.count()).where(*scope).group_by(Job.status)).all())
+    last = session.scalar(select(func.max(Job.completed_at)).where(*scope))
+    oldest = session.scalar(select(func.min(Job.dirty_since)).where(*scope, Job.delivered_generation < Job.generation))
     if oldest is not None and oldest.tzinfo is None:
         oldest = oldest.replace(tzinfo=timezone.utc)
     return {'enabled': True, 'states': counts, 'last_success': last.isoformat() if last else None,

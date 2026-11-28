@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report', type=Path, help='Create new test result JSON')
+    parser.add_argument('--pattern', default='test_*.py', help='Test filename glob; the same offline guards always apply')
     args = parser.parse_args()
     if args.report and args.report.exists():
         parser.error('Report already exists')
@@ -32,9 +33,10 @@ def main():
         stack.enter_context(patch('neo4j.GraphDatabase.driver', side_effect=AssertionError('Live graph forbidden')))
         stack.enter_context(patch('requests.sessions.Session.request', side_effect=AssertionError('HTTP network forbidden')))
         stack.enter_context(patch('httpx.HTTPTransport.handle_request', side_effect=AssertionError('HTTP network forbidden')))
-        suite = unittest.defaultTestLoader.discover(str(ROOT / 'AI/tests'), pattern='test_*.py')
+        suite = unittest.defaultTestLoader.discover(str(ROOT / 'AI/tests'), pattern=args.pattern)
         result = unittest.TextTestRunner(verbosity=1).run(suite)
     report = {'tests_run': result.testsRun, 'failures': len(result.failures), 'errors': len(result.errors),
+              'pattern': args.pattern,
               'skipped': len(result.skipped), 'successful': result.wasSuccessful(),
               'graph_integration': 'not_run_requires_isolated_server',
               'qdrant': 'actual_in_memory_engine_with_synthetic_vectors',

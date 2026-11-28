@@ -21,6 +21,8 @@ class WorkerMetrics:
         self.poll_errors = Counter('lumiere_sync_status_poll_errors_total', 'Failed status polls', registry=self.registry)
         self.lease_lost = Counter('lumiere_sync_lease_lost_total', 'Deliveries requiring lease-lost repair', registry=self.registry)
         self.duration = Histogram('lumiere_sync_job_seconds', 'Claim/read/deliver/ack duration', registry=self.registry)
+        self.event_lag = Histogram('lumiere_sync_event_to_index_seconds', 'Dirty generation to both indexes acknowledged',
+                                   registry=self.registry, buckets=(1, 5, 10, 30, 60, 120, 300, 3600, 86400))
         self.server = self.thread = None
 
     def update(self, status):
@@ -53,6 +55,9 @@ class WorkerMetrics:
             self.duration.observe(elapsed)
             if not result['acknowledged']:
                 self.lease_lost.inc()
+            lag = result.get('event_to_index_seconds')
+            if result.get('completed') and lag is not None:
+                self.event_lag.observe(lag)
 
     def authorized(self, header):
         return hmac.compare_digest((header or '').encode(), ('Bearer ' + self.token).encode())
